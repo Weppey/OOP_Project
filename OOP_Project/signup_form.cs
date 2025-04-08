@@ -81,6 +81,7 @@ namespace OOP_Project
 
 
                 mailMessage.To.Add(email);
+                //gumana kaya// 
 
                 // Send the email
                 smtpClient.Send(mailMessage);
@@ -92,7 +93,7 @@ namespace OOP_Project
                 MessageBox.Show($"Failed to send email: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        //test
 
 
         private string GenerateConfirmationCode()
