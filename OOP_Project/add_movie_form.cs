@@ -98,5 +98,20 @@ namespace OOP_Project
         {
             LoadImageFromUrl(url_tb.Text);
         }
+
+        private void Pb_logo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void poster_pb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clear_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

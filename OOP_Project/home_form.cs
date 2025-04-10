@@ -127,5 +127,25 @@ namespace OOP_Project
             addMovieForm.ShowDialog();
             _ = LoadMoviesAsync();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void code_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menu_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
