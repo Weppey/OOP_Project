@@ -66,6 +66,7 @@ namespace OOP_Project
 
         private async void search_tb_TextChanged(object sender, EventArgs e)
         {
+
         }
 
         private async void clear_pb_Click(object sender, EventArgs e)
@@ -83,6 +84,7 @@ namespace OOP_Project
 
         private async void clear_category_pb_Click(object sender, EventArgs e)
         {
+
         }
 
         private void signout_btn_Click(object sender, EventArgs e)
@@ -98,49 +100,6 @@ namespace OOP_Project
             addMovieForm.ShowDialog();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void code_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menu_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void home_btn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void popular_btn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void favorite_btn_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void movie_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void movieflow_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
+       
     }
 }

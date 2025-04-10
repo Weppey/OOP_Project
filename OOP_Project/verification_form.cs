@@ -27,6 +27,8 @@ namespace OOP_Project
         {
             string enteredCode = code_tb.Text;
 
+
+
             if (string.IsNullOrWhiteSpace(enteredCode))
             {
                 MessageBox.Show("Please enter the verification code.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -53,10 +55,11 @@ namespace OOP_Project
                         updateCmd.ExecuteNonQuery();
 
                         MessageBox.Show("Verification successful! You can now log in.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
 
+                        this.Hide();
                         login_form loginForm = new login_form();
-                        loginForm.Show();
+                        loginForm.ShowDialog();
+                        this.Close();
                     }
                     else
                     {
@@ -185,26 +188,6 @@ namespace OOP_Project
         private void minimize_pb_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void verification_form_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void code_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void status_lbl_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

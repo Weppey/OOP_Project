@@ -21,11 +21,6 @@ namespace OOP_Project
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void login_btn_Click(object sender, EventArgs e)
         {
             string username = username_tb.Text;
@@ -126,34 +121,6 @@ namespace OOP_Project
             //logo to
         }
 
-        private void username_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void password_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void username_tb_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void password_tb_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void login_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void account_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

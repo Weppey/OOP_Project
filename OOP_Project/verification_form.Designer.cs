@@ -60,7 +60,7 @@
             this.Panel_verify.Name = "Panel_verify";
             this.Panel_verify.Size = new System.Drawing.Size(332, 408);
             this.Panel_verify.TabIndex = 1;
-            this.Panel_verify.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+      
             // 
             // resend_llbl
             // 
@@ -120,7 +120,7 @@
             this.status_lbl.TabIndex = 40;
             this.status_lbl.Text = "Please verify your account\r\n";
             this.status_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.status_lbl.Click += new System.EventHandler(this.status_lbl_Click);
+
             // 
             // code_lbl
             // 
@@ -132,7 +132,7 @@
             this.code_lbl.Size = new System.Drawing.Size(53, 21);
             this.code_lbl.TabIndex = 39;
             this.code_lbl.Text = "Code:";
-            this.code_lbl.Click += new System.EventHandler(this.code_lbl_Click);
+           
             // 
             // logo_pb
             // 
@@ -193,7 +193,7 @@
             this.Name = "verification_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "verification_form";
-            this.Load += new System.EventHandler(this.verification_form_Load);
+         
             this.Panel_verify.ResumeLayout(false);
             this.Panel_verify.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
