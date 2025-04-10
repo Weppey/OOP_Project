@@ -94,15 +94,8 @@ namespace OOP_Project
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.Pb_logo = new System.Windows.Forms.PictureBox();
             this.signup_panel = new System.Windows.Forms.Panel();
-            this.choice1_panel = new System.Windows.Forms.Panel();
-            this.mv4_panel = new System.Windows.Forms.Panel();
-            this.mv3_panel = new System.Windows.Forms.Panel();
-            this.mv1_panel = new System.Windows.Forms.Panel();
-            this.mv2_panel = new System.Windows.Forms.Panel();
-            this.mv8_panel = new System.Windows.Forms.Panel();
-            this.mv7_panel = new System.Windows.Forms.Panel();
-            this.mv5_panel = new System.Windows.Forms.Panel();
-            this.mv6_panel = new System.Windows.Forms.Panel();
+            this.back_btn = new System.Windows.Forms.Button();
+            this.add_btn = new System.Windows.Forms.Button();
             this.choice2_panel = new System.Windows.Forms.Panel();
             this.mv16_panel = new System.Windows.Forms.Panel();
             this.mv12_panel = new System.Windows.Forms.Panel();
@@ -112,15 +105,22 @@ namespace OOP_Project
             this.mv14_panel = new System.Windows.Forms.Panel();
             this.mv9_panel = new System.Windows.Forms.Panel();
             this.mv10_panel = new System.Windows.Forms.Panel();
-            this.add_btn = new System.Windows.Forms.Button();
-            this.back_btn = new System.Windows.Forms.Button();
+            this.choice1_panel = new System.Windows.Forms.Panel();
+            this.mv8_panel = new System.Windows.Forms.Panel();
+            this.mv4_panel = new System.Windows.Forms.Panel();
+            this.mv7_panel = new System.Windows.Forms.Panel();
+            this.mv3_panel = new System.Windows.Forms.Panel();
+            this.mv5_panel = new System.Windows.Forms.Panel();
+            this.mv6_panel = new System.Windows.Forms.Panel();
+            this.mv1_panel = new System.Windows.Forms.Panel();
+            this.mv2_panel = new System.Windows.Forms.Panel();
             this.top_dock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pb_logo)).BeginInit();
             this.signup_panel.SuspendLayout();
-            this.choice1_panel.SuspendLayout();
             this.choice2_panel.SuspendLayout();
+            this.choice1_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // top_dock
@@ -182,77 +182,25 @@ namespace OOP_Project
             this.signup_panel.TabIndex = 4;
             this.signup_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.signup_panel_Paint);
             // 
-            // choice1_panel
+            // back_btn
             // 
-            this.choice1_panel.AutoScroll = true;
-            this.choice1_panel.Controls.Add(this.mv8_panel);
-            this.choice1_panel.Controls.Add(this.mv4_panel);
-            this.choice1_panel.Controls.Add(this.mv7_panel);
-            this.choice1_panel.Controls.Add(this.mv3_panel);
-            this.choice1_panel.Controls.Add(this.mv5_panel);
-            this.choice1_panel.Controls.Add(this.mv6_panel);
-            this.choice1_panel.Controls.Add(this.mv1_panel);
-            this.choice1_panel.Controls.Add(this.mv2_panel);
-            this.choice1_panel.Location = new System.Drawing.Point(26, 106);
-            this.choice1_panel.Name = "choice1_panel";
-            this.choice1_panel.Size = new System.Drawing.Size(795, 155);
-            this.choice1_panel.TabIndex = 42;
+            this.back_btn.Location = new System.Drawing.Point(26, 77);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(75, 23);
+            this.back_btn.TabIndex = 45;
+            this.back_btn.Text = "Back";
+            this.back_btn.UseVisualStyleBackColor = true;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
-            // mv4_panel
+            // add_btn
             // 
-            this.mv4_panel.Location = new System.Drawing.Point(477, 17);
-            this.mv4_panel.Name = "mv4_panel";
-            this.mv4_panel.Size = new System.Drawing.Size(130, 120);
-            this.mv4_panel.TabIndex = 3;
-            // 
-            // mv3_panel
-            // 
-            this.mv3_panel.Location = new System.Drawing.Point(327, 17);
-            this.mv3_panel.Name = "mv3_panel";
-            this.mv3_panel.Size = new System.Drawing.Size(130, 120);
-            this.mv3_panel.TabIndex = 1;
-            // 
-            // mv1_panel
-            // 
-            this.mv1_panel.Location = new System.Drawing.Point(24, 17);
-            this.mv1_panel.Name = "mv1_panel";
-            this.mv1_panel.Size = new System.Drawing.Size(130, 120);
-            this.mv1_panel.TabIndex = 0;
-            // 
-            // mv2_panel
-            // 
-            this.mv2_panel.Location = new System.Drawing.Point(174, 17);
-            this.mv2_panel.Name = "mv2_panel";
-            this.mv2_panel.Size = new System.Drawing.Size(130, 120);
-            this.mv2_panel.TabIndex = 1;
-            // 
-            // mv8_panel
-            // 
-            this.mv8_panel.Location = new System.Drawing.Point(1081, 17);
-            this.mv8_panel.Name = "mv8_panel";
-            this.mv8_panel.Size = new System.Drawing.Size(130, 120);
-            this.mv8_panel.TabIndex = 7;
-            // 
-            // mv7_panel
-            // 
-            this.mv7_panel.Location = new System.Drawing.Point(931, 17);
-            this.mv7_panel.Name = "mv7_panel";
-            this.mv7_panel.Size = new System.Drawing.Size(130, 120);
-            this.mv7_panel.TabIndex = 5;
-            // 
-            // mv5_panel
-            // 
-            this.mv5_panel.Location = new System.Drawing.Point(628, 17);
-            this.mv5_panel.Name = "mv5_panel";
-            this.mv5_panel.Size = new System.Drawing.Size(130, 120);
-            this.mv5_panel.TabIndex = 4;
-            // 
-            // mv6_panel
-            // 
-            this.mv6_panel.Location = new System.Drawing.Point(778, 17);
-            this.mv6_panel.Name = "mv6_panel";
-            this.mv6_panel.Size = new System.Drawing.Size(130, 120);
-            this.mv6_panel.TabIndex = 6;
+            this.add_btn.Location = new System.Drawing.Point(746, 77);
+            this.add_btn.Name = "add_btn";
+            this.add_btn.Size = new System.Drawing.Size(75, 23);
+            this.add_btn.TabIndex = 44;
+            this.add_btn.Text = "Add";
+            this.add_btn.UseVisualStyleBackColor = true;
+            this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
             // 
             // choice2_panel
             // 
@@ -327,24 +275,77 @@ namespace OOP_Project
             this.mv10_panel.Size = new System.Drawing.Size(130, 120);
             this.mv10_panel.TabIndex = 1;
             // 
-            // add_btn
+            // choice1_panel
             // 
-            this.add_btn.Location = new System.Drawing.Point(746, 77);
-            this.add_btn.Name = "add_btn";
-            this.add_btn.Size = new System.Drawing.Size(75, 23);
-            this.add_btn.TabIndex = 44;
-            this.add_btn.Text = "Add";
-            this.add_btn.UseVisualStyleBackColor = true;
+            this.choice1_panel.AutoScroll = true;
+            this.choice1_panel.Controls.Add(this.mv8_panel);
+            this.choice1_panel.Controls.Add(this.mv4_panel);
+            this.choice1_panel.Controls.Add(this.mv7_panel);
+            this.choice1_panel.Controls.Add(this.mv3_panel);
+            this.choice1_panel.Controls.Add(this.mv5_panel);
+            this.choice1_panel.Controls.Add(this.mv6_panel);
+            this.choice1_panel.Controls.Add(this.mv1_panel);
+            this.choice1_panel.Controls.Add(this.mv2_panel);
+            this.choice1_panel.Location = new System.Drawing.Point(26, 106);
+            this.choice1_panel.Name = "choice1_panel";
+            this.choice1_panel.Size = new System.Drawing.Size(795, 155);
+            this.choice1_panel.TabIndex = 42;
             // 
-            // back_btn
+            // mv8_panel
             // 
-            this.back_btn.Location = new System.Drawing.Point(26, 77);
-            this.back_btn.Name = "back_btn";
-            this.back_btn.Size = new System.Drawing.Size(75, 23);
-            this.back_btn.TabIndex = 45;
-            this.back_btn.Text = "Back";
-            this.back_btn.UseVisualStyleBackColor = true;
-            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
+            this.mv8_panel.Location = new System.Drawing.Point(1081, 17);
+            this.mv8_panel.Name = "mv8_panel";
+            this.mv8_panel.Size = new System.Drawing.Size(130, 120);
+            this.mv8_panel.TabIndex = 7;
+            // 
+            // mv4_panel
+            // 
+            this.mv4_panel.Location = new System.Drawing.Point(477, 17);
+            this.mv4_panel.Name = "mv4_panel";
+            this.mv4_panel.Size = new System.Drawing.Size(130, 120);
+            this.mv4_panel.TabIndex = 3;
+            // 
+            // mv7_panel
+            // 
+            this.mv7_panel.Location = new System.Drawing.Point(931, 17);
+            this.mv7_panel.Name = "mv7_panel";
+            this.mv7_panel.Size = new System.Drawing.Size(130, 120);
+            this.mv7_panel.TabIndex = 5;
+            // 
+            // mv3_panel
+            // 
+            this.mv3_panel.Location = new System.Drawing.Point(327, 17);
+            this.mv3_panel.Name = "mv3_panel";
+            this.mv3_panel.Size = new System.Drawing.Size(130, 120);
+            this.mv3_panel.TabIndex = 1;
+            // 
+            // mv5_panel
+            // 
+            this.mv5_panel.Location = new System.Drawing.Point(628, 17);
+            this.mv5_panel.Name = "mv5_panel";
+            this.mv5_panel.Size = new System.Drawing.Size(130, 120);
+            this.mv5_panel.TabIndex = 4;
+            // 
+            // mv6_panel
+            // 
+            this.mv6_panel.Location = new System.Drawing.Point(778, 17);
+            this.mv6_panel.Name = "mv6_panel";
+            this.mv6_panel.Size = new System.Drawing.Size(130, 120);
+            this.mv6_panel.TabIndex = 6;
+            // 
+            // mv1_panel
+            // 
+            this.mv1_panel.Location = new System.Drawing.Point(24, 17);
+            this.mv1_panel.Name = "mv1_panel";
+            this.mv1_panel.Size = new System.Drawing.Size(130, 120);
+            this.mv1_panel.TabIndex = 0;
+            // 
+            // mv2_panel
+            // 
+            this.mv2_panel.Location = new System.Drawing.Point(174, 17);
+            this.mv2_panel.Name = "mv2_panel";
+            this.mv2_panel.Size = new System.Drawing.Size(130, 120);
+            this.mv2_panel.TabIndex = 1;
             // 
             // movieitem_form
             // 
@@ -359,8 +360,8 @@ namespace OOP_Project
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pb_logo)).EndInit();
             this.signup_panel.ResumeLayout(false);
-            this.choice1_panel.ResumeLayout(false);
             this.choice2_panel.ResumeLayout(false);
+            this.choice1_panel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -385,6 +386,11 @@ namespace OOP_Project
         private void back_btn_Click(object sender, EventArgs e)
         {
             //back lang to
+        }
+
+        private void add_btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

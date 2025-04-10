@@ -76,6 +76,7 @@
             this.minimize_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.minimize_pb.TabIndex = 15;
             this.minimize_pb.TabStop = false;
+            this.minimize_pb.Click += new System.EventHandler(this.minimize_pb_Click);
             // 
             // close_pb
             // 
@@ -88,6 +89,7 @@
             this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.close_pb.TabIndex = 14;
             this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
             // 
             // insert_panel
             // 
@@ -163,7 +165,7 @@
             this.genre_clb.Location = new System.Drawing.Point(190, 333);
             this.genre_clb.MultiColumn = true;
             this.genre_clb.Name = "genre_clb";
-            this.genre_clb.Size = new System.Drawing.Size(202, 84);
+            this.genre_clb.Size = new System.Drawing.Size(202, 72);
             this.genre_clb.TabIndex = 50;
             // 
             // clear_btn
@@ -266,6 +268,7 @@
             this.Controls.Add(this.topdock_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "add_movie_form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "add_movie_form";
             this.Load += new System.EventHandler(this.add_movie_form_Load_1);
             this.topdock_panel.ResumeLayout(false);

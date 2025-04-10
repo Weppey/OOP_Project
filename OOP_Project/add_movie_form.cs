@@ -113,5 +113,15 @@ namespace OOP_Project
         {
 
         }
+
+        private void minimize_pb_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void close_pb_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -17,46 +17,7 @@ namespace OOP_Project
 
         private async void home_form_Load(object sender, EventArgs e)
         {
-            await LoadMoviesAsync();
-        }
 
-        private async Task LoadMoviesAsync(string searchQuery = "", string category = "")
-        {
-            movie_panel.Controls.Clear();
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    await connection.OpenAsync();
-                    string query = "SELECT * FROM Movies WHERE 1=1";
-                    if (!string.IsNullOrEmpty(searchQuery))
-                        query += " AND title LIKE @SearchQuery";
-                    if (!string.IsNullOrEmpty(category))
-                        query += " AND genre = @Category";
-
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    if (!string.IsNullOrEmpty(searchQuery))
-                        cmd.Parameters.AddWithValue("@SearchQuery", "%" + searchQuery + "%");
-                    if (!string.IsNullOrEmpty(category))
-                        cmd.Parameters.AddWithValue("@Category", category);
-
-                    MySqlDataReader reader = (MySqlDataReader)await cmd.ExecuteReaderAsync();
-                    while (await reader.ReadAsync())
-                    {
-                        movieitem_form item = new movieitem_form
-                        {
-                            MovieTitle = reader["title"].ToString(),
-                            MovieDescription = reader["description"].ToString(),
-                            MovieImage = reader["image_url"].ToString()
-                        };
-                        movie_panel.Controls.Add(item);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading movies: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private async void removeMovie_btn_Click(object sender, EventArgs e)
@@ -74,7 +35,7 @@ namespace OOP_Project
                         cmd.Parameters.AddWithValue("@Title", selectedMovie.MovieTitle);
                         await cmd.ExecuteNonQueryAsync();
                     }
-                    await LoadMoviesAsync();
+               //     await LoadMoviesAsync();
                 }
             }
         }
@@ -91,13 +52,11 @@ namespace OOP_Project
 
         private async void search_tb_TextChanged(object sender, EventArgs e)
         {
-            await LoadMoviesAsync(search_tb.Text);
         }
 
         private async void clear_pb_Click(object sender, EventArgs e)
         {
             search_tb.Text = "";
-            await LoadMoviesAsync();
         }
 
         private async void category_pb_Click(object sender, EventArgs e)
@@ -105,13 +64,11 @@ namespace OOP_Project
             if (sender is PictureBox categoryPictureBox && categoryPictureBox.Tag != null)
             {
                 string selectedCategory = categoryPictureBox.Tag.ToString();
-                await LoadMoviesAsync("", selectedCategory);
             }
         }
 
         private async void clear_category_pb_Click(object sender, EventArgs e)
         {
-            await LoadMoviesAsync();
         }
 
         private void signout_btn_Click(object sender, EventArgs e)
@@ -125,7 +82,6 @@ namespace OOP_Project
         {
             add_movie_form addMovieForm = new add_movie_form();
             addMovieForm.ShowDialog();
-            _ = LoadMoviesAsync();
         }
 
         private void panel1_Paint(object sender, PaintEventArgs e)
