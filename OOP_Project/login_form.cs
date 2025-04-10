@@ -62,7 +62,7 @@ namespace OOP_Project
 
                                 // Example: Redirect to main dashboard (replace with actual navigation logic)
                                 this.Hide(); // Hide the login form
-                                home_form MainForm = new home_form(); // Assuming you have a MainForm
+                                home_form MainForm = new home_form(userType); // Assuming you have a MainForm
                                 MainForm.Show();
                             }
                             else

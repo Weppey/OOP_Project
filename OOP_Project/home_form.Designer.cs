@@ -47,7 +47,7 @@
             this.code_lbl = new System.Windows.Forms.Label();
             this.movie_panel = new System.Windows.Forms.Panel();
             this.movieflow_panel = new System.Windows.Forms.FlowLayoutPanel();
-            this.Panle_edit = new System.Windows.Forms.Panel();
+            this.Panel_edit = new System.Windows.Forms.Panel();
             this.Panle_remove = new System.Windows.Forms.Panel();
             this.removeMovie_btn = new System.Windows.Forms.Button();
             this.Panel_insert = new System.Windows.Forms.Panel();
@@ -78,7 +78,7 @@
             this.home_panel.SuspendLayout();
             this.top_dock_panel.SuspendLayout();
             this.movie_panel.SuspendLayout();
-            this.Panle_edit.SuspendLayout();
+            this.Panel_edit.SuspendLayout();
             this.Panle_remove.SuspendLayout();
             this.Panel_insert.SuspendLayout();
             this.Panel_logo.SuspendLayout();
@@ -326,8 +326,9 @@
             this.movie_panel.Controls.Add(this.movieflow_panel);
             this.movie_panel.Location = new System.Drawing.Point(245, 109);
             this.movie_panel.Name = "movie_panel";
-            this.movie_panel.Size = new System.Drawing.Size(1014, 760);
+            this.movie_panel.Size = new System.Drawing.Size(1233, 760);
             this.movie_panel.TabIndex = 44;
+            this.movie_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.movie_panel_Paint);
             // 
             // movieflow_panel
             // 
@@ -335,21 +336,22 @@
             this.movieflow_panel.BackColor = System.Drawing.Color.White;
             this.movieflow_panel.Location = new System.Drawing.Point(16, 21);
             this.movieflow_panel.Name = "movieflow_panel";
-            this.movieflow_panel.Size = new System.Drawing.Size(982, 723);
+            this.movieflow_panel.Size = new System.Drawing.Size(1169, 723);
             this.movieflow_panel.TabIndex = 44;
+            this.movieflow_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.movieflow_panel_Paint);
             // 
-            // Panle_edit
+            // Panel_edit
             // 
-            this.Panle_edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.Panle_edit.Controls.Add(this.Panle_remove);
-            this.Panle_edit.Controls.Add(this.Panel_insert);
-            this.Panle_edit.Controls.Add(this.Panel_logo);
-            this.Panle_edit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Panle_edit.Location = new System.Drawing.Point(1303, 29);
-            this.Panle_edit.Name = "Panle_edit";
-            this.Panle_edit.Size = new System.Drawing.Size(211, 865);
-            this.Panle_edit.TabIndex = 53;
-            this.Panle_edit.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            this.Panel_edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.Panel_edit.Controls.Add(this.Panle_remove);
+            this.Panel_edit.Controls.Add(this.Panel_insert);
+            this.Panel_edit.Controls.Add(this.Panel_logo);
+            this.Panel_edit.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Panel_edit.Location = new System.Drawing.Point(1303, 29);
+            this.Panel_edit.Name = "Panel_edit";
+            this.Panel_edit.Size = new System.Drawing.Size(211, 865);
+            this.Panel_edit.TabIndex = 53;
+            this.Panel_edit.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Panle_remove
             // 
@@ -585,7 +587,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.ClientSize = new System.Drawing.Size(1514, 894);
-            this.Controls.Add(this.Panle_edit);
+            this.Controls.Add(this.Panel_edit);
             this.Controls.Add(this.clear_pb);
             this.Controls.Add(this.category_pb);
             this.Controls.Add(this.movie_panel);
@@ -609,7 +611,7 @@
             this.home_panel.ResumeLayout(false);
             this.top_dock_panel.ResumeLayout(false);
             this.movie_panel.ResumeLayout(false);
-            this.Panle_edit.ResumeLayout(false);
+            this.Panel_edit.ResumeLayout(false);
             this.Panle_remove.ResumeLayout(false);
             this.Panel_insert.ResumeLayout(false);
             this.Panel_logo.ResumeLayout(false);
@@ -665,7 +667,7 @@
         private System.Windows.Forms.PictureBox clear_pb;
         private System.Windows.Forms.PictureBox category_pb;
         private System.Windows.Forms.PictureBox clear_category_pb;
-        private System.Windows.Forms.Panel Panle_edit;
+        private System.Windows.Forms.Panel Panel_edit;
         private System.Windows.Forms.Panel Panel_logo;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.FlowLayoutPanel movieflow_panel;
