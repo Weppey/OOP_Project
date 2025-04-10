@@ -220,5 +220,10 @@ namespace OOP_Project
         {
 
         }
+
+        private void email_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

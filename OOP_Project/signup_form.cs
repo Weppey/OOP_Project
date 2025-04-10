@@ -253,5 +253,20 @@ namespace OOP_Project
             login_form LoginForm = new login_form();
             LoginForm.Show();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void signup_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
