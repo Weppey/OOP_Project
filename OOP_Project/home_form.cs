@@ -43,7 +43,7 @@ namespace OOP_Project
                     MySqlDataReader reader = (MySqlDataReader)await cmd.ExecuteReaderAsync();
                     while (await reader.ReadAsync())
                     {
-                        MovieItem item = new MovieItem
+                        movieitem_form item = new movieitem_form
                         {
                             MovieTitle = reader["title"].ToString(),
                             MovieDescription = reader["description"].ToString(),
@@ -61,7 +61,7 @@ namespace OOP_Project
 
         private async void removeMovie_btn_Click(object sender, EventArgs e)
         {
-            if (movie_panel.Controls.Count > 0 && movie_panel.Controls[0] is MovieItem selectedMovie)
+            if (movie_panel.Controls.Count > 0 && movie_panel.Controls[0] is movieitem_form selectedMovie)
             {
                 DialogResult result = MessageBox.Show("Are you sure you want to delete this movie?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
