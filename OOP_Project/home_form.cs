@@ -61,7 +61,7 @@ namespace OOP_Project
 
         private void close_pb_Click_1(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private async void search_tb_TextChanged(object sender, EventArgs e)

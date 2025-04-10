@@ -36,7 +36,7 @@
             this.Panel_Recovery = new System.Windows.Forms.Panel();
             this.email_tb = new System.Windows.Forms.TextBox();
             this.email_lbl = new System.Windows.Forms.Label();
-            this.resend_llbl = new System.Windows.Forms.LinkLabel();
+            this.send_llbl = new System.Windows.Forms.LinkLabel();
             this.recoveryC_tb = new System.Windows.Forms.TextBox();
             this.recovery_lbl = new System.Windows.Forms.Label();
             this.confirmpassword_tb = new System.Windows.Forms.TextBox();
@@ -107,7 +107,7 @@
             this.Panel_Recovery.Controls.Add(this.email_tb);
             this.Panel_Recovery.Controls.Add(this.pictureBox3);
             this.Panel_Recovery.Controls.Add(this.email_lbl);
-            this.Panel_Recovery.Controls.Add(this.resend_llbl);
+            this.Panel_Recovery.Controls.Add(this.send_llbl);
             this.Panel_Recovery.Controls.Add(this.recoveryC_tb);
             this.Panel_Recovery.Controls.Add(this.recovery_lbl);
             this.Panel_Recovery.Controls.Add(this.confirmpassword_tb);
@@ -146,20 +146,20 @@
             this.email_lbl.Text = "Email:";
             this.email_lbl.Click += new System.EventHandler(this.email_lbl_Click);
             // 
-            // resend_llbl
+            // send_llbl
             // 
-            this.resend_llbl.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
-            this.resend_llbl.AutoSize = true;
-            this.resend_llbl.DisabledLinkColor = System.Drawing.Color.White;
-            this.resend_llbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resend_llbl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
-            this.resend_llbl.Location = new System.Drawing.Point(61, 344);
-            this.resend_llbl.Name = "resend_llbl";
-            this.resend_llbl.Size = new System.Drawing.Size(224, 17);
-            this.resend_llbl.TabIndex = 47;
-            this.resend_llbl.TabStop = true;
-            this.resend_llbl.Text = "Click here to send a recovery code";
-            this.resend_llbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.resend_llbl_LinkClicked);
+            this.send_llbl.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
+            this.send_llbl.AutoSize = true;
+            this.send_llbl.DisabledLinkColor = System.Drawing.Color.White;
+            this.send_llbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.send_llbl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
+            this.send_llbl.Location = new System.Drawing.Point(61, 344);
+            this.send_llbl.Name = "send_llbl";
+            this.send_llbl.Size = new System.Drawing.Size(224, 17);
+            this.send_llbl.TabIndex = 47;
+            this.send_llbl.TabStop = true;
+            this.send_llbl.Text = "Click here to send a recovery code";
+            this.send_llbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.send_llbl_LinkClicked);
             // 
             // recoveryC_tb
             // 
@@ -168,6 +168,7 @@
             this.recoveryC_tb.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recoveryC_tb.ForeColor = System.Drawing.SystemColors.Info;
             this.recoveryC_tb.Location = new System.Drawing.Point(139, 305);
+            this.recoveryC_tb.MaxLength = 6;
             this.recoveryC_tb.Name = "recoveryC_tb";
             this.recoveryC_tb.PasswordChar = '*';
             this.recoveryC_tb.Size = new System.Drawing.Size(146, 25);
@@ -306,7 +307,7 @@
         private System.Windows.Forms.Label confirmNP_lbl;
         private System.Windows.Forms.Button confirm_btn;
         private System.Windows.Forms.CheckBox password_chkb;
-        private System.Windows.Forms.LinkLabel resend_llbl;
+        private System.Windows.Forms.LinkLabel send_llbl;
         private System.Windows.Forms.TextBox email_tb;
         private System.Windows.Forms.Label email_lbl;
     }

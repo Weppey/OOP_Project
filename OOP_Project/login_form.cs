@@ -88,12 +88,11 @@ namespace OOP_Project
             this.Hide();
             signup_form SignUp_Form = new signup_form();
             SignUp_Form.ShowDialog();
-            this.Close();
         }
 
         private void close_pb_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void minimize_pb_Click(object sender, EventArgs e)

@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,14 +23,35 @@ namespace OOP_Project
             // Form load logic (if any)
         }
 
+        private bool IsValidPassword(string password)
+        {
+            // Password should contain at least one uppercase letter and one special character
+            string pattern = @"^(?=.*[A-Z])(?=.*[\W_]).+$";
+            return Regex.IsMatch(password, pattern);
+        }
+
         private void confirm_btn_Click(object sender, EventArgs e)
         {
             string enteredCode = recoveryC_tb.Text;
             string newPassword = newpassword_tb.Text;
+            string confirmPassword = confirmpassword_tb.Text;
 
-            if (string.IsNullOrWhiteSpace(enteredCode) || string.IsNullOrWhiteSpace(newPassword))
+
+            if (string.IsNullOrWhiteSpace(enteredCode) || string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
             {
-                MessageBox.Show("Please enter the recovery code and your new password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please complete all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!IsValidPassword(newPassword))
+            {
+                MessageBox.Show("Password must contain at least one uppercase letter and one special character!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit early, no data will reach the database
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                MessageBox.Show("Passwords do not match. Please re-enter them.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -65,13 +87,21 @@ namespace OOP_Project
             }
         }
 
-        private void resend_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void send_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             string email = email_tb.Text;
+
 
             if (string.IsNullOrWhiteSpace(email))
             {
                 MessageBox.Show("Please enter your email.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Optional: Check if email format is valid (basic check)
+            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -94,7 +124,7 @@ namespace OOP_Project
                         MessageBox.Show("A recovery code has been sent to your email.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                         // Start cooldown
-                        resend_llbl.Enabled = false; // Disable the LinkLabel
+                        send_llbl.Enabled = false; // Disable the LinkLabel
                         StartCooldown();
                     }
                     else
@@ -114,14 +144,14 @@ namespace OOP_Project
             // Disable the resend link label and start the countdown
             while (cooldownTime > 0)
             {
-                resend_llbl.Text = $"Resend Code ({cooldownTime}s)";
+                send_llbl.Text = $"Resend Code ({cooldownTime}s)";
                 await Task.Delay(1000); // Wait 1 second (non-blocking)
                 cooldownTime--;
             }
 
             // Reset the LinkLabel text and re-enable it after cooldown
-            resend_llbl.Text = "Resend Recovery Code";
-            resend_llbl.Enabled = true;
+            send_llbl.Text = "Resend Recovery Code";
+            send_llbl.Enabled = true;
             cooldownTime = 300; // Reset cooldown time to 5 minutes
         }
 
