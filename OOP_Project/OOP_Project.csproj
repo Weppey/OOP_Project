@@ -227,6 +227,7 @@
     <Compile Include="signup_form.Designer.cs">
       <DependentUpon>signup_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="StayLoggedIn.cs" />
     <Compile Include="verification_form.cs">
       <SubType>Form</SubType>
     </Compile>

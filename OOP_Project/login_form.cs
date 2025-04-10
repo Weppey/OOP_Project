@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using BCrypt.Net; // Import bcrypt library
+using BCrypt.Net;
+using System.Web.SessionState;
 
 namespace OOP_Project
 {
@@ -38,7 +33,7 @@ namespace OOP_Project
                 {
                     connection.Open();
 
-                    // Retrieve hashed password from database
+                    // Retrieve hashed password and user type from the database
                     string query = "SELECT password, user_type FROM users WHERE username = @username";
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.Parameters.AddWithValue("@username", username);
@@ -50,14 +45,18 @@ namespace OOP_Project
                             string storedHashedPassword = reader["password"].ToString();
                             string userType = reader["user_type"].ToString();
 
-                            // Verify bcrypt password
+                            // Verify password using BCrypt
                             if (BCrypt.Net.BCrypt.Verify(password, storedHashedPassword))
                             {
                                 MessageBox.Show($"Login successful! Welcome {userType}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                // Example: Redirect to main dashboard (replace with actual navigation logic)
-                                this.Hide(); // Hide the login form
-                                home_form MainForm = new home_form(userType); // Assuming you have a MainForm
+                              
+                                StayLoggedIn.SaveUserSession(userType);
+
+                               
+                                this.Hide();
+                                home_form MainForm = new home_form(userType);
+                                MainForm.FormClosed += (s, args) => this.Close(); // Close login form when home form closes
                                 MainForm.Show();
                             }
                             else
@@ -79,7 +78,7 @@ namespace OOP_Project
         }
 
         private void signup_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {   
+        {
             this.Hide();
             signup_form SignUp_Form = new signup_form();
             SignUp_Form.ShowDialog();
@@ -97,20 +96,11 @@ namespace OOP_Project
 
         private void password_chkb_CheckedChanged(object sender, EventArgs e)
         {
-            if (password_chkb.Checked)
-            {
-                password_tb.PasswordChar = '\0';
-            }
-            else
-            {
-                password_tb.PasswordChar = '*';
-            }
-                
+            password_tb.PasswordChar = password_chkb.Checked ? '\0' : '*';
         }
 
         private void forgotP_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            // Open the Account Recovery Form
             account_recovery_form recoveryForm = new account_recovery_form();
             recoveryForm.Show();
             this.Hide();
@@ -118,9 +108,7 @@ namespace OOP_Project
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            //logo to
+            // Logo click handler (optional)
         }
-
-       
     }
 }

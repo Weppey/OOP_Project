@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Threading.Tasks;
+using System.Web.SessionState;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
@@ -89,9 +90,11 @@ namespace OOP_Project
 
         private void signout_btn_Click(object sender, EventArgs e)
         {
-            this.Close();
+            StayLoggedIn.ClearSession();
+            this.Hide();
             login_form loginForm = new login_form();
-            loginForm.Show();
+            loginForm.ShowDialog();
+            this.Close();
         }
 
         private void admin_insert_btn_Click(object sender, EventArgs e)

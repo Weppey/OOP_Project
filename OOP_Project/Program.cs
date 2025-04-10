@@ -2,21 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.SessionState;
 using System.Windows.Forms;
 
 namespace OOP_Project
 {
     internal static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
+        //goods na
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new login_form());
+
+            string sessionUserType = StayLoggedIn.LoadUserSession();
+
+            if (!string.IsNullOrEmpty(sessionUserType))
+            {
+                Application.Run(new home_form(sessionUserType));
+            }
+            else
+            {
+                Application.Run(new login_form());
+            }
+
         }
     }
 }
