@@ -125,5 +125,35 @@ namespace OOP_Project
         {
             //logo to
         }
+
+        private void username_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void password_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void username_tb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void password_tb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void login_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void account_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
