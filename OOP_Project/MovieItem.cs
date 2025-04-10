@@ -344,6 +344,7 @@ namespace OOP_Project
             this.back_btn.TabIndex = 45;
             this.back_btn.Text = "Back";
             this.back_btn.UseVisualStyleBackColor = true;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
             // movieitem_form
             // 
@@ -379,6 +380,11 @@ namespace OOP_Project
         private void movieitem_form_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void back_btn_Click(object sender, EventArgs e)
+        {
+            //back lang
         }
     }
 }
