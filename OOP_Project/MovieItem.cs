@@ -384,7 +384,7 @@ namespace OOP_Project
 
         private void back_btn_Click(object sender, EventArgs e)
         {
-            //back lang
+            //back lang to
         }
     }
 }
