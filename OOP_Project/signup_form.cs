@@ -224,10 +224,12 @@ namespace OOP_Project
 
 
         private void login_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            login_form Login_Form = new login_form();
-            Login_Form.Show();
+        {   
             this.Hide();
+            login_form Login_Form = new login_form();
+            Login_Form.ShowDialog();
+            this.Hide();
+            
         }
 
         private void password_chkb_CheckedChanged(object sender, EventArgs e)
@@ -249,9 +251,12 @@ namespace OOP_Project
 
         private void close_pb_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
             login_form LoginForm = new login_form();
-            LoginForm.Show();
+            LoginForm.ShowDialog();
+            this.Close();
+
+          
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
