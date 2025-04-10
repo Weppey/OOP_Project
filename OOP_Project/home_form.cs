@@ -9,10 +9,24 @@ namespace OOP_Project
     public partial class home_form : Form
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-
-        public home_form()
+        private string userType;
+        public home_form(string userTypeFromLogin)
         {
             InitializeComponent();
+            userType = userTypeFromLogin;
+            HandleAccess();
+
+        }
+        private void HandleAccess()
+        {
+            if (userType.ToLower() == "member")
+            {
+                Panel_edit.Visible = false; // Hide admin panel
+            }
+            else
+            {
+                Panel_edit.Visible = true;  // Show admin panel
+            }
         }
 
         private async void home_form_Load(object sender, EventArgs e)
@@ -115,6 +129,16 @@ namespace OOP_Project
         }
 
         private void favorite_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void movie_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void movieflow_panel_Paint(object sender, PaintEventArgs e)
         {
 
         }
