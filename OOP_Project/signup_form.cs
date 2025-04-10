@@ -253,7 +253,7 @@ namespace OOP_Project
         {
             this.Hide();
             login_form LoginForm = new login_form();
-            LoginForm.ShowDialog();
+            LoginForm.Show();
             this.Close();
 
           

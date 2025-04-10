@@ -214,6 +214,8 @@ namespace OOP_Project
 
         private void close_pb_Click(object sender, EventArgs e)
         {
+            login_form LoginForm = new login_form();
+            LoginForm.Show();
             this.Close();
         }
 
@@ -254,6 +256,14 @@ namespace OOP_Project
         private void email_lbl_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void recoveryC_tb_TextChanged(object sender, EventArgs e)
+        {
+            if (recoveryC_tb.Text.Length == recoveryC_tb.MaxLength)
+            {
+                MessageBox.Show("You've reached the maximum code length.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

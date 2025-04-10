@@ -173,6 +173,7 @@
             this.recoveryC_tb.PasswordChar = '*';
             this.recoveryC_tb.Size = new System.Drawing.Size(146, 25);
             this.recoveryC_tb.TabIndex = 20;
+            this.recoveryC_tb.TextChanged += new System.EventHandler(this.recoveryC_tb_TextChanged);
             // 
             // recovery_lbl
             // 
