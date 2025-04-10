@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Threading.Tasks;
 using System.Web.SessionState;
 using System.Windows.Forms;
@@ -32,37 +33,7 @@ namespace OOP_Project
 
         private async void home_form_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private async void removeMovie_btn_Click(object sender, EventArgs e)
-        {
-            if (movie_panel.Controls.Count > 0 && movie_panel.Controls[0] is movieitem_form selectedMovie)
-            {
-                DialogResult result = MessageBox.Show("Are you sure you want to delete this movie?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
-                {
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
-                    {
-                        await connection.OpenAsync();
-                        string query = "DELETE FROM Movies WHERE title = @Title";
-                        MySqlCommand cmd = new MySqlCommand(query, connection);
-                        cmd.Parameters.AddWithValue("@Title", selectedMovie.MovieTitle);
-                        await cmd.ExecuteNonQueryAsync();
-                    }
-               //     await LoadMoviesAsync();
-                }
-            }
-        }
-
-        private void minimize_pb_Click_1(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void close_pb_Click_1(object sender, EventArgs e)
-        {
-            Application.Exit();
+            popularMovie_flp.VerticalScroll.Visible = false;
         }
 
         private async void search_tb_TextChanged(object sender, EventArgs e)
@@ -103,6 +74,28 @@ namespace OOP_Project
             addMovieForm.ShowDialog();
         }
 
-       
+        private void close_pb_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void minimize_pb_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private const int scrollAmount = 500; // how much to scroll on each click
+
+        private void popularRight_btn_Click(object sender, EventArgs e)
+        {
+            int currentX = popularMovie_flp.HorizontalScroll.Value;
+            popularMovie_flp.AutoScrollPosition = new Point(currentX + scrollAmount, 0);
+        }
+
+        private void popularLeft_btn_Click(object sender, EventArgs e)
+        {
+            int currentX = popularMovie_flp.HorizontalScroll.Value;
+            popularMovie_flp.AutoScrollPosition = new Point(currentX - scrollAmount, 0);
+        }
     }
 }

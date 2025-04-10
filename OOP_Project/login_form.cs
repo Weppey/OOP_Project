@@ -55,9 +55,9 @@ namespace OOP_Project
 
                                
                                 this.Hide();
-                                home_form MainForm = new home_form(userType);
-                                MainForm.FormClosed += (s, args) => this.Close(); // Close login form when home form closes
-                                MainForm.Show();
+               //                 home_form MainForm = new home_form(userType);
+                  //              MainForm.FormClosed += (s, args) => this.Close(); // Close login form when home form closes
+                 //               MainForm.Show();
                             }
                             else
                             {
