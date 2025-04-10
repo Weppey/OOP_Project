@@ -186,5 +186,25 @@ namespace OOP_Project
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void verification_form_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void code_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void status_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

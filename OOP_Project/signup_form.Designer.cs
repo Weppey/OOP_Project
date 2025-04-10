@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(signup_form));
             this.top_dock = new System.Windows.Forms.Panel();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
-            this.close_pb = new System.Windows.Forms.PictureBox();
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.username_tb = new System.Windows.Forms.TextBox();
             this.username_lbl = new System.Windows.Forms.Label();
@@ -56,11 +55,12 @@
             this.signup_panel = new System.Windows.Forms.Panel();
             this.password_chkb = new System.Windows.Forms.CheckBox();
             this.Pb_logo = new System.Windows.Forms.PictureBox();
+            this.close_pb = new System.Windows.Forms.PictureBox();
             this.top_dock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.signup_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pb_logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // top_dock
@@ -79,26 +79,13 @@
             this.minimize_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
             this.minimize_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.minimize_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_48;
-            this.minimize_pb.Location = new System.Drawing.Point(810, 9);
+            this.minimize_pb.Location = new System.Drawing.Point(808, 7);
             this.minimize_pb.Name = "minimize_pb";
             this.minimize_pb.Size = new System.Drawing.Size(25, 23);
             this.minimize_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.minimize_pb.TabIndex = 9;
             this.minimize_pb.TabStop = false;
             this.minimize_pb.Click += new System.EventHandler(this.minimize_pb_Click);
-            // 
-            // close_pb
-            // 
-            this.close_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
-            this.close_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_48;
-            this.close_pb.Location = new System.Drawing.Point(839, 9);
-            this.close_pb.Name = "close_pb";
-            this.close_pb.Size = new System.Drawing.Size(25, 23);
-            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.close_pb.TabIndex = 8;
-            this.close_pb.TabStop = false;
-            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
             // 
             // mySqlCommand1
             // 
@@ -393,6 +380,19 @@
             this.Pb_logo.TabStop = false;
             this.Pb_logo.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // close_pb
+            // 
+            this.close_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
+            this.close_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_48;
+            this.close_pb.Location = new System.Drawing.Point(837, 7);
+            this.close_pb.Name = "close_pb";
+            this.close_pb.Size = new System.Drawing.Size(25, 23);
+            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.close_pb.TabIndex = 8;
+            this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
+            // 
             // signup_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,10 +409,10 @@
             this.Load += new System.EventHandler(this.signup_form_Load);
             this.top_dock.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.signup_panel.ResumeLayout(false);
             this.signup_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pb_logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -443,7 +443,7 @@
         private System.Windows.Forms.Button signup_btn;
         private System.Windows.Forms.Panel signup_panel;
         private System.Windows.Forms.PictureBox minimize_pb;
-        private System.Windows.Forms.PictureBox close_pb;
         private System.Windows.Forms.CheckBox password_chkb;
+        private System.Windows.Forms.PictureBox close_pb;
     }
 }
