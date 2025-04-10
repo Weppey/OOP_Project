@@ -241,7 +241,7 @@
             this.Lbl_Signup.Size = new System.Drawing.Size(90, 29);
             this.Lbl_Signup.TabIndex = 43;
             this.Lbl_Signup.Text = "SIGN-UP";
-            this.Lbl_Signup.Click += new System.EventHandler(this.label3_Click);
+         
             // 
             // gender_cb
             // 
@@ -367,7 +367,6 @@
             this.signup_panel.Name = "signup_panel";
             this.signup_panel.Size = new System.Drawing.Size(846, 454);
             this.signup_panel.TabIndex = 3;
-            this.signup_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.signup_panel_Paint);
             // 
             // password_chkb
             // 
@@ -391,7 +390,6 @@
             this.Pb_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Pb_logo.TabIndex = 39;
             this.Pb_logo.TabStop = false;
-            this.Pb_logo.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // signup_form
             // 

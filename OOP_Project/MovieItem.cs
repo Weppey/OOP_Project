@@ -157,6 +157,7 @@ namespace OOP_Project
             this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.close_pb.TabIndex = 8;
             this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
             // 
             // Pb_logo
             // 
@@ -180,7 +181,6 @@ namespace OOP_Project
             this.signup_panel.Name = "signup_panel";
             this.signup_panel.Size = new System.Drawing.Size(846, 454);
             this.signup_panel.TabIndex = 4;
-            this.signup_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.signup_panel_Paint);
             // 
             // back_btn
             // 
@@ -200,7 +200,6 @@ namespace OOP_Project
             this.add_btn.TabIndex = 44;
             this.add_btn.Text = "Add";
             this.add_btn.UseVisualStyleBackColor = true;
-            this.add_btn.Click += new System.EventHandler(this.add_btn_Click);
             // 
             // choice2_panel
             // 
@@ -217,7 +216,6 @@ namespace OOP_Project
             this.choice2_panel.Name = "choice2_panel";
             this.choice2_panel.Size = new System.Drawing.Size(795, 155);
             this.choice2_panel.TabIndex = 43;
-            this.choice2_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.choice2_panel_Paint);
             // 
             // mv16_panel
             // 
@@ -354,7 +352,6 @@ namespace OOP_Project
             this.Controls.Add(this.top_dock);
             this.Name = "movieitem_form";
             this.Size = new System.Drawing.Size(870, 510);
-            this.Load += new System.EventHandler(this.movieitem_form_Load);
             this.top_dock.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
@@ -366,31 +363,14 @@ namespace OOP_Project
 
         }
 
-        
-
-        private void choice2_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void signup_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void movieitem_form_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void back_btn_Click(object sender, EventArgs e)
         {
             //back lang to
         }
 
-        private void add_btn_Click(object sender, EventArgs e)
+        private void close_pb_Click(object sender, EventArgs e)
         {
-
+            //close
         }
     }
 }

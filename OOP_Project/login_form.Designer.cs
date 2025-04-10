@@ -69,7 +69,6 @@
             this.login_panel.Name = "login_panel";
             this.login_panel.Size = new System.Drawing.Size(332, 408);
             this.login_panel.TabIndex = 0;
-            this.login_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.login_panel_Paint);
             // 
             // account_lbl
             // 
@@ -82,7 +81,6 @@
             this.account_lbl.Size = new System.Drawing.Size(151, 17);
             this.account_lbl.TabIndex = 12;
             this.account_lbl.Text = "Don\'t have an account yet?";
-            this.account_lbl.Click += new System.EventHandler(this.account_lbl_Click);
             // 
             // forgotP_llbl
             // 
@@ -157,7 +155,6 @@
             this.password_lbl.Size = new System.Drawing.Size(65, 17);
             this.password_lbl.TabIndex = 3;
             this.password_lbl.Text = "Password:";
-            this.password_lbl.Click += new System.EventHandler(this.password_lbl_Click);
             // 
             // password_tb
             // 
@@ -170,7 +167,6 @@
             this.password_tb.PasswordChar = '*';
             this.password_tb.Size = new System.Drawing.Size(163, 23);
             this.password_tb.TabIndex = 2;
-            this.password_tb.TextChanged += new System.EventHandler(this.password_tb_TextChanged);
             // 
             // username_lbl
             // 
@@ -182,7 +178,6 @@
             this.username_lbl.Size = new System.Drawing.Size(67, 17);
             this.username_lbl.TabIndex = 1;
             this.username_lbl.Text = "Username:";
-            this.username_lbl.Click += new System.EventHandler(this.username_lbl_Click);
             // 
             // username_tb
             // 
@@ -194,7 +189,6 @@
             this.username_tb.Name = "username_tb";
             this.username_tb.Size = new System.Drawing.Size(163, 23);
             this.username_tb.TabIndex = 0;
-            this.username_tb.TextChanged += new System.EventHandler(this.username_tb_TextChanged);
             // 
             // Panel_tab
             // 
@@ -245,7 +239,6 @@
             this.Name = "login_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.login_panel.ResumeLayout(false);
             this.login_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

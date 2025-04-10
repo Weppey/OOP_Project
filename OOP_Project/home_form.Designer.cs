@@ -114,7 +114,6 @@
             this.menu_panel.Name = "menu_panel";
             this.menu_panel.Size = new System.Drawing.Size(211, 865);
             this.menu_panel.TabIndex = 0;
-            this.menu_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.menu_panel_Paint);
             // 
             // Pnale_settings
             // 
@@ -220,7 +219,6 @@
             this.favorite_btn.Text = "Favorite";
             this.favorite_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.favorite_btn.UseVisualStyleBackColor = false;
-            this.favorite_btn.Click += new System.EventHandler(this.favorite_btn_Click);
             // 
             // popular_panel
             // 
@@ -247,7 +245,6 @@
             this.popular_btn.Text = "Popular";
             this.popular_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.popular_btn.UseVisualStyleBackColor = false;
-            this.popular_btn.Click += new System.EventHandler(this.popular_btn_Click);
             // 
             // logo_panel
             // 
@@ -284,7 +281,6 @@
             this.home_btn.Text = "HOME";
             this.home_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.home_btn.UseVisualStyleBackColor = false;
-            this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
             // 
             // top_dock_panel
             // 
@@ -318,7 +314,6 @@
             this.code_lbl.Size = new System.Drawing.Size(84, 28);
             this.code_lbl.TabIndex = 42;
             this.code_lbl.Text = "Search:";
-            this.code_lbl.Click += new System.EventHandler(this.code_lbl_Click);
             // 
             // movie_panel
             // 
@@ -328,7 +323,6 @@
             this.movie_panel.Name = "movie_panel";
             this.movie_panel.Size = new System.Drawing.Size(1233, 760);
             this.movie_panel.TabIndex = 44;
-            this.movie_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.movie_panel_Paint);
             // 
             // movieflow_panel
             // 
@@ -338,7 +332,6 @@
             this.movieflow_panel.Name = "movieflow_panel";
             this.movieflow_panel.Size = new System.Drawing.Size(1169, 723);
             this.movieflow_panel.TabIndex = 44;
-            this.movieflow_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.movieflow_panel_Paint);
             // 
             // Panel_edit
             // 
@@ -351,7 +344,6 @@
             this.Panel_edit.Name = "Panel_edit";
             this.Panel_edit.Size = new System.Drawing.Size(211, 865);
             this.Panel_edit.TabIndex = 53;
-            this.Panel_edit.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // Panle_remove
             // 
@@ -390,7 +382,6 @@
             this.Panel_insert.Name = "Panel_insert";
             this.Panel_insert.Size = new System.Drawing.Size(197, 46);
             this.Panel_insert.TabIndex = 18;
-            this.Panel_insert.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // admin_insert_btn
             // 

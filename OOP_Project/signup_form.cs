@@ -211,9 +211,13 @@ namespace OOP_Project
                     MessageBox.Show("Sign-up successful! Please check your email for a confirmation code.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Open the verification form
-                    verification_form verifyForm = new verification_form(email);
-                    verifyForm.Show();
                     this.Hide();
+                    verification_form verifyForm = new verification_form(email);
+                    verifyForm.ShowDialog();
+                    this.Close();
+
+                   
+                    
                 }
             }
             catch (Exception ex)
@@ -257,21 +261,6 @@ namespace OOP_Project
             this.Close();
 
           
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void signup_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
