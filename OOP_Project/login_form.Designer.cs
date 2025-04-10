@@ -64,7 +64,7 @@
             this.login_panel.Controls.Add(this.password_tb);
             this.login_panel.Controls.Add(this.username_lbl);
             this.login_panel.Controls.Add(this.username_tb);
-            this.login_panel.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.login_panel.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_panel.Location = new System.Drawing.Point(243, 74);
             this.login_panel.Name = "login_panel";
             this.login_panel.Size = new System.Drawing.Size(332, 408);
@@ -75,11 +75,11 @@
             // 
             this.account_lbl.AutoSize = true;
             this.account_lbl.BackColor = System.Drawing.Color.Transparent;
-            this.account_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.account_lbl.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.account_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.account_lbl.Location = new System.Drawing.Point(30, 361);
+            this.account_lbl.Location = new System.Drawing.Point(57, 361);
             this.account_lbl.Name = "account_lbl";
-            this.account_lbl.Size = new System.Drawing.Size(180, 17);
+            this.account_lbl.Size = new System.Drawing.Size(151, 17);
             this.account_lbl.TabIndex = 12;
             this.account_lbl.Text = "Don\'t have an account yet?";
             this.account_lbl.Click += new System.EventHandler(this.account_lbl_Click);
@@ -100,7 +100,7 @@
             // 
             // login_btn
             // 
-            this.login_btn.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.login_btn.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_btn.Location = new System.Drawing.Point(125, 250);
             this.login_btn.Name = "login_btn";
             this.login_btn.Size = new System.Drawing.Size(75, 30);
@@ -124,11 +124,11 @@
             // 
             this.signup_llbl.ActiveLinkColor = System.Drawing.Color.White;
             this.signup_llbl.AutoSize = true;
-            this.signup_llbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signup_llbl.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signup_llbl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
             this.signup_llbl.Location = new System.Drawing.Point(214, 361);
             this.signup_llbl.Name = "signup_llbl";
-            this.signup_llbl.Size = new System.Drawing.Size(60, 17);
+            this.signup_llbl.Size = new System.Drawing.Size(53, 17);
             this.signup_llbl.TabIndex = 7;
             this.signup_llbl.TabStop = true;
             this.signup_llbl.Text = "Sign up!";
@@ -137,11 +137,11 @@
             // password_chkb
             // 
             this.password_chkb.AutoSize = true;
-            this.password_chkb.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password_chkb.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password_chkb.ForeColor = System.Drawing.SystemColors.Control;
             this.password_chkb.Location = new System.Drawing.Point(111, 196);
             this.password_chkb.Name = "password_chkb";
-            this.password_chkb.Size = new System.Drawing.Size(118, 19);
+            this.password_chkb.Size = new System.Drawing.Size(113, 21);
             this.password_chkb.TabIndex = 4;
             this.password_chkb.Text = "Show password";
             this.password_chkb.UseVisualStyleBackColor = true;
@@ -150,11 +150,11 @@
             // password_lbl
             // 
             this.password_lbl.AutoSize = true;
-            this.password_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password_lbl.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.password_lbl.Location = new System.Drawing.Point(30, 173);
             this.password_lbl.Name = "password_lbl";
-            this.password_lbl.Size = new System.Drawing.Size(66, 15);
+            this.password_lbl.Size = new System.Drawing.Size(65, 17);
             this.password_lbl.TabIndex = 3;
             this.password_lbl.Text = "Password:";
             this.password_lbl.Click += new System.EventHandler(this.password_lbl_Click);
@@ -175,11 +175,11 @@
             // username_lbl
             // 
             this.username_lbl.AutoSize = true;
-            this.username_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username_lbl.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.username_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.username_lbl.Location = new System.Drawing.Point(30, 144);
             this.username_lbl.Name = "username_lbl";
-            this.username_lbl.Size = new System.Drawing.Size(69, 15);
+            this.username_lbl.Size = new System.Drawing.Size(67, 17);
             this.username_lbl.TabIndex = 1;
             this.username_lbl.Text = "Username:";
             this.username_lbl.Click += new System.EventHandler(this.username_lbl_Click);

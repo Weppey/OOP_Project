@@ -33,6 +33,7 @@
             this.minimize_pb = new System.Windows.Forms.PictureBox();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.insert_panel = new System.Windows.Forms.Panel();
+            this.Pb_logo = new System.Windows.Forms.PictureBox();
             this.releaseyear_lbl = new System.Windows.Forms.Label();
             this.releaseY_tb = new System.Windows.Forms.TextBox();
             this.poster_pb = new System.Windows.Forms.PictureBox();
@@ -45,13 +46,12 @@
             this.desc_tb = new System.Windows.Forms.TextBox();
             this.title_lbl = new System.Windows.Forms.Label();
             this.title_tb = new System.Windows.Forms.TextBox();
-            this.Pb_logo = new System.Windows.Forms.PictureBox();
             this.topdock_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.insert_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pb_logo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // topdock_panel
@@ -111,14 +111,25 @@
             this.insert_panel.Size = new System.Drawing.Size(846, 454);
             this.insert_panel.TabIndex = 1;
             // 
+            // Pb_logo
+            // 
+            this.Pb_logo.Image = ((System.Drawing.Image)(resources.GetObject("Pb_logo.Image")));
+            this.Pb_logo.Location = new System.Drawing.Point(369, 50);
+            this.Pb_logo.Name = "Pb_logo";
+            this.Pb_logo.Size = new System.Drawing.Size(100, 50);
+            this.Pb_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Pb_logo.TabIndex = 40;
+            this.Pb_logo.TabStop = false;
+            this.Pb_logo.Click += new System.EventHandler(this.Pb_logo_Click);
+            // 
             // releaseyear_lbl
             // 
             this.releaseyear_lbl.AutoSize = true;
-            this.releaseyear_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.releaseyear_lbl.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.releaseyear_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.releaseyear_lbl.Location = new System.Drawing.Point(78, 310);
+            this.releaseyear_lbl.Location = new System.Drawing.Point(101, 310);
             this.releaseyear_lbl.Name = "releaseyear_lbl";
-            this.releaseyear_lbl.Size = new System.Drawing.Size(91, 17);
+            this.releaseyear_lbl.Size = new System.Drawing.Size(83, 17);
             this.releaseyear_lbl.TabIndex = 53;
             this.releaseyear_lbl.Text = "Release Date:";
             // 
@@ -146,7 +157,7 @@
             // genre_clb
             // 
             this.genre_clb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.genre_clb.Font = new System.Drawing.Font("Arial", 9F);
+            this.genre_clb.Font = new System.Drawing.Font("Impact", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.genre_clb.ForeColor = System.Drawing.SystemColors.Info;
             this.genre_clb.FormattingEnabled = true;
             this.genre_clb.Location = new System.Drawing.Point(190, 333);
@@ -157,7 +168,7 @@
             // 
             // clear_btn
             // 
-            this.clear_btn.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clear_btn.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clear_btn.Location = new System.Drawing.Point(525, 377);
             this.clear_btn.Name = "clear_btn";
             this.clear_btn.Size = new System.Drawing.Size(75, 27);
@@ -168,7 +179,7 @@
             // 
             // insert_btn
             // 
-            this.insert_btn.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.insert_btn.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.insert_btn.Location = new System.Drawing.Point(608, 377);
             this.insert_btn.Name = "insert_btn";
             this.insert_btn.Size = new System.Drawing.Size(75, 27);
@@ -180,11 +191,11 @@
             // url_lbl
             // 
             this.url_lbl.AutoSize = true;
-            this.url_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.url_lbl.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.url_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.url_lbl.Location = new System.Drawing.Point(429, 145);
+            this.url_lbl.Location = new System.Drawing.Point(455, 147);
             this.url_lbl.Name = "url_lbl";
-            this.url_lbl.Size = new System.Drawing.Size(80, 17);
+            this.url_lbl.Size = new System.Drawing.Size(64, 17);
             this.url_lbl.TabIndex = 7;
             this.url_lbl.Text = "Movie URL:";
             // 
@@ -203,11 +214,11 @@
             // desc_lbl
             // 
             this.desc_lbl.AutoSize = true;
-            this.desc_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.desc_lbl.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.desc_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.desc_lbl.Location = new System.Drawing.Point(78, 182);
+            this.desc_lbl.Location = new System.Drawing.Point(101, 182);
             this.desc_lbl.Name = "desc_lbl";
-            this.desc_lbl.Size = new System.Drawing.Size(82, 17);
+            this.desc_lbl.Size = new System.Drawing.Size(75, 17);
             this.desc_lbl.TabIndex = 5;
             this.desc_lbl.Text = "Description:";
             // 
@@ -226,11 +237,11 @@
             // title_lbl
             // 
             this.title_lbl.AutoSize = true;
-            this.title_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_lbl.Font = new System.Drawing.Font("Impact", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.title_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.title_lbl.Location = new System.Drawing.Point(78, 145);
+            this.title_lbl.Location = new System.Drawing.Point(101, 145);
             this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(83, 17);
+            this.title_lbl.Size = new System.Drawing.Size(70, 17);
             this.title_lbl.TabIndex = 3;
             this.title_lbl.Text = "Movie Title:";
             // 
@@ -244,17 +255,6 @@
             this.title_tb.Name = "title_tb";
             this.title_tb.Size = new System.Drawing.Size(202, 25);
             this.title_tb.TabIndex = 2;
-            // 
-            // Pb_logo
-            // 
-            this.Pb_logo.Image = ((System.Drawing.Image)(resources.GetObject("Pb_logo.Image")));
-            this.Pb_logo.Location = new System.Drawing.Point(369, 50);
-            this.Pb_logo.Name = "Pb_logo";
-            this.Pb_logo.Size = new System.Drawing.Size(100, 50);
-            this.Pb_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Pb_logo.TabIndex = 40;
-            this.Pb_logo.TabStop = false;
-            this.Pb_logo.Click += new System.EventHandler(this.Pb_logo_Click);
             // 
             // add_movie_form
             // 
@@ -273,8 +273,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.insert_panel.ResumeLayout(false);
             this.insert_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Pb_logo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.ResumeLayout(false);
 
         }

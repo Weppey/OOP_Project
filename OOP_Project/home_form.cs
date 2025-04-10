@@ -147,5 +147,20 @@ namespace OOP_Project
         {
 
         }
+
+        private void home_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void popular_btn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void favorite_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

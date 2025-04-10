@@ -30,73 +30,73 @@
         {
             this.menu_panel = new System.Windows.Forms.Panel();
             this.Pnale_settings = new System.Windows.Forms.Panel();
-            this.setting_pb = new System.Windows.Forms.PictureBox();
             this.settings_btn = new System.Windows.Forms.Button();
             this.Panel_signout = new System.Windows.Forms.Panel();
-            this.signout_pb = new System.Windows.Forms.PictureBox();
             this.signout_btn = new System.Windows.Forms.Button();
             this.support_panel = new System.Windows.Forms.Panel();
-            this.support_pb = new System.Windows.Forms.PictureBox();
             this.support_btn = new System.Windows.Forms.Button();
             this.favorite_panel = new System.Windows.Forms.Panel();
-            this.favorite_pb = new System.Windows.Forms.PictureBox();
             this.favorite_btn = new System.Windows.Forms.Button();
             this.popular_panel = new System.Windows.Forms.Panel();
-            this.papular_pb = new System.Windows.Forms.PictureBox();
             this.popular_btn = new System.Windows.Forms.Button();
             this.logo_panel = new System.Windows.Forms.Panel();
-            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.home_panel = new System.Windows.Forms.Panel();
-            this.home_pb = new System.Windows.Forms.PictureBox();
             this.home_btn = new System.Windows.Forms.Button();
             this.top_dock_panel = new System.Windows.Forms.Panel();
-            this.minimize_pb = new System.Windows.Forms.PictureBox();
-            this.close_pb = new System.Windows.Forms.PictureBox();
             this.search_tb = new System.Windows.Forms.TextBox();
             this.code_lbl = new System.Windows.Forms.Label();
             this.movie_panel = new System.Windows.Forms.Panel();
             this.movieflow_panel = new System.Windows.Forms.FlowLayoutPanel();
             this.Panle_edit = new System.Windows.Forms.Panel();
             this.Panle_remove = new System.Windows.Forms.Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.removeMovie_btn = new System.Windows.Forms.Button();
             this.Panel_insert = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.admin_insert_btn = new System.Windows.Forms.Button();
             this.Panel_logo = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.clear_pb = new System.Windows.Forms.PictureBox();
             this.category_pb = new System.Windows.Forms.PictureBox();
             this.clear_category_pb = new System.Windows.Forms.PictureBox();
+            this.setting_pb = new System.Windows.Forms.PictureBox();
+            this.signout_pb = new System.Windows.Forms.PictureBox();
+            this.support_pb = new System.Windows.Forms.PictureBox();
+            this.favorite_pb = new System.Windows.Forms.PictureBox();
+            this.papular_pb = new System.Windows.Forms.PictureBox();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
+            this.home_pb = new System.Windows.Forms.PictureBox();
+            this.minimize_pb = new System.Windows.Forms.PictureBox();
+            this.close_pb = new System.Windows.Forms.PictureBox();
             this.menu_panel.SuspendLayout();
             this.Pnale_settings.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.setting_pb)).BeginInit();
             this.Panel_signout.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.signout_pb)).BeginInit();
             this.support_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.support_pb)).BeginInit();
             this.favorite_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.favorite_pb)).BeginInit();
             this.popular_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.papular_pb)).BeginInit();
             this.logo_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             this.home_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.home_pb)).BeginInit();
             this.top_dock_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.movie_panel.SuspendLayout();
             this.Panle_edit.SuspendLayout();
             this.Panle_remove.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.Panel_insert.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Panel_logo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clear_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.category_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clear_category_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.setting_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.signout_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.support_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.favorite_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.papular_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.home_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // menu_panel
@@ -126,22 +126,12 @@
             this.Pnale_settings.Size = new System.Drawing.Size(197, 46);
             this.Pnale_settings.TabIndex = 18;
             // 
-            // setting_pb
-            // 
-            this.setting_pb.Image = global::OOP_Project.Properties.Resources.icons8_settings_50;
-            this.setting_pb.Location = new System.Drawing.Point(19, 6);
-            this.setting_pb.Name = "setting_pb";
-            this.setting_pb.Size = new System.Drawing.Size(30, 30);
-            this.setting_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.setting_pb.TabIndex = 15;
-            this.setting_pb.TabStop = false;
-            // 
             // settings_btn
             // 
             this.settings_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.settings_btn.FlatAppearance.BorderSize = 0;
             this.settings_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.settings_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.settings_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settings_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.settings_btn.Location = new System.Drawing.Point(12, 0);
             this.settings_btn.Name = "settings_btn";
@@ -162,22 +152,12 @@
             this.Panel_signout.Size = new System.Drawing.Size(197, 46);
             this.Panel_signout.TabIndex = 18;
             // 
-            // signout_pb
-            // 
-            this.signout_pb.Image = global::OOP_Project.Properties.Resources.icons8_sign_out_50;
-            this.signout_pb.Location = new System.Drawing.Point(19, 6);
-            this.signout_pb.Name = "signout_pb";
-            this.signout_pb.Size = new System.Drawing.Size(30, 30);
-            this.signout_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.signout_pb.TabIndex = 15;
-            this.signout_pb.TabStop = false;
-            // 
             // signout_btn
             // 
             this.signout_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.signout_btn.FlatAppearance.BorderSize = 0;
             this.signout_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.signout_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.signout_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signout_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.signout_btn.Location = new System.Drawing.Point(12, 0);
             this.signout_btn.Name = "signout_btn";
@@ -199,22 +179,12 @@
             this.support_panel.Size = new System.Drawing.Size(197, 46);
             this.support_panel.TabIndex = 18;
             // 
-            // support_pb
-            // 
-            this.support_pb.Image = global::OOP_Project.Properties.Resources.icons8_about_50;
-            this.support_pb.Location = new System.Drawing.Point(19, 6);
-            this.support_pb.Name = "support_pb";
-            this.support_pb.Size = new System.Drawing.Size(30, 30);
-            this.support_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.support_pb.TabIndex = 15;
-            this.support_pb.TabStop = false;
-            // 
             // support_btn
             // 
             this.support_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.support_btn.FlatAppearance.BorderSize = 0;
             this.support_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.support_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.support_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.support_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.support_btn.Location = new System.Drawing.Point(12, 0);
             this.support_btn.Name = "support_btn";
@@ -235,22 +205,12 @@
             this.favorite_panel.Size = new System.Drawing.Size(197, 46);
             this.favorite_panel.TabIndex = 18;
             // 
-            // favorite_pb
-            // 
-            this.favorite_pb.Image = global::OOP_Project.Properties.Resources.icons8_heart_50;
-            this.favorite_pb.Location = new System.Drawing.Point(19, 6);
-            this.favorite_pb.Name = "favorite_pb";
-            this.favorite_pb.Size = new System.Drawing.Size(30, 30);
-            this.favorite_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.favorite_pb.TabIndex = 15;
-            this.favorite_pb.TabStop = false;
-            // 
             // favorite_btn
             // 
             this.favorite_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.favorite_btn.FlatAppearance.BorderSize = 0;
             this.favorite_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.favorite_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.favorite_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.favorite_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.favorite_btn.Location = new System.Drawing.Point(12, 0);
             this.favorite_btn.Name = "favorite_btn";
@@ -260,6 +220,7 @@
             this.favorite_btn.Text = "Favorite";
             this.favorite_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.favorite_btn.UseVisualStyleBackColor = false;
+            this.favorite_btn.Click += new System.EventHandler(this.favorite_btn_Click);
             // 
             // popular_panel
             // 
@@ -271,22 +232,12 @@
             this.popular_panel.Size = new System.Drawing.Size(197, 46);
             this.popular_panel.TabIndex = 18;
             // 
-            // papular_pb
-            // 
-            this.papular_pb.Image = global::OOP_Project.Properties.Resources.icons8_fire_50;
-            this.papular_pb.Location = new System.Drawing.Point(19, 6);
-            this.papular_pb.Name = "papular_pb";
-            this.papular_pb.Size = new System.Drawing.Size(30, 30);
-            this.papular_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.papular_pb.TabIndex = 15;
-            this.papular_pb.TabStop = false;
-            // 
             // popular_btn
             // 
             this.popular_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.popular_btn.FlatAppearance.BorderSize = 0;
             this.popular_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.popular_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.popular_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.popular_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.popular_btn.Location = new System.Drawing.Point(12, 0);
             this.popular_btn.Name = "popular_btn";
@@ -296,6 +247,7 @@
             this.popular_btn.Text = "Popular";
             this.popular_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.popular_btn.UseVisualStyleBackColor = false;
+            this.popular_btn.Click += new System.EventHandler(this.popular_btn_Click);
             // 
             // logo_panel
             // 
@@ -307,16 +259,6 @@
             this.logo_panel.Size = new System.Drawing.Size(211, 111);
             this.logo_panel.TabIndex = 2;
             // 
-            // logo_pb
-            // 
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources.Logonetflix;
-            this.logo_pb.Location = new System.Drawing.Point(15, 15);
-            this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(178, 89);
-            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logo_pb.TabIndex = 20;
-            this.logo_pb.TabStop = false;
-            // 
             // home_panel
             // 
             this.home_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
@@ -327,22 +269,12 @@
             this.home_panel.Size = new System.Drawing.Size(197, 46);
             this.home_panel.TabIndex = 17;
             // 
-            // home_pb
-            // 
-            this.home_pb.Image = global::OOP_Project.Properties.Resources.icons8_home_50;
-            this.home_pb.Location = new System.Drawing.Point(19, 6);
-            this.home_pb.Name = "home_pb";
-            this.home_pb.Size = new System.Drawing.Size(30, 30);
-            this.home_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.home_pb.TabIndex = 15;
-            this.home_pb.TabStop = false;
-            // 
             // home_btn
             // 
             this.home_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.home_btn.FlatAppearance.BorderSize = 0;
             this.home_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.home_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.home_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.home_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.home_btn.Location = new System.Drawing.Point(12, 0);
             this.home_btn.Name = "home_btn";
@@ -352,6 +284,7 @@
             this.home_btn.Text = "HOME";
             this.home_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.home_btn.UseVisualStyleBackColor = false;
+            this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
             // 
             // top_dock_panel
             // 
@@ -363,32 +296,6 @@
             this.top_dock_panel.Name = "top_dock_panel";
             this.top_dock_panel.Size = new System.Drawing.Size(1514, 29);
             this.top_dock_panel.TabIndex = 14;
-            // 
-            // minimize_pb
-            // 
-            this.minimize_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
-            this.minimize_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.minimize_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_48;
-            this.minimize_pb.Location = new System.Drawing.Point(1448, 3);
-            this.minimize_pb.Name = "minimize_pb";
-            this.minimize_pb.Size = new System.Drawing.Size(25, 23);
-            this.minimize_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.minimize_pb.TabIndex = 13;
-            this.minimize_pb.TabStop = false;
-            this.minimize_pb.Click += new System.EventHandler(this.minimize_pb_Click_1);
-            // 
-            // close_pb
-            // 
-            this.close_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
-            this.close_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_48;
-            this.close_pb.Location = new System.Drawing.Point(1477, 3);
-            this.close_pb.Name = "close_pb";
-            this.close_pb.Size = new System.Drawing.Size(25, 23);
-            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.close_pb.TabIndex = 12;
-            this.close_pb.TabStop = false;
-            this.close_pb.Click += new System.EventHandler(this.close_pb_Click_1);
             // 
             // search_tb
             // 
@@ -404,11 +311,11 @@
             // code_lbl
             // 
             this.code_lbl.AutoSize = true;
-            this.code_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
+            this.code_lbl.Font = new System.Drawing.Font("Impact", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.code_lbl.ForeColor = System.Drawing.Color.White;
             this.code_lbl.Location = new System.Drawing.Point(294, 74);
             this.code_lbl.Name = "code_lbl";
-            this.code_lbl.Size = new System.Drawing.Size(95, 29);
+            this.code_lbl.Size = new System.Drawing.Size(84, 28);
             this.code_lbl.TabIndex = 42;
             this.code_lbl.Text = "Search:";
             this.code_lbl.Click += new System.EventHandler(this.code_lbl_Click);
@@ -449,34 +356,25 @@
             this.Panle_remove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.Panle_remove.Controls.Add(this.pictureBox2);
             this.Panle_remove.Controls.Add(this.removeMovie_btn);
+            this.Panle_remove.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Panle_remove.Location = new System.Drawing.Point(11, 200);
             this.Panle_remove.Name = "Panle_remove";
             this.Panle_remove.Size = new System.Drawing.Size(197, 46);
             this.Panle_remove.TabIndex = 19;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::OOP_Project.Properties.Resources.icons8_trash_48;
-            this.pictureBox2.Location = new System.Drawing.Point(134, 5);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 15;
-            this.pictureBox2.TabStop = false;
             // 
             // removeMovie_btn
             // 
             this.removeMovie_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.removeMovie_btn.FlatAppearance.BorderSize = 0;
             this.removeMovie_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.removeMovie_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.removeMovie_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeMovie_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.removeMovie_btn.Location = new System.Drawing.Point(-3, -1);
             this.removeMovie_btn.Name = "removeMovie_btn";
             this.removeMovie_btn.Padding = new System.Windows.Forms.Padding(0, 0, 45, 0);
             this.removeMovie_btn.Size = new System.Drawing.Size(185, 47);
             this.removeMovie_btn.TabIndex = 1;
-            this.removeMovie_btn.Text = "remove";
+            this.removeMovie_btn.Text = "Remove";
             this.removeMovie_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.removeMovie_btn.UseVisualStyleBackColor = false;
             // 
@@ -485,28 +383,19 @@
             this.Panel_insert.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.Panel_insert.Controls.Add(this.pictureBox1);
             this.Panel_insert.Controls.Add(this.admin_insert_btn);
+            this.Panel_insert.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Panel_insert.Location = new System.Drawing.Point(11, 142);
             this.Panel_insert.Name = "Panel_insert";
             this.Panel_insert.Size = new System.Drawing.Size(197, 46);
             this.Panel_insert.TabIndex = 18;
             this.Panel_insert.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::OOP_Project.Properties.Resources.icons8_picture_501;
-            this.pictureBox1.Location = new System.Drawing.Point(134, 5);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
-            // 
             // admin_insert_btn
             // 
             this.admin_insert_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
             this.admin_insert_btn.FlatAppearance.BorderSize = 0;
             this.admin_insert_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.admin_insert_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.admin_insert_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.admin_insert_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.admin_insert_btn.Location = new System.Drawing.Point(-3, -1);
             this.admin_insert_btn.Name = "admin_insert_btn";
@@ -527,6 +416,26 @@
             this.Panel_logo.Name = "Panel_logo";
             this.Panel_logo.Size = new System.Drawing.Size(211, 111);
             this.Panel_logo.TabIndex = 2;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::OOP_Project.Properties.Resources.icons8_trash_48;
+            this.pictureBox2.Location = new System.Drawing.Point(134, 5);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 15;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::OOP_Project.Properties.Resources.icons8_picture_501;
+            this.pictureBox1.Location = new System.Drawing.Point(134, 5);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
             // 
             // pictureBox6
             // 
@@ -574,6 +483,102 @@
             this.clear_category_pb.TabStop = false;
             this.clear_category_pb.Click += new System.EventHandler(this.clear_category_pb_Click);
             // 
+            // setting_pb
+            // 
+            this.setting_pb.Image = global::OOP_Project.Properties.Resources.icons8_settings_50;
+            this.setting_pb.Location = new System.Drawing.Point(19, 6);
+            this.setting_pb.Name = "setting_pb";
+            this.setting_pb.Size = new System.Drawing.Size(30, 30);
+            this.setting_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.setting_pb.TabIndex = 15;
+            this.setting_pb.TabStop = false;
+            // 
+            // signout_pb
+            // 
+            this.signout_pb.Image = global::OOP_Project.Properties.Resources.icons8_sign_out_50;
+            this.signout_pb.Location = new System.Drawing.Point(19, 6);
+            this.signout_pb.Name = "signout_pb";
+            this.signout_pb.Size = new System.Drawing.Size(30, 30);
+            this.signout_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.signout_pb.TabIndex = 15;
+            this.signout_pb.TabStop = false;
+            // 
+            // support_pb
+            // 
+            this.support_pb.Image = global::OOP_Project.Properties.Resources.icons8_about_50;
+            this.support_pb.Location = new System.Drawing.Point(19, 6);
+            this.support_pb.Name = "support_pb";
+            this.support_pb.Size = new System.Drawing.Size(30, 30);
+            this.support_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.support_pb.TabIndex = 15;
+            this.support_pb.TabStop = false;
+            // 
+            // favorite_pb
+            // 
+            this.favorite_pb.Image = global::OOP_Project.Properties.Resources.icons8_heart_50;
+            this.favorite_pb.Location = new System.Drawing.Point(19, 6);
+            this.favorite_pb.Name = "favorite_pb";
+            this.favorite_pb.Size = new System.Drawing.Size(30, 30);
+            this.favorite_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.favorite_pb.TabIndex = 15;
+            this.favorite_pb.TabStop = false;
+            // 
+            // papular_pb
+            // 
+            this.papular_pb.Image = global::OOP_Project.Properties.Resources.icons8_fire_50;
+            this.papular_pb.Location = new System.Drawing.Point(19, 6);
+            this.papular_pb.Name = "papular_pb";
+            this.papular_pb.Size = new System.Drawing.Size(30, 30);
+            this.papular_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.papular_pb.TabIndex = 15;
+            this.papular_pb.TabStop = false;
+            // 
+            // logo_pb
+            // 
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources.Logonetflix;
+            this.logo_pb.Location = new System.Drawing.Point(15, 15);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(178, 89);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo_pb.TabIndex = 20;
+            this.logo_pb.TabStop = false;
+            // 
+            // home_pb
+            // 
+            this.home_pb.Image = global::OOP_Project.Properties.Resources.icons8_home_50;
+            this.home_pb.Location = new System.Drawing.Point(19, 6);
+            this.home_pb.Name = "home_pb";
+            this.home_pb.Size = new System.Drawing.Size(30, 30);
+            this.home_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.home_pb.TabIndex = 15;
+            this.home_pb.TabStop = false;
+            // 
+            // minimize_pb
+            // 
+            this.minimize_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.minimize_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.minimize_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_48;
+            this.minimize_pb.Location = new System.Drawing.Point(1448, 3);
+            this.minimize_pb.Name = "minimize_pb";
+            this.minimize_pb.Size = new System.Drawing.Size(25, 23);
+            this.minimize_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.minimize_pb.TabIndex = 13;
+            this.minimize_pb.TabStop = false;
+            this.minimize_pb.Click += new System.EventHandler(this.minimize_pb_Click_1);
+            // 
+            // close_pb
+            // 
+            this.close_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.close_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_48;
+            this.close_pb.Location = new System.Drawing.Point(1477, 3);
+            this.close_pb.Name = "close_pb";
+            this.close_pb.Size = new System.Drawing.Size(25, 23);
+            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.close_pb.TabIndex = 12;
+            this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.close_pb_Click_1);
+            // 
             // home_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -596,33 +601,33 @@
             this.Load += new System.EventHandler(this.home_form_Load);
             this.menu_panel.ResumeLayout(false);
             this.Pnale_settings.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.setting_pb)).EndInit();
             this.Panel_signout.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.signout_pb)).EndInit();
             this.support_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.support_pb)).EndInit();
             this.favorite_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.favorite_pb)).EndInit();
             this.popular_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.papular_pb)).EndInit();
             this.logo_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             this.home_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.home_pb)).EndInit();
             this.top_dock_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.movie_panel.ResumeLayout(false);
             this.Panle_edit.ResumeLayout(false);
             this.Panle_remove.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.Panel_insert.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.Panel_logo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clear_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.category_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clear_category_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.setting_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.signout_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.support_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.favorite_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.papular_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.home_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

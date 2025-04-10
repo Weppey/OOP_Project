@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(signup_form));
             this.top_dock = new System.Windows.Forms.Panel();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
+            this.close_pb = new System.Windows.Forms.PictureBox();
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.username_tb = new System.Windows.Forms.TextBox();
             this.username_lbl = new System.Windows.Forms.Label();
@@ -55,12 +56,11 @@
             this.signup_panel = new System.Windows.Forms.Panel();
             this.password_chkb = new System.Windows.Forms.CheckBox();
             this.Pb_logo = new System.Windows.Forms.PictureBox();
-            this.close_pb = new System.Windows.Forms.PictureBox();
             this.top_dock.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.signup_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pb_logo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // top_dock
@@ -87,6 +87,19 @@
             this.minimize_pb.TabStop = false;
             this.minimize_pb.Click += new System.EventHandler(this.minimize_pb_Click);
             // 
+            // close_pb
+            // 
+            this.close_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
+            this.close_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_48;
+            this.close_pb.Location = new System.Drawing.Point(837, 7);
+            this.close_pb.Name = "close_pb";
+            this.close_pb.Size = new System.Drawing.Size(25, 23);
+            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.close_pb.TabIndex = 8;
+            this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
+            // 
             // mySqlCommand1
             // 
             this.mySqlCommand1.CacheAge = 0;
@@ -108,11 +121,11 @@
             // username_lbl
             // 
             this.username_lbl.AutoSize = true;
-            this.username_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username_lbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.username_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.username_lbl.Location = new System.Drawing.Point(51, 155);
             this.username_lbl.Name = "username_lbl";
-            this.username_lbl.Size = new System.Drawing.Size(73, 17);
+            this.username_lbl.Size = new System.Drawing.Size(76, 19);
             this.username_lbl.TabIndex = 30;
             this.username_lbl.Text = "Username:";
             // 
@@ -131,11 +144,11 @@
             // password_lbl
             // 
             this.password_lbl.AutoSize = true;
-            this.password_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password_lbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.password_lbl.Location = new System.Drawing.Point(51, 185);
             this.password_lbl.Name = "password_lbl";
-            this.password_lbl.Size = new System.Drawing.Size(69, 17);
+            this.password_lbl.Size = new System.Drawing.Size(74, 19);
             this.password_lbl.TabIndex = 32;
             this.password_lbl.Text = "Password:";
             // 
@@ -153,44 +166,44 @@
             // email_lbl
             // 
             this.email_lbl.AutoSize = true;
-            this.email_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.email_lbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.email_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.email_lbl.Location = new System.Drawing.Point(51, 243);
             this.email_lbl.Name = "email_lbl";
-            this.email_lbl.Size = new System.Drawing.Size(45, 17);
+            this.email_lbl.Size = new System.Drawing.Size(46, 19);
             this.email_lbl.TabIndex = 35;
             this.email_lbl.Text = "Email:";
             // 
             // gender_lbl
             // 
             this.gender_lbl.AutoSize = true;
-            this.gender_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gender_lbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gender_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.gender_lbl.Location = new System.Drawing.Point(51, 278);
             this.gender_lbl.Name = "gender_lbl";
-            this.gender_lbl.Size = new System.Drawing.Size(55, 17);
+            this.gender_lbl.Size = new System.Drawing.Size(57, 19);
             this.gender_lbl.TabIndex = 38;
             this.gender_lbl.Text = "Gender:";
             // 
             // birthdate_lbl
             // 
             this.birthdate_lbl.AutoSize = true;
-            this.birthdate_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.birthdate_lbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.birthdate_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.birthdate_lbl.Location = new System.Drawing.Point(51, 307);
             this.birthdate_lbl.Name = "birthdate_lbl";
-            this.birthdate_lbl.Size = new System.Drawing.Size(68, 17);
+            this.birthdate_lbl.Size = new System.Drawing.Size(71, 19);
             this.birthdate_lbl.TabIndex = 41;
             this.birthdate_lbl.Text = "Birthdate:";
             // 
             // account_lbl
             // 
             this.account_lbl.AutoSize = true;
-            this.account_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.account_lbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.account_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.account_lbl.Location = new System.Drawing.Point(470, 408);
+            this.account_lbl.Location = new System.Drawing.Point(475, 400);
             this.account_lbl.Name = "account_lbl";
-            this.account_lbl.Size = new System.Drawing.Size(168, 17);
+            this.account_lbl.Size = new System.Drawing.Size(171, 19);
             this.account_lbl.TabIndex = 36;
             this.account_lbl.Text = "Already have an account?";
             // 
@@ -208,11 +221,11 @@
             // 
             this.login_llbl.ActiveLinkColor = System.Drawing.Color.White;
             this.login_llbl.AutoSize = true;
-            this.login_llbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.login_llbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_llbl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
-            this.login_llbl.Location = new System.Drawing.Point(649, 408);
+            this.login_llbl.Location = new System.Drawing.Point(654, 400);
             this.login_llbl.Name = "login_llbl";
-            this.login_llbl.Size = new System.Drawing.Size(47, 17);
+            this.login_llbl.Size = new System.Drawing.Size(47, 19);
             this.login_llbl.TabIndex = 37;
             this.login_llbl.TabStop = true;
             this.login_llbl.Text = "Login!";
@@ -221,11 +234,11 @@
             // Lbl_Signup
             // 
             this.Lbl_Signup.AutoSize = true;
-            this.Lbl_Signup.Font = new System.Drawing.Font("Malgun Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Signup.Font = new System.Drawing.Font("Impact", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_Signup.ForeColor = System.Drawing.SystemColors.Control;
-            this.Lbl_Signup.Location = new System.Drawing.Point(368, 103);
+            this.Lbl_Signup.Location = new System.Drawing.Point(379, 103);
             this.Lbl_Signup.Name = "Lbl_Signup";
-            this.Lbl_Signup.Size = new System.Drawing.Size(101, 30);
+            this.Lbl_Signup.Size = new System.Drawing.Size(90, 29);
             this.Lbl_Signup.TabIndex = 43;
             this.Lbl_Signup.Text = "SIGN-UP";
             this.Lbl_Signup.Click += new System.EventHandler(this.label3_Click);
@@ -249,34 +262,34 @@
             // preferences_lbl
             // 
             this.preferences_lbl.AutoSize = true;
-            this.preferences_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preferences_lbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preferences_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.preferences_lbl.Location = new System.Drawing.Point(454, 151);
             this.preferences_lbl.Name = "preferences_lbl";
-            this.preferences_lbl.Size = new System.Drawing.Size(126, 17);
+            this.preferences_lbl.Size = new System.Drawing.Size(129, 19);
             this.preferences_lbl.TabIndex = 45;
             this.preferences_lbl.Text = "Movie preferences:";
             // 
             // preferences_clb
             // 
             this.preferences_clb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.preferences_clb.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.preferences_clb.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.preferences_clb.ForeColor = System.Drawing.SystemColors.Info;
             this.preferences_clb.FormattingEnabled = true;
             this.preferences_clb.Location = new System.Drawing.Point(458, 173);
             this.preferences_clb.MultiColumn = true;
             this.preferences_clb.Name = "preferences_clb";
-            this.preferences_clb.Size = new System.Drawing.Size(273, 228);
+            this.preferences_clb.Size = new System.Drawing.Size(273, 214);
             this.preferences_clb.TabIndex = 46;
             // 
             // securityQ_lbl
             // 
             this.securityQ_lbl.AutoSize = true;
-            this.securityQ_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.securityQ_lbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.securityQ_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.securityQ_lbl.Location = new System.Drawing.Point(51, 340);
             this.securityQ_lbl.Name = "securityQ_lbl";
-            this.securityQ_lbl.Size = new System.Drawing.Size(121, 17);
+            this.securityQ_lbl.Size = new System.Drawing.Size(123, 19);
             this.securityQ_lbl.TabIndex = 47;
             this.securityQ_lbl.Text = "Security Question:";
             // 
@@ -306,20 +319,20 @@
             // answer_lbl
             // 
             this.answer_lbl.AutoSize = true;
-            this.answer_lbl.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.answer_lbl.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.answer_lbl.ForeColor = System.Drawing.SystemColors.Control;
             this.answer_lbl.Location = new System.Drawing.Point(51, 369);
             this.answer_lbl.Name = "answer_lbl";
-            this.answer_lbl.Size = new System.Drawing.Size(56, 17);
+            this.answer_lbl.Size = new System.Drawing.Size(58, 19);
             this.answer_lbl.TabIndex = 50;
             this.answer_lbl.Text = "Answer:";
             // 
             // signup_btn
             // 
-            this.signup_btn.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.signup_btn.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signup_btn.Location = new System.Drawing.Point(290, 400);
             this.signup_btn.Name = "signup_btn";
-            this.signup_btn.Size = new System.Drawing.Size(75, 31);
+            this.signup_btn.Size = new System.Drawing.Size(75, 36);
             this.signup_btn.TabIndex = 52;
             this.signup_btn.Text = "Sign up";
             this.signup_btn.UseVisualStyleBackColor = true;
@@ -359,11 +372,11 @@
             // password_chkb
             // 
             this.password_chkb.AutoSize = true;
-            this.password_chkb.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password_chkb.Font = new System.Drawing.Font("Impact", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password_chkb.ForeColor = System.Drawing.SystemColors.Control;
             this.password_chkb.Location = new System.Drawing.Point(200, 211);
             this.password_chkb.Name = "password_chkb";
-            this.password_chkb.Size = new System.Drawing.Size(123, 21);
+            this.password_chkb.Size = new System.Drawing.Size(128, 23);
             this.password_chkb.TabIndex = 53;
             this.password_chkb.Text = "Show password";
             this.password_chkb.UseVisualStyleBackColor = true;
@@ -379,19 +392,6 @@
             this.Pb_logo.TabIndex = 39;
             this.Pb_logo.TabStop = false;
             this.Pb_logo.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // close_pb
-            // 
-            this.close_pb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
-            this.close_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_48;
-            this.close_pb.Location = new System.Drawing.Point(837, 7);
-            this.close_pb.Name = "close_pb";
-            this.close_pb.Size = new System.Drawing.Size(25, 23);
-            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.close_pb.TabIndex = 8;
-            this.close_pb.TabStop = false;
-            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
             // 
             // signup_form
             // 
@@ -409,10 +409,10 @@
             this.Load += new System.EventHandler(this.signup_form_Load);
             this.top_dock.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.signup_panel.ResumeLayout(false);
             this.signup_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Pb_logo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.ResumeLayout(false);
 
         }
