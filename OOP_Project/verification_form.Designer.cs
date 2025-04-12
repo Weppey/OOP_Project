@@ -31,11 +31,11 @@
             this.Panel_verify = new System.Windows.Forms.Panel();
             this.resend_llbl = new System.Windows.Forms.LinkLabel();
             this.confirm_btn = new System.Windows.Forms.Button();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.emailverify_lbl = new System.Windows.Forms.Label();
             this.code_tb = new System.Windows.Forms.TextBox();
             this.status_lbl = new System.Windows.Forms.Label();
             this.code_lbl = new System.Windows.Forms.Label();
-            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.Panel_tab = new System.Windows.Forms.Panel();
@@ -60,18 +60,17 @@
             this.Panel_verify.Name = "Panel_verify";
             this.Panel_verify.Size = new System.Drawing.Size(332, 408);
             this.Panel_verify.TabIndex = 1;
-      
             // 
             // resend_llbl
             // 
             this.resend_llbl.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
             this.resend_llbl.AutoSize = true;
             this.resend_llbl.DisabledLinkColor = System.Drawing.Color.White;
-            this.resend_llbl.Font = new System.Drawing.Font("Malgun Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resend_llbl.Font = new System.Drawing.Font("Impact", 9.75F);
             this.resend_llbl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
-            this.resend_llbl.Location = new System.Drawing.Point(107, 308);
+            this.resend_llbl.Location = new System.Drawing.Point(134, 252);
             this.resend_llbl.Name = "resend_llbl";
-            this.resend_llbl.Size = new System.Drawing.Size(132, 25);
+            this.resend_llbl.Size = new System.Drawing.Size(81, 17);
             this.resend_llbl.TabIndex = 46;
             this.resend_llbl.TabStop = true;
             this.resend_llbl.Text = "Resend code:";
@@ -80,7 +79,7 @@
             // confirm_btn
             // 
             this.confirm_btn.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.confirm_btn.Location = new System.Drawing.Point(125, 347);
+            this.confirm_btn.Location = new System.Drawing.Point(121, 307);
             this.confirm_btn.Name = "confirm_btn";
             this.confirm_btn.Size = new System.Drawing.Size(93, 29);
             this.confirm_btn.TabIndex = 44;
@@ -88,14 +87,24 @@
             this.confirm_btn.UseVisualStyleBackColor = true;
             this.confirm_btn.Click += new System.EventHandler(this.confirm_btn_Click);
             // 
+            // logo_pb
+            // 
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources.Logonetflix;
+            this.logo_pb.Location = new System.Drawing.Point(114, 76);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(100, 50);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.logo_pb.TabIndex = 0;
+            this.logo_pb.TabStop = false;
+            // 
             // emailverify_lbl
             // 
             this.emailverify_lbl.AutoSize = true;
-            this.emailverify_lbl.Font = new System.Drawing.Font("Malgun Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailverify_lbl.Font = new System.Drawing.Font("Impact", 12F);
             this.emailverify_lbl.ForeColor = System.Drawing.Color.White;
-            this.emailverify_lbl.Location = new System.Drawing.Point(65, 103);
+            this.emailverify_lbl.Location = new System.Drawing.Point(111, 143);
             this.emailverify_lbl.Name = "emailverify_lbl";
-            this.emailverify_lbl.Size = new System.Drawing.Size(237, 37);
+            this.emailverify_lbl.Size = new System.Drawing.Size(123, 20);
             this.emailverify_lbl.TabIndex = 42;
             this.emailverify_lbl.Text = "Email verification";
             // 
@@ -104,7 +113,7 @@
             this.code_tb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
             this.code_tb.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.code_tb.ForeColor = System.Drawing.SystemColors.Window;
-            this.code_tb.Location = new System.Drawing.Point(139, 201);
+            this.code_tb.Location = new System.Drawing.Point(113, 183);
             this.code_tb.Name = "code_tb";
             this.code_tb.Size = new System.Drawing.Size(135, 25);
             this.code_tb.TabIndex = 41;
@@ -112,37 +121,25 @@
             // status_lbl
             // 
             this.status_lbl.AutoSize = true;
-            this.status_lbl.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.status_lbl.Font = new System.Drawing.Font("Impact", 9.75F);
             this.status_lbl.ForeColor = System.Drawing.Color.White;
-            this.status_lbl.Location = new System.Drawing.Point(68, 238);
+            this.status_lbl.Location = new System.Drawing.Point(96, 223);
             this.status_lbl.Name = "status_lbl";
-            this.status_lbl.Size = new System.Drawing.Size(215, 21);
+            this.status_lbl.Size = new System.Drawing.Size(152, 17);
             this.status_lbl.TabIndex = 40;
             this.status_lbl.Text = "Please verify your account\r\n";
             this.status_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-
             // 
             // code_lbl
             // 
             this.code_lbl.AutoSize = true;
-            this.code_lbl.Font = new System.Drawing.Font("Malgun Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.code_lbl.Font = new System.Drawing.Font("Impact", 12F);
             this.code_lbl.ForeColor = System.Drawing.Color.White;
-            this.code_lbl.Location = new System.Drawing.Point(69, 205);
+            this.code_lbl.Location = new System.Drawing.Point(68, 185);
             this.code_lbl.Name = "code_lbl";
-            this.code_lbl.Size = new System.Drawing.Size(53, 21);
+            this.code_lbl.Size = new System.Drawing.Size(45, 20);
             this.code_lbl.TabIndex = 39;
             this.code_lbl.Text = "Code:";
-           
-            // 
-            // logo_pb
-            // 
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources.Logonetflix;
-            this.logo_pb.Location = new System.Drawing.Point(125, 50);
-            this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(100, 50);
-            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.logo_pb.TabIndex = 0;
-            this.logo_pb.TabStop = false;
             // 
             // minimize_pb
             // 
@@ -193,7 +190,6 @@
             this.Name = "verification_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "verification_form";
-         
             this.Panel_verify.ResumeLayout(false);
             this.Panel_verify.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
