@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(home_form));
             this.menu_panel = new System.Windows.Forms.Panel();
             this.Pnale_settings = new System.Windows.Forms.Panel();
             this.setting_pb = new System.Windows.Forms.PictureBox();
@@ -78,10 +79,8 @@
             this.popular_pb9 = new System.Windows.Forms.PictureBox();
             this.popular_pb10 = new System.Windows.Forms.PictureBox();
             this.popularLeft_btn = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.popular4_btn = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -93,9 +92,9 @@
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.popular3_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.popular7_btn = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
             this.pictureBox15 = new System.Windows.Forms.PictureBox();
@@ -107,7 +106,16 @@
             this.pictureBox21 = new System.Windows.Forms.PictureBox();
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
             this.pictureBox23 = new System.Windows.Forms.PictureBox();
-            this.button4 = new System.Windows.Forms.Button();
+            this.popular6_btn = new System.Windows.Forms.Button();
+            this.edit_panel = new System.Windows.Forms.Panel();
+            this.edit_pb = new System.Windows.Forms.PictureBox();
+            this.edit_btn = new System.Windows.Forms.Button();
+            this.Back_Panel = new System.Windows.Forms.Panel();
+            this.back_pb = new System.Windows.Forms.PictureBox();
+            this.back_btn = new System.Windows.Forms.Button();
+            this.save_panel = new System.Windows.Forms.Panel();
+            this.save_pb = new System.Windows.Forms.PictureBox();
+            this.save_btn = new System.Windows.Forms.Button();
             this.menu_panel.SuspendLayout();
             this.Pnale_settings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.setting_pb)).BeginInit();
@@ -169,11 +177,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
+            this.edit_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edit_pb)).BeginInit();
+            this.Back_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.back_pb)).BeginInit();
+            this.save_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.save_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // menu_panel
             // 
             this.menu_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.menu_panel.Controls.Add(this.edit_panel);
             this.menu_panel.Controls.Add(this.Pnale_settings);
             this.menu_panel.Controls.Add(this.Panel_signout);
             this.menu_panel.Controls.Add(this.support_panel);
@@ -184,7 +199,7 @@
             this.menu_panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.menu_panel.Location = new System.Drawing.Point(0, 31);
             this.menu_panel.Name = "menu_panel";
-            this.menu_panel.Size = new System.Drawing.Size(211, 749);
+            this.menu_panel.Size = new System.Drawing.Size(211, 789);
             this.menu_panel.TabIndex = 0;
             // 
             // Pnale_settings
@@ -486,14 +501,17 @@
             // Panel_edit
             // 
             this.Panel_edit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.Panel_edit.Controls.Add(this.save_panel);
+            this.Panel_edit.Controls.Add(this.Back_Panel);
             this.Panel_edit.Controls.Add(this.Panle_remove);
             this.Panel_edit.Controls.Add(this.Panel_insert);
             this.Panel_edit.Controls.Add(this.Panel_logo);
             this.Panel_edit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.Panel_edit.Location = new System.Drawing.Point(1122, 31);
+            this.Panel_edit.Location = new System.Drawing.Point(972, 31);
             this.Panel_edit.Name = "Panel_edit";
-            this.Panel_edit.Size = new System.Drawing.Size(59, 749);
+            this.Panel_edit.Size = new System.Drawing.Size(209, 789);
             this.Panel_edit.TabIndex = 53;
+            this.Panel_edit.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_edit_Paint);
             // 
             // Panle_remove
             // 
@@ -501,10 +519,11 @@
             this.Panle_remove.Controls.Add(this.pictureBox2);
             this.Panle_remove.Controls.Add(this.removeMovie_btn);
             this.Panle_remove.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Panle_remove.Location = new System.Drawing.Point(11, 200);
+            this.Panle_remove.Location = new System.Drawing.Point(0, 207);
             this.Panle_remove.Name = "Panle_remove";
-            this.Panle_remove.Size = new System.Drawing.Size(197, 46);
+            this.Panle_remove.Size = new System.Drawing.Size(208, 42);
             this.Panle_remove.TabIndex = 19;
+            this.Panle_remove.Paint += new System.Windows.Forms.PaintEventHandler(this.Panle_remove_Paint);
             // 
             // pictureBox2
             // 
@@ -526,7 +545,7 @@
             this.removeMovie_btn.Location = new System.Drawing.Point(-3, -1);
             this.removeMovie_btn.Name = "removeMovie_btn";
             this.removeMovie_btn.Padding = new System.Windows.Forms.Padding(0, 0, 45, 0);
-            this.removeMovie_btn.Size = new System.Drawing.Size(185, 47);
+            this.removeMovie_btn.Size = new System.Drawing.Size(199, 47);
             this.removeMovie_btn.TabIndex = 1;
             this.removeMovie_btn.Text = "Remove";
             this.removeMovie_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -538,15 +557,16 @@
             this.Panel_insert.Controls.Add(this.pictureBox1);
             this.Panel_insert.Controls.Add(this.admin_insert_btn);
             this.Panel_insert.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Panel_insert.Location = new System.Drawing.Point(11, 142);
+            this.Panel_insert.Location = new System.Drawing.Point(3, 144);
             this.Panel_insert.Name = "Panel_insert";
-            this.Panel_insert.Size = new System.Drawing.Size(197, 46);
+            this.Panel_insert.Size = new System.Drawing.Size(208, 42);
             this.Panel_insert.TabIndex = 18;
+            this.Panel_insert.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_insert_Paint);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::OOP_Project.Properties.Resources.icons8_picture_501;
-            this.pictureBox1.Location = new System.Drawing.Point(134, 5);
+            this.pictureBox1.Location = new System.Drawing.Point(131, 9);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 30);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -563,7 +583,7 @@
             this.admin_insert_btn.Location = new System.Drawing.Point(-3, -1);
             this.admin_insert_btn.Name = "admin_insert_btn";
             this.admin_insert_btn.Padding = new System.Windows.Forms.Padding(0, 0, 45, 0);
-            this.admin_insert_btn.Size = new System.Drawing.Size(185, 47);
+            this.admin_insert_btn.Size = new System.Drawing.Size(199, 47);
             this.admin_insert_btn.TabIndex = 1;
             this.admin_insert_btn.Text = "Insert";
             this.admin_insert_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -577,7 +597,7 @@
             this.Panel_logo.Dock = System.Windows.Forms.DockStyle.Top;
             this.Panel_logo.Location = new System.Drawing.Point(0, 0);
             this.Panel_logo.Name = "Panel_logo";
-            this.Panel_logo.Size = new System.Drawing.Size(59, 111);
+            this.Panel_logo.Size = new System.Drawing.Size(209, 111);
             this.Panel_logo.TabIndex = 2;
             // 
             // pictureBox6
@@ -600,6 +620,7 @@
             this.popularMovie_lbl.Size = new System.Drawing.Size(95, 20);
             this.popularMovie_lbl.TabIndex = 56;
             this.popularMovie_lbl.Text = "TOP POPULAR:\r\n";
+            this.popularMovie_lbl.Click += new System.EventHandler(this.popularMovie_lbl_Click);
             // 
             // popularMovie_panel
             // 
@@ -611,6 +632,7 @@
             this.popularMovie_panel.Name = "popularMovie_panel";
             this.popularMovie_panel.Size = new System.Drawing.Size(865, 188);
             this.popularMovie_panel.TabIndex = 57;
+            this.popularMovie_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.popularMovie_panel_Paint);
             // 
             // popularRight_btn
             // 
@@ -743,46 +765,24 @@
             this.popularLeft_btn.UseVisualStyleBackColor = true;
             this.popularLeft_btn.Click += new System.EventHandler(this.popularLeft_btn_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(217, 342);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 20);
-            this.label1.TabIndex = 58;
-            this.label1.Text = "TOP POPULAR:\r\n";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Impact", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(220, 572);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(95, 20);
-            this.label2.TabIndex = 58;
-            this.label2.Text = "TOP POPULAR:\r\n";
-            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.popular4_btn);
             this.panel1.Controls.Add(this.flowLayoutPanel1);
-            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.popular3_btn);
             this.panel1.Location = new System.Drawing.Point(224, 365);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(865, 188);
             this.panel1.TabIndex = 58;
             // 
-            // button1
+            // popular4_btn
             // 
-            this.button1.Location = new System.Drawing.Point(850, 57);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(12, 57);
-            this.button1.TabIndex = 1;
-            this.button1.UseVisualStyleBackColor = true;
+            this.popular4_btn.Location = new System.Drawing.Point(850, 57);
+            this.popular4_btn.Name = "popular4_btn";
+            this.popular4_btn.Size = new System.Drawing.Size(12, 57);
+            this.popular4_btn.TabIndex = 1;
+            this.popular4_btn.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel1
             // 
@@ -897,32 +897,32 @@
             this.pictureBox13.TabIndex = 9;
             this.pictureBox13.TabStop = false;
             // 
-            // button2
+            // popular3_btn
             // 
-            this.button2.Location = new System.Drawing.Point(3, 57);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(12, 57);
-            this.button2.TabIndex = 2;
-            this.button2.UseVisualStyleBackColor = true;
+            this.popular3_btn.Location = new System.Drawing.Point(3, 57);
+            this.popular3_btn.Name = "popular3_btn";
+            this.popular3_btn.Size = new System.Drawing.Size(12, 57);
+            this.popular3_btn.TabIndex = 2;
+            this.popular3_btn.UseVisualStyleBackColor = true;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.popular7_btn);
             this.panel2.Controls.Add(this.flowLayoutPanel2);
-            this.panel2.Controls.Add(this.button4);
+            this.panel2.Controls.Add(this.popular6_btn);
             this.panel2.Location = new System.Drawing.Point(227, 595);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(865, 188);
             this.panel2.TabIndex = 58;
             // 
-            // button3
+            // popular7_btn
             // 
-            this.button3.Location = new System.Drawing.Point(850, 57);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(12, 57);
-            this.button3.TabIndex = 1;
-            this.button3.UseVisualStyleBackColor = true;
+            this.popular7_btn.Location = new System.Drawing.Point(850, 57);
+            this.popular7_btn.Name = "popular7_btn";
+            this.popular7_btn.Size = new System.Drawing.Size(12, 57);
+            this.popular7_btn.TabIndex = 1;
+            this.popular7_btn.UseVisualStyleBackColor = true;
             // 
             // flowLayoutPanel2
             // 
@@ -946,6 +946,7 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(826, 189);
             this.flowLayoutPanel2.TabIndex = 0;
             this.flowLayoutPanel2.WrapContents = false;
+            this.flowLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel2_Paint);
             // 
             // pictureBox14
             // 
@@ -1037,30 +1038,144 @@
             this.pictureBox23.TabIndex = 9;
             this.pictureBox23.TabStop = false;
             // 
-            // button4
+            // popular6_btn
             // 
-            this.button4.Location = new System.Drawing.Point(3, 57);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(12, 57);
-            this.button4.TabIndex = 2;
-            this.button4.UseVisualStyleBackColor = true;
+            this.popular6_btn.Location = new System.Drawing.Point(3, 57);
+            this.popular6_btn.Name = "popular6_btn";
+            this.popular6_btn.Size = new System.Drawing.Size(12, 57);
+            this.popular6_btn.TabIndex = 2;
+            this.popular6_btn.UseVisualStyleBackColor = true;
+            // 
+            // edit_panel
+            // 
+            this.edit_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.edit_panel.Controls.Add(this.edit_pb);
+            this.edit_panel.Controls.Add(this.edit_btn);
+            this.edit_panel.Location = new System.Drawing.Point(11, 351);
+            this.edit_panel.Name = "edit_panel";
+            this.edit_panel.Size = new System.Drawing.Size(197, 46);
+            this.edit_panel.TabIndex = 19;
+            this.edit_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.edit_panel_Paint);
+            // 
+            // edit_pb
+            // 
+            this.edit_pb.Image = ((System.Drawing.Image)(resources.GetObject("edit_pb.Image")));
+            this.edit_pb.Location = new System.Drawing.Point(19, 6);
+            this.edit_pb.Name = "edit_pb";
+            this.edit_pb.Size = new System.Drawing.Size(30, 30);
+            this.edit_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.edit_pb.TabIndex = 15;
+            this.edit_pb.TabStop = false;
+            // 
+            // edit_btn
+            // 
+            this.edit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.edit_btn.FlatAppearance.BorderSize = 0;
+            this.edit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.edit_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edit_btn.ForeColor = System.Drawing.SystemColors.Control;
+            this.edit_btn.Location = new System.Drawing.Point(12, 0);
+            this.edit_btn.Name = "edit_btn";
+            this.edit_btn.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.edit_btn.Size = new System.Drawing.Size(185, 47);
+            this.edit_btn.TabIndex = 1;
+            this.edit_btn.Text = "Edit";
+            this.edit_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.edit_btn.UseVisualStyleBackColor = false;
+            this.edit_btn.Click += new System.EventHandler(this.edit_btn_Click);
+            // 
+            // Back_Panel
+            // 
+            this.Back_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.Back_Panel.Controls.Add(this.back_pb);
+            this.Back_Panel.Controls.Add(this.back_btn);
+            this.Back_Panel.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Back_Panel.Location = new System.Drawing.Point(0, 323);
+            this.Back_Panel.Name = "Back_Panel";
+            this.Back_Panel.Size = new System.Drawing.Size(208, 42);
+            this.Back_Panel.TabIndex = 21;
+            // 
+            // back_pb
+            // 
+            this.back_pb.BackgroundImage = global::OOP_Project.Properties.Resources.icons8_close_48;
+            this.back_pb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.back_pb.Location = new System.Drawing.Point(131, 9);
+            this.back_pb.Name = "back_pb";
+            this.back_pb.Size = new System.Drawing.Size(30, 30);
+            this.back_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.back_pb.TabIndex = 15;
+            this.back_pb.TabStop = false;
+            // 
+            // back_btn
+            // 
+            this.back_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.back_btn.FlatAppearance.BorderSize = 0;
+            this.back_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.back_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.back_btn.ForeColor = System.Drawing.SystemColors.Control;
+            this.back_btn.Location = new System.Drawing.Point(-3, -1);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Padding = new System.Windows.Forms.Padding(0, 0, 45, 0);
+            this.back_btn.Size = new System.Drawing.Size(199, 47);
+            this.back_btn.TabIndex = 1;
+            this.back_btn.Text = "Close";
+            this.back_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.back_btn.UseVisualStyleBackColor = false;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
+            // 
+            // save_panel
+            // 
+            this.save_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.save_panel.Controls.Add(this.save_pb);
+            this.save_panel.Controls.Add(this.save_btn);
+            this.save_panel.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.save_panel.Location = new System.Drawing.Point(2, 262);
+            this.save_panel.Name = "save_panel";
+            this.save_panel.Size = new System.Drawing.Size(208, 42);
+            this.save_panel.TabIndex = 22;
+            // 
+            // save_pb
+            // 
+            this.save_pb.BackgroundImage = global::OOP_Project.Properties.Resources.icons8_done_48;
+            this.save_pb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.save_pb.ErrorImage = global::OOP_Project.Properties.Resources.icons8_done_48;
+            this.save_pb.Location = new System.Drawing.Point(131, 9);
+            this.save_pb.Name = "save_pb";
+            this.save_pb.Size = new System.Drawing.Size(30, 30);
+            this.save_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.save_pb.TabIndex = 15;
+            this.save_pb.TabStop = false;
+            // 
+            // save_btn
+            // 
+            this.save_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.save_btn.FlatAppearance.BorderSize = 0;
+            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.save_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.save_btn.ForeColor = System.Drawing.SystemColors.Control;
+            this.save_btn.Location = new System.Drawing.Point(-3, -1);
+            this.save_btn.Name = "save_btn";
+            this.save_btn.Padding = new System.Windows.Forms.Padding(0, 0, 45, 0);
+            this.save_btn.Size = new System.Drawing.Size(199, 47);
+            this.save_btn.TabIndex = 1;
+            this.save_btn.Text = "Save";
+            this.save_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.save_btn.UseVisualStyleBackColor = false;
             // 
             // home_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.ClientSize = new System.Drawing.Size(1181, 780);
+            this.ClientSize = new System.Drawing.Size(1181, 820);
+            this.Controls.Add(this.Panel_edit);
+            this.Controls.Add(this.menu_panel);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.popularMovie_panel);
             this.Controls.Add(this.popularMovie_lbl);
-            this.Controls.Add(this.Panel_edit);
             this.Controls.Add(this.search_tb);
             this.Controls.Add(this.code_lbl);
-            this.Controls.Add(this.menu_panel);
             this.Controls.Add(this.top_dock_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home_form";
@@ -1128,6 +1243,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
+            this.edit_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.edit_pb)).EndInit();
+            this.Back_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.back_pb)).EndInit();
+            this.save_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.save_pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1176,8 +1297,6 @@
         private System.Windows.Forms.PictureBox close_pb;
         private System.Windows.Forms.Button popularRight_btn;
         private System.Windows.Forms.Button popularLeft_btn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox popular_pb2;
         private System.Windows.Forms.PictureBox popular_pb3;
         private System.Windows.Forms.PictureBox popular_pb4;
@@ -1188,7 +1307,7 @@
         private System.Windows.Forms.PictureBox popular_pb9;
         private System.Windows.Forms.PictureBox popular_pb10;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button popular4_btn;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -1200,9 +1319,9 @@
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.PictureBox pictureBox12;
         private System.Windows.Forms.PictureBox pictureBox13;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button popular3_btn;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button popular7_btn;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
         private System.Windows.Forms.PictureBox pictureBox14;
         private System.Windows.Forms.PictureBox pictureBox15;
@@ -1214,6 +1333,15 @@
         private System.Windows.Forms.PictureBox pictureBox21;
         private System.Windows.Forms.PictureBox pictureBox22;
         private System.Windows.Forms.PictureBox pictureBox23;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button popular6_btn;
+        private System.Windows.Forms.Panel edit_panel;
+        private System.Windows.Forms.PictureBox edit_pb;
+        private System.Windows.Forms.Button edit_btn;
+        private System.Windows.Forms.Panel Back_Panel;
+        private System.Windows.Forms.PictureBox back_pb;
+        private System.Windows.Forms.Button back_btn;
+        private System.Windows.Forms.Panel save_panel;
+        private System.Windows.Forms.PictureBox save_pb;
+        private System.Windows.Forms.Button save_btn;
     }
 }

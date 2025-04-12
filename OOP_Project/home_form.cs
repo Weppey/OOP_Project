@@ -17,17 +17,18 @@ namespace OOP_Project
             InitializeComponent();
             userType = userTypeFromLogin;
             HandleAccess();
+            Panel_edit.Visible = false;
 
         }
         private void HandleAccess()
         {
             if (userType.ToLower() == "member")
             {
-                Panel_edit.Visible = false; // Hide admin panel
+                edit_panel.Visible = false; // Hide button edit
             }
             else
             {
-                Panel_edit.Visible = true;  // Show admin panel
+                edit_panel.Visible = true;  // show edit button
             }
         }
 
@@ -76,7 +77,20 @@ namespace OOP_Project
 
         private void close_pb_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            string msg = "Do you want to leave this page?";
+            string title = "Confirm Naviagtion";
+            MessageBoxButtons btn = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Question;
+            DialogResult result = MessageBox.Show(msg, title, btn, icon);
+            if(result == DialogResult.Yes) 
+            {
+                Application.Exit();
+            }
+            else
+            {
+                return;
+            }
+            
         }
 
         private void minimize_pb_Click(object sender, EventArgs e)
@@ -96,6 +110,52 @@ namespace OOP_Project
         {
             int currentX = popularMovie_flp.HorizontalScroll.Value;
             popularMovie_flp.AutoScrollPosition = new Point(currentX - scrollAmount, 0);
+        }
+
+        private void popularMovie_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
+        private void edit_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void edit_btn_Click(object sender, EventArgs e)
+        {
+            Panel_edit.Visible = true;
+        }
+
+        private void back_btn_Click(object sender, EventArgs e)
+        {
+            Panel_edit.Hide();
+        }
+
+        private void Panel_insert_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Panle_remove_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Panel_edit_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void popularMovie_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

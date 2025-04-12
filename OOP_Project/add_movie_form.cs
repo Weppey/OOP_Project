@@ -120,7 +120,19 @@ namespace OOP_Project
 
         private void close_pb_Click(object sender, EventArgs e)
         {
-            this.Close();
+            string msg = "Do you want to leave this page?";
+            string title = "Confirm Naviagtion";
+            MessageBoxButtons btn = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Question;
+            DialogResult result = MessageBox.Show(msg, title, btn, icon);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }
