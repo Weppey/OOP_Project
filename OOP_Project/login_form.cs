@@ -50,15 +50,13 @@ namespace OOP_Project
                             {
                                 MessageBox.Show($"Login successful! Welcome {userType}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                              
-                                StayLoggedIn.SaveUserSession(userType);
-
-
                                 try
                                 {
                                     this.Hide();
                                     home_form MainForm = new home_form(userType);
                                     MainForm.Show();
+
+                                    StayLoggedIn.SaveUserSession(userType);
                                 }
                                 catch (Exception ex)
                                 {
