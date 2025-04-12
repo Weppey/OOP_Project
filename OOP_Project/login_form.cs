@@ -52,8 +52,8 @@ namespace OOP_Project
 
                               
                                 StayLoggedIn.SaveUserSession(userType);
-
-                               
+                                
+                                
                                 this.Hide();
                //                 home_form MainForm = new home_form(userType);
                   //              MainForm.FormClosed += (s, args) => this.Close(); // Close login form when home form closes
@@ -121,6 +121,11 @@ namespace OOP_Project
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             // Logo click handler (optional)
+        }
+
+        private void login_form_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -17,7 +17,6 @@ namespace OOP_Project
             Application.SetCompatibleTextRenderingDefault(false);
 
             string sessionUserType = StayLoggedIn.LoadUserSession();
-
             if (!string.IsNullOrEmpty(sessionUserType))
             {
                 Application.Run(new home_form(sessionUserType));
