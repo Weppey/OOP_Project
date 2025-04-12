@@ -52,12 +52,20 @@ namespace OOP_Project
 
                               
                                 StayLoggedIn.SaveUserSession(userType);
-                                
-                                
-                                this.Hide();
-               //                 home_form MainForm = new home_form(userType);
-                  //              MainForm.FormClosed += (s, args) => this.Close(); // Close login form when home form closes
-                 //               MainForm.Show();
+
+
+                                try
+                                {
+                                    this.Hide();
+                                    home_form MainForm = new home_form(userType);
+                                    MainForm.Show();
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show("Error loading home form: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    this.Show(); // Show login form again if something fails
+                                }
+
                             }
                             else
                             {

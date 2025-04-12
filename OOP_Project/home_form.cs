@@ -34,7 +34,7 @@ namespace OOP_Project
 
         private async void home_form_Load(object sender, EventArgs e)
         {
-            popularMovie_flp.VerticalScroll.Visible = false;
+
         }
 
         private async void search_tb_TextChanged(object sender, EventArgs e)
