@@ -52,9 +52,9 @@ namespace OOP_Project
 
                                 try
                                 {
-                                    this.Hide();
                                     home_form MainForm = new home_form(userType);
                                     MainForm.Show();
+                                    this.Hide();
 
                                     StayLoggedIn.SaveUserSession(userType);
                                 }

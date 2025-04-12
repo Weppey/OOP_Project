@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(home_form));
             this.menu_panel = new System.Windows.Forms.Panel();
+            this.edit_panel = new System.Windows.Forms.Panel();
+            this.edit_pb = new System.Windows.Forms.PictureBox();
+            this.edit_btn = new System.Windows.Forms.Button();
             this.Pnale_settings = new System.Windows.Forms.Panel();
             this.setting_pb = new System.Windows.Forms.PictureBox();
             this.settings_btn = new System.Windows.Forms.Button();
@@ -56,6 +59,12 @@
             this.search_tb = new System.Windows.Forms.TextBox();
             this.code_lbl = new System.Windows.Forms.Label();
             this.Panel_edit = new System.Windows.Forms.Panel();
+            this.save_panel = new System.Windows.Forms.Panel();
+            this.save_pb = new System.Windows.Forms.PictureBox();
+            this.save_btn = new System.Windows.Forms.Button();
+            this.Back_Panel = new System.Windows.Forms.Panel();
+            this.back_pb = new System.Windows.Forms.PictureBox();
+            this.back_btn = new System.Windows.Forms.Button();
             this.Panle_remove = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.removeMovie_btn = new System.Windows.Forms.Button();
@@ -107,16 +116,9 @@
             this.pictureBox22 = new System.Windows.Forms.PictureBox();
             this.pictureBox23 = new System.Windows.Forms.PictureBox();
             this.popular6_btn = new System.Windows.Forms.Button();
-            this.edit_panel = new System.Windows.Forms.Panel();
-            this.edit_pb = new System.Windows.Forms.PictureBox();
-            this.edit_btn = new System.Windows.Forms.Button();
-            this.Back_Panel = new System.Windows.Forms.Panel();
-            this.back_pb = new System.Windows.Forms.PictureBox();
-            this.back_btn = new System.Windows.Forms.Button();
-            this.save_panel = new System.Windows.Forms.Panel();
-            this.save_pb = new System.Windows.Forms.PictureBox();
-            this.save_btn = new System.Windows.Forms.Button();
             this.menu_panel.SuspendLayout();
+            this.edit_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edit_pb)).BeginInit();
             this.Pnale_settings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.setting_pb)).BeginInit();
             this.Panel_signout.SuspendLayout();
@@ -135,6 +137,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.Panel_edit.SuspendLayout();
+            this.save_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.save_pb)).BeginInit();
+            this.Back_Panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.back_pb)).BeginInit();
             this.Panle_remove.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.Panel_insert.SuspendLayout();
@@ -177,12 +183,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
-            this.edit_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.edit_pb)).BeginInit();
-            this.Back_Panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.back_pb)).BeginInit();
-            this.save_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.save_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // menu_panel
@@ -201,6 +201,44 @@
             this.menu_panel.Name = "menu_panel";
             this.menu_panel.Size = new System.Drawing.Size(211, 789);
             this.menu_panel.TabIndex = 0;
+            // 
+            // edit_panel
+            // 
+            this.edit_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.edit_panel.Controls.Add(this.edit_pb);
+            this.edit_panel.Controls.Add(this.edit_btn);
+            this.edit_panel.Location = new System.Drawing.Point(11, 351);
+            this.edit_panel.Name = "edit_panel";
+            this.edit_panel.Size = new System.Drawing.Size(197, 46);
+            this.edit_panel.TabIndex = 19;
+            this.edit_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.edit_panel_Paint);
+            // 
+            // edit_pb
+            // 
+            this.edit_pb.Image = ((System.Drawing.Image)(resources.GetObject("edit_pb.Image")));
+            this.edit_pb.Location = new System.Drawing.Point(19, 6);
+            this.edit_pb.Name = "edit_pb";
+            this.edit_pb.Size = new System.Drawing.Size(30, 30);
+            this.edit_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.edit_pb.TabIndex = 15;
+            this.edit_pb.TabStop = false;
+            // 
+            // edit_btn
+            // 
+            this.edit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.edit_btn.FlatAppearance.BorderSize = 0;
+            this.edit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.edit_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edit_btn.ForeColor = System.Drawing.SystemColors.Control;
+            this.edit_btn.Location = new System.Drawing.Point(12, 0);
+            this.edit_btn.Name = "edit_btn";
+            this.edit_btn.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
+            this.edit_btn.Size = new System.Drawing.Size(185, 47);
+            this.edit_btn.TabIndex = 1;
+            this.edit_btn.Text = "Edit";
+            this.edit_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.edit_btn.UseVisualStyleBackColor = false;
+            this.edit_btn.Click += new System.EventHandler(this.edit_btn_Click);
             // 
             // Pnale_settings
             // 
@@ -507,11 +545,90 @@
             this.Panel_edit.Controls.Add(this.Panel_insert);
             this.Panel_edit.Controls.Add(this.Panel_logo);
             this.Panel_edit.Dock = System.Windows.Forms.DockStyle.Right;
+            this.Panel_edit.ForeColor = System.Drawing.Color.DimGray;
             this.Panel_edit.Location = new System.Drawing.Point(972, 31);
             this.Panel_edit.Name = "Panel_edit";
             this.Panel_edit.Size = new System.Drawing.Size(209, 789);
             this.Panel_edit.TabIndex = 53;
             this.Panel_edit.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_edit_Paint);
+            // 
+            // save_panel
+            // 
+            this.save_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.save_panel.Controls.Add(this.save_pb);
+            this.save_panel.Controls.Add(this.save_btn);
+            this.save_panel.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.save_panel.Location = new System.Drawing.Point(2, 262);
+            this.save_panel.Name = "save_panel";
+            this.save_panel.Size = new System.Drawing.Size(208, 42);
+            this.save_panel.TabIndex = 22;
+            // 
+            // save_pb
+            // 
+            this.save_pb.BackgroundImage = global::OOP_Project.Properties.Resources.icons8_done_48;
+            this.save_pb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.save_pb.ErrorImage = global::OOP_Project.Properties.Resources.icons8_done_48;
+            this.save_pb.Location = new System.Drawing.Point(131, 9);
+            this.save_pb.Name = "save_pb";
+            this.save_pb.Size = new System.Drawing.Size(30, 30);
+            this.save_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.save_pb.TabIndex = 15;
+            this.save_pb.TabStop = false;
+            // 
+            // save_btn
+            // 
+            this.save_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.save_btn.FlatAppearance.BorderSize = 0;
+            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.save_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.save_btn.ForeColor = System.Drawing.SystemColors.Control;
+            this.save_btn.Location = new System.Drawing.Point(-3, -1);
+            this.save_btn.Name = "save_btn";
+            this.save_btn.Padding = new System.Windows.Forms.Padding(0, 0, 45, 0);
+            this.save_btn.Size = new System.Drawing.Size(199, 47);
+            this.save_btn.TabIndex = 1;
+            this.save_btn.Text = "Save";
+            this.save_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.save_btn.UseVisualStyleBackColor = false;
+            // 
+            // Back_Panel
+            // 
+            this.Back_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.Back_Panel.Controls.Add(this.back_pb);
+            this.Back_Panel.Controls.Add(this.back_btn);
+            this.Back_Panel.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Back_Panel.Location = new System.Drawing.Point(0, 323);
+            this.Back_Panel.Name = "Back_Panel";
+            this.Back_Panel.Size = new System.Drawing.Size(208, 42);
+            this.Back_Panel.TabIndex = 21;
+            // 
+            // back_pb
+            // 
+            this.back_pb.BackgroundImage = global::OOP_Project.Properties.Resources.icons8_close_48;
+            this.back_pb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.back_pb.Location = new System.Drawing.Point(131, 9);
+            this.back_pb.Name = "back_pb";
+            this.back_pb.Size = new System.Drawing.Size(30, 30);
+            this.back_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.back_pb.TabIndex = 15;
+            this.back_pb.TabStop = false;
+            // 
+            // back_btn
+            // 
+            this.back_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
+            this.back_btn.FlatAppearance.BorderSize = 0;
+            this.back_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.back_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.back_btn.ForeColor = System.Drawing.SystemColors.Control;
+            this.back_btn.Location = new System.Drawing.Point(-3, -1);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Padding = new System.Windows.Forms.Padding(0, 0, 45, 0);
+            this.back_btn.Size = new System.Drawing.Size(199, 47);
+            this.back_btn.TabIndex = 1;
+            this.back_btn.Text = "Close";
+            this.back_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.back_btn.UseVisualStyleBackColor = false;
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
             // 
             // Panle_remove
             // 
@@ -1046,122 +1163,6 @@
             this.popular6_btn.TabIndex = 2;
             this.popular6_btn.UseVisualStyleBackColor = true;
             // 
-            // edit_panel
-            // 
-            this.edit_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
-            this.edit_panel.Controls.Add(this.edit_pb);
-            this.edit_panel.Controls.Add(this.edit_btn);
-            this.edit_panel.Location = new System.Drawing.Point(11, 351);
-            this.edit_panel.Name = "edit_panel";
-            this.edit_panel.Size = new System.Drawing.Size(197, 46);
-            this.edit_panel.TabIndex = 19;
-            this.edit_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.edit_panel_Paint);
-            // 
-            // edit_pb
-            // 
-            this.edit_pb.Image = ((System.Drawing.Image)(resources.GetObject("edit_pb.Image")));
-            this.edit_pb.Location = new System.Drawing.Point(19, 6);
-            this.edit_pb.Name = "edit_pb";
-            this.edit_pb.Size = new System.Drawing.Size(30, 30);
-            this.edit_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.edit_pb.TabIndex = 15;
-            this.edit_pb.TabStop = false;
-            // 
-            // edit_btn
-            // 
-            this.edit_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
-            this.edit_btn.FlatAppearance.BorderSize = 0;
-            this.edit_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.edit_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edit_btn.ForeColor = System.Drawing.SystemColors.Control;
-            this.edit_btn.Location = new System.Drawing.Point(12, 0);
-            this.edit_btn.Name = "edit_btn";
-            this.edit_btn.Padding = new System.Windows.Forms.Padding(45, 0, 0, 0);
-            this.edit_btn.Size = new System.Drawing.Size(185, 47);
-            this.edit_btn.TabIndex = 1;
-            this.edit_btn.Text = "Edit";
-            this.edit_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.edit_btn.UseVisualStyleBackColor = false;
-            this.edit_btn.Click += new System.EventHandler(this.edit_btn_Click);
-            // 
-            // Back_Panel
-            // 
-            this.Back_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
-            this.Back_Panel.Controls.Add(this.back_pb);
-            this.Back_Panel.Controls.Add(this.back_btn);
-            this.Back_Panel.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Back_Panel.Location = new System.Drawing.Point(0, 323);
-            this.Back_Panel.Name = "Back_Panel";
-            this.Back_Panel.Size = new System.Drawing.Size(208, 42);
-            this.Back_Panel.TabIndex = 21;
-            // 
-            // back_pb
-            // 
-            this.back_pb.BackgroundImage = global::OOP_Project.Properties.Resources.icons8_close_48;
-            this.back_pb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.back_pb.Location = new System.Drawing.Point(131, 9);
-            this.back_pb.Name = "back_pb";
-            this.back_pb.Size = new System.Drawing.Size(30, 30);
-            this.back_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.back_pb.TabIndex = 15;
-            this.back_pb.TabStop = false;
-            // 
-            // back_btn
-            // 
-            this.back_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
-            this.back_btn.FlatAppearance.BorderSize = 0;
-            this.back_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.back_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.back_btn.ForeColor = System.Drawing.SystemColors.Control;
-            this.back_btn.Location = new System.Drawing.Point(-3, -1);
-            this.back_btn.Name = "back_btn";
-            this.back_btn.Padding = new System.Windows.Forms.Padding(0, 0, 45, 0);
-            this.back_btn.Size = new System.Drawing.Size(199, 47);
-            this.back_btn.TabIndex = 1;
-            this.back_btn.Text = "Close";
-            this.back_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.back_btn.UseVisualStyleBackColor = false;
-            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
-            // 
-            // save_panel
-            // 
-            this.save_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
-            this.save_panel.Controls.Add(this.save_pb);
-            this.save_panel.Controls.Add(this.save_btn);
-            this.save_panel.Font = new System.Drawing.Font("Impact", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.save_panel.Location = new System.Drawing.Point(2, 262);
-            this.save_panel.Name = "save_panel";
-            this.save_panel.Size = new System.Drawing.Size(208, 42);
-            this.save_panel.TabIndex = 22;
-            // 
-            // save_pb
-            // 
-            this.save_pb.BackgroundImage = global::OOP_Project.Properties.Resources.icons8_done_48;
-            this.save_pb.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.save_pb.ErrorImage = global::OOP_Project.Properties.Resources.icons8_done_48;
-            this.save_pb.Location = new System.Drawing.Point(131, 9);
-            this.save_pb.Name = "save_pb";
-            this.save_pb.Size = new System.Drawing.Size(30, 30);
-            this.save_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.save_pb.TabIndex = 15;
-            this.save_pb.TabStop = false;
-            // 
-            // save_btn
-            // 
-            this.save_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(11)))), ((int)(((byte)(15)))));
-            this.save_btn.FlatAppearance.BorderSize = 0;
-            this.save_btn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.save_btn.Font = new System.Drawing.Font("Impact", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.save_btn.ForeColor = System.Drawing.SystemColors.Control;
-            this.save_btn.Location = new System.Drawing.Point(-3, -1);
-            this.save_btn.Name = "save_btn";
-            this.save_btn.Padding = new System.Windows.Forms.Padding(0, 0, 45, 0);
-            this.save_btn.Size = new System.Drawing.Size(199, 47);
-            this.save_btn.TabIndex = 1;
-            this.save_btn.Text = "Save";
-            this.save_btn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.save_btn.UseVisualStyleBackColor = false;
-            // 
             // home_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1183,6 +1184,8 @@
             this.Text = "home_form";
             this.Load += new System.EventHandler(this.home_form_Load);
             this.menu_panel.ResumeLayout(false);
+            this.edit_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.edit_pb)).EndInit();
             this.Pnale_settings.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.setting_pb)).EndInit();
             this.Panel_signout.ResumeLayout(false);
@@ -1201,6 +1204,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.Panel_edit.ResumeLayout(false);
+            this.save_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.save_pb)).EndInit();
+            this.Back_Panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.back_pb)).EndInit();
             this.Panle_remove.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.Panel_insert.ResumeLayout(false);
@@ -1243,12 +1250,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
-            this.edit_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.edit_pb)).EndInit();
-            this.Back_Panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.back_pb)).EndInit();
-            this.save_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.save_pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
