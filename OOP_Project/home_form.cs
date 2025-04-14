@@ -63,6 +63,19 @@ namespace OOP_Project
 
             CurvePanel(recommendedMovie_flp, 30);
             recommendedMovie_flp.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(popularMovie_panel, 30);
+            movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(popularMovie_flp, 30);
+            recommendedMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(topRatedMovie_panel, 30);
+            movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(topRatedMovie_flp, 30);
+            recommendedMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
         }
 
         private void close_pb_Click(object sender, EventArgs e)

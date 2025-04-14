@@ -312,6 +312,9 @@
     <Content Include="icons\icons8-settings-28.png" />
     <Content Include="icons\icons8-settings-48.png" />
     <Content Include="icons\icons8-trash-48.png" />
+    <None Include="Resources\login_wall2.png" />
+    <None Include="Resources\login_wall1.png" />
+    <None Include="Resources\login_wall.png" />
     <None Include="Resources\icons8-home-48.png" />
     <None Include="Resources\icons8-home-48 %282%29.png" />
     <None Include="Resources\icons8-home-48 %282%291.png" />
@@ -342,6 +345,13 @@
     <None Include="Resources\icons8-left-28 %281%29.png" />
     <None Include="Resources\icons8-left-28 %281%291.png" />
     <None Include="Resources\icons8-right-28.png" />
+    <None Include="Resources\1.41.png" />
+    <None Include="Resources\icons8-right-281.png" />
+    <None Include="Resources\icons8-right-16.png" />
+    <None Include="Resources\icons8-right-161.png" />
+    <None Include="Resources\icons8-right-28 %281%29.png" />
+    <None Include="Resources\icons8-right-28 %282%29.png" />
+    <None Include="Resources\icons8-right-162.png" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />

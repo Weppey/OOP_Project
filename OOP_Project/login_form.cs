@@ -4,21 +4,26 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using BCrypt.Net;
 using System.Web.SessionState;
+using System.Drawing.Drawing2D;
+using ComponentFactory.Krypton.Toolkit;
+using System.Drawing;
+
 
 namespace OOP_Project
 {
-    public partial class login_form : Form
+    public partial class login_form : KryptonForm
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
 
         public login_form()
         {
             InitializeComponent();
+
         }
 
         private void login_btn_Click(object sender, EventArgs e)
         {
-            string username = username_tb.Text;
+            string username = userName_tb.Text;
             string password = password_tb.Text;
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
@@ -84,8 +89,18 @@ namespace OOP_Project
                 MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void forgotP_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            account_recovery_form recoveryForm = new account_recovery_form();
+            recoveryForm.Show();
+            this.Hide();
+        }
+        private void login_form_Load(object sender, EventArgs e)
+        {
+            
+        }
 
-        private void signup_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void signUp_lbl_Click(object sender, EventArgs e)
         {
             this.Hide();
             signup_form SignUp_Form = new signup_form();
@@ -114,26 +129,67 @@ namespace OOP_Project
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void password_chkb_CheckedChanged(object sender, EventArgs e)
+        private void userName_tb_Enter(object sender, EventArgs e)
         {
-            password_tb.PasswordChar = password_chkb.Checked ? '\0' : '*';
+            if (userName_tb.Text == "Username")
+            {
+                userName_tb.Text = "";
+                userName_tb.ForeColor = Color.Black;
+            }
         }
 
-        private void forgotP_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void userName_tb_Leave(object sender, EventArgs e)
         {
-            account_recovery_form recoveryForm = new account_recovery_form();
-            recoveryForm.Show();
-            this.Hide();
+            if (userName_tb.Text == "")
+            {
+                userName_tb.Text = "Username";
+                userName_tb.ForeColor = Color.Gray;
+            }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void password_tb_Leave(object sender, EventArgs e)
         {
-            // Logo click handler (optional)
+            if (password_tb.Text == "")
+            {
+                password_tb.PasswordChar = '\0';
+                password_tb.Text = "Password";
+                password_tb.ForeColor = Color.Gray;
+            }
         }
 
-        private void login_form_Load(object sender, EventArgs e)
+        private void password_tb_Enter(object sender, EventArgs e)
         {
+            if (password_tb.Text == "Password")
+            {
+                password_tb.PasswordChar = '*';
+                password_tb.Text = "";
+                password_tb.ForeColor = Color.Black;
+            }
+        }
 
+        private void showPass_chkb_CheckedChanged(object sender, EventArgs e)
+        {
+            password_tb.PasswordChar = showPass_chkb.Checked ? '\0' : '*';
+        }
+
+        private void minimize_pb_MouseEnter(object sender, EventArgs e)
+        {
+            minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
+        }
+
+        private void minimize_pb_MouseLeave(object sender, EventArgs e)
+        {
+            minimize_pb.BackColor = Color.Transparent;
+        }
+
+        private void close_pb_MouseEnter(object sender, EventArgs e)
+        {
+            close_pb.BackColor = Color.FromArgb(226, 0, 39);
+        }
+
+        private void close_pb_MouseLeave(object sender, EventArgs e)
+        {
+            close_pb.BackColor = Color.Transparent;
         }
     }
 }
