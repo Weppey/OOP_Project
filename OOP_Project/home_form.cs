@@ -63,6 +63,19 @@ namespace OOP_Project
 
             CurvePanel(recommendedMovie_flp, 30);
             recommendedMovie_flp.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(popularMovie_panel, 30);
+            movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(popularMovie_flp, 30);
+            recommendedMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(topRatedMovie_panel, 30);
+            movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(topRatedMovie_flp, 30);
+            recommendedMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
         }
 
         private void close_pb_Click(object sender, EventArgs e)
@@ -130,11 +143,22 @@ namespace OOP_Project
 
         private void signOut_btn_Click_1(object sender, EventArgs e)
         {
-            StayLoggedIn.ClearSession();
-            this.Hide();
-            login_form loginForm = new login_form();
-            loginForm.ShowDialog();
-            this.Close();
+            string msg = "Do you really want to sign out?";
+            string title = "Confirm Navigation";
+            MessageBoxButtons btn = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Question;
+            DialogResult result = MessageBox.Show(msg, title, btn, icon);
+            if (result == DialogResult.Yes)
+            {
+                StayLoggedIn.ClearSession();
+                login_form loginForm = new login_form();
+                loginForm.ShowDialog();
+                this.Hide();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void kryptonPanel1_Paint(object sender, PaintEventArgs e)
@@ -149,22 +173,21 @@ namespace OOP_Project
 
         private void recommendedMovieLeft_btn_MouseClick(object sender, MouseEventArgs e)
         {
-            recommendedMovieLeft_btn.BackColor = Color.FromArgb(100, 100, 100);
+            recommendedMovieLeft_btn.BackColor = Color.FromArgb(80, 80, 80);
         }
 
         private void recommendedMovieLeft_btn_MouseLeave(object sender, EventArgs e)
         {
             recommendedMovieLeft_btn.BackColor = Color.FromArgb(128, 128, 128);
         }
-
         private void recommendedMovieLeft_btn_MouseEnter(object sender, EventArgs e)
         {
-            recommendedMovieLeft_btn.BackColor = Color.FromArgb(140, 140, 140);
+            recommendedMovieLeft_btn.BackColor = Color.FromArgb(100, 100, 100);
         }
 
         private void recommendedMovieRight_btn_MouseEnter(object sender, EventArgs e)
         {
-            recommendedMovieRight_btn.BackColor = Color.FromArgb(140, 140, 140);
+            recommendedMovieRight_btn.BackColor = Color.FromArgb(100, 100, 100);
         }
 
         private void recommendedMovieRight_btn_MouseLeave(object sender, EventArgs e)
@@ -174,7 +197,7 @@ namespace OOP_Project
 
         private void recommendedMovieRight_btn_MouseClick(object sender, MouseEventArgs e)
         {
-            recommendedMovieRight_btn.BackColor = Color.FromArgb(100, 100, 100);
+            recommendedMovieRight_btn.BackColor = Color.FromArgb(80, 80, 80);
         }
     }
 }

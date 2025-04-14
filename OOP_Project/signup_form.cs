@@ -49,14 +49,14 @@ namespace OOP_Project
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
-                    Credentials = new System.Net.NetworkCredential("cunanjrrafael.pdm@gmail.com", "spbj xwji uzcs fbuf"),
+                    Credentials = new System.Net.NetworkCredential("remmm.help@gmail.com", "nwvo tqpy onmt aohm"),
                     EnableSsl = true,
                 };
 
                 // Create the email message
                 MailMessage mailMessage = new MailMessage
                 {
-                    From = new MailAddress("cunanjrrafael.pdm@gmail.com"),
+                    From = new MailAddress("remmm.help@gmail.com"),
                     Subject = "New Verification Code",
                     IsBodyHtml = true, // Set this to true to allow HTML content
                     Body = $@"
@@ -70,9 +70,9 @@ namespace OOP_Project
                         {confirmationCode}
                     </div>
                     <p style='margin-top: 20px;'>If you did not request this verification, please ignore this email.</p>
-                    <p style='font-size: 12px; color: #888888;'>Best regards, <br> Reppey Support Team</p>
+                    <p style='font-size: 12px; color: #888888;'>Best regards, <br> Remmm Support Team</p>
                     <footer style='margin-top: 30px; text-align: center; font-size: 12px; color: #888888;'>
-                        <p>For any issues, contact us at <a href='mailto:support@yourdomain.com'>cunanjrrafael.pdm@gmail.com</a></p>
+                        <p>For any issues, contact us at <a href='mailto:support@yourdomain.com'>remmm.help@gmail.com</a></p>
                     </footer>
                 </div>
             </body>
