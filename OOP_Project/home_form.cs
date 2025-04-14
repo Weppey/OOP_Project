@@ -112,5 +112,15 @@ namespace OOP_Project
             loginForm.ShowDialog();
             this.Close();
         }
+
+        private void kryptonPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void menu_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
