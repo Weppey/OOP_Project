@@ -52,9 +52,11 @@ namespace OOP_Project
 
                                 try
                                 {
-                                    home_form MainForm = new home_form(userType);
-                                    MainForm.Show();
+
                                     this.Hide();
+                                    home_form home_form = new home_form(userType);
+                                    home_form.ShowDialog();
+                                    this.Close();
 
                                     StayLoggedIn.SaveUserSession(userType);
                                 }
@@ -119,9 +121,9 @@ namespace OOP_Project
 
         private void forgotP_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            this.Hide();
             account_recovery_form recoveryForm = new account_recovery_form();
             recoveryForm.Show();
-            this.Hide();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

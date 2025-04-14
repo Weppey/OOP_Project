@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using System.Web.SessionState;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Drawing.Drawing2D;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace OOP_Project
 {
-    public partial class home_form : Form
+    public partial class home_form : KryptonForm
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
         private string userType;
@@ -17,64 +19,28 @@ namespace OOP_Project
             InitializeComponent();
             userType = userTypeFromLogin;
             HandleAccess();
-            Panel_edit.Visible = false;
+          //  Panel_edit.Visible = false;
 
         }
+
+        // This will round the corners of the form
+
         private void HandleAccess()
         {
             if (userType.ToLower() == "member")
             {
-                edit_panel.Visible = false; // Hide button edit
+                //edit_panel.Visible = false; // Hide button edit
             }
             else
             {
-                edit_panel.Visible = true;  // show edit button
+                //edit_panel.Visible = true;  // show edit button
             }
         }
+
 
         private async void home_form_Load(object sender, EventArgs e)
         {
-
         }
-
-        private async void search_tb_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void clear_pb_Click(object sender, EventArgs e)
-        {
-            search_tb.Text = "";
-        }
-
-        private async void category_pb_Click(object sender, EventArgs e)
-        {
-            if (sender is PictureBox categoryPictureBox && categoryPictureBox.Tag != null)
-            {
-                string selectedCategory = categoryPictureBox.Tag.ToString();
-            }
-        }
-
-        private async void clear_category_pb_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void signout_btn_Click(object sender, EventArgs e)
-        {
-            StayLoggedIn.ClearSession();
-            this.Hide();
-            login_form loginForm = new login_form();
-            loginForm.ShowDialog();
-            this.Close();
-        }
-
-        private void admin_insert_btn_Click(object sender, EventArgs e)
-        {
-            add_movie_form addMovieForm = new add_movie_form();
-            addMovieForm.ShowDialog();
-        }
-
         private void close_pb_Click(object sender, EventArgs e)
         {
             string msg = "Do you want to leave this page?";
@@ -93,69 +59,58 @@ namespace OOP_Project
             
         }
 
+        private void close_pb_MouseEnter(object sender, EventArgs e)
+        {
+            close_pb.BackColor = Color.FromArgb(226, 0, 39);
+        }
+
+        private void close_pb_MouseLeave(object sender, EventArgs e)
+        {
+            close_pb.BackColor = Color.FromArgb(0, 0, 0);
+        }
+
         private void minimize_pb_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private const int scrollAmount = 500; // how much to scroll on each click
-
-        private void popularRight_btn_Click(object sender, EventArgs e)
+        private void minimize_pb_MouseEnter(object sender, EventArgs e)
         {
-            int currentX = popularMovie_flp.HorizontalScroll.Value;
-            popularMovie_flp.AutoScrollPosition = new Point(currentX + scrollAmount, 0);
+            minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
         }
 
-        private void popularLeft_btn_Click(object sender, EventArgs e)
+        private void minimize_pb_MouseLeave(object sender, EventArgs e)
         {
-            int currentX = popularMovie_flp.HorizontalScroll.Value;
-            popularMovie_flp.AutoScrollPosition = new Point(currentX - scrollAmount, 0);
+            minimize_pb.BackColor = Color.FromArgb(0, 0, 0);
         }
 
-        private void popularMovie_panel_Paint(object sender, PaintEventArgs e)
+        private void home_btn_Click(object sender, EventArgs e)
         {
-
+            form_lbl.Text = "HOME";
         }
 
-
-        private void edit_panel_Paint(object sender, PaintEventArgs e)
+        private void favorite_btn_Click(object sender, EventArgs e)
         {
-
+            form_lbl.Text = "FAVORITE";
         }
 
-        private void edit_btn_Click(object sender, EventArgs e)
+        private void popular_btn_Click(object sender, EventArgs e)
         {
-            Panel_edit.Visible = true;
+            form_lbl.Text = "POPULAR";
         }
 
-        private void back_btn_Click(object sender, EventArgs e)
+        private void settings_btn_Click(object sender, EventArgs e)
         {
-            Panel_edit.Hide();
+            form_lbl.Text = "SETTINGS";
         }
 
-        private void Panel_insert_Paint(object sender, PaintEventArgs e)
+        private void signOut_btn_Click_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void Panle_remove_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Panel_edit_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void popularMovie_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
+            StayLoggedIn.ClearSession();
+            this.Hide();
+            login_form loginForm = new login_form();
+            loginForm.ShowDialog();
+            this.Close();
         }
     }
 }
