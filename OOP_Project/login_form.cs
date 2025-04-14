@@ -121,9 +121,9 @@ namespace OOP_Project
 
         private void forgotP_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
             account_recovery_form recoveryForm = new account_recovery_form();
             recoveryForm.Show();
+            this.Hide();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
