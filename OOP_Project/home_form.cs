@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Drawing.Drawing2D;
 using ComponentFactory.Krypton.Toolkit;
+using System.Web.UI.WebControls;
+
 
 namespace OOP_Project
 {
@@ -24,6 +26,19 @@ namespace OOP_Project
         }
 
         // This will round the corners of the form
+        private void CurvePanel(System.Windows.Forms.Panel panel, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            path.StartFigure();
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90);
+            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90);
+            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90);
+            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90);
+            path.CloseFigure();
+            panel.Region = new Region(path);
+        }
+
+
 
         private void HandleAccess()
         {
@@ -40,7 +55,16 @@ namespace OOP_Project
 
         private async void home_form_Load(object sender, EventArgs e)
         {
+            CurvePanel(movie_panel, 30);
+            movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(recommendedMovie_panel, 30);
+            recommendedMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
+            CurvePanel(recommendedMovie_flp, 30);
+            recommendedMovie_flp.Resize += (s, args) => CurvePanel(movie_panel, 20);
         }
+
         private void close_pb_Click(object sender, EventArgs e)
         {
             string msg = "Do you want to leave this page?";
@@ -121,6 +145,36 @@ namespace OOP_Project
         private void menu_panel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void recommendedMovieLeft_btn_MouseClick(object sender, MouseEventArgs e)
+        {
+            recommendedMovieLeft_btn.BackColor = Color.FromArgb(100, 100, 100);
+        }
+
+        private void recommendedMovieLeft_btn_MouseLeave(object sender, EventArgs e)
+        {
+            recommendedMovieLeft_btn.BackColor = Color.FromArgb(128, 128, 128);
+        }
+
+        private void recommendedMovieLeft_btn_MouseEnter(object sender, EventArgs e)
+        {
+            recommendedMovieLeft_btn.BackColor = Color.FromArgb(140, 140, 140);
+        }
+
+        private void recommendedMovieRight_btn_MouseEnter(object sender, EventArgs e)
+        {
+            recommendedMovieRight_btn.BackColor = Color.FromArgb(140, 140, 140);
+        }
+
+        private void recommendedMovieRight_btn_MouseLeave(object sender, EventArgs e)
+        {
+            recommendedMovieRight_btn.BackColor = Color.FromArgb(128, 128, 128);
+        }
+
+        private void recommendedMovieRight_btn_MouseClick(object sender, MouseEventArgs e)
+        {
+            recommendedMovieRight_btn.BackColor = Color.FromArgb(100, 100, 100);
         }
     }
 }
