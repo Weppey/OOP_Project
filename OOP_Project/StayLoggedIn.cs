@@ -7,15 +7,21 @@ namespace OOP_Project
     {
         private static readonly string sessionFilePath = Path.Combine(Application.StartupPath, "session.txt");
 
-        public static void SaveUserSession(string userType)
+        public static void SaveUserSession(string userType, int userId)
         {
-            File.WriteAllText(sessionFilePath, userType);
+            File.WriteAllText(sessionFilePath, $"{userType}|{userId}");
         }
 
-        public static string LoadUserSession()
+        public static (string userType, int userId)? LoadUserSession()
         {
             if (File.Exists(sessionFilePath))
-                return File.ReadAllText(sessionFilePath);
+            {
+                string[] data = File.ReadAllText(sessionFilePath).Split('|');
+                if (data.Length == 2 && int.TryParse(data[1], out int userId))
+                {
+                    return (data[0], userId);
+                }
+            }
             return null;
         }
 

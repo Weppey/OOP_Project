@@ -36,11 +36,13 @@
             // 
             this.poster_pb.Image = global::OOP_Project.Properties.Resources._1_2;
             this.poster_pb.Location = new System.Drawing.Point(0, 0);
+            this.poster_pb.Margin = new System.Windows.Forms.Padding(10);
             this.poster_pb.Name = "poster_pb";
-            this.poster_pb.Size = new System.Drawing.Size(150, 150);
+            this.poster_pb.Size = new System.Drawing.Size(180, 217);
             this.poster_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.poster_pb.TabIndex = 0;
             this.poster_pb.TabStop = false;
+            this.poster_pb.Click += new System.EventHandler(this.poster_pb_Click);
             // 
             // MovieCard
             // 
@@ -48,7 +50,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.Controls.Add(this.poster_pb);
+            this.Margin = new System.Windows.Forms.Padding(10);
             this.Name = "MovieCard";
+            this.Size = new System.Drawing.Size(180, 217);
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.ResumeLayout(false);
 

@@ -1,31 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.SessionState;
 using System.Windows.Forms;
 
 namespace OOP_Project
 {
     internal static class Program
     {
-        //goods na
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            string sessionUserType = StayLoggedIn.LoadUserSession();
-            if (!string.IsNullOrEmpty(sessionUserType))
+            // Load both userType and userId from session
+            var userSession = StayLoggedIn.LoadUserSession();
+            if (userSession.HasValue)
             {
-                Application.Run(new home_form(sessionUserType));
+                string sessionUserType = userSession.Value.userType;
+                int sessionUserId = userSession.Value.userId;
+
+                // Start the application with the user's details
+                Application.Run(new home_form(sessionUserType, sessionUserId));
             }
             else
             {
+                // No session found, show login form
                 Application.Run(new login_form());
             }
-
         }
     }
 }
+    

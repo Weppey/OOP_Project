@@ -37,61 +37,58 @@
             this.settings_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.signOut_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.logo_panel = new System.Windows.Forms.Panel();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.searchBar_btn = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.form_lbl = new System.Windows.Forms.Label();
             this.movie_panel = new System.Windows.Forms.Panel();
+            this.insertMovie_panel = new System.Windows.Forms.Panel();
+            this.releaseYear_tb = new System.Windows.Forms.TextBox();
+            this.release_year = new System.Windows.Forms.Label();
+            this.insertInsert_btn = new System.Windows.Forms.Button();
+            this.genre_lbl = new System.Windows.Forms.Label();
+            this.decription_lbl = new System.Windows.Forms.Label();
+            this.decription_tb = new System.Windows.Forms.TextBox();
+            this.url_lbl = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.title_lbl = new System.Windows.Forms.Label();
+            this.genre_cmb = new System.Windows.Forms.ComboBox();
+            this.title_tb = new System.Windows.Forms.TextBox();
             this.topRatedMovie_panel = new System.Windows.Forms.Panel();
+            this.topRatedMovieRight_btn = new System.Windows.Forms.PictureBox();
+            this.topRatedMovieLeft_btn = new System.Windows.Forms.PictureBox();
             this.topRatedMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.popularMovie_panel = new System.Windows.Forms.Panel();
+            this.popularMovieRight_btn = new System.Windows.Forms.PictureBox();
+            this.popularMovieLeft_btn = new System.Windows.Forms.PictureBox();
             this.popularMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.recommendedMovie_panel = new System.Windows.Forms.Panel();
+            this.recommendedMovieRight_btn = new System.Windows.Forms.PictureBox();
+            this.recommendedMovieLeft_btn = new System.Windows.Forms.PictureBox();
             this.recommendedMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.insert_btn = new System.Windows.Forms.Button();
             this.remove_btn = new System.Windows.Forms.Button();
-            this.topRatedMovieRight_btn = new System.Windows.Forms.PictureBox();
-            this.topRatedMovieLeft_btn = new System.Windows.Forms.PictureBox();
-            this.popularMovieRight_btn = new System.Windows.Forms.PictureBox();
-            this.popularMovieLeft_btn = new System.Windows.Forms.PictureBox();
-            this.recommendedMovieRight_btn = new System.Windows.Forms.PictureBox();
-            this.recommendedMovieLeft_btn = new System.Windows.Forms.PictureBox();
-            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
-            this.insertMovie_panel = new System.Windows.Forms.Panel();
-            this.title_tb = new System.Windows.Forms.TextBox();
-            this.genre_cmb = new System.Windows.Forms.ComboBox();
-            this.title_lbl = new System.Windows.Forms.Label();
-            this.url_lbl = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.decription_lbl = new System.Windows.Forms.Label();
-            this.decription_tb = new System.Windows.Forms.TextBox();
-            this.genre_lbl = new System.Windows.Forms.Label();
-            this.insertInsert_btn = new System.Windows.Forms.Button();
-            this.release_year = new System.Windows.Forms.Label();
-            this.releaseYear_tb = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.menu2_panel.SuspendLayout();
             this.menu_panel.SuspendLayout();
             this.logo_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBar_btn)).BeginInit();
             this.movie_panel.SuspendLayout();
+            this.insertMovie_panel.SuspendLayout();
             this.topRatedMovie_panel.SuspendLayout();
-            this.popularMovie_panel.SuspendLayout();
-            this.recommendedMovie_panel.SuspendLayout();
-            this.recommendedMovie_flp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieRight_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieLeft_btn)).BeginInit();
+            this.popularMovie_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popularMovieRight_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popularMovieLeft_btn)).BeginInit();
+            this.recommendedMovie_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieRight_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieLeft_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
-            this.insertMovie_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -136,21 +133,27 @@
             this.home_btn.Name = "home_btn";
             this.home_btn.Size = new System.Drawing.Size(70, 70);
             this.home_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.home_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.home_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StateCommon.Border.Rounding = 20;
             this.home_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.home_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.home_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.home_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.home_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.home_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.home_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.home_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.home_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.home_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.TabIndex = 60;
             this.home_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_home_281;
             this.home_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -166,21 +169,27 @@
             this.favorite_btn.Size = new System.Drawing.Size(70, 70);
             this.favorite_btn.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.favorite_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.favorite_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StateCommon.Border.Rounding = 20;
             this.favorite_btn.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.favorite_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.favorite_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.favorite_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.favorite_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.favorite_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.TabIndex = 61;
             this.favorite_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_favorite_folder_28;
             this.favorite_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -196,21 +205,27 @@
             this.popular_btn.Size = new System.Drawing.Size(70, 70);
             this.popular_btn.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.popular_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.popular_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.popular_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StateCommon.Border.Rounding = 20;
             this.popular_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.popular_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.popular_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.popular_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.popular_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.popular_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.popular_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.popular_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.popular_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.popular_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.TabIndex = 62;
             this.popular_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_fire_28;
             this.popular_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -225,21 +240,27 @@
             this.settings_btn.Name = "settings_btn";
             this.settings_btn.Size = new System.Drawing.Size(70, 70);
             this.settings_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.settings_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.settings_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StateCommon.Border.Rounding = 20;
             this.settings_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.settings_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.settings_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.settings_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.settings_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.settings_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.settings_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.settings_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.settings_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.settings_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.TabIndex = 63;
             this.settings_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_settings_28__1_;
             this.settings_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -254,21 +275,27 @@
             this.signOut_btn.Name = "signOut_btn";
             this.signOut_btn.Size = new System.Drawing.Size(70, 70);
             this.signOut_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.signOut_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.signOut_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StateCommon.Border.Rounding = 20;
             this.signOut_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.signOut_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.signOut_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.signOut_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.signOut_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StateTracking.Back.Color1 = System.Drawing.Color.Gray;
             this.signOut_btn.StateTracking.Back.Color2 = System.Drawing.Color.Silver;
+            this.signOut_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.signOut_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.signOut_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.signOut_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.TabIndex = 64;
             this.signOut_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_left_28;
             this.signOut_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -285,6 +312,17 @@
             this.logo_panel.Size = new System.Drawing.Size(109, 100);
             this.logo_panel.TabIndex = 0;
             // 
+            // logo_pb
+            // 
+            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_2;
+            this.logo_pb.Location = new System.Drawing.Point(0, 0);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(109, 100);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pb.TabIndex = 0;
+            this.logo_pb.TabStop = false;
+            // 
             // searchBar_btn
             // 
             this.searchBar_btn.DropDownWidth = 351;
@@ -295,11 +333,13 @@
             this.searchBar_btn.StateCommon.ComboBox.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.searchBar_btn.StateCommon.ComboBox.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.searchBar_btn.StateCommon.ComboBox.Border.Rounding = 5;
             this.searchBar_btn.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Black;
             this.searchBar_btn.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBar_btn.StateCommon.DropBack.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.searchBar_btn.StateCommon.DropBack.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.searchBar_btn.StateCommon.DropBack.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.searchBar_btn.TabIndex = 59;
             this.searchBar_btn.Text = "Search...";
             // 
@@ -328,6 +368,129 @@
             this.movie_panel.Size = new System.Drawing.Size(1382, 718);
             this.movie_panel.TabIndex = 61;
             // 
+            // insertMovie_panel
+            // 
+            this.insertMovie_panel.Controls.Add(this.releaseYear_tb);
+            this.insertMovie_panel.Controls.Add(this.release_year);
+            this.insertMovie_panel.Controls.Add(this.insertInsert_btn);
+            this.insertMovie_panel.Controls.Add(this.genre_lbl);
+            this.insertMovie_panel.Controls.Add(this.decription_lbl);
+            this.insertMovie_panel.Controls.Add(this.decription_tb);
+            this.insertMovie_panel.Controls.Add(this.url_lbl);
+            this.insertMovie_panel.Controls.Add(this.textBox1);
+            this.insertMovie_panel.Controls.Add(this.title_lbl);
+            this.insertMovie_panel.Controls.Add(this.genre_cmb);
+            this.insertMovie_panel.Controls.Add(this.title_tb);
+            this.insertMovie_panel.Location = new System.Drawing.Point(238, 362);
+            this.insertMovie_panel.Name = "insertMovie_panel";
+            this.insertMovie_panel.Size = new System.Drawing.Size(565, 288);
+            this.insertMovie_panel.TabIndex = 65;
+            this.insertMovie_panel.Visible = false;
+            // 
+            // releaseYear_tb
+            // 
+            this.releaseYear_tb.Location = new System.Drawing.Point(96, 165);
+            this.releaseYear_tb.Name = "releaseYear_tb";
+            this.releaseYear_tb.Size = new System.Drawing.Size(191, 20);
+            this.releaseYear_tb.TabIndex = 73;
+            // 
+            // release_year
+            // 
+            this.release_year.AutoSize = true;
+            this.release_year.Font = new System.Drawing.Font("Impact", 10F);
+            this.release_year.ForeColor = System.Drawing.SystemColors.Control;
+            this.release_year.Location = new System.Drawing.Point(36, 154);
+            this.release_year.Name = "release_year";
+            this.release_year.Size = new System.Drawing.Size(33, 18);
+            this.release_year.TabIndex = 72;
+            this.release_year.Text = "year";
+            // 
+            // insertInsert_btn
+            // 
+            this.insertInsert_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.insertInsert_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.insertInsert_btn.Location = new System.Drawing.Point(456, 212);
+            this.insertInsert_btn.Name = "insertInsert_btn";
+            this.insertInsert_btn.Size = new System.Drawing.Size(75, 23);
+            this.insertInsert_btn.TabIndex = 65;
+            this.insertInsert_btn.Text = "insert";
+            this.insertInsert_btn.UseVisualStyleBackColor = true;
+            this.insertInsert_btn.Click += new System.EventHandler(this.insertInsert_btn_Click);
+            // 
+            // genre_lbl
+            // 
+            this.genre_lbl.AutoSize = true;
+            this.genre_lbl.Font = new System.Drawing.Font("Impact", 10F);
+            this.genre_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.genre_lbl.Location = new System.Drawing.Point(34, 127);
+            this.genre_lbl.Name = "genre_lbl";
+            this.genre_lbl.Size = new System.Drawing.Size(41, 18);
+            this.genre_lbl.TabIndex = 70;
+            this.genre_lbl.Text = "genre";
+            // 
+            // decription_lbl
+            // 
+            this.decription_lbl.AutoSize = true;
+            this.decription_lbl.Font = new System.Drawing.Font("Impact", 15F);
+            this.decription_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.decription_lbl.Location = new System.Drawing.Point(34, 189);
+            this.decription_lbl.Name = "decription_lbl";
+            this.decription_lbl.Size = new System.Drawing.Size(104, 25);
+            this.decription_lbl.TabIndex = 69;
+            this.decription_lbl.Text = "description";
+            // 
+            // decription_tb
+            // 
+            this.decription_tb.Location = new System.Drawing.Point(144, 194);
+            this.decription_tb.Multiline = true;
+            this.decription_tb.Name = "decription_tb";
+            this.decription_tb.Size = new System.Drawing.Size(191, 66);
+            this.decription_tb.TabIndex = 68;
+            // 
+            // url_lbl
+            // 
+            this.url_lbl.AutoSize = true;
+            this.url_lbl.Font = new System.Drawing.Font("Impact", 15F);
+            this.url_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.url_lbl.Location = new System.Drawing.Point(34, 83);
+            this.url_lbl.Name = "url_lbl";
+            this.url_lbl.Size = new System.Drawing.Size(42, 25);
+            this.url_lbl.TabIndex = 67;
+            this.url_lbl.Text = "URL";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(96, 88);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(191, 20);
+            this.textBox1.TabIndex = 66;
+            // 
+            // title_lbl
+            // 
+            this.title_lbl.AutoSize = true;
+            this.title_lbl.Font = new System.Drawing.Font("Impact", 15F);
+            this.title_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.title_lbl.Location = new System.Drawing.Point(34, 44);
+            this.title_lbl.Name = "title_lbl";
+            this.title_lbl.Size = new System.Drawing.Size(47, 25);
+            this.title_lbl.TabIndex = 65;
+            this.title_lbl.Text = "Title";
+            // 
+            // genre_cmb
+            // 
+            this.genre_cmb.FormattingEnabled = true;
+            this.genre_cmb.Location = new System.Drawing.Point(96, 127);
+            this.genre_cmb.Name = "genre_cmb";
+            this.genre_cmb.Size = new System.Drawing.Size(191, 21);
+            this.genre_cmb.TabIndex = 2;
+            // 
+            // title_tb
+            // 
+            this.title_tb.Location = new System.Drawing.Point(96, 49);
+            this.title_tb.Name = "title_tb";
+            this.title_tb.Size = new System.Drawing.Size(191, 20);
+            this.title_tb.TabIndex = 0;
+            // 
             // topRatedMovie_panel
             // 
             this.topRatedMovie_panel.BackColor = System.Drawing.Color.Gray;
@@ -338,116 +501,6 @@
             this.topRatedMovie_panel.Name = "topRatedMovie_panel";
             this.topRatedMovie_panel.Size = new System.Drawing.Size(1279, 255);
             this.topRatedMovie_panel.TabIndex = 64;
-            // 
-            // topRatedMovie_flp
-            // 
-            this.topRatedMovie_flp.BackColor = System.Drawing.Color.White;
-            this.topRatedMovie_flp.Location = new System.Drawing.Point(30, 13);
-            this.topRatedMovie_flp.Name = "topRatedMovie_flp";
-            this.topRatedMovie_flp.Size = new System.Drawing.Size(1219, 229);
-            this.topRatedMovie_flp.TabIndex = 0;
-            // 
-            // popularMovie_panel
-            // 
-            this.popularMovie_panel.BackColor = System.Drawing.Color.Gray;
-            this.popularMovie_panel.Controls.Add(this.popularMovieRight_btn);
-            this.popularMovie_panel.Controls.Add(this.popularMovieLeft_btn);
-            this.popularMovie_panel.Controls.Add(this.popularMovie_flp);
-            this.popularMovie_panel.Location = new System.Drawing.Point(51, 385);
-            this.popularMovie_panel.Name = "popularMovie_panel";
-            this.popularMovie_panel.Size = new System.Drawing.Size(1279, 255);
-            this.popularMovie_panel.TabIndex = 63;
-            // 
-            // popularMovie_flp
-            // 
-            this.popularMovie_flp.BackColor = System.Drawing.Color.White;
-            this.popularMovie_flp.Location = new System.Drawing.Point(30, 13);
-            this.popularMovie_flp.Name = "popularMovie_flp";
-            this.popularMovie_flp.Size = new System.Drawing.Size(1219, 229);
-            this.popularMovie_flp.TabIndex = 0;
-            // 
-            // recommendedMovie_panel
-            // 
-            this.recommendedMovie_panel.BackColor = System.Drawing.Color.Gray;
-            this.recommendedMovie_panel.Controls.Add(this.recommendedMovieRight_btn);
-            this.recommendedMovie_panel.Controls.Add(this.recommendedMovieLeft_btn);
-            this.recommendedMovie_panel.Controls.Add(this.recommendedMovie_flp);
-            this.recommendedMovie_panel.Location = new System.Drawing.Point(51, 75);
-            this.recommendedMovie_panel.Name = "recommendedMovie_panel";
-            this.recommendedMovie_panel.Size = new System.Drawing.Size(1279, 255);
-            this.recommendedMovie_panel.TabIndex = 60;
-            // 
-            // recommendedMovie_flp
-            // 
-            this.recommendedMovie_flp.BackColor = System.Drawing.Color.White;
-            this.recommendedMovie_flp.Controls.Add(this.pictureBox1);
-            this.recommendedMovie_flp.Location = new System.Drawing.Point(30, 13);
-            this.recommendedMovie_flp.Name = "recommendedMovie_flp";
-            this.recommendedMovie_flp.Size = new System.Drawing.Size(1219, 229);
-            this.recommendedMovie_flp.TabIndex = 0;
-            // 
-            // kryptonButton1
-            // 
-            this.kryptonButton1.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.ButtonSpec;
-            this.kryptonButton1.Location = new System.Drawing.Point(1485, 51);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(40, 40);
-            this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateCommon.Border.Rounding = 20;
-            this.kryptonButton1.StateCommon.Border.Width = -5;
-            this.kryptonButton1.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateNormal.Back.Color2 = System.Drawing.Color.DimGray;
-            this.kryptonButton1.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateNormal.Border.Rounding = 20;
-            this.kryptonButton1.StateNormal.Border.Width = -5;
-            this.kryptonButton1.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.kryptonButton1.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.kryptonButton1.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StatePressed.Border.Rounding = 20;
-            this.kryptonButton1.StatePressed.Border.Width = -5;
-            this.kryptonButton1.StateTracking.Back.Color1 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateTracking.Back.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateTracking.Border.Rounding = 20;
-            this.kryptonButton1.StateTracking.Border.Width = -5;
-            this.kryptonButton1.TabIndex = 62;
-            this.kryptonButton1.Values.Image = global::OOP_Project.Properties.Resources.icons8_user_28__1_;
-            this.kryptonButton1.Values.Text = "";
-            // 
-            // insert_btn
-            // 
-            this.insert_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.insert_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.insert_btn.Location = new System.Drawing.Point(549, 51);
-            this.insert_btn.Name = "insert_btn";
-            this.insert_btn.Size = new System.Drawing.Size(75, 23);
-            this.insert_btn.TabIndex = 63;
-            this.insert_btn.Text = "insert";
-            this.insert_btn.UseVisualStyleBackColor = true;
-            this.insert_btn.Click += new System.EventHandler(this.insert_btn_Click);
-            // 
-            // remove_btn
-            // 
-            this.remove_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.remove_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.remove_btn.Location = new System.Drawing.Point(651, 51);
-            this.remove_btn.Name = "remove_btn";
-            this.remove_btn.Size = new System.Drawing.Size(75, 23);
-            this.remove_btn.TabIndex = 64;
-            this.remove_btn.Text = "remove";
-            this.remove_btn.UseVisualStyleBackColor = true;
             // 
             // topRatedMovieRight_btn
             // 
@@ -471,6 +524,25 @@
             this.topRatedMovieLeft_btn.TabIndex = 61;
             this.topRatedMovieLeft_btn.TabStop = false;
             // 
+            // topRatedMovie_flp
+            // 
+            this.topRatedMovie_flp.BackColor = System.Drawing.Color.White;
+            this.topRatedMovie_flp.Location = new System.Drawing.Point(30, 13);
+            this.topRatedMovie_flp.Name = "topRatedMovie_flp";
+            this.topRatedMovie_flp.Size = new System.Drawing.Size(1219, 229);
+            this.topRatedMovie_flp.TabIndex = 0;
+            // 
+            // popularMovie_panel
+            // 
+            this.popularMovie_panel.BackColor = System.Drawing.Color.Gray;
+            this.popularMovie_panel.Controls.Add(this.popularMovieRight_btn);
+            this.popularMovie_panel.Controls.Add(this.popularMovieLeft_btn);
+            this.popularMovie_panel.Controls.Add(this.popularMovie_flp);
+            this.popularMovie_panel.Location = new System.Drawing.Point(51, 385);
+            this.popularMovie_panel.Name = "popularMovie_panel";
+            this.popularMovie_panel.Size = new System.Drawing.Size(1279, 255);
+            this.popularMovie_panel.TabIndex = 63;
+            // 
             // popularMovieRight_btn
             // 
             this.popularMovieRight_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
@@ -492,6 +564,25 @@
             this.popularMovieLeft_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.popularMovieLeft_btn.TabIndex = 61;
             this.popularMovieLeft_btn.TabStop = false;
+            // 
+            // popularMovie_flp
+            // 
+            this.popularMovie_flp.BackColor = System.Drawing.Color.White;
+            this.popularMovie_flp.Location = new System.Drawing.Point(30, 13);
+            this.popularMovie_flp.Name = "popularMovie_flp";
+            this.popularMovie_flp.Size = new System.Drawing.Size(1219, 229);
+            this.popularMovie_flp.TabIndex = 0;
+            // 
+            // recommendedMovie_panel
+            // 
+            this.recommendedMovie_panel.BackColor = System.Drawing.Color.Gray;
+            this.recommendedMovie_panel.Controls.Add(this.recommendedMovieRight_btn);
+            this.recommendedMovie_panel.Controls.Add(this.recommendedMovieLeft_btn);
+            this.recommendedMovie_panel.Controls.Add(this.recommendedMovie_flp);
+            this.recommendedMovie_panel.Location = new System.Drawing.Point(51, 75);
+            this.recommendedMovie_panel.Name = "recommendedMovie_panel";
+            this.recommendedMovie_panel.Size = new System.Drawing.Size(1279, 255);
+            this.recommendedMovie_panel.TabIndex = 60;
             // 
             // recommendedMovieRight_btn
             // 
@@ -521,16 +612,84 @@
             this.recommendedMovieLeft_btn.MouseEnter += new System.EventHandler(this.recommendedMovieLeft_btn_MouseEnter);
             this.recommendedMovieLeft_btn.MouseLeave += new System.EventHandler(this.recommendedMovieLeft_btn_MouseLeave);
             // 
-            // logo_pb
+            // recommendedMovie_flp
             // 
-            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_2;
-            this.logo_pb.Location = new System.Drawing.Point(0, 0);
-            this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(109, 100);
-            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo_pb.TabIndex = 0;
-            this.logo_pb.TabStop = false;
+            this.recommendedMovie_flp.BackColor = System.Drawing.Color.White;
+            this.recommendedMovie_flp.Location = new System.Drawing.Point(30, 13);
+            this.recommendedMovie_flp.Name = "recommendedMovie_flp";
+            this.recommendedMovie_flp.Size = new System.Drawing.Size(1219, 229);
+            this.recommendedMovie_flp.TabIndex = 0;
+            // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.ButtonSpec;
+            this.kryptonButton1.Location = new System.Drawing.Point(1485, 51);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.Size = new System.Drawing.Size(40, 40);
+            this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
+            this.kryptonButton1.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton1.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
+            this.kryptonButton1.StateCommon.Border.Rounding = 20;
+            this.kryptonButton1.StateCommon.Border.Width = -5;
+            this.kryptonButton1.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateNormal.Back.Color2 = System.Drawing.Color.DimGray;
+            this.kryptonButton1.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
+            this.kryptonButton1.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton1.StateNormal.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
+            this.kryptonButton1.StateNormal.Border.Rounding = 20;
+            this.kryptonButton1.StateNormal.Border.Width = -5;
+            this.kryptonButton1.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.kryptonButton1.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.kryptonButton1.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
+            this.kryptonButton1.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton1.StatePressed.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
+            this.kryptonButton1.StatePressed.Border.Rounding = 20;
+            this.kryptonButton1.StatePressed.Border.Width = -5;
+            this.kryptonButton1.StateTracking.Back.Color1 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateTracking.Back.Color2 = System.Drawing.Color.Transparent;
+            this.kryptonButton1.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
+            this.kryptonButton1.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.kryptonButton1.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
+            this.kryptonButton1.StateTracking.Border.Rounding = 20;
+            this.kryptonButton1.StateTracking.Border.Width = -5;
+            this.kryptonButton1.TabIndex = 62;
+            this.kryptonButton1.Values.Image = global::OOP_Project.Properties.Resources.icons8_user_28__1_;
+            this.kryptonButton1.Values.Text = "";
+            // 
+            // insert_btn
+            // 
+            this.insert_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.insert_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.insert_btn.Location = new System.Drawing.Point(549, 51);
+            this.insert_btn.Name = "insert_btn";
+            this.insert_btn.Size = new System.Drawing.Size(75, 23);
+            this.insert_btn.TabIndex = 63;
+            this.insert_btn.Text = "insert";
+            this.insert_btn.UseVisualStyleBackColor = true;
+            this.insert_btn.Click += new System.EventHandler(this.insert_btn_Click);
+            // 
+            // remove_btn
+            // 
+            this.remove_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.remove_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.remove_btn.Location = new System.Drawing.Point(651, 51);
+            this.remove_btn.Name = "remove_btn";
+            this.remove_btn.Size = new System.Drawing.Size(75, 23);
+            this.remove_btn.TabIndex = 64;
+            this.remove_btn.Text = "remove";
+            this.remove_btn.UseVisualStyleBackColor = true;
             // 
             // close_pb
             // 
@@ -560,140 +719,6 @@
             this.minimize_pb.MouseEnter += new System.EventHandler(this.minimize_pb_MouseEnter);
             this.minimize_pb.MouseLeave += new System.EventHandler(this.minimize_pb_MouseLeave);
             // 
-            // insertMovie_panel
-            // 
-            this.insertMovie_panel.Controls.Add(this.releaseYear_tb);
-            this.insertMovie_panel.Controls.Add(this.release_year);
-            this.insertMovie_panel.Controls.Add(this.insertInsert_btn);
-            this.insertMovie_panel.Controls.Add(this.genre_lbl);
-            this.insertMovie_panel.Controls.Add(this.decription_lbl);
-            this.insertMovie_panel.Controls.Add(this.decription_tb);
-            this.insertMovie_panel.Controls.Add(this.url_lbl);
-            this.insertMovie_panel.Controls.Add(this.textBox1);
-            this.insertMovie_panel.Controls.Add(this.title_lbl);
-            this.insertMovie_panel.Controls.Add(this.genre_cmb);
-            this.insertMovie_panel.Controls.Add(this.title_tb);
-            this.insertMovie_panel.Location = new System.Drawing.Point(238, 362);
-            this.insertMovie_panel.Name = "insertMovie_panel";
-            this.insertMovie_panel.Size = new System.Drawing.Size(565, 288);
-            this.insertMovie_panel.TabIndex = 65;
-            this.insertMovie_panel.Visible = false;
-            // 
-            // title_tb
-            // 
-            this.title_tb.Location = new System.Drawing.Point(96, 49);
-            this.title_tb.Name = "title_tb";
-            this.title_tb.Size = new System.Drawing.Size(191, 20);
-            this.title_tb.TabIndex = 0;
-            // 
-            // genre_cmb
-            // 
-            this.genre_cmb.FormattingEnabled = true;
-            this.genre_cmb.Location = new System.Drawing.Point(96, 127);
-            this.genre_cmb.Name = "genre_cmb";
-            this.genre_cmb.Size = new System.Drawing.Size(191, 21);
-            this.genre_cmb.TabIndex = 2;
-            // 
-            // title_lbl
-            // 
-            this.title_lbl.AutoSize = true;
-            this.title_lbl.Font = new System.Drawing.Font("Impact", 15F);
-            this.title_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.title_lbl.Location = new System.Drawing.Point(34, 44);
-            this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(47, 25);
-            this.title_lbl.TabIndex = 65;
-            this.title_lbl.Text = "Title";
-            // 
-            // url_lbl
-            // 
-            this.url_lbl.AutoSize = true;
-            this.url_lbl.Font = new System.Drawing.Font("Impact", 15F);
-            this.url_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.url_lbl.Location = new System.Drawing.Point(34, 83);
-            this.url_lbl.Name = "url_lbl";
-            this.url_lbl.Size = new System.Drawing.Size(42, 25);
-            this.url_lbl.TabIndex = 67;
-            this.url_lbl.Text = "URL";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(96, 88);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(191, 20);
-            this.textBox1.TabIndex = 66;
-            // 
-            // decription_lbl
-            // 
-            this.decription_lbl.AutoSize = true;
-            this.decription_lbl.Font = new System.Drawing.Font("Impact", 15F);
-            this.decription_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.decription_lbl.Location = new System.Drawing.Point(34, 189);
-            this.decription_lbl.Name = "decription_lbl";
-            this.decription_lbl.Size = new System.Drawing.Size(104, 25);
-            this.decription_lbl.TabIndex = 69;
-            this.decription_lbl.Text = "description";
-            // 
-            // decription_tb
-            // 
-            this.decription_tb.Location = new System.Drawing.Point(144, 194);
-            this.decription_tb.Multiline = true;
-            this.decription_tb.Name = "decription_tb";
-            this.decription_tb.Size = new System.Drawing.Size(191, 66);
-            this.decription_tb.TabIndex = 68;
-            // 
-            // genre_lbl
-            // 
-            this.genre_lbl.AutoSize = true;
-            this.genre_lbl.Font = new System.Drawing.Font("Impact", 10F);
-            this.genre_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.genre_lbl.Location = new System.Drawing.Point(34, 127);
-            this.genre_lbl.Name = "genre_lbl";
-            this.genre_lbl.Size = new System.Drawing.Size(41, 18);
-            this.genre_lbl.TabIndex = 70;
-            this.genre_lbl.Text = "genre";
-            // 
-            // insertInsert_btn
-            // 
-            this.insertInsert_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.insertInsert_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.insertInsert_btn.Location = new System.Drawing.Point(456, 212);
-            this.insertInsert_btn.Name = "insertInsert_btn";
-            this.insertInsert_btn.Size = new System.Drawing.Size(75, 23);
-            this.insertInsert_btn.TabIndex = 65;
-            this.insertInsert_btn.Text = "insert";
-            this.insertInsert_btn.UseVisualStyleBackColor = true;
-            this.insertInsert_btn.Click += new System.EventHandler(this.insertInsert_btn_Click);
-            // 
-            // release_year
-            // 
-            this.release_year.AutoSize = true;
-            this.release_year.Font = new System.Drawing.Font("Impact", 10F);
-            this.release_year.ForeColor = System.Drawing.SystemColors.Control;
-            this.release_year.Location = new System.Drawing.Point(36, 154);
-            this.release_year.Name = "release_year";
-            this.release_year.Size = new System.Drawing.Size(33, 18);
-            this.release_year.TabIndex = 72;
-            this.release_year.Text = "year";
-            // 
-            // releaseYear_tb
-            // 
-            this.releaseYear_tb.Location = new System.Drawing.Point(96, 165);
-            this.releaseYear_tb.Name = "releaseYear_tb";
-            this.releaseYear_tb.Size = new System.Drawing.Size(191, 20);
-            this.releaseYear_tb.TabIndex = 73;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::OOP_Project.Properties.Resources._1_2;
-            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(180, 217);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // home_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -717,9 +742,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.StateCommon.Border.Rounding = 15;
             this.StateCommon.Border.Width = 1;
             this.StateCommon.Header.ButtonEdgeInset = -10;
@@ -729,24 +756,22 @@
             this.menu2_panel.ResumeLayout(false);
             this.menu_panel.ResumeLayout(false);
             this.logo_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBar_btn)).EndInit();
             this.movie_panel.ResumeLayout(false);
-            this.topRatedMovie_panel.ResumeLayout(false);
-            this.popularMovie_panel.ResumeLayout(false);
-            this.recommendedMovie_panel.ResumeLayout(false);
-            this.recommendedMovie_flp.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieRight_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieLeft_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popularMovieRight_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popularMovieLeft_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieRight_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieLeft_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             this.insertMovie_panel.ResumeLayout(false);
             this.insertMovie_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.topRatedMovie_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieRight_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieLeft_btn)).EndInit();
+            this.popularMovie_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.popularMovieRight_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popularMovieLeft_btn)).EndInit();
+            this.recommendedMovie_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieRight_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieLeft_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -794,6 +819,5 @@
         private System.Windows.Forms.Button insertInsert_btn;
         private System.Windows.Forms.TextBox releaseYear_tb;
         private System.Windows.Forms.Label release_year;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

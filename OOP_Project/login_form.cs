@@ -38,8 +38,8 @@ namespace OOP_Project
                 {
                     connection.Open();
 
-                    // Retrieve hashed password and user type from the database
-                    string query = "SELECT password, user_type FROM users WHERE username = @username";
+                    // Retrieve hashed password, user type, and user ID from the database
+                    string query = "SELECT user_id, password, user_type FROM users WHERE username = @username";
                     MySqlCommand cmd = new MySqlCommand(query, connection);
                     cmd.Parameters.AddWithValue("@username", username);
 
@@ -49,6 +49,7 @@ namespace OOP_Project
                         {
                             string storedHashedPassword = reader["password"].ToString();
                             string userType = reader["user_type"].ToString();
+                            int userId = reader.GetInt32("user_id"); // Retrieve the user ID
 
                             // Verify password using BCrypt
                             if (BCrypt.Net.BCrypt.Verify(password, storedHashedPassword))
@@ -57,20 +58,20 @@ namespace OOP_Project
 
                                 try
                                 {
-
+                                    // Hide login form and open home form
                                     this.Hide();
-                                    home_form home_form = new home_form(userType);
-                                    home_form.ShowDialog();
+                                    home_form homeForm = new home_form(userType, userId); // Pass both userType and userId
+                                    homeForm.ShowDialog();
                                     this.Close();
 
-                                    StayLoggedIn.SaveUserSession(userType);
+                                    // Save session data
+                                    StayLoggedIn.SaveUserSession(userType, userId);
                                 }
                                 catch (Exception ex)
                                 {
                                     MessageBox.Show("Error loading home form: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     this.Show(); // Show login form again if something fails
                                 }
-
                             }
                             else
                             {
@@ -89,6 +90,7 @@ namespace OOP_Project
                 MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void login_form_Load(object sender, EventArgs e)
         {
             this.AcceptButton = login_btn;
