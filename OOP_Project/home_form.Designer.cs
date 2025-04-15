@@ -37,57 +37,61 @@
             this.settings_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.signOut_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.logo_panel = new System.Windows.Forms.Panel();
-            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.searchBar_btn = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.form_lbl = new System.Windows.Forms.Label();
             this.movie_panel = new System.Windows.Forms.Panel();
             this.topRatedMovie_panel = new System.Windows.Forms.Panel();
-            this.topRatedMovieRight_btn = new System.Windows.Forms.PictureBox();
-            this.topRatedMovieLeft_btn = new System.Windows.Forms.PictureBox();
             this.topRatedMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.popularMovie_panel = new System.Windows.Forms.Panel();
-            this.popularMovieRight_btn = new System.Windows.Forms.PictureBox();
-            this.popularMovieLeft_btn = new System.Windows.Forms.PictureBox();
             this.popularMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.recommendedMovie_panel = new System.Windows.Forms.Panel();
-            this.recommendedMovieRight_btn = new System.Windows.Forms.PictureBox();
-            this.recommendedMovieLeft_btn = new System.Windows.Forms.PictureBox();
             this.recommendedMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.close_pb = new System.Windows.Forms.PictureBox();
-            this.minimize_pb = new System.Windows.Forms.PictureBox();
-            this.popularMovie_panel = new System.Windows.Forms.Panel();
-            this.popularMovieRight_btn = new System.Windows.Forms.PictureBox();
-            this.popularMovieLeft_btn = new System.Windows.Forms.PictureBox();
-            this.popularMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
-            this.topRatedMovie_panel = new System.Windows.Forms.Panel();
+            this.insert_btn = new System.Windows.Forms.Button();
+            this.remove_btn = new System.Windows.Forms.Button();
             this.topRatedMovieRight_btn = new System.Windows.Forms.PictureBox();
             this.topRatedMovieLeft_btn = new System.Windows.Forms.PictureBox();
-            this.topRatedMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
+            this.popularMovieRight_btn = new System.Windows.Forms.PictureBox();
+            this.popularMovieLeft_btn = new System.Windows.Forms.PictureBox();
+            this.recommendedMovieRight_btn = new System.Windows.Forms.PictureBox();
+            this.recommendedMovieLeft_btn = new System.Windows.Forms.PictureBox();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
+            this.close_pb = new System.Windows.Forms.PictureBox();
+            this.minimize_pb = new System.Windows.Forms.PictureBox();
+            this.insertMovie_panel = new System.Windows.Forms.Panel();
+            this.title_tb = new System.Windows.Forms.TextBox();
+            this.genre_cmb = new System.Windows.Forms.ComboBox();
+            this.title_lbl = new System.Windows.Forms.Label();
+            this.url_lbl = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.decription_lbl = new System.Windows.Forms.Label();
+            this.decription_tb = new System.Windows.Forms.TextBox();
+            this.genre_lbl = new System.Windows.Forms.Label();
+            this.insertInsert_btn = new System.Windows.Forms.Button();
+            this.release_year = new System.Windows.Forms.Label();
+            this.releaseYear_tb = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.menu2_panel.SuspendLayout();
             this.menu_panel.SuspendLayout();
             this.logo_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBar_btn)).BeginInit();
             this.movie_panel.SuspendLayout();
             this.topRatedMovie_panel.SuspendLayout();
+            this.popularMovie_panel.SuspendLayout();
+            this.recommendedMovie_panel.SuspendLayout();
+            this.recommendedMovie_flp.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieRight_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieLeft_btn)).BeginInit();
-            this.popularMovie_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.popularMovieRight_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popularMovieLeft_btn)).BeginInit();
-            this.recommendedMovie_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieRight_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieLeft_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
-            this.popularMovie_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.popularMovieRight_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popularMovieLeft_btn)).BeginInit();
-            this.topRatedMovie_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieRight_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieLeft_btn)).BeginInit();
+            this.insertMovie_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -281,17 +285,6 @@
             this.logo_panel.Size = new System.Drawing.Size(109, 100);
             this.logo_panel.TabIndex = 0;
             // 
-            // logo_pb
-            // 
-            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_2;
-            this.logo_pb.Location = new System.Drawing.Point(0, 0);
-            this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(109, 100);
-            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo_pb.TabIndex = 0;
-            this.logo_pb.TabStop = false;
-            // 
             // searchBar_btn
             // 
             this.searchBar_btn.DropDownWidth = 351;
@@ -325,6 +318,7 @@
             // 
             this.movie_panel.AutoScroll = true;
             this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.movie_panel.Controls.Add(this.insertMovie_panel);
             this.movie_panel.Controls.Add(this.topRatedMovie_panel);
             this.movie_panel.Controls.Add(this.popularMovie_panel);
             this.movie_panel.Controls.Add(this.recommendedMovie_panel);
@@ -345,28 +339,6 @@
             this.topRatedMovie_panel.Size = new System.Drawing.Size(1279, 255);
             this.topRatedMovie_panel.TabIndex = 64;
             // 
-            // topRatedMovieRight_btn
-            // 
-            this.topRatedMovieRight_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.topRatedMovieRight_btn.Image = global::OOP_Project.Properties.Resources.icons8_right_28;
-            this.topRatedMovieRight_btn.Location = new System.Drawing.Point(1252, 13);
-            this.topRatedMovieRight_btn.Name = "topRatedMovieRight_btn";
-            this.topRatedMovieRight_btn.Size = new System.Drawing.Size(24, 229);
-            this.topRatedMovieRight_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.topRatedMovieRight_btn.TabIndex = 62;
-            this.topRatedMovieRight_btn.TabStop = false;
-            // 
-            // topRatedMovieLeft_btn
-            // 
-            this.topRatedMovieLeft_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.topRatedMovieLeft_btn.Image = global::OOP_Project.Properties.Resources.icons8_left_28__1_1;
-            this.topRatedMovieLeft_btn.Location = new System.Drawing.Point(3, 13);
-            this.topRatedMovieLeft_btn.Name = "topRatedMovieLeft_btn";
-            this.topRatedMovieLeft_btn.Size = new System.Drawing.Size(24, 229);
-            this.topRatedMovieLeft_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.topRatedMovieLeft_btn.TabIndex = 61;
-            this.topRatedMovieLeft_btn.TabStop = false;
-            // 
             // topRatedMovie_flp
             // 
             this.topRatedMovie_flp.BackColor = System.Drawing.Color.White;
@@ -385,28 +357,6 @@
             this.popularMovie_panel.Name = "popularMovie_panel";
             this.popularMovie_panel.Size = new System.Drawing.Size(1279, 255);
             this.popularMovie_panel.TabIndex = 63;
-            // 
-            // popularMovieRight_btn
-            // 
-            this.popularMovieRight_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.popularMovieRight_btn.Image = global::OOP_Project.Properties.Resources.icons8_right_28;
-            this.popularMovieRight_btn.Location = new System.Drawing.Point(1252, 13);
-            this.popularMovieRight_btn.Name = "popularMovieRight_btn";
-            this.popularMovieRight_btn.Size = new System.Drawing.Size(24, 229);
-            this.popularMovieRight_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.popularMovieRight_btn.TabIndex = 62;
-            this.popularMovieRight_btn.TabStop = false;
-            // 
-            // popularMovieLeft_btn
-            // 
-            this.popularMovieLeft_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.popularMovieLeft_btn.Image = global::OOP_Project.Properties.Resources.icons8_left_28__1_1;
-            this.popularMovieLeft_btn.Location = new System.Drawing.Point(3, 13);
-            this.popularMovieLeft_btn.Name = "popularMovieLeft_btn";
-            this.popularMovieLeft_btn.Size = new System.Drawing.Size(24, 229);
-            this.popularMovieLeft_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.popularMovieLeft_btn.TabIndex = 61;
-            this.popularMovieLeft_btn.TabStop = false;
             // 
             // popularMovie_flp
             // 
@@ -427,37 +377,10 @@
             this.recommendedMovie_panel.Size = new System.Drawing.Size(1279, 255);
             this.recommendedMovie_panel.TabIndex = 60;
             // 
-            // recommendedMovieRight_btn
-            // 
-            this.recommendedMovieRight_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.recommendedMovieRight_btn.Image = global::OOP_Project.Properties.Resources.icons8_right_28;
-            this.recommendedMovieRight_btn.Location = new System.Drawing.Point(1252, 13);
-            this.recommendedMovieRight_btn.Name = "recommendedMovieRight_btn";
-            this.recommendedMovieRight_btn.Size = new System.Drawing.Size(24, 229);
-            this.recommendedMovieRight_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.recommendedMovieRight_btn.TabIndex = 62;
-            this.recommendedMovieRight_btn.TabStop = false;
-            this.recommendedMovieRight_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recommendedMovieRight_btn_MouseClick);
-            this.recommendedMovieRight_btn.MouseEnter += new System.EventHandler(this.recommendedMovieRight_btn_MouseEnter);
-            this.recommendedMovieRight_btn.MouseLeave += new System.EventHandler(this.recommendedMovieRight_btn_MouseLeave);
-            // 
-            // recommendedMovieLeft_btn
-            // 
-            this.recommendedMovieLeft_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.recommendedMovieLeft_btn.Image = global::OOP_Project.Properties.Resources.icons8_left_28__1_1;
-            this.recommendedMovieLeft_btn.Location = new System.Drawing.Point(3, 13);
-            this.recommendedMovieLeft_btn.Name = "recommendedMovieLeft_btn";
-            this.recommendedMovieLeft_btn.Size = new System.Drawing.Size(24, 229);
-            this.recommendedMovieLeft_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.recommendedMovieLeft_btn.TabIndex = 61;
-            this.recommendedMovieLeft_btn.TabStop = false;
-            this.recommendedMovieLeft_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recommendedMovieLeft_btn_MouseClick);
-            this.recommendedMovieLeft_btn.MouseEnter += new System.EventHandler(this.recommendedMovieLeft_btn_MouseEnter);
-            this.recommendedMovieLeft_btn.MouseLeave += new System.EventHandler(this.recommendedMovieLeft_btn_MouseLeave);
-            // 
             // recommendedMovie_flp
             // 
             this.recommendedMovie_flp.BackColor = System.Drawing.Color.White;
+            this.recommendedMovie_flp.Controls.Add(this.pictureBox1);
             this.recommendedMovie_flp.Location = new System.Drawing.Point(30, 13);
             this.recommendedMovie_flp.Name = "recommendedMovie_flp";
             this.recommendedMovie_flp.Size = new System.Drawing.Size(1219, 229);
@@ -503,6 +426,112 @@
             this.kryptonButton1.Values.Image = global::OOP_Project.Properties.Resources.icons8_user_28__1_;
             this.kryptonButton1.Values.Text = "";
             // 
+            // insert_btn
+            // 
+            this.insert_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.insert_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.insert_btn.Location = new System.Drawing.Point(549, 51);
+            this.insert_btn.Name = "insert_btn";
+            this.insert_btn.Size = new System.Drawing.Size(75, 23);
+            this.insert_btn.TabIndex = 63;
+            this.insert_btn.Text = "insert";
+            this.insert_btn.UseVisualStyleBackColor = true;
+            this.insert_btn.Click += new System.EventHandler(this.insert_btn_Click);
+            // 
+            // remove_btn
+            // 
+            this.remove_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.remove_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.remove_btn.Location = new System.Drawing.Point(651, 51);
+            this.remove_btn.Name = "remove_btn";
+            this.remove_btn.Size = new System.Drawing.Size(75, 23);
+            this.remove_btn.TabIndex = 64;
+            this.remove_btn.Text = "remove";
+            this.remove_btn.UseVisualStyleBackColor = true;
+            // 
+            // topRatedMovieRight_btn
+            // 
+            this.topRatedMovieRight_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.topRatedMovieRight_btn.Image = global::OOP_Project.Properties.Resources.icons8_right_28;
+            this.topRatedMovieRight_btn.Location = new System.Drawing.Point(1252, 13);
+            this.topRatedMovieRight_btn.Name = "topRatedMovieRight_btn";
+            this.topRatedMovieRight_btn.Size = new System.Drawing.Size(24, 229);
+            this.topRatedMovieRight_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.topRatedMovieRight_btn.TabIndex = 62;
+            this.topRatedMovieRight_btn.TabStop = false;
+            // 
+            // topRatedMovieLeft_btn
+            // 
+            this.topRatedMovieLeft_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.topRatedMovieLeft_btn.Image = global::OOP_Project.Properties.Resources.icons8_left_28__1_1;
+            this.topRatedMovieLeft_btn.Location = new System.Drawing.Point(3, 13);
+            this.topRatedMovieLeft_btn.Name = "topRatedMovieLeft_btn";
+            this.topRatedMovieLeft_btn.Size = new System.Drawing.Size(24, 229);
+            this.topRatedMovieLeft_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.topRatedMovieLeft_btn.TabIndex = 61;
+            this.topRatedMovieLeft_btn.TabStop = false;
+            // 
+            // popularMovieRight_btn
+            // 
+            this.popularMovieRight_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.popularMovieRight_btn.Image = global::OOP_Project.Properties.Resources.icons8_right_28;
+            this.popularMovieRight_btn.Location = new System.Drawing.Point(1252, 13);
+            this.popularMovieRight_btn.Name = "popularMovieRight_btn";
+            this.popularMovieRight_btn.Size = new System.Drawing.Size(24, 229);
+            this.popularMovieRight_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.popularMovieRight_btn.TabIndex = 62;
+            this.popularMovieRight_btn.TabStop = false;
+            // 
+            // popularMovieLeft_btn
+            // 
+            this.popularMovieLeft_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.popularMovieLeft_btn.Image = global::OOP_Project.Properties.Resources.icons8_left_28__1_1;
+            this.popularMovieLeft_btn.Location = new System.Drawing.Point(3, 13);
+            this.popularMovieLeft_btn.Name = "popularMovieLeft_btn";
+            this.popularMovieLeft_btn.Size = new System.Drawing.Size(24, 229);
+            this.popularMovieLeft_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.popularMovieLeft_btn.TabIndex = 61;
+            this.popularMovieLeft_btn.TabStop = false;
+            // 
+            // recommendedMovieRight_btn
+            // 
+            this.recommendedMovieRight_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.recommendedMovieRight_btn.Image = global::OOP_Project.Properties.Resources.icons8_right_28;
+            this.recommendedMovieRight_btn.Location = new System.Drawing.Point(1252, 13);
+            this.recommendedMovieRight_btn.Name = "recommendedMovieRight_btn";
+            this.recommendedMovieRight_btn.Size = new System.Drawing.Size(24, 229);
+            this.recommendedMovieRight_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.recommendedMovieRight_btn.TabIndex = 62;
+            this.recommendedMovieRight_btn.TabStop = false;
+            this.recommendedMovieRight_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recommendedMovieRight_btn_MouseClick);
+            this.recommendedMovieRight_btn.MouseEnter += new System.EventHandler(this.recommendedMovieRight_btn_MouseEnter);
+            this.recommendedMovieRight_btn.MouseLeave += new System.EventHandler(this.recommendedMovieRight_btn_MouseLeave);
+            // 
+            // recommendedMovieLeft_btn
+            // 
+            this.recommendedMovieLeft_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
+            this.recommendedMovieLeft_btn.Image = global::OOP_Project.Properties.Resources.icons8_left_28__1_1;
+            this.recommendedMovieLeft_btn.Location = new System.Drawing.Point(3, 13);
+            this.recommendedMovieLeft_btn.Name = "recommendedMovieLeft_btn";
+            this.recommendedMovieLeft_btn.Size = new System.Drawing.Size(24, 229);
+            this.recommendedMovieLeft_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.recommendedMovieLeft_btn.TabIndex = 61;
+            this.recommendedMovieLeft_btn.TabStop = false;
+            this.recommendedMovieLeft_btn.MouseClick += new System.Windows.Forms.MouseEventHandler(this.recommendedMovieLeft_btn_MouseClick);
+            this.recommendedMovieLeft_btn.MouseEnter += new System.EventHandler(this.recommendedMovieLeft_btn_MouseEnter);
+            this.recommendedMovieLeft_btn.MouseLeave += new System.EventHandler(this.recommendedMovieLeft_btn_MouseLeave);
+            // 
+            // logo_pb
+            // 
+            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_2;
+            this.logo_pb.Location = new System.Drawing.Point(0, 0);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(109, 100);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pb.TabIndex = 0;
+            this.logo_pb.TabStop = false;
+            // 
             // close_pb
             // 
             this.close_pb.BackColor = System.Drawing.Color.Transparent;
@@ -531,94 +560,150 @@
             this.minimize_pb.MouseEnter += new System.EventHandler(this.minimize_pb_MouseEnter);
             this.minimize_pb.MouseLeave += new System.EventHandler(this.minimize_pb_MouseLeave);
             // 
-            // popularMovie_panel
+            // insertMovie_panel
             // 
-            this.popularMovie_panel.BackColor = System.Drawing.Color.Gray;
-            this.popularMovie_panel.Controls.Add(this.popularMovieRight_btn);
-            this.popularMovie_panel.Controls.Add(this.popularMovieLeft_btn);
-            this.popularMovie_panel.Controls.Add(this.popularMovie_flp);
-            this.popularMovie_panel.Location = new System.Drawing.Point(51, 385);
-            this.popularMovie_panel.Name = "popularMovie_panel";
-            this.popularMovie_panel.Size = new System.Drawing.Size(1279, 255);
-            this.popularMovie_panel.TabIndex = 63;
+            this.insertMovie_panel.Controls.Add(this.releaseYear_tb);
+            this.insertMovie_panel.Controls.Add(this.release_year);
+            this.insertMovie_panel.Controls.Add(this.insertInsert_btn);
+            this.insertMovie_panel.Controls.Add(this.genre_lbl);
+            this.insertMovie_panel.Controls.Add(this.decription_lbl);
+            this.insertMovie_panel.Controls.Add(this.decription_tb);
+            this.insertMovie_panel.Controls.Add(this.url_lbl);
+            this.insertMovie_panel.Controls.Add(this.textBox1);
+            this.insertMovie_panel.Controls.Add(this.title_lbl);
+            this.insertMovie_panel.Controls.Add(this.genre_cmb);
+            this.insertMovie_panel.Controls.Add(this.title_tb);
+            this.insertMovie_panel.Location = new System.Drawing.Point(238, 362);
+            this.insertMovie_panel.Name = "insertMovie_panel";
+            this.insertMovie_panel.Size = new System.Drawing.Size(565, 288);
+            this.insertMovie_panel.TabIndex = 65;
+            this.insertMovie_panel.Visible = false;
             // 
-            // popularMovieRight_btn
+            // title_tb
             // 
-            this.popularMovieRight_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.popularMovieRight_btn.Image = global::OOP_Project.Properties.Resources.icons8_right_28;
-            this.popularMovieRight_btn.Location = new System.Drawing.Point(1252, 13);
-            this.popularMovieRight_btn.Name = "popularMovieRight_btn";
-            this.popularMovieRight_btn.Size = new System.Drawing.Size(24, 229);
-            this.popularMovieRight_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.popularMovieRight_btn.TabIndex = 62;
-            this.popularMovieRight_btn.TabStop = false;
+            this.title_tb.Location = new System.Drawing.Point(96, 49);
+            this.title_tb.Name = "title_tb";
+            this.title_tb.Size = new System.Drawing.Size(191, 20);
+            this.title_tb.TabIndex = 0;
             // 
-            // popularMovieLeft_btn
+            // genre_cmb
             // 
-            this.popularMovieLeft_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.popularMovieLeft_btn.Image = global::OOP_Project.Properties.Resources.icons8_left_28__1_1;
-            this.popularMovieLeft_btn.Location = new System.Drawing.Point(3, 13);
-            this.popularMovieLeft_btn.Name = "popularMovieLeft_btn";
-            this.popularMovieLeft_btn.Size = new System.Drawing.Size(24, 229);
-            this.popularMovieLeft_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.popularMovieLeft_btn.TabIndex = 61;
-            this.popularMovieLeft_btn.TabStop = false;
+            this.genre_cmb.FormattingEnabled = true;
+            this.genre_cmb.Location = new System.Drawing.Point(96, 127);
+            this.genre_cmb.Name = "genre_cmb";
+            this.genre_cmb.Size = new System.Drawing.Size(191, 21);
+            this.genre_cmb.TabIndex = 2;
             // 
-            // popularMovie_flp
+            // title_lbl
             // 
-            this.popularMovie_flp.BackColor = System.Drawing.Color.White;
-            this.popularMovie_flp.Location = new System.Drawing.Point(30, 13);
-            this.popularMovie_flp.Name = "popularMovie_flp";
-            this.popularMovie_flp.Size = new System.Drawing.Size(1219, 229);
-            this.popularMovie_flp.TabIndex = 0;
+            this.title_lbl.AutoSize = true;
+            this.title_lbl.Font = new System.Drawing.Font("Impact", 15F);
+            this.title_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.title_lbl.Location = new System.Drawing.Point(34, 44);
+            this.title_lbl.Name = "title_lbl";
+            this.title_lbl.Size = new System.Drawing.Size(47, 25);
+            this.title_lbl.TabIndex = 65;
+            this.title_lbl.Text = "Title";
             // 
-            // topRatedMovie_panel
+            // url_lbl
             // 
-            this.topRatedMovie_panel.BackColor = System.Drawing.Color.Gray;
-            this.topRatedMovie_panel.Controls.Add(this.topRatedMovieRight_btn);
-            this.topRatedMovie_panel.Controls.Add(this.topRatedMovieLeft_btn);
-            this.topRatedMovie_panel.Controls.Add(this.topRatedMovie_flp);
-            this.topRatedMovie_panel.Location = new System.Drawing.Point(51, 693);
-            this.topRatedMovie_panel.Name = "topRatedMovie_panel";
-            this.topRatedMovie_panel.Size = new System.Drawing.Size(1279, 255);
-            this.topRatedMovie_panel.TabIndex = 64;
+            this.url_lbl.AutoSize = true;
+            this.url_lbl.Font = new System.Drawing.Font("Impact", 15F);
+            this.url_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.url_lbl.Location = new System.Drawing.Point(34, 83);
+            this.url_lbl.Name = "url_lbl";
+            this.url_lbl.Size = new System.Drawing.Size(42, 25);
+            this.url_lbl.TabIndex = 67;
+            this.url_lbl.Text = "URL";
             // 
-            // topRatedMovieRight_btn
+            // textBox1
             // 
-            this.topRatedMovieRight_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.topRatedMovieRight_btn.Image = global::OOP_Project.Properties.Resources.icons8_right_28;
-            this.topRatedMovieRight_btn.Location = new System.Drawing.Point(1252, 13);
-            this.topRatedMovieRight_btn.Name = "topRatedMovieRight_btn";
-            this.topRatedMovieRight_btn.Size = new System.Drawing.Size(24, 229);
-            this.topRatedMovieRight_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.topRatedMovieRight_btn.TabIndex = 62;
-            this.topRatedMovieRight_btn.TabStop = false;
+            this.textBox1.Location = new System.Drawing.Point(96, 88);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(191, 20);
+            this.textBox1.TabIndex = 66;
             // 
-            // topRatedMovieLeft_btn
+            // decription_lbl
             // 
-            this.topRatedMovieLeft_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.topRatedMovieLeft_btn.Image = global::OOP_Project.Properties.Resources.icons8_left_28__1_1;
-            this.topRatedMovieLeft_btn.Location = new System.Drawing.Point(3, 13);
-            this.topRatedMovieLeft_btn.Name = "topRatedMovieLeft_btn";
-            this.topRatedMovieLeft_btn.Size = new System.Drawing.Size(24, 229);
-            this.topRatedMovieLeft_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.topRatedMovieLeft_btn.TabIndex = 61;
-            this.topRatedMovieLeft_btn.TabStop = false;
+            this.decription_lbl.AutoSize = true;
+            this.decription_lbl.Font = new System.Drawing.Font("Impact", 15F);
+            this.decription_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.decription_lbl.Location = new System.Drawing.Point(34, 189);
+            this.decription_lbl.Name = "decription_lbl";
+            this.decription_lbl.Size = new System.Drawing.Size(104, 25);
+            this.decription_lbl.TabIndex = 69;
+            this.decription_lbl.Text = "description";
             // 
-            // topRatedMovie_flp
+            // decription_tb
             // 
-            this.topRatedMovie_flp.BackColor = System.Drawing.Color.White;
-            this.topRatedMovie_flp.Location = new System.Drawing.Point(30, 13);
-            this.topRatedMovie_flp.Name = "topRatedMovie_flp";
-            this.topRatedMovie_flp.Size = new System.Drawing.Size(1219, 229);
-            this.topRatedMovie_flp.TabIndex = 0;
+            this.decription_tb.Location = new System.Drawing.Point(144, 194);
+            this.decription_tb.Multiline = true;
+            this.decription_tb.Name = "decription_tb";
+            this.decription_tb.Size = new System.Drawing.Size(191, 66);
+            this.decription_tb.TabIndex = 68;
+            // 
+            // genre_lbl
+            // 
+            this.genre_lbl.AutoSize = true;
+            this.genre_lbl.Font = new System.Drawing.Font("Impact", 10F);
+            this.genre_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.genre_lbl.Location = new System.Drawing.Point(34, 127);
+            this.genre_lbl.Name = "genre_lbl";
+            this.genre_lbl.Size = new System.Drawing.Size(41, 18);
+            this.genre_lbl.TabIndex = 70;
+            this.genre_lbl.Text = "genre";
+            // 
+            // insertInsert_btn
+            // 
+            this.insertInsert_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.insertInsert_btn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.insertInsert_btn.Location = new System.Drawing.Point(456, 212);
+            this.insertInsert_btn.Name = "insertInsert_btn";
+            this.insertInsert_btn.Size = new System.Drawing.Size(75, 23);
+            this.insertInsert_btn.TabIndex = 65;
+            this.insertInsert_btn.Text = "insert";
+            this.insertInsert_btn.UseVisualStyleBackColor = true;
+            this.insertInsert_btn.Click += new System.EventHandler(this.insertInsert_btn_Click);
+            // 
+            // release_year
+            // 
+            this.release_year.AutoSize = true;
+            this.release_year.Font = new System.Drawing.Font("Impact", 10F);
+            this.release_year.ForeColor = System.Drawing.SystemColors.Control;
+            this.release_year.Location = new System.Drawing.Point(36, 154);
+            this.release_year.Name = "release_year";
+            this.release_year.Size = new System.Drawing.Size(33, 18);
+            this.release_year.TabIndex = 72;
+            this.release_year.Text = "year";
+            // 
+            // releaseYear_tb
+            // 
+            this.releaseYear_tb.Location = new System.Drawing.Point(96, 165);
+            this.releaseYear_tb.Name = "releaseYear_tb";
+            this.releaseYear_tb.Size = new System.Drawing.Size(191, 20);
+            this.releaseYear_tb.TabIndex = 73;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::OOP_Project.Properties.Resources._1_2;
+            this.pictureBox1.Location = new System.Drawing.Point(10, 10);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(180, 217);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // home_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.ClientSize = new System.Drawing.Size(1552, 857);
+            this.Controls.Add(this.remove_btn);
+            this.Controls.Add(this.insert_btn);
             this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.movie_panel);
             this.Controls.Add(this.form_lbl);
@@ -626,6 +711,8 @@
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1552, 857);
+            this.MinimumSize = new System.Drawing.Size(1400, 500);
             this.Name = "home_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -642,31 +729,28 @@
             this.menu2_panel.ResumeLayout(false);
             this.menu_panel.ResumeLayout(false);
             this.logo_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchBar_btn)).EndInit();
             this.movie_panel.ResumeLayout(false);
             this.topRatedMovie_panel.ResumeLayout(false);
+            this.popularMovie_panel.ResumeLayout(false);
+            this.recommendedMovie_panel.ResumeLayout(false);
+            this.recommendedMovie_flp.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieRight_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieLeft_btn)).EndInit();
-            this.popularMovie_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.popularMovieRight_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popularMovieLeft_btn)).EndInit();
-            this.recommendedMovie_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieRight_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieLeft_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
-            this.popularMovie_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.popularMovieRight_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popularMovieLeft_btn)).EndInit();
-            this.topRatedMovie_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieRight_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topRatedMovieLeft_btn)).EndInit();
+            this.insertMovie_panel.ResumeLayout(false);
+            this.insertMovie_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-
         #endregion
         private System.Windows.Forms.PictureBox minimize_pb;
         private System.Windows.Forms.PictureBox close_pb;
@@ -696,5 +780,20 @@
         private System.Windows.Forms.PictureBox popularMovieRight_btn;
         private System.Windows.Forms.PictureBox popularMovieLeft_btn;
         private System.Windows.Forms.FlowLayoutPanel popularMovie_flp;
+        private System.Windows.Forms.Button insert_btn;
+        private System.Windows.Forms.Button remove_btn;
+        private System.Windows.Forms.Panel insertMovie_panel;
+        private System.Windows.Forms.Label title_lbl;
+        private System.Windows.Forms.ComboBox genre_cmb;
+        private System.Windows.Forms.TextBox title_tb;
+        private System.Windows.Forms.Label genre_lbl;
+        private System.Windows.Forms.Label decription_lbl;
+        private System.Windows.Forms.TextBox decription_tb;
+        private System.Windows.Forms.Label url_lbl;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button insertInsert_btn;
+        private System.Windows.Forms.TextBox releaseYear_tb;
+        private System.Windows.Forms.Label release_year;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

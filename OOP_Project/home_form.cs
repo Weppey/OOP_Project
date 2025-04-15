@@ -7,7 +7,8 @@ using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Drawing.Drawing2D;
 using ComponentFactory.Krypton.Toolkit;
-using System.Web.UI.WebControls;
+using System.Drawing.Imaging;
+
 
 
 namespace OOP_Project
@@ -76,7 +77,63 @@ namespace OOP_Project
             CurvePanel(topRatedMovie_flp, 30);
             recommendedMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
+            LoadMovies();
+
+
+            genre_cmb.Items.AddRange(new string[]
+{
+        "Action",
+        "Comedy",
+        "Drama",
+        "Horror",
+        "Sci-Fi",
+        "Romance",
+        "Thriller",
+        "Documentary",
+        "Adventure",
+        "Animation",
+        "Fantasy"
+});
+
+            genre_cmb.SelectedIndex = 0; // Optional: select first item by default
+
+
+
+
         }
+
+        private void LoadMovies()
+        {
+            recommendedMovie_flp.Controls.Clear();
+
+            string query = "SELECT image_url FROM Movies ORDER BY created_at DESC";
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string imageUrl = reader.GetString("image_url");
+
+                        MovieCard card = new MovieCard(); // Use MovieCard here
+
+                        try
+                        {
+                            card.Poster = Image.FromFile(imageUrl); // Assuming MovieCard has a Poster property
+                        }
+                        catch
+                        {
+                            card.Poster = Properties.Resources.Netflix_N_Symbol_logo; // fallback image
+                        }
+
+                        recommendedMovie_flp.Controls.Add(card);
+                    }
+                }
+            }
+        }
+
 
         private void close_pb_Click(object sender, EventArgs e)
         {
@@ -198,6 +255,54 @@ namespace OOP_Project
         private void recommendedMovieRight_btn_MouseClick(object sender, MouseEventArgs e)
         {
             recommendedMovieRight_btn.BackColor = Color.FromArgb(80, 80, 80);
+        }
+
+        private void InsertMovie(string title, string imageUrl, string genre, string description, int year)
+        {
+            string query = "INSERT INTO Movies (title, image_url, genre, description, release_year, created_at) " +
+                           "VALUES (@title, @image_url, @genre, @description, @year, NOW())";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", title);
+                    cmd.Parameters.AddWithValue("@image_url", imageUrl);
+                    cmd.Parameters.AddWithValue("@genre", genre);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@year", year);
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Movie inserted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No rows were inserted. Please check your input.", "Insert Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error inserting movie:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void insert_btn_Click(object sender, EventArgs e)
+        {
+            insertMovie_panel.Visible = true;
+        }
+
+        private void insertInsert_btn_Click(object sender, EventArgs e)
+        {
+            InsertMovie(title_tb.Text, url_lbl.Text, genre_cmb.SelectedItem.ToString(), decription_lbl.Text, int.Parse(releaseYear_tb.Text));
+            insertMovie_panel.Visible=false;
+            LoadMovies();
         }
     }
 }
