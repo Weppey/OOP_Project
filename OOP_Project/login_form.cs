@@ -91,7 +91,7 @@ namespace OOP_Project
         }
         private void login_form_Load(object sender, EventArgs e)
         {
-            
+            this.AcceptButton = login_btn;
         }
 
         private void signUp_lbl_Click(object sender, EventArgs e)
@@ -191,6 +191,11 @@ namespace OOP_Project
             account_recovery_form recoveryForm = new account_recovery_form();
             recoveryForm.Show();
             this.Hide();
+        }
+
+        private void userName_tb_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

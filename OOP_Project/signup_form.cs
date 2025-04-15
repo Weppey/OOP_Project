@@ -26,6 +26,7 @@ namespace OOP_Project
         public signup_form()
         {
             InitializeComponent();
+
         }
 
         private bool IsValidEmail(string email)
@@ -261,6 +262,21 @@ namespace OOP_Project
             this.Close();
 
           
+        }
+
+        private void Lbl_Signup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void signup_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void username_tb_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
