@@ -101,6 +101,7 @@
             this.userName_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.userName_tb.TabIndex = 8;
             this.userName_tb.Text = "Username";
+            this.userName_tb.TextChanged += new System.EventHandler(this.userName_tb_TextChanged);
             this.userName_tb.Enter += new System.EventHandler(this.userName_tb_Enter);
             this.userName_tb.Leave += new System.EventHandler(this.userName_tb_Leave);
             // 
@@ -122,11 +123,11 @@
             this.signUp_lbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.signUp_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signUp_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.signUp_lbl.Location = new System.Drawing.Point(44, 553);
+            this.signUp_lbl.Location = new System.Drawing.Point(31, 555);
             this.signUp_lbl.Name = "signUp_lbl";
-            this.signUp_lbl.Size = new System.Drawing.Size(174, 12);
+            this.signUp_lbl.Size = new System.Drawing.Size(182, 12);
             this.signUp_lbl.TabIndex = 6;
-            this.signUp_lbl.Text = "HAVEN\'T GOT A ACCOUNT YET?";
+            this.signUp_lbl.Text = "HAVEN\'T GOT AN ACCOUNT YET?";
             this.signUp_lbl.Click += new System.EventHandler(this.signUp_lbl_Click);
             // 
             // signIn_lbl
@@ -213,6 +214,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.BackgroundImage = global::OOP_Project.Properties.Resources.login_wall2;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1052, 650);
             this.Controls.Add(this.loginDock_panel);
             this.Controls.Add(this.close_pb);
