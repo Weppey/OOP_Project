@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(login_form));
             this.loginDock_panel = new System.Windows.Forms.Panel();
+            this.password_tb = new System.Windows.Forms.TextBox();
+            this.userName_tb = new System.Windows.Forms.TextBox();
             this.forgotPassword_llbl = new System.Windows.Forms.Label();
-            this.password_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.userName_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.protection_lbl = new System.Windows.Forms.Label();
             this.signUp_lbl = new System.Windows.Forms.Label();
             this.signIn_lbl = new System.Windows.Forms.Label();
@@ -50,9 +50,9 @@
             // loginDock_panel
             // 
             this.loginDock_panel.BackColor = System.Drawing.Color.White;
-            this.loginDock_panel.Controls.Add(this.forgotPassword_llbl);
             this.loginDock_panel.Controls.Add(this.password_tb);
             this.loginDock_panel.Controls.Add(this.userName_tb);
+            this.loginDock_panel.Controls.Add(this.forgotPassword_llbl);
             this.loginDock_panel.Controls.Add(this.protection_lbl);
             this.loginDock_panel.Controls.Add(this.signUp_lbl);
             this.loginDock_panel.Controls.Add(this.signIn_lbl);
@@ -64,6 +64,30 @@
             this.loginDock_panel.Name = "loginDock_panel";
             this.loginDock_panel.Size = new System.Drawing.Size(254, 650);
             this.loginDock_panel.TabIndex = 20;
+            // 
+            // password_tb
+            // 
+            this.password_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password_tb.ForeColor = System.Drawing.Color.DarkGray;
+            this.password_tb.Location = new System.Drawing.Point(52, 297);
+            this.password_tb.Name = "password_tb";
+            this.password_tb.Size = new System.Drawing.Size(153, 26);
+            this.password_tb.TabIndex = 12;
+            this.password_tb.Text = "Password";
+            this.password_tb.Enter += new System.EventHandler(this.password_tb_Enter);
+            this.password_tb.Leave += new System.EventHandler(this.password_tb_Leave);
+            // 
+            // userName_tb
+            // 
+            this.userName_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userName_tb.ForeColor = System.Drawing.Color.DarkGray;
+            this.userName_tb.Location = new System.Drawing.Point(52, 257);
+            this.userName_tb.Name = "userName_tb";
+            this.userName_tb.Size = new System.Drawing.Size(153, 26);
+            this.userName_tb.TabIndex = 11;
+            this.userName_tb.Text = "Username";
+            this.userName_tb.Enter += new System.EventHandler(this.userName_tb_Enter);
+            this.userName_tb.Leave += new System.EventHandler(this.userName_tb_Leave);
             // 
             // forgotPassword_llbl
             // 
@@ -77,33 +101,6 @@
             this.forgotPassword_llbl.TabIndex = 10;
             this.forgotPassword_llbl.Text = "FORGOT YOUR PASSWORD?";
             this.forgotPassword_llbl.Click += new System.EventHandler(this.forgotPassword_llbl_Click);
-            // 
-            // password_tb
-            // 
-            this.password_tb.Location = new System.Drawing.Point(33, 297);
-            this.password_tb.Name = "password_tb";
-            this.password_tb.Size = new System.Drawing.Size(186, 26);
-            this.password_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.password_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.password_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.password_tb.TabIndex = 9;
-            this.password_tb.Text = "Password";
-            this.password_tb.Enter += new System.EventHandler(this.password_tb_Enter);
-            this.password_tb.Leave += new System.EventHandler(this.password_tb_Leave);
-            // 
-            // userName_tb
-            // 
-            this.userName_tb.Location = new System.Drawing.Point(33, 258);
-            this.userName_tb.Name = "userName_tb";
-            this.userName_tb.Size = new System.Drawing.Size(186, 26);
-            this.userName_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.userName_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.userName_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.userName_tb.TabIndex = 8;
-            this.userName_tb.Text = "Username";
-            this.userName_tb.TextChanged += new System.EventHandler(this.userName_tb_TextChanged);
-            this.userName_tb.Enter += new System.EventHandler(this.userName_tb_Enter);
-            this.userName_tb.Leave += new System.EventHandler(this.userName_tb_Leave);
             // 
             // protection_lbl
             // 
@@ -254,9 +251,9 @@
         private System.Windows.Forms.Label signIn_lbl;
         private System.Windows.Forms.Label signUp_lbl;
         private System.Windows.Forms.Label protection_lbl;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox password_tb;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox userName_tb;
         private System.Windows.Forms.Label forgotPassword_llbl;
+        private System.Windows.Forms.TextBox password_tb;
+        private System.Windows.Forms.TextBox userName_tb;
     }
 }
 

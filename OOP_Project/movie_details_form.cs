@@ -108,28 +108,44 @@ namespace OOP_Project
             string comment = comment_tb.Text.Trim();
 
             string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "INSERT INTO movie_interaction (user_id, movie_id, rating, comment) VALUES (@userID, @movieID, @rating, @comment)";
 
+            // 🔍 Check if the user exists
             using (MySqlConnection conn = new MySqlConnection(connectionString))
-            using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
-                cmd.Parameters.AddWithValue("@userID", CurrentUserId);
-                cmd.Parameters.AddWithValue("@movieID", MovieID);
-                cmd.Parameters.AddWithValue("@rating", rating);
-                cmd.Parameters.AddWithValue("@comment", comment);
-
                 conn.Open();
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
+                using (MySqlCommand checkCmd = new MySqlCommand("SELECT COUNT(*) FROM users WHERE user_id = @userID", conn))
                 {
-                    MessageBox.Show("Your rating and comment have been submitted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    checkCmd.Parameters.AddWithValue("@userID", CurrentUserId);
+                    int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                    if (exists == 0)
+                    {
+                        MessageBox.Show("Invalid user session. Please log in again.", "User Not Found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
                 }
-                else
+
+                // ✅ Proceed if user exists
+                using (MySqlCommand cmd = new MySqlCommand("INSERT INTO movie_interaction (user_id, movie_id, rating, comment) VALUES (@userID, @movieID, @rating, @comment)", conn))
                 {
-                    MessageBox.Show("An error occurred. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    cmd.Parameters.AddWithValue("@userID", CurrentUserId);
+                    cmd.Parameters.AddWithValue("@movieID", MovieID);
+                    cmd.Parameters.AddWithValue("@rating", rating);
+                    cmd.Parameters.AddWithValue("@comment", comment);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Your rating and comment have been submitted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("An error occurred. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
+
 
         private void remove_btn_Click(object sender, EventArgs e)
         {
@@ -154,7 +170,7 @@ namespace OOP_Project
                         {
                             MessageBox.Show("Movie has been removed successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             home_form homeForm = new home_form(userType, CurrentUserId); // Pass both userType and userId
-                            homeForm.Refresh();
+                            homeForm.Refresh();         
                             this.Close(); // Optionally close the form
                         }
                         else

@@ -53,13 +53,13 @@
             this.answer_lbl = new System.Windows.Forms.Label();
             this.signup_btn = new System.Windows.Forms.Button();
             this.signup_panel = new System.Windows.Forms.Panel();
+            this.login_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.showPass_chkb = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.pass_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.user_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.bg2_panel = new System.Windows.Forms.Panel();
             this.Pb_logo = new System.Windows.Forms.PictureBox();
             this.password_chkb = new System.Windows.Forms.CheckBox();
-            this.user_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.pass_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.showPass_chkb = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
-            this.login_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.process1 = new System.Diagnostics.Process();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
@@ -370,6 +370,55 @@
             this.signup_panel.TabIndex = 3;
             this.signup_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.signup_panel_Paint);
             // 
+            // login_btn
+            // 
+            this.login_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.login_btn.Location = new System.Drawing.Point(710, 415);
+            this.login_btn.Name = "login_btn";
+            this.login_btn.Size = new System.Drawing.Size(97, 30);
+            this.login_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
+            this.login_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.login_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.login_btn.StateCommon.Border.Rounding = 5;
+            this.login_btn.StateCommon.Content.Image.Effect = ComponentFactory.Krypton.Toolkit.PaletteImageEffect.Disabled;
+            this.login_btn.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.login_btn.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, 5, -1);
+            this.login_btn.TabIndex = 57;
+            this.login_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_right_162;
+            this.login_btn.Values.Text = "Login";
+            // 
+            // showPass_chkb
+            // 
+            this.showPass_chkb.Location = new System.Drawing.Point(608, 122);
+            this.showPass_chkb.Name = "showPass_chkb";
+            this.showPass_chkb.Size = new System.Drawing.Size(108, 20);
+            this.showPass_chkb.TabIndex = 56;
+            this.showPass_chkb.Values.Text = "Show password";
+            // 
+            // pass_tb
+            // 
+            this.pass_tb.Location = new System.Drawing.Point(608, 95);
+            this.pass_tb.Name = "pass_tb";
+            this.pass_tb.Size = new System.Drawing.Size(186, 26);
+            this.pass_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.pass_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            this.pass_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.pass_tb.TabIndex = 55;
+            this.pass_tb.Text = "Password";
+            // 
+            // user_tb
+            // 
+            this.user_tb.Location = new System.Drawing.Point(399, 95);
+            this.user_tb.Name = "user_tb";
+            this.user_tb.Size = new System.Drawing.Size(186, 26);
+            this.user_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.user_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            this.user_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.user_tb.TabIndex = 10;
+            this.user_tb.Text = "Username";
+            // 
             // bg2_panel
             // 
             this.bg2_panel.BackgroundImage = global::OOP_Project.Properties.Resources._111__1_;
@@ -412,55 +461,6 @@
             this.password_chkb.UseVisualStyleBackColor = false;
             this.password_chkb.CheckedChanged += new System.EventHandler(this.password_chkb_CheckedChanged);
             // 
-            // user_tb
-            // 
-            this.user_tb.Location = new System.Drawing.Point(399, 95);
-            this.user_tb.Name = "user_tb";
-            this.user_tb.Size = new System.Drawing.Size(186, 26);
-            this.user_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.user_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.user_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.user_tb.TabIndex = 10;
-            this.user_tb.Text = "Username";
-            // 
-            // pass_tb
-            // 
-            this.pass_tb.Location = new System.Drawing.Point(608, 95);
-            this.pass_tb.Name = "pass_tb";
-            this.pass_tb.Size = new System.Drawing.Size(186, 26);
-            this.pass_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.pass_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.pass_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.pass_tb.TabIndex = 55;
-            this.pass_tb.Text = "Password";
-            // 
-            // showPass_chkb
-            // 
-            this.showPass_chkb.Location = new System.Drawing.Point(608, 122);
-            this.showPass_chkb.Name = "showPass_chkb";
-            this.showPass_chkb.Size = new System.Drawing.Size(108, 20);
-            this.showPass_chkb.TabIndex = 56;
-            this.showPass_chkb.Values.Text = "Show password";
-            // 
-            // login_btn
-            // 
-            this.login_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.login_btn.Location = new System.Drawing.Point(710, 415);
-            this.login_btn.Name = "login_btn";
-            this.login_btn.Size = new System.Drawing.Size(97, 30);
-            this.login_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
-            this.login_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.login_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.login_btn.StateCommon.Border.Rounding = 5;
-            this.login_btn.StateCommon.Content.Image.Effect = ComponentFactory.Krypton.Toolkit.PaletteImageEffect.Disabled;
-            this.login_btn.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.login_btn.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, 5, -1);
-            this.login_btn.TabIndex = 57;
-            this.login_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_right_162;
-            this.login_btn.Values.Text = "Login";
-            // 
             // process1
             // 
             this.process1.StartInfo.Domain = "";
@@ -486,7 +486,7 @@
             this.MaximizeBox = false;
             this.Name = "signup_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "signup_form";
+            this.Text = "6";
             this.Load += new System.EventHandler(this.signup_form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();

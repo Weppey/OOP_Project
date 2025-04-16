@@ -15,20 +15,34 @@
     {
         public partial class home_form : KryptonForm
         {
-            private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            private string userType;
-            private int currentUserId;
+        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string userType;
+        private int currentUserId;
 
-            public home_form(string userTypeFromLogin, int userIdFromLogin)
+        public int CurrentUserId => currentUserId; // 🔸 public getter if needed externally
+        public string UserType => userType;
+
+        public home_form(string userTypeFromLogin, int userIdFromLogin)
+        {
+            InitializeComponent();
+
+            if (userIdFromLogin <= 0)
             {
-                InitializeComponent();
-                userType = userTypeFromLogin;
-                currentUserId = userIdFromLogin;
-                HandleAccess();
+                MessageBox.Show("Invalid user session. Please log in again.", "Session Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                login_form login = new login_form();
+                login.Show();
+                this.Close();
+                return;
             }
 
-            // This will round the corners of the form
-            private void CurvePanel(System.Windows.Forms.Panel panel, int radius)
+            userType = userTypeFromLogin;
+            currentUserId = userIdFromLogin;
+
+            HandleAccess();
+        }
+
+        // This will round the corners of the form
+        private void CurvePanel(System.Windows.Forms.Panel panel, int radius)
             {
                 GraphicsPath path = new GraphicsPath();
                 path.StartFigure();
@@ -42,20 +56,22 @@
 
 
 
-            private void HandleAccess()
+        private void HandleAccess()
+        {
+            if (userType.ToLower() == "admin")
             {
-             //   if (userType.ToLower() == "member")
-                {
-                    //edit_panel.Visible = false; // Hide button edit
-                }
-           //     else
-                {
-                    //edit_panel.Visible = true;  // show edit button
-                }
+                insert_btn.Visible = true; // 🔸 allow movie insert
+                admin_button.Visible = true;
             }
+            else
+            {
+                insert_btn.Visible = false;
+                admin_button.Visible = false;
+            }
+        }
 
 
-            private async void home_form_Load(object sender, EventArgs e)
+        private async void home_form_Load(object sender, EventArgs e)
             {
 
                 StayLoggedIn.LoadUserSession();
@@ -105,72 +121,62 @@
 
             }
 
-                public void LoadMovies()
+        public void LoadMovies()
+        {
+            recommendedMovie_flp.Controls.Clear();
+
+            string query = "SELECT movie_id, image_url FROM Movies ORDER BY created_at DESC";
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            {
+                conn.Open();
+                using (var reader = cmd.ExecuteReader())
                 {
-                    recommendedMovie_flp.Controls.Clear();
-
-                    string query = "SELECT movie_id, image_url FROM Movies ORDER BY created_at DESC";
-                    using (MySqlConnection conn = new MySqlConnection(connectionString))
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    while (reader.Read())
                     {
-                        conn.Open();
-                        using (var reader = cmd.ExecuteReader())
+                        int movieID = reader.GetInt32("movie_id");
+                        string imageUrl = reader.GetString("image_url");
+
+                        MovieCard card = new MovieCard();
+                        card.MovieID = movieID;
+
+                        try
                         {
-                            while (reader.Read())
+                            if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
                             {
-                                int movieID = reader.GetInt32("movie_id");
-                                string imageUrl = reader.GetString("image_url");
-
-                                MovieCard card = new MovieCard();
-                                card.MovieID = movieID;
-
-                                try
+                                using (var webClient = new System.Net.WebClient())
                                 {
-                                    // If the image is a URL, download it
-                                    if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
+                                    byte[] imageBytes = webClient.DownloadData(imageUrl);
+                                    using (var stream = new System.IO.MemoryStream(imageBytes))
                                     {
-                                        using (var webClient = new System.Net.WebClient())
-                                        {
-                                            byte[] imageBytes = webClient.DownloadData(imageUrl);
-                                            using (var stream = new System.IO.MemoryStream(imageBytes))
-                                            {
-                                                card.Poster = Image.FromStream(stream);
-                                            }
-                                        }
-                                    }
-                                    else
-                                    {
-                                        // Fallback for local paths
-                                        card.Poster = Image.FromFile(imageUrl);
+                                        card.Poster = Image.FromStream(stream);
                                     }
                                 }
-                                catch (Exception ex)
-                                {
-                                    // Handle specific errors like failed image loading
-                                    Console.WriteLine($"Error loading image for movie {movieID}: {ex.Message}");
-                                    card.Poster = Properties.Resources.Netflix_N_Symbol_logo; // fallback image
-                                }
-
-                                // Subscribe to MovieClicked event
-                                card.MovieClicked += (s, e) =>      
-                                {
-                                    // Open the movie details form on click
-                                    movie_details_form detailsForm = new movie_details_form(movieID, currentUserId);
-                                    detailsForm.ShowDialog();
-
-                                };
-
-                                recommendedMovie_flp.Controls.Add(card);
+                            }
+                            else
+                            {
+                                card.Poster = Image.FromFile(imageUrl);
                             }
                         }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error loading image for movie {movieID}: {ex.Message}");
+                            card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
+                        }
+
+                        // 🔸 Pass currentUserId to details form
+                        card.MovieClicked += (s, e) =>
+                        {
+                            movie_details_form detailsForm = new movie_details_form(movieID, currentUserId);
+                            detailsForm.ShowDialog();
+                        };
+
+                        recommendedMovie_flp.Controls.Add(card);
                     }
                 }
-
-
-
-
-
-            private void close_pb_Click(object sender, EventArgs e)
+            }
+        }   
+    private void close_pb_Click(object sender, EventArgs e)
             {
                 string msg = "Do you want to leave this page?";
                 string title = "Confirm Naviagtion";
@@ -231,26 +237,6 @@
             private void settings_btn_Click(object sender, EventArgs e)
             {
                 form_lbl.Text = "SETTINGS";
-            }
-
-            private void signOut_btn_Click_1(object sender, EventArgs e)
-            {
-                string msg = "Do you really want to sign out?";
-                string title = "Confirm Navigation";
-                MessageBoxButtons btn = MessageBoxButtons.YesNo;
-                MessageBoxIcon icon = MessageBoxIcon.Question;
-                DialogResult result = MessageBox.Show(msg, title, btn, icon);
-                if (result == DialogResult.Yes)
-                {
-                    StayLoggedIn.ClearSession();
-                    login_form loginForm = new login_form();
-                    loginForm.ShowDialog();
-                    this.Hide();
-                }
-                else
-                {
-                    return;
-                }
             }
 
             private void kryptonPanel1_Paint(object sender, PaintEventArgs e)
@@ -342,15 +328,60 @@
 
             private void insert_btn_Click(object sender, EventArgs e)
             {
+               // admin_form adminForm = new admin_form();
+               // adminForm.Show();
                 insertMovie_panel.Visible = true;
             }
 
-            private void insertInsert_btn_Click(object sender, EventArgs e)
+        private void insertInsert_btn_Click(object sender, EventArgs e)
+        {
+            // Validate required fields
+            if (string.IsNullOrWhiteSpace(title_tb.Text) ||
+                string.IsNullOrWhiteSpace(url_lbl.Text) ||
+                string.IsNullOrWhiteSpace(decription_lbl.Text) ||
+                string.IsNullOrWhiteSpace(releaseYear_tb.Text) ||
+                genre_cmb.SelectedIndex < 0)
             {
-                InsertMovie(title_tb.Text, url_lbl.Text, genre_cmb.SelectedItem.ToString(), decription_lbl.Text, int.Parse(releaseYear_tb.Text));
-                insertMovie_panel.Visible=false;
-                LoadMovies();
+                MessageBox.Show("Please fill out all fields before inserting the movie.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            // Validate year
+            if (!int.TryParse(releaseYear_tb.Text, out int year))
+            {
+                MessageBox.Show("Please enter a valid number for release year.", "Invalid Year", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+    
+            string imageUrl = url_lbl.Text.Trim();
+
+
+            // All good, insert the movie
+            InsertMovie(title_tb.Text, imageUrl, genre_cmb.SelectedItem.ToString(), decription_lbl.Text, year);
+            insertMovie_panel.Visible = false;
+            LoadMovies();
+        }
+
+        private void signOut_btn_Click(object sender, EventArgs e)
+        {
+            string msg = "Do you really want to sign out?";
+            string title = "Confirm Sign Out";
+            MessageBoxButtons btn = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Question;
+
+            DialogResult result = MessageBox.Show(msg, title, btn, icon);
+            if (result == DialogResult.Yes)
+            {
+                StayLoggedIn.ClearSession();
+
+                this.Hide();
+                login_form loginForm = new login_form();
+                loginForm.ShowDialog();
+
+                this.Close(); // ensures the current form is properly closed
             }
         }
+
     }
+
+}

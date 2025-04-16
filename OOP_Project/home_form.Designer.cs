@@ -35,6 +35,7 @@
             this.favorite_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.popular_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.settings_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.admin_button = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.signOut_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.logo_panel = new System.Windows.Forms.Panel();
             this.logo_pb = new System.Windows.Forms.PictureBox();
@@ -117,6 +118,7 @@
             this.menu_panel.Controls.Add(this.favorite_btn);
             this.menu_panel.Controls.Add(this.popular_btn);
             this.menu_panel.Controls.Add(this.settings_btn);
+            this.menu_panel.Controls.Add(this.admin_button);
             this.menu_panel.Controls.Add(this.signOut_btn);
             this.menu_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menu_panel.Location = new System.Drawing.Point(0, 0);
@@ -128,32 +130,27 @@
             // home_btn
             // 
             this.home_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.home_btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.home_btn.Location = new System.Drawing.Point(20, 100);
             this.home_btn.Margin = new System.Windows.Forms.Padding(20, 100, 3, 3);
             this.home_btn.Name = "home_btn";
             this.home_btn.Size = new System.Drawing.Size(70, 70);
             this.home_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
-            this.home_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.home_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StateCommon.Border.Rounding = 20;
             this.home_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.home_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.home_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.home_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.home_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.home_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.home_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.home_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.home_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.home_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.home_btn.TabIndex = 60;
             this.home_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_home_281;
             this.home_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -163,33 +160,28 @@
             // favorite_btn
             // 
             this.favorite_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.favorite_btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.favorite_btn.Location = new System.Drawing.Point(20, 178);
             this.favorite_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.favorite_btn.Name = "favorite_btn";
             this.favorite_btn.Size = new System.Drawing.Size(70, 70);
             this.favorite_btn.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.favorite_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.favorite_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StateCommon.Border.Rounding = 20;
             this.favorite_btn.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.favorite_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.favorite_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.favorite_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.favorite_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.favorite_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.favorite_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.favorite_btn.TabIndex = 61;
             this.favorite_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_favorite_folder_28;
             this.favorite_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -199,33 +191,28 @@
             // popular_btn
             // 
             this.popular_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.popular_btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.popular_btn.Location = new System.Drawing.Point(20, 256);
             this.popular_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.popular_btn.Name = "popular_btn";
             this.popular_btn.Size = new System.Drawing.Size(70, 70);
             this.popular_btn.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.popular_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.popular_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.popular_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StateCommon.Border.Rounding = 20;
             this.popular_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.popular_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.popular_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.popular_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.popular_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.popular_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.popular_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.popular_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.popular_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.popular_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.popular_btn.TabIndex = 62;
             this.popular_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_fire_28;
             this.popular_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -235,72 +222,91 @@
             // settings_btn
             // 
             this.settings_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.settings_btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.settings_btn.Location = new System.Drawing.Point(20, 334);
             this.settings_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.settings_btn.Name = "settings_btn";
             this.settings_btn.Size = new System.Drawing.Size(70, 70);
             this.settings_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
-            this.settings_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.settings_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StateCommon.Border.Rounding = 20;
             this.settings_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.settings_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.settings_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.settings_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.settings_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.settings_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.settings_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.settings_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.settings_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.settings_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.settings_btn.TabIndex = 63;
             this.settings_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_settings_28__1_;
             this.settings_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.settings_btn.Values.Text = "";
             this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
             // 
+            // admin_button
+            // 
+            this.admin_button.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.admin_button.Dock = System.Windows.Forms.DockStyle.Top;
+            this.admin_button.Location = new System.Drawing.Point(20, 412);
+            this.admin_button.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.admin_button.Name = "admin_button";
+            this.admin_button.Size = new System.Drawing.Size(70, 70);
+            this.admin_button.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.admin_button.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.admin_button.StateCommon.Border.Rounding = 20;
+            this.admin_button.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.admin_button.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.admin_button.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.admin_button.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.admin_button.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.admin_button.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.admin_button.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.admin_button.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.admin_button.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.admin_button.TabIndex = 65;
+            this.admin_button.Values.Image = global::OOP_Project.Properties.Resources.icons8_admin_settings_female_282;
+            this.admin_button.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.admin_button.Values.Text = "";
+            // 
             // signOut_btn
             // 
             this.signOut_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.signOut_btn.Location = new System.Drawing.Point(20, 607);
-            this.signOut_btn.Margin = new System.Windows.Forms.Padding(20, 200, 3, 3);
+            this.signOut_btn.Dock = System.Windows.Forms.DockStyle.Top;
+            this.signOut_btn.Location = new System.Drawing.Point(20, 635);
+            this.signOut_btn.Margin = new System.Windows.Forms.Padding(20, 150, 3, 3);
             this.signOut_btn.Name = "signOut_btn";
             this.signOut_btn.Size = new System.Drawing.Size(70, 70);
             this.signOut_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
-            this.signOut_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.signOut_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StateCommon.Border.Rounding = 20;
             this.signOut_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.signOut_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.signOut_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.signOut_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.signOut_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StateTracking.Back.Color1 = System.Drawing.Color.Gray;
             this.signOut_btn.StateTracking.Back.Color2 = System.Drawing.Color.Silver;
-            this.signOut_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.signOut_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.signOut_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.signOut_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.signOut_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.signOut_btn.TabIndex = 64;
+            this.signOut_btn.TabIndex = 66;
             this.signOut_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_left_28;
             this.signOut_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.signOut_btn.Values.Text = "";
-            this.signOut_btn.Click += new System.EventHandler(this.signOut_btn_Click_1);
+            this.signOut_btn.Click += new System.EventHandler(this.signOut_btn_Click);
             // 
             // logo_panel
             // 
@@ -326,20 +332,18 @@
             // searchBar_btn
             // 
             this.searchBar_btn.DropDownWidth = 351;
-            this.searchBar_btn.Location = new System.Drawing.Point(952, 29);
+            this.searchBar_btn.Location = new System.Drawing.Point(950, 41);
             this.searchBar_btn.Name = "searchBar_btn";
             this.searchBar_btn.Size = new System.Drawing.Size(378, 28);
             this.searchBar_btn.StateCommon.ComboBox.Back.Color1 = System.Drawing.Color.White;
             this.searchBar_btn.StateCommon.ComboBox.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.searchBar_btn.StateCommon.ComboBox.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.searchBar_btn.StateCommon.ComboBox.Border.Rounding = 5;
             this.searchBar_btn.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Black;
             this.searchBar_btn.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchBar_btn.StateCommon.DropBack.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.searchBar_btn.StateCommon.DropBack.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.searchBar_btn.StateCommon.DropBack.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.searchBar_btn.TabIndex = 59;
             this.searchBar_btn.Text = "Search...";
             // 
@@ -381,7 +385,7 @@
             this.insertMovie_panel.Controls.Add(this.title_lbl);
             this.insertMovie_panel.Controls.Add(this.genre_cmb);
             this.insertMovie_panel.Controls.Add(this.title_tb);
-            this.insertMovie_panel.Location = new System.Drawing.Point(238, 362);
+            this.insertMovie_panel.Location = new System.Drawing.Point(315, 87);
             this.insertMovie_panel.Name = "insertMovie_panel";
             this.insertMovie_panel.Size = new System.Drawing.Size(565, 288);
             this.insertMovie_panel.TabIndex = 65;
@@ -497,7 +501,7 @@
             this.topRatedMovie_panel.Controls.Add(this.topRatedMovieRight_btn);
             this.topRatedMovie_panel.Controls.Add(this.topRatedMovieLeft_btn);
             this.topRatedMovie_panel.Controls.Add(this.topRatedMovie_flp);
-            this.topRatedMovie_panel.Location = new System.Drawing.Point(51, 693);
+            this.topRatedMovie_panel.Location = new System.Drawing.Point(49, 705);
             this.topRatedMovie_panel.Name = "topRatedMovie_panel";
             this.topRatedMovie_panel.Size = new System.Drawing.Size(1279, 255);
             this.topRatedMovie_panel.TabIndex = 64;
@@ -538,7 +542,7 @@
             this.popularMovie_panel.Controls.Add(this.popularMovieRight_btn);
             this.popularMovie_panel.Controls.Add(this.popularMovieLeft_btn);
             this.popularMovie_panel.Controls.Add(this.popularMovie_flp);
-            this.popularMovie_panel.Location = new System.Drawing.Point(51, 385);
+            this.popularMovie_panel.Location = new System.Drawing.Point(49, 397);
             this.popularMovie_panel.Name = "popularMovie_panel";
             this.popularMovie_panel.Size = new System.Drawing.Size(1279, 255);
             this.popularMovie_panel.TabIndex = 63;
@@ -579,7 +583,7 @@
             this.recommendedMovie_panel.Controls.Add(this.recommendedMovieRight_btn);
             this.recommendedMovie_panel.Controls.Add(this.recommendedMovieLeft_btn);
             this.recommendedMovie_panel.Controls.Add(this.recommendedMovie_flp);
-            this.recommendedMovie_panel.Location = new System.Drawing.Point(51, 75);
+            this.recommendedMovie_panel.Location = new System.Drawing.Point(49, 87);
             this.recommendedMovie_panel.Name = "recommendedMovie_panel";
             this.recommendedMovie_panel.Size = new System.Drawing.Size(1279, 255);
             this.recommendedMovie_panel.TabIndex = 60;
@@ -628,40 +632,32 @@
             this.kryptonButton1.Size = new System.Drawing.Size(40, 40);
             this.kryptonButton1.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.kryptonButton1.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonButton1.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.kryptonButton1.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.kryptonButton1.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonButton1.StateCommon.Border.Rounding = 20;
             this.kryptonButton1.StateCommon.Border.Width = -5;
             this.kryptonButton1.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.kryptonButton1.StateNormal.Back.Color2 = System.Drawing.Color.DimGray;
-            this.kryptonButton1.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonButton1.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateNormal.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonButton1.StateNormal.Border.Rounding = 20;
             this.kryptonButton1.StateNormal.Border.Width = -5;
             this.kryptonButton1.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.kryptonButton1.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.kryptonButton1.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonButton1.StatePressed.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StatePressed.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonButton1.StatePressed.Border.Rounding = 20;
             this.kryptonButton1.StatePressed.Border.Width = -5;
             this.kryptonButton1.StateTracking.Back.Color1 = System.Drawing.Color.Transparent;
             this.kryptonButton1.StateTracking.Back.Color2 = System.Drawing.Color.Transparent;
-            this.kryptonButton1.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonButton1.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.kryptonButton1.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.kryptonButton1.StateTracking.Border.Rounding = 20;
             this.kryptonButton1.StateTracking.Border.Width = -5;
             this.kryptonButton1.TabIndex = 62;
@@ -742,11 +738,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.StateCommon.Border.Rounding = 15;
             this.StateCommon.Border.Width = 1;
             this.StateCommon.Header.ButtonEdgeInset = -10;
@@ -785,7 +779,6 @@
         private System.Windows.Forms.PictureBox logo_pb;
         private System.Windows.Forms.FlowLayoutPanel menu_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton home_btn;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton signOut_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox searchBar_btn;
         private System.Windows.Forms.Label form_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonButton favorite_btn;
@@ -819,5 +812,7 @@
         private System.Windows.Forms.Button insertInsert_btn;
         private System.Windows.Forms.TextBox releaseYear_tb;
         private System.Windows.Forms.Label release_year;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton admin_button;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton signOut_btn;
     }
 }

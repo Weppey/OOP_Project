@@ -153,6 +153,16 @@ namespace OOP_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_admin_settings_female_282 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-admin-settings-female-282", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_bookmark_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-bookmark-50", resourceCulture);
