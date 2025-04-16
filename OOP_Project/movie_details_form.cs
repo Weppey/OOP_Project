@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
 using MySql.Data.MySqlClient;
@@ -16,18 +11,16 @@ namespace OOP_Project
 {
     public partial class movie_details_form : KryptonForm
     {
-        // Properties to store movieID and currentUserId
         public int MovieID { get; set; }
         public int CurrentUserId { get; set; }
         private string userType;
-        private int currentUserId;
 
         public movie_details_form(int movieID, int currentUserId)
         {
             InitializeComponent();
-            MovieID = movieID;  
-            CurrentUserId = currentUserId;;
-            LoadMovieDetails(); // 🔥 Load when form opens
+            MovieID = movieID;
+            CurrentUserId = currentUserId;
+            LoadMovieDetails();
         }
 
         private void LoadMovieDetails()
@@ -55,7 +48,6 @@ namespace OOP_Project
                         description_lbl.Text = description;
                         releaseDate_lbl.Text = $"Release Year: {releaseYear}";
 
-                        // Genre display handling
                         if (genre_chklb is CheckedListBox checkedList)
                         {
                             checkedList.Items.Clear();
@@ -69,30 +61,46 @@ namespace OOP_Project
                             genre_chklb.Text = $"Genre: {genre}";
                         }
 
-                        try
-                        {
-                            if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
-                            {
-                                using (var webClient = new WebClient())
-                                {
-                                    byte[] imageBytes = webClient.DownloadData(imageUrl);
-                                    using (var stream = new MemoryStream(imageBytes))
-                                    {
-                                        poster_pb.Image = Image.FromStream(stream);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                poster_pb.Image = Image.FromFile(imageUrl);
-                            }
-                        }
-                        catch
-                        {
-                            poster_pb.Image = Properties.Resources.Netflix_N_Symbol_logo;
-                        }
+                        LoadMovieImage(imageUrl);
                     }
                 }
+            }
+        }
+
+        private void LoadMovieImage(string imageUrl)
+        {
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(imageUrl))
+                {
+                    if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
+                    {
+                        using (var webClient = new WebClient())
+                        {
+                            byte[] imageBytes = webClient.DownloadData(imageUrl);
+                            using (var stream = new MemoryStream(imageBytes))
+                            {
+                                poster_pb.Image = Image.FromStream(stream);
+                            }
+                        }
+                    }
+                    else if (File.Exists(imageUrl))
+                    {
+                        poster_pb.Image = Image.FromFile(imageUrl);
+                    }
+                    else
+                    {
+                        poster_pb.Image = Properties.Resources.Netflix_N_Symbol_logo;
+                    }
+                }
+                else
+                {
+                    poster_pb.Image = Properties.Resources.Netflix_N_Symbol_logo;
+                }
+            }
+            catch
+            {
+                poster_pb.Image = Properties.Resources.Netflix_N_Symbol_logo;
             }
         }
 
@@ -106,13 +114,12 @@ namespace OOP_Project
 
             int rating = Convert.ToInt32(rating_cmb.SelectedItem);
             string comment = comment_tb.Text.Trim();
-
             string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
 
-            // 🔍 Check if the user exists
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
+
                 using (MySqlCommand checkCmd = new MySqlCommand("SELECT COUNT(*) FROM users WHERE user_id = @userID", conn))
                 {
                     checkCmd.Parameters.AddWithValue("@userID", CurrentUserId);
@@ -125,7 +132,6 @@ namespace OOP_Project
                     }
                 }
 
-                // ✅ Proceed if user exists
                 using (MySqlCommand cmd = new MySqlCommand("INSERT INTO movie_interaction (user_id, movie_id, rating, comment) VALUES (@userID, @movieID, @rating, @comment)", conn))
                 {
                     cmd.Parameters.AddWithValue("@userID", CurrentUserId);
@@ -134,23 +140,19 @@ namespace OOP_Project
                     cmd.Parameters.AddWithValue("@comment", comment);
 
                     int rowsAffected = cmd.ExecuteNonQuery();
-                    if (rowsAffected > 0)
-                    {
-                        MessageBox.Show("Your rating and comment have been submitted.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("An error occurred. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show(
+                        rowsAffected > 0 ? "Your rating and comment have been submitted." : "An error occurred. Please try again.",
+                        rowsAffected > 0 ? "Success" : "Error",
+                        MessageBoxButtons.OK,
+                        rowsAffected > 0 ? MessageBoxIcon.Information : MessageBoxIcon.Error
+                    );
                 }
             }
         }
 
-
         private void remove_btn_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to remove this movie?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
             if (result == DialogResult.Yes)
             {
                 string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
@@ -169,9 +171,9 @@ namespace OOP_Project
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Movie has been removed successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            home_form homeForm = new home_form(userType, CurrentUserId); // Pass both userType and userId
-                            homeForm.Refresh();         
-                            this.Close(); // Optionally close the form
+                            this.Close();
+                            var homeForm = new home_form(userType, CurrentUserId);
+                            homeForm.Show();
                         }
                         else
                         {
@@ -185,6 +187,5 @@ namespace OOP_Project
                 }
             }
         }
-
     }
 }

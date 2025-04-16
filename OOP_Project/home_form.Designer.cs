@@ -50,7 +50,7 @@
             this.decription_lbl = new System.Windows.Forms.Label();
             this.decription_tb = new System.Windows.Forms.TextBox();
             this.url_lbl = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.url_tb = new System.Windows.Forms.TextBox();
             this.title_lbl = new System.Windows.Forms.Label();
             this.genre_cmb = new System.Windows.Forms.ComboBox();
             this.title_tb = new System.Windows.Forms.TextBox();
@@ -381,7 +381,7 @@
             this.insertMovie_panel.Controls.Add(this.decription_lbl);
             this.insertMovie_panel.Controls.Add(this.decription_tb);
             this.insertMovie_panel.Controls.Add(this.url_lbl);
-            this.insertMovie_panel.Controls.Add(this.textBox1);
+            this.insertMovie_panel.Controls.Add(this.url_tb);
             this.insertMovie_panel.Controls.Add(this.title_lbl);
             this.insertMovie_panel.Controls.Add(this.genre_cmb);
             this.insertMovie_panel.Controls.Add(this.title_tb);
@@ -462,12 +462,12 @@
             this.url_lbl.TabIndex = 67;
             this.url_lbl.Text = "URL";
             // 
-            // textBox1
+            // url_tb
             // 
-            this.textBox1.Location = new System.Drawing.Point(96, 88);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(191, 20);
-            this.textBox1.TabIndex = 66;
+            this.url_tb.Location = new System.Drawing.Point(96, 88);
+            this.url_tb.Name = "url_tb";
+            this.url_tb.Size = new System.Drawing.Size(191, 20);
+            this.url_tb.TabIndex = 66;
             // 
             // title_lbl
             // 
@@ -808,7 +808,7 @@
         private System.Windows.Forms.Label decription_lbl;
         private System.Windows.Forms.TextBox decription_tb;
         private System.Windows.Forms.Label url_lbl;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox url_tb;
         private System.Windows.Forms.Button insertInsert_btn;
         private System.Windows.Forms.TextBox releaseYear_tb;
         private System.Windows.Forms.Label release_year;

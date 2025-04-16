@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -168,7 +169,6 @@ namespace OOP_Project
         {
             try
             {
-                // Setup and send the recovery code via email
                 var smtpClient = new System.Net.Mail.SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
@@ -179,31 +179,32 @@ namespace OOP_Project
                 var mailMessage = new System.Net.Mail.MailMessage
                 {
                     From = new System.Net.Mail.MailAddress("remmm.help@gmail.com"),
-                    Subject = "Password Recovery Code",
-                    IsBodyHtml = true, // Set this to true to allow HTML content
+                    Subject = "🔐 Remmm Password Recovery Code",
+                    IsBodyHtml = true,
+                    BodyEncoding = Encoding.UTF8,
                     Body = $@"
-        <html>
-            <body style='font-family: Arial, sans-serif; color: #333333;'>
-                <div style='background-color: #f4f4f4; padding: 20px; border-radius: 10px;'>
-                    <h2 style='color: #0056b3;'>Password Recovery Request</h2>
-                    <p>Hi there,</p>
-                    <p>We received a request to reset your password. Please use the following code to recover your account:</p>
-                    <div style='font-size: 24px; font-weight: bold; text-align: center; background-color: #e6f7ff; padding: 10px; border-radius: 5px; color: #0056b3;'>
-                        {recoveryCode}
-                    </div>
-                    <p style='margin-top: 20px;'>If you did not request a password reset, please ignore this email.</p>
-                    <p style='font-size: 12px; color: #888888;'>Best regards, <br> Remmm Support Team</p>
-                    <footer style='margin-top: 30px; text-align: center; font-size: 12px; color: #888888;'>
-                        <p>For any issues, contact us at <a href='mailto:support@yourdomain.com'>remmm.help.pdm@gmail.com</a></p>
-                    </footer>
-                </div>
-            </body>
-        </html>"
+<html>
+    <body style='background-color: #141414; font-family: Helvetica, Arial, sans-serif; color: #ffffff; padding: 20px;'>
+        <div style='max-width: 600px; margin: auto; background-color: #1c1c1c; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5);'>
+            <h1 style='color: #e50914; text-align: center;'>Remmm</h1>
+            <h2 style='color: #ffffff; text-align: center;'>Password Recovery</h2>
+            <p style='text-align: center;'>We've received a request to reset your password. Use the code below to continue:</p>
+            <div style='margin: 30px auto; width: fit-content; padding: 15px 30px; background-color: #e50914; color: #ffffff; font-size: 28px; font-weight: bold; border-radius: 6px; text-align: center;'>
+                {recoveryCode}
+            </div>
+            <p style='text-align: center;'>Didn't request this? Just ignore this message.</p>
+            <hr style='border-color: #333333; margin: 30px 0;'>
+            <p style='font-size: 12px; text-align: center; color: #aaaaaa;'>
+                Need help? Contact us at 
+                <a href='mailto:remmm.help@gmail.com' style='color: #e50914; text-decoration: none;'>remmm.help@gmail.com</a>
+            </p>
+            <p style='text-align: center; font-size: 12px; color: #555;'>© 2025 Remmm. All rights reserved.</p>
+        </div>
+    </body>
+</html>"
                 };
 
-
                 mailMessage.To.Add(email);
-
                 smtpClient.Send(mailMessage);
             }
             catch (Exception ex)
@@ -211,6 +212,7 @@ namespace OOP_Project
                 MessageBox.Show($"Failed to send recovery email: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void close_pb_Click(object sender, EventArgs e)
         {
