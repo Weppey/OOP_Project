@@ -25,7 +25,8 @@ namespace OOP_Project
 
         public signup_form()
         {
-            InitializeComponent();   
+            InitializeComponent();
+           
             
         }
 
@@ -106,7 +107,8 @@ namespace OOP_Project
 
         private void signup_form_Load(object sender, EventArgs e)
         {
-           
+            Lbl_Signup.Focus();
+
             string[] securityQuestions = { "What is your mother's maiden name?", "What was your first pet's name?", "What was your first car?", "What elementary school did you attend?", "What is your favorite food?" };
             securityq_cmb.Items.AddRange(securityQuestions);
 
@@ -139,14 +141,7 @@ namespace OOP_Project
 
         private void signup_panel_Paint(object sender, PaintEventArgs e)
         {
-            if (showPass_chkb.Checked)
-            {
-                pass_tb.PasswordChar = '\0';
-            }
-            else
-            {
-                pass_tb.PasswordChar = '*';
-            }
+           //
         }
 
         private void user_tb_TextChanged(object sender, EventArgs e)
@@ -156,7 +151,14 @@ namespace OOP_Project
 
         private void showPass_chkb_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (showPass_chkb.Checked)
+            {
+                pass_tb.PasswordChar = '\0';
+            }
+            else
+            {
+                pass_tb.PasswordChar = '*';
+            }
         }
 
         private void kryptonComboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -327,6 +329,63 @@ namespace OOP_Project
             this.Hide();
         }
 
-     
+       
+
+        private void user_tb_Enter(object sender, EventArgs e)
+        {
+            if(user_tb.Text == "Username")
+            {
+                user_tb.Text = "";
+                user_tb.StateCommon.Content.Color1 = Color.Black;
+            }
+        }
+
+        private void user_tb_Leave(object sender, EventArgs e)
+        {
+            if(user_tb.Text == "")
+            {
+                user_tb.Text = "Username";
+                user_tb.StateCommon.Content.Color1 = Color.Gray;
+            }
+        }
+
+        private void user_tb_MouseEnter(object sender, EventArgs e)
+        {
+  
+        }
+
+        private void signup_form_Shown(object sender, EventArgs e)
+        {
+            this.ActiveControl = null;
+        }
+
+       
+
+      
+
+        private void pass_tb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pass_tb_Enter(object sender, EventArgs e)
+        {
+            if (pass_tb.Text == "Password")
+            {
+                pass_tb.PasswordChar = '*';
+                pass_tb.Text = "";
+                pass_tb.StateCommon.Content.Color1 = Color.Black;
+            }
+        }
+
+        private void pass_tb_Leave(object sender, EventArgs e)
+        {
+            if (pass_tb.Text == "")
+            {
+                pass_tb.PasswordChar = '\0';
+                pass_tb.Text = "Password";
+                pass_tb.StateCommon.Content.Color1 = Color.Gray;
+            }
+        }
     }
 }

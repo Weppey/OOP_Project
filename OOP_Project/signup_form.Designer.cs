@@ -44,13 +44,13 @@
             this.email_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.sign_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.showPass_chkb = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
-            this.pass_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.user_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.bg2_panel = new System.Windows.Forms.Panel();
             this.question_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.birthdate_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.gender_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.process1 = new System.Diagnostics.Process();
+            this.pass_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.signup_panel.SuspendLayout();
@@ -245,17 +245,6 @@
             this.showPass_chkb.Values.Text = "Show password";
             this.showPass_chkb.CheckedChanged += new System.EventHandler(this.showPass_chkb_CheckedChanged);
             // 
-            // pass_tb
-            // 
-            this.pass_tb.Location = new System.Drawing.Point(399, 127);
-            this.pass_tb.Name = "pass_tb";
-            this.pass_tb.Size = new System.Drawing.Size(186, 26);
-            this.pass_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.pass_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.pass_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.pass_tb.TabIndex = 55;
-            this.pass_tb.Text = "Password";
-            // 
             // user_tb
             // 
             this.user_tb.Location = new System.Drawing.Point(399, 95);
@@ -267,6 +256,9 @@
             this.user_tb.TabIndex = 10;
             this.user_tb.Text = "Username";
             this.user_tb.TextChanged += new System.EventHandler(this.user_tb_TextChanged);
+            this.user_tb.Enter += new System.EventHandler(this.user_tb_Enter);
+            this.user_tb.Leave += new System.EventHandler(this.user_tb_Leave);
+            this.user_tb.MouseEnter += new System.EventHandler(this.user_tb_MouseEnter);
             // 
             // bg2_panel
             // 
@@ -317,6 +309,20 @@
             this.process1.StartInfo.UserName = "";
             this.process1.SynchronizingObject = this;
             // 
+            // pass_tb
+            // 
+            this.pass_tb.Location = new System.Drawing.Point(399, 127);
+            this.pass_tb.Name = "pass_tb";
+            this.pass_tb.Size = new System.Drawing.Size(186, 26);
+            this.pass_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.pass_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            this.pass_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.pass_tb.TabIndex = 55;
+            this.pass_tb.Text = "Password";
+            this.pass_tb.TextChanged += new System.EventHandler(this.pass_tb_TextChanged);
+            this.pass_tb.Enter += new System.EventHandler(this.pass_tb_Enter);
+            this.pass_tb.Leave += new System.EventHandler(this.pass_tb_Leave);
+            // 
             // signup_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -334,6 +340,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "signup_form";
             this.Load += new System.EventHandler(this.signup_form_Load);
+            this.Shown += new System.EventHandler(this.signup_form_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.signup_panel.ResumeLayout(false);
@@ -352,7 +359,6 @@
         private System.Windows.Forms.PictureBox close_pb;
         private System.Windows.Forms.Panel bg2_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox user_tb;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox pass_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox showPass_chkb;
         private ComponentFactory.Krypton.Toolkit.KryptonButton sign_btn;
         private System.Diagnostics.Process process1;
@@ -368,5 +374,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel pref_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonLinkLabel login_llbl;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel acc_lbl;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox pass_tb;
     }
 }
