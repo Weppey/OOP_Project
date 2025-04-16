@@ -86,6 +86,7 @@
             this.userName_tb.Size = new System.Drawing.Size(153, 26);
             this.userName_tb.TabIndex = 11;
             this.userName_tb.Text = "Username";
+            this.userName_tb.TextChanged += new System.EventHandler(this.userName_tb_TextChanged);
             this.userName_tb.Enter += new System.EventHandler(this.userName_tb_Enter);
             this.userName_tb.Leave += new System.EventHandler(this.userName_tb_Leave);
             // 
@@ -229,7 +230,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.StateCommon.Border.Rounding = 15;
             this.StateCommon.Border.Width = 1;
-            this.Text = "A";
+            this.Text = "REMMM";
             this.Load += new System.EventHandler(this.login_form_Load);
             this.loginDock_panel.ResumeLayout(false);
             this.loginDock_panel.PerformLayout();

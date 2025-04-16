@@ -25,8 +25,8 @@ namespace OOP_Project
 
         public signup_form()
         {
-            InitializeComponent();
-
+            InitializeComponent();   
+            
         }
 
         private bool IsValidEmail(string email)
@@ -106,6 +106,7 @@ namespace OOP_Project
 
         private void signup_form_Load(object sender, EventArgs e)
         {
+           
             string[] securityQuestions = { "What is your mother's maiden name?", "What was your first pet's name?", "What was your first car?", "What elementary school did you attend?", "What is your favorite food?" };
             securityq_cmb.Items.AddRange(securityQuestions);
 
@@ -113,6 +114,8 @@ namespace OOP_Project
             string[] movieGenres = { "Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western" };
             preferences_clb.Items.AddRange(movieGenres);
         }
+
+
 
         private void minimize_pb_Click(object sender, EventArgs e)
         {
@@ -323,5 +326,7 @@ namespace OOP_Project
             Login_Form.ShowDialog();
             this.Hide();
         }
+
+     
     }
 }
