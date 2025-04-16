@@ -369,17 +369,27 @@
                 MessageBoxButtons btn = MessageBoxButtons.YesNo;
                 MessageBoxIcon icon = MessageBoxIcon.Question;
                 DialogResult result = MessageBox.Show(msg, title, btn, icon);
-                if (result == DialogResult.Yes)
-                {
-                    StayLoggedIn.ClearSession();
-                    login_form loginForm = new login_form();
-                    loginForm.ShowDialog();
-                    this.Hide();
-                }
-                else
-                {
-                    return;
-                }
+
+            if (result == DialogResult.Yes)
+            {
+
+                StayLoggedIn.ClearSession();
+
+                // Use a new process to restart the app
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
+
+                // Then close the current app entirely
+                Application.Exit();
+
+
+                login_form loginForm = new login_form();
+                loginForm.Show();
+            }
+
+            else
+            {
+                return;
+            }
             }
         }
     
