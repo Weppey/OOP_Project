@@ -230,7 +230,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.StateCommon.Border.Rounding = 15;
             this.StateCommon.Border.Width = 1;
-            this.Text = "A";
+            this.Text = "REMMM";
             this.Load += new System.EventHandler(this.login_form_Load);
             this.loginDock_panel.ResumeLayout(false);
             this.loginDock_panel.PerformLayout();

@@ -25,8 +25,8 @@ namespace OOP_Project
 
         public signup_form()
         {
-            InitializeComponent();
-
+            InitializeComponent();   
+            
         }
 
         private bool IsValidEmail(string email)
@@ -106,6 +106,7 @@ namespace OOP_Project
 
         private void signup_form_Load(object sender, EventArgs e)
         {
+           
             string[] securityQuestions = { "What is your mother's maiden name?", "What was your first pet's name?", "What was your first car?", "What elementary school did you attend?", "What is your favorite food?" };
             securityq_cmb.Items.AddRange(securityQuestions);
 
@@ -113,6 +114,8 @@ namespace OOP_Project
             string[] movieGenres = { "Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western" };
             preferences_clb.Items.AddRange(movieGenres);
         }
+
+
 
         private void minimize_pb_Click(object sender, EventArgs e)
         {
@@ -138,11 +141,11 @@ namespace OOP_Project
         {
             if (showPass_chkb.Checked)
             {
-                password_tb.PasswordChar = '\0';
+                pass_tb.PasswordChar = '\0';
             }
             else
             {
-                password_tb.PasswordChar = '*';
+                pass_tb.PasswordChar = '*';
             }
         }
 
@@ -206,11 +209,11 @@ namespace OOP_Project
 
         private void login_btn_Click(object sender, EventArgs e)
         {
-            string username = userName_tb.Text;
+            string username = user_tb.Text;
             string email = email_tb.Text;
-            string password = password_tb.Text;
+            string password = pass_tb.Text;
             string gender = gender_cmb.SelectedItem?.ToString();
-            string birthdate = birthdate_dtp.Value.ToString("yyyy-MM-dd");
+            string birthdate = birthday_dtp.Value.ToString("yyyy-MM-dd");
             string securityQuestion = securityq_cmb.SelectedItem?.ToString();
             string securityAnswer = answer_tb.Text;
 
@@ -238,9 +241,9 @@ namespace OOP_Project
             }
 
             // Validate age
-            int age = DateTime.Now.Year - birthdate_dtp.Value.Year;
-            if (DateTime.Now.Month < birthdate_dtp.Value.Month ||
-                (DateTime.Now.Month == birthdate_dtp.Value.Month && DateTime.Now.Day < birthdate_dtp.Value.Day))
+            int age = DateTime.Now.Year - birthday_dtp.Value.Year;
+            if (DateTime.Now.Month < birthday_dtp.Value.Month ||
+                (DateTime.Now.Month == birthday_dtp.Value.Month && DateTime.Now.Day < birthday_dtp.Value.Day))
             {
                 age--;
             }
@@ -324,22 +327,6 @@ namespace OOP_Project
             this.Hide();
         }
 
-        private void userName_tb_Enter(object sender, EventArgs e)
-        {
-            if (userName_tb.Text == "Username")
-            {
-                userName_tb.Text = "";
-                userName_tb.ForeColor = Color.Black;
-            }
-        }
-
-        private void userName_tb_Leave(object sender, EventArgs e)
-        {
-            if (userName_tb.Text == "")
-            {
-                userName_tb.Text = "Username";
-                userName_tb.ForeColor = Color.DarkGray;
-            }
-        }
+     
     }
 }
