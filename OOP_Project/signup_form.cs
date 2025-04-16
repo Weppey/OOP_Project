@@ -93,7 +93,7 @@ namespace OOP_Project
             {
                 MessageBox.Show($"Failed to send email: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+        }                       
         //test
 
 
@@ -107,22 +107,111 @@ namespace OOP_Project
         private void signup_form_Load(object sender, EventArgs e)
         {
             string[] securityQuestions = { "What is your mother's maiden name?", "What was your first pet's name?", "What was your first car?", "What elementary school did you attend?", "What is your favorite food?" };
-            securityQ_cb.Items.AddRange(securityQuestions);
+            securityq_cmb.Items.AddRange(securityQuestions);
 
             // Add movie genres to CheckedListBox (preferences)
             string[] movieGenres = { "Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western" };
             preferences_clb.Items.AddRange(movieGenres);
         }
 
-
-        private async void signup_btn_Click(object sender, EventArgs e)
+        private void minimize_pb_Click(object sender, EventArgs e)
         {
-            string username = username_tb.Text;
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void close_pb_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            login_form LoginForm = new login_form();
+            LoginForm.Show();
+            this.Close();
+
+          
+        }
+
+        private void Lbl_Signup_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void signup_panel_Paint(object sender, PaintEventArgs e)
+        {
+            if (showPass_chkb.Checked)
+            {
+                pass_tb.PasswordChar = '\0';
+            }
+            else
+            {
+                pass_tb.PasswordChar = '*';
+            }
+        }
+
+        private void user_tb_TextChanged(object sender, EventArgs e)
+        {
+
+        }      
+
+        private void showPass_chkb_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kryptonComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void answer_tb_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+       
+
+       
+        private void birthday_dtp_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void securityq_cmb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void question_lbl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void birthdate_lbl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void gender_lbl_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void bg2_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void kryptonLabel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void login_btn_Click(object sender, EventArgs e)
+        {
+            string username = user_tb.Text;
             string email = email_tb.Text;
-            string password = password_tb.Text;
-            string gender = gender_cb.SelectedItem?.ToString();
-            string birthdate = birthdate_picker.Value.ToString("yyyy-MM-dd");
-            string securityQuestion = securityQ_cb.SelectedItem?.ToString();
+            string password = pass_tb.Text;
+            string gender = gender_cmb.SelectedItem?.ToString();
+            string birthdate = birthday_dtp.Value.ToString("yyyy-MM-dd");
+            string securityQuestion = securityq_cmb.SelectedItem?.ToString();
             string securityAnswer = answer_tb.Text;
 
             // Validate input fields
@@ -149,9 +238,9 @@ namespace OOP_Project
             }
 
             // Validate age
-            int age = DateTime.Now.Year - birthdate_picker.Value.Year;
-            if (DateTime.Now.Month < birthdate_picker.Value.Month ||
-                (DateTime.Now.Month == birthdate_picker.Value.Month && DateTime.Now.Day < birthdate_picker.Value.Day))
+            int age = DateTime.Now.Year - birthday_dtp.Value.Year;
+            if (DateTime.Now.Month < birthday_dtp.Value.Month ||
+                (DateTime.Now.Month == birthday_dtp.Value.Month && DateTime.Now.Day < birthday_dtp.Value.Day))
             {
                 age--;
             }
@@ -217,8 +306,8 @@ namespace OOP_Project
                     verifyForm.ShowDialog();
                     this.Close();
 
-                   
-                    
+
+
                 }
             }
             catch (Exception ex)
@@ -227,56 +316,12 @@ namespace OOP_Project
             }
         }
 
-
-        private void login_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {   
-            this.Hide();
+        private void login_llbl_LinkClicked(object sender, EventArgs e)
+        {
+          //  this.Hide();
             login_form Login_Form = new login_form();
             Login_Form.ShowDialog();
             this.Hide();
-            
-        }
-
-        private void password_chkb_CheckedChanged(object sender, EventArgs e)
-        {
-            if (password_chkb.Checked)
-            {
-                password_tb.PasswordChar = '\0';
-            }
-            else
-            {
-                password_tb.PasswordChar = '*';
-            }
-        }
-
-        private void minimize_pb_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void close_pb_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            login_form LoginForm = new login_form();
-            LoginForm.Show();
-            this.Close();
-
-          
-        }
-
-        private void Lbl_Signup_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void signup_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void username_tb_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -364,24 +364,33 @@
 
         private void signOut_btn_Click(object sender, EventArgs e)
         {
-            string msg = "Do you really want to sign out?";
-            string title = "Confirm Sign Out";
-            MessageBoxButtons btn = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Question;
+                string msg = "Do you really want to sign out?";
+                string title = "Confirm Navigation";
+                MessageBoxButtons btn = MessageBoxButtons.YesNo;
+                MessageBoxIcon icon = MessageBoxIcon.Question;
+                DialogResult result = MessageBox.Show(msg, title, btn, icon);
 
-            DialogResult result = MessageBox.Show(msg, title, btn, icon);
             if (result == DialogResult.Yes)
             {
+
                 StayLoggedIn.ClearSession();
 
-                this.Hide();
-                login_form loginForm = new login_form();
-                loginForm.ShowDialog();
+                // Use a new process to restart the app
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
 
-                this.Close(); // ensures the current form is properly closed
+                // Then close the current app entirely
+                Application.Exit();
+
+
+                login_form loginForm = new login_form();
+                loginForm.Show();
+            }
+
+            else
+            {
+                return;
+            }
             }
         }
-
-    }
-
+    
 }
