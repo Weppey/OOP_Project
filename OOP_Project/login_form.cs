@@ -23,8 +23,8 @@ namespace OOP_Project
 
         private void login_btn_Click(object sender, EventArgs e)
         {
-            string username = userName_tb.Text;
-            string password = password_tb.Text;
+            string username = userName_tb.Text.Trim();
+            string password = password_tb.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
@@ -38,39 +38,33 @@ namespace OOP_Project
                 {
                     connection.Open();
 
-                    // Retrieve hashed password, user type, and user ID from the database
-                    string query = "SELECT user_id, password, user_type FROM users WHERE username = @username";
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    cmd.Parameters.AddWithValue("@username", username);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    string query = "SELECT user_id, password, user_type FROM users WHERE username = @username LIMIT 1";
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        if (reader.Read())
+                        cmd.Parameters.AddWithValue("@username", username);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            string storedHashedPassword = reader["password"].ToString();
-                            string userType = reader["user_type"].ToString();
-                            int userId = reader.GetInt32("user_id"); // Retrieve the user ID
-
-                            // Verify password using BCrypt
-                            if (BCrypt.Net.BCrypt.Verify(password, storedHashedPassword))
+                            if (reader.Read())
                             {
-                                MessageBox.Show($"Login successful! Welcome {userType}.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                string storedHash = reader["password"].ToString();
+                                string userType = reader["user_type"].ToString();
+                                int userId = Convert.ToInt32(reader["user_id"]);
 
-                                try
+                                if (BCrypt.Net.BCrypt.Verify(password, storedHash))
                                 {
-                                    // Hide login form and open home form
+                                    StayLoggedIn.SaveUserSession(userType, userId); // Save session first
+
+                                    MessageBox.Show($"Welcome back, {username}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                                     this.Hide();
-                                    home_form homeForm = new home_form(userType, userId); // Pass both userType and userId
+                                    home_form homeForm = new home_form(userType, userId);
                                     homeForm.ShowDialog();
                                     this.Close();
-
-                                    // Save session data
-                                    StayLoggedIn.SaveUserSession(userType, userId);
                                 }
-                                catch (Exception ex)
+                                else
                                 {
-                                    MessageBox.Show("Error loading home form: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    this.Show(); // Show login form again if something fails
+                                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
@@ -78,16 +72,12 @@ namespace OOP_Project
                                 MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("An error occurred while attempting to log in:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -123,6 +113,38 @@ namespace OOP_Project
         private void minimize_pb_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void showPass_chkb_CheckedChanged(object sender, EventArgs e)
+        {
+            password_tb.PasswordChar = showPass_chkb.Checked ? '\0' : '*';
+        }
+
+        private void minimize_pb_MouseEnter(object sender, EventArgs e)
+        {
+            minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
+        }
+
+        private void minimize_pb_MouseLeave(object sender, EventArgs e)
+        {
+            minimize_pb.BackColor = Color.Transparent;
+        }
+
+        private void close_pb_MouseEnter(object sender, EventArgs e)
+        {
+            close_pb.BackColor = Color.FromArgb(226, 0, 39);
+        }
+
+        private void close_pb_MouseLeave(object sender, EventArgs e)
+        {
+            close_pb.BackColor = Color.Transparent;
+        }
+
+        private void forgotPassword_llbl_Click(object sender, EventArgs e)
+        {
+            account_recovery_form recoveryForm = new account_recovery_form();
+            recoveryForm.Show();
+            this.Hide();
         }
 
         private void userName_tb_Enter(object sender, EventArgs e)
@@ -161,43 +183,6 @@ namespace OOP_Project
                 password_tb.Text = "";
                 password_tb.ForeColor = Color.Black;
             }
-        }
-
-        private void showPass_chkb_CheckedChanged(object sender, EventArgs e)
-        {
-            password_tb.PasswordChar = showPass_chkb.Checked ? '\0' : '*';
-        }
-
-        private void minimize_pb_MouseEnter(object sender, EventArgs e)
-        {
-            minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
-        }
-
-        private void minimize_pb_MouseLeave(object sender, EventArgs e)
-        {
-            minimize_pb.BackColor = Color.Transparent;
-        }
-
-        private void close_pb_MouseEnter(object sender, EventArgs e)
-        {
-            close_pb.BackColor = Color.FromArgb(226, 0, 39);
-        }
-
-        private void close_pb_MouseLeave(object sender, EventArgs e)
-        {
-            close_pb.BackColor = Color.Transparent;
-        }
-
-        private void forgotPassword_llbl_Click(object sender, EventArgs e)
-        {
-            account_recovery_form recoveryForm = new account_recovery_form();
-            recoveryForm.Show();
-            this.Hide();
-        }
-
-        private void userName_tb_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

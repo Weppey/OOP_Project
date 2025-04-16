@@ -118,6 +118,12 @@
             // rating_cmb
             // 
             this.rating_cmb.FormattingEnabled = true;
+            this.rating_cmb.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
             this.rating_cmb.Location = new System.Drawing.Point(387, 144);
             this.rating_cmb.Name = "rating_cmb";
             this.rating_cmb.Size = new System.Drawing.Size(121, 21);
