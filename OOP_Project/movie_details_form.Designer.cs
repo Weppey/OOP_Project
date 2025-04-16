@@ -47,6 +47,7 @@
             this.poster_pb.Location = new System.Drawing.Point(30, 30);
             this.poster_pb.Name = "poster_pb";
             this.poster_pb.Size = new System.Drawing.Size(180, 217);
+            this.poster_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.poster_pb.TabIndex = 0;
             this.poster_pb.TabStop = false;
             // 

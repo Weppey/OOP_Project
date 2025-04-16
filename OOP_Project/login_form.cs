@@ -184,5 +184,10 @@ namespace OOP_Project
                 password_tb.ForeColor = Color.Black;
             }
         }
+
+        private void userName_tb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

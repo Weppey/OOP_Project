@@ -34,29 +34,30 @@
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.Lbl_Signup = new System.Windows.Forms.Label();
             this.signup_panel = new System.Windows.Forms.Panel();
+            this.login_llbl = new ComponentFactory.Krypton.Toolkit.KryptonLinkLabel();
+            this.acc_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.pref_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.preferences_clb = new ComponentFactory.Krypton.Toolkit.KryptonCheckedListBox();
+            this.securityq_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.answer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.email_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.sign_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.showPass_chkb = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
-            this.pass_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.password_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.user_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.bg2_panel = new System.Windows.Forms.Panel();
-            this.process1 = new System.Diagnostics.Process();
-            this.email_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.birthday_dtp = new ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker();
-            this.answer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.securityq_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.question_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.birthdate_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.gender_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.preferences_clb = new ComponentFactory.Krypton.Toolkit.KryptonCheckedListBox();
-            this.pref_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.acc_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.login_llbl = new ComponentFactory.Krypton.Toolkit.KryptonLinkLabel();
+            this.process1 = new System.Diagnostics.Process();
+            this.userName_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.birthdate_dtp = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.signup_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.securityq_cmb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
             this.SuspendLayout();
             // 
             // minimize_pb
@@ -107,18 +108,19 @@
             // signup_panel
             // 
             this.signup_panel.BackColor = System.Drawing.Color.White;
+            this.signup_panel.Controls.Add(this.birthdate_dtp);
+            this.signup_panel.Controls.Add(this.userName_tb);
             this.signup_panel.Controls.Add(this.login_llbl);
             this.signup_panel.Controls.Add(this.acc_lbl);
             this.signup_panel.Controls.Add(this.pref_lbl);
             this.signup_panel.Controls.Add(this.preferences_clb);
             this.signup_panel.Controls.Add(this.securityq_cmb);
             this.signup_panel.Controls.Add(this.answer_tb);
-            this.signup_panel.Controls.Add(this.birthday_dtp);
             this.signup_panel.Controls.Add(this.gender_cmb);
             this.signup_panel.Controls.Add(this.email_tb);
             this.signup_panel.Controls.Add(this.sign_btn);
             this.signup_panel.Controls.Add(this.showPass_chkb);
-            this.signup_panel.Controls.Add(this.pass_tb);
+            this.signup_panel.Controls.Add(this.password_tb);
             this.signup_panel.Controls.Add(this.user_tb);
             this.signup_panel.Controls.Add(this.bg2_panel);
             this.signup_panel.Controls.Add(this.Lbl_Signup);
@@ -130,6 +132,83 @@
             this.signup_panel.Size = new System.Drawing.Size(846, 454);
             this.signup_panel.TabIndex = 3;
             this.signup_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.signup_panel_Paint);
+            // 
+            // login_llbl
+            // 
+            this.login_llbl.Location = new System.Drawing.Point(634, 421);
+            this.login_llbl.Name = "login_llbl";
+            this.login_llbl.Size = new System.Drawing.Size(44, 20);
+            this.login_llbl.TabIndex = 69;
+            this.login_llbl.Values.Text = "Login!";
+            this.login_llbl.LinkClicked += new System.EventHandler(this.login_llbl_LinkClicked);
+            // 
+            // acc_lbl
+            // 
+            this.acc_lbl.Location = new System.Drawing.Point(487, 421);
+            this.acc_lbl.Name = "acc_lbl";
+            this.acc_lbl.Size = new System.Drawing.Size(150, 20);
+            this.acc_lbl.TabIndex = 68;
+            this.acc_lbl.Values.Text = "Already have an account?";
+            // 
+            // pref_lbl
+            // 
+            this.pref_lbl.Location = new System.Drawing.Point(610, 167);
+            this.pref_lbl.Name = "pref_lbl";
+            this.pref_lbl.Size = new System.Drawing.Size(113, 20);
+            this.pref_lbl.TabIndex = 67;
+            this.pref_lbl.Values.Text = "Movie Preferences:";
+            // 
+            // preferences_clb
+            // 
+            this.preferences_clb.Location = new System.Drawing.Point(610, 193);
+            this.preferences_clb.Name = "preferences_clb";
+            this.preferences_clb.Size = new System.Drawing.Size(220, 128);
+            this.preferences_clb.TabIndex = 66;
+            // 
+            // securityq_cmb
+            // 
+            this.securityq_cmb.DropDownWidth = 183;
+            this.securityq_cmb.Location = new System.Drawing.Point(402, 345);
+            this.securityq_cmb.Name = "securityq_cmb";
+            this.securityq_cmb.Size = new System.Drawing.Size(186, 21);
+            this.securityq_cmb.TabIndex = 62;
+            this.securityq_cmb.SelectedIndexChanged += new System.EventHandler(this.securityq_cmb_SelectedIndexChanged);
+            // 
+            // answer_tb
+            // 
+            this.answer_tb.Location = new System.Drawing.Point(402, 372);
+            this.answer_tb.Name = "answer_tb";
+            this.answer_tb.Size = new System.Drawing.Size(186, 26);
+            this.answer_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.answer_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            this.answer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.answer_tb.TabIndex = 61;
+            this.answer_tb.Text = "Answer";
+            this.answer_tb.TextChanged += new System.EventHandler(this.answer_tb_TextChanged_1);
+            // 
+            // gender_cmb
+            // 
+            this.gender_cmb.DropDownWidth = 183;
+            this.gender_cmb.Items.AddRange(new object[] {
+            "Female",
+            "Male",
+            "Prefer not to say"});
+            this.gender_cmb.Location = new System.Drawing.Point(399, 238);
+            this.gender_cmb.Name = "gender_cmb";
+            this.gender_cmb.Size = new System.Drawing.Size(183, 21);
+            this.gender_cmb.TabIndex = 59;
+            this.gender_cmb.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox1_SelectedIndexChanged);
+            // 
+            // email_tb
+            // 
+            this.email_tb.Location = new System.Drawing.Point(399, 185);
+            this.email_tb.Name = "email_tb";
+            this.email_tb.Size = new System.Drawing.Size(186, 26);
+            this.email_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.email_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            this.email_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.email_tb.TabIndex = 58;
+            this.email_tb.Text = "Email";
             // 
             // sign_btn
             // 
@@ -160,28 +239,23 @@
             this.showPass_chkb.Values.Text = "Show password";
             this.showPass_chkb.CheckedChanged += new System.EventHandler(this.showPass_chkb_CheckedChanged);
             // 
-            // pass_tb
+            // password_tb
             // 
-            this.pass_tb.Location = new System.Drawing.Point(399, 127);
-            this.pass_tb.Name = "pass_tb";
-            this.pass_tb.Size = new System.Drawing.Size(186, 26);
-            this.pass_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.pass_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.pass_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.pass_tb.TabIndex = 55;
-            this.pass_tb.Text = "Password";
+            this.password_tb.Location = new System.Drawing.Point(399, 127);
+            this.password_tb.Name = "password_tb";
+            this.password_tb.Size = new System.Drawing.Size(186, 26);
+            this.password_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.password_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            this.password_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.password_tb.TabIndex = 55;
+            this.password_tb.Text = "Password";
             // 
             // user_tb
             // 
-            this.user_tb.Location = new System.Drawing.Point(399, 95);
+            this.user_tb.Location = new System.Drawing.Point(0, 0);
             this.user_tb.Name = "user_tb";
-            this.user_tb.Size = new System.Drawing.Size(186, 26);
-            this.user_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.user_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.user_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.user_tb.TabIndex = 10;
-            this.user_tb.Text = "Username";
-            this.user_tb.TextChanged += new System.EventHandler(this.user_tb_TextChanged);
+            this.user_tb.Size = new System.Drawing.Size(100, 23);
+            this.user_tb.TabIndex = 70;
             // 
             // bg2_panel
             // 
@@ -194,70 +268,6 @@
             this.bg2_panel.Size = new System.Drawing.Size(385, 454);
             this.bg2_panel.TabIndex = 54;
             this.bg2_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.bg2_panel_Paint);
-            // 
-            // process1
-            // 
-            this.process1.StartInfo.Domain = "";
-            this.process1.StartInfo.LoadUserProfile = false;
-            this.process1.StartInfo.Password = null;
-            this.process1.StartInfo.StandardErrorEncoding = null;
-            this.process1.StartInfo.StandardOutputEncoding = null;
-            this.process1.StartInfo.UserName = "";
-            this.process1.SynchronizingObject = this;
-            // 
-            // email_tb
-            // 
-            this.email_tb.Location = new System.Drawing.Point(399, 185);
-            this.email_tb.Name = "email_tb";
-            this.email_tb.Size = new System.Drawing.Size(186, 26);
-            this.email_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.email_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.email_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.email_tb.TabIndex = 58;
-            this.email_tb.Text = "Email";
-            // 
-            // gender_cmb
-            // 
-            this.gender_cmb.DropDownWidth = 183;
-            this.gender_cmb.Items.AddRange(new object[] {
-            "Female",
-            "Male",
-            "Prefer not to say"});
-            this.gender_cmb.Location = new System.Drawing.Point(399, 238);
-            this.gender_cmb.Name = "gender_cmb";
-            this.gender_cmb.Size = new System.Drawing.Size(183, 21);
-            this.gender_cmb.TabIndex = 59;
-            this.gender_cmb.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox1_SelectedIndexChanged);
-            // 
-            // birthday_dtp
-            // 
-            this.birthday_dtp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.birthday_dtp.Location = new System.Drawing.Point(399, 288);
-            this.birthday_dtp.Name = "birthday_dtp";
-            this.birthday_dtp.Size = new System.Drawing.Size(183, 21);
-            this.birthday_dtp.TabIndex = 60;
-            this.birthday_dtp.ValueChanged += new System.EventHandler(this.birthday_dtp_ValueChanged);
-            // 
-            // answer_tb
-            // 
-            this.answer_tb.Location = new System.Drawing.Point(402, 372);
-            this.answer_tb.Name = "answer_tb";
-            this.answer_tb.Size = new System.Drawing.Size(186, 26);
-            this.answer_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.answer_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.answer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.answer_tb.TabIndex = 61;
-            this.answer_tb.Text = "Answer";
-            this.answer_tb.TextChanged += new System.EventHandler(this.answer_tb_TextChanged_1);
-            // 
-            // securityq_cmb
-            // 
-            this.securityq_cmb.DropDownWidth = 183;
-            this.securityq_cmb.Location = new System.Drawing.Point(402, 345);
-            this.securityq_cmb.Name = "securityq_cmb";
-            this.securityq_cmb.Size = new System.Drawing.Size(186, 21);
-            this.securityq_cmb.TabIndex = 62;
-            this.securityq_cmb.SelectedIndexChanged += new System.EventHandler(this.securityq_cmb_SelectedIndexChanged);
             // 
             // question_lbl
             // 
@@ -286,37 +296,35 @@
             this.gender_lbl.Values.Text = "Gender:";
             this.gender_lbl.Paint += new System.Windows.Forms.PaintEventHandler(this.gender_lbl_Paint);
             // 
-            // preferences_clb
+            // process1
             // 
-            this.preferences_clb.Location = new System.Drawing.Point(610, 193);
-            this.preferences_clb.Name = "preferences_clb";
-            this.preferences_clb.Size = new System.Drawing.Size(220, 128);
-            this.preferences_clb.TabIndex = 66;
+            this.process1.StartInfo.Domain = "";
+            this.process1.StartInfo.LoadUserProfile = false;
+            this.process1.StartInfo.Password = null;
+            this.process1.StartInfo.StandardErrorEncoding = null;
+            this.process1.StartInfo.StandardOutputEncoding = null;
+            this.process1.StartInfo.UserName = "";
+            this.process1.SynchronizingObject = this;
             // 
-            // pref_lbl
+            // userName_tb
             // 
-            this.pref_lbl.Location = new System.Drawing.Point(610, 167);
-            this.pref_lbl.Name = "pref_lbl";
-            this.pref_lbl.Size = new System.Drawing.Size(113, 20);
-            this.pref_lbl.TabIndex = 67;
-            this.pref_lbl.Values.Text = "Movie Preferences:";
+            this.userName_tb.Location = new System.Drawing.Point(399, 95);
+            this.userName_tb.Name = "userName_tb";
+            this.userName_tb.Size = new System.Drawing.Size(186, 26);
+            this.userName_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.userName_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            this.userName_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.userName_tb.TabIndex = 71;
+            this.userName_tb.Text = "Username";
+            this.userName_tb.Enter += new System.EventHandler(this.userName_tb_Enter);
+            this.userName_tb.Leave += new System.EventHandler(this.userName_tb_Leave);
             // 
-            // acc_lbl
+            // birthdate_dtp
             // 
-            this.acc_lbl.Location = new System.Drawing.Point(487, 421);
-            this.acc_lbl.Name = "acc_lbl";
-            this.acc_lbl.Size = new System.Drawing.Size(150, 20);
-            this.acc_lbl.TabIndex = 68;
-            this.acc_lbl.Values.Text = "Already have an account?";
-            // 
-            // login_llbl
-            // 
-            this.login_llbl.Location = new System.Drawing.Point(634, 421);
-            this.login_llbl.Name = "login_llbl";
-            this.login_llbl.Size = new System.Drawing.Size(44, 20);
-            this.login_llbl.TabIndex = 69;
-            this.login_llbl.Values.Text = "Login!";
-            this.login_llbl.LinkClicked += new System.EventHandler(this.login_llbl_LinkClicked);
+            this.birthdate_dtp.Location = new System.Drawing.Point(402, 297);
+            this.birthdate_dtp.Name = "birthdate_dtp";
+            this.birthdate_dtp.Size = new System.Drawing.Size(180, 20);
+            this.birthdate_dtp.TabIndex = 72;
             // 
             // signup_form
             // 
@@ -339,8 +347,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.signup_panel.ResumeLayout(false);
             this.signup_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.securityq_cmb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -353,13 +361,12 @@
         private System.Windows.Forms.PictureBox close_pb;
         private System.Windows.Forms.Panel bg2_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox user_tb;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox pass_tb;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox password_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox showPass_chkb;
         private ComponentFactory.Krypton.Toolkit.KryptonButton sign_btn;
         private System.Diagnostics.Process process1;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox gender_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox email_tb;
-        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker birthday_dtp;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox answer_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox securityq_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel question_lbl;
@@ -369,5 +376,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel pref_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonLinkLabel login_llbl;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel acc_lbl;
+        private ComponentFactory.Krypton.Toolkit.KryptonTextBox userName_tb;
+        private System.Windows.Forms.DateTimePicker birthdate_dtp;
     }
 }

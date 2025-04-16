@@ -34,7 +34,6 @@
             // 
             // poster_pb
             // 
-            this.poster_pb.Image = global::OOP_Project.Properties.Resources._1_2;
             this.poster_pb.Location = new System.Drawing.Point(0, 0);
             this.poster_pb.Margin = new System.Windows.Forms.Padding(10);
             this.poster_pb.Name = "poster_pb";

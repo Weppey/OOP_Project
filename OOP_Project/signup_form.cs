@@ -138,11 +138,11 @@ namespace OOP_Project
         {
             if (showPass_chkb.Checked)
             {
-                pass_tb.PasswordChar = '\0';
+                password_tb.PasswordChar = '\0';
             }
             else
             {
-                pass_tb.PasswordChar = '*';
+                password_tb.PasswordChar = '*';
             }
         }
 
@@ -206,11 +206,11 @@ namespace OOP_Project
 
         private void login_btn_Click(object sender, EventArgs e)
         {
-            string username = user_tb.Text;
+            string username = userName_tb.Text;
             string email = email_tb.Text;
-            string password = pass_tb.Text;
+            string password = password_tb.Text;
             string gender = gender_cmb.SelectedItem?.ToString();
-            string birthdate = birthday_dtp.Value.ToString("yyyy-MM-dd");
+            string birthdate = birthdate_dtp.Value.ToString("yyyy-MM-dd");
             string securityQuestion = securityq_cmb.SelectedItem?.ToString();
             string securityAnswer = answer_tb.Text;
 
@@ -238,9 +238,9 @@ namespace OOP_Project
             }
 
             // Validate age
-            int age = DateTime.Now.Year - birthday_dtp.Value.Year;
-            if (DateTime.Now.Month < birthday_dtp.Value.Month ||
-                (DateTime.Now.Month == birthday_dtp.Value.Month && DateTime.Now.Day < birthday_dtp.Value.Day))
+            int age = DateTime.Now.Year - birthdate_dtp.Value.Year;
+            if (DateTime.Now.Month < birthdate_dtp.Value.Month ||
+                (DateTime.Now.Month == birthdate_dtp.Value.Month && DateTime.Now.Day < birthdate_dtp.Value.Day))
             {
                 age--;
             }
@@ -322,6 +322,24 @@ namespace OOP_Project
             login_form Login_Form = new login_form();
             Login_Form.ShowDialog();
             this.Hide();
+        }
+
+        private void userName_tb_Enter(object sender, EventArgs e)
+        {
+            if (userName_tb.Text == "Username")
+            {
+                userName_tb.Text = "";
+                userName_tb.ForeColor = Color.Black;
+            }
+        }
+
+        private void userName_tb_Leave(object sender, EventArgs e)
+        {
+            if (userName_tb.Text == "")
+            {
+                userName_tb.Text = "Username";
+                userName_tb.ForeColor = Color.DarkGray;
+            }
         }
     }
 }

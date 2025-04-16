@@ -8,10 +8,11 @@
     using System.Drawing.Drawing2D;
     using ComponentFactory.Krypton.Toolkit;
     using System.Drawing.Imaging;
+    using System.IO;
 
 
 
-    namespace OOP_Project
+namespace OOP_Project
     {
         public partial class home_form : KryptonForm
         {
@@ -134,49 +135,98 @@
                 {
                     while (reader.Read())
                     {
-                        int movieID = reader.GetInt32("movie_id");
-                        string imageUrl = reader.GetString("image_url");
 
                         MovieCard card = new MovieCard();
-                        card.MovieID = movieID;
+                        int movieID = reader.GetInt32("movie_id");
+
+
+                        string imageUrl = reader["image_url"]?.ToString();
+                        if (!string.IsNullOrWhiteSpace(imageUrl))
+                        {
+                            // Check if the URL doesn't have an extension, then append .jpg or .png
+                            if (!imageUrl.EndsWith(".jpg") && !imageUrl.EndsWith(".png"))
+                            {
+                                imageUrl += ".jpg"; // Or use .png if you prefer
+                            }
+
+                            try
+                            {
+                                if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
+                                {
+                                    using (var webClient = new System.Net.WebClient())
+                                    {
+                                        byte[] imageBytes = webClient.DownloadData(imageUrl);
+                                        using (var stream = new System.IO.MemoryStream(imageBytes))
+                                        {
+                                            card.Poster = Image.FromStream(stream);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    // Handle the case where the image URL is invalid
+                                    card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show($"Failed to load image for movie ID {movieID}.\n\n{ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
+                            }
+                        }
+                        else
+                        {
+                            card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
+                        }
 
                         try
                         {
-                            if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
+                            if (!string.IsNullOrWhiteSpace(imageUrl))
                             {
-                                using (var webClient = new System.Net.WebClient())
+                                // If the URL is well-formed, attempt to load the image from the web
+                                if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
                                 {
-                                    byte[] imageBytes = webClient.DownloadData(imageUrl);
-                                    using (var stream = new System.IO.MemoryStream(imageBytes))
+                                    using (var webClient = new System.Net.WebClient())
                                     {
-                                        card.Poster = Image.FromStream(stream);
+                                        byte[] imageBytes = webClient.DownloadData(imageUrl);
+                                        using (var stream = new System.IO.MemoryStream(imageBytes))
+                                        {
+                                            card.Poster = Image.FromStream(stream);
+                                        }
                                     }
+                                }
+                                // If it's a local file path, try loading the image from the file system
+                                else if (File.Exists(imageUrl))
+                                {
+                                    card.Poster = Image.FromFile(imageUrl);
+                                }
+                                else
+                                {
+                                    // If URL is invalid, set a default image
+                                    card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
                                 }
                             }
                             else
                             {
-                                card.Poster = Image.FromFile(imageUrl);
+                                // If the image URL is empty or null, set a default image
+                                card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
                             }
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"Error loading image for movie {movieID}: {ex.Message}");
-                            card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
+                            // Show a message box with the error details
+                            MessageBox.Show($"Failed to load image for movie ID {movieID}.\n\n{ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            card.Poster = Properties.Resources.Netflix_N_Symbol_logo; // Fallback image
                         }
 
-                        // 🔸 Pass currentUserId to details form
-                        card.MovieClicked += (s, e) =>
-                        {
-                            movie_details_form detailsForm = new movie_details_form(movieID, currentUserId);
-                            detailsForm.ShowDialog();
-                        };
-
+                        // Add the movie card to the flow panel
                         recommendedMovie_flp.Controls.Add(card);
                     }
                 }
             }
-        }   
-    private void close_pb_Click(object sender, EventArgs e)
+        }
+
+        private void close_pb_Click(object sender, EventArgs e)
             {
                 string msg = "Do you want to leave this page?";
                 string title = "Confirm Naviagtion";
@@ -353,7 +403,7 @@
                 return;
             }
     
-            string imageUrl = url_lbl.Text.Trim();
+            string imageUrl = url_tb.Text.Trim();
 
 
             // All good, insert the movie
