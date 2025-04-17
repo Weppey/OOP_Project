@@ -15,6 +15,7 @@ using Org.BouncyCastle.Asn1.Crmf;
 using RestSharp;
 using RestSharp.Authenticators;
 using System.Net.Mail;
+using ComponentFactory.Krypton.Toolkit;
 
 
 namespace OOP_Project
@@ -104,6 +105,7 @@ namespace OOP_Project
         private void signup_form_Load(object sender, EventArgs e)
         {
             Lbl_Signup.Focus();
+            birthday_dtp.Text = "mm/dd/yyyy";
 
             string[] securityQuestions = { "What is your mother's maiden name?", "What was your first pet's name?", "What was your first car?", "What elementary school did you attend?", "What is your favorite food?" };
             securityq_cmb.Items.AddRange(securityQuestions);
@@ -167,9 +169,9 @@ namespace OOP_Project
 
         }
 
-       
 
-       
+
+
         private void birthday_dtp_ValueChanged(object sender, EventArgs e)
         {
 
@@ -227,6 +229,7 @@ namespace OOP_Project
             // Validate email format
             if (!IsValidEmail(email))
             {
+                email = email.Trim();
                 MessageBox.Show("Please enter a valid email address!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return; // Exit early, no data will reach the database
             }
@@ -355,9 +358,6 @@ namespace OOP_Project
             this.ActiveControl = null;
         }
 
-       
-
-      
 
         private void pass_tb_TextChanged(object sender, EventArgs e)
         {
@@ -382,6 +382,96 @@ namespace OOP_Project
                 pass_tb.Text = "Password";
                 pass_tb.StateCommon.Content.Color1 = Color.Gray;
             }
+        }
+
+        private void email_tb_Enter(object sender, EventArgs e)
+        {
+            if(email_tb.Text == "Email")
+            {
+                email_tb.Text = "";
+                email_tb.StateCommon.Content.Color1 = Color.Black;
+            }
+        }
+
+        private void email_tb_Leave(object sender, EventArgs e)
+        {
+            if (email_tb.Text == "")
+            {
+                email_tb.Text = "Email";
+                email_tb.StateCommon.Content.Color1 = Color.Gray;
+            }
+        }
+
+        private void gender_cmb_Enter(object sender, EventArgs e)
+        {
+            if(gender_cmb.Text == "N/A")
+            {
+                gender_cmb.Text = "";
+                gender_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+            }
+        }
+
+        private void gender_cmb_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(gender_cmb.Text))
+            {
+                gender_cmb.Text = "N/A";
+                gender_cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
+            }
+            else
+            {
+                gender_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+            }
+        }
+
+        private void birthday_dtp_CloseUp(object sender, DateTimePickerCloseArgs e)
+        {
+          
+        }
+
+        private void securityq_cmb_Enter(object sender, EventArgs e)
+        {
+            if (securityq_cmb.Text == "N/A")
+            {
+                securityq_cmb.Text = "";
+                securityq_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+            }
+        }
+
+        private void securityq_cmb_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(securityq_cmb.Text))
+            {
+                securityq_cmb.Text = "N/A";
+                securityq_cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
+            }
+            else
+            {
+                securityq_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+            }
+        }
+
+        private void answer_tb_Enter(object sender, EventArgs e)
+        {
+            if (answer_tb.Text == "Answer")
+            {
+                answer_tb.Text = "";
+                answer_tb.StateCommon.Content.Color1 = Color.Black;
+            }
+        }
+
+        private void answer_tb_Leave(object sender, EventArgs e)
+        {
+            if (answer_tb.Text == "")
+            {
+                answer_tb.Text = "Answer";
+                answer_tb.StateCommon.Content.Color1 = Color.Gray;
+            }
+        }
+
+        private void email_tb_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -390,6 +390,7 @@
             this.insertMovie_panel.Size = new System.Drawing.Size(565, 288);
             this.insertMovie_panel.TabIndex = 65;
             this.insertMovie_panel.Visible = false;
+            this.insertMovie_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.insertMovie_panel_Paint);
             // 
             // releaseYear_tb
             // 

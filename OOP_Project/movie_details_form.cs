@@ -187,5 +187,10 @@ namespace OOP_Project
                 }
             }
         }
+
+        private void movie_details_form_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

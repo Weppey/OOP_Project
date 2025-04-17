@@ -9,6 +9,8 @@
     using ComponentFactory.Krypton.Toolkit;
     using System.Drawing.Imaging;
     using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 
 
 
@@ -16,9 +18,12 @@ namespace OOP_Project
     {
         public partial class home_form : KryptonForm
         {
+        private MySqlConnection connection;
+
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
         private string userType;
         private int currentUserId;
+        int currentUserId2 = 40;
 
         public int CurrentUserId => currentUserId; // 🔸 public getter if needed externally
         public string UserType => userType;
@@ -71,11 +76,30 @@ namespace OOP_Project
             }
         }
 
+        
+
+
 
         private async void home_form_Load(object sender, EventArgs e)
-            {
+        {
 
-                StayLoggedIn.LoadUserSession();
+
+            connection = new MySqlConnection("Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;");
+                try
+                {
+                    connection.Open(); // ✅ Must open it before any SQL
+                    List<string> genres = GetUserGenres(currentUserId);
+                    DisplayMoviesByGenre(genres);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error opening connection: " + ex.Message);
+                }
+
+
+
+
+            StayLoggedIn.LoadUserSession();
                 CurvePanel(movie_panel, 30);
                 movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
@@ -101,7 +125,7 @@ namespace OOP_Project
 
 
                 genre_cmb.Items.AddRange(new string[]
-    {
+                 {
             "Action",
             "Comedy",
             "Drama",
@@ -113,14 +137,173 @@ namespace OOP_Project
             "Adventure",
             "Animation",
             "Fantasy"
-    });
+                 });
 
                 genre_cmb.SelectedIndex = 0; // Optional: select first item by default
 
 
 
 
+        }
+
+        private List<string> GetUserGenres(int userId)
+        {
+            List<string> genres = new List<string>();
+            string query = "SELECT preferences FROM users WHERE user_id = @userId";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@userId", userId);
+                var result = cmd.ExecuteScalar()?.ToString();
+
+                if (!string.IsNullOrEmpty(result))
+                {
+                    genres = result.Split(',').Select(g => g.Trim()).ToList();
+                }
             }
+
+            return genres;
+        }
+        private Color GetGenreColor(string genre)
+        {
+            switch (genre.ToLower())
+            {
+                case "action":
+                    return Color.LightCoral;
+                case "comedy":
+                    return Color.LightYellow;
+                case "drama":
+                    return Color.LightSteelBlue;
+                case "horror":
+                    return Color.MistyRose;
+                case "sci-fi":
+                    return Color.LightGreen;
+                case "romance":
+                    return Color.LightPink;
+                default:
+                    return Color.LightGray;
+            }
+        }
+        private void DisplayMoviesByGenre(List<string> genres)
+        {
+           
+            if (genres == null || genres.Count == 0)
+            {
+                MessageBox.Show("No genres to display.");
+                return;
+            }
+           
+            recommendedMovie_flp.Controls.Clear();
+
+            foreach (string genre in genres)
+            {
+                // Genre panel (with a distinct color)
+                Panel genrePanel = new Panel
+                {
+                    Width = recommendedMovie_flp.Width - 25, // account for scrollbar
+                    AutoSize = true,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Margin = new Padding(5),
+                    BackColor = GetGenreColor("comedy"),// <-- Genre panel background
+                    BackgroundImage = Properties.Resources._11
+                };
+
+                Label genreLabel = new Label
+                {
+                    Text = genre,
+                    Font = new Font("Segoe UI", 12, FontStyle.Bold),
+                    Location = new Point(10, 10),
+                    AutoSize = true,
+                    ForeColor = Color.DarkBlue
+                };
+                genrePanel.Controls.Add(genreLabel);
+
+                int movieYOffset = genreLabel.Bottom + 10;
+
+                var movies = GetMoviesByGenre(genre);
+                Console.WriteLine($"Found {movies.Count} movies for genre: {genre}");
+
+                if (movies == null || movies.Count == 0)
+                {
+                    MessageBox.Show($"No movies found for genre: {genre}");
+                    continue; // Skip to next genre
+                }
+
+                foreach (var movie in movies)
+                {
+                    Panel moviePanel = new Panel
+                    {
+                        Location = new Point(10, movieYOffset),
+                        Size = new Size(genrePanel.Width - 20, 30),
+                        BackColor = Color.LightCoral, // <-- Movie panel background
+                        Cursor = Cursors.Hand
+                    };
+
+                    Label movieTitle = new Label
+                    {
+                        Text = movie.Title,
+                        Location = new Point(5, 5),
+                        AutoSize = true,
+                        ForeColor = Color.White
+                    };
+
+                    moviePanel.Controls.Add(movieTitle);
+                    genrePanel.Controls.Add(moviePanel);
+
+                    // Click to show movie details
+                    moviePanel.Click += (s, e) => ShowMovieDetails(movie);
+                    foreach (Control ctrl in moviePanel.Controls)
+                        ctrl.Click += (s, e) => ShowMovieDetails(movie);
+
+                    movieYOffset += 40;
+                }
+
+                genrePanel.Height = movieYOffset + 10;
+
+                // Add genre panel to flow layout
+                recommendedMovie_flp.Controls.Add(genrePanel);
+            }
+        }
+
+        private List<Movie> GetMoviesByGenre(string genre)
+        {
+
+
+            List<Movie> movies = new List<Movie>();
+            string query = "SELECT * FROM Movies WHERE LOWER(Genre) = LOWER('comedy')";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@genre", genre);
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                                        
+                        movies.Add(new Movie
+                        {
+                            Id = reader.GetInt32("movie_id"),
+                            Title = reader.GetString("title"),
+                            Description = reader.IsDBNull(reader.GetOrdinal("description")) ? "" : reader.GetString("description"),
+                            Genre = reader.IsDBNull(reader.GetOrdinal("genre")) ? "" : reader.GetString("genre"),
+                            ReleaseYear = reader.GetInt32("release_year"),
+                            Rating = reader.IsDBNull(reader.GetOrdinal("rating")) ? 0 : reader.GetDecimal("rating"),
+                            ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? "" : reader.GetString("image_url")
+                        });
+                    }
+                }
+            }
+
+            return movies;
+        }
+        private void ShowMovieDetails(Movie moovie)
+        {
+            MovieDetailsForm details = new MovieDetailsForm(moovie);
+            details.ShowDialog();
+        }
+
+
+
 
         public void LoadMovies()
         {
@@ -441,6 +624,11 @@ namespace OOP_Project
                 return;
             }
             }
+
+        private void insertMovie_panel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
+    }
     
 }

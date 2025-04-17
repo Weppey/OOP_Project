@@ -44,13 +44,13 @@
             this.email_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.sign_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.showPass_chkb = new ComponentFactory.Krypton.Toolkit.KryptonCheckBox();
+            this.pass_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.user_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.bg2_panel = new System.Windows.Forms.Panel();
             this.question_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.birthdate_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.gender_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.process1 = new System.Diagnostics.Process();
-            this.pass_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.signup_panel.SuspendLayout();
@@ -167,9 +167,14 @@
             this.securityq_cmb.DropDownWidth = 183;
             this.securityq_cmb.Location = new System.Drawing.Point(402, 345);
             this.securityq_cmb.Name = "securityq_cmb";
-            this.securityq_cmb.Size = new System.Drawing.Size(186, 21);
+            this.securityq_cmb.Size = new System.Drawing.Size(186, 20);
+            this.securityq_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
+            this.securityq_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.securityq_cmb.TabIndex = 62;
+            this.securityq_cmb.Text = "N/A";
             this.securityq_cmb.SelectedIndexChanged += new System.EventHandler(this.securityq_cmb_SelectedIndexChanged);
+            this.securityq_cmb.Enter += new System.EventHandler(this.securityq_cmb_Enter);
+            this.securityq_cmb.Leave += new System.EventHandler(this.securityq_cmb_Leave);
             // 
             // answer_tb
             // 
@@ -182,15 +187,20 @@
             this.answer_tb.TabIndex = 61;
             this.answer_tb.Text = "Answer";
             this.answer_tb.TextChanged += new System.EventHandler(this.answer_tb_TextChanged_1);
+            this.answer_tb.Enter += new System.EventHandler(this.answer_tb_Enter);
+            this.answer_tb.Leave += new System.EventHandler(this.answer_tb_Leave);
             // 
             // birthday_dtp
             // 
             this.birthday_dtp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.birthday_dtp.Location = new System.Drawing.Point(399, 288);
+            this.birthday_dtp.Location = new System.Drawing.Point(402, 286);
             this.birthday_dtp.Name = "birthday_dtp";
-            this.birthday_dtp.Size = new System.Drawing.Size(183, 21);
+            this.birthday_dtp.Size = new System.Drawing.Size(183, 20);
+            this.birthday_dtp.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
+            this.birthday_dtp.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.birthday_dtp.TabIndex = 60;
             this.birthday_dtp.ValueChanged += new System.EventHandler(this.birthday_dtp_ValueChanged);
+            this.birthday_dtp.CloseUp += new System.EventHandler<ComponentFactory.Krypton.Toolkit.DateTimePickerCloseArgs>(this.birthday_dtp_CloseUp);
             // 
             // gender_cmb
             // 
@@ -199,11 +209,17 @@
             "Female",
             "Male",
             "Prefer not to say"});
-            this.gender_cmb.Location = new System.Drawing.Point(399, 238);
+            this.gender_cmb.Location = new System.Drawing.Point(402, 236);
             this.gender_cmb.Name = "gender_cmb";
-            this.gender_cmb.Size = new System.Drawing.Size(183, 21);
+            this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gender_cmb.Size = new System.Drawing.Size(183, 20);
+            this.gender_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
+            this.gender_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gender_cmb.TabIndex = 59;
+            this.gender_cmb.Text = "N/A";
             this.gender_cmb.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox1_SelectedIndexChanged);
+            this.gender_cmb.Enter += new System.EventHandler(this.gender_cmb_Enter);
+            this.gender_cmb.Leave += new System.EventHandler(this.gender_cmb_Leave);
             // 
             // email_tb
             // 
@@ -215,6 +231,9 @@
             this.email_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
             this.email_tb.TabIndex = 58;
             this.email_tb.Text = "Email";
+            this.email_tb.TextChanged += new System.EventHandler(this.email_tb_TextChanged);
+            this.email_tb.Enter += new System.EventHandler(this.email_tb_Enter);
+            this.email_tb.Leave += new System.EventHandler(this.email_tb_Leave);
             // 
             // sign_btn
             // 
@@ -244,6 +263,20 @@
             this.showPass_chkb.TabIndex = 56;
             this.showPass_chkb.Values.Text = "Show password";
             this.showPass_chkb.CheckedChanged += new System.EventHandler(this.showPass_chkb_CheckedChanged);
+            // 
+            // pass_tb
+            // 
+            this.pass_tb.Location = new System.Drawing.Point(399, 127);
+            this.pass_tb.Name = "pass_tb";
+            this.pass_tb.Size = new System.Drawing.Size(186, 26);
+            this.pass_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.pass_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
+            this.pass_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.pass_tb.TabIndex = 55;
+            this.pass_tb.Text = "Password";
+            this.pass_tb.TextChanged += new System.EventHandler(this.pass_tb_TextChanged);
+            this.pass_tb.Enter += new System.EventHandler(this.pass_tb_Enter);
+            this.pass_tb.Leave += new System.EventHandler(this.pass_tb_Leave);
             // 
             // user_tb
             // 
@@ -308,20 +341,6 @@
             this.process1.StartInfo.StandardOutputEncoding = null;
             this.process1.StartInfo.UserName = "";
             this.process1.SynchronizingObject = this;
-            // 
-            // pass_tb
-            // 
-            this.pass_tb.Location = new System.Drawing.Point(399, 127);
-            this.pass_tb.Name = "pass_tb";
-            this.pass_tb.Size = new System.Drawing.Size(186, 26);
-            this.pass_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.pass_tb.StateCommon.Content.Color1 = System.Drawing.Color.DarkGray;
-            this.pass_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F);
-            this.pass_tb.TabIndex = 55;
-            this.pass_tb.Text = "Password";
-            this.pass_tb.TextChanged += new System.EventHandler(this.pass_tb_TextChanged);
-            this.pass_tb.Enter += new System.EventHandler(this.pass_tb_Enter);
-            this.pass_tb.Leave += new System.EventHandler(this.pass_tb_Leave);
             // 
             // signup_form
             // 

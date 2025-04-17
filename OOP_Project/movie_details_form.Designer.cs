@@ -168,6 +168,7 @@
             this.Controls.Add(this.poster_pb);
             this.Name = "movie_details_form";
             this.Text = "movie_details_form";
+            this.Load += new System.EventHandler(this.movie_details_form_Load);
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

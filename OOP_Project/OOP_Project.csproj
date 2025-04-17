@@ -237,11 +237,18 @@
     <Compile Include="login_form.Designer.cs">
       <DependentUpon>login_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Movie.Cs" />
     <Compile Include="MovieCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="MovieCard.Designer.cs">
       <DependentUpon>MovieCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MovieDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MovieDetailsForm.Designer.cs">
+      <DependentUpon>MovieDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="movie_details_form.cs">
       <SubType>Form</SubType>
@@ -284,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MovieCard.resx">
       <DependentUpon>MovieCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MovieDetailsForm.resx">
+      <DependentUpon>MovieDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="movie_details_form.resx">
       <DependentUpon>movie_details_form.cs</DependentUpon>
@@ -344,6 +354,7 @@
     <Content Include="icons\icons8-settings-28.png" />
     <Content Include="icons\icons8-settings-48.png" />
     <Content Include="icons\icons8-trash-48.png" />
+    <None Include="Resources\k.jpg" />
     <None Include="Resources\login_wall2.png" />
     <None Include="Resources\login_wall1.png" />
     <None Include="Resources\login_wall.png" />
@@ -391,6 +402,11 @@
     <None Include="Resources\1_2_1.jpg" />
     <None Include="Resources\111.jpg" />
     <None Include="Resources\123.jpg" />
+    <None Include="Resources\112.jpg" />
+    <None Include="Resources\222.jpg" />
+    <None Include="Resources\654.jpg" />
+    <None Include="Resources\3.jpg" />
+    <None Include="Resources\4.jpeg" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />
