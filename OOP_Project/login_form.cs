@@ -189,5 +189,10 @@ namespace OOP_Project
         {
 
         }
+
+        private void loginDock_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

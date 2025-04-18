@@ -64,10 +64,11 @@
             this.loginDock_panel.Name = "loginDock_panel";
             this.loginDock_panel.Size = new System.Drawing.Size(254, 650);
             this.loginDock_panel.TabIndex = 20;
+            this.loginDock_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.loginDock_panel_Paint);
             // 
             // password_tb
             // 
-            this.password_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password_tb.ForeColor = System.Drawing.Color.DarkGray;
             this.password_tb.Location = new System.Drawing.Point(52, 297);
             this.password_tb.Name = "password_tb";
@@ -79,7 +80,7 @@
             // 
             // userName_tb
             // 
-            this.userName_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.userName_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userName_tb.ForeColor = System.Drawing.Color.DarkGray;
             this.userName_tb.Location = new System.Drawing.Point(52, 257);
             this.userName_tb.Name = "userName_tb";

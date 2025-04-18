@@ -28,27 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.min_pb = new System.Windows.Forms.PictureBox();
-            this.cls_pb = new System.Windows.Forms.PictureBox();
             this.title_lbl = new System.Windows.Forms.Label();
             this.genre_lbl = new System.Windows.Forms.Label();
             this.releaseDate_lbl = new System.Windows.Forms.Label();
-            this.decrition_txt = new System.Windows.Forms.RichTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.min_pb)).BeginInit();
+            this.description_txt = new System.Windows.Forms.RichTextBox();
+            this.posterBox = new System.Windows.Forms.PictureBox();
+            this.cls_pb = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.posterBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).BeginInit();
             this.SuspendLayout();
             // 
-            // min_pb
+            // title_lbl
             // 
-            this.min_pb.BackColor = System.Drawing.Color.Transparent;
-            this.min_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.min_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
-            this.min_pb.Location = new System.Drawing.Point(671, 12);
-            this.min_pb.Name = "min_pb";
-            this.min_pb.Size = new System.Drawing.Size(25, 23);
-            this.min_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.min_pb.TabIndex = 13;
-            this.min_pb.TabStop = false;
+            this.title_lbl.AutoSize = true;
+            this.title_lbl.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_lbl.ForeColor = System.Drawing.Color.White;
+            this.title_lbl.Location = new System.Drawing.Point(122, 52);
+            this.title_lbl.Name = "title_lbl";
+            this.title_lbl.Size = new System.Drawing.Size(143, 32);
+            this.title_lbl.TabIndex = 15;
+            this.title_lbl.Text = "movie.title";
+            // 
+            // genre_lbl
+            // 
+            this.genre_lbl.AutoSize = true;
+            this.genre_lbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.genre_lbl.ForeColor = System.Drawing.Color.White;
+            this.genre_lbl.Location = new System.Drawing.Point(122, 94);
+            this.genre_lbl.Name = "genre_lbl";
+            this.genre_lbl.Size = new System.Drawing.Size(72, 15);
+            this.genre_lbl.TabIndex = 16;
+            this.genre_lbl.Text = "movie.genre";
+            this.genre_lbl.Click += new System.EventHandler(this.genre_lbl_Click);
+            // 
+            // releaseDate_lbl
+            // 
+            this.releaseDate_lbl.AutoSize = true;
+            this.releaseDate_lbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.releaseDate_lbl.ForeColor = System.Drawing.Color.White;
+            this.releaseDate_lbl.Location = new System.Drawing.Point(122, 109);
+            this.releaseDate_lbl.Name = "releaseDate_lbl";
+            this.releaseDate_lbl.Size = new System.Drawing.Size(147, 15);
+            this.releaseDate_lbl.TabIndex = 19;
+            this.releaseDate_lbl.Text = "movie.releaseyear.string();";
+            // 
+            // description_txt
+            // 
+            this.description_txt.BackColor = System.Drawing.Color.DimGray;
+            this.description_txt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.description_txt.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.description_txt.ForeColor = System.Drawing.Color.White;
+            this.description_txt.Location = new System.Drawing.Point(125, 138);
+            this.description_txt.Name = "description_txt";
+            this.description_txt.Size = new System.Drawing.Size(215, 198);
+            this.description_txt.TabIndex = 20;
+            this.description_txt.Text = "movie.description";
+            // 
+            // posterBox
+            // 
+            this.posterBox.BackColor = System.Drawing.Color.Transparent;
+            this.posterBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.posterBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.posterBox.Location = new System.Drawing.Point(359, 56);
+            this.posterBox.Name = "posterBox";
+            this.posterBox.Size = new System.Drawing.Size(238, 279);
+            this.posterBox.TabIndex = 21;
+            this.posterBox.TabStop = false;
             // 
             // cls_pb
             // 
@@ -61,62 +106,28 @@
             this.cls_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.cls_pb.TabIndex = 12;
             this.cls_pb.TabStop = false;
-            // 
-            // title_lbl
-            // 
-            this.title_lbl.AutoSize = true;
-            this.title_lbl.ForeColor = System.Drawing.Color.White;
-            this.title_lbl.Location = new System.Drawing.Point(160, 87);
-            this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(54, 13);
-            this.title_lbl.TabIndex = 15;
-            this.title_lbl.Text = "movie.title";
-            // 
-            // genre_lbl
-            // 
-            this.genre_lbl.AutoSize = true;
-            this.genre_lbl.ForeColor = System.Drawing.Color.White;
-            this.genre_lbl.Location = new System.Drawing.Point(160, 142);
-            this.genre_lbl.Name = "genre_lbl";
-            this.genre_lbl.Size = new System.Drawing.Size(65, 13);
-            this.genre_lbl.TabIndex = 16;
-            this.genre_lbl.Text = "movie.genre";
-            // 
-            // releaseDate_lbl
-            // 
-            this.releaseDate_lbl.AutoSize = true;
-            this.releaseDate_lbl.ForeColor = System.Drawing.Color.White;
-            this.releaseDate_lbl.Location = new System.Drawing.Point(160, 204);
-            this.releaseDate_lbl.Name = "releaseDate_lbl";
-            this.releaseDate_lbl.Size = new System.Drawing.Size(129, 13);
-            this.releaseDate_lbl.TabIndex = 19;
-            this.releaseDate_lbl.Text = "movie.releaseyear.string();";
-            // 
-            // decrition_txt
-            // 
-            this.decrition_txt.Location = new System.Drawing.Point(434, 84);
-            this.decrition_txt.Name = "decrition_txt";
-            this.decrition_txt.Size = new System.Drawing.Size(180, 142);
-            this.decrition_txt.TabIndex = 20;
-            this.decrition_txt.Text = "movie.description";
+            this.cls_pb.Click += new System.EventHandler(this.cls_pb_Click);
             // 
             // MovieDetailsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = System.Drawing.Color.DimGray;
+            this.BackgroundImage = global::OOP_Project.Properties.Resources._1_4;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(737, 358);
-            this.Controls.Add(this.decrition_txt);
+            this.Controls.Add(this.posterBox);
+            this.Controls.Add(this.description_txt);
             this.Controls.Add(this.releaseDate_lbl);
             this.Controls.Add(this.genre_lbl);
             this.Controls.Add(this.title_lbl);
-            this.Controls.Add(this.min_pb);
             this.Controls.Add(this.cls_pb);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MovieDetailsForm";
             this.Text = "MovieDetailsForm";
             this.Load += new System.EventHandler(this.MovieDetailsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.min_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.posterBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -124,12 +135,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox min_pb;
         private System.Windows.Forms.PictureBox cls_pb;
         private System.Windows.Forms.Label title_lbl;
         private System.Windows.Forms.Label genre_lbl;
         private System.Windows.Forms.Label releaseDate_lbl;
-        private System.Windows.Forms.RichTextBox decrition_txt;
+        private System.Windows.Forms.RichTextBox description_txt;
+        private System.Windows.Forms.PictureBox posterBox;
     }
 }

@@ -407,6 +407,7 @@
     <None Include="Resources\654.jpg" />
     <None Include="Resources\3.jpg" />
     <None Include="Resources\4.jpeg" />
+    <None Include="Resources\fallback.png" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OOP_Project;
+
 
 namespace OOP_Project
 {
@@ -17,5 +19,6 @@ namespace OOP_Project
         public string ImageUrl { get; set; }
         public int Views { get; set; }
         public DateTime CreatedAt { get; set; }
+     
     }
 }

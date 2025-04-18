@@ -9,8 +9,10 @@
     using ComponentFactory.Krypton.Toolkit;
     using System.Drawing.Imaging;
     using System.IO;
-using System.Collections.Generic;
-using System.Linq;
+    using System.Collections.Generic;
+    using System.Linq;
+
+
 
 
 
@@ -27,6 +29,12 @@ namespace OOP_Project
 
         public int CurrentUserId => currentUserId; // 🔸 public getter if needed externally
         public string UserType => userType;
+
+        private const int ScrollAmount = 200;
+        private int currentOffsetX = 0;
+        private const int ScrollStep = 200;
+
+
 
         public home_form(string userTypeFromLogin, int userIdFromLogin)
         {
@@ -103,25 +111,25 @@ namespace OOP_Project
                 CurvePanel(movie_panel, 30);
                 movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                CurvePanel(recommendedMovie_panel, 30);
-                recommendedMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+                CurvePanel(viewportPanel, 30);
+                viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
                 CurvePanel(recommendedMovie_flp, 30);
                 recommendedMovie_flp.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                CurvePanel(popularMovie_panel, 30);
+                CurvePanel(popularmovie_pnl, 30);
                 movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
                 CurvePanel(popularMovie_flp, 30);
-                recommendedMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+                viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
                 CurvePanel(topRatedMovie_panel, 30);
                 movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
                 CurvePanel(topRatedMovie_flp, 30);
-                recommendedMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+                viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                LoadMovies();
+                //LoadMovies();
 
 
                 genre_cmb.Items.AddRange(new string[]
@@ -164,78 +172,37 @@ namespace OOP_Project
 
             return genres;
         }
-        private Color GetGenreColor(string genre)
-        {
-            switch (genre.ToLower())
-            {
-                case "action":
-                    return Color.LightCoral;
-                case "comedy":
-                    return Color.LightYellow;
-                case "drama":
-                    return Color.LightSteelBlue;
-                case "horror":
-                    return Color.MistyRose;
-                case "sci-fi":
-                    return Color.LightGreen;
-                case "romance":
-                    return Color.LightPink;
-                default:
-                    return Color.LightGray;
-            }
-        }
+
         private void DisplayMoviesByGenre(List<string> genres)
         {
-           
+
             if (genres == null || genres.Count == 0)
             {
                 MessageBox.Show("No genres to display.");
                 return;
             }
-           
+
             recommendedMovie_flp.Controls.Clear();
+
 
             foreach (string genre in genres)
             {
-                // Genre panel (with a distinct color)
-                Panel genrePanel = new Panel
-                {
-                    Width = recommendedMovie_flp.Width - 25, // account for scrollbar
-                    AutoSize = true,
-                    BorderStyle = BorderStyle.FixedSingle,
-                    Margin = new Padding(5),
-                    BackColor = GetGenreColor("comedy"),// <-- Genre panel background
-                    BackgroundImage = Properties.Resources._11
-                };
-
-                Label genreLabel = new Label
-                {
-                    Text = genre,
-                    Font = new Font("Segoe UI", 12, FontStyle.Bold),
-                    Location = new Point(10, 10),
-                    AutoSize = true,
-                    ForeColor = Color.DarkBlue
-                };
-                genrePanel.Controls.Add(genreLabel);
-
-                int movieYOffset = genreLabel.Bottom + 10;
-
                 var movies = GetMoviesByGenre(genre);
-                Console.WriteLine($"Found {movies.Count} movies for genre: {genre}");
+                Console.WriteLine($"Found {movies?.Count ?? 0} movies for genre: {genre}");
 
                 if (movies == null || movies.Count == 0)
                 {
                     MessageBox.Show($"No movies found for genre: {genre}");
-                    continue; // Skip to next genre
+                    continue;
                 }
 
                 foreach (var movie in movies)
                 {
                     Panel moviePanel = new Panel
                     {
-                        Location = new Point(10, movieYOffset),
-                        Size = new Size(genrePanel.Width - 20, 30),
-                        BackColor = Color.LightCoral, // <-- Movie panel background
+                        Size = new Size(160, 200),
+                        Margin = new Padding(5),
+                        BackColor = Color.Black,
                         Cursor = Cursors.Hand
                     };
 
@@ -243,25 +210,46 @@ namespace OOP_Project
                     {
                         Text = movie.Title,
                         Location = new Point(5, 5),
-                        AutoSize = true,
-                        ForeColor = Color.White
+                        AutoSize = false,
+                        Size = new Size(150, 35),
+                        Font = new Font("Times New Roman", 9, FontStyle.Bold),
+                        ForeColor = Color.White,
+                        TextAlign = ContentAlignment.MiddleCenter
                     };
 
-                    moviePanel.Controls.Add(movieTitle);
-                    genrePanel.Controls.Add(moviePanel);
+                    PictureBox poster = new PictureBox
+                    {
+                        Size = new Size(150, 140),
+                        Location = new Point(5, 45),
+                        SizeMode = PictureBoxSizeMode.StretchImage,
+                        BorderStyle = BorderStyle.FixedSingle
+                    };
 
-                    // Click to show movie details
+                    try
+                    {
+                        if (!string.IsNullOrEmpty(movie.ImageUrl))
+                        {
+                            poster.Load(movie.ImageUrl);
+                        }
+                        else
+                        {
+                            poster.Image = Properties.Resources.fallback;
+                        }
+                    }
+                    catch
+                    {
+                        poster.Image = Properties.Resources.fallback;
+                    }
+
+                    moviePanel.Controls.Add(movieTitle);
+                    moviePanel.Controls.Add(poster);
+
                     moviePanel.Click += (s, e) => ShowMovieDetails(movie);
                     foreach (Control ctrl in moviePanel.Controls)
                         ctrl.Click += (s, e) => ShowMovieDetails(movie);
 
-                    movieYOffset += 40;
+                    recommendedMovie_flp.Controls.Add(moviePanel);
                 }
-
-                genrePanel.Height = movieYOffset + 10;
-
-                // Add genre panel to flow layout
-                recommendedMovie_flp.Controls.Add(genrePanel);
             }
         }
 
@@ -270,16 +258,16 @@ namespace OOP_Project
 
 
             List<Movie> movies = new List<Movie>();
-            string query = "SELECT * FROM Movies WHERE LOWER(Genre) = LOWER('comedy')";
+            string query = "SELECT * FROM Movies WHERE LOWER(genre) = LOWER(@genre)";
 
             using (MySqlCommand cmd = new MySqlCommand(query, connection))
             {
                 cmd.Parameters.AddWithValue("@genre", genre);
+
                 using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                                        
                         movies.Add(new Movie
                         {
                             Id = reader.GetInt32("movie_id"),
@@ -298,8 +286,15 @@ namespace OOP_Project
         }
         private void ShowMovieDetails(Movie moovie)
         {
-            MovieDetailsForm details = new MovieDetailsForm(moovie);
-            details.ShowDialog();
+            try
+            {
+                MovieDetailsForm details = new MovieDetailsForm(moovie);
+                details.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error showing movie details: {ex.Message}");
+            }
         }
 
 
@@ -592,7 +587,7 @@ namespace OOP_Project
             // All good, insert the movie
             InsertMovie(title_tb.Text, imageUrl, genre_cmb.SelectedItem.ToString(), decription_lbl.Text, year);
             insertMovie_panel.Visible = false;
-            LoadMovies();
+           // LoadMovies();
         }
 
         private void signOut_btn_Click(object sender, EventArgs e)
@@ -629,6 +624,135 @@ namespace OOP_Project
         {
 
         }
+
+        private void recommendedMovie_flp_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void searchBar_btn_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        
+
+        private void search_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void search_list_Click(object sender, EventArgs e)
+        {
+            if (search_list.SelectedItem != null)
+            {
+                search_txt.Text = search_list.SelectedItem.ToString();
+                search_list.Visible = false;
+            }
+        }
+
+        private void search_txt_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = search_txt.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                search_list.Visible = false;
+                return;
+            }
+
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
+
+            search_list.Items.Clear();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                search_list.Items.Add(reader.GetString("title"));
+                            }
+                        }
+                    }
+                }
+
+                search_list.Visible = search_list.Items.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+        private void search_txt_Enter(object sender, EventArgs e)
+        {                      
+                if (search_txt.Text == "Search...")
+                {
+                    search_txt.Text = "";
+                    search_txt.ForeColor = Color.Black;
+                }           
+        }
+
+        private void search_txt_Leave(object sender, EventArgs e)
+        {
+            if (search_txt.Text == "")
+            {
+                search_txt.Text = "Search...";
+                search_txt.ForeColor = Color.Gray;
+            }
+        }
+
+        private void movie_panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void logo_pb_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void recommendedMovieLeft_btn_Click(object sender, EventArgs e)
+        {
+            // Define the scroll amount (how much to move each time the button is clicked)
+            int scrollAmount = 200;
+
+            // Calculate the new horizontal scroll position
+            int newX = recommendedMovie_flp.HorizontalScroll.Value - scrollAmount;
+
+            // Ensure that the new position is not less than 0 (no negative scroll)
+            if (newX < 0)
+                newX = 0;
+
+            // Set the new horizontal scroll position
+            recommendedMovie_flp.HorizontalScroll.Value = newX;
+        }
+
+        private void recommendedMovieRight_btn_Click(object sender, EventArgs e)
+        {
+            // Define the scroll amount
+            int scrollAmount = 200;
+
+            // Calculate the new horizontal scroll position
+            int newX = recommendedMovie_flp.HorizontalScroll.Value + scrollAmount;
+
+            // Ensure that the new position is not greater than the maximum scroll value
+            if (newX > recommendedMovie_flp.HorizontalScroll.Maximum)
+                newX = recommendedMovie_flp.HorizontalScroll.Maximum;
+
+            // Set the new horizontal scroll position
+            recommendedMovie_flp.HorizontalScroll.Value = newX;
+        }
+        
     }
     
 }
