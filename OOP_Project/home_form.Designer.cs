@@ -41,6 +41,7 @@
             this.logo_pb = new System.Windows.Forms.PictureBox();
             this.form_lbl = new System.Windows.Forms.Label();
             this.movie_panel = new System.Windows.Forms.Panel();
+            this.search_list = new System.Windows.Forms.ListBox();
             this.insertMovie_panel = new System.Windows.Forms.Panel();
             this.releaseYear_tb = new System.Windows.Forms.TextBox();
             this.release_year = new System.Windows.Forms.Label();
@@ -61,17 +62,18 @@
             this.popularmovie_pnl = new System.Windows.Forms.Panel();
             this.popularMovieRight_btn = new System.Windows.Forms.PictureBox();
             this.popularMovieLeft_btn = new System.Windows.Forms.PictureBox();
-            this.popularMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
+            this.recentlysearch_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.viewportPanel = new System.Windows.Forms.Panel();
             this.recommendedMovieRight_btn = new System.Windows.Forms.PictureBox();
             this.recommendedMovieLeft_btn = new System.Windows.Forms.PictureBox();
             this.recommendedMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
-            this.search_list = new System.Windows.Forms.ListBox();
             this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.insert_btn = new System.Windows.Forms.Button();
             this.remove_btn = new System.Windows.Forms.Button();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
+            this.suggest_lbl = new System.Windows.Forms.Label();
+            this.recent_lbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.menu2_panel.SuspendLayout();
             this.menu_panel.SuspendLayout();
@@ -345,6 +347,8 @@
             // 
             this.movie_panel.AutoScroll = true;
             this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.movie_panel.Controls.Add(this.recent_lbl);
+            this.movie_panel.Controls.Add(this.suggest_lbl);
             this.movie_panel.Controls.Add(this.search_list);
             this.movie_panel.Controls.Add(this.insertMovie_panel);
             this.movie_panel.Controls.Add(this.search_txt);
@@ -356,6 +360,19 @@
             this.movie_panel.Size = new System.Drawing.Size(1382, 718);
             this.movie_panel.TabIndex = 61;
             this.movie_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.movie_panel_Paint);
+            // 
+            // search_list
+            // 
+            this.search_list.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_list.FormattingEnabled = true;
+            this.search_list.ItemHeight = 19;
+            this.search_list.Location = new System.Drawing.Point(988, 48);
+            this.search_list.Name = "search_list";
+            this.search_list.Size = new System.Drawing.Size(337, 80);
+            this.search_list.TabIndex = 67;
+            this.search_list.Visible = false;
+            this.search_list.Click += new System.EventHandler(this.search_list_Click);
+            this.search_list.SelectedIndexChanged += new System.EventHandler(this.search_list_SelectedIndexChanged);
             // 
             // insertMovie_panel
             // 
@@ -540,7 +557,7 @@
             this.popularmovie_pnl.BackColor = System.Drawing.Color.Gray;
             this.popularmovie_pnl.Controls.Add(this.popularMovieRight_btn);
             this.popularmovie_pnl.Controls.Add(this.popularMovieLeft_btn);
-            this.popularmovie_pnl.Controls.Add(this.popularMovie_flp);
+            this.popularmovie_pnl.Controls.Add(this.recentlysearch_flp);
             this.popularmovie_pnl.Location = new System.Drawing.Point(49, 397);
             this.popularmovie_pnl.Name = "popularmovie_pnl";
             this.popularmovie_pnl.Size = new System.Drawing.Size(1279, 255);
@@ -568,13 +585,13 @@
             this.popularMovieLeft_btn.TabIndex = 61;
             this.popularMovieLeft_btn.TabStop = false;
             // 
-            // popularMovie_flp
+            // recentlysearch_flp
             // 
-            this.popularMovie_flp.BackColor = System.Drawing.Color.White;
-            this.popularMovie_flp.Location = new System.Drawing.Point(30, 13);
-            this.popularMovie_flp.Name = "popularMovie_flp";
-            this.popularMovie_flp.Size = new System.Drawing.Size(1219, 229);
-            this.popularMovie_flp.TabIndex = 0;
+            this.recentlysearch_flp.BackColor = System.Drawing.Color.White;
+            this.recentlysearch_flp.Location = new System.Drawing.Point(30, 13);
+            this.recentlysearch_flp.Name = "recentlysearch_flp";
+            this.recentlysearch_flp.Size = new System.Drawing.Size(1219, 229);
+            this.recentlysearch_flp.TabIndex = 0;
             // 
             // viewportPanel
             // 
@@ -627,19 +644,6 @@
             this.recommendedMovie_flp.TabIndex = 0;
             this.recommendedMovie_flp.WrapContents = false;
             this.recommendedMovie_flp.Paint += new System.Windows.Forms.PaintEventHandler(this.recommendedMovie_flp_Paint);
-            // 
-            // search_list
-            // 
-            this.search_list.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_list.FormattingEnabled = true;
-            this.search_list.ItemHeight = 19;
-            this.search_list.Location = new System.Drawing.Point(988, 48);
-            this.search_list.Name = "search_list";
-            this.search_list.Size = new System.Drawing.Size(337, 80);
-            this.search_list.TabIndex = 67;
-            this.search_list.Visible = false;
-            this.search_list.Click += new System.EventHandler(this.search_list_Click);
-            this.search_list.SelectedIndexChanged += new System.EventHandler(this.search_list_SelectedIndexChanged);
             // 
             // kryptonButton1
             // 
@@ -732,6 +736,28 @@
             this.minimize_pb.MouseEnter += new System.EventHandler(this.minimize_pb_MouseEnter);
             this.minimize_pb.MouseLeave += new System.EventHandler(this.minimize_pb_MouseLeave);
             // 
+            // suggest_lbl
+            // 
+            this.suggest_lbl.AutoSize = true;
+            this.suggest_lbl.Font = new System.Drawing.Font("Impact", 20F);
+            this.suggest_lbl.ForeColor = System.Drawing.Color.White;
+            this.suggest_lbl.Location = new System.Drawing.Point(46, 50);
+            this.suggest_lbl.Name = "suggest_lbl";
+            this.suggest_lbl.Size = new System.Drawing.Size(231, 34);
+            this.suggest_lbl.TabIndex = 65;
+            this.suggest_lbl.Text = "Suggested for you...";
+            // 
+            // recent_lbl
+            // 
+            this.recent_lbl.AutoSize = true;
+            this.recent_lbl.Font = new System.Drawing.Font("Impact", 20F);
+            this.recent_lbl.ForeColor = System.Drawing.Color.White;
+            this.recent_lbl.Location = new System.Drawing.Point(46, 360);
+            this.recent_lbl.Name = "recent_lbl";
+            this.recent_lbl.Size = new System.Drawing.Size(238, 34);
+            this.recent_lbl.TabIndex = 68;
+            this.recent_lbl.Text = "Recently searched...";
+            // 
             // home_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -813,7 +839,7 @@
         private System.Windows.Forms.Panel popularmovie_pnl;
         private System.Windows.Forms.PictureBox popularMovieRight_btn;
         private System.Windows.Forms.PictureBox popularMovieLeft_btn;
-        private System.Windows.Forms.FlowLayoutPanel popularMovie_flp;
+        private System.Windows.Forms.FlowLayoutPanel recentlysearch_flp;
         private System.Windows.Forms.Button insert_btn;
         private System.Windows.Forms.Button remove_btn;
         private System.Windows.Forms.Panel insertMovie_panel;
@@ -832,5 +858,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton signOut_btn;
         private System.Windows.Forms.TextBox search_txt;
         private System.Windows.Forms.ListBox search_list;
+        private System.Windows.Forms.Label recent_lbl;
+        private System.Windows.Forms.Label suggest_lbl;
     }
 }

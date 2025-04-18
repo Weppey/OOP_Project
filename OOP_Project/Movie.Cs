@@ -19,6 +19,10 @@ namespace OOP_Project
         public string ImageUrl { get; set; }
         public int Views { get; set; }
         public DateTime CreatedAt { get; set; }
-     
+
+        //search
+       
+        public override string ToString() => Title;
+
     }
 }

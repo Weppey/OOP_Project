@@ -90,7 +90,8 @@ namespace OOP_Project
 
         private async void home_form_Load(object sender, EventArgs e)
         {
-
+            LoadRecentSearches();
+            
 
             connection = new MySqlConnection("Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;");
                 try
@@ -120,7 +121,7 @@ namespace OOP_Project
                 CurvePanel(popularmovie_pnl, 30);
                 movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                CurvePanel(popularMovie_flp, 30);
+                CurvePanel(recentlysearch_flp, 30);
                 viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
                 CurvePanel(topRatedMovie_panel, 30);
@@ -202,25 +203,26 @@ namespace OOP_Project
                     {
                         Size = new Size(160, 200),
                         Margin = new Padding(5),
-                        BackColor = Color.Black,
+                        BackColor = Color.Gray,
                         Cursor = Cursors.Hand
                     };
 
-                    Label movieTitle = new Label
-                    {
-                        Text = movie.Title,
-                        Location = new Point(5, 5),
-                        AutoSize = false,
-                        Size = new Size(150, 35),
-                        Font = new Font("Times New Roman", 9, FontStyle.Bold),
-                        ForeColor = Color.White,
-                        TextAlign = ContentAlignment.MiddleCenter
-                    };
+                    //Label movieTitle = new Label
+                   // {
+                  //      Text = movie.Title,
+                 //       Location = new Point(5, 5),
+                 //       AutoSize = false,
+                 //       Size = new Size(150, 35),
+                //        Font = new Font("Times New Roman", 9, FontStyle.Bold),
+                //        ForeColor = Color.White,
+                //        TextAlign = ContentAlignment.MiddleCenter
+                //    };
 
                     PictureBox poster = new PictureBox
                     {
-                        Size = new Size(150, 140),
-                        Location = new Point(5, 45),
+                        Size = new Size(150, 200),
+                        Location = new Point(5, 0),
+                        BackColor = Color.Black,
                         SizeMode = PictureBoxSizeMode.StretchImage,
                         BorderStyle = BorderStyle.FixedSingle
                     };
@@ -241,7 +243,7 @@ namespace OOP_Project
                         poster.Image = Properties.Resources.fallback;
                     }
 
-                    moviePanel.Controls.Add(movieTitle);
+                   // moviePanel.Controls.Add(movieTitle);
                     moviePanel.Controls.Add(poster);
 
                     moviePanel.Click += (s, e) => ShowMovieDetails(movie);
@@ -252,6 +254,7 @@ namespace OOP_Project
                 }
             }
         }
+      
 
         private List<Movie> GetMoviesByGenre(string genre)
         {
@@ -289,6 +292,7 @@ namespace OOP_Project
             try
             {
                 MovieDetailsForm details = new MovieDetailsForm(moovie);
+                details.StartPosition = FormStartPosition.CenterScreen;
                 details.ShowDialog();
             }
             catch (Exception ex)
@@ -639,17 +643,148 @@ namespace OOP_Project
 
         private void search_list_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //seacrch
+            // Clear the search_txt TextBox
+            search_txt.Clear();
+            search_txt_Leave(sender, e);
+            
+            if (search_list.SelectedItem is Movie selectedMovie)
+            {
+                // Avoid adding the same movie twice
+                if (!IsMovieAlreadyInPanel(selectedMovie, recentlysearch_flp))
+                {
+                    DisplaySingleMovie(selectedMovie, recentlysearch_flp);
+                }
+            }
+            this.ActiveControl = null; // Remove focus from search_txt, so the cursor disappears
 
         }
+        //search
+        private void DisplaySingleMovie(Movie movie, FlowLayoutPanel panel)
+        {
+            Panel moviePanel = new Panel
+            {
+                Size = new Size(160, 200),
+                Margin = new Padding(5),
+                BackColor = Color.Gray,
+                Cursor = Cursors.Hand
+            };
+
+            PictureBox poster = new PictureBox
+            {
+                Size = new Size(150, 200),
+                Location = new Point(5, 0),
+                BackColor = Color.Black,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+
+            try
+            {
+                if (!string.IsNullOrEmpty(movie.ImageUrl))
+                {
+                    poster.Load(movie.ImageUrl);
+                }
+                else
+                {
+                    poster.Image = Properties.Resources.fallback;
+                }
+            }
+            catch
+            {
+                poster.Image = Properties.Resources.fallback;
+            }
+
+            moviePanel.Controls.Add(poster);
+            moviePanel.Click += (s, e) => ShowMovieDetailsForm(movie);
+            foreach (Control ctrl in moviePanel.Controls)
+                ctrl.Click += (s, e) => ShowMovieDetailsForm(movie);
+
+            panel.Controls.Add(moviePanel);
+        }
+
+        private bool IsMovieAlreadyInPanel(Movie movie, FlowLayoutPanel panel)
+        {
+            foreach (Control control in panel.Controls)
+            {
+                if (control is Panel panelControl)
+                {
+                    foreach (Control inner in panelControl.Controls)
+                    {
+                        if (inner is PictureBox poster && poster.Tag is Movie existingMovie)
+                        {
+                            if (existingMovie.Title == movie.Title)
+                                return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+      
 
         private void search_list_Click(object sender, EventArgs e)
         {
-            if (search_list.SelectedItem != null)
+            if (search_list.SelectedItem is Movie selectedMovie)
             {
-                search_txt.Text = search_list.SelectedItem.ToString();
+                // If you already have full data, no need to refetch
+                var fullMovie = GetFullMovieByTitle(selectedMovie.Title);
+
+                if (fullMovie != null)
+                {
+                    var movieDetailsForm = new MovieDetailsForm(fullMovie);
+                    movieDetailsForm.StartPosition = FormStartPosition.CenterParent;
+                    movieDetailsForm.ShowDialog();
+
+                    if (!IsMovieAlreadyInPanel(fullMovie, recentlysearch_flp))
+                    {
+                        DisplaySingleMovie(fullMovie, recentlysearch_flp);
+                    }
+                }
+
+                search_list.ClearSelected();
                 search_list.Visible = false;
             }
         }
+        //search
+        private void ShowMovieDetailsForm(Movie movie)
+        {
+            MovieDetailsForm detailsForm = new MovieDetailsForm(movie);
+            detailsForm.ShowDialog();
+        }
+        //search
+        private Movie GetFullMovieByTitle(string title)
+        {
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT * FROM movies WHERE title = @title LIMIT 1";
+
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new Movie
+                            {
+                                Title = reader.GetString("title"),
+                                Description = reader.GetString("description"),
+                                Genre = reader.GetString("genre"),
+                                ReleaseYear = reader.GetInt32("release_year"),
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url")
+                            };
+                        }
+                    }
+                }
+            }
+
+            return null;
+        }
+
 
         private void search_txt_TextChanged(object sender, EventArgs e)
         {
@@ -658,11 +793,12 @@ namespace OOP_Project
             if (string.IsNullOrEmpty(keyword))
             {
                 search_list.Visible = false;
+                search_list.Items.Clear();
                 return;
             }
 
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
+            string query = "SELECT title, image_url FROM movies WHERE title LIKE @keyword LIMIT 10";
 
             search_list.Items.Clear();
 
@@ -679,7 +815,13 @@ namespace OOP_Project
                         {
                             while (reader.Read())
                             {
-                                search_list.Items.Add(reader.GetString("title"));
+                                var movie = new Movie
+                                {
+                                    Title = reader.GetString("title"),
+                                    ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url")
+                                };
+
+                                search_list.Items.Add(movie); // Will display movie.Title due to ToString override
                             }
                         }
                     }
@@ -704,10 +846,11 @@ namespace OOP_Project
 
         private void search_txt_Leave(object sender, EventArgs e)
         {
-            if (search_txt.Text == "")
+            
+            if (string.IsNullOrWhiteSpace(search_txt.Text))
             {
-                search_txt.Text = "Search...";
-                search_txt.ForeColor = Color.Gray;
+                search_txt.Text = "Search..."; // Set the placeholder text
+                search_txt.ForeColor = Color.Gray; // Change the text color to gray for placeholder
             }
         }
 
@@ -752,7 +895,141 @@ namespace OOP_Project
             // Set the new horizontal scroll position
             recommendedMovie_flp.HorizontalScroll.Value = newX;
         }
-        
+        //recent search    
+        private void LoadRecentSearches()
+        {
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT movie_title, movie_description, movie_genre, release_year, image_url FROM recent_searches ORDER BY id DESC LIMIT 10"; // You can limit the number to 10
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string title = reader.GetString("movie_title");
+                                string description = reader.GetString("movie_description");
+                                string genre = reader.GetString("movie_genre");
+                                int releaseYear = reader.GetInt32("release_year");
+                                string imageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url");
+
+                                // Create a Movie object from the data
+                                Movie movie = new Movie
+                                {
+                                    Title = title,
+                                    Description = description,
+                                    Genre = genre,
+                                    ReleaseYear = releaseYear,
+                                    ImageUrl = imageUrl
+                                };
+
+                                // Display the movie in the recentlysearch_flp flow layout
+                                DisplayMovieInRecentlySearch(movie);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        private void DisplayMovieInRecentlySearch(Movie movie)
+        {
+            Panel moviePanel = new Panel
+            {
+                Size = new Size(160, 200),
+                Margin = new Padding(5),
+                BackColor = Color.Gray,
+                Cursor = Cursors.Hand
+            };
+
+            PictureBox poster = new PictureBox
+            {
+                Size = new Size(150, 200),
+                Location = new Point(5, 0),
+                BackColor = Color.Black,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                BorderStyle = BorderStyle.FixedSingle
+            };
+
+            try
+            {
+                if (!string.IsNullOrEmpty(movie.ImageUrl))
+                {
+                    poster.Load(movie.ImageUrl);
+                }
+                else
+                {
+                    poster.Image = Properties.Resources.fallback;
+                }
+            }
+            catch
+            {
+                poster.Image = Properties.Resources.fallback;
+            }
+
+            moviePanel.Controls.Add(poster);
+
+            // Add click event to show details of the movie
+            moviePanel.Click += (s, e) => ShowMovieDetails(movie);
+
+            recentlysearch_flp.Controls.Add(moviePanel);
+        }
+
+
+        private List<Movie> GetRecentSearches()
+        {
+            List<Movie> recentMovies = new List<Movie>();
+
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT movie_title, movie_description, movie_genre, release_year, image_url " +
+                           "FROM recent_searches ORDER BY search_date DESC LIMIT 10"; // Limiting to 10 recent searches
+
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            recentMovies.Add(new Movie
+                            {
+                                Title = reader.GetString("movie_title"),
+                                Description = reader.GetString("movie_description"),
+                                Genre = reader.GetString("movie_genre"),
+                                ReleaseYear = reader.GetInt32("release_year"),
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url")
+                            });
+                        }
+                    }
+                }
+            }
+
+            return recentMovies;
+        }
+        private void DisplayRecentSearches()
+        {
+            var recentMovies = GetRecentSearches();
+
+            foreach (var movie in recentMovies)
+            {
+                DisplaySingleMovie(movie, recentlysearch_flp);
+            }
+        }
+
+
     }
-    
+
+
 }
+
+

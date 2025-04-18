@@ -29,7 +29,9 @@
         private void InitializeComponent()
         {
             this.Panel_verify = new System.Windows.Forms.Panel();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.cnfrm_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.bg2_panel = new System.Windows.Forms.Panel();
             this.resend_llbl = new System.Windows.Forms.LinkLabel();
             this.emailverify_lbl = new System.Windows.Forms.Label();
             this.code_tb = new System.Windows.Forms.TextBox();
@@ -37,12 +39,10 @@
             this.code_lbl = new System.Windows.Forms.Label();
             this.min_pb = new System.Windows.Forms.PictureBox();
             this.cls_pb = new System.Windows.Forms.PictureBox();
-            this.bg2_panel = new System.Windows.Forms.Panel();
-            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.Panel_verify.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel_verify
@@ -61,6 +61,17 @@
             this.Panel_verify.Size = new System.Drawing.Size(844, 451);
             this.Panel_verify.TabIndex = 1;
             this.Panel_verify.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_verify_Paint);
+            // 
+            // logo_pb
+            // 
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources._11;
+            this.logo_pb.Location = new System.Drawing.Point(540, 0);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(109, 77);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pb.TabIndex = 12;
+            this.logo_pb.TabStop = false;
+            this.logo_pb.Click += new System.EventHandler(this.logo_pb_Click);
             // 
             // cnfrm_btn
             // 
@@ -81,6 +92,18 @@
             this.cnfrm_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_right_162;
             this.cnfrm_btn.Values.Text = "Confirm";
             this.cnfrm_btn.Click += new System.EventHandler(this.cnfrm_btn_Click);
+            // 
+            // bg2_panel
+            // 
+            this.bg2_panel.BackColor = System.Drawing.Color.White;
+            this.bg2_panel.BackgroundImage = global::OOP_Project.Properties.Resources._41;
+            this.bg2_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bg2_panel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.bg2_panel.Location = new System.Drawing.Point(0, 0);
+            this.bg2_panel.Name = "bg2_panel";
+            this.bg2_panel.Size = new System.Drawing.Size(540, 451);
+            this.bg2_panel.TabIndex = 55;
+            this.bg2_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.bg2_panel_Paint);
             // 
             // resend_llbl
             // 
@@ -113,7 +136,7 @@
             this.code_tb.BackColor = System.Drawing.Color.White;
             this.code_tb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.code_tb.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.code_tb.ForeColor = System.Drawing.SystemColors.Window;
+            this.code_tb.ForeColor = System.Drawing.Color.Black;
             this.code_tb.Location = new System.Drawing.Point(639, 172);
             this.code_tb.Name = "code_tb";
             this.code_tb.Size = new System.Drawing.Size(157, 25);
@@ -170,29 +193,6 @@
             this.cls_pb.TabStop = false;
             this.cls_pb.Click += new System.EventHandler(this.cls_pb_Click);
             // 
-            // bg2_panel
-            // 
-            this.bg2_panel.BackColor = System.Drawing.Color.White;
-            this.bg2_panel.BackgroundImage = global::OOP_Project.Properties.Resources._41;
-            this.bg2_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.bg2_panel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.bg2_panel.Location = new System.Drawing.Point(0, 0);
-            this.bg2_panel.Name = "bg2_panel";
-            this.bg2_panel.Size = new System.Drawing.Size(540, 451);
-            this.bg2_panel.TabIndex = 55;
-            this.bg2_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.bg2_panel_Paint);
-            // 
-            // logo_pb
-            // 
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources._11;
-            this.logo_pb.Location = new System.Drawing.Point(540, 0);
-            this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(109, 77);
-            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo_pb.TabIndex = 12;
-            this.logo_pb.TabStop = false;
-            this.logo_pb.Click += new System.EventHandler(this.logo_pb_Click);
-            // 
             // verification_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,9 +210,9 @@
             this.Load += new System.EventHandler(this.verification_form_Load);
             this.Panel_verify.ResumeLayout(false);
             this.Panel_verify.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.min_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             this.ResumeLayout(false);
 
         }

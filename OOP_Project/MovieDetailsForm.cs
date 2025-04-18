@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 
 namespace OOP_Project
 {
@@ -14,12 +15,12 @@ namespace OOP_Project
     {
         private Movie _moovie;
         public MovieDetailsForm(Movie moovie)
-        {
+        {                     
             InitializeComponent();
             _moovie = moovie;
             posterBox.SizeMode = PictureBoxSizeMode.StretchImage;
         }
-
+        
         private void MovieDetailsForm_Load(object sender, EventArgs e)
         {
             // Set movie title and description to the LABELS
@@ -33,7 +34,7 @@ namespace OOP_Project
             {
                 if (!string.IsNullOrEmpty(_moovie.ImageUrl))
                 {
-                    posterBox.Load(_moovie.ImageUrl);
+                    posterBox.Load(_moovie.ImageUrl);                 
                 }
                 else
                 {
