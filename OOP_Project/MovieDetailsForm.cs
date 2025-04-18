@@ -8,42 +8,43 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace OOP_Project
 {
-    public partial class MovieDetailsForm : Form
+    public partial class MovieDetailsForm : KryptonForm
     {
         private Movie _moovie;
         public MovieDetailsForm(Movie moovie)
         {                     
             InitializeComponent();
             _moovie = moovie;
-            posterBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            poster_pb.SizeMode = PictureBoxSizeMode.StretchImage;
         }
         
         private void MovieDetailsForm_Load(object sender, EventArgs e)
         {
             // Set movie title and description to the LABELS
             title_lbl.Text = _moovie.Title;
-            description_txt.Text = _moovie.Description;
+            description_lbl.Text = _moovie.Description;
             genre_lbl.Text = _moovie.Genre;
-            releaseDate_lbl.Text = "Year released: " + _moovie.ReleaseYear;
+            dateRelease_lbl.Text = "Year released: " + _moovie.ReleaseYear;
 
             // Set poster image to the PICTURE BOX
             try
             {
                 if (!string.IsNullOrEmpty(_moovie.ImageUrl))
                 {
-                    posterBox.Load(_moovie.ImageUrl);                 
+                    poster_pb.Load(_moovie.ImageUrl);                 
                 }
                 else
                 {
-                    posterBox.Image = Properties.Resources.fallback;
+                    poster_pb.Image = Properties.Resources.fallback;
                 }
             }
             catch
             {
-                posterBox.Image = Properties.Resources.fallback;
+                poster_pb.Image = Properties.Resources.fallback;
             }
 
         }
@@ -57,6 +58,34 @@ namespace OOP_Project
         {
             
             this.Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void title_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void close_pb_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void comment_btn_Click(object sender, EventArgs e)
+        {
+            //di pa nagana
+            if (this.Size.Height == 620)
+            {
+                this.Size = new Size(1050, 700);
+            }
+            else
+            {
+                this.Size = new Size(1050, 620);
+            }
         }
     }
 

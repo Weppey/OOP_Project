@@ -337,6 +337,7 @@
   <ItemGroup>
     <Content Include="icons\icons8-admin-settings-female-28.png" />
     <Content Include="icons\icons8-close-48.png" />
+    <Content Include="icons\icons8-comments-28.png" />
     <Content Include="icons\icons8-done-48.png" />
     <Content Include="icons\icons8-favorite-28.png" />
     <Content Include="icons\icons8-favorite-folder-28.png" />
@@ -408,6 +409,10 @@
     <None Include="Resources\3.jpg" />
     <None Include="Resources\4.jpeg" />
     <None Include="Resources\fallback.png" />
+    <None Include="Resources\icons8-comments-16.png" />
+    <None Include="Resources\icons8-comments-28.png" />
+    <None Include="Resources\icons8-insert-column-right-28.png" />
+    <None Include="Resources\icons8-remove-28.png" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />

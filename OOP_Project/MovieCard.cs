@@ -1,8 +1,10 @@
-﻿using System;
+﻿using ComponentFactory.Krypton.Docking;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +12,12 @@ using System.Windows.Forms;
 
 namespace OOP_Project
 {
-    public partial class MovieCard : UserControl
+    public partial class movie_card : UserControl
     {
         private int currentUserId;
         private int movieID;
 
-        public MovieCard()
+        public movie_card()
         {
             InitializeComponent();
 
@@ -32,9 +34,7 @@ namespace OOP_Project
             poster_pb.Click += (s, e) => OnMovieClicked();
             this.Click += (s, e) => OnMovieClicked(); // Optional: allow clicking anywhere on the card
 
-
         }
-
 
 
         // Property to store the movie ID

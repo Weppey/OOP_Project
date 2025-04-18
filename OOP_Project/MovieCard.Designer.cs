@@ -1,6 +1,6 @@
 ﻿namespace OOP_Project
 {
-    partial class MovieCard
+    partial class movie_card
     {
         /// <summary> 
         /// Required designer variable.
@@ -43,14 +43,14 @@
             this.poster_pb.TabStop = false;
             this.poster_pb.Click += new System.EventHandler(this.poster_pb_Click);
             // 
-            // MovieCard
+            // movie_card
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
             this.Controls.Add(this.poster_pb);
             this.Margin = new System.Windows.Forms.Padding(10);
-            this.Name = "MovieCard";
+            this.Name = "movie_card";
             this.Size = new System.Drawing.Size(180, 217);
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.ResumeLayout(false);

@@ -74,12 +74,10 @@ namespace OOP_Project
         {
             if (userType.ToLower() == "admin")
             {
-                insert_btn.Visible = true; // 🔸 allow movie insert
                 admin_button.Visible = true;
             }
             else
             {
-                insert_btn.Visible = false;
                 admin_button.Visible = false;
             }
         }
@@ -91,7 +89,19 @@ namespace OOP_Project
         private async void home_form_Load(object sender, EventArgs e)
         {
             LoadRecentSearches();
-            
+
+            recommendedMovie_flp.FlowDirection = FlowDirection.LeftToRight;
+            recommendedMovie_flp.WrapContents = true;
+            recommendedMovie_flp.AutoScroll = true;
+
+            for (int i = 0; i < 10; i++)
+            {
+                Panel p = new Panel();
+                p.Width = 200;
+                p.Height = 300;
+                p.BackColor = Color.AliceBlue;
+                recommendedMovie_flp.Controls.Add(p);
+            }
 
             connection = new MySqlConnection("Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;");
                 try
@@ -104,9 +114,6 @@ namespace OOP_Project
                 {
                     MessageBox.Show("Error opening connection: " + ex.Message);
                 }
-
-
-
 
             StayLoggedIn.LoadUserSession();
                 CurvePanel(movie_panel, 30);
@@ -124,34 +131,7 @@ namespace OOP_Project
                 CurvePanel(recentlysearch_flp, 30);
                 viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                CurvePanel(topRatedMovie_panel, 30);
-                movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
-
-                CurvePanel(topRatedMovie_flp, 30);
-                viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
-
                 //LoadMovies();
-
-
-                genre_cmb.Items.AddRange(new string[]
-                 {
-            "Action",
-            "Comedy",
-            "Drama",
-            "Horror",
-            "Sci-Fi",
-            "Romance",
-            "Thriller",
-            "Documentary",
-            "Adventure",
-            "Animation",
-            "Fantasy"
-                 });
-
-                genre_cmb.SelectedIndex = 0; // Optional: select first item by default
-
-
-
 
         }
 
@@ -318,7 +298,7 @@ namespace OOP_Project
                     while (reader.Read())
                     {
 
-                        MovieCard card = new MovieCard();
+                        movie_card card = new movie_card();
                         int movieID = reader.GetInt32("movie_id");
 
 
@@ -516,84 +496,6 @@ namespace OOP_Project
             }
 
 
-            private void InsertMovie(string title, string imageUrl, string genre, string description, int year)
-            {
-                string query = "INSERT INTO Movies (title, image_url, genre, description, release_year, created_at) " +
-                               "VALUES (@title, @image_url, @genre, @description, @year, NOW())";
-
-              //  if (!IsValidUrl(imageUrl))
-               // {
-              //      MessageBox.Show("Invalid Image URL. Please enter a valid URL starting with http:// or https://", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-             //       return;
-               // }
-
-                try
-                {
-                    using (MySqlConnection conn = new MySqlConnection(connectionString))
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@title", title);
-                        cmd.Parameters.AddWithValue("@image_url", imageUrl);
-                        cmd.Parameters.AddWithValue("@genre", genre);
-                        cmd.Parameters.AddWithValue("@description", description);
-                        cmd.Parameters.AddWithValue("@year", year);
-
-                        conn.Open();
-                        int rowsAffected = cmd.ExecuteNonQuery();
-
-                        if (rowsAffected > 0)
-                        {
-                            MessageBox.Show("Movie inserted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show("No rows were inserted. Please check your input.", "Insert Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error inserting movie:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-
-
-            private void insert_btn_Click(object sender, EventArgs e)
-            {
-               // admin_form adminForm = new admin_form();
-               // adminForm.Show();
-                insertMovie_panel.Visible = true;
-            }
-
-        private void insertInsert_btn_Click(object sender, EventArgs e)
-        {
-            // Validate required fields
-            if (string.IsNullOrWhiteSpace(title_tb.Text) ||
-                string.IsNullOrWhiteSpace(url_lbl.Text) ||
-                string.IsNullOrWhiteSpace(decription_lbl.Text) ||
-                string.IsNullOrWhiteSpace(releaseYear_tb.Text) ||
-                genre_cmb.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please fill out all fields before inserting the movie.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Validate year
-            if (!int.TryParse(releaseYear_tb.Text, out int year))
-            {
-                MessageBox.Show("Please enter a valid number for release year.", "Invalid Year", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-    
-            string imageUrl = url_tb.Text.Trim();
-
-
-            // All good, insert the movie
-            InsertMovie(title_tb.Text, imageUrl, genre_cmb.SelectedItem.ToString(), decription_lbl.Text, year);
-            insertMovie_panel.Visible = false;
-           // LoadMovies();
-        }
-
         private void signOut_btn_Click(object sender, EventArgs e)
         {
                 string msg = "Do you really want to sign out?";
@@ -657,7 +559,6 @@ namespace OOP_Project
                 }
             }
             this.ActiveControl = null; // Remove focus from search_txt, so the cursor disappears
-
         }
         //search
         private void DisplaySingleMovie(Movie movie, FlowLayoutPanel panel)
@@ -721,8 +622,6 @@ namespace OOP_Project
             }
             return false;
         }
-      
-
         private void search_list_Click(object sender, EventArgs e)
         {
             if (search_list.SelectedItem is Movie selectedMovie)
@@ -781,11 +680,8 @@ namespace OOP_Project
                     }
                 }
             }
-
             return null;
         }
-
-
         private void search_txt_TextChanged(object sender, EventArgs e)
         {
             string keyword = search_txt.Text.Trim();
@@ -796,12 +692,9 @@ namespace OOP_Project
                 search_list.Items.Clear();
                 return;
             }
-
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string query = "SELECT title, image_url FROM movies WHERE title LIKE @keyword LIMIT 10";
-
             search_list.Items.Clear();
-
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connStr))
@@ -825,8 +718,7 @@ namespace OOP_Project
                             }
                         }
                     }
-                }
-
+                } 
                 search_list.Visible = search_list.Items.Count > 0;
             }
             catch (Exception ex)
@@ -852,16 +744,6 @@ namespace OOP_Project
                 search_txt.Text = "Search..."; // Set the placeholder text
                 search_txt.ForeColor = Color.Gray; // Change the text color to gray for placeholder
             }
-        }
-
-        private void movie_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void logo_pb_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void recommendedMovieLeft_btn_Click(object sender, EventArgs e)
@@ -1026,7 +908,16 @@ namespace OOP_Project
             }
         }
 
+        private void admin_button_Click(object sender, EventArgs e)
+        {
+            admin_form admin_Form = new admin_form(userType, currentUserId);
+            admin_Form.ShowDialog();
+        }
 
+        private void insertInsert_btn_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
