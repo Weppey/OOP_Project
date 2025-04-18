@@ -34,6 +34,7 @@ namespace OOP_Project
         private int currentOffsetX = 0;
         private const int ScrollStep = 200;
 
+        // memo
 
 
         public home_form(string userTypeFromLogin, int userIdFromLogin)
