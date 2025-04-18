@@ -64,14 +64,14 @@ namespace OOP_Project
                     Body = $@"
 <html>
     <body style='background-color: #141414; font-family: Helvetica, Arial, sans-serif; color: #ffffff; padding: 20px;'>
-        <div style='max-width: 600px; margin: auto; background-color: #1c1c1c; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5);'>
-            <h1 style='color: #e50914; text-align: center;'>Remmm</h1>
+        <div style='max-width: 600px; margin: auto; background-color: #000000; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5);'>
+            <h1 style='color: #e50914; text-align: center; font-size: 36px;'>Remmm</h1>
             <h2 style='color: #ffffff; text-align: center;'>Verify Your Email</h2>
-            <p style='text-align: center;'>To continue using Remmm, please verify your email using the code below:</p>
+            <p style='text-align: center; font-size: 16px;'>To continue using Remmm, please verify your email by entering the code below:</p>
             <div style='margin: 30px auto; width: fit-content; padding: 15px 30px; background-color: #e50914; color: #ffffff; font-size: 28px; font-weight: bold; border-radius: 6px; text-align: center;'>
                 {confirmationCode}
             </div>
-            <p style='text-align: center;'>Didn't request this? Just ignore this message.</p>
+            <p style='text-align: center; font-size: 16px;'>If you did not request this verification, feel free to ignore this email.</p>
             <hr style='border-color: #333333; margin: 30px 0;'>
             <p style='font-size: 12px; text-align: center; color: #aaaaaa;'>
                 Need help? Contact us at 
@@ -81,6 +81,7 @@ namespace OOP_Project
         </div>
     </body>
 </html>"
+
                 };
 
                 mailMessage.To.Add(email);
@@ -205,119 +206,6 @@ namespace OOP_Project
         private void kryptonLabel1_Paint(object sender, PaintEventArgs e)
         {
 
-        }
-
-        private void login_btn_Click(object sender, EventArgs e)
-        {
-            string username = user_tb.Text;
-            string email = email_tb.Text;
-            string password = pass_tb.Text;
-            string gender = gender_cmb.SelectedItem?.ToString();
-            string birthdate = birthday_dtp.Value.ToString("yyyy-MM-dd");
-            string securityQuestion = securityq_cmb.SelectedItem?.ToString();
-            string securityAnswer = answer_tb.Text;
-
-            // Validate input fields
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(gender) ||
-                string.IsNullOrWhiteSpace(securityQuestion) || string.IsNullOrWhiteSpace(securityAnswer))
-            {
-                MessageBox.Show("All fields are required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Exit early, no data will reach the database
-            }
-
-            // Validate email format
-            if (!IsValidEmail(email))
-            {
-                email = email.Trim();
-                MessageBox.Show("Please enter a valid email address!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Exit early, no data will reach the database
-            }
-
-            // Validate password strength
-            if (!IsValidPassword(password))
-            {
-                MessageBox.Show("Password must contain at least one uppercase letter and one special character!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Exit early, no data will reach the database
-            }
-
-            // Validate age
-            int age = DateTime.Now.Year - birthday_dtp.Value.Year;
-            if (DateTime.Now.Month < birthday_dtp.Value.Month ||
-                (DateTime.Now.Month == birthday_dtp.Value.Month && DateTime.Now.Day < birthday_dtp.Value.Day))
-            {
-                age--;
-            }
-
-            if (age < 8)
-            {
-                MessageBox.Show("You must be at least 8 years old to sign up!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Exit early, no data will reach the database
-            }
-
-            // Hash password and security answer
-            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
-            string hashedAnswer = BCrypt.Net.BCrypt.HashPassword(securityAnswer);
-            string verificationCode = GenerateConfirmationCode();
-
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    // Check if the username already exists
-                    string checkUsernameQuery = "SELECT COUNT(*) FROM users WHERE username = @username";
-                    MySqlCommand checkUsernameCmd = new MySqlCommand(checkUsernameQuery, connection);
-                    checkUsernameCmd.Parameters.AddWithValue("@username", username);
-
-                    int usernameCount = Convert.ToInt32(checkUsernameCmd.ExecuteScalar());
-                    if (usernameCount > 0)
-                    {
-                        MessageBox.Show("Username is already taken.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return; // Exit early, no data will reach the database
-                    }
-
-                    // Insert the user into the database if all validations pass
-                    string query = "INSERT INTO users (username, email, password, gender, birthdate, age, preferences, user_type, security_question, security_answer, verification_code) " +
-                                   "VALUES (@username, @email, @password, @gender, @birthdate, @age, @preferences, 'member', @security_question, @security_answer, @verification_code)";
-
-                    string preferences = string.Join(", ", preferences_clb.CheckedItems.Cast<string>());
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@password", hashedPassword);
-                        cmd.Parameters.AddWithValue("@gender", gender);
-                        cmd.Parameters.AddWithValue("@birthdate", birthdate);
-                        cmd.Parameters.AddWithValue("@age", age);
-                        cmd.Parameters.AddWithValue("@preferences", preferences);
-                        cmd.Parameters.AddWithValue("@security_question", securityQuestion);
-                        cmd.Parameters.AddWithValue("@security_answer", hashedAnswer);
-                        cmd.Parameters.AddWithValue("@verification_code", verificationCode);
-
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    // Send the confirmation email
-                    SendConfirmationEmail(email, verificationCode);
-
-                    MessageBox.Show("Sign-up successful! Please check your email for a confirmation code.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Open the verification form
-                    this.Hide();
-                    verification_form verifyForm = new verification_form(email);
-                    verifyForm.ShowDialog();
-                    this.Close();
-
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void login_llbl_LinkClicked(object sender, EventArgs e)
@@ -472,6 +360,119 @@ namespace OOP_Project
         private void email_tb_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void sign_btn_Click(object sender, EventArgs e)
+        {
+            string username = user_tb.Text;
+            string email = email_tb.Text;
+            string password = pass_tb.Text;
+            string gender = gender_cmb.SelectedItem?.ToString();
+            string birthdate = birthday_dtp.Value.ToString("yyyy-MM-dd");
+            string securityQuestion = securityq_cmb.SelectedItem?.ToString();
+            string securityAnswer = answer_tb.Text;
+
+            // Validate input fields
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(email) ||
+                string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(gender) ||
+                string.IsNullOrWhiteSpace(securityQuestion) || string.IsNullOrWhiteSpace(securityAnswer))
+            {
+                MessageBox.Show("All fields are required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit early, no data will reach the database
+            }
+
+            // Validate email format
+            if (!IsValidEmail(email))
+            {
+                email = email.Trim();
+                MessageBox.Show("Please enter a valid email address!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit early, no data will reach the database
+            }
+
+            // Validate password strength
+            if (!IsValidPassword(password))
+            {
+                MessageBox.Show("Password must contain at least one uppercase letter and one special character!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit early, no data will reach the database
+            }
+
+            // Validate age
+            int age = DateTime.Now.Year - birthday_dtp.Value.Year;
+            if (DateTime.Now.Month < birthday_dtp.Value.Month ||
+                (DateTime.Now.Month == birthday_dtp.Value.Month && DateTime.Now.Day < birthday_dtp.Value.Day))
+            {
+                age--;
+            }
+
+            if (age < 8)
+            {
+                MessageBox.Show("You must be at least 8 years old to sign up!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit early, no data will reach the database
+            }
+
+            // Hash password and security answer
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+            string hashedAnswer = BCrypt.Net.BCrypt.HashPassword(securityAnswer);
+            string verificationCode = GenerateConfirmationCode();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    // Check if the username already exists
+                    string checkUsernameQuery = "SELECT COUNT(*) FROM users WHERE username = @username";
+                    MySqlCommand checkUsernameCmd = new MySqlCommand(checkUsernameQuery, connection);
+                    checkUsernameCmd.Parameters.AddWithValue("@username", username);
+
+                    int usernameCount = Convert.ToInt32(checkUsernameCmd.ExecuteScalar());
+                    if (usernameCount > 0)
+                    {
+                        MessageBox.Show("Username is already taken.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return; // Exit early, no data will reach the database
+                    }
+
+                    // Insert the user into the database if all validations pass
+                    string query = "INSERT INTO users (username, email, password, gender, birthdate, age, preferences, user_type, security_question, security_answer, verification_code) " +
+                                   "VALUES (@username, @email, @password, @gender, @birthdate, @age, @preferences, 'member', @security_question, @security_answer, @verification_code)";
+
+                    string preferences = string.Join(", ", preferences_clb.CheckedItems.Cast<string>());
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@password", hashedPassword);
+                        cmd.Parameters.AddWithValue("@gender", gender);
+                        cmd.Parameters.AddWithValue("@birthdate", birthdate);
+                        cmd.Parameters.AddWithValue("@age", age);
+                        cmd.Parameters.AddWithValue("@preferences", preferences);
+                        cmd.Parameters.AddWithValue("@security_question", securityQuestion);
+                        cmd.Parameters.AddWithValue("@security_answer", hashedAnswer);
+                        cmd.Parameters.AddWithValue("@verification_code", verificationCode);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Send the confirmation email
+                    SendConfirmationEmail(email, verificationCode);
+
+                    MessageBox.Show("Sign-up successful! Please check your email for a confirmation code.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Open the verification form
+                    this.Hide();
+                    verification_form verifyForm = new verification_form(email);
+                    verifyForm.ShowDialog();
+                    this.Close();
+
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

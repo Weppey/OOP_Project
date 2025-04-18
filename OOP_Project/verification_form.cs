@@ -13,6 +13,8 @@ namespace OOP_Project
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
         private string userEmail;
+        private string userName;
+        private string userId;
 
         private int cooldownTime = 300; // 5 minutes in seconds
 
@@ -24,11 +26,44 @@ namespace OOP_Project
             StartCooldown();
         }
 
+
+        private async void resend_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            resend_llbl.Enabled = false;
+            await ResendVerificationCode();
+            StartCooldown();
+        }
+
+        private async Task ResendVerificationCode()
+        {
+            string newCode = GenerateNewVerificationCode();
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string updateQuery = "UPDATE users SET verification_code = @NewCode WHERE email = @Email";
+                    MySqlCommand cmd = new MySqlCommand(updateQuery, connection);
+                    cmd.Parameters.AddWithValue("@NewCode", newCode);
+                    cmd.Parameters.AddWithValue("@Email", userEmail);
+                    cmd.ExecuteNonQuery();
+                }
+
+                await SendVerificationEmail(userEmail, newCode);
+
+                MessageBox.Show("A new verification code has been sent to your email.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to resend verification code: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void confirm_btn_Click(object sender, EventArgs e)
         {
             string enteredCode = code_tb.Text;
-
-
 
             if (string.IsNullOrWhiteSpace(enteredCode))
             {
@@ -74,39 +109,6 @@ namespace OOP_Project
             }
         }
 
-        private async void resend_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            resend_llbl.Enabled = false;
-            await ResendVerificationCode();
-            StartCooldown();
-        }
-
-        private async Task ResendVerificationCode()
-        {
-            string newCode = GenerateNewVerificationCode();
-
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string updateQuery = "UPDATE users SET verification_code = @NewCode WHERE email = @Email";
-                    MySqlCommand cmd = new MySqlCommand(updateQuery, connection);
-                    cmd.Parameters.AddWithValue("@NewCode", newCode);
-                    cmd.Parameters.AddWithValue("@Email", userEmail);
-                    cmd.ExecuteNonQuery();
-                }
-
-                await SendVerificationEmail(userEmail, newCode);
-
-                MessageBox.Show("A new verification code has been sent to your email.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Failed to resend verification code: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private async Task SendVerificationEmail(string email, string confirmationCode)
         {
             try
@@ -115,34 +117,34 @@ namespace OOP_Project
                 SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
                 {
                     Port = 587,
-                    Credentials = new NetworkCredential("cunanjrrafael.pdm@gmail.com", "spbj xwji uzcs fbuf"),
+                    Credentials = new NetworkCredential("remmm.help@gmail.com", "nwvo tqpy onmt aohm"),  // Updated email credentials
                     EnableSsl = true
                 };
 
                 // Create the email message
                 MailMessage mailMessage = new MailMessage
                 {
-                    From = new MailAddress("cunanjrrafael.pdm@gmail.com"),
+                    From = new MailAddress("remmm.help@gmail.com"),
                     Subject = "New Verification Code",
                     IsBodyHtml = true, // Set this to true to allow HTML content
                     Body = $@"
-        <html>
-            <body style='font-family: Arial, sans-serif; color: #333333;'>
-                <div style='background-color: #f9f9f9; padding: 20px; border-radius: 10px;'>
-                    <h2 style='color: #007bff;'>Verification Code</h2>
-                    <p>Hi there,</p>
-                    <p>We received a request to verify your email address. Please use the following code to complete the process:</p>
-                    <div style='font-size: 24px; font-weight: bold; text-align: center; background-color: #d1ecf1; padding: 15px; border-radius: 5px; color: #0056b3;'>
-                        {confirmationCode}
+            <html>
+                <body style='font-family: Arial, sans-serif; color: #333333; background-color: #141414; padding: 20px;'>
+                    <div style='background-color: #1c1c1c; padding: 20px; border-radius: 10px;'>
+                        <h2 style='color: #e50914; font-size: 24px;'>Verification Code</h2>
+                        <p style='color: #ffffff;'>Hi there,</p>
+                        <p style='color: #ffffff;'>We received a request to verify your email address. Please use the following code to complete the process:</p>
+                        <div style='font-size: 24px; font-weight: bold; text-align: center; background-color: #333333; padding: 15px; border-radius: 5px; color: #e50914;'>
+                            {confirmationCode}
+                        </div>
+                        <p style='color: #ffffff; margin-top: 20px;'>If you did not request this verification, please ignore this email.</p>
+                        <p style='color: #888888; font-size: 12px;'>Best regards, <br> Remmm Support Team</p>
+                        <footer style='margin-top: 30px; text-align: center; font-size: 12px; color: #888888;'>
+                            <p style='color: #888888;'>For any issues, contact us at <a href='mailto:remmm.help@gmail.com' style='color: #e50914;'>remmm.help@gmail.com</a></p>
+                        </footer>
                     </div>
-                    <p style='margin-top: 20px;'>If you did not request this verification, please ignore this email.</p>
-                    <p style='font-size: 12px; color: #888888;'>Best regards, <br> Reppey Support Team</p>
-                    <footer style='margin-top: 30px; text-align: center; font-size: 12px; color: #888888;'>
-                        <p>For any issues, contact us at <a href='mailto:support@yourdomain.com'>cunanjrrafael.pdm@gmail.com</a></p>
-                    </footer>
-                </div>
-            </body>
-        </html>"
+                </body>
+            </html>"
                 };
 
 
@@ -192,35 +194,7 @@ namespace OOP_Project
             LoginForm.Show();
         }
 
-        private void verification_form_Load(object sender, EventArgs e)
-        {
 
-        }
-
-        private void code_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bg2_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void code_tb_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Panel_verify_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void logo_pb_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void code_tb_Enter(object sender, EventArgs e)
         {
@@ -240,9 +214,5 @@ namespace OOP_Project
             }
         }
 
-        private void note_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

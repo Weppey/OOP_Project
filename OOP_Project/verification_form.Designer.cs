@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.Panel_verify = new System.Windows.Forms.Panel();
+            this.note_lbl = new System.Windows.Forms.Label();
             this.logo_pb = new System.Windows.Forms.PictureBox();
             this.confirm_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.bg2_panel = new System.Windows.Forms.Panel();
@@ -39,7 +40,6 @@
             this.code_lbl = new System.Windows.Forms.Label();
             this.min_pb = new System.Windows.Forms.PictureBox();
             this.cls_pb = new System.Windows.Forms.PictureBox();
-            this.note_lbl = new System.Windows.Forms.Label();
             this.Panel_verify.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min_pb)).BeginInit();
@@ -62,7 +62,18 @@
             this.Panel_verify.Name = "Panel_verify";
             this.Panel_verify.Size = new System.Drawing.Size(844, 451);
             this.Panel_verify.TabIndex = 1;
-            this.Panel_verify.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel_verify_Paint);
+            // 
+            // note_lbl
+            // 
+            this.note_lbl.AutoSize = true;
+            this.note_lbl.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.note_lbl.ForeColor = System.Drawing.Color.Gray;
+            this.note_lbl.Location = new System.Drawing.Point(612, 270);
+            this.note_lbl.Name = "note_lbl";
+            this.note_lbl.Size = new System.Drawing.Size(182, 28);
+            this.note_lbl.TabIndex = 60;
+            this.note_lbl.Text = "Please kindly check your spam folder \r\nif you didn’t receive the code.";
+            this.note_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // logo_pb
             // 
@@ -73,7 +84,6 @@
             this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logo_pb.TabIndex = 12;
             this.logo_pb.TabStop = false;
-            this.logo_pb.Click += new System.EventHandler(this.logo_pb_Click);
             // 
             // confirm_btn
             // 
@@ -93,6 +103,7 @@
             this.confirm_btn.TabIndex = 58;
             this.confirm_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_right_162;
             this.confirm_btn.Values.Text = "Confirm";
+            this.confirm_btn.Click += new System.EventHandler(this.confirm_btn_Click);
             // 
             // bg2_panel
             // 
@@ -104,7 +115,6 @@
             this.bg2_panel.Name = "bg2_panel";
             this.bg2_panel.Size = new System.Drawing.Size(540, 451);
             this.bg2_panel.TabIndex = 55;
-            this.bg2_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.bg2_panel_Paint);
             // 
             // resend_llbl
             // 
@@ -142,7 +152,6 @@
             this.code_tb.Name = "code_tb";
             this.code_tb.Size = new System.Drawing.Size(157, 25);
             this.code_tb.TabIndex = 41;
-            this.code_tb.TextChanged += new System.EventHandler(this.code_tb_TextChanged);
             this.code_tb.Enter += new System.EventHandler(this.code_tb_Enter);
             this.code_tb.Leave += new System.EventHandler(this.code_tb_Leave);
             // 
@@ -168,7 +177,6 @@
             this.code_lbl.Size = new System.Drawing.Size(46, 19);
             this.code_lbl.TabIndex = 39;
             this.code_lbl.Text = "Code:";
-            this.code_lbl.Click += new System.EventHandler(this.code_lbl_Click);
             // 
             // min_pb
             // 
@@ -196,18 +204,6 @@
             this.cls_pb.TabStop = false;
             this.cls_pb.Click += new System.EventHandler(this.cls_pb_Click);
             // 
-            // note_lbl
-            // 
-            this.note_lbl.AutoSize = true;
-            this.note_lbl.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.note_lbl.ForeColor = System.Drawing.Color.Gray;
-            this.note_lbl.Location = new System.Drawing.Point(612, 270);
-            this.note_lbl.Name = "note_lbl";
-            this.note_lbl.Size = new System.Drawing.Size(182, 28);
-            this.note_lbl.TabIndex = 60;
-            this.note_lbl.Text = "Please kindly check your spam folder \r\nif you didn’t receive the code.";
-            this.note_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // verification_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -222,7 +218,6 @@
             this.Name = "verification_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "verification_form";
-            this.Load += new System.EventHandler(this.verification_form_Load);
             this.Panel_verify.ResumeLayout(false);
             this.Panel_verify.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
