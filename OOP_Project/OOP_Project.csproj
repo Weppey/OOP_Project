@@ -207,12 +207,6 @@
     <Compile Include="account_recovery_form.Designer.cs">
       <DependentUpon>account_recovery_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="add_movie_form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="add_movie_form.Designer.cs">
-      <DependentUpon>add_movie_form.cs</DependentUpon>
-    </Compile>
     <Compile Include="admin_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,9 +267,6 @@
     </Compile>
     <EmbeddedResource Include="account_recovery_form.resx">
       <DependentUpon>account_recovery_form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="add_movie_form.resx">
-      <DependentUpon>add_movie_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin_form.resx">
       <DependentUpon>admin_form.cs</DependentUpon>
@@ -413,6 +404,7 @@
     <None Include="Resources\icons8-comments-28.png" />
     <None Include="Resources\icons8-insert-column-right-28.png" />
     <None Include="Resources\icons8-remove-28.png" />
+    <None Include="Resources\icons8-submit-28.png" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />

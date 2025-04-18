@@ -239,5 +239,10 @@ namespace OOP_Project
                 code_tb.ForeColor = Color.Gray;
             }
         }
+
+        private void note_lbl_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

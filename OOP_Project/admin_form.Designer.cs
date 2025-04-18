@@ -29,10 +29,21 @@
         private void InitializeComponent()
         {
             this.home_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.movie_panel = new System.Windows.Forms.Panel();
             this.insertMovie_panel = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.releaseDate_dtp = new System.Windows.Forms.DateTimePicker();
+            this.genre_clb = new System.Windows.Forms.CheckedListBox();
+            this.release_year = new System.Windows.Forms.Label();
+            this.genre_lbl = new System.Windows.Forms.Label();
+            this.decription_lbl = new System.Windows.Forms.Label();
+            this.decription_tb = new System.Windows.Forms.TextBox();
+            this.posterUrl_lbl = new System.Windows.Forms.Label();
+            this.url_tb = new System.Windows.Forms.TextBox();
+            this.title_lbl = new System.Windows.Forms.Label();
+            this.title_tb = new System.Windows.Forms.TextBox();
+            this.details_lbl = new System.Windows.Forms.Label();
             this.submit_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.insertClose_btn = new System.Windows.Forms.PictureBox();
             this.search_list = new System.Windows.Forms.ListBox();
@@ -43,19 +54,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.insert_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.remove_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.genre_clb = new System.Windows.Forms.CheckedListBox();
-            this.release_year = new System.Windows.Forms.Label();
-            this.genre_lbl = new System.Windows.Forms.Label();
-            this.decription_lbl = new System.Windows.Forms.Label();
-            this.decription_tb = new System.Windows.Forms.TextBox();
-            this.posterUrl_lbl = new System.Windows.Forms.Label();
-            this.url_tb = new System.Windows.Forms.TextBox();
-            this.title_lbl = new System.Windows.Forms.Label();
-            this.title_tb = new System.Windows.Forms.TextBox();
+            this.panel1.SuspendLayout();
             this.movie_panel.SuspendLayout();
             this.insertMovie_panel.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -63,7 +64,6 @@
             this.viewportPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieRight_btn)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             this.SuspendLayout();
@@ -97,11 +97,23 @@
             this.home_btn.Values.Text = "";
             this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
             // 
+            // panel1
+            // 
+            this.panel1.AutoScroll = true;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.panel1.Controls.Add(this.home_btn);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1382, 60);
+            this.panel1.TabIndex = 63;
+            // 
             // movie_panel
             // 
             this.movie_panel.AutoScroll = true;
             this.movie_panel.AutoSize = true;
             this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.movie_panel.BackgroundImage = global::OOP_Project.Properties.Resources._1_2_1;
             this.movie_panel.Controls.Add(this.insertMovie_panel);
             this.movie_panel.Controls.Add(this.search_list);
             this.movie_panel.Controls.Add(this.search_txt);
@@ -116,7 +128,7 @@
             // insertMovie_panel
             // 
             this.insertMovie_panel.Controls.Add(this.panel3);
-            this.insertMovie_panel.Controls.Add(this.label1);
+            this.insertMovie_panel.Controls.Add(this.details_lbl);
             this.insertMovie_panel.Controls.Add(this.submit_btn);
             this.insertMovie_panel.Controls.Add(this.insertClose_btn);
             this.insertMovie_panel.Location = new System.Drawing.Point(304, 179);
@@ -128,7 +140,8 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.dateTimePicker1);
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.panel3.Controls.Add(this.releaseDate_dtp);
             this.panel3.Controls.Add(this.genre_clb);
             this.panel3.Controls.Add(this.release_year);
             this.panel3.Controls.Add(this.genre_lbl);
@@ -138,26 +151,122 @@
             this.panel3.Controls.Add(this.url_tb);
             this.panel3.Controls.Add(this.title_lbl);
             this.panel3.Controls.Add(this.title_tb);
+            this.panel3.ForeColor = System.Drawing.Color.Black;
             this.panel3.Location = new System.Drawing.Point(34, 48);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(539, 342);
+            this.panel3.Size = new System.Drawing.Size(555, 342);
             this.panel3.TabIndex = 77;
             // 
-            // label1
+            // releaseDate_dtp
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Impact", 15F);
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(29, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 25);
-            this.label1.TabIndex = 74;
-            this.label1.Text = "Fill up";
+            this.releaseDate_dtp.Location = new System.Drawing.Point(121, 156);
+            this.releaseDate_dtp.Name = "releaseDate_dtp";
+            this.releaseDate_dtp.Size = new System.Drawing.Size(191, 20);
+            this.releaseDate_dtp.TabIndex = 86;
+            // 
+            // genre_clb
+            // 
+            this.genre_clb.FormattingEnabled = true;
+            this.genre_clb.Location = new System.Drawing.Point(81, 94);
+            this.genre_clb.Name = "genre_clb";
+            this.genre_clb.Size = new System.Drawing.Size(191, 49);
+            this.genre_clb.TabIndex = 85;
+            // 
+            // release_year
+            // 
+            this.release_year.AutoSize = true;
+            this.release_year.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.release_year.ForeColor = System.Drawing.SystemColors.Control;
+            this.release_year.Location = new System.Drawing.Point(30, 156);
+            this.release_year.Name = "release_year";
+            this.release_year.Size = new System.Drawing.Size(90, 19);
+            this.release_year.TabIndex = 84;
+            this.release_year.Text = "Release Year:";
+            // 
+            // genre_lbl
+            // 
+            this.genre_lbl.AutoSize = true;
+            this.genre_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.genre_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.genre_lbl.Location = new System.Drawing.Point(30, 94);
+            this.genre_lbl.Name = "genre_lbl";
+            this.genre_lbl.Size = new System.Drawing.Size(49, 19);
+            this.genre_lbl.TabIndex = 83;
+            this.genre_lbl.Text = "Genre:";
+            // 
+            // decription_lbl
+            // 
+            this.decription_lbl.AutoSize = true;
+            this.decription_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.decription_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.decription_lbl.Location = new System.Drawing.Point(29, 191);
+            this.decription_lbl.Name = "decription_lbl";
+            this.decription_lbl.Size = new System.Drawing.Size(81, 19);
+            this.decription_lbl.TabIndex = 82;
+            this.decription_lbl.Text = "Description:";
+            // 
+            // decription_tb
+            // 
+            this.decription_tb.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.decription_tb.Location = new System.Drawing.Point(119, 194);
+            this.decription_tb.Multiline = true;
+            this.decription_tb.Name = "decription_tb";
+            this.decription_tb.Size = new System.Drawing.Size(191, 118);
+            this.decription_tb.TabIndex = 81;
+            // 
+            // posterUrl_lbl
+            // 
+            this.posterUrl_lbl.AutoSize = true;
+            this.posterUrl_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.posterUrl_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.posterUrl_lbl.Location = new System.Drawing.Point(29, 53);
+            this.posterUrl_lbl.Name = "posterUrl_lbl";
+            this.posterUrl_lbl.Size = new System.Drawing.Size(85, 19);
+            this.posterUrl_lbl.TabIndex = 80;
+            this.posterUrl_lbl.Text = "Poster URL:";
+            // 
+            // url_tb
+            // 
+            this.url_tb.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.url_tb.Location = new System.Drawing.Point(121, 56);
+            this.url_tb.Name = "url_tb";
+            this.url_tb.Size = new System.Drawing.Size(191, 20);
+            this.url_tb.TabIndex = 79;
+            // 
+            // title_lbl
+            // 
+            this.title_lbl.AutoSize = true;
+            this.title_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.title_lbl.Location = new System.Drawing.Point(29, 15);
+            this.title_lbl.Name = "title_lbl";
+            this.title_lbl.Size = new System.Drawing.Size(37, 19);
+            this.title_lbl.TabIndex = 78;
+            this.title_lbl.Text = "Title:";
+            // 
+            // title_tb
+            // 
+            this.title_tb.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_tb.Location = new System.Drawing.Point(75, 18);
+            this.title_tb.Name = "title_tb";
+            this.title_tb.Size = new System.Drawing.Size(191, 20);
+            this.title_tb.TabIndex = 77;
+            // 
+            // details_lbl
+            // 
+            this.details_lbl.AutoSize = true;
+            this.details_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.details_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.details_lbl.Location = new System.Drawing.Point(29, 20);
+            this.details_lbl.Name = "details_lbl";
+            this.details_lbl.Size = new System.Drawing.Size(149, 26);
+            this.details_lbl.TabIndex = 74;
+            this.details_lbl.Text = "Movie details";
             // 
             // submit_btn
             // 
             this.submit_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.submit_btn.Location = new System.Drawing.Point(572, 335);
+            this.submit_btn.Location = new System.Drawing.Point(596, 345);
             this.submit_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.submit_btn.Name = "submit_btn";
             this.submit_btn.Size = new System.Drawing.Size(132, 45);
@@ -180,9 +289,9 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.submit_btn.TabIndex = 67;
-            this.submit_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_insert_column_right_28;
+            this.submit_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_submit_28;
             this.submit_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.submit_btn.Values.Text = "Insert";
+            this.submit_btn.Values.Text = "Submit";
             this.submit_btn.Click += new System.EventHandler(this.submit_btn_Click);
             // 
             // insertClose_btn
@@ -321,17 +430,6 @@
             this.remove_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.remove_btn.Values.Text = "Remove";
             // 
-            // panel1
-            // 
-            this.panel1.AutoScroll = true;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.panel1.Controls.Add(this.home_btn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1382, 60);
-            this.panel1.TabIndex = 63;
-            // 
             // close_pb
             // 
             this.close_pb.BackColor = System.Drawing.Color.Transparent;
@@ -354,101 +452,6 @@
             this.minimize_pb.TabIndex = 17;
             this.minimize_pb.TabStop = false;
             // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(121, 156);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(191, 20);
-            this.dateTimePicker1.TabIndex = 86;
-            // 
-            // genre_clb
-            // 
-            this.genre_clb.FormattingEnabled = true;
-            this.genre_clb.Location = new System.Drawing.Point(81, 94);
-            this.genre_clb.Name = "genre_clb";
-            this.genre_clb.Size = new System.Drawing.Size(191, 49);
-            this.genre_clb.TabIndex = 85;
-            // 
-            // release_year
-            // 
-            this.release_year.AutoSize = true;
-            this.release_year.Font = new System.Drawing.Font("Impact", 10F);
-            this.release_year.ForeColor = System.Drawing.SystemColors.Control;
-            this.release_year.Location = new System.Drawing.Point(30, 156);
-            this.release_year.Name = "release_year";
-            this.release_year.Size = new System.Drawing.Size(85, 18);
-            this.release_year.TabIndex = 84;
-            this.release_year.Text = "Release Year:";
-            // 
-            // genre_lbl
-            // 
-            this.genre_lbl.AutoSize = true;
-            this.genre_lbl.Font = new System.Drawing.Font("Impact", 10F);
-            this.genre_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.genre_lbl.Location = new System.Drawing.Point(30, 94);
-            this.genre_lbl.Name = "genre_lbl";
-            this.genre_lbl.Size = new System.Drawing.Size(45, 18);
-            this.genre_lbl.TabIndex = 83;
-            this.genre_lbl.Text = "Genre:";
-            // 
-            // decription_lbl
-            // 
-            this.decription_lbl.AutoSize = true;
-            this.decription_lbl.Font = new System.Drawing.Font("Impact", 12F);
-            this.decription_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.decription_lbl.Location = new System.Drawing.Point(29, 191);
-            this.decription_lbl.Name = "decription_lbl";
-            this.decription_lbl.Size = new System.Drawing.Size(88, 20);
-            this.decription_lbl.TabIndex = 82;
-            this.decription_lbl.Text = "Description:";
-            // 
-            // decription_tb
-            // 
-            this.decription_tb.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.decription_tb.Location = new System.Drawing.Point(119, 194);
-            this.decription_tb.Multiline = true;
-            this.decription_tb.Name = "decription_tb";
-            this.decription_tb.Size = new System.Drawing.Size(191, 118);
-            this.decription_tb.TabIndex = 81;
-            // 
-            // posterUrl_lbl
-            // 
-            this.posterUrl_lbl.AutoSize = true;
-            this.posterUrl_lbl.Font = new System.Drawing.Font("Impact", 12F);
-            this.posterUrl_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.posterUrl_lbl.Location = new System.Drawing.Point(29, 53);
-            this.posterUrl_lbl.Name = "posterUrl_lbl";
-            this.posterUrl_lbl.Size = new System.Drawing.Size(82, 20);
-            this.posterUrl_lbl.TabIndex = 80;
-            this.posterUrl_lbl.Text = "Poster URL:";
-            // 
-            // url_tb
-            // 
-            this.url_tb.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.url_tb.Location = new System.Drawing.Point(121, 56);
-            this.url_tb.Name = "url_tb";
-            this.url_tb.Size = new System.Drawing.Size(191, 20);
-            this.url_tb.TabIndex = 79;
-            // 
-            // title_lbl
-            // 
-            this.title_lbl.AutoSize = true;
-            this.title_lbl.Font = new System.Drawing.Font("Impact", 12F);
-            this.title_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.title_lbl.Location = new System.Drawing.Point(29, 15);
-            this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(40, 20);
-            this.title_lbl.TabIndex = 78;
-            this.title_lbl.Text = "Title:";
-            // 
-            // title_tb
-            // 
-            this.title_tb.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title_tb.Location = new System.Drawing.Point(75, 18);
-            this.title_tb.Name = "title_tb";
-            this.title_tb.Size = new System.Drawing.Size(191, 20);
-            this.title_tb.TabIndex = 77;
-            // 
             // admin_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,6 +467,7 @@
             this.Location = new System.Drawing.Point(330, 200);
             this.Name = "admin_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.panel1.ResumeLayout(false);
             this.movie_panel.ResumeLayout(false);
             this.movie_panel.PerformLayout();
             this.insertMovie_panel.ResumeLayout(false);
@@ -474,7 +478,6 @@
             this.viewportPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieRight_btn)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             this.ResumeLayout(false);
@@ -498,9 +501,9 @@
         private System.Windows.Forms.Panel insertMovie_panel;
         private System.Windows.Forms.PictureBox insertClose_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton submit_btn;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label details_lbl;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker releaseDate_dtp;
         private System.Windows.Forms.CheckedListBox genre_clb;
         private System.Windows.Forms.Label release_year;
         private System.Windows.Forms.Label genre_lbl;

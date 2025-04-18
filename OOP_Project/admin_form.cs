@@ -80,6 +80,7 @@ namespace OOP_Project
         private void insert_btn_Click(object sender, EventArgs e)
         {
             insertMovie_panel.Visible = true;
+
         }
 
         private void insertClose_btn_Click(object sender, EventArgs e)
@@ -93,27 +94,29 @@ namespace OOP_Project
             if (string.IsNullOrWhiteSpace(title_tb.Text) ||
                 string.IsNullOrWhiteSpace(posterUrl_lbl.Text) ||
                 string.IsNullOrWhiteSpace(decription_lbl.Text) ||
-                string.IsNullOrWhiteSpace(release_year.Text) ||
                 genre_clb.SelectedIndex < 0)
             {
                 MessageBox.Show("Please fill out all fields before inserting the movie.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Validate year
-            if (!int.TryParse(release_year.Text, out int year))
+            // Get release year from DateTimePicker
+            int year = releaseDate_dtp.Value.Year;
+
+            // Optional: Check if the year is not in the future
+            if (year > DateTime.Now.Year)
             {
-                MessageBox.Show("Please enter a valid number for release year.", "Invalid Year", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Release year cannot be in the future.", "Invalid Year", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             string imageUrl = url_tb.Text.Trim();
 
-
             // All good, insert the movie
             InsertMovie(title_tb.Text, imageUrl, genre_clb.SelectedItem.ToString(), decription_lbl.Text, year);
             insertMovie_panel.Visible = false;
         }
+
 
         private void InsertMovie(string title, string imageUrl, string genre, string description, int year)
         {

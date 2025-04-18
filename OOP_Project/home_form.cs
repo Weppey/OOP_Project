@@ -69,8 +69,6 @@ namespace OOP_Project
                 panel.Region = new Region(path);
             }
 
-
-
         private void HandleAccess()
         {
             if (userType.ToLower() == "admin")
@@ -83,10 +81,6 @@ namespace OOP_Project
             }
         }
 
-        
-
-
-
         private async void home_form_Load(object sender, EventArgs e)
         {
             LoadRecentSearches();
@@ -94,15 +88,6 @@ namespace OOP_Project
             recommendedMovie_flp.FlowDirection = FlowDirection.LeftToRight;
             recommendedMovie_flp.WrapContents = true;
             recommendedMovie_flp.AutoScroll = true;
-
-            for (int i = 0; i < 10; i++)
-            {
-                Panel p = new Panel();
-                p.Width = 200;
-                p.Height = 300;
-                p.BackColor = Color.AliceBlue;
-                recommendedMovie_flp.Controls.Add(p);
-            }
 
             connection = new MySqlConnection("Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;");
                 try
@@ -282,9 +267,6 @@ namespace OOP_Project
             }
         }
 
-
-
-
         public void LoadMovies()
         {
             recommendedMovie_flp.Controls.Clear();
@@ -298,18 +280,16 @@ namespace OOP_Project
                 {
                     while (reader.Read())
                     {
-
-                        movie_card card = new movie_card();
+                        MovieCard card = new MovieCard();
                         int movieID = reader.GetInt32("movie_id");
-
-
                         string imageUrl = reader["image_url"]?.ToString();
+
                         if (!string.IsNullOrWhiteSpace(imageUrl))
                         {
-                            // Check if the URL doesn't have an extension, then append .jpg or .png
+                            // Append .jpg if no valid extension
                             if (!imageUrl.EndsWith(".jpg") && !imageUrl.EndsWith(".png"))
                             {
-                                imageUrl += ".jpg"; // Or use .png if you prefer
+                                imageUrl += ".jpg";
                             }
 
                             try
@@ -319,75 +299,38 @@ namespace OOP_Project
                                     using (var webClient = new System.Net.WebClient())
                                     {
                                         byte[] imageBytes = webClient.DownloadData(imageUrl);
-                                        using (var stream = new System.IO.MemoryStream(imageBytes))
+                                        using (var stream = new MemoryStream(imageBytes))
                                         {
-                                            card.Poster = Image.FromStream(stream);
+                                            card.PosterImage = Image.FromStream(stream);
                                         }
                                     }
                                 }
+                                else if (File.Exists(imageUrl)) // Local file path
+                                {
+                                    card.PosterImage = Image.FromFile(imageUrl);
+                                }
                                 else
                                 {
-                                    // Handle the case where the image URL is invalid
-                                    card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
+                                    card.PosterImage = Properties.Resources.Netflix_N_Symbol_logo;
                                 }
                             }
                             catch (Exception ex)
                             {
                                 MessageBox.Show($"Failed to load image for movie ID {movieID}.\n\n{ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
+                                card.PosterImage = Properties.Resources.Netflix_N_Symbol_logo;
                             }
                         }
                         else
                         {
-                            card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
+                            card.PosterImage = Properties.Resources.Netflix_N_Symbol_logo;
                         }
 
-                        try
-                        {
-                            if (!string.IsNullOrWhiteSpace(imageUrl))
-                            {
-                                // If the URL is well-formed, attempt to load the image from the web
-                                if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
-                                {
-                                    using (var webClient = new System.Net.WebClient())
-                                    {
-                                        byte[] imageBytes = webClient.DownloadData(imageUrl);
-                                        using (var stream = new System.IO.MemoryStream(imageBytes))
-                                        {
-                                            card.Poster = Image.FromStream(stream);
-                                        }
-                                    }
-                                }
-                                // If it's a local file path, try loading the image from the file system
-                                else if (File.Exists(imageUrl))
-                                {
-                                    card.Poster = Image.FromFile(imageUrl);
-                                }
-                                else
-                                {
-                                    // If URL is invalid, set a default image
-                                    card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
-                                }
-                            }
-                            else
-                            {
-                                // If the image URL is empty or null, set a default image
-                                card.Poster = Properties.Resources.Netflix_N_Symbol_logo;
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            // Show a message box with the error details
-                            MessageBox.Show($"Failed to load image for movie ID {movieID}.\n\n{ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            card.Poster = Properties.Resources.Netflix_N_Symbol_logo; // Fallback image
-                        }
-
-                        // Add the movie card to the flow panel
                         recommendedMovie_flp.Controls.Add(card);
                     }
                 }
             }
         }
+
 
         private void close_pb_Click(object sender, EventArgs e)
             {
@@ -452,45 +395,6 @@ namespace OOP_Project
                 form_lbl.Text = "SETTINGS";
             }
 
-            private void kryptonPanel1_Paint(object sender, PaintEventArgs e)
-            {
-
-            }
-
-            private void menu_panel_Paint(object sender, PaintEventArgs e)
-            {
-
-            }
-
-            private void recommendedMovieLeft_btn_MouseClick(object sender, MouseEventArgs e)
-            {
-                recommendedMovieLeft_btn.BackColor = Color.FromArgb(80, 80, 80);
-            }
-
-            private void recommendedMovieLeft_btn_MouseLeave(object sender, EventArgs e)
-            {
-                recommendedMovieLeft_btn.BackColor = Color.FromArgb(128, 128, 128);
-            }
-            private void recommendedMovieLeft_btn_MouseEnter(object sender, EventArgs e)
-            {
-                recommendedMovieLeft_btn.BackColor = Color.FromArgb(100, 100, 100);
-            }
-
-            private void recommendedMovieRight_btn_MouseEnter(object sender, EventArgs e)
-            {
-                recommendedMovieRight_btn.BackColor = Color.FromArgb(100, 100, 100);
-            }
-
-            private void recommendedMovieRight_btn_MouseLeave(object sender, EventArgs e)
-            {
-                recommendedMovieRight_btn.BackColor = Color.FromArgb(128, 128, 128);
-            }
-
-            private void recommendedMovieRight_btn_MouseClick(object sender, MouseEventArgs e)
-            {
-                recommendedMovieRight_btn.BackColor = Color.FromArgb(80, 80, 80);
-            }
-
             private bool IsValidUrl(string url)
             {
                 return Uri.IsWellFormedUriString(url, UriKind.Absolute) && (url.StartsWith("http://") || url.StartsWith("https://"));
@@ -527,22 +431,7 @@ namespace OOP_Project
             }
             }
 
-        private void insertMovie_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void recommendedMovie_flp_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void searchBar_btn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-           
-        }
-
-        
+       
 
         private void search_list_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -782,7 +671,7 @@ namespace OOP_Project
         private void LoadRecentSearches()
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT movie_title, movie_description, movie_genre, release_year, image_url FROM recent_searches ORDER BY id DESC LIMIT 10"; // You can limit the number to 10
+            string query = "SELECT movie_title, movie_description, movie_genre, release_year, image_url FROM recent_searches ORDER BY id DESC LIMIT 20"; // You can limit the number to 10
 
             try
             {

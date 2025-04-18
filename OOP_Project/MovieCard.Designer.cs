@@ -1,6 +1,6 @@
 ﻿namespace OOP_Project
 {
-    partial class movie_card
+    partial class MovieCard
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,37 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.poster_pb = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
+            this.PosterImage_pb = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.PosterImage_pb)).BeginInit();
             this.SuspendLayout();
             // 
-            // poster_pb
+            // PosterImage_pb
             // 
-            this.poster_pb.Location = new System.Drawing.Point(0, 0);
-            this.poster_pb.Margin = new System.Windows.Forms.Padding(10);
-            this.poster_pb.Name = "poster_pb";
-            this.poster_pb.Size = new System.Drawing.Size(180, 217);
-            this.poster_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.poster_pb.TabIndex = 0;
-            this.poster_pb.TabStop = false;
-            this.poster_pb.Click += new System.EventHandler(this.poster_pb_Click);
+            this.PosterImage_pb.Location = new System.Drawing.Point(0, 0);
+            this.PosterImage_pb.Name = "PosterImage_pb";
+            this.PosterImage_pb.Size = new System.Drawing.Size(180, 217);
+            this.PosterImage_pb.TabIndex = 0;
+            this.PosterImage_pb.TabStop = false;
             // 
-            // movie_card
+            // MovieCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.Controls.Add(this.poster_pb);
+            this.Controls.Add(this.PosterImage_pb);
             this.Margin = new System.Windows.Forms.Padding(10);
-            this.Name = "movie_card";
+            this.Name = "MovieCard";
             this.Size = new System.Drawing.Size(180, 217);
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PosterImage_pb)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox poster_pb;
+        private System.Windows.Forms.PictureBox PosterImage_pb;
     }
 }

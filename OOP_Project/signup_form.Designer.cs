@@ -94,11 +94,11 @@
             // Lbl_Signup
             // 
             this.Lbl_Signup.AutoSize = true;
-            this.Lbl_Signup.Font = new System.Drawing.Font("Arial Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_Signup.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold);
             this.Lbl_Signup.ForeColor = System.Drawing.Color.Black;
-            this.Lbl_Signup.Location = new System.Drawing.Point(396, 59);
+            this.Lbl_Signup.Location = new System.Drawing.Point(397, 29);
             this.Lbl_Signup.Name = "Lbl_Signup";
-            this.Lbl_Signup.Size = new System.Drawing.Size(112, 33);
+            this.Lbl_Signup.Size = new System.Drawing.Size(91, 26);
             this.Lbl_Signup.TabIndex = 43;
             this.Lbl_Signup.Text = "Sign-up";
             this.Lbl_Signup.Click += new System.EventHandler(this.Lbl_Signup_Click);
@@ -132,7 +132,7 @@
             // 
             // login_llbl
             // 
-            this.login_llbl.Location = new System.Drawing.Point(634, 421);
+            this.login_llbl.Location = new System.Drawing.Point(656, 417);
             this.login_llbl.Name = "login_llbl";
             this.login_llbl.Size = new System.Drawing.Size(44, 20);
             this.login_llbl.TabIndex = 69;
@@ -141,7 +141,7 @@
             // 
             // acc_lbl
             // 
-            this.acc_lbl.Location = new System.Drawing.Point(487, 421);
+            this.acc_lbl.Location = new System.Drawing.Point(509, 417);
             this.acc_lbl.Name = "acc_lbl";
             this.acc_lbl.Size = new System.Drawing.Size(150, 20);
             this.acc_lbl.TabIndex = 68;
@@ -149,7 +149,7 @@
             // 
             // pref_lbl
             // 
-            this.pref_lbl.Location = new System.Drawing.Point(610, 167);
+            this.pref_lbl.Location = new System.Drawing.Point(601, 101);
             this.pref_lbl.Name = "pref_lbl";
             this.pref_lbl.Size = new System.Drawing.Size(113, 20);
             this.pref_lbl.TabIndex = 67;
@@ -157,15 +157,15 @@
             // 
             // preferences_clb
             // 
-            this.preferences_clb.Location = new System.Drawing.Point(610, 193);
+            this.preferences_clb.Location = new System.Drawing.Point(601, 127);
             this.preferences_clb.Name = "preferences_clb";
-            this.preferences_clb.Size = new System.Drawing.Size(220, 128);
+            this.preferences_clb.Size = new System.Drawing.Size(220, 221);
             this.preferences_clb.TabIndex = 66;
             // 
             // securityq_cmb
             // 
             this.securityq_cmb.DropDownWidth = 183;
-            this.securityq_cmb.Location = new System.Drawing.Point(402, 345);
+            this.securityq_cmb.Location = new System.Drawing.Point(402, 328);
             this.securityq_cmb.Name = "securityq_cmb";
             this.securityq_cmb.Size = new System.Drawing.Size(186, 20);
             this.securityq_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
@@ -178,7 +178,7 @@
             // 
             // answer_tb
             // 
-            this.answer_tb.Location = new System.Drawing.Point(402, 372);
+            this.answer_tb.Location = new System.Drawing.Point(402, 355);
             this.answer_tb.Name = "answer_tb";
             this.answer_tb.Size = new System.Drawing.Size(186, 26);
             this.answer_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
@@ -193,7 +193,7 @@
             // birthday_dtp
             // 
             this.birthday_dtp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.birthday_dtp.Location = new System.Drawing.Point(402, 286);
+            this.birthday_dtp.Location = new System.Drawing.Point(402, 269);
             this.birthday_dtp.Name = "birthday_dtp";
             this.birthday_dtp.Size = new System.Drawing.Size(183, 20);
             this.birthday_dtp.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
@@ -209,7 +209,7 @@
             "Female",
             "Male",
             "Prefer not to say"});
-            this.gender_cmb.Location = new System.Drawing.Point(402, 236);
+            this.gender_cmb.Location = new System.Drawing.Point(402, 219);
             this.gender_cmb.Name = "gender_cmb";
             this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gender_cmb.Size = new System.Drawing.Size(183, 20);
@@ -223,7 +223,7 @@
             // 
             // email_tb
             // 
-            this.email_tb.Location = new System.Drawing.Point(399, 185);
+            this.email_tb.Location = new System.Drawing.Point(399, 168);
             this.email_tb.Name = "email_tb";
             this.email_tb.Size = new System.Drawing.Size(186, 26);
             this.email_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
@@ -238,7 +238,7 @@
             // sign_btn
             // 
             this.sign_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.sign_btn.Location = new System.Drawing.Point(733, 372);
+            this.sign_btn.Location = new System.Drawing.Point(724, 371);
             this.sign_btn.Name = "sign_btn";
             this.sign_btn.Size = new System.Drawing.Size(97, 30);
             this.sign_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
@@ -257,7 +257,7 @@
             // 
             // showPass_chkb
             // 
-            this.showPass_chkb.Location = new System.Drawing.Point(477, 159);
+            this.showPass_chkb.Location = new System.Drawing.Point(477, 142);
             this.showPass_chkb.Name = "showPass_chkb";
             this.showPass_chkb.Size = new System.Drawing.Size(108, 20);
             this.showPass_chkb.TabIndex = 56;
@@ -266,7 +266,7 @@
             // 
             // pass_tb
             // 
-            this.pass_tb.Location = new System.Drawing.Point(399, 127);
+            this.pass_tb.Location = new System.Drawing.Point(399, 110);
             this.pass_tb.Name = "pass_tb";
             this.pass_tb.Size = new System.Drawing.Size(186, 26);
             this.pass_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
@@ -280,7 +280,7 @@
             // 
             // user_tb
             // 
-            this.user_tb.Location = new System.Drawing.Point(399, 95);
+            this.user_tb.Location = new System.Drawing.Point(399, 78);
             this.user_tb.Name = "user_tb";
             this.user_tb.Size = new System.Drawing.Size(186, 26);
             this.user_tb.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
@@ -295,8 +295,8 @@
             // 
             // bg2_panel
             // 
-            this.bg2_panel.BackColor = System.Drawing.Color.Black;
-            this.bg2_panel.BackgroundImage = global::OOP_Project.Properties.Resources.IMG_8368__1_;
+            this.bg2_panel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.bg2_panel.BackgroundImage = global::OOP_Project.Properties.Resources._1_4;
             this.bg2_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.bg2_panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.bg2_panel.Location = new System.Drawing.Point(0, 0);
@@ -307,7 +307,7 @@
             // 
             // question_lbl
             // 
-            this.question_lbl.Location = new System.Drawing.Point(399, 326);
+            this.question_lbl.Location = new System.Drawing.Point(399, 309);
             this.question_lbl.Name = "question_lbl";
             this.question_lbl.Size = new System.Drawing.Size(109, 20);
             this.question_lbl.TabIndex = 63;
@@ -316,7 +316,7 @@
             // 
             // birthdate_lbl
             // 
-            this.birthdate_lbl.Location = new System.Drawing.Point(399, 271);
+            this.birthdate_lbl.Location = new System.Drawing.Point(399, 254);
             this.birthdate_lbl.Name = "birthdate_lbl";
             this.birthdate_lbl.Size = new System.Drawing.Size(63, 20);
             this.birthdate_lbl.TabIndex = 64;
@@ -325,7 +325,7 @@
             // 
             // gender_lbl
             // 
-            this.gender_lbl.Location = new System.Drawing.Point(399, 221);
+            this.gender_lbl.Location = new System.Drawing.Point(399, 204);
             this.gender_lbl.Name = "gender_lbl";
             this.gender_lbl.Size = new System.Drawing.Size(53, 20);
             this.gender_lbl.TabIndex = 65;
@@ -347,7 +347,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            this.BackgroundImage = global::OOP_Project.Properties.Resources._1_2_1;
+            this.BackgroundImage = global::OOP_Project.Properties.Resources._112;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1052, 650);
             this.Controls.Add(this.minimize_pb);

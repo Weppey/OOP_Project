@@ -39,6 +39,7 @@
             this.code_lbl = new System.Windows.Forms.Label();
             this.min_pb = new System.Windows.Forms.PictureBox();
             this.cls_pb = new System.Windows.Forms.PictureBox();
+            this.note_lbl = new System.Windows.Forms.Label();
             this.Panel_verify.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min_pb)).BeginInit();
@@ -48,6 +49,7 @@
             // Panel_verify
             // 
             this.Panel_verify.BackColor = System.Drawing.Color.White;
+            this.Panel_verify.Controls.Add(this.note_lbl);
             this.Panel_verify.Controls.Add(this.logo_pb);
             this.Panel_verify.Controls.Add(this.confirm_btn);
             this.Panel_verify.Controls.Add(this.bg2_panel);
@@ -76,7 +78,7 @@
             // confirm_btn
             // 
             this.confirm_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.confirm_btn.Location = new System.Drawing.Point(652, 364);
+            this.confirm_btn.Location = new System.Drawing.Point(652, 368);
             this.confirm_btn.Name = "confirm_btn";
             this.confirm_btn.Size = new System.Drawing.Size(106, 30);
             this.confirm_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
@@ -111,7 +113,7 @@
             this.resend_llbl.DisabledLinkColor = System.Drawing.Color.White;
             this.resend_llbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resend_llbl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
-            this.resend_llbl.Location = new System.Drawing.Point(662, 318);
+            this.resend_llbl.Location = new System.Drawing.Point(662, 331);
             this.resend_llbl.Name = "resend_llbl";
             this.resend_llbl.Size = new System.Drawing.Size(79, 15);
             this.resend_llbl.TabIndex = 46;
@@ -151,9 +153,9 @@
             this.status_lbl.ForeColor = System.Drawing.Color.Black;
             this.status_lbl.Location = new System.Drawing.Point(623, 246);
             this.status_lbl.Name = "status_lbl";
-            this.status_lbl.Size = new System.Drawing.Size(149, 15);
+            this.status_lbl.Size = new System.Drawing.Size(149, 30);
             this.status_lbl.TabIndex = 40;
-            this.status_lbl.Text = "Please verify your account\r\n";
+            this.status_lbl.Text = "Please verify your account\r\n.";
             this.status_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // code_lbl
@@ -194,6 +196,18 @@
             this.cls_pb.TabStop = false;
             this.cls_pb.Click += new System.EventHandler(this.cls_pb_Click);
             // 
+            // note_lbl
+            // 
+            this.note_lbl.AutoSize = true;
+            this.note_lbl.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.note_lbl.ForeColor = System.Drawing.Color.Gray;
+            this.note_lbl.Location = new System.Drawing.Point(612, 270);
+            this.note_lbl.Name = "note_lbl";
+            this.note_lbl.Size = new System.Drawing.Size(182, 28);
+            this.note_lbl.TabIndex = 60;
+            this.note_lbl.Text = "Please kindly check your spam folder \r\nif you didn’t receive the code.";
+            this.note_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // verification_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,5 +244,6 @@
         private System.Windows.Forms.Panel bg2_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton confirm_btn;
         private System.Windows.Forms.PictureBox logo_pb;
+        private System.Windows.Forms.Label note_lbl;
     }
 }

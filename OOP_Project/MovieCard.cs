@@ -12,57 +12,43 @@ using System.Windows.Forms;
 
 namespace OOP_Project
 {
-    public partial class movie_card : UserControl
+    public partial class MovieCard : UserControl
     {
+        private PictureBox poster_pb;
         private int currentUserId;
-        private int movieID;
 
-        public movie_card()
+        public MovieCard()
         {
             InitializeComponent();
 
-            // Initialize the PictureBox for the poster
-            poster_pb = new PictureBox
+            this.Size = new Size(150, 225); // Ensure size is set
+
+            PosterImage_pb = new PictureBox
             {
-                Dock = DockStyle.Fill,  // Fill the UserControl with the image
-                SizeMode = PictureBoxSizeMode.Zoom // Adjust image size
+                Dock = DockStyle.Fill,
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Cursor = Cursors.Hand
             };
 
-            this.Controls.Add(poster_pb);
+            this.Controls.Add(PosterImage_pb);
 
-            // Listen to click events on the poster
-            poster_pb.Click += (s, e) => OnMovieClicked();
-            this.Click += (s, e) => OnMovieClicked(); // Optional: allow clicking anywhere on the card
-
+            // Handle click
+            PosterImage_pb.Click += Poster_pb_Click;
         }
 
-
-        // Property to store the movie ID
         public int MovieID { get; set; }
 
-        // Property to set the image of the movie poster
-        public Image Poster
+        public Image PosterImage
         {
-            get { return poster_pb.Image; }
-            set { poster_pb.Image = value; }
+            get { return PosterImage_pb.Image; }
+            set { PosterImage_pb.Image = value; }
         }
 
-        // Event to notify when the movie is clicked
-        public event EventHandler MovieClicked;
-
-        // Method to invoke the MovieClicked event
-        protected virtual void OnMovieClicked()
+        private void Poster_pb_Click(object sender, EventArgs e)
         {
-            MovieClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void poster_pb_Click(object sender, EventArgs e)
-        {
-            // Assuming currentUserId is accessible in this context (if it's a global variable or passed)
             movie_details_form movieDetails = new movie_details_form(MovieID, currentUserId);
             movieDetails.Show();
         }
-
-
     }
+
 }
