@@ -89,36 +89,48 @@ namespace OOP_Project
             recommendedMovie_flp.WrapContents = true;
             recommendedMovie_flp.AutoScroll = true;
 
+            popularmovie_flp.FlowDirection = FlowDirection.LeftToRight;
+            popularmovie_flp.WrapContents = true;
+            popularmovie_flp.AutoScroll = true;
+
             connection = new MySqlConnection("Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;");
-                try
+
+            try
+            {
+                connection.Open(); // ✅ Must open it before any SQL
+                DisplayAllMovies();
+                List<string> genres = GetUserGenres(currentUserId);
+                if (genres != null && genres.Count > 0)
                 {
-                    connection.Open(); // ✅ Must open it before any SQL
-                    List<string> genres = GetUserGenres(currentUserId);
-                    DisplayMoviesByGenre(genres);
+                    DisplayMoviesByGenre(genres); // Display movies based on multiple genres
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Error opening connection: " + ex.Message);
+                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error opening connection: " + ex.Message);
+            }
 
             StayLoggedIn.LoadUserSession();
-                CurvePanel(movie_panel, 30);
-                movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            CurvePanel(movie_panel, 30);
+            movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                CurvePanel(viewportPanel, 30);
-                viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            CurvePanel(viewportPanel, 30);
+            viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                CurvePanel(recommendedMovie_flp, 30);
-                recommendedMovie_flp.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            CurvePanel(recommendedMovie_flp, 30);
+            recommendedMovie_flp.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                CurvePanel(popularmovie_pnl, 30);
-                movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            CurvePanel(popularmovie_pnl, 30);
+            movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                CurvePanel(recentlysearch_flp, 30);
-                viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            CurvePanel(recentlysearch_flp, 30);
+            viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-                //LoadMovies();
-
+            //LoadMovies();
         }
 
         private List<string> GetUserGenres(int userId)
@@ -133,7 +145,11 @@ namespace OOP_Project
 
                 if (!string.IsNullOrEmpty(result))
                 {
-                    genres = result.Split(',').Select(g => g.Trim()).ToList();
+                    // Split genres by commas and trim spaces
+                    genres = result.Split(',')
+                                   .Select(g => g.Trim())
+                                   .Where(g => !string.IsNullOrEmpty(g)) // Ensure no empty genres are included
+                                   .ToList();
                 }
             }
 
@@ -142,7 +158,6 @@ namespace OOP_Project
 
         private void DisplayMoviesByGenre(List<string> genres)
         {
-
             if (genres == null || genres.Count == 0)
             {
                 MessageBox.Show("No genres to display.");
@@ -150,7 +165,6 @@ namespace OOP_Project
             }
 
             recommendedMovie_flp.Controls.Clear();
-
 
             foreach (string genre in genres)
             {
@@ -173,23 +187,12 @@ namespace OOP_Project
                         Cursor = Cursors.Hand
                     };
 
-                    //Label movieTitle = new Label
-                   // {
-                  //      Text = movie.Title,
-                 //       Location = new Point(5, 5),
-                 //       AutoSize = false,
-                 //       Size = new Size(150, 35),
-                //        Font = new Font("Times New Roman", 9, FontStyle.Bold),
-                //        ForeColor = Color.White,
-                //        TextAlign = ContentAlignment.MiddleCenter
-                //    };
-
                     PictureBox poster = new PictureBox
                     {
                         Size = new Size(150, 200),
                         Location = new Point(5, 0),
                         BackColor = Color.Black,
-                        SizeMode = PictureBoxSizeMode.StretchImage,
+                        SizeMode = PictureBoxSizeMode.Zoom,
                         BorderStyle = BorderStyle.FixedSingle
                     };
 
@@ -209,23 +212,127 @@ namespace OOP_Project
                         poster.Image = Properties.Resources.fallback;
                     }
 
-                   // moviePanel.Controls.Add(movieTitle);
+                    // Add poster to the movie panel
                     moviePanel.Controls.Add(poster);
+                    moviePanel.Click += (s, e) => {
+                        LogMovieView(currentUserId, movie.Id);
+                        ShowMovieDetails(movie);
+                    };
 
-                    moviePanel.Click += (s, e) => ShowMovieDetails(movie);
                     foreach (Control ctrl in moviePanel.Controls)
-                        ctrl.Click += (s, e) => ShowMovieDetails(movie);
+                    {
+                        ctrl.Click += (s, e) => {
+                            LogMovieView(currentUserId, movie.Id);
+                            ShowMovieDetails(movie);
+                        };
+                    }
+
 
                     recommendedMovie_flp.Controls.Add(moviePanel);
                 }
             }
         }
-      
+
+        private void DisplayAllMovies()
+        {
+            popularmovie_flp.Controls.Clear(); // Clear the previous movies
+
+            // Get all movies
+            List<Movie> allMovies = GetAllMovies();
+
+            if (allMovies == null || allMovies.Count == 0)
+            {
+                MessageBox.Show("No movies to display.");
+                return;
+            }
+
+            foreach (var movie in allMovies)
+            {
+                // Create a panel to hold the movie poster
+                Panel moviePanel = new Panel
+                {
+                    Size = new Size(160, 200),
+                    Margin = new Padding(5),
+                    BackColor = Color.Gray,
+                    Cursor = Cursors.Hand
+                };
+
+                // Create a PictureBox for the movie poster
+                PictureBox poster = new PictureBox
+                {
+                    Size = new Size(150, 200),
+                    Location = new Point(5, 0),
+                    BackColor = Color.Black,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    BorderStyle = BorderStyle.FixedSingle
+                };
+
+                // Try to load the movie poster image
+                try
+                {
+                    if (!string.IsNullOrEmpty(movie.ImageUrl))
+                    {
+                        poster.Load(movie.ImageUrl);
+                    }
+                    else
+                    {
+                        poster.Image = Properties.Resources.fallback;
+                    }
+                }
+                catch
+                {
+                    poster.Image = Properties.Resources.fallback;
+                }
+
+                // Add poster to the movie panel
+                moviePanel.Controls.Add(poster);
+
+                // Movie panel click event to show movie details
+                moviePanel.Click += (s, e) => {
+                    LogMovieView(currentUserId, movie.Id);
+                    ShowMovieDetails(movie);
+                };
+
+                foreach (Control ctrl in moviePanel.Controls)
+                {
+                    ctrl.Click += (s, e) => {
+                        LogMovieView(currentUserId, movie.Id);
+                        ShowMovieDetails(movie);
+                    };
+                }
+
+
+
+
+                // Add the movie panel to the flow layout panel
+                popularmovie_flp.Controls.Add(moviePanel);
+            }
+        }
+
+        private void LogMovieView(int userId, int movieId)
+        {
+            string insertQuery = "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
+
+            using (MySqlCommand cmd = new MySqlCommand(insertQuery, connection))
+            {
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@movieId", movieId);
+                cmd.Parameters.AddWithValue("@viewedAt", DateTime.Now);
+
+                try
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to log movie view: " + ex.Message);
+                }
+            }
+        }
+    
 
         private List<Movie> GetMoviesByGenre(string genre)
         {
-
-
             List<Movie> movies = new List<Movie>();
             string query = "SELECT * FROM Movies WHERE LOWER(genre) = LOWER(@genre)";
 
@@ -253,81 +360,46 @@ namespace OOP_Project
 
             return movies;
         }
-        private void ShowMovieDetails(Movie moovie)
+
+        private List<Movie> GetAllMovies()
+        {
+            List<Movie> movies = new List<Movie>();
+            string query = "SELECT * FROM Movies"; // No genre filter
+
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        movies.Add(new Movie
+                        {
+                            Id = reader.GetInt32("movie_id"),
+                            Title = reader.GetString("title"),
+                            Description = reader.IsDBNull(reader.GetOrdinal("description")) ? "" : reader.GetString("description"),
+                            Genre = reader.IsDBNull(reader.GetOrdinal("genre")) ? "" : reader.GetString("genre"),
+                            ReleaseYear = reader.GetInt32("release_year"),
+                            Rating = reader.IsDBNull(reader.GetOrdinal("rating")) ? 0 : reader.GetDecimal("rating"),
+                            ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? "" : reader.GetString("image_url")
+                        });
+                    }
+                }
+            }
+
+            return movies;
+        }
+
+        private void ShowMovieDetails(Movie movie)
         {
             try
             {
-                MovieDetailsForm details = new MovieDetailsForm(moovie);
+                MovieDetailsForm details = new MovieDetailsForm(movie);
                 details.StartPosition = FormStartPosition.CenterScreen;
                 details.ShowDialog();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error showing movie details: {ex.Message}");
-            }
-        }
-
-        public void LoadMovies()
-        {
-            recommendedMovie_flp.Controls.Clear();
-
-            string query = "SELECT movie_id, image_url FROM Movies ORDER BY created_at DESC";
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
-            using (MySqlCommand cmd = new MySqlCommand(query, conn))
-            {
-                conn.Open();
-                using (var reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        MovieCard card = new MovieCard();
-                        int movieID = reader.GetInt32("movie_id");
-                        string imageUrl = reader["image_url"]?.ToString();
-
-                        if (!string.IsNullOrWhiteSpace(imageUrl))
-                        {
-                            // Append .jpg if no valid extension
-                            if (!imageUrl.EndsWith(".jpg") && !imageUrl.EndsWith(".png"))
-                            {
-                                imageUrl += ".jpg";
-                            }
-
-                            try
-                            {
-                                if (Uri.IsWellFormedUriString(imageUrl, UriKind.Absolute))
-                                {
-                                    using (var webClient = new System.Net.WebClient())
-                                    {
-                                        byte[] imageBytes = webClient.DownloadData(imageUrl);
-                                        using (var stream = new MemoryStream(imageBytes))
-                                        {
-                                            card.PosterImage = Image.FromStream(stream);
-                                        }
-                                    }
-                                }
-                                else if (File.Exists(imageUrl)) // Local file path
-                                {
-                                    card.PosterImage = Image.FromFile(imageUrl);
-                                }
-                                else
-                                {
-                                    card.PosterImage = Properties.Resources.Netflix_N_Symbol_logo;
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MessageBox.Show($"Failed to load image for movie ID {movieID}.\n\n{ex.Message}", "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                card.PosterImage = Properties.Resources.Netflix_N_Symbol_logo;
-                            }
-                        }
-                        else
-                        {
-                            card.PosterImage = Properties.Resources.Netflix_N_Symbol_logo;
-                        }
-
-                        recommendedMovie_flp.Controls.Add(card);
-                    }
-                }
             }
         }
 
