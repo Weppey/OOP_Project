@@ -27,8 +27,7 @@ namespace OOP_Project
         private int currentUserId;
         int currentUserId2 = 40;
 
-        public int CurrentUserId => currentUserId; // 🔸 public getter if needed externally
-        public string UserType => userType;
+        
 
         private const int ScrollAmount = 200;
         private int currentOffsetX = 0;
@@ -334,7 +333,7 @@ namespace OOP_Project
         private List<Movie> GetMoviesByGenre(string genre)
         {
             List<Movie> movies = new List<Movie>();
-            string query = "SELECT * FROM Movies WHERE LOWER(genre) = LOWER(@genre)";
+            string query = "SELECT * FROM Movies WHERE LOWER(genre) LIKE CONCAT('%', LOWER(@genre), '%')";
 
             using (MySqlCommand cmd = new MySqlCommand(query, connection))
             {
