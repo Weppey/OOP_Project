@@ -25,7 +25,7 @@ namespace OOP_Project
             poster_pb = new PictureBox
             {
                 Dock = DockStyle.Fill,  // Fill the UserControl with the image
-                SizeMode = PictureBoxSizeMode.StretchImage // Adjust image size
+                SizeMode = PictureBoxSizeMode.Zoom // Adjust image size
             };
 
             this.Controls.Add(poster_pb);

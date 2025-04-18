@@ -1,5 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -201,56 +202,6 @@ namespace OOP_Project
 
         }
 
-        private void cnfrm_btn_Click(object sender, EventArgs e)
-        {
-            string enteredCode = code_tb.Text;
-
-
-
-            if (string.IsNullOrWhiteSpace(enteredCode))
-            {
-                MessageBox.Show("Please enter the verification code.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT verification_code FROM users WHERE email = @Email";
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    cmd.Parameters.AddWithValue("@Email", userEmail);
-
-                    object result = cmd.ExecuteScalar();
-
-                    if (result != null && result.ToString() == enteredCode)
-                    {
-                        // Mark the user as verified
-                        string updateQuery = "UPDATE users SET verification_code = NULL WHERE email = @Email";
-                        MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection);
-                        updateCmd.Parameters.AddWithValue("@Email", userEmail);
-                        updateCmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Verification successful! You can now log in.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        this.Hide();
-                        login_form loginForm = new login_form();
-                        loginForm.ShowDialog();
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Invalid verification code. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         private void bg2_panel_Paint(object sender, PaintEventArgs e)
         {
 
@@ -269,6 +220,24 @@ namespace OOP_Project
         private void logo_pb_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void code_tb_Enter(object sender, EventArgs e)
+        {
+            if (code_tb.Text == "Code")
+            {
+                code_tb.Text = "";
+                code_tb.ForeColor = Color.Black;
+            }
+        }
+
+        private void code_tb_Leave(object sender, EventArgs e)
+        {
+            if(code_tb.Text == "")
+            {
+                code_tb.Text = "Code";
+                code_tb.ForeColor = Color.Gray;
+            }
         }
     }
 }

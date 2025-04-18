@@ -31,62 +31,6 @@ namespace OOP_Project
             return Regex.IsMatch(password, pattern);
         }
 
-        private void confirm_btn_Click(object sender, EventArgs e)
-        {
-            string enteredCode = recoveryC_tb.Text;
-            string newPassword = newpassword_tb.Text;
-            string confirmPassword = confirmpassword_tb.Text;
-
-
-            if (string.IsNullOrWhiteSpace(enteredCode) || string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
-            {
-                MessageBox.Show("Please complete all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (!IsValidPassword(newPassword))
-            {
-                MessageBox.Show("Password must contain at least one uppercase letter and one special character!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return; // Exit early, no data will reach the database
-            }
-
-            if (newPassword != confirmPassword)
-            {
-                MessageBox.Show("Passwords do not match. Please re-enter them.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (enteredCode == recoveryCode)
-            {
-                // Update password in the database
-                try
-                {
-                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
-                    {
-                        connection.Open();
-                        string updateQuery = "UPDATE users SET password = @Password WHERE email = @Email";
-                        MySqlCommand cmd = new MySqlCommand(updateQuery, connection);
-                        cmd.Parameters.AddWithValue("@Password", hashedPassword);
-                        cmd.Parameters.AddWithValue("@Email", email_tb.Text);
-                        cmd.ExecuteNonQuery();
-
-                        MessageBox.Show("Password has been successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                        login_form loginForm = new login_form();
-                        loginForm.Show();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Invalid recovery code. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void send_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -267,5 +211,75 @@ namespace OOP_Project
                 MessageBox.Show("You've reached the maximum code length.", "Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void confirm_btn_Click(object sender, EventArgs e)
+        {
+            string enteredCode = recoveryC_tb.Text;
+            string newPassword = newpassword_tb.Text;
+            string confirmPassword = confirmpassword_tb.Text;
+
+
+            if (string.IsNullOrWhiteSpace(enteredCode) || string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                MessageBox.Show("Please complete all required fields.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!IsValidPassword(newPassword))
+            {
+                MessageBox.Show("Password must contain at least one uppercase letter and one special character!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return; // Exit early, no data will reach the database
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                MessageBox.Show("Passwords do not match. Please re-enter them.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (enteredCode == recoveryCode)
+            {
+                // Update password in the database
+                try
+                {
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string updateQuery = "UPDATE users SET password = @Password WHERE email = @Email";
+                        MySqlCommand cmd = new MySqlCommand(updateQuery, connection);
+                        cmd.Parameters.AddWithValue("@Password", hashedPassword);
+                        cmd.Parameters.AddWithValue("@Email", email_tb.Text);
+                        cmd.ExecuteNonQuery();
+
+                        MessageBox.Show("Password has been successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                        login_form loginForm = new login_form();
+                        loginForm.Show();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid recovery code. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void min_pb_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void cls_pb_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            login_form LoginForm = new login_form();
+            LoginForm.Show();
+        }
+
     }
 }

@@ -15,11 +15,14 @@ namespace OOP_Project
     public partial class MovieDetailsForm : KryptonForm
     {
         private Movie _moovie;
+        public int MovieID { get; set; }
+        public int CurrentUserId { get; set; }
         public MovieDetailsForm(Movie moovie)
+
         {                     
             InitializeComponent();
             _moovie = moovie;
-            poster_pb.SizeMode = PictureBoxSizeMode.StretchImage;
+            poster_pb.SizeMode = PictureBoxSizeMode.Zoom;
         }
         
         private void MovieDetailsForm_Load(object sender, EventArgs e)
@@ -35,7 +38,11 @@ namespace OOP_Project
             {
                 if (!string.IsNullOrEmpty(_moovie.ImageUrl))
                 {
-                    poster_pb.Load(_moovie.ImageUrl);                 
+                    poster_pb.Load(_moovie.ImageUrl);
+                    panelTest.BackgroundImage = poster_pb.Image;
+                    panelTest.BackgroundImageLayout = ImageLayout.Stretch;
+
+
                 }
                 else
                 {

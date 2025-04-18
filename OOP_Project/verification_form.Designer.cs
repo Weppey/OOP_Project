@@ -30,7 +30,7 @@
         {
             this.Panel_verify = new System.Windows.Forms.Panel();
             this.logo_pb = new System.Windows.Forms.PictureBox();
-            this.cnfrm_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.confirm_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.bg2_panel = new System.Windows.Forms.Panel();
             this.resend_llbl = new System.Windows.Forms.LinkLabel();
             this.emailverify_lbl = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             // 
             this.Panel_verify.BackColor = System.Drawing.Color.White;
             this.Panel_verify.Controls.Add(this.logo_pb);
-            this.Panel_verify.Controls.Add(this.cnfrm_btn);
+            this.Panel_verify.Controls.Add(this.confirm_btn);
             this.Panel_verify.Controls.Add(this.bg2_panel);
             this.Panel_verify.Controls.Add(this.resend_llbl);
             this.Panel_verify.Controls.Add(this.emailverify_lbl);
@@ -65,33 +65,32 @@
             // logo_pb
             // 
             this.logo_pb.Image = global::OOP_Project.Properties.Resources._11;
-            this.logo_pb.Location = new System.Drawing.Point(540, 0);
+            this.logo_pb.Location = new System.Drawing.Point(635, 18);
             this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(109, 77);
+            this.logo_pb.Size = new System.Drawing.Size(133, 122);
             this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logo_pb.TabIndex = 12;
             this.logo_pb.TabStop = false;
             this.logo_pb.Click += new System.EventHandler(this.logo_pb_Click);
             // 
-            // cnfrm_btn
+            // confirm_btn
             // 
-            this.cnfrm_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.cnfrm_btn.Location = new System.Drawing.Point(635, 371);
-            this.cnfrm_btn.Name = "cnfrm_btn";
-            this.cnfrm_btn.Size = new System.Drawing.Size(106, 30);
-            this.cnfrm_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
-            this.cnfrm_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.cnfrm_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.confirm_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.confirm_btn.Location = new System.Drawing.Point(652, 364);
+            this.confirm_btn.Name = "confirm_btn";
+            this.confirm_btn.Size = new System.Drawing.Size(106, 30);
+            this.confirm_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
+            this.confirm_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.confirm_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.cnfrm_btn.StateCommon.Border.Rounding = 5;
-            this.cnfrm_btn.StateCommon.Content.Image.Effect = ComponentFactory.Krypton.Toolkit.PaletteImageEffect.Disabled;
-            this.cnfrm_btn.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.cnfrm_btn.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, 5, -1);
-            this.cnfrm_btn.TabIndex = 58;
-            this.cnfrm_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_right_162;
-            this.cnfrm_btn.Values.Text = "Confirm";
-            this.cnfrm_btn.Click += new System.EventHandler(this.cnfrm_btn_Click);
+            this.confirm_btn.StateCommon.Border.Rounding = 5;
+            this.confirm_btn.StateCommon.Content.Image.Effect = ComponentFactory.Krypton.Toolkit.PaletteImageEffect.Disabled;
+            this.confirm_btn.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.confirm_btn.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, 5, -1);
+            this.confirm_btn.TabIndex = 58;
+            this.confirm_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_right_162;
+            this.confirm_btn.Values.Text = "Confirm";
             // 
             // bg2_panel
             // 
@@ -112,7 +111,7 @@
             this.resend_llbl.DisabledLinkColor = System.Drawing.Color.White;
             this.resend_llbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.resend_llbl.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(10)))), ((int)(((byte)(20)))));
-            this.resend_llbl.Location = new System.Drawing.Point(646, 320);
+            this.resend_llbl.Location = new System.Drawing.Point(662, 318);
             this.resend_llbl.Name = "resend_llbl";
             this.resend_llbl.Size = new System.Drawing.Size(79, 15);
             this.resend_llbl.TabIndex = 46;
@@ -123,11 +122,11 @@
             // emailverify_lbl
             // 
             this.emailverify_lbl.AutoSize = true;
-            this.emailverify_lbl.Font = new System.Drawing.Font("Arial Black", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.emailverify_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailverify_lbl.ForeColor = System.Drawing.Color.Black;
-            this.emailverify_lbl.Location = new System.Drawing.Point(580, 98);
+            this.emailverify_lbl.Location = new System.Drawing.Point(607, 154);
             this.emailverify_lbl.Name = "emailverify_lbl";
-            this.emailverify_lbl.Size = new System.Drawing.Size(245, 33);
+            this.emailverify_lbl.Size = new System.Drawing.Size(196, 26);
             this.emailverify_lbl.TabIndex = 42;
             this.emailverify_lbl.Text = "Email verification";
             // 
@@ -137,18 +136,20 @@
             this.code_tb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.code_tb.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.code_tb.ForeColor = System.Drawing.Color.Black;
-            this.code_tb.Location = new System.Drawing.Point(639, 172);
+            this.code_tb.Location = new System.Drawing.Point(635, 197);
             this.code_tb.Name = "code_tb";
             this.code_tb.Size = new System.Drawing.Size(157, 25);
             this.code_tb.TabIndex = 41;
             this.code_tb.TextChanged += new System.EventHandler(this.code_tb_TextChanged);
+            this.code_tb.Enter += new System.EventHandler(this.code_tb_Enter);
+            this.code_tb.Leave += new System.EventHandler(this.code_tb_Leave);
             // 
             // status_lbl
             // 
             this.status_lbl.AutoSize = true;
             this.status_lbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.status_lbl.ForeColor = System.Drawing.Color.Black;
-            this.status_lbl.Location = new System.Drawing.Point(615, 211);
+            this.status_lbl.Location = new System.Drawing.Point(623, 246);
             this.status_lbl.Name = "status_lbl";
             this.status_lbl.Size = new System.Drawing.Size(149, 15);
             this.status_lbl.TabIndex = 40;
@@ -160,7 +161,7 @@
             this.code_lbl.AutoSize = true;
             this.code_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.code_lbl.ForeColor = System.Drawing.Color.Black;
-            this.code_lbl.Location = new System.Drawing.Point(587, 178);
+            this.code_lbl.Location = new System.Drawing.Point(583, 200);
             this.code_lbl.Name = "code_lbl";
             this.code_lbl.Size = new System.Drawing.Size(46, 19);
             this.code_lbl.TabIndex = 39;
@@ -227,7 +228,7 @@
         private System.Windows.Forms.PictureBox min_pb;
         private System.Windows.Forms.PictureBox cls_pb;
         private System.Windows.Forms.Panel bg2_panel;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton cnfrm_btn;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton confirm_btn;
         private System.Windows.Forms.PictureBox logo_pb;
     }
 }
