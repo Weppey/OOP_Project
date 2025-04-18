@@ -345,12 +345,12 @@
             // 
             this.movie_panel.AutoScroll = true;
             this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.movie_panel.Controls.Add(this.search_list);
             this.movie_panel.Controls.Add(this.insertMovie_panel);
             this.movie_panel.Controls.Add(this.search_txt);
             this.movie_panel.Controls.Add(this.topRatedMovie_panel);
             this.movie_panel.Controls.Add(this.popularmovie_pnl);
             this.movie_panel.Controls.Add(this.viewportPanel);
-            this.movie_panel.Controls.Add(this.search_list);
             this.movie_panel.Location = new System.Drawing.Point(143, 113);
             this.movie_panel.Name = "movie_panel";
             this.movie_panel.Size = new System.Drawing.Size(1382, 718);
@@ -635,7 +635,7 @@
             this.search_list.ItemHeight = 19;
             this.search_list.Location = new System.Drawing.Point(988, 48);
             this.search_list.Name = "search_list";
-            this.search_list.Size = new System.Drawing.Size(337, 23);
+            this.search_list.Size = new System.Drawing.Size(337, 80);
             this.search_list.TabIndex = 67;
             this.search_list.Visible = false;
             this.search_list.Click += new System.EventHandler(this.search_list_Click);
