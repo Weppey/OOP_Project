@@ -219,6 +219,12 @@
     <Compile Include="Components\MovieItem.Designer.cs">
       <DependentUpon>MovieItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="favorite_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="favorite_form.Designer.cs">
+      <DependentUpon>favorite_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="home_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -273,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\MovieItem.resx">
       <DependentUpon>MovieItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="favorite_form.resx">
+      <DependentUpon>favorite_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="home_form.resx">
       <DependentUpon>home_form.cs</DependentUpon>

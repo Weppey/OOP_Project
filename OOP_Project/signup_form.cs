@@ -465,8 +465,6 @@ namespace OOP_Project
                     verifyForm.ShowDialog();
                     this.Close();
 
-
-
                 }
             }
             catch (Exception ex)

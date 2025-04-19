@@ -9,31 +9,36 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using ComponentFactory.Krypton.Toolkit;
+using MySql.Data.MySqlClient;
 
 namespace OOP_Project
 {
     public partial class MovieDetailsForm : KryptonForm
     {
         private Movie _moovie;
+        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private int currentUserId;
+        private int movieId;
+
         public int MovieID { get; set; }
         public int CurrentUserId { get; set; }
-        public MovieDetailsForm(Movie moovie)
 
-        {                     
+        public MovieDetailsForm(Movie moovie, int userId)
+        {
             InitializeComponent();
             _moovie = moovie;
+            currentUserId = userId;
+            movieId = moovie.Id;
             poster_pb.SizeMode = PictureBoxSizeMode.Zoom;
         }
-        
+
         private void MovieDetailsForm_Load(object sender, EventArgs e)
         {
-            // Set movie title and description to the LABELS
             title_lbl.Text = _moovie.Title;
             description_lbl.Text = _moovie.Description;
             genre_lbl.Text = _moovie.Genre;
             dateRelease_lbl.Text = "Year released: " + _moovie.ReleaseYear;
 
-            // Set poster image to the PICTURE BOX
             try
             {
                 if (!string.IsNullOrEmpty(_moovie.ImageUrl))
@@ -41,8 +46,6 @@ namespace OOP_Project
                     poster_pb.Load(_moovie.ImageUrl);
                     panelTest.BackgroundImage = poster_pb.Image;
                     panelTest.BackgroundImageLayout = ImageLayout.Stretch;
-
-
                 }
                 else
                 {
@@ -53,38 +56,70 @@ namespace OOP_Project
             {
                 poster_pb.Image = Properties.Resources.fallback;
             }
-
         }
 
-        private void genre_lbl_Click(object sender, EventArgs e)
+        private void favorite_btn_Click(object sender, EventArgs e)
         {
-
-        }    
-
-        private void cls_pb_Click(object sender, EventArgs e)
-        {
-            
-            this.Close();
+            AddToFavorites(currentUserId, movieId);
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void AddToFavorites(int userId, int movieId)
         {
+            MessageBox.Show($"AddToFavorites called with UserID: {userId}, MovieID: {movieId}");
+            if (userId <= 0 || movieId <= 0)
+            {
+                MessageBox.Show("Invalid user or movie ID.");
+                return;
+            }
 
+            string checkQuery = "SELECT COUNT(*) FROM Favorites WHERE user_id = @userId AND movie_id = @movieId";
+            string insertQuery = "INSERT INTO Favorites (user_id, movie_id) VALUES (@userId, @movieId)";
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    // Check if already favorited
+                    using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, connection))
+                    {
+                        checkCmd.Parameters.AddWithValue("@userId", userId);
+                        checkCmd.Parameters.AddWithValue("@movieId", movieId);
+
+                        int exists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                        if (exists > 0)
+                        {
+                            MessageBox.Show("This movie is already in your favorites.");
+                            return;
+                        }
+                    }
+
+                    // Insert if not already favorited
+                    using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, connection))
+                    {
+                        insertCmd.Parameters.AddWithValue("@userId", userId);
+                        insertCmd.Parameters.AddWithValue("@movieId", movieId);
+
+                        int rowsAffected = insertCmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                            MessageBox.Show("Added to Favorites!");
+                        else
+                            MessageBox.Show("Failed to add to favorites.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding to favorites: " + ex.Message);
+            }
         }
 
-        private void title_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void close_pb_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        // Other event handlers...
 
         private void comment_btn_Click(object sender, EventArgs e)
         {
-            //di pa nagana
             if (this.Size.Height == 620)
             {
                 this.Size = new Size(1050, 700);
@@ -94,7 +129,26 @@ namespace OOP_Project
                 this.Size = new Size(1050, 620);
             }
         }
-    }
 
-    
+        private void close_pb_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void description_lbl_Click(object sender, EventArgs e)
+        {
+            if (description_lbl.Width == 210)
+            {
+                description_lbl.Width = 300;
+                description_lbl.BackColor = Color.Silver;
+                description_lbl.ForeColor = Color.Black;
+            }
+            else
+            {
+                description_lbl.Width = 210;
+                description_lbl.BackColor = Color.Transparent;
+                description_lbl.ForeColor = Color.White;
+            }
+        }
+    }
 }
