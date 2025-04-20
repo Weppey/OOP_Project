@@ -30,5 +30,11 @@ namespace OOP_Project
             if (File.Exists(sessionFilePath))
                 File.Delete(sessionFilePath);
         }
+        // Retrieve the current userId from the session file, if available
+        public static int? GetCurrentUserId()
+        {
+            var session = LoadUserSession();
+            return session?.userId;
+        }
     }
 }

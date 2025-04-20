@@ -75,7 +75,16 @@ namespace OOP_Project
 
         private async void home_form_Load(object sender, EventArgs e)
         {
-            LoadRecentSearches();
+            // Get the userId from the session
+            int? userId = StayLoggedIn.GetCurrentUserId();
+            if (userId.HasValue)
+            {
+                LoadRecentSearches(userId.Value);  // Pass userId to load recent searches
+            }
+            else
+            {
+                MessageBox.Show("Please log in first.");
+            }
 
             recommendedMovie_flp.FlowDirection = FlowDirection.LeftToRight;
             recommendedMovie_flp.WrapContents = true;
@@ -677,13 +686,27 @@ namespace OOP_Project
 
                 if (fullMovie != null)
                 {
-                    var movieDetailsForm = new MovieDetailsForm(fullMovie, userId);
-                    movieDetailsForm.StartPosition = FormStartPosition.CenterScreen;
-                    movieDetailsForm.ShowDialog();
-
-                    if (!IsMovieAlreadyInPanel(fullMovie, recentlysearch_flp))
+                    // Get the userId from the session
+                    int? userId = StayLoggedIn.GetCurrentUserId();
+                    if (userId.HasValue)
                     {
-                        DisplaySingleMovie(fullMovie, recentlysearch_flp);
+                        // Save the recent search if userId is found
+                        SaveRecentSearch(userId.Value, fullMovie);
+
+                        // Show the movie details form
+                        var movieDetailsForm = new MovieDetailsForm(fullMovie, userId.Value);
+                        movieDetailsForm.StartPosition = FormStartPosition.CenterScreen;
+                        movieDetailsForm.ShowDialog();
+
+                        // Display the movie in the recently searched panel
+                        if (!IsMovieAlreadyInPanel(fullMovie, recentlysearch_flp))
+                        {
+                            DisplaySingleMovie(fullMovie, recentlysearch_flp);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("User session is not found. Please log in.");
                     }
                 }
 
@@ -787,10 +810,11 @@ namespace OOP_Project
                 search_txt.ForeColor = Color.Gray; // Change the text color to gray for placeholder
             }
         }    
-        private void LoadRecentSearches()
+        private void LoadRecentSearches(int currentUserId)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT movie_title, movie_description, movie_genre, release_year, image_url FROM recent_searches ORDER BY id DESC LIMIT 20"; // You can limit the number to 10
+            string query = "SELECT movie_title, movie_description, movie_genre, release_year, image_url " +
+                           "FROM recent_searches WHERE user_id = @userId ORDER BY id DESC LIMIT 20";
 
             try
             {
@@ -799,8 +823,12 @@ namespace OOP_Project
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@userId", currentUserId);  // Pass the logged-in user's userId
+
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
+                            recentlysearch_flp.Controls.Clear(); // Optional: Clear previous items
+
                             while (reader.Read())
                             {
                                 string title = reader.GetString("movie_title");
@@ -809,7 +837,6 @@ namespace OOP_Project
                                 int releaseYear = reader.GetInt32("release_year");
                                 string imageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url");
 
-                                // Create a Movie object from the data
                                 Movie movie = new Movie
                                 {
                                     Title = title,
@@ -819,8 +846,7 @@ namespace OOP_Project
                                     ImageUrl = imageUrl
                                 };
 
-                                // Display the movie in the recentlysearch_flp flow layout
-                                DisplayMovieInRecentlySearch(movie);
+                                DisplayMovieInRecentlySearch(movie);  // Display the movie in the UI
                             }
                         }
                     }
@@ -873,60 +899,43 @@ namespace OOP_Project
 
             recentlysearch_flp.Controls.Add(moviePanel);
         }
-
-
-        private List<Movie> GetRecentSearches()
+        private void SaveRecentSearch(int userId, Movie movie)
         {
-            List<Movie> recentMovies = new List<Movie>();
-
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT movie_title, movie_description, movie_genre, release_year, image_url " +
-                           "FROM recent_searches ORDER BY search_date DESC LIMIT 10"; // Limiting to 10 recent searches
+            string query = "INSERT INTO recent_searches (user_id, movie_title, movie_description, movie_genre, release_year, image_url) " +
+                           "VALUES (@userId, @movieTitle, @movieDescription, @movieGenre, @releaseYear, @imageUrl)";
 
-            using (MySqlConnection conn = new MySqlConnection(connStr))
+            try
             {
-                conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (MySqlConnection conn = new MySqlConnection(connStr))
                 {
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        while (reader.Read())
-                        {
-                            recentMovies.Add(new Movie
-                            {
-                                Title = reader.GetString("movie_title"),
-                                Description = reader.GetString("movie_description"),
-                                Genre = reader.GetString("movie_genre"),
-                                ReleaseYear = reader.GetInt32("release_year"),
-                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url")
-                            });
-                        }
+                        // Add parameters to the query to prevent SQL injection
+                        cmd.Parameters.AddWithValue("@userId", userId);  // Ensure userId is passed here
+                        cmd.Parameters.AddWithValue("@movieTitle", movie.Title);
+                        cmd.Parameters.AddWithValue("@movieDescription", movie.Description);
+                        cmd.Parameters.AddWithValue("@movieGenre", movie.Genre);
+                        cmd.Parameters.AddWithValue("@releaseYear", movie.ReleaseYear);
+                        cmd.Parameters.AddWithValue("@imageUrl", movie.ImageUrl ?? (object)DBNull.Value);
+
+                        cmd.ExecuteNonQuery();  // Execute the query to save the recent search
                     }
                 }
             }
-
-            return recentMovies;
-        }
-        private void DisplayRecentSearches()
-        {
-            var recentMovies = GetRecentSearches();
-
-            foreach (var movie in recentMovies)
+            catch (Exception ex)
             {
-                DisplaySingleMovie(movie, recentlysearch_flp);
+                MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
         private void admin_button_Click(object sender, EventArgs e)
         {
             admin_form admin_Form = new admin_form(userType, currentUserId);
             admin_Form.ShowDialog();
-        }
-
-        private void insertInsert_btn_Click(object sender, EventArgs e)
-        {
-
-        }
+        }     
 
         private void allMovie_flp_Scroll(object sender, ScrollEventArgs e)
         {

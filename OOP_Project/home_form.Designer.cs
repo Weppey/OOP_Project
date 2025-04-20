@@ -370,7 +370,7 @@
             this.recent_lbl.AutoSize = true;
             this.recent_lbl.Font = new System.Drawing.Font("Times New Roman", 20F);
             this.recent_lbl.ForeColor = System.Drawing.Color.White;
-            this.recent_lbl.Location = new System.Drawing.Point(49, 804);
+            this.recent_lbl.Location = new System.Drawing.Point(46, 737);
             this.recent_lbl.Name = "recent_lbl";
             this.recent_lbl.Size = new System.Drawing.Size(234, 31);
             this.recent_lbl.TabIndex = 68;
@@ -417,7 +417,7 @@
             // 
             this.popularmovie_pnl.BackColor = System.Drawing.Color.Gray;
             this.popularmovie_pnl.Controls.Add(this.recentlysearch_flp);
-            this.popularmovie_pnl.Location = new System.Drawing.Point(52, 841);
+            this.popularmovie_pnl.Location = new System.Drawing.Point(49, 774);
             this.popularmovie_pnl.Name = "popularmovie_pnl";
             this.popularmovie_pnl.Size = new System.Drawing.Size(1279, 255);
             this.popularmovie_pnl.TabIndex = 63;
