@@ -11,6 +11,7 @@
     using System.IO;
     using System.Collections.Generic;
     using System.Linq;
+using MySqlX.XDevAPI;
 
 
 
@@ -20,56 +21,66 @@ namespace OOP_Project
     {
         public partial class home_form : KryptonForm
         {
+        // Declare a private field named 'connection' of type 'MySqlConnection'.
+        // This object will be used to manage the connection to the MySQL database,
+        // allowing the application to open a connection, run commands, and interact with the database.
         private MySqlConnection connection;
-
+        
+        // Connection string to connect to the database, specifying the server, database, and login credentials.
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-        private string userType;
-        private int currentUserId;
-        private int userId;
+        
+        // User-related variables
+        private string userType; // Variable to store the type of user (admin or regular)
+        private int currentUserId; // Variable to store the current user's ID
+        private int userId; // Variable to store a user's ID, potentially for a selected user
 
-        int currentPage = 0;
-        int pageSize = 20;
-        bool isLoading = false;
+        // Pagination-related variables
+        int currentPage = 0; // Tracks the current page number for pagination
+        int pageSize = 20; // Defines how many items to display per page
+        bool isLoading = false; // Flag to indicate whether data is currently loading
 
-        public home_form(string userTypeFromLogin, int userIdFromLogin)
+        public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
         {
-            InitializeComponent();
+            InitializeComponent(); // Initializes the form components (UI elements)
 
-            if (userIdFromLogin <= 0)
+            if (userIdFromLogin <= 0)  // Check if the user session is valid
             {
-                MessageBox.Show("Invalid user session. Please log in again.", "Session Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                login_form login = new login_form();
-                login.Show();
-                this.Close();
-                return;
+                MessageBox.Show("Invalid user session. Please log in again.", "Session Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // If user ID is invalid, show an error message and prompt for login again
+                login_form login = new login_form(); // Create a new login form instance
+                login.Show(); // Show the login form
+                this.Close(); // Close the current form (home_form)
+                return; // Exit the constructor to prevent further execution
             }
 
-            userType = userTypeFromLogin;
-            currentUserId = userIdFromLogin;
+            // Assign user details from the login
+            userType = userTypeFromLogin; // Store the user's type (admin or regular)
+            currentUserId = userIdFromLogin; // Store the current user's ID
 
-            HandleAccess();
+            HandleAccess(); // Handle access based on the user's type (admin or regular user)
         }
-        private void CurvePanel(System.Windows.Forms.Panel panel, int radius)
-            {
-                GraphicsPath path = new GraphicsPath();
-                path.StartFigure();
-                path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90);
-                path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90);
-                path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90);
-                path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90);
-                path.CloseFigure();
-                panel.Region = new Region(path);
-            }
-
-        private void HandleAccess()
+        private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
-            if (userType.ToLower() == "admin")
+            GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
+            path.StartFigure(); // Start the shape definition
+
+            // Add arcs to the path to define the four rounded corners
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90); // Bottom-right corner
+            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90); // Bottom-left corner
+            path.CloseFigure(); // Close the shape definition
+            panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
+        }
+
+        private void HandleAccess() // Method to handle access control for different user types (admin or regular)
+        {
+            if (userType.ToLower() == "admin")  // Check if the user type is "admin"
             {
-                admin_button.Visible = true;
+                admin_button.Visible = true; // If the user is an admin, show the admin button
             }
             else
             {
-                admin_button.Visible = false;
+                admin_button.Visible = false; // If the user is not an admin, hide the admin button
             }
         }
 
@@ -132,7 +143,6 @@ namespace OOP_Project
             CurvePanel(recentlysearch_flp, 30);
             viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
         }
-
         private List<string> GetUserGenres(int userId)
         {
             List<string> genres = new List<string>();
@@ -230,7 +240,6 @@ namespace OOP_Project
                 }
             }
         }
-
         private void LoadMoreMovies()
         {
             if (isLoading) return;
@@ -296,8 +305,6 @@ namespace OOP_Project
             currentPage++;
             isLoading = false;
         }
-
-
         private void DisplayAllMovies()
             {
                 allMovie_flp.Controls.Clear(); // Clear the previous movies
@@ -399,7 +406,6 @@ namespace OOP_Project
 
             return movies;
         }
-
         private void LogMovieView(int userId, int movieId)
         {
             string insertQuery = "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
@@ -420,8 +426,6 @@ namespace OOP_Project
                 }
             }
         }
-    
-
         private List<Movie> GetMoviesByGenre(string genre)
         {
             List<Movie> movies = new List<Movie>();
@@ -451,7 +455,6 @@ namespace OOP_Project
 
             return movies;
         }
-
         private List<Movie> GetAllMovies()
         {
             List<Movie> movies = new List<Movie>();
@@ -479,7 +482,6 @@ namespace OOP_Project
 
             return movies;
         }
-
         private void ShowMovieDetails(Movie movie)
         {
             try
@@ -493,10 +495,8 @@ namespace OOP_Project
                 MessageBox.Show($"Error showing movie details: {ex.Message}");
             }
         }
-
-
         private void close_pb_Click(object sender, EventArgs e)
-            {
+        {
                 string msg = "Do you want to leave this page?";
                 string title = "Confirm Naviagtion";
                 MessageBoxButtons btn = MessageBoxButtons.YesNo;
@@ -511,61 +511,49 @@ namespace OOP_Project
                     return;
                 }
             
-            }
-
-            private void close_pb_MouseEnter(object sender, EventArgs e)
-            {
+        }
+        private void close_pb_MouseEnter(object sender, EventArgs e)
+        {
                 close_pb.BackColor = Color.FromArgb(226, 0, 39);
-            }
-
-            private void close_pb_MouseLeave(object sender, EventArgs e)
-            {
+        }
+        private void close_pb_MouseLeave(object sender, EventArgs e)
+        {
                 close_pb.BackColor = Color.FromArgb(0, 0, 0);
-            }
-
-            private void minimize_pb_Click(object sender, EventArgs e)
-            {
-                this.WindowState = FormWindowState.Minimized;
-            }
-
-            private void minimize_pb_MouseEnter(object sender, EventArgs e)
-            {
+        }
+        private void minimize_pb_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+        private void minimize_pb_MouseEnter(object sender, EventArgs e)
+        {
                 minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
-            }
-
-            private void minimize_pb_MouseLeave(object sender, EventArgs e)
-            {
+        }
+        private void minimize_pb_MouseLeave(object sender, EventArgs e)
+        {
                 minimize_pb.BackColor = Color.FromArgb(0, 0, 0);
-            }
-
-            private void home_btn_Click(object sender, EventArgs e)
-            {
+        }
+        private void home_btn_Click(object sender, EventArgs e)
+        {
                 form_lbl.Text = "HOME";
-            }
-
-            private void favorite_btn_Click(object sender, EventArgs e)
-            {
+        }
+        private void favorite_btn_Click(object sender, EventArgs e
+        {
                 form_lbl.Text = "FAVORITE";
                 favorite_form favoriteForm = new favorite_form();
                 favoriteForm.ShowDialog(); 
-            }
-
-            private void popular_btn_Click(object sender, EventArgs e)
-            {
+        }
+        private void popular_btn_Click(object sender, EventArgs e)
+        {
                 form_lbl.Text = "POPULAR";
-            }
-
-            private void settings_btn_Click(object sender, EventArgs e)
-            {
+        }
+        private void settings_btn_Click(object sender, EventArgs e)
+        {
                 form_lbl.Text = "SETTINGS";
-            }
-
-            private bool IsValidUrl(string url)
-            {
+        }
+        private bool IsValidUrl(string url)
+        {
                 return Uri.IsWellFormedUriString(url, UriKind.Absolute) && (url.StartsWith("http://") || url.StartsWith("https://"));
-            }
-
-
+        }
         private void signOut_btn_Click(object sender, EventArgs e)
         {
                 string msg = "Do you really want to sign out?";
@@ -594,10 +582,7 @@ namespace OOP_Project
             {
                 return;
             }
-            }
-
-       
-
+        }
         private void search_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             //seacrch
@@ -929,14 +914,11 @@ namespace OOP_Project
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
-
         private void admin_button_Click(object sender, EventArgs e)
         {
             admin_form admin_Form = new admin_form(userType, currentUserId);
             admin_Form.ShowDialog();
         }     
-
         private void allMovie_flp_Scroll(object sender, ScrollEventArgs e)
         {
             if (e.Type == ScrollEventType.EndScroll &&
