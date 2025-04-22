@@ -1,4 +1,5 @@
-﻿namespace OOP_Project
+﻿
+namespace OOP_Project
 {
     partial class favorite_form
     {
@@ -139,6 +140,7 @@
             this.favoriteMovie_flp.Size = new System.Drawing.Size(1219, 348);
             this.favoriteMovie_flp.TabIndex = 0;
             this.favoriteMovie_flp.WrapContents = false;
+           
             // 
             // close_pb
             // 

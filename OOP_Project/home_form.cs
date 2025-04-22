@@ -536,12 +536,14 @@ namespace OOP_Project
         {
                 form_lbl.Text = "HOME";
         }
-        private void favorite_btn_Click(object sender, EventArgs e
+        private void favorite_btn_Click(object sender, EventArgs e)
         {
-                form_lbl.Text = "FAVORITE";
-                favorite_form favoriteForm = new favorite_form();
-                favoriteForm.ShowDialog(); 
+            
+            form_lbl.Text = "FAVORITE";
+            favorite_form favoriteForm = new favorite_form(currentUserId, userType);
+            favoriteForm.ShowDialog();
         }
+
         private void popular_btn_Click(object sender, EventArgs e)
         {
                 form_lbl.Text = "POPULAR";

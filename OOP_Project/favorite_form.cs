@@ -1,36 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+    using OOP_Project;
 
 namespace OOP_Project
 {
-
     public partial class favorite_form : KryptonForm
     {
-
         private MySqlConnection connection;
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
 
         private string userType;
         private int currentUserId;
-        private int userId;
 
         int currentPage = 0;
         int pageSize = 20;
         bool isLoading = false;
 
-        public favorite_form()
+        public favorite_form(int userId, string userType)
         {
             InitializeComponent();
+            this.currentUserId = userId;
+            this.userType = userType;
         }
+
         private void favorite_form_Load(object sender, EventArgs e)
         {
             connection = new MySqlConnection(connectionString);
@@ -44,42 +41,51 @@ namespace OOP_Project
                 MessageBox.Show("Database connection failed: " + ex.Message);
             }
         }
+
         private List<Movie> GetFavoriteMovies(int userId, int offset, int limit)
         {
             List<Movie> movies = new List<Movie>();
             string query = @"
-              SELECT m.* FROM Movies m
-                 INNER JOIN Favorites f ON m.movie_id = f.movie_id
-                 WHERE f.user_id = @userId
-                    LIMIT @limit OFFSET @offset";
+    SELECT m.movie_id, m.title, m.description, m.genre, m.release_year, m.rating, m.image_url
+    FROM Movies m
+    INNER JOIN Favorites f ON m.movie_id = f.movie_id
+    WHERE f.user_id = @userId
+    LIMIT @limit OFFSET @offset";
 
-            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            try
             {
-                cmd.Parameters.AddWithValue("@userId", userId);
-                cmd.Parameters.AddWithValue("@limit", limit);
-                cmd.Parameters.AddWithValue("@offset", offset);
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
-                    while (reader.Read())
+                    cmd.Parameters.AddWithValue("@userId", userId);
+                    cmd.Parameters.AddWithValue("@limit", limit);
+                    cmd.Parameters.AddWithValue("@offset", offset);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        movies.Add(new Movie
+                        while (reader.Read())
                         {
-                            Id = reader.GetInt32("movie_id"),
-                            Title = reader.GetString("title"),
-                            Description = reader.IsDBNull(reader.GetOrdinal("description")) ? "" : reader.GetString("description"),
-                            Genre = reader.IsDBNull(reader.GetOrdinal("genre")) ? "" : reader.GetString("genre"),
-                            ReleaseYear = reader.GetInt32("release_year"),
-                            Rating = reader.IsDBNull(reader.GetOrdinal("rating")) ? 0 : reader.GetDecimal("rating"),
-                            ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? "" : reader.GetString("image_url")
-                        });
+                            movies.Add(new Movie
+                            {
+                                Id = reader.GetInt32("movie_id"),
+                                Title = reader.GetString("title"),
+                                Description = reader.IsDBNull(reader.GetOrdinal("description")) ? "" : reader.GetString("description"),
+                                Genre = reader.IsDBNull(reader.GetOrdinal("genre")) ? "" : reader.GetString("genre"),
+                                ReleaseYear = reader.GetInt32("release_year"),
+                                Rating = reader.IsDBNull(reader.GetOrdinal("rating")) ? 0 : reader.GetDecimal("rating"),
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? "" : reader.GetString("image_url")
+                            });
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching favorite movies: " + ex.Message);
+            }
 
+            MessageBox.Show($"Movies fetched: {movies.Count}");
             return movies;
         }
-
 
         private void LoadMoreMovies()
         {
@@ -127,14 +133,16 @@ namespace OOP_Project
 
                 moviePanel.Controls.Add(poster);
 
-                moviePanel.Click += (s, e) => {
+                moviePanel.Click += (s, e) =>
+                {
                     LogMovieView(currentUserId, movie.Id);
                     ShowMovieDetails(movie);
                 };
 
                 foreach (Control ctrl in moviePanel.Controls)
                 {
-                    ctrl.Click += (s, e) => {
+                    ctrl.Click += (s, e) =>
+                    {
                         LogMovieView(currentUserId, movie.Id);
                         ShowMovieDetails(movie);
                     };
@@ -191,5 +199,22 @@ namespace OOP_Project
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void favoriteMovie_flp_Paint(object sender, PaintEventArgs e)
+        {
+            // Optional: Custom painting logic
+        }
+    }
+
+    // Ensure you have this class somewhere
+    public class Movie
+    {
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Genre { get; set; }
+        public int ReleaseYear { get; set; }
+        public decimal Rating { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
