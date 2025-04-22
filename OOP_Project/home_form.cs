@@ -18,17 +18,17 @@ using MySqlX.XDevAPI;
 
 
 namespace OOP_Project
+{
+    public partial class home_form : KryptonForm
     {
-        public partial class home_form : KryptonForm
-        {
         // Declare a private field named 'connection' of type 'MySqlConnection'.
         // This object will be used to manage the connection to the MySQL database,
         // allowing the application to open a connection, run commands, and interact with the database.
         private MySqlConnection connection;
-        
+
         // Connection string to connect to the database, specifying the server, database, and login credentials.
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-        
+
         // User-related variables
         private string userType; // Variable to store the type of user (admin or regular)
         private int currentUserId; // Variable to store the current user's ID
@@ -222,14 +222,16 @@ namespace OOP_Project
 
                     // Add poster to the movie panel
                     moviePanel.Controls.Add(poster);
-                    moviePanel.Click += (s, e) => {
+                    moviePanel.Click += (s, e) =>
+                    {
                         LogMovieView(currentUserId, movie.Id);
                         ShowMovieDetails(movie);
                     };
 
                     foreach (Control ctrl in moviePanel.Controls)
                     {
-                        ctrl.Click += (s, e) => {
+                        ctrl.Click += (s, e) =>
+                        {
                             LogMovieView(currentUserId, movie.Id);
                             ShowMovieDetails(movie);
                         };
@@ -286,14 +288,16 @@ namespace OOP_Project
 
                 moviePanel.Controls.Add(poster);
 
-                moviePanel.Click += (s, e) => {
+                moviePanel.Click += (s, e) =>
+                {
                     LogMovieView(currentUserId, movie.Id);
                     ShowMovieDetails(movie);
                 };
 
                 foreach (Control ctrl in moviePanel.Controls)
                 {
-                    ctrl.Click += (s, e) => {
+                    ctrl.Click += (s, e) =>
+                    {
                         LogMovieView(currentUserId, movie.Id);
                         ShowMovieDetails(movie);
                     };
@@ -306,76 +310,78 @@ namespace OOP_Project
             isLoading = false;
         }
         private void DisplayAllMovies()
+        {
+            allMovie_flp.Controls.Clear(); // Clear the previous movies
+
+            // Get all movies
+            List<Movie> allMovies = GetAllMovies();
+
+            if (allMovies == null || allMovies.Count == 0)
             {
-                allMovie_flp.Controls.Clear(); // Clear the previous movies
+                MessageBox.Show("No movies to display.");
+                return;
+            }
 
-                // Get all movies
-                List<Movie> allMovies = GetAllMovies();
-
-                if (allMovies == null || allMovies.Count == 0)
+            foreach (var movie in allMovies)
+            {
+                // Create a panel to hold the movie poster
+                Panel moviePanel = new Panel
                 {
-                    MessageBox.Show("No movies to display.");
-                    return;
-                }
+                    Size = new Size(160, 200),
+                    Margin = new Padding(5),
+                    BackColor = Color.Gray,
+                    Cursor = Cursors.Hand
+                };
 
-                foreach (var movie in allMovies)
+                // Create a PictureBox for the movie poster
+                PictureBox poster = new PictureBox
                 {
-                    // Create a panel to hold the movie poster
-                    Panel moviePanel = new Panel
-                    {
-                        Size = new Size(160, 200),
-                        Margin = new Padding(5),
-                        BackColor = Color.Gray,
-                        Cursor = Cursors.Hand
-                    };
+                    Size = new Size(150, 200),
+                    Location = new Point(5, 0),
+                    BackColor = Color.Black,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    BorderStyle = BorderStyle.FixedSingle
+                };
 
-                    // Create a PictureBox for the movie poster
-                    PictureBox poster = new PictureBox
+                // Try to load the movie poster image
+                try
+                {
+                    if (!string.IsNullOrEmpty(movie.ImageUrl))
                     {
-                        Size = new Size(150, 200),
-                        Location = new Point(5, 0),
-                        BackColor = Color.Black,
-                        SizeMode = PictureBoxSizeMode.Zoom,
-                        BorderStyle = BorderStyle.FixedSingle
-                    };
-
-                    // Try to load the movie poster image
-                    try
-                    {
-                        if (!string.IsNullOrEmpty(movie.ImageUrl))
-                        {
-                            poster.Load(movie.ImageUrl);
-                        }
-                        else
-                        {
-                            poster.Image = Properties.Resources.fallback;
-                        }
+                        poster.Load(movie.ImageUrl);
                     }
-                    catch
+                    else
                     {
                         poster.Image = Properties.Resources.fallback;
                     }
+                }
+                catch
+                {
+                    poster.Image = Properties.Resources.fallback;
+                }
 
-                    // Add poster to the movie panel
-                    moviePanel.Controls.Add(poster);
+                // Add poster to the movie panel
+                moviePanel.Controls.Add(poster);
 
-                    // Movie panel click event to show movie details
-                    moviePanel.Click += (s, e) => {
+                // Movie panel click event to show movie details
+                moviePanel.Click += (s, e) =>
+                {
+                    LogMovieView(currentUserId, movie.Id);
+                    ShowMovieDetails(movie);
+                };
+
+                foreach (Control ctrl in moviePanel.Controls)
+                {
+                    ctrl.Click += (s, e) =>
+                    {
                         LogMovieView(currentUserId, movie.Id);
                         ShowMovieDetails(movie);
                     };
-
-                    foreach (Control ctrl in moviePanel.Controls)
-                    {
-                        ctrl.Click += (s, e) => {
-                            LogMovieView(currentUserId, movie.Id);
-                            ShowMovieDetails(movie);
-                        };
-                    }
-                    // Add the movie panel to the flow layout panel
-                    allMovie_flp.Controls.Add(moviePanel);
                 }
+                // Add the movie panel to the flow layout panel
+                allMovie_flp.Controls.Add(moviePanel);
             }
+        }
         private List<Movie> GetMovies(int offset, int limit)
         {
             List<Movie> movies = new List<Movie>();
@@ -486,9 +492,9 @@ namespace OOP_Project
         {
             try
             {
-                MovieDetailsForm details = new MovieDetailsForm(movie, currentUserId); // ✅ Pass correct user ID
-                details.StartPosition = FormStartPosition.CenterScreen;
-                details.ShowDialog();
+                var movieDetailsForm = new MovieDetailsForm(movie, StayLoggedIn.GetCurrentUserId().Value);
+                movieDetailsForm.StartPosition = FormStartPosition.CenterScreen;
+                movieDetailsForm.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -497,28 +503,28 @@ namespace OOP_Project
         }
         private void close_pb_Click(object sender, EventArgs e)
         {
-                string msg = "Do you want to leave this page?";
-                string title = "Confirm Naviagtion";
-                MessageBoxButtons btn = MessageBoxButtons.YesNo;
-                MessageBoxIcon icon = MessageBoxIcon.Question;
-                DialogResult result = MessageBox.Show(msg, title, btn, icon);
-                if(result == DialogResult.Yes) 
-                {
-                    Application.Exit();
-                }
-                else
-                {
-                    return;
-                }
-            
+            string msg = "Do you want to leave this page?";
+            string title = "Confirm Naviagtion";
+            MessageBoxButtons btn = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Question;
+            DialogResult result = MessageBox.Show(msg, title, btn, icon);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+                return;
+            }
+
         }
         private void close_pb_MouseEnter(object sender, EventArgs e)
         {
-                close_pb.BackColor = Color.FromArgb(226, 0, 39);
+            close_pb.BackColor = Color.FromArgb(226, 0, 39);
         }
         private void close_pb_MouseLeave(object sender, EventArgs e)
         {
-                close_pb.BackColor = Color.FromArgb(0, 0, 0);
+            close_pb.BackColor = Color.FromArgb(0, 0, 0);
         }
         private void minimize_pb_Click(object sender, EventArgs e)
         {
@@ -526,19 +532,19 @@ namespace OOP_Project
         }
         private void minimize_pb_MouseEnter(object sender, EventArgs e)
         {
-                minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
+            minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
         }
         private void minimize_pb_MouseLeave(object sender, EventArgs e)
         {
-                minimize_pb.BackColor = Color.FromArgb(0, 0, 0);
+            minimize_pb.BackColor = Color.FromArgb(0, 0, 0);
         }
         private void home_btn_Click(object sender, EventArgs e)
         {
-                form_lbl.Text = "HOME";
+            form_lbl.Text = "HOME";
         }
         private void favorite_btn_Click(object sender, EventArgs e)
         {
-            
+
             form_lbl.Text = "FAVORITE";
             favorite_form favoriteForm = new favorite_form(currentUserId, userType);
             favoriteForm.ShowDialog();
@@ -546,23 +552,23 @@ namespace OOP_Project
 
         private void popular_btn_Click(object sender, EventArgs e)
         {
-                form_lbl.Text = "POPULAR";
+            form_lbl.Text = "POPULAR";
         }
         private void settings_btn_Click(object sender, EventArgs e)
         {
-                form_lbl.Text = "SETTINGS";
+            form_lbl.Text = "SETTINGS";
         }
         private bool IsValidUrl(string url)
         {
-                return Uri.IsWellFormedUriString(url, UriKind.Absolute) && (url.StartsWith("http://") || url.StartsWith("https://"));
+            return Uri.IsWellFormedUriString(url, UriKind.Absolute) && (url.StartsWith("http://") || url.StartsWith("https://"));
         }
         private void signOut_btn_Click(object sender, EventArgs e)
         {
-                string msg = "Do you really want to sign out?";
-                string title = "Confirm Navigation";
-                MessageBoxButtons btn = MessageBoxButtons.YesNo;
-                MessageBoxIcon icon = MessageBoxIcon.Question;
-                DialogResult result = MessageBox.Show(msg, title, btn, icon);
+            string msg = "Do you really want to sign out?";
+            string title = "Confirm Navigation";
+            MessageBoxButtons btn = MessageBoxButtons.YesNo;
+            MessageBoxIcon icon = MessageBoxIcon.Question;
+            DialogResult result = MessageBox.Show(msg, title, btn, icon);
 
             if (result == DialogResult.Yes)
             {
@@ -591,7 +597,7 @@ namespace OOP_Project
             // Clear the search_txt TextBox
             search_txt.Clear();
             search_txt_Leave(sender, e);
-            
+
             if (search_list.SelectedItem is Movie selectedMovie)
             {
                 // Avoid adding the same movie twice
@@ -603,14 +609,15 @@ namespace OOP_Project
             this.ActiveControl = null; // Remove focus from search_txt, so the cursor disappears
         }
         //search
-        private void DisplaySingleMovie(Movie movie, FlowLayoutPanel panel)
+        private void DisplaySingleMovie(Movie movie, FlowLayoutPanel targetPanel)
         {
             Panel moviePanel = new Panel
             {
                 Size = new Size(160, 200),
                 Margin = new Padding(5),
                 BackColor = Color.Gray,
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Tag = movie.Id // Set movie ID as Tag to detect duplicates
             };
 
             PictureBox poster = new PictureBox
@@ -624,70 +631,76 @@ namespace OOP_Project
 
             try
             {
+                // Load the movie poster image if URL is provided
                 if (!string.IsNullOrEmpty(movie.ImageUrl))
                 {
                     poster.Load(movie.ImageUrl);
                 }
                 else
                 {
+                    // Use fallback image if no URL is available
                     poster.Image = Properties.Resources.fallback;
                 }
             }
             catch
             {
+                // Use fallback image in case of an error loading the image
                 poster.Image = Properties.Resources.fallback;
             }
+            // Add poster to the movie panel
+            moviePanel.Controls.Add(poster);
+
+            // Attach click to both panel and poster (for better UX)
+            moviePanel.Click += (s, e) => ShowMovieDetails(movie);
+            poster.Click += (s, e) => ShowMovieDetails(movie);
 
             moviePanel.Controls.Add(poster);
-            moviePanel.Click += (s, e) => ShowMovieDetailsForm(movie);
-            foreach (Control ctrl in moviePanel.Controls)
-                ctrl.Click += (s, e) => ShowMovieDetailsForm(movie);
-
-            panel.Controls.Add(moviePanel);
+            targetPanel.Controls.Add(moviePanel);
         }
 
         private bool IsMovieAlreadyInPanel(Movie movie, FlowLayoutPanel panel)
         {
+            // Iterate through all panels in the FlowLayoutPanel
             foreach (Control control in panel.Controls)
             {
-                if (control is Panel panelControl)
+                if (control is Panel moviePanel && moviePanel.Tag is int movieId && movieId == movie.Id)
                 {
-                    foreach (Control inner in panelControl.Controls)
-                    {
-                        if (inner is PictureBox poster && poster.Tag is Movie existingMovie)
-                        {
-                            if (existingMovie.Title == movie.Title)
-                                return true;
-                        }
-                    }
+                    return true; // Movie already exists in the panel
                 }
             }
-            return false;
+            return false; // Movie does not exist
         }
         private void search_list_Click(object sender, EventArgs e)
         {
             if (search_list.SelectedItem is Movie selectedMovie)
             {
-                // If you already have full data, no need to refetch
+                // Try to get the full movie from the database by title
                 var fullMovie = GetFullMovieByTitle(selectedMovie.Title);
 
                 if (fullMovie != null)
                 {
-                    // Get the userId from the session
                     int? userId = StayLoggedIn.GetCurrentUserId();
                     if (userId.HasValue)
                     {
-                        // Save the recent search if userId is found
+                        // Ensure the movie exists in the 'movies' table
+                        EnsureMovieExistsInMoviesTable(fullMovie);
+
+                        // Save movie to the recent_searches table
                         SaveRecentSearch(userId.Value, fullMovie);
 
-                        // Show the movie details form
+                        // Show movie details form
                         var movieDetailsForm = new MovieDetailsForm(fullMovie, userId.Value);
                         movieDetailsForm.StartPosition = FormStartPosition.CenterScreen;
                         movieDetailsForm.ShowDialog();
 
-                        // Display the movie in the recently searched panel
-                        if (!IsMovieAlreadyInPanel(fullMovie, recentlysearch_flp))
+                        // Check if the movie is already in the recently searched list
+                        if (IsMovieAlreadyInPanel(fullMovie, recentlysearch_flp))
                         {
+                           //
+                        }
+                        else
+                        {
+                            // Display movie in the recently searched flow panel
                             DisplaySingleMovie(fullMovie, recentlysearch_flp);
                         }
                     }
@@ -696,11 +709,17 @@ namespace OOP_Project
                         MessageBox.Show("User session is not found. Please log in.");
                     }
                 }
+                else
+                {
+                    // Show message if movie is not found in the database
+                    MessageBox.Show("Movie not found in the database.");
+                }
 
                 search_list.ClearSelected();
                 search_list.Visible = false;
             }
-        }
+        }    
+
         private void ShowMovieDetailsForm(Movie movie)
         {
             MovieDetailsForm detailsForm = new MovieDetailsForm(movie, userId);
@@ -734,7 +753,7 @@ namespace OOP_Project
                     }
                 }
             }
-            return null;
+            return null; // Return null if no movie found
         }
         private void search_txt_TextChanged(object sender, EventArgs e)
         {
@@ -772,7 +791,7 @@ namespace OOP_Project
                             }
                         }
                     }
-                } 
+                }
                 search_list.Visible = search_list.Items.Count > 0;
             }
             catch (Exception ex)
@@ -781,26 +800,26 @@ namespace OOP_Project
             }
         }
         private void search_txt_Enter(object sender, EventArgs e)
-        {                      
-                if (search_txt.Text == "Search...")
-                {
-                    search_txt.Text = "";
-                    search_txt.ForeColor = Color.Black;
-                }           
+        {
+            if (search_txt.Text == "Search...")
+            {
+                search_txt.Text = "";
+                search_txt.ForeColor = Color.Black;
+            }
         }
         private void search_txt_Leave(object sender, EventArgs e)
         {
-            
+
             if (string.IsNullOrWhiteSpace(search_txt.Text))
             {
                 search_txt.Text = "Search..."; // Set the placeholder text
                 search_txt.ForeColor = Color.Gray; // Change the text color to gray for placeholder
             }
-        }    
+        }
         private void LoadRecentSearches(int currentUserId)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT movie_title, movie_description, movie_genre, release_year, image_url " +
+            string query = "SELECT movie_id, movie_title, movie_description, movie_genre, release_year, image_url " +
                            "FROM recent_searches WHERE user_id = @userId ORDER BY id DESC LIMIT 20";
 
             try
@@ -810,14 +829,15 @@ namespace OOP_Project
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@userId", currentUserId);  // Pass the logged-in user's userId
+                        cmd.Parameters.AddWithValue("@userId", currentUserId);
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            recentlysearch_flp.Controls.Clear(); // Optional: Clear previous items
+                            recentlysearch_flp.Controls.Clear();
 
                             while (reader.Read())
                             {
+                                int movieId = reader.GetInt32("movie_id");
                                 string title = reader.GetString("movie_title");
                                 string description = reader.GetString("movie_description");
                                 string genre = reader.GetString("movie_genre");
@@ -826,6 +846,7 @@ namespace OOP_Project
 
                                 Movie movie = new Movie
                                 {
+                                    Id = movieId, // 🆕 Assign movie_id here
                                     Title = title,
                                     Description = description,
                                     Genre = genre,
@@ -833,7 +854,8 @@ namespace OOP_Project
                                     ImageUrl = imageUrl
                                 };
 
-                                DisplayMovieInRecentlySearch(movie);  // Display the movie in the UI
+                                DisplayMovieInRecentlySearch(movie);
+
                             }
                         }
                     }
@@ -843,15 +865,29 @@ namespace OOP_Project
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
         }
         private void DisplayMovieInRecentlySearch(Movie movie)
         {
+            // Check for existing panel by movie ID
+            foreach (Control control in recentlysearch_flp.Controls)
+            {
+                if (control is Panel panel && panel.Tag != null && panel.Tag.ToString() == movie.Id.ToString())
+                {
+                    // 🛑 Duplication detected — show an error message
+                    MessageBox.Show($"Duplicate movie detected: {movie.Title} (ID: {movie.Id})", "Duplicate Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
+            // Create panel for movie
             Panel moviePanel = new Panel
             {
                 Size = new Size(160, 200),
                 Margin = new Padding(5),
                 BackColor = Color.Gray,
-                Cursor = Cursors.Hand
+                Cursor = Cursors.Hand,
+                Tag = movie.Id
             };
 
             PictureBox poster = new PictureBox
@@ -883,14 +919,16 @@ namespace OOP_Project
 
             // Add click event to show details of the movie
             moviePanel.Click += (s, e) => ShowMovieDetails(movie);
+            poster.Click += (s, e) => ShowMovieDetails(movie);
 
             recentlysearch_flp.Controls.Add(moviePanel);
+
         }
         private void SaveRecentSearch(int userId, Movie movie)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "INSERT INTO recent_searches (user_id, movie_title, movie_description, movie_genre, release_year, image_url) " +
-                           "VALUES (@userId, @movieTitle, @movieDescription, @movieGenre, @releaseYear, @imageUrl)";
+            string query = "INSERT IGNORE INTO recent_searches (user_id, movie_id, movie_title, movie_description, movie_genre, release_year, image_url) " +
+                           "VALUES (@userId, @movieId, @movieTitle, @movieDescription, @movieGenre, @releaseYear, @imageUrl)";
 
             try
             {
@@ -899,15 +937,15 @@ namespace OOP_Project
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        // Add parameters to the query to prevent SQL injection
-                        cmd.Parameters.AddWithValue("@userId", userId);  // Ensure userId is passed here
+                        cmd.Parameters.AddWithValue("@userId", userId);
+                        cmd.Parameters.AddWithValue("@movieId", movie.Id);
                         cmd.Parameters.AddWithValue("@movieTitle", movie.Title);
                         cmd.Parameters.AddWithValue("@movieDescription", movie.Description);
                         cmd.Parameters.AddWithValue("@movieGenre", movie.Genre);
                         cmd.Parameters.AddWithValue("@releaseYear", movie.ReleaseYear);
                         cmd.Parameters.AddWithValue("@imageUrl", movie.ImageUrl ?? (object)DBNull.Value);
 
-                        cmd.ExecuteNonQuery();  // Execute the query to save the recent search
+                        cmd.ExecuteNonQuery();
                     }
                 }
             }
@@ -915,12 +953,13 @@ namespace OOP_Project
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
+
         }
         private void admin_button_Click(object sender, EventArgs e)
         {
             admin_form admin_Form = new admin_form(userType, currentUserId);
             admin_Form.ShowDialog();
-        }     
+        }
         private void allMovie_flp_Scroll(object sender, ScrollEventArgs e)
         {
             if (e.Type == ScrollEventType.EndScroll &&
@@ -929,8 +968,48 @@ namespace OOP_Project
                 LoadMoreMovies();
             }
         }
-    }
+        private void EnsureMovieExistsInMoviesTable(Movie movie)
+        {
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string checkQuery = "SELECT movie_id FROM movies WHERE title = @title";
+            string insertQuery = "INSERT INTO movies (title, description, genre, release_year, image_url) " +
+                                 "VALUES (@title, @description, @genre, @releaseYear, @imageUrl); SELECT LAST_INSERT_ID();";
 
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+
+                using (MySqlCommand checkCmd = new MySqlCommand(checkQuery, conn))
+                {
+                    checkCmd.Parameters.AddWithValue("@title", movie.Title);
+                    object result = checkCmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        // 🎯 If movie exists, assign its ID to the object
+                        movie.Id = Convert.ToInt32(result);
+                    }
+                    else
+                    {
+                        // 🆕 Insert and retrieve the new ID
+                        using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn))
+                        {
+                            insertCmd.Parameters.AddWithValue("@title", movie.Title);
+                            insertCmd.Parameters.AddWithValue("@description", movie.Description);
+                            insertCmd.Parameters.AddWithValue("@genre", movie.Genre);
+                            insertCmd.Parameters.AddWithValue("@releaseYear", movie.ReleaseYear);
+                            insertCmd.Parameters.AddWithValue("@imageUrl", string.IsNullOrEmpty(movie.ImageUrl) ? DBNull.Value : (object)movie.ImageUrl);
+
+                            object insertedId = insertCmd.ExecuteScalar();
+                            movie.Id = Convert.ToInt32(insertedId);
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
 
 }
 

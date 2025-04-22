@@ -46,11 +46,11 @@ namespace OOP_Project
         {
             List<Movie> movies = new List<Movie>();
             string query = @"
-    SELECT m.movie_id, m.title, m.description, m.genre, m.release_year, m.rating, m.image_url
-    FROM Movies m
-    INNER JOIN Favorites f ON m.movie_id = f.movie_id
-    WHERE f.user_id = @userId
-    LIMIT @limit OFFSET @offset";
+             SELECT m.movie_id, m.title, m.description, m.genre, m.release_year, m.rating, m.image_url
+             FROM Movies m
+             INNER JOIN Favorites f ON m.movie_id = f.movie_id
+             WHERE f.user_id = @userId
+             LIMIT @limit OFFSET @offset";
 
             try
             {
@@ -204,17 +204,7 @@ namespace OOP_Project
         {
             // Optional: Custom painting logic
         }
-    }
+    }  
+    
 
-    // Ensure you have this class somewhere
-    public class Movie
-    {
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string Genre { get; set; }
-        public int ReleaseYear { get; set; }
-        public decimal Rating { get; set; }
-        public string ImageUrl { get; set; }
-    }
 }
