@@ -75,7 +75,7 @@
             this.leftdock_pnl.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftdock_pnl.Location = new System.Drawing.Point(0, 0);
             this.leftdock_pnl.Name = "leftdock_pnl";
-            this.leftdock_pnl.Size = new System.Drawing.Size(109, 850);
+            this.leftdock_pnl.Size = new System.Drawing.Size(109, 825);
             this.leftdock_pnl.TabIndex = 58;
             // 
             // menu2_panel
@@ -84,7 +84,7 @@
             this.menu2_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menu2_panel.Location = new System.Drawing.Point(0, 100);
             this.menu2_panel.Name = "menu2_panel";
-            this.menu2_panel.Size = new System.Drawing.Size(109, 750);
+            this.menu2_panel.Size = new System.Drawing.Size(109, 725);
             this.menu2_panel.TabIndex = 1;
             // 
             // menu_panel
@@ -99,7 +99,7 @@
             this.menu_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menu_panel.Location = new System.Drawing.Point(0, 0);
             this.menu_panel.Name = "menu_panel";
-            this.menu_panel.Size = new System.Drawing.Size(109, 750);
+            this.menu_panel.Size = new System.Drawing.Size(109, 725);
             this.menu_panel.TabIndex = 0;
             // 
             // home_btn
@@ -328,9 +328,9 @@
             this.movie_panel.Controls.Add(this.search_tb);
             this.movie_panel.Controls.Add(this.popularmovie_pnl);
             this.movie_panel.Controls.Add(this.viewport_panel);
-            this.movie_panel.Location = new System.Drawing.Point(143, 113);
+            this.movie_panel.Location = new System.Drawing.Point(158, 100);
             this.movie_panel.Name = "movie_panel";
-            this.movie_panel.Size = new System.Drawing.Size(1382, 925);
+            this.movie_panel.Size = new System.Drawing.Size(1382, 705);
             this.movie_panel.TabIndex = 61;
             // 
             // allMovie_lbl
@@ -524,7 +524,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(1552, 850);
+            this.ClientSize = new System.Drawing.Size(1552, 825);
             this.Controls.Add(this.profile_btn);
             this.Controls.Add(this.movie_panel);
             this.Controls.Add(this.form_lbl);

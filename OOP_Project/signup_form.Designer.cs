@@ -357,6 +357,10 @@
             this.MaximizeBox = false;
             this.Name = "signup_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.StateCommon.Border.Rounding = 15;
             this.Text = "signup_form";
             this.Load += new System.EventHandler(this.signup_form_Load);
             this.Shown += new System.EventHandler(this.signup_form_Shown);

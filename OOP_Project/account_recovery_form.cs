@@ -1,14 +1,18 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Mail;
+using ComponentFactory.Krypton.Toolkit;
+using System.Drawing;
 
 namespace OOP_Project
 {
-    public partial class account_recovery_form : Form
+    public partial class account_recovery_form : KryptonForm
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
         private string recoveryCode;
@@ -22,6 +26,8 @@ namespace OOP_Project
         private void account_recovery_form_Load(object sender, EventArgs e)
         {
             // Form load logic (if any)
+            CurvePanel(background_panel, 30);
+            background_panel.Resize += (s, args) => CurvePanel(background_panel, 20);
         }
 
         private bool IsValidPassword(string password)
@@ -31,6 +37,19 @@ namespace OOP_Project
             return Regex.IsMatch(password, pattern);
         }
 
+        private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
+        {
+            GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
+            path.StartFigure(); // Start the shape definition
+
+            // Add arcs to the path to define the four rounded corners
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90); // Bottom-right corner
+            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90); // Bottom-left corner
+            path.CloseFigure(); // Close the shape definition
+            panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
+        }
 
         private void send_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
