@@ -20,6 +20,8 @@ namespace OOP_Project
         private int currentUserId;
         private int movieId;
 
+        private bool isFavorited = false;
+
         public int MovieID { get; set; }
         public int CurrentUserId { get; set; }
 
@@ -56,11 +58,79 @@ namespace OOP_Project
             {
                 poster_pb.Image = Properties.Resources.fallback;
             }
+
+            CheckFavoriteStatus(); // NEW LINE
+        }
+
+        private void CheckFavoriteStatus()
+        {
+            string query = "SELECT COUNT(*) FROM Favorites WHERE user_id = @userId AND movie_id = @movieId";
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", currentUserId);
+                        cmd.Parameters.AddWithValue("@movieId", movieId);
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+                        isFavorited = count > 0;
+                        favorite_btn.Text = isFavorited ? "Remove from Favorites" : "Add to Favorites";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error checking favorite status: " + ex.Message);
+            }
+        }
+
+        private void RemoveFromFavorites(int userId, int movieId)
+        {
+            string deleteQuery = "DELETE FROM Favorites WHERE user_id = @userId AND movie_id = @movieId";
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(deleteQuery, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+                        cmd.Parameters.AddWithValue("@movieId", movieId);
+
+                        int rows = cmd.ExecuteNonQuery();
+                        if (rows > 0)
+                        {
+                            MessageBox.Show("Removed from favorites.");
+                            isFavorited = false;
+                            favorite_btn.Text = "Add to Favorites";
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to remove from favorites.");
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error removing from favorites: " + ex.Message);
+            }
         }
 
         private void favorite_btn_Click(object sender, EventArgs e)
         {
-            AddToFavorites(currentUserId, movieId);
+            if (isFavorited)
+            {
+                RemoveFromFavorites(currentUserId, movieId);
+            }
+            else
+            {
+                AddToFavorites(currentUserId, movieId);
+            }
         }
 
         private void AddToFavorites(int userId, int movieId)
