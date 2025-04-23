@@ -28,165 +28,227 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.poster_pb = new System.Windows.Forms.PictureBox();
+            this.close_pb = new System.Windows.Forms.PictureBox();
+            this.panelTest = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
-            this.genre_chklb = new System.Windows.Forms.CheckedListBox();
-            this.releaseDate_lbl = new System.Windows.Forms.Label();
+            this.comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.favorite_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.movieDetails_panel = new System.Windows.Forms.Panel();
             this.description_lbl = new System.Windows.Forms.Label();
-            this.submit_btn = new System.Windows.Forms.Button();
-            this.comment_tb = new System.Windows.Forms.TextBox();
-            this.comment_lbl = new System.Windows.Forms.Label();
-            this.rating_cmb = new System.Windows.Forms.ComboBox();
-            this.rating_lbl = new System.Windows.Forms.Label();
-            this.remove_btn = new System.Windows.Forms.Button();
+            this.genre_lbl = new System.Windows.Forms.Label();
+            this.poster_pb = new System.Windows.Forms.PictureBox();
+            this.dateRelease_lbl = new System.Windows.Forms.Label();
+            this.movieTrailer_panel = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
+            this.panelTest.SuspendLayout();
+            this.movieDetails_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.SuspendLayout();
             // 
-            // poster_pb
+            // close_pb
             // 
-            this.poster_pb.Location = new System.Drawing.Point(30, 30);
-            this.poster_pb.Name = "poster_pb";
-            this.poster_pb.Size = new System.Drawing.Size(180, 217);
-            this.poster_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.poster_pb.TabIndex = 0;
-            this.poster_pb.TabStop = false;
+            this.close_pb.BackColor = System.Drawing.Color.Transparent;
+            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
+            this.close_pb.Location = new System.Drawing.Point(1006, 14);
+            this.close_pb.Name = "close_pb";
+            this.close_pb.Size = new System.Drawing.Size(25, 23);
+            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.close_pb.TabIndex = 18;
+            this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
+            // 
+            // panelTest
+            // 
+            this.panelTest.Controls.Add(this.title_lbl);
+            this.panelTest.Controls.Add(this.comment_btn);
+            this.panelTest.Controls.Add(this.favorite_btn);
+            this.panelTest.Controls.Add(this.movieDetails_panel);
+            this.panelTest.Controls.Add(this.movieTrailer_panel);
+            this.panelTest.Location = new System.Drawing.Point(40, 40);
+            this.panelTest.Name = "panelTest";
+            this.panelTest.Size = new System.Drawing.Size(980, 558);
+            this.panelTest.TabIndex = 66;
             // 
             // title_lbl
             // 
             this.title_lbl.AutoSize = true;
-            this.title_lbl.Font = new System.Drawing.Font("Microsoft YaHei", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.title_lbl.Location = new System.Drawing.Point(25, 259);
+            this.title_lbl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.title_lbl.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.title_lbl.Location = new System.Drawing.Point(61, 9);
             this.title_lbl.Name = "title_lbl";
-            this.title_lbl.Size = new System.Drawing.Size(55, 26);
-            this.title_lbl.TabIndex = 1;
+            this.title_lbl.Padding = new System.Windows.Forms.Padding(12);
+            this.title_lbl.Size = new System.Drawing.Size(98, 60);
+            this.title_lbl.TabIndex = 65;
             this.title_lbl.Text = "Title";
             // 
-            // genre_chklb
+            // comment_btn
             // 
-            this.genre_chklb.FormattingEnabled = true;
-            this.genre_chklb.Location = new System.Drawing.Point(30, 288);
-            this.genre_chklb.Name = "genre_chklb";
-            this.genre_chklb.Size = new System.Drawing.Size(180, 49);
-            this.genre_chklb.TabIndex = 3;
+            this.comment_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.comment_btn.Location = new System.Drawing.Point(649, 491);
+            this.comment_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.comment_btn.Name = "comment_btn";
+            this.comment_btn.Size = new System.Drawing.Size(132, 45);
+            this.comment_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
+            this.comment_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.comment_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.comment_btn.StateCommon.Border.Rounding = 20;
+            this.comment_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.comment_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.comment_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.comment_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comment_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.comment_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comment_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comment_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comment_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.comment_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.comment_btn.TabIndex = 69;
+            this.comment_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_comments_28;
+            this.comment_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.comment_btn.Values.Text = "Comments";
             // 
-            // releaseDate_lbl
+            // favorite_btn
             // 
-            this.releaseDate_lbl.AutoSize = true;
-            this.releaseDate_lbl.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
-            this.releaseDate_lbl.Location = new System.Drawing.Point(25, 340);
-            this.releaseDate_lbl.Name = "releaseDate_lbl";
-            this.releaseDate_lbl.Size = new System.Drawing.Size(113, 22);
-            this.releaseDate_lbl.TabIndex = 4;
-            this.releaseDate_lbl.Text = "Release Date";
+            this.favorite_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.favorite_btn.Location = new System.Drawing.Point(804, 491);
+            this.favorite_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.favorite_btn.Name = "favorite_btn";
+            this.favorite_btn.Size = new System.Drawing.Size(132, 45);
+            this.favorite_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
+            this.favorite_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.favorite_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.favorite_btn.StateCommon.Border.Rounding = 20;
+            this.favorite_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.favorite_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.favorite_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.favorite_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.favorite_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.favorite_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.favorite_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.favorite_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.favorite_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.favorite_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.favorite_btn.TabIndex = 68;
+            this.favorite_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_favorite_folder_28;
+            this.favorite_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.favorite_btn.Values.Text = "Add to favorite";
+            this.favorite_btn.Click += new System.EventHandler(this.favorite_btn_Click);
+            // 
+            // movieDetails_panel
+            // 
+            this.movieDetails_panel.AutoSize = true;
+            this.movieDetails_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.movieDetails_panel.Controls.Add(this.description_lbl);
+            this.movieDetails_panel.Controls.Add(this.genre_lbl);
+            this.movieDetails_panel.Controls.Add(this.poster_pb);
+            this.movieDetails_panel.Controls.Add(this.dateRelease_lbl);
+            this.movieDetails_panel.Location = new System.Drawing.Point(45, 82);
+            this.movieDetails_panel.Name = "movieDetails_panel";
+            this.movieDetails_panel.Size = new System.Drawing.Size(210, 454);
+            this.movieDetails_panel.TabIndex = 67;
             // 
             // description_lbl
             // 
-            this.description_lbl.AutoSize = true;
-            this.description_lbl.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
-            this.description_lbl.Location = new System.Drawing.Point(26, 362);
+            this.description_lbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.description_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.description_lbl.Location = new System.Drawing.Point(-3, 329);
             this.description_lbl.Name = "description_lbl";
-            this.description_lbl.Size = new System.Drawing.Size(102, 22);
-            this.description_lbl.TabIndex = 5;
-            this.description_lbl.Text = "description";
+            this.description_lbl.Padding = new System.Windows.Forms.Padding(20);
+            this.description_lbl.Size = new System.Drawing.Size(210, 125);
+            this.description_lbl.TabIndex = 31;
+            this.description_lbl.Text = "Description";
+            this.description_lbl.Click += new System.EventHandler(this.description_lbl_Click);
             // 
-            // submit_btn
+            // genre_lbl
             // 
-            this.submit_btn.Location = new System.Drawing.Point(685, 428);
-            this.submit_btn.Name = "submit_btn";
-            this.submit_btn.Size = new System.Drawing.Size(75, 36);
-            this.submit_btn.TabIndex = 6;
-            this.submit_btn.Text = "Submit";
-            this.submit_btn.UseVisualStyleBackColor = true;
-            this.submit_btn.Click += new System.EventHandler(this.submit_btn_Click);
+            this.genre_lbl.AutoSize = true;
+            this.genre_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.genre_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.genre_lbl.Location = new System.Drawing.Point(17, 274);
+            this.genre_lbl.Name = "genre_lbl";
+            this.genre_lbl.Size = new System.Drawing.Size(46, 19);
+            this.genre_lbl.TabIndex = 29;
+            this.genre_lbl.Text = "Genre";
             // 
-            // comment_tb
+            // poster_pb
             // 
-            this.comment_tb.Location = new System.Drawing.Point(462, 288);
-            this.comment_tb.Name = "comment_tb";
-            this.comment_tb.Size = new System.Drawing.Size(100, 20);
-            this.comment_tb.TabIndex = 7;
+            this.poster_pb.BackColor = System.Drawing.Color.White;
+            this.poster_pb.Location = new System.Drawing.Point(22, 19);
+            this.poster_pb.Name = "poster_pb";
+            this.poster_pb.Size = new System.Drawing.Size(166, 221);
+            this.poster_pb.TabIndex = 25;
+            this.poster_pb.TabStop = false;
             // 
-            // comment_lbl
+            // dateRelease_lbl
             // 
-            this.comment_lbl.AutoSize = true;
-            this.comment_lbl.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
-            this.comment_lbl.Location = new System.Drawing.Point(369, 285);
-            this.comment_lbl.Name = "comment_lbl";
-            this.comment_lbl.Size = new System.Drawing.Size(87, 22);
-            this.comment_lbl.TabIndex = 8;
-            this.comment_lbl.Text = "comment";
+            this.dateRelease_lbl.AutoSize = true;
+            this.dateRelease_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateRelease_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dateRelease_lbl.Location = new System.Drawing.Point(17, 255);
+            this.dateRelease_lbl.Name = "dateRelease_lbl";
+            this.dateRelease_lbl.Size = new System.Drawing.Size(89, 19);
+            this.dateRelease_lbl.TabIndex = 28;
+            this.dateRelease_lbl.Text = "Date Release";
             // 
-            // rating_cmb
+            // movieTrailer_panel
             // 
-            this.rating_cmb.FormattingEnabled = true;
-            this.rating_cmb.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5"});
-            this.rating_cmb.Location = new System.Drawing.Point(387, 144);
-            this.rating_cmb.Name = "rating_cmb";
-            this.rating_cmb.Size = new System.Drawing.Size(121, 21);
-            this.rating_cmb.TabIndex = 9;
-            // 
-            // rating_lbl
-            // 
-            this.rating_lbl.AutoSize = true;
-            this.rating_lbl.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold);
-            this.rating_lbl.Location = new System.Drawing.Point(335, 143);
-            this.rating_lbl.Name = "rating_lbl";
-            this.rating_lbl.Size = new System.Drawing.Size(46, 22);
-            this.rating_lbl.TabIndex = 10;
-            this.rating_lbl.Text = "Rate";
-            // 
-            // remove_btn
-            // 
-            this.remove_btn.Location = new System.Drawing.Point(604, 428);
-            this.remove_btn.Name = "remove_btn";
-            this.remove_btn.Size = new System.Drawing.Size(75, 36);
-            this.remove_btn.TabIndex = 11;
-            this.remove_btn.Text = "Remove";
-            this.remove_btn.UseVisualStyleBackColor = true;
-            this.remove_btn.Click += new System.EventHandler(this.remove_btn_Click);
+            this.movieTrailer_panel.BackColor = System.Drawing.Color.White;
+            this.movieTrailer_panel.Location = new System.Drawing.Point(293, 82);
+            this.movieTrailer_panel.Name = "movieTrailer_panel";
+            this.movieTrailer_panel.Size = new System.Drawing.Size(643, 386);
+            this.movieTrailer_panel.TabIndex = 66;
             // 
             // movie_details_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(849, 539);
-            this.Controls.Add(this.remove_btn);
-            this.Controls.Add(this.rating_lbl);
-            this.Controls.Add(this.rating_cmb);
-            this.Controls.Add(this.comment_lbl);
-            this.Controls.Add(this.comment_tb);
-            this.Controls.Add(this.submit_btn);
-            this.Controls.Add(this.description_lbl);
-            this.Controls.Add(this.releaseDate_lbl);
-            this.Controls.Add(this.genre_chklb);
-            this.Controls.Add(this.title_lbl);
-            this.Controls.Add(this.poster_pb);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1050, 620);
+            this.Controls.Add(this.panelTest);
+            this.Controls.Add(this.close_pb);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "movie_details_form";
-            this.Text = "movie_details_form";
-            this.Load += new System.EventHandler(this.movie_details_form_Load);
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.StateCommon.Border.Rounding = 15;
+            this.Text = "MovieDetailsForm";
+            this.Load += new System.EventHandler(this.MovieDetailsForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
+            this.panelTest.ResumeLayout(false);
+            this.panelTest.PerformLayout();
+            this.movieDetails_panel.ResumeLayout(false);
+            this.movieDetails_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.PictureBox poster_pb;
+        private System.Windows.Forms.PictureBox close_pb;
+        private System.Windows.Forms.Panel panelTest;
         private System.Windows.Forms.Label title_lbl;
-        private System.Windows.Forms.CheckedListBox genre_chklb;
-        private System.Windows.Forms.Label releaseDate_lbl;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton comment_btn;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton favorite_btn;
+        private System.Windows.Forms.Panel movieDetails_panel;
+        private System.Windows.Forms.Label genre_lbl;
+        private System.Windows.Forms.PictureBox poster_pb;
+        private System.Windows.Forms.Label dateRelease_lbl;
+        private System.Windows.Forms.Panel movieTrailer_panel;
         private System.Windows.Forms.Label description_lbl;
-        private System.Windows.Forms.Button submit_btn;
-        private System.Windows.Forms.TextBox comment_tb;
-        private System.Windows.Forms.Label comment_lbl;
-        private System.Windows.Forms.ComboBox rating_cmb;
-        private System.Windows.Forms.Label rating_lbl;
-        private System.Windows.Forms.Button remove_btn;
     }
 }

@@ -34,6 +34,7 @@ namespace OOP_Project
         private int currentUserId; // Variable to store the current user's ID
         private int userId; // Variable to store a user's ID, potentially for a selected user
 
+
         // Pagination-related variables
         int currentPage = 0; // Tracks the current page number for pagination
         int pageSize = 20; // Defines how many items to display per page
@@ -492,7 +493,7 @@ namespace OOP_Project
         {
             try
             {
-                var movieDetailsForm = new MovieDetailsForm(movie, StayLoggedIn.GetCurrentUserId().Value);
+                var movieDetailsForm = new movie_details_form(movie, StayLoggedIn.GetCurrentUserId().Value);
                 movieDetailsForm.StartPosition = FormStartPosition.CenterScreen;
                 movieDetailsForm.ShowDialog();
             }
@@ -689,7 +690,7 @@ namespace OOP_Project
                         SaveRecentSearch(userId.Value, fullMovie);
 
                         // Show movie details form
-                        var movieDetailsForm = new MovieDetailsForm(fullMovie, userId.Value);
+                        var movieDetailsForm = new movie_details_form(fullMovie, userId.Value);
                         movieDetailsForm.StartPosition = FormStartPosition.CenterScreen;
                         movieDetailsForm.ShowDialog();
 
@@ -722,7 +723,7 @@ namespace OOP_Project
 
         private void ShowMovieDetailsForm(Movie movie)
         {
-            MovieDetailsForm detailsForm = new MovieDetailsForm(movie, userId);
+            movie_details_form detailsForm = new movie_details_form(movie, userId);
             detailsForm.ShowDialog();
         }
         private Movie GetFullMovieByTitle(string title)

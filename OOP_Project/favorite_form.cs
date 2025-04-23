@@ -87,7 +87,7 @@ namespace OOP_Project
             return movies;
         }
 
-        private void LoadMoreMovies()
+        public void LoadMoreMovies()
         {
             if (isLoading) return;
             isLoading = true;
@@ -159,7 +159,7 @@ namespace OOP_Project
         {
             try
             {
-                MovieDetailsForm details = new MovieDetailsForm(movie, currentUserId);
+                movie_details_form details = new movie_details_form(movie, currentUserId);
                 details.StartPosition = FormStartPosition.CenterScreen;
                 details.ShowDialog();
             }

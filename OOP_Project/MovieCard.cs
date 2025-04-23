@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,11 +17,12 @@ namespace OOP_Project
     {
         private PictureBox poster_pb;
         private int currentUserId;
+        private Movie _moovie;
 
-        public MovieCard()
+        public MovieCard(Movie moovie)
         {
             InitializeComponent();
-
+            _moovie = moovie;
             this.Size = new Size(150, 225); // Ensure size is set
 
             PosterImage_pb = new PictureBox
@@ -46,7 +48,9 @@ namespace OOP_Project
 
         private void Poster_pb_Click(object sender, EventArgs e)
         {
-            movie_details_form movieDetails = new movie_details_form(MovieID, currentUserId);
+            movie_details_form movieDetails = new movie_details_form(_moovie, currentUserId);
+
+
             movieDetails.Show();
         }
     }

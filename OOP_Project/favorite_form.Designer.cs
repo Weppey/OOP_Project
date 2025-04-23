@@ -119,6 +119,8 @@ namespace OOP_Project
             this.Controls.Add(this.movie_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "favorite_form";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "c";
             this.Load += new System.EventHandler(this.favorite_form_Load);
             this.movie_panel.ResumeLayout(false);
