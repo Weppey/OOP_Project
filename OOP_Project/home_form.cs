@@ -60,17 +60,25 @@
 
                 HandleAccess(); // Handle access based on the user's type (admin or regular user)
 
-                //Tooltip messages
-                tooltip.AutoPopDelay = 5000;
+            //Tooltip messages
+            tooltip.IsBalloon = true;                        // Makes it balloon-shaped
+            tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
+            tooltip.ForeColor = Color.Black;                 // Text color
+            tooltip.UseFading = true;                        // Smooth fade-in/out
+            tooltip.UseAnimation = true;                     // Animate appearance
+
+            tooltip.AutoPopDelay = 5000;
                 tooltip.InitialDelay = 100;
                 tooltip.ReshowDelay = 100;
                 tooltip.ShowAlways = true;
+                
                 tooltip.SetToolTip(home_btn, "Home");
                 tooltip.SetToolTip(favorite_btn, "Favorite");
                 tooltip.SetToolTip(popular_btn, "Popular");
                 tooltip.SetToolTip(signOut_btn, "Sign Out");
                 tooltip.SetToolTip(settings_btn, "Settings");
                 tooltip.SetToolTip(adminsettings_btn, "Admin");
+            tooltip.SetToolTip(search_tb, "Search your movie");
         }
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {

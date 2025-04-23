@@ -18,6 +18,7 @@ namespace OOP_Project
         private PictureBox poster_pb;
         private int currentUserId;
         private Movie _moovie;
+        private ToolTip tooltip = new ToolTip();
 
         public MovieCard(Movie moovie)
         {
@@ -25,11 +26,13 @@ namespace OOP_Project
             _moovie = moovie;
             this.Size = new Size(150, 225); // Ensure size is set
 
+
             PosterImage_pb = new PictureBox
             {
                 Dock = DockStyle.Fill,
                 SizeMode = PictureBoxSizeMode.Zoom,
                 Cursor = Cursors.Hand
+
             };
 
             this.Controls.Add(PosterImage_pb);
@@ -52,6 +55,22 @@ namespace OOP_Project
 
 
             movieDetails.Show();
+        }
+
+        private void MovieCard_Load(object sender, EventArgs e)
+        {
+            tooltip.IsBalloon = true;                        // Makes it balloon-shaped
+            tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
+            tooltip.ForeColor = Color.Black;                 // Text color
+            tooltip.UseFading = true;                        // Smooth fade-in/out
+            tooltip.UseAnimation = true;                     // Animate appearance
+
+            tooltip.AutoPopDelay = 5000;
+            tooltip.InitialDelay = 100;
+            tooltip.ReshowDelay = 100;
+            tooltip.ShowAlways = true;
+
+            tooltip.SetToolTip(poster_pb, "Click to view");
         }
     }
 

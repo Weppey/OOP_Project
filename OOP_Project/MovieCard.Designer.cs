@@ -34,7 +34,7 @@
             // 
             // PosterImage_pb
             // 
-            this.PosterImage_pb.Location = new System.Drawing.Point(0, 0);
+            this.PosterImage_pb.Location = new System.Drawing.Point(0, -3);
             this.PosterImage_pb.Name = "PosterImage_pb";
             this.PosterImage_pb.Size = new System.Drawing.Size(180, 217);
             this.PosterImage_pb.TabIndex = 0;
@@ -49,6 +49,7 @@
             this.Margin = new System.Windows.Forms.Padding(10);
             this.Name = "MovieCard";
             this.Size = new System.Drawing.Size(180, 217);
+            this.Load += new System.EventHandler(this.MovieCard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.PosterImage_pb)).EndInit();
             this.ResumeLayout(false);
 
