@@ -112,7 +112,7 @@ namespace OOP_Project
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.BackColor = System.Drawing.Color.Red;
             this.ClientSize = new System.Drawing.Size(1423, 754);
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
@@ -121,6 +121,12 @@ namespace OOP_Project
             this.Name = "favorite_form";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.StateCommon.Border.Rounding = 15;
             this.Text = "c";
             this.Load += new System.EventHandler(this.favorite_form_Load);
             this.movie_panel.ResumeLayout(false);

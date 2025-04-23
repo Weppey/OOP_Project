@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using ComponentFactory.Krypton.Toolkit;
 using MySql.Data.MySqlClient;
-    using OOP_Project;
+using OOP_Project;
 
 namespace OOP_Project
 {
@@ -40,6 +41,29 @@ namespace OOP_Project
             {
                 MessageBox.Show("Database connection failed: " + ex.Message);
             }
+
+            CurvePanel(favoriteMovie_panel, 30);
+            favoriteMovie_panel.Resize += (s, args) => CurvePanel(favoriteMovie_panel, 20);
+
+            CurvePanel(favoriteMovie_flp, 30);
+            favoriteMovie_flp.Resize += (s, args) => CurvePanel(favoriteMovie_flp, 20);
+
+            CurvePanel(movie_panel, 30);
+            movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+        }
+
+        private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
+        {
+            GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
+            path.StartFigure(); // Start the shape definition
+
+            // Add arcs to the path to define the four rounded corners
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90); // Bottom-right corner
+            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90); // Bottom-left corner
+            path.CloseFigure(); // Close the shape definition
+            panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
         }
 
         private List<Movie> GetFavoriteMovies(int userId, int offset, int limit)
@@ -82,8 +106,10 @@ namespace OOP_Project
             {
                 MessageBox.Show("Error fetching favorite movies: " + ex.Message);
             }
-
-            MessageBox.Show($"Movies fetched: {movies.Count}");
+            if (userType == "admin")
+            {
+                MessageBox.Show($"Movies fetched: {movies.Count}");
+            }
             return movies;
         }
 

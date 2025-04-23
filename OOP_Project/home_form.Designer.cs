@@ -47,7 +47,7 @@
             this.recent_lbl = new System.Windows.Forms.Label();
             this.suggest_lbl = new System.Windows.Forms.Label();
             this.search_list = new System.Windows.Forms.ListBox();
-            this.search_txt = new System.Windows.Forms.TextBox();
+            this.search_tb = new System.Windows.Forms.TextBox();
             this.popularmovie_pnl = new System.Windows.Forms.Panel();
             this.recentlysearch_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.viewport_panel = new System.Windows.Forms.Panel();
@@ -325,7 +325,7 @@
             this.movie_panel.Controls.Add(this.recent_lbl);
             this.movie_panel.Controls.Add(this.suggest_lbl);
             this.movie_panel.Controls.Add(this.search_list);
-            this.movie_panel.Controls.Add(this.search_txt);
+            this.movie_panel.Controls.Add(this.search_tb);
             this.movie_panel.Controls.Add(this.popularmovie_pnl);
             this.movie_panel.Controls.Add(this.viewport_panel);
             this.movie_panel.Location = new System.Drawing.Point(143, 113);
@@ -400,18 +400,18 @@
             this.search_list.Click += new System.EventHandler(this.search_list_Click);
             this.search_list.SelectedIndexChanged += new System.EventHandler(this.search_list_SelectedIndexChanged);
             // 
-            // search_txt
+            // search_tb
             // 
-            this.search_txt.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.search_txt.ForeColor = System.Drawing.Color.Gray;
-            this.search_txt.Location = new System.Drawing.Point(988, 25);
-            this.search_txt.Name = "search_txt";
-            this.search_txt.Size = new System.Drawing.Size(337, 26);
-            this.search_txt.TabIndex = 66;
-            this.search_txt.Text = "Search...";
-            this.search_txt.TextChanged += new System.EventHandler(this.search_txt_TextChanged);
-            this.search_txt.Enter += new System.EventHandler(this.search_txt_Enter);
-            this.search_txt.Leave += new System.EventHandler(this.search_txt_Leave);
+            this.search_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.search_tb.ForeColor = System.Drawing.Color.Gray;
+            this.search_tb.Location = new System.Drawing.Point(988, 25);
+            this.search_tb.Name = "search_tb";
+            this.search_tb.Size = new System.Drawing.Size(337, 26);
+            this.search_tb.TabIndex = 66;
+            this.search_tb.Text = "Search...";
+            this.search_tb.TextChanged += new System.EventHandler(this.search_txt_TextChanged);
+            this.search_tb.Enter += new System.EventHandler(this.search_txt_Enter);
+            this.search_tb.Leave += new System.EventHandler(this.search_txt_Leave);
             // 
             // popularmovie_pnl
             // 
@@ -582,7 +582,7 @@
         private System.Windows.Forms.FlowLayoutPanel recentlysearch_flp;
         private ComponentFactory.Krypton.Toolkit.KryptonButton adminsettings_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton signOut_btn;
-        private System.Windows.Forms.TextBox search_txt;
+        private System.Windows.Forms.TextBox search_tb;
         private System.Windows.Forms.ListBox search_list;
         private System.Windows.Forms.Label recent_lbl;
         private System.Windows.Forms.Label suggest_lbl;

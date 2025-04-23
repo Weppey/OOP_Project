@@ -19,7 +19,8 @@ namespace OOP_Project
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
         private int currentUserId;
         private int movieId;
-    
+        private ToolTip tooltip = new ToolTip();
+
         private bool isFavorited = false;
 
         public int MovieID { get; set; }
@@ -32,6 +33,13 @@ namespace OOP_Project
             currentUserId = userId;
             movieId = moovie.Id;
             poster_pb.SizeMode = PictureBoxSizeMode.Zoom;
+
+            //Tooltip messages
+            tooltip.AutoPopDelay = 5000;
+            tooltip.InitialDelay = 100;
+            tooltip.ReshowDelay = 100;
+            tooltip.ShowAlways = true;
+            tooltip.SetToolTip(description_lbl, "Close");
         }
 
         private void MovieDetailsForm_Load(object sender, EventArgs e)
@@ -46,8 +54,8 @@ namespace OOP_Project
                 if (!string.IsNullOrEmpty(_moovie.ImageUrl))
                 {
                     poster_pb.Load(_moovie.ImageUrl);
-                    panelTest.BackgroundImage = poster_pb.Image;
-                    panelTest.BackgroundImageLayout = ImageLayout.Stretch;
+                    this.BackgroundImage = poster_pb.Image;
+                    movie_panel.BackgroundImageLayout = ImageLayout.Stretch;
                 }
                 else
                 {
@@ -101,7 +109,7 @@ namespace OOP_Project
 
         private void AddToFavorites(int userId, int movieId)
         {
-            MessageBox.Show($"AddToFavorites called with UserID: {userId}, MovieID: {movieId}");
+           // MessageBox.Show($"AddToFavorites called with UserID: {userId}, MovieID: {movieId}");
             if (userId <= 0 || movieId <= 0)
             {
                 MessageBox.Show("Invalid user or movie ID.");
@@ -218,6 +226,7 @@ namespace OOP_Project
         {
             if (description_lbl.Width == 210)
             {
+                tooltip.SetToolTip(description_lbl, "Close"); // Fixed missing closing quote
                 description_lbl.Width = 300;
                 description_lbl.BackColor = Color.Silver;
                 description_lbl.ForeColor = Color.Black;
@@ -225,9 +234,11 @@ namespace OOP_Project
             else
             {
                 description_lbl.Width = 210;
+                tooltip.SetToolTip(description_lbl, "Expand");
                 description_lbl.BackColor = Color.Transparent;
                 description_lbl.ForeColor = Color.White;
             }
         }
+
     }
 }
