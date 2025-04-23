@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.home_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.main_pnl = new System.Windows.Forms.Panel();
             this.movie_panel = new System.Windows.Forms.Panel();
             this.insertMovie_panel = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.insertmovie_pnl = new System.Windows.Forms.Panel();
             this.releaseDate_dtp = new System.Windows.Forms.DateTimePicker();
             this.genre_clb = new System.Windows.Forms.CheckedListBox();
             this.release_year = new System.Windows.Forms.Label();
@@ -51,19 +51,19 @@
             this.viewportPanel = new System.Windows.Forms.Panel();
             this.recommendedMovieRight_btn = new System.Windows.Forms.PictureBox();
             this.movieListAdmin_panel = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.leftdock_pnl = new System.Windows.Forms.Panel();
             this.insert_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.remove_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
-            this.panel1.SuspendLayout();
+            this.main_pnl.SuspendLayout();
             this.movie_panel.SuspendLayout();
             this.insertMovie_panel.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.insertmovie_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.insertClose_btn)).BeginInit();
             this.viewportPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieRight_btn)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.leftdock_pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             this.SuspendLayout();
@@ -97,16 +97,16 @@
             this.home_btn.Values.Text = "";
             this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
             // 
-            // panel1
+            // main_pnl
             // 
-            this.panel1.AutoScroll = true;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.panel1.Controls.Add(this.home_btn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1382, 60);
-            this.panel1.TabIndex = 63;
+            this.main_pnl.AutoScroll = true;
+            this.main_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.main_pnl.Controls.Add(this.home_btn);
+            this.main_pnl.Dock = System.Windows.Forms.DockStyle.Top;
+            this.main_pnl.Location = new System.Drawing.Point(0, 0);
+            this.main_pnl.Name = "main_pnl";
+            this.main_pnl.Size = new System.Drawing.Size(1382, 60);
+            this.main_pnl.TabIndex = 63;
             // 
             // movie_panel
             // 
@@ -118,7 +118,7 @@
             this.movie_panel.Controls.Add(this.search_list);
             this.movie_panel.Controls.Add(this.search_txt);
             this.movie_panel.Controls.Add(this.viewportPanel);
-            this.movie_panel.Controls.Add(this.panel2);
+            this.movie_panel.Controls.Add(this.leftdock_pnl);
             this.movie_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.movie_panel.Location = new System.Drawing.Point(0, 0);
             this.movie_panel.Name = "movie_panel";
@@ -127,7 +127,7 @@
             // 
             // insertMovie_panel
             // 
-            this.insertMovie_panel.Controls.Add(this.panel3);
+            this.insertMovie_panel.Controls.Add(this.insertmovie_pnl);
             this.insertMovie_panel.Controls.Add(this.details_lbl);
             this.insertMovie_panel.Controls.Add(this.submit_btn);
             this.insertMovie_panel.Controls.Add(this.insertClose_btn);
@@ -138,24 +138,24 @@
             this.insertMovie_panel.Visible = false;
             this.insertMovie_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.insertMovie_panel_Paint);
             // 
-            // panel3
+            // insertmovie_pnl
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.panel3.Controls.Add(this.releaseDate_dtp);
-            this.panel3.Controls.Add(this.genre_clb);
-            this.panel3.Controls.Add(this.release_year);
-            this.panel3.Controls.Add(this.genre_lbl);
-            this.panel3.Controls.Add(this.decription_lbl);
-            this.panel3.Controls.Add(this.decription_tb);
-            this.panel3.Controls.Add(this.posterUrl_lbl);
-            this.panel3.Controls.Add(this.url_tb);
-            this.panel3.Controls.Add(this.title_lbl);
-            this.panel3.Controls.Add(this.title_tb);
-            this.panel3.ForeColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(34, 48);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(555, 342);
-            this.panel3.TabIndex = 77;
+            this.insertmovie_pnl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.insertmovie_pnl.Controls.Add(this.releaseDate_dtp);
+            this.insertmovie_pnl.Controls.Add(this.genre_clb);
+            this.insertmovie_pnl.Controls.Add(this.release_year);
+            this.insertmovie_pnl.Controls.Add(this.genre_lbl);
+            this.insertmovie_pnl.Controls.Add(this.decription_lbl);
+            this.insertmovie_pnl.Controls.Add(this.decription_tb);
+            this.insertmovie_pnl.Controls.Add(this.posterUrl_lbl);
+            this.insertmovie_pnl.Controls.Add(this.url_tb);
+            this.insertmovie_pnl.Controls.Add(this.title_lbl);
+            this.insertmovie_pnl.Controls.Add(this.title_tb);
+            this.insertmovie_pnl.ForeColor = System.Drawing.Color.Black;
+            this.insertmovie_pnl.Location = new System.Drawing.Point(34, 48);
+            this.insertmovie_pnl.Name = "insertmovie_pnl";
+            this.insertmovie_pnl.Size = new System.Drawing.Size(555, 342);
+            this.insertmovie_pnl.TabIndex = 77;
             // 
             // releaseDate_dtp
             // 
@@ -358,16 +358,16 @@
             this.movieListAdmin_panel.TabIndex = 0;
             this.movieListAdmin_panel.WrapContents = false;
             // 
-            // panel2
+            // leftdock_pnl
             // 
-            this.panel2.AutoSize = true;
-            this.panel2.Controls.Add(this.insert_btn);
-            this.panel2.Controls.Add(this.remove_btn);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(138, 718);
-            this.panel2.TabIndex = 67;
+            this.leftdock_pnl.AutoSize = true;
+            this.leftdock_pnl.Controls.Add(this.insert_btn);
+            this.leftdock_pnl.Controls.Add(this.remove_btn);
+            this.leftdock_pnl.Dock = System.Windows.Forms.DockStyle.Left;
+            this.leftdock_pnl.Location = new System.Drawing.Point(0, 0);
+            this.leftdock_pnl.Name = "leftdock_pnl";
+            this.leftdock_pnl.Size = new System.Drawing.Size(138, 718);
+            this.leftdock_pnl.TabIndex = 67;
             // 
             // insert_btn
             // 
@@ -459,7 +459,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(10)))), ((int)(((byte)(10)))));
             this.ClientSize = new System.Drawing.Size(1382, 718);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.main_pnl);
             this.Controls.Add(this.movie_panel);
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
@@ -467,17 +467,17 @@
             this.Location = new System.Drawing.Point(330, 200);
             this.Name = "admin_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.panel1.ResumeLayout(false);
+            this.main_pnl.ResumeLayout(false);
             this.movie_panel.ResumeLayout(false);
             this.movie_panel.PerformLayout();
             this.insertMovie_panel.ResumeLayout(false);
             this.insertMovie_panel.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.insertmovie_pnl.ResumeLayout(false);
+            this.insertmovie_pnl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.insertClose_btn)).EndInit();
             this.viewportPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.recommendedMovieRight_btn)).EndInit();
-            this.panel2.ResumeLayout(false);
+            this.leftdock_pnl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             this.ResumeLayout(false);
@@ -489,8 +489,8 @@
         private System.Windows.Forms.PictureBox close_pb;
         private ComponentFactory.Krypton.Toolkit.KryptonButton home_btn;
         private System.Windows.Forms.Panel movie_panel;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel main_pnl;
+        private System.Windows.Forms.Panel leftdock_pnl;
         private ComponentFactory.Krypton.Toolkit.KryptonButton insert_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton remove_btn;
         private System.Windows.Forms.Panel viewportPanel;
@@ -502,7 +502,7 @@
         private System.Windows.Forms.PictureBox insertClose_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton submit_btn;
         private System.Windows.Forms.Label details_lbl;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel insertmovie_pnl;
         private System.Windows.Forms.DateTimePicker releaseDate_dtp;
         private System.Windows.Forms.CheckedListBox genre_clb;
         private System.Windows.Forms.Label release_year;

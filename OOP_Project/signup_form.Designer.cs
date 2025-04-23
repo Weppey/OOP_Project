@@ -33,6 +33,7 @@
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
             this.Lbl_Signup = new System.Windows.Forms.Label();
             this.signup_panel = new System.Windows.Forms.Panel();
+            this.sign_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.login_llbl = new ComponentFactory.Krypton.Toolkit.KryptonLinkLabel();
             this.acc_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.pref_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
@@ -49,8 +50,7 @@
             this.question_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.birthdate_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.gender_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.process1 = new System.Diagnostics.Process();
-            this.sign_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.process_prcs = new System.Diagnostics.Process();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.signup_panel.SuspendLayout();
@@ -129,6 +129,26 @@
             this.signup_panel.Size = new System.Drawing.Size(844, 451);
             this.signup_panel.TabIndex = 3;
             this.signup_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.signup_panel_Paint);
+            // 
+            // sign_btn
+            // 
+            this.sign_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.sign_btn.Location = new System.Drawing.Point(724, 376);
+            this.sign_btn.Name = "sign_btn";
+            this.sign_btn.Size = new System.Drawing.Size(97, 30);
+            this.sign_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
+            this.sign_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.sign_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.sign_btn.StateCommon.Border.Rounding = 5;
+            this.sign_btn.StateCommon.Content.Image.Effect = ComponentFactory.Krypton.Toolkit.PaletteImageEffect.Disabled;
+            this.sign_btn.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.sign_btn.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, 5, -1);
+            this.sign_btn.TabIndex = 70;
+            this.sign_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_right_162;
+            this.sign_btn.Values.Text = "Sign-up";
+            this.sign_btn.Click += new System.EventHandler(this.sign_btn_Click);
             // 
             // login_llbl
             // 
@@ -312,35 +332,15 @@
             this.gender_lbl.Values.Text = "Gender:";
             this.gender_lbl.Paint += new System.Windows.Forms.PaintEventHandler(this.gender_lbl_Paint);
             // 
-            // process1
+            // process_prcs
             // 
-            this.process1.StartInfo.Domain = "";
-            this.process1.StartInfo.LoadUserProfile = false;
-            this.process1.StartInfo.Password = null;
-            this.process1.StartInfo.StandardErrorEncoding = null;
-            this.process1.StartInfo.StandardOutputEncoding = null;
-            this.process1.StartInfo.UserName = "";
-            this.process1.SynchronizingObject = this;
-            // 
-            // sign_btn
-            // 
-            this.sign_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.sign_btn.Location = new System.Drawing.Point(724, 376);
-            this.sign_btn.Name = "sign_btn";
-            this.sign_btn.Size = new System.Drawing.Size(97, 30);
-            this.sign_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
-            this.sign_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
-            this.sign_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.sign_btn.StateCommon.Border.Rounding = 5;
-            this.sign_btn.StateCommon.Content.Image.Effect = ComponentFactory.Krypton.Toolkit.PaletteImageEffect.Disabled;
-            this.sign_btn.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
-            this.sign_btn.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, 5, -1);
-            this.sign_btn.TabIndex = 70;
-            this.sign_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_right_162;
-            this.sign_btn.Values.Text = "Sign-up";
-            this.sign_btn.Click += new System.EventHandler(this.sign_btn_Click);
+            this.process_prcs.StartInfo.Domain = "";
+            this.process_prcs.StartInfo.LoadUserProfile = false;
+            this.process_prcs.StartInfo.Password = null;
+            this.process_prcs.StartInfo.StandardErrorEncoding = null;
+            this.process_prcs.StartInfo.StandardOutputEncoding = null;
+            this.process_prcs.StartInfo.UserName = "";
+            this.process_prcs.SynchronizingObject = this;
             // 
             // signup_form
             // 
@@ -379,7 +379,7 @@
         private System.Windows.Forms.Panel bg2_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox user_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonCheckBox showPass_chkb;
-        private System.Diagnostics.Process process1;
+        private System.Diagnostics.Process process_prcs;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox gender_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox email_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker birthday_dtp;

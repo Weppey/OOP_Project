@@ -204,6 +204,11 @@ namespace OOP_Project
         {
             // Optional: Custom painting logic
         }
+
+        private void favoriteMovie_flp_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
     }  
     
 

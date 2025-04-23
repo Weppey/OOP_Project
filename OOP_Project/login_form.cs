@@ -14,7 +14,7 @@ namespace OOP_Project
     public partial class login_form : KryptonForm
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-
+        
         public login_form()
         {
             InitializeComponent();
@@ -194,5 +194,6 @@ namespace OOP_Project
         {
 
         }
+     
     }
 }

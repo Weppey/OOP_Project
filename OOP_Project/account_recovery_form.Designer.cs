@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.min_pb = new System.Windows.Forms.PictureBox();
-            this.cls_pb = new System.Windows.Forms.PictureBox();
             this.background_panel = new System.Windows.Forms.Panel();
             this.Panel_Recovery = new System.Windows.Forms.Panel();
             this.confirm_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -45,51 +43,28 @@
             this.newpassword_lbl = new System.Windows.Forms.Label();
             this.confirmNP_lbl = new System.Windows.Forms.Label();
             this.password_chkb = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.min_pb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).BeginInit();
+            this.min_pb = new System.Windows.Forms.PictureBox();
+            this.cls_pb = new System.Windows.Forms.PictureBox();
             this.background_panel.SuspendLayout();
             this.Panel_Recovery.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.min_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).BeginInit();
             this.SuspendLayout();
-            // 
-            // min_pb
-            // 
-            this.min_pb.BackColor = System.Drawing.Color.Transparent;
-            this.min_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.min_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
-            this.min_pb.Location = new System.Drawing.Point(933, 12);
-            this.min_pb.Name = "min_pb";
-            this.min_pb.Size = new System.Drawing.Size(25, 23);
-            this.min_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.min_pb.TabIndex = 51;
-            this.min_pb.TabStop = false;
-            this.min_pb.Click += new System.EventHandler(this.min_pb_Click);
-            // 
-            // cls_pb
-            // 
-            this.cls_pb.BackColor = System.Drawing.Color.Transparent;
-            this.cls_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cls_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
-            this.cls_pb.Location = new System.Drawing.Point(962, 12);
-            this.cls_pb.Name = "cls_pb";
-            this.cls_pb.Size = new System.Drawing.Size(25, 23);
-            this.cls_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.cls_pb.TabIndex = 50;
-            this.cls_pb.TabStop = false;
-            this.cls_pb.Click += new System.EventHandler(this.cls_pb_Click);
             // 
             // background_panel
             // 
-            this.background_panel.BackgroundImage = global::OOP_Project.Properties.Resources._3;
+            this.background_panel.BackgroundImage = global::OOP_Project.Properties.Resources._31;
+            this.background_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.background_panel.Controls.Add(this.Panel_Recovery);
-            this.background_panel.Location = new System.Drawing.Point(35, 50);
+            this.background_panel.Location = new System.Drawing.Point(35, 41);
             this.background_panel.Name = "background_panel";
-            this.background_panel.Size = new System.Drawing.Size(936, 518);
+            this.background_panel.Size = new System.Drawing.Size(936, 527);
             this.background_panel.TabIndex = 52;
             // 
             // Panel_Recovery
             // 
-            this.Panel_Recovery.BackColor = System.Drawing.Color.White;
+            this.Panel_Recovery.BackColor = System.Drawing.Color.Transparent;
             this.Panel_Recovery.Controls.Add(this.confirm_btn);
             this.Panel_Recovery.Controls.Add(this.email_tb);
             this.Panel_Recovery.Controls.Add(this.pictureBox3);
@@ -268,6 +243,32 @@
             this.password_chkb.Text = "Show password";
             this.password_chkb.UseVisualStyleBackColor = true;
             // 
+            // min_pb
+            // 
+            this.min_pb.BackColor = System.Drawing.Color.Transparent;
+            this.min_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.min_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
+            this.min_pb.Location = new System.Drawing.Point(933, 12);
+            this.min_pb.Name = "min_pb";
+            this.min_pb.Size = new System.Drawing.Size(25, 23);
+            this.min_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.min_pb.TabIndex = 51;
+            this.min_pb.TabStop = false;
+            this.min_pb.Click += new System.EventHandler(this.min_pb_Click);
+            // 
+            // cls_pb
+            // 
+            this.cls_pb.BackColor = System.Drawing.Color.Transparent;
+            this.cls_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.cls_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
+            this.cls_pb.Location = new System.Drawing.Point(962, 12);
+            this.cls_pb.Name = "cls_pb";
+            this.cls_pb.Size = new System.Drawing.Size(25, 23);
+            this.cls_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.cls_pb.TabIndex = 50;
+            this.cls_pb.TabStop = false;
+            this.cls_pb.Click += new System.EventHandler(this.cls_pb_Click);
+            // 
             // account_recovery_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,12 +283,12 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "account_recovery_form";
             this.Load += new System.EventHandler(this.account_recovery_form_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.min_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).EndInit();
             this.background_panel.ResumeLayout(false);
             this.Panel_Recovery.ResumeLayout(false);
             this.Panel_Recovery.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.min_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -28,70 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.comment_lbl = new System.Windows.Forms.Label();
-            this.user_lbl = new System.Windows.Forms.Label();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.panelTest = new System.Windows.Forms.Panel();
-            this.description_lbl = new System.Windows.Forms.Label();
             this.title_lbl = new System.Windows.Forms.Label();
             this.comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.favorite_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.movieDetails_panel = new System.Windows.Forms.Panel();
+            this.description_lbl = new System.Windows.Forms.Label();
             this.genre_lbl = new System.Windows.Forms.Label();
             this.poster_pb = new System.Windows.Forms.PictureBox();
             this.dateRelease_lbl = new System.Windows.Forms.Label();
             this.movieTrailer_panel = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.panelTest.SuspendLayout();
             this.movieDetails_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.SuspendLayout();
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.Controls.Add(this.panel1);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(77, 648);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(909, 106);
-            this.flowLayoutPanel1.TabIndex = 65;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.comment_lbl);
-            this.panel1.Controls.Add(this.user_lbl);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(903, 61);
-            this.panel1.TabIndex = 0;
-            // 
-            // comment_lbl
-            // 
-            this.comment_lbl.AutoSize = true;
-            this.comment_lbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comment_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.comment_lbl.Location = new System.Drawing.Point(72, 13);
-            this.comment_lbl.Name = "comment_lbl";
-            this.comment_lbl.Size = new System.Drawing.Size(57, 15);
-            this.comment_lbl.TabIndex = 31;
-            this.comment_lbl.Text = "Comment";
-            // 
-            // user_lbl
-            // 
-            this.user_lbl.AutoSize = true;
-            this.user_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.user_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.user_lbl.Location = new System.Drawing.Point(9, 9);
-            this.user_lbl.Name = "user_lbl";
-            this.user_lbl.Size = new System.Drawing.Size(57, 19);
-            this.user_lbl.TabIndex = 30;
-            this.user_lbl.Text = "UserID:";
             // 
             // close_pb
             // 
@@ -116,18 +68,6 @@
             this.panelTest.Name = "panelTest";
             this.panelTest.Size = new System.Drawing.Size(980, 558);
             this.panelTest.TabIndex = 66;
-            // 
-            // description_lbl
-            // 
-            this.description_lbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.description_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.description_lbl.Location = new System.Drawing.Point(-3, 329);
-            this.description_lbl.Name = "description_lbl";
-            this.description_lbl.Padding = new System.Windows.Forms.Padding(20);
-            this.description_lbl.Size = new System.Drawing.Size(210, 125);
-            this.description_lbl.TabIndex = 31;
-            this.description_lbl.Text = "Description";
-            this.description_lbl.Click += new System.EventHandler(this.description_lbl_Click);
             // 
             // title_lbl
             // 
@@ -216,6 +156,18 @@
             this.movieDetails_panel.Size = new System.Drawing.Size(210, 454);
             this.movieDetails_panel.TabIndex = 67;
             // 
+            // description_lbl
+            // 
+            this.description_lbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.description_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.description_lbl.Location = new System.Drawing.Point(-3, 329);
+            this.description_lbl.Name = "description_lbl";
+            this.description_lbl.Padding = new System.Windows.Forms.Padding(20);
+            this.description_lbl.Size = new System.Drawing.Size(210, 125);
+            this.description_lbl.TabIndex = 31;
+            this.description_lbl.Text = "Description";
+            this.description_lbl.Click += new System.EventHandler(this.description_lbl_Click);
+            // 
             // genre_lbl
             // 
             this.genre_lbl.AutoSize = true;
@@ -263,7 +215,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1050, 620);
             this.Controls.Add(this.panelTest);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.close_pb);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -274,9 +225,6 @@
             this.StateCommon.Border.Rounding = 15;
             this.Text = "MovieDetailsForm";
             this.Load += new System.EventHandler(this.MovieDetailsForm_Load);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.panelTest.ResumeLayout(false);
             this.panelTest.PerformLayout();
@@ -284,17 +232,12 @@
             this.movieDetails_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox close_pb;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label comment_lbl;
-        private System.Windows.Forms.Label user_lbl;
         private System.Windows.Forms.Panel panelTest;
         private System.Windows.Forms.Label title_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonButton comment_btn;

@@ -76,11 +76,11 @@ namespace OOP_Project
         {
             if (userType.ToLower() == "admin")  // Check if the user type is "admin"
             {
-                admin_button.Visible = true; // If the user is an admin, show the admin button
+                adminsettings_btn.Visible = true; // If the user is an admin, show the admin button
             }
             else
             {
-                admin_button.Visible = false; // If the user is not an admin, hide the admin button
+                adminsettings_btn.Visible = false; // If the user is not an admin, hide the admin button
             }
         }
 
@@ -131,8 +131,8 @@ namespace OOP_Project
             CurvePanel(movie_panel, 30);
             movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-            CurvePanel(viewportPanel, 30);
-            viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            CurvePanel(viewport_panel, 30);
+            viewport_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
             CurvePanel(recommendedMovie_flp, 30);
             recommendedMovie_flp.Resize += (s, args) => CurvePanel(movie_panel, 20);
@@ -141,7 +141,7 @@ namespace OOP_Project
             movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
             CurvePanel(recentlysearch_flp, 30);
-            viewportPanel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            viewport_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
         }
         private List<string> GetUserGenres(int userId)
         {
