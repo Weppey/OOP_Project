@@ -61,7 +61,7 @@
                 HandleAccess(); // Handle access based on the user's type (admin or regular user)
 
             //Tooltip messages
-            tooltip.IsBalloon = true;                        // Makes it balloon-shaped
+            tooltip.IsBalloon = false;                        // Makes it balloon-shaped
             tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
             tooltip.ForeColor = Color.Black;                 // Text color
             tooltip.UseFading = true;                        // Smooth fade-in/out
@@ -78,7 +78,8 @@
                 tooltip.SetToolTip(signOut_btn, "Sign Out");
                 tooltip.SetToolTip(settings_btn, "Settings");
                 tooltip.SetToolTip(adminsettings_btn, "Admin");
-            tooltip.SetToolTip(search_tb, "Search your movie");
+                tooltip.SetToolTip(search_tb, "Search your movie");
+                tooltip.SetToolTip(profile_btn, "Profile");
         }
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
@@ -170,6 +171,8 @@
 
             CurvePanel(allMovie_flp, 30);
             allMovie_panel.Resize += (s, aargs) => CurvePanel(allMovie_panel, 20);
+            
+
         }
         private List<string> GetUserGenres(int userId)
         {

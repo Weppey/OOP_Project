@@ -32,7 +32,7 @@
             this.Panel_Recovery = new System.Windows.Forms.Panel();
             this.confirm_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.email_tb = new System.Windows.Forms.TextBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.email_lbl = new System.Windows.Forms.Label();
             this.send_llbl = new System.Windows.Forms.LinkLabel();
             this.recoveryC_tb = new System.Windows.Forms.TextBox();
@@ -47,7 +47,7 @@
             this.cls_pb = new System.Windows.Forms.PictureBox();
             this.background_panel.SuspendLayout();
             this.Panel_Recovery.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.min_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).BeginInit();
             this.SuspendLayout();
@@ -65,9 +65,10 @@
             // Panel_Recovery
             // 
             this.Panel_Recovery.BackColor = System.Drawing.Color.Transparent;
+            this.Panel_Recovery.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.Panel_Recovery.Controls.Add(this.confirm_btn);
             this.Panel_Recovery.Controls.Add(this.email_tb);
-            this.Panel_Recovery.Controls.Add(this.pictureBox3);
+            this.Panel_Recovery.Controls.Add(this.logo_pb);
             this.Panel_Recovery.Controls.Add(this.email_lbl);
             this.Panel_Recovery.Controls.Add(this.send_llbl);
             this.Panel_Recovery.Controls.Add(this.recoveryC_tb);
@@ -78,7 +79,7 @@
             this.Panel_Recovery.Controls.Add(this.newpassword_lbl);
             this.Panel_Recovery.Controls.Add(this.confirmNP_lbl);
             this.Panel_Recovery.Controls.Add(this.password_chkb);
-            this.Panel_Recovery.Location = new System.Drawing.Point(44, 17);
+            this.Panel_Recovery.Location = new System.Drawing.Point(41, 34);
             this.Panel_Recovery.Name = "Panel_Recovery";
             this.Panel_Recovery.Size = new System.Drawing.Size(321, 466);
             this.Panel_Recovery.TabIndex = 23;
@@ -114,15 +115,16 @@
             this.email_tb.Size = new System.Drawing.Size(151, 22);
             this.email_tb.TabIndex = 48;
             // 
-            // pictureBox3
+            // logo_pb
             // 
-            this.pictureBox3.Image = global::OOP_Project.Properties.Resources._1_4;
-            this.pictureBox3.Location = new System.Drawing.Point(101, 14);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(122, 120);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 20;
-            this.pictureBox3.TabStop = false;
+            this.logo_pb.BackColor = System.Drawing.Color.Transparent;
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_4;
+            this.logo_pb.Location = new System.Drawing.Point(101, 14);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(122, 120);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pb.TabIndex = 20;
+            this.logo_pb.TabStop = false;
             // 
             // email_lbl
             // 
@@ -155,7 +157,7 @@
             this.recoveryC_tb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.recoveryC_tb.Font = new System.Drawing.Font("Malgun Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.recoveryC_tb.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.recoveryC_tb.Location = new System.Drawing.Point(119, 313);
+            this.recoveryC_tb.Location = new System.Drawing.Point(114, 313);
             this.recoveryC_tb.MaxLength = 6;
             this.recoveryC_tb.Name = "recoveryC_tb";
             this.recoveryC_tb.PasswordChar = '*';
@@ -191,7 +193,7 @@
             this.newpassword_tb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.newpassword_tb.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
             this.newpassword_tb.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.newpassword_tb.Location = new System.Drawing.Point(113, 233);
+            this.newpassword_tb.Location = new System.Drawing.Point(114, 233);
             this.newpassword_tb.Name = "newpassword_tb";
             this.newpassword_tb.PasswordChar = '*';
             this.newpassword_tb.Size = new System.Drawing.Size(151, 22);
@@ -281,12 +283,16 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "account_recovery_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.StateCommon.Border.Rounding = 15;
             this.Text = "account_recovery_form";
             this.Load += new System.EventHandler(this.account_recovery_form_Load);
             this.background_panel.ResumeLayout(false);
             this.Panel_Recovery.ResumeLayout(false);
             this.Panel_Recovery.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.min_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).EndInit();
             this.ResumeLayout(false);
@@ -300,7 +306,7 @@
         private System.Windows.Forms.Panel background_panel;
         private System.Windows.Forms.Panel Panel_Recovery;
         private System.Windows.Forms.TextBox email_tb;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox logo_pb;
         private System.Windows.Forms.Label email_lbl;
         private System.Windows.Forms.LinkLabel send_llbl;
         private System.Windows.Forms.TextBox recoveryC_tb;
