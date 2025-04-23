@@ -1,63 +1,75 @@
-﻿    using System;
-    using System.Data;
-    using System.Drawing;
-    using System.Threading.Tasks;
-    using System.Web.SessionState;
-    using System.Windows.Forms;
-    using MySql.Data.MySqlClient;
-    using System.Drawing.Drawing2D;
-    using ComponentFactory.Krypton.Toolkit;
-    using System.Drawing.Imaging;
-    using System.IO;
-    using System.Collections.Generic;
-    using System.Linq;
-using MySqlX.XDevAPI;
+﻿        using System;
+        using System.Data;
+        using System.Drawing;
+        using System.Threading.Tasks;
+        using System.Web.SessionState;
+        using System.Windows.Forms;
+        using MySql.Data.MySqlClient;
+        using System.Drawing.Drawing2D;
+        using ComponentFactory.Krypton.Toolkit;
+        using System.Drawing.Imaging;
+        using System.IO;
+        using System.Collections.Generic;
+        using System.Linq;
+        using MySqlX.XDevAPI;
 
 
 
 
 
-namespace OOP_Project
-{
-    public partial class home_form : KryptonForm
+    namespace OOP_Project
     {
-        // Declare a private field named 'connection' of type 'MySqlConnection'.
-        // This object will be used to manage the connection to the MySQL database,
-        // allowing the application to open a connection, run commands, and interact with the database.
-        private MySqlConnection connection;
+        public partial class home_form : KryptonForm
+        {
+            // Declare a private field named 'connection' of type 'MySqlConnection'.
+            // This object will be used to manage the connection to the MySQL database,
+            // allowing the application to open a connection, run commands, and interact with the database.
+            private MySqlConnection connection;
 
+            private ToolTip tooltip = new ToolTip();
         // Connection string to connect to the database, specifying the server, database, and login credentials.
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
 
-        // User-related variables
-        private string userType; // Variable to store the type of user (admin or regular)
-        private int currentUserId; // Variable to store the current user's ID
-        private int userId; // Variable to store a user's ID, potentially for a selected user
+            // User-related variables
+            private string userType; // Variable to store the type of user (admin or regular)
+            private int currentUserId; // Variable to store the current user's ID
+            private int userId; // Variable to store a user's ID, potentially for a selected user
 
 
-        // Pagination-related variables
-        int currentPage = 0; // Tracks the current page number for pagination
-        int pageSize = 20; // Defines how many items to display per page
-        bool isLoading = false; // Flag to indicate whether data is currently loading
+            // Pagination-related variables
+            int currentPage = 0; // Tracks the current page number for pagination
+            int pageSize = 20; // Defines how many items to display per page
+            bool isLoading = false; // Flag to indicate whether data is currently loading
 
-        public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
-        {
-            InitializeComponent(); // Initializes the form components (UI elements)
-
-            if (userIdFromLogin <= 0)  // Check if the user session is valid
+            public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
             {
-                MessageBox.Show("Invalid user session. Please log in again.", "Session Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // If user ID is invalid, show an error message and prompt for login again
-                login_form login = new login_form(); // Create a new login form instance
-                login.Show(); // Show the login form
-                this.Close(); // Close the current form (home_form)
-                return; // Exit the constructor to prevent further execution
-            }
+                InitializeComponent(); // Initializes the form components (UI elements)
 
-            // Assign user details from the login
-            userType = userTypeFromLogin; // Store the user's type (admin or regular)
-            currentUserId = userIdFromLogin; // Store the current user's ID
+                if (userIdFromLogin <= 0)  // Check if the user session is valid
+                {
+                    MessageBox.Show("Invalid user session. Please log in again.", "Session Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // If user ID is invalid, show an error message and prompt for login again
+                    login_form login = new login_form(); // Create a new login form instance
+                    login.Show(); // Show the login form
+                    this.Close(); // Close the current form (home_form)
+                    return; // Exit the constructor to prevent further execution
+                }
 
-            HandleAccess(); // Handle access based on the user's type (admin or regular user)
+                // Assign user details from the login
+                userType = userTypeFromLogin; // Store the user's type (admin or regular)
+                currentUserId = userIdFromLogin; // Store the current user's ID
+
+                HandleAccess(); // Handle access based on the user's type (admin or regular user)
+
+                //Tooltip messages
+                tooltip.AutoPopDelay = 5000;
+                tooltip.InitialDelay = 100;
+                tooltip.ReshowDelay = 100;
+                tooltip.ShowAlways = true;
+                tooltip.SetToolTip(home_btn, "Home");
+                tooltip.SetToolTip(favorite_btn, "Favorite");
+                tooltip.SetToolTip(popular_btn, "Popular");
+                tooltip.SetToolTip(signOut_btn, "Sign Out");
+                tooltip.SetToolTip(settings_btn, "Settings");
         }
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
@@ -133,7 +145,7 @@ namespace OOP_Project
             movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
             CurvePanel(viewport_panel, 30);
-            viewport_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            viewport_panel.Resize += (s, args) => CurvePanel(viewport_panel, 20);
 
             CurvePanel(recommendedMovie_flp, 30);
             recommendedMovie_flp.Resize += (s, args) => CurvePanel(movie_panel, 20);
@@ -142,7 +154,13 @@ namespace OOP_Project
             movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
             CurvePanel(recentlysearch_flp, 30);
-            viewport_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            recentlysearch_flp.Resize += (s, args) => CurvePanel(recentlysearch_flp, 20);
+
+            CurvePanel(allMovie_panel, 30);
+            allMovie_panel.Resize += (s, aargs) => CurvePanel(allMovie_panel, 20);
+
+            CurvePanel(allMovie_flp, 30);
+            allMovie_panel.Resize += (s, aargs) => CurvePanel(allMovie_panel, 20);
         }
         private List<string> GetUserGenres(int userId)
         {
@@ -548,6 +566,8 @@ namespace OOP_Project
 
             form_lbl.Text = "FAVORITE";
             favorite_form favoriteForm = new favorite_form(currentUserId, userType);
+            favoriteForm.StartPosition = FormStartPosition.CenterParent;
+            favoriteForm.Location = new Point(200, 50);
             favoriteForm.ShowDialog();
         }
 
@@ -596,7 +616,7 @@ namespace OOP_Project
         {
             //seacrch
             // Clear the search_txt TextBox
-            search_txt.Clear();
+            search_tb.Clear();
             search_txt_Leave(sender, e);
 
             if (search_list.SelectedItem is Movie selectedMovie)
@@ -758,7 +778,7 @@ namespace OOP_Project
         }
         private void search_txt_TextChanged(object sender, EventArgs e)
         {
-            string keyword = search_txt.Text.Trim();
+            string keyword = search_tb.Text.Trim();
 
             if (string.IsNullOrEmpty(keyword))
             {
@@ -802,19 +822,19 @@ namespace OOP_Project
         }
         private void search_txt_Enter(object sender, EventArgs e)
         {
-            if (search_txt.Text == "Search...")
+            if (search_tb.Text == "Search...")
             {
-                search_txt.Text = "";
-                search_txt.ForeColor = Color.Black;
+                search_tb.Text = "";
+                search_tb.ForeColor = Color.Black;
             }
         }
         private void search_txt_Leave(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrWhiteSpace(search_txt.Text))
+            if (string.IsNullOrWhiteSpace(search_tb.Text))
             {
-                search_txt.Text = "Search..."; // Set the placeholder text
-                search_txt.ForeColor = Color.Gray; // Change the text color to gray for placeholder
+                search_tb.Text = "Search..."; // Set the placeholder text
+                search_tb.ForeColor = Color.Gray; // Change the text color to gray for placeholder
             }
         }
         private void LoadRecentSearches(int currentUserId)
