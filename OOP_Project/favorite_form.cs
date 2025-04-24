@@ -31,6 +31,30 @@ namespace OOP_Project
 
         private void favorite_form_Load(object sender, EventArgs e)
         {
+            int baseWidth = 1423;
+            int baseHeight = 754;
+
+            // Get screen resolution (working area avoids taskbar)
+            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
+
+            // If screen is smaller, calculate scale
+            if (screenWidth < baseWidth || screenHeight < baseHeight)
+            {
+                float scaleX = (float)screenWidth / baseWidth;
+                float scaleY = (float)screenHeight / baseHeight;
+
+                // Use the smaller scale to make sure it fits
+                float scale = Math.Min(scaleX, scaleY);
+
+                // Apply scaling
+                this.Scale(new SizeF(scale, scale));
+
+                this.StartPosition = FormStartPosition.CenterScreen;
+            }
+
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             connection = new MySqlConnection(connectionString);
             try
             {
