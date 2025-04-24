@@ -96,10 +96,9 @@
             this.menu_panel.Controls.Add(this.settings_btn);
             this.menu_panel.Controls.Add(this.adminsettings_btn);
             this.menu_panel.Controls.Add(this.signOut_btn);
-            this.menu_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.menu_panel.Location = new System.Drawing.Point(0, 0);
             this.menu_panel.Name = "menu_panel";
-            this.menu_panel.Size = new System.Drawing.Size(109, 725);
+            this.menu_panel.Size = new System.Drawing.Size(109, 688);
             this.menu_panel.TabIndex = 0;
             // 
             // home_btn
@@ -330,7 +329,7 @@
             this.movie_panel.Controls.Add(this.viewport_panel);
             this.movie_panel.Location = new System.Drawing.Point(158, 100);
             this.movie_panel.Name = "movie_panel";
-            this.movie_panel.Size = new System.Drawing.Size(1382, 705);
+            this.movie_panel.Size = new System.Drawing.Size(1367, 668);
             this.movie_panel.TabIndex = 61;
             // 
             // allMovie_lbl
@@ -532,7 +531,6 @@
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(1400, 500);
             this.Name = "home_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));

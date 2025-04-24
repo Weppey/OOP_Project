@@ -109,6 +109,30 @@
 
         private async void home_form_Load(object sender, EventArgs e)
         {
+            int baseWidth = 1552;
+            int baseHeight = 825;
+
+            // Get screen resolution (working area avoids taskbar)
+            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
+            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
+
+            // If screen is smaller, calculate scale
+            if (screenWidth < baseWidth || screenHeight < baseHeight)
+            {
+                float scaleX = (float)screenWidth / baseWidth;
+                float scaleY = (float)screenHeight / baseHeight;
+
+                // Use the smaller scale to make sure it fits
+                float scale = Math.Min(scaleX, scaleY);
+
+                // Apply scaling
+                this.Scale(new SizeF(scale, scale));
+
+                this.StartPosition = FormStartPosition.CenterScreen;
+            }
+
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             // Get the userId from the session
             int? userId = StayLoggedIn.GetCurrentUserId();
             if (userId.HasValue)
