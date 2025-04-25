@@ -44,7 +44,7 @@ namespace OOP_Project
 
         private void MovieDetailsForm_Load(object sender, EventArgs e)
         {
-            int baseWidth = 1050;
+            int baseWidth = 1200;
             int baseHeight = 620;
 
             // Get screen resolution (working area avoids taskbar)

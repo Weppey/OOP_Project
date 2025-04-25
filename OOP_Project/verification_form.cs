@@ -85,7 +85,7 @@ namespace OOP_Project
                     if (result != null && result.ToString() == enteredCode)
                     {
                         // Mark the user as verified
-                        string updateQuery = "UPDATE users SET verification_code = NULL WHERE email = @Email";
+                        string updateQuery = "UPDATE users SET verification_code = NULL, email_verified = 1 WHERE email = @Email";
                         MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection);
                         updateCmd.Parameters.AddWithValue("@Email", userEmail);
                         updateCmd.ExecuteNonQuery();

@@ -27,9 +27,9 @@ namespace OOP_Project
          //may problema pa sa load dahil sa images
          //   homeForm.LoadMovies();
 
-            movieListAdmin_panel.FlowDirection = FlowDirection.LeftToRight;
-            movieListAdmin_panel.WrapContents = true;
-            movieListAdmin_panel.AutoScroll = true;
+         //   movieListAdmin_panel.FlowDirection = FlowDirection.LeftToRight;
+         //   movieListAdmin_panel.WrapContents = true;
+          //  movieListAdmin_panel.AutoScroll = true;
 
             for (int i = 0; i < 10; i++)
             {
@@ -37,7 +37,7 @@ namespace OOP_Project
                 p.Width = 200;
                 p.Height = 300;
                 p.BackColor = Color.AliceBlue;
-                movieListAdmin_panel.Controls.Add(p);
+            //    movieListAdmin_panel.Controls.Add(p);
             }
 
             genre_clb.Items.AddRange(new string[]
@@ -58,7 +58,7 @@ namespace OOP_Project
             genre_clb.SelectedIndex = 0; // Optional: select first item by default
 
             CurvePanel(insertMovie_panel, 30);
-            insertMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+           // insertMovie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
         }
 

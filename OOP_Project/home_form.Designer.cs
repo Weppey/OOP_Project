@@ -53,9 +53,10 @@
             this.recentlysearch_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.viewport_panel = new System.Windows.Forms.Panel();
             this.recommendedMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
+            this.profile_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.AdminControl_panel = new System.Windows.Forms.Panel();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
-            this.profile_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.leftdock_pnl.SuspendLayout();
             this.menu2_panel.SuspendLayout();
             this.menu_panel.SuspendLayout();
@@ -110,22 +111,12 @@
             this.home_btn.Margin = new System.Windows.Forms.Padding(20, 100, 3, 3);
             this.home_btn.Name = "home_btn";
             this.home_btn.Size = new System.Drawing.Size(70, 70);
-            this.home_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.home_btn.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.home_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.home_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.home_btn.StateCommon.Border.Rounding = 20;
-            this.home_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
-            this.home_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.home_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.home_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.home_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.home_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.home_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.home_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.home_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.home_btn.TabIndex = 60;
             this.home_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_home_281;
             this.home_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -456,34 +447,6 @@
             this.recommendedMovie_flp.TabIndex = 0;
             this.recommendedMovie_flp.WrapContents = false;
             // 
-            // close_pb
-            // 
-            this.close_pb.BackColor = System.Drawing.Color.Transparent;
-            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
-            this.close_pb.Location = new System.Drawing.Point(1349, 12);
-            this.close_pb.Name = "close_pb";
-            this.close_pb.Size = new System.Drawing.Size(25, 23);
-            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.close_pb.TabIndex = 16;
-            this.close_pb.TabStop = false;
-            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
-            this.close_pb.MouseEnter += new System.EventHandler(this.close_pb_MouseEnter);
-            this.close_pb.MouseLeave += new System.EventHandler(this.close_pb_MouseLeave);
-            // 
-            // minimize_pb
-            // 
-            this.minimize_pb.BackColor = System.Drawing.Color.Transparent;
-            this.minimize_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
-            this.minimize_pb.Location = new System.Drawing.Point(1320, 12);
-            this.minimize_pb.Name = "minimize_pb";
-            this.minimize_pb.Size = new System.Drawing.Size(25, 23);
-            this.minimize_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.minimize_pb.TabIndex = 17;
-            this.minimize_pb.TabStop = false;
-            this.minimize_pb.Click += new System.EventHandler(this.minimize_pb_Click);
-            this.minimize_pb.MouseEnter += new System.EventHandler(this.minimize_pb_MouseEnter);
-            this.minimize_pb.MouseLeave += new System.EventHandler(this.minimize_pb_MouseLeave);
-            // 
             // profile_btn
             // 
             this.profile_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.ButtonSpec;
@@ -524,6 +487,43 @@
             this.profile_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("profile_btn.Values.Image")));
             this.profile_btn.Values.Text = "";
             // 
+            // AdminControl_panel
+            // 
+            this.AdminControl_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.AdminControl_panel.Location = new System.Drawing.Point(142, 121);
+            this.AdminControl_panel.Name = "AdminControl_panel";
+            this.AdminControl_panel.Size = new System.Drawing.Size(1214, 614);
+            this.AdminControl_panel.TabIndex = 65;
+            this.AdminControl_panel.Visible = false;
+            // 
+            // close_pb
+            // 
+            this.close_pb.BackColor = System.Drawing.Color.Transparent;
+            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
+            this.close_pb.Location = new System.Drawing.Point(1349, 12);
+            this.close_pb.Name = "close_pb";
+            this.close_pb.Size = new System.Drawing.Size(25, 23);
+            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.close_pb.TabIndex = 16;
+            this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
+            this.close_pb.MouseEnter += new System.EventHandler(this.close_pb_MouseEnter);
+            this.close_pb.MouseLeave += new System.EventHandler(this.close_pb_MouseLeave);
+            // 
+            // minimize_pb
+            // 
+            this.minimize_pb.BackColor = System.Drawing.Color.Transparent;
+            this.minimize_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
+            this.minimize_pb.Location = new System.Drawing.Point(1320, 12);
+            this.minimize_pb.Name = "minimize_pb";
+            this.minimize_pb.Size = new System.Drawing.Size(25, 23);
+            this.minimize_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.minimize_pb.TabIndex = 17;
+            this.minimize_pb.TabStop = false;
+            this.minimize_pb.Click += new System.EventHandler(this.minimize_pb_Click);
+            this.minimize_pb.MouseEnter += new System.EventHandler(this.minimize_pb_MouseEnter);
+            this.minimize_pb.MouseLeave += new System.EventHandler(this.minimize_pb_MouseLeave);
+            // 
             // home_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -531,6 +531,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(1388, 791);
+            this.Controls.Add(this.AdminControl_panel);
             this.Controls.Add(this.profile_btn);
             this.Controls.Add(this.movie_panel);
             this.Controls.Add(this.form_lbl);
@@ -574,7 +575,6 @@
         private System.Windows.Forms.Panel logo_panel;
         private System.Windows.Forms.PictureBox logo_pb;
         private System.Windows.Forms.FlowLayoutPanel menu_panel;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton home_btn;
         private System.Windows.Forms.Label form_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonButton favorite_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton popular_btn;
@@ -594,5 +594,7 @@
         private System.Windows.Forms.Panel allMovie_panel;
         private System.Windows.Forms.FlowLayoutPanel allMovie_flp;
         private ComponentFactory.Krypton.Toolkit.KryptonButton profile_btn;
+        private System.Windows.Forms.Panel AdminControl_panel;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton home_btn;
     }
 }

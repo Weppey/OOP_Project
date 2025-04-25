@@ -17,6 +17,7 @@
 
 
 
+
     namespace OOP_Project
     {
         public partial class home_form : KryptonForm
@@ -172,7 +173,10 @@
 
             CurvePanel(allMovie_flp, 30);
             allMovie_panel.Resize += (s, aargs) => CurvePanel(allMovie_panel, 20);
-            
+
+            CurvePanel(AdminControl_panel, 30);
+            allMovie_panel.Resize += (s, aargs) => CurvePanel(allMovie_panel, 20);
+
 
         }
         private List<string> GetUserGenres(int userId)
@@ -573,6 +577,10 @@
         private void home_btn_Click(object sender, EventArgs e)
         {
             form_lbl.Text = "HOME";
+            AdminControl_panel.Visible = false;
+            home_btn.OverrideDefault.Border.Color1 = Color.Red;
+            home_btn.OverrideDefault.Border.Color2 = Color.Red;
+
         }
         private void favorite_btn_Click(object sender, EventArgs e)
         {
@@ -991,8 +999,11 @@
         }
         private void admin_button_Click(object sender, EventArgs e)
         {
-            admin_form admin_Form = new admin_form(userType, currentUserId);
-            admin_Form.ShowDialog();
+            form_lbl.Text = "ADMIN";
+            AdminControl_panel.Visible = true;
+            AdminControl adminPanel = new AdminControl();
+            AdminControl_panel.Controls.Add(adminPanel);
+
         }
         private void allMovie_flp_Scroll(object sender, ScrollEventArgs e)
         {
@@ -1040,11 +1051,6 @@
                     }
                 }
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 
