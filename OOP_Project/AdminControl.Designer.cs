@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.releaseYear_dtp = new System.Windows.Forms.DateTimePicker();
             this.title_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.movies_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -42,13 +42,10 @@
             this.insert_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Admin_panel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.editUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.editMovie_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.movieEditor_panel = new System.Windows.Forms.Panel();
-            this.movieEditor_lbl = new System.Windows.Forms.Label();
-            this.poster_pb = new System.Windows.Forms.PictureBox();
             this.userEditor_panel = new System.Windows.Forms.Panel();
+            this.usertype_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.insertUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.userSearchBox_tb = new System.Windows.Forms.TextBox();
             this.usersEditor_lbl = new System.Windows.Forms.Label();
@@ -66,18 +63,21 @@
             this.email_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.username_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.users_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
-            this.usertype_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.movieEditor_panel = new System.Windows.Forms.Panel();
+            this.movieEditor_lbl = new System.Windows.Forms.Label();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
+            this.poster_pb = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.movies_dgv)).BeginInit();
             this.Admin_panel.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
-            this.movieEditor_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.userEditor_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.users_dgv)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).BeginInit();
+            this.movieEditor_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // releaseYear_dtp
@@ -307,18 +307,6 @@
             this.panel1.Size = new System.Drawing.Size(181, 614);
             this.panel1.TabIndex = 89;
             // 
-            // logo_pb
-            // 
-            this.logo_pb.BackColor = System.Drawing.Color.White;
-            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_3;
-            this.logo_pb.Location = new System.Drawing.Point(0, 0);
-            this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(181, 164);
-            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo_pb.TabIndex = 91;
-            this.logo_pb.TabStop = false;
-            // 
             // editUser_btn
             // 
             this.editUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
@@ -345,7 +333,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.editUser_btn.TabIndex = 90;
-            this.editUser_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_user_28;
+            this.editUser_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_user_28;
             this.editUser_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.editUser_btn.Values.Text = "Edit User";
             this.editUser_btn.Click += new System.EventHandler(this.editUser_btn_Click);
@@ -376,53 +364,10 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.editMovie_btn.TabIndex = 89;
-            this.editMovie_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_insert_column_right_28;
+            this.editMovie_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.editMovie_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.editMovie_btn.Values.Text = "Edit Movie";
             this.editMovie_btn.Click += new System.EventHandler(this.editMovie_btn_Click);
-            // 
-            // movieEditor_panel
-            // 
-            this.movieEditor_panel.Controls.Add(this.movieEditor_lbl);
-            this.movieEditor_panel.Controls.Add(this.poster_pb);
-            this.movieEditor_panel.Controls.Add(this.insert_btn);
-            this.movieEditor_panel.Controls.Add(this.description_tb);
-            this.movieEditor_panel.Controls.Add(this.releaseYear_dtp);
-            this.movieEditor_panel.Controls.Add(this.genre_clb);
-            this.movieEditor_panel.Controls.Add(this.title_tb);
-            this.movieEditor_panel.Controls.Add(this.movies_dgv);
-            this.movieEditor_panel.Controls.Add(this.posterUrl_tb);
-            this.movieEditor_panel.Controls.Add(this.searchBox_tb);
-            this.movieEditor_panel.Controls.Add(this.remove_btn);
-            this.movieEditor_panel.Controls.Add(this.update_btn);
-            this.movieEditor_panel.Controls.Add(this.Clear_btn);
-            this.movieEditor_panel.Location = new System.Drawing.Point(187, 3);
-            this.movieEditor_panel.Name = "movieEditor_panel";
-            this.movieEditor_panel.Size = new System.Drawing.Size(1024, 632);
-            this.movieEditor_panel.TabIndex = 88;
-            this.movieEditor_panel.Visible = false;
-            // 
-            // movieEditor_lbl
-            // 
-            this.movieEditor_lbl.AutoSize = true;
-            this.movieEditor_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold);
-            this.movieEditor_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.movieEditor_lbl.Location = new System.Drawing.Point(27, 19);
-            this.movieEditor_lbl.Name = "movieEditor_lbl";
-            this.movieEditor_lbl.Size = new System.Drawing.Size(149, 26);
-            this.movieEditor_lbl.TabIndex = 88;
-            this.movieEditor_lbl.Text = "Movie Editor";
-            // 
-            // poster_pb
-            // 
-            this.poster_pb.BackColor = System.Drawing.Color.White;
-            this.poster_pb.Image = global::OOP_Project.Properties.Resources._1_2;
-            this.poster_pb.Location = new System.Drawing.Point(146, 70);
-            this.poster_pb.Name = "poster_pb";
-            this.poster_pb.Size = new System.Drawing.Size(183, 235);
-            this.poster_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.poster_pb.TabIndex = 83;
-            this.poster_pb.TabStop = false;
             // 
             // userEditor_panel
             // 
@@ -449,6 +394,21 @@
             this.userEditor_panel.Size = new System.Drawing.Size(1024, 632);
             this.userEditor_panel.TabIndex = 89;
             this.userEditor_panel.Visible = false;
+            // 
+            // usertype_cmb
+            // 
+            this.usertype_cmb.DropDownWidth = 183;
+            this.usertype_cmb.Items.AddRange(new object[] {
+            "member",
+            "admin"});
+            this.usertype_cmb.Location = new System.Drawing.Point(475, 87);
+            this.usertype_cmb.Name = "usertype_cmb";
+            this.usertype_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.usertype_cmb.Size = new System.Drawing.Size(160, 20);
+            this.usertype_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
+            this.usertype_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usertype_cmb.TabIndex = 102;
+            this.usertype_cmb.Text = "User type";
             // 
             // insertUser_btn
             // 
@@ -564,7 +524,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.deleteUser_btn.TabIndex = 95;
-            this.deleteUser_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_insert_column_right_28;
+            this.deleteUser_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_delete_document_28;
             this.deleteUser_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.deleteUser_btn.Values.Text = "Delete";
             this.deleteUser_btn.Click += new System.EventHandler(this.deleteUser_btn_Click);
@@ -595,7 +555,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.verify_btn.TabIndex = 94;
-            this.verify_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_insert_column_right_28;
+            this.verify_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_verify_28;
             this.verify_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.verify_btn.Values.Text = "Verify";
             this.verify_btn.Click += new System.EventHandler(this.verify_btn_Click);
@@ -687,9 +647,9 @@
             this.users_dgv.Location = new System.Drawing.Point(40, 329);
             this.users_dgv.Name = "users_dgv";
             this.users_dgv.ReadOnly = true;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.users_dgv.Size = new System.Drawing.Size(912, 260);
             this.users_dgv.StateCommon.Background.Color1 = System.Drawing.Color.Red;
             this.users_dgv.StateCommon.Background.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
@@ -707,20 +667,60 @@
             this.users_dgv.TabIndex = 81;
             this.users_dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_dgv_CellClick);
             // 
-            // usertype_cmb
+            // movieEditor_panel
             // 
-            this.usertype_cmb.DropDownWidth = 183;
-            this.usertype_cmb.Items.AddRange(new object[] {
-            "member",
-            "admin"});
-            this.usertype_cmb.Location = new System.Drawing.Point(475, 87);
-            this.usertype_cmb.Name = "usertype_cmb";
-            this.usertype_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.usertype_cmb.Size = new System.Drawing.Size(160, 20);
-            this.usertype_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
-            this.usertype_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usertype_cmb.TabIndex = 102;
-            this.usertype_cmb.Text = "User type";
+            this.movieEditor_panel.Controls.Add(this.movieEditor_lbl);
+            this.movieEditor_panel.Controls.Add(this.poster_pb);
+            this.movieEditor_panel.Controls.Add(this.insert_btn);
+            this.movieEditor_panel.Controls.Add(this.description_tb);
+            this.movieEditor_panel.Controls.Add(this.releaseYear_dtp);
+            this.movieEditor_panel.Controls.Add(this.genre_clb);
+            this.movieEditor_panel.Controls.Add(this.title_tb);
+            this.movieEditor_panel.Controls.Add(this.movies_dgv);
+            this.movieEditor_panel.Controls.Add(this.posterUrl_tb);
+            this.movieEditor_panel.Controls.Add(this.searchBox_tb);
+            this.movieEditor_panel.Controls.Add(this.remove_btn);
+            this.movieEditor_panel.Controls.Add(this.update_btn);
+            this.movieEditor_panel.Controls.Add(this.Clear_btn);
+            this.movieEditor_panel.Location = new System.Drawing.Point(187, 3);
+            this.movieEditor_panel.Name = "movieEditor_panel";
+            this.movieEditor_panel.Size = new System.Drawing.Size(1024, 632);
+            this.movieEditor_panel.TabIndex = 88;
+            this.movieEditor_panel.Visible = false;
+            // 
+            // movieEditor_lbl
+            // 
+            this.movieEditor_lbl.AutoSize = true;
+            this.movieEditor_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold);
+            this.movieEditor_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.movieEditor_lbl.Location = new System.Drawing.Point(27, 19);
+            this.movieEditor_lbl.Name = "movieEditor_lbl";
+            this.movieEditor_lbl.Size = new System.Drawing.Size(149, 26);
+            this.movieEditor_lbl.TabIndex = 88;
+            this.movieEditor_lbl.Text = "Movie Editor";
+            // 
+            // logo_pb
+            // 
+            this.logo_pb.BackColor = System.Drawing.Color.White;
+            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_3;
+            this.logo_pb.Location = new System.Drawing.Point(0, 0);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(181, 164);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pb.TabIndex = 91;
+            this.logo_pb.TabStop = false;
+            // 
+            // poster_pb
+            // 
+            this.poster_pb.BackColor = System.Drawing.Color.White;
+            this.poster_pb.Image = global::OOP_Project.Properties.Resources._1_2;
+            this.poster_pb.Location = new System.Drawing.Point(146, 70);
+            this.poster_pb.Name = "poster_pb";
+            this.poster_pb.Size = new System.Drawing.Size(183, 235);
+            this.poster_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.poster_pb.TabIndex = 83;
+            this.poster_pb.TabStop = false;
             // 
             // AdminControl
             // 
@@ -734,16 +734,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.movies_dgv)).EndInit();
             this.Admin_panel.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
-            this.movieEditor_panel.ResumeLayout(false);
-            this.movieEditor_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.userEditor_panel.ResumeLayout(false);
             this.userEditor_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.users_dgv)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).EndInit();
+            this.movieEditor_panel.ResumeLayout(false);
+            this.movieEditor_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.ResumeLayout(false);
 
         }

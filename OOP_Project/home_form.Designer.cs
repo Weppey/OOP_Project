@@ -55,6 +55,7 @@
             this.recommendedMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.profile_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.AdminControl_panel = new System.Windows.Forms.Panel();
+            this.userProfile_panel = new System.Windows.Forms.Panel();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
             this.leftdock_pnl.SuspendLayout();
@@ -106,19 +107,29 @@
             // home_btn
             // 
             this.home_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.home_btn.Dock = System.Windows.Forms.DockStyle.Top;
             this.home_btn.Location = new System.Drawing.Point(20, 100);
             this.home_btn.Margin = new System.Windows.Forms.Padding(20, 100, 3, 3);
             this.home_btn.Name = "home_btn";
             this.home_btn.Size = new System.Drawing.Size(70, 70);
-            this.home_btn.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.home_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.home_btn.StateCommon.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.home_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.home_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.home_btn.StateCommon.Border.Rounding = 20;
-            this.home_btn.TabIndex = 60;
-            this.home_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_home_281;
+            this.home_btn.StateNormal.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.home_btn.StateNormal.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.home_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.home_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.home_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.home_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.home_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.home_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.home_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.home_btn.TabIndex = 62;
+            this.home_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_home_28;
             this.home_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.home_btn.Values.Text = "";
             this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
@@ -486,6 +497,7 @@
             this.profile_btn.TabIndex = 64;
             this.profile_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("profile_btn.Values.Image")));
             this.profile_btn.Values.Text = "";
+            this.profile_btn.Click += new System.EventHandler(this.profile_btn_Click);
             // 
             // AdminControl_panel
             // 
@@ -495,6 +507,15 @@
             this.AdminControl_panel.Size = new System.Drawing.Size(1214, 614);
             this.AdminControl_panel.TabIndex = 65;
             this.AdminControl_panel.Visible = false;
+            // 
+            // userProfile_panel
+            // 
+            this.userProfile_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.userProfile_panel.Location = new System.Drawing.Point(143, 122);
+            this.userProfile_panel.Name = "userProfile_panel";
+            this.userProfile_panel.Size = new System.Drawing.Size(1214, 614);
+            this.userProfile_panel.TabIndex = 66;
+            this.userProfile_panel.Visible = false;
             // 
             // close_pb
             // 
@@ -531,6 +552,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(1388, 791);
+            this.Controls.Add(this.userProfile_panel);
             this.Controls.Add(this.profile_btn);
             this.Controls.Add(this.form_lbl);
             this.Controls.Add(this.leftdock_pnl);
@@ -595,6 +617,7 @@
         private System.Windows.Forms.FlowLayoutPanel allMovie_flp;
         private ComponentFactory.Krypton.Toolkit.KryptonButton profile_btn;
         private System.Windows.Forms.Panel AdminControl_panel;
+        private System.Windows.Forms.Panel userProfile_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton home_btn;
     }
 }

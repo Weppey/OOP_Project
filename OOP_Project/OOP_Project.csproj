@@ -225,6 +225,7 @@
     <Compile Include="Components\MovieItem.Designer.cs">
       <DependentUpon>MovieItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="CurrentSession.cs" />
     <Compile Include="favorite_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -265,6 +266,13 @@
       <DependentUpon>signup_form.cs</DependentUpon>
     </Compile>
     <Compile Include="StayLoggedIn.cs" />
+    <Compile Include="ProfileControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ProfileControl.Designer.cs">
+      <DependentUpon>ProfileControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs" />
     <Compile Include="verification_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,6 +318,9 @@
     </Compile>
     <EmbeddedResource Include="signup_form.resx">
       <DependentUpon>signup_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfileControl.resx">
+      <DependentUpon>ProfileControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="verification_form.resx">
       <DependentUpon>verification_form.cs</DependentUpon>
@@ -419,6 +430,14 @@
     <None Include="Resources\icons8-submit-282.png" />
     <None Include="Resources\icons8-home-282.png" />
     <None Include="Resources\icons8-user-28.png" />
+    <None Include="Resources\icons8-edit-28.png" />
+    <None Include="Resources\icons8-delete-document-28.png" />
+    <None Include="Resources\icons8-insert-table-28.png" />
+    <None Include="Resources\icons8-edit-delivery-terms-28.png" />
+    <None Include="Resources\icons8-edit-user-28.png" />
+    <None Include="Resources\icons8-verify-28.png" />
+    <None Include="Resources\icons8-edit-user-281.png" />
+    <None Include="Resources\icons8-close-241.png" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />

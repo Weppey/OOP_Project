@@ -574,14 +574,6 @@
         {
             minimize_pb.BackColor = Color.FromArgb(0, 0, 0);
         }
-        private void home_btn_Click(object sender, EventArgs e)
-        {
-            form_lbl.Text = "HOME";
-            AdminControl_panel.Visible = false;
-            home_btn.OverrideDefault.Border.Color1 = Color.Red;
-            home_btn.OverrideDefault.Border.Color2 = Color.Red;
-
-        }
         private void favorite_btn_Click(object sender, EventArgs e)
         {
 
@@ -997,14 +989,51 @@
             }
 
         }
-        private void admin_button_Click(object sender, EventArgs e)
+        private void home_btn_Click(object sender, EventArgs e)
         {
-            form_lbl.Text = "ADMIN";
-            AdminControl_panel.Visible = true;
-            AdminControl adminPanel = new AdminControl();
-            AdminControl_panel.Controls.Add(adminPanel);
+            form_lbl.Text = "HOME";
+            AdminControl_panel.Visible = false;
+            userProfile_panel.Visible = false;
 
         }
+
+        private void admin_button_Click(object sender, EventArgs e)
+        {
+            if (AdminControl_panel.Visible == false)
+            {
+                form_lbl.Text = "ADMIN";
+                AdminControl_panel.Visible = true;
+                userProfile_panel.Visible = false;
+                AdminControl adminPanel = new AdminControl();
+                AdminControl_panel.Controls.Add(adminPanel);
+            }
+            else
+            {
+                AdminControl_panel.Visible = false;
+            }
+
+        }
+
+        private void profile_btn_Click(object sender, EventArgs e)
+        {
+            if (!userProfile_panel.Visible)
+            {
+                form_lbl.Text = "PROFILE";
+                userProfile_panel.Visible = true;
+                AdminControl_panel.Visible = false;
+
+
+                ProfileControl userProfilePanel = new ProfileControl();
+             //   userProfilePanel.Dock = DockStyle.Fill; // Optional: make it fill the panel
+                userProfile_panel.Controls.Add(userProfilePanel);
+
+            }
+            else
+            {
+                userProfile_panel.Visible = false;
+            }
+        }
+
         private void allMovie_flp_Scroll(object sender, ScrollEventArgs e)
         {
             if (e.Type == ScrollEventType.EndScroll &&
