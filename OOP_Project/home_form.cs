@@ -109,29 +109,6 @@
 
         private async void home_form_Load(object sender, EventArgs e)
         {
-            int baseWidth = 1552;
-            int baseHeight = 825;
-
-            // Get screen resolution (working area avoids taskbar)
-            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
-            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
-
-            // If screen is smaller, calculate scale
-            if (screenWidth < baseWidth || screenHeight < baseHeight)
-            {
-                float scaleX = (float)screenWidth / baseWidth;
-                float scaleY = (float)screenHeight / baseHeight;
-
-                // Use the smaller scale to make sure it fits
-                float scale = Math.Min(scaleX, scaleY);
-
-                // Apply scaling
-                this.Scale(new SizeF(scale, scale));
-
-                this.StartPosition = FormStartPosition.CenterScreen;
-            }
-
-            this.StartPosition = FormStartPosition.CenterScreen;
 
             // Get the userId from the session
             int? userId = StayLoggedIn.GetCurrentUserId();
@@ -252,7 +229,7 @@
 
                     PictureBox poster = new PictureBox
                     {
-                        Size = new Size(150, 200),
+                        Size = new Size(159, 189),
                         Location = new Point(5, 0),
                         BackColor = Color.Black,
                         SizeMode = PictureBoxSizeMode.Zoom,
@@ -322,7 +299,7 @@
 
                 PictureBox poster = new PictureBox
                 {
-                    Size = new Size(150, 200),
+                    Size = new Size(159, 189),
                     Location = new Point(5, 0),
                     BackColor = Color.Black,
                     SizeMode = PictureBoxSizeMode.Zoom,
@@ -391,7 +368,7 @@
                 // Create a PictureBox for the movie poster
                 PictureBox poster = new PictureBox
                 {
-                    Size = new Size(150, 200),
+                    Size = new Size(159, 189),
                     Location = new Point(5, 0),
                     BackColor = Color.Black,
                     SizeMode = PictureBoxSizeMode.Zoom,
@@ -679,7 +656,7 @@
 
             PictureBox poster = new PictureBox
             {
-                Size = new Size(150, 200),
+                Size = new Size(                                                                                            ),
                 Location = new Point(5, 0),
                 BackColor = Color.Black,
                 SizeMode = PictureBoxSizeMode.StretchImage,
@@ -949,7 +926,7 @@
 
             PictureBox poster = new PictureBox
             {
-                Size = new Size(150, 200),
+                Size = new Size(159, 189),
                 Location = new Point(5, 0),
                 BackColor = Color.Black,
                 SizeMode = PictureBoxSizeMode.StretchImage,
@@ -1065,7 +1042,10 @@
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 
 }

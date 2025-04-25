@@ -207,6 +207,12 @@
     <Compile Include="account_recovery_form.Designer.cs">
       <DependentUpon>account_recovery_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="AdminMovieControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminMovieControl.Designer.cs">
+      <DependentUpon>AdminMovieControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="admin_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +273,9 @@
     </Compile>
     <EmbeddedResource Include="account_recovery_form.resx">
       <DependentUpon>account_recovery_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminMovieControl.resx">
+      <DependentUpon>AdminMovieControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin_form.resx">
       <DependentUpon>admin_form.cs</DependentUpon>

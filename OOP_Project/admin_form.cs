@@ -9,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace OOP_Project
 {
-    public partial class admin_form : Form
+    public partial class admin_form : KryptonForm
     {
 
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";

@@ -154,7 +154,7 @@ namespace OOP_Project
             {
                 Panel moviePanel = new Panel
                 {
-                    Size = new Size(160, 200),
+                    Size = new Size(159, 189),
                     Margin = new Padding(5),
                     BackColor = Color.Gray,
                     Cursor = Cursors.Hand
@@ -162,7 +162,7 @@ namespace OOP_Project
 
                 PictureBox poster = new PictureBox
                 {
-                    Size = new Size(150, 200),
+                    Size = new Size(159, 189),
                     Location = new Point(5, 0),
                     BackColor = Color.Black,
                     SizeMode = PictureBoxSizeMode.Zoom,

@@ -31,15 +31,15 @@
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.movie_panel = new System.Windows.Forms.Panel();
             this.title_lbl = new System.Windows.Forms.Label();
+            this.comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.favorite_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.movieDetails_panel = new System.Windows.Forms.Panel();
             this.description_lbl = new System.Windows.Forms.Label();
             this.genre_lbl = new System.Windows.Forms.Label();
             this.poster_pb = new System.Windows.Forms.PictureBox();
             this.dateRelease_lbl = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.favorite_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.movieTrailer_panel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.movie_panel.SuspendLayout();
             this.movieDetails_panel.SuspendLayout();
@@ -84,72 +84,6 @@
             this.title_lbl.Size = new System.Drawing.Size(98, 60);
             this.title_lbl.TabIndex = 65;
             this.title_lbl.Text = "Title";
-            // 
-            // movieDetails_panel
-            // 
-            this.movieDetails_panel.AutoSize = true;
-            this.movieDetails_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.movieDetails_panel.Controls.Add(this.description_lbl);
-            this.movieDetails_panel.Controls.Add(this.genre_lbl);
-            this.movieDetails_panel.Controls.Add(this.poster_pb);
-            this.movieDetails_panel.Controls.Add(this.dateRelease_lbl);
-            this.movieDetails_panel.Location = new System.Drawing.Point(45, 82);
-            this.movieDetails_panel.Name = "movieDetails_panel";
-            this.movieDetails_panel.Size = new System.Drawing.Size(210, 454);
-            this.movieDetails_panel.TabIndex = 67;
-            // 
-            // description_lbl
-            // 
-            this.description_lbl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.description_lbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.description_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.description_lbl.Location = new System.Drawing.Point(-3, 329);
-            this.description_lbl.Name = "description_lbl";
-            this.description_lbl.Padding = new System.Windows.Forms.Padding(20);
-            this.description_lbl.Size = new System.Drawing.Size(210, 125);
-            this.description_lbl.TabIndex = 31;
-            this.description_lbl.Text = "Description";
-            this.description_lbl.Click += new System.EventHandler(this.description_lbl_Click);
-            // 
-            // genre_lbl
-            // 
-            this.genre_lbl.AutoSize = true;
-            this.genre_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.genre_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.genre_lbl.Location = new System.Drawing.Point(17, 274);
-            this.genre_lbl.Name = "genre_lbl";
-            this.genre_lbl.Size = new System.Drawing.Size(46, 19);
-            this.genre_lbl.TabIndex = 29;
-            this.genre_lbl.Text = "Genre";
-            // 
-            // poster_pb
-            // 
-            this.poster_pb.BackColor = System.Drawing.Color.White;
-            this.poster_pb.Location = new System.Drawing.Point(22, 19);
-            this.poster_pb.Name = "poster_pb";
-            this.poster_pb.Size = new System.Drawing.Size(166, 221);
-            this.poster_pb.TabIndex = 25;
-            this.poster_pb.TabStop = false;
-            // 
-            // dateRelease_lbl
-            // 
-            this.dateRelease_lbl.AutoSize = true;
-            this.dateRelease_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateRelease_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dateRelease_lbl.Location = new System.Drawing.Point(17, 255);
-            this.dateRelease_lbl.Name = "dateRelease_lbl";
-            this.dateRelease_lbl.Size = new System.Drawing.Size(89, 19);
-            this.dateRelease_lbl.TabIndex = 28;
-            this.dateRelease_lbl.Text = "Date Release";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.close_pb);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1050, 32);
-            this.panel1.TabIndex = 67;
             // 
             // comment_btn
             // 
@@ -212,6 +146,63 @@
             this.favorite_btn.Values.Text = "Add to favorite";
             this.favorite_btn.Click += new System.EventHandler(this.favorite_btn_Click);
             // 
+            // movieDetails_panel
+            // 
+            this.movieDetails_panel.AutoSize = true;
+            this.movieDetails_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.movieDetails_panel.Controls.Add(this.description_lbl);
+            this.movieDetails_panel.Controls.Add(this.genre_lbl);
+            this.movieDetails_panel.Controls.Add(this.poster_pb);
+            this.movieDetails_panel.Controls.Add(this.dateRelease_lbl);
+            this.movieDetails_panel.Location = new System.Drawing.Point(45, 82);
+            this.movieDetails_panel.Name = "movieDetails_panel";
+            this.movieDetails_panel.Size = new System.Drawing.Size(210, 454);
+            this.movieDetails_panel.TabIndex = 67;
+            // 
+            // description_lbl
+            // 
+            this.description_lbl.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.description_lbl.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.description_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.description_lbl.Location = new System.Drawing.Point(-3, 329);
+            this.description_lbl.Name = "description_lbl";
+            this.description_lbl.Padding = new System.Windows.Forms.Padding(20);
+            this.description_lbl.Size = new System.Drawing.Size(210, 125);
+            this.description_lbl.TabIndex = 31;
+            this.description_lbl.Text = "Description";
+            this.description_lbl.Click += new System.EventHandler(this.description_lbl_Click);
+            // 
+            // genre_lbl
+            // 
+            this.genre_lbl.AutoSize = true;
+            this.genre_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.genre_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.genre_lbl.Location = new System.Drawing.Point(17, 274);
+            this.genre_lbl.Name = "genre_lbl";
+            this.genre_lbl.Size = new System.Drawing.Size(46, 19);
+            this.genre_lbl.TabIndex = 29;
+            this.genre_lbl.Text = "Genre";
+            // 
+            // poster_pb
+            // 
+            this.poster_pb.BackColor = System.Drawing.Color.White;
+            this.poster_pb.Location = new System.Drawing.Point(22, 19);
+            this.poster_pb.Name = "poster_pb";
+            this.poster_pb.Size = new System.Drawing.Size(166, 221);
+            this.poster_pb.TabIndex = 25;
+            this.poster_pb.TabStop = false;
+            // 
+            // dateRelease_lbl
+            // 
+            this.dateRelease_lbl.AutoSize = true;
+            this.dateRelease_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateRelease_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.dateRelease_lbl.Location = new System.Drawing.Point(17, 255);
+            this.dateRelease_lbl.Name = "dateRelease_lbl";
+            this.dateRelease_lbl.Size = new System.Drawing.Size(89, 19);
+            this.dateRelease_lbl.TabIndex = 28;
+            this.dateRelease_lbl.Text = "Date Release";
+            // 
             // movieTrailer_panel
             // 
             this.movieTrailer_panel.BackColor = System.Drawing.Color.White;
@@ -220,13 +211,22 @@
             this.movieTrailer_panel.Size = new System.Drawing.Size(643, 386);
             this.movieTrailer_panel.TabIndex = 66;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.close_pb);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1200, 32);
+            this.panel1.TabIndex = 67;
+            // 
             // movie_details_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1050, 620);
+            this.ClientSize = new System.Drawing.Size(1200, 620);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.movie_panel);
             this.DoubleBuffered = true;
