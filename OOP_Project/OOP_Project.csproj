@@ -207,11 +207,11 @@
     <Compile Include="account_recovery_form.Designer.cs">
       <DependentUpon>account_recovery_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminMovieControl.cs">
+    <Compile Include="AdminControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminMovieControl.Designer.cs">
-      <DependentUpon>AdminMovieControl.cs</DependentUpon>
+    <Compile Include="AdminControl.Designer.cs">
+      <DependentUpon>AdminControl.cs</DependentUpon>
     </Compile>
     <Compile Include="admin_form.cs">
       <SubType>Form</SubType>
@@ -274,8 +274,8 @@
     <EmbeddedResource Include="account_recovery_form.resx">
       <DependentUpon>account_recovery_form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminMovieControl.resx">
-      <DependentUpon>AdminMovieControl.cs</DependentUpon>
+    <EmbeddedResource Include="AdminControl.resx">
+      <DependentUpon>AdminControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="admin_form.resx">
       <DependentUpon>admin_form.cs</DependentUpon>
@@ -415,6 +415,10 @@
     <None Include="Resources\icons8-remove-28.png" />
     <None Include="Resources\icons8-submit-28.png" />
     <None Include="Resources\3.jpeg" />
+    <None Include="Resources\icons8-submit-281.png" />
+    <None Include="Resources\icons8-submit-282.png" />
+    <None Include="Resources\icons8-home-282.png" />
+    <None Include="Resources\icons8-user-28.png" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />
