@@ -9,12 +9,15 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using WinFormsToolTip = System.Windows.Forms.ToolTip;
 using System.Windows.Forms;
 
 namespace OOP_Project
 {
     public partial class AdminControl : UserControl
     {
+        
+            WinFormsToolTip tooltip = new WinFormsToolTip();
         private MySqlConnection connection;
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
 
@@ -29,6 +32,31 @@ namespace OOP_Project
         public AdminControl()
         {
             InitializeComponent();
+           
+
+            tooltip.IsBalloon = false;                        // Makes it balloon-shaped
+            tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
+            tooltip.ForeColor = Color.Black;                 // Text color
+            tooltip.UseFading = true;                        // Smooth fade-in/out
+            tooltip.UseAnimation = true;                     // Animate appearance
+
+            tooltip.AutoPopDelay = 5000;
+            tooltip.InitialDelay = 100;
+            tooltip.ReshowDelay = 100;
+            tooltip.ShowAlways = true;
+
+            tooltip.SetToolTip(insert_btn, "Insert");
+            //tooltip.SetToolTip(submit_btn, "Submit"); nakacomment muna, nawawala yung button ehh
+            //tooltip.SetToolTip(saveUser_btn, "Save User");
+            tooltip.SetToolTip(Clear_btn, "Clear");
+            tooltip.SetToolTip(remove_btn, "Remove");
+            tooltip.SetToolTip(update_btn, "Update");
+            tooltip.SetToolTip(editUser_btn, "Edit User");
+            tooltip.SetToolTip(editMovie_btn, "Edit Movie");
+            tooltip.SetToolTip(insertUser_btn, "Insert User");
+            tooltip.SetToolTip(deleteUser_btn, "Delete User");
+            tooltip.SetToolTip(verify_btn, "Verify User");
+
         }
 
         private void LoadMovies()
