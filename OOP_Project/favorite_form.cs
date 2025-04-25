@@ -90,9 +90,9 @@ namespace OOP_Project
             panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
         }
 
-        private List<Movie> GetFavoriteMovies(int userId, int offset, int limit)
+        private List<movie> GetFavoriteMovies(int userId, int offset, int limit)
         {
-            List<Movie> movies = new List<Movie>();
+            List<movie> movies = new List<movie>();
             string query = @"
              SELECT m.movie_id, m.title, m.description, m.genre, m.release_year, m.rating, m.image_url
              FROM Movies m
@@ -112,7 +112,7 @@ namespace OOP_Project
                     {
                         while (reader.Read())
                         {
-                            movies.Add(new Movie
+                            movies.Add(new movie
                             {
                                 Id = reader.GetInt32("movie_id"),
                                 Title = reader.GetString("title"),
@@ -142,7 +142,7 @@ namespace OOP_Project
             if (isLoading) return;
             isLoading = true;
 
-            List<Movie> movies = GetFavoriteMovies(currentUserId, currentPage * pageSize, pageSize);
+            List<movie> movies = GetFavoriteMovies(currentUserId, currentPage * pageSize, pageSize);
 
             if (movies == null || movies.Count == 0)
             {
@@ -205,7 +205,7 @@ namespace OOP_Project
             isLoading = false;
         }
 
-        private void ShowMovieDetails(Movie movie)
+        private void ShowMovieDetails(movie movie)
         {
             try
             {

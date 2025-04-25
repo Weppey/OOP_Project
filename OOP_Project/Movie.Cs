@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace OOP_Project
 {
 
-    public class Movie
+    public class movie
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -17,8 +17,9 @@ namespace OOP_Project
         public int ReleaseYear { get; set; }
         public decimal Rating { get; set; }
         public string ImageUrl { get; set; }
-        
-        
+        public string VideoUrl { get; set; }
+
+
 
         public override string ToString() => Title;
     }

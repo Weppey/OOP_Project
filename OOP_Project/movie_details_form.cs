@@ -15,7 +15,7 @@ namespace OOP_Project
 {
     public partial class movie_details_form : KryptonForm
     {
-        private Movie _moovie;
+        private movie _moovie;
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
         private int currentUserId;
         private int movieId;
@@ -26,7 +26,7 @@ namespace OOP_Project
         public int MovieID { get; set; }
         public int CurrentUserId { get; set; }
 
-        public movie_details_form(Movie moovie, int userId)
+        public movie_details_form(movie moovie, int userId)
         {
             InitializeComponent();
             _moovie = moovie;

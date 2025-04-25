@@ -243,7 +243,7 @@
     <Compile Include="login_form.Designer.cs">
       <DependentUpon>login_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="Movie.Cs" />
+    <Compile Include="movie.cs" />
     <Compile Include="MovieCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
