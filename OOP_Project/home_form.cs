@@ -225,7 +225,7 @@
                 {
                     Panel moviePanel = new Panel
                     {
-                        Size = new Size(160, 200),
+                        Size = new Size(140, 180),
                         Margin = new Padding(5),
                         BackColor = Color.Gray,
                         Cursor = Cursors.Hand
@@ -233,7 +233,7 @@
 
                     PictureBox poster = new PictureBox
                     {
-                        Size = new Size(159, 189),
+                        Size = new Size(140, 180),
                         Location = new Point(5, 0),
                         BackColor = Color.Black,
                         SizeMode = PictureBoxSizeMode.Zoom,
@@ -283,7 +283,7 @@
             if (isLoading) return;
             isLoading = true;
 
-            List<Movie> movies = GetMovies(currentPage * pageSize, pageSize);
+            List<movie> movies = GetMovies(currentPage * pageSize, pageSize);
 
             if (movies == null || movies.Count == 0)
             {
@@ -295,7 +295,7 @@
             {
                 Panel moviePanel = new Panel
                 {
-                    Size = new Size(160, 200),
+                    Size = new Size(140, 180),
                     Margin = new Padding(5),
                     BackColor = Color.Gray,
                     Cursor = Cursors.Hand
@@ -303,7 +303,7 @@
 
                 PictureBox poster = new PictureBox
                 {
-                    Size = new Size(159, 189),
+                    Size = new Size(140, 180),
                     Location = new Point(5, 0),
                     BackColor = Color.Black,
                     SizeMode = PictureBoxSizeMode.Zoom,
@@ -350,7 +350,7 @@
             allMovie_flp.Controls.Clear(); // Clear the previous movies
 
             // Get all movies
-            List<Movie> allMovies = GetAllMovies();
+            List<movie> allMovies = GetAllMovies();
 
             if (allMovies == null || allMovies.Count == 0)
             {
@@ -363,7 +363,7 @@
                 // Create a panel to hold the movie poster
                 Panel moviePanel = new Panel
                 {
-                    Size = new Size(160, 200),
+                    Size = new Size(140, 180),
                     Margin = new Padding(5),
                     BackColor = Color.Gray,
                     Cursor = Cursors.Hand
@@ -372,7 +372,7 @@
                 // Create a PictureBox for the movie poster
                 PictureBox poster = new PictureBox
                 {
-                    Size = new Size(159, 189),
+                    Size = new Size(140, 180),
                     Location = new Point(5, 0),
                     BackColor = Color.Black,
                     SizeMode = PictureBoxSizeMode.Zoom,
@@ -418,9 +418,9 @@
                 allMovie_flp.Controls.Add(moviePanel);
             }
         }
-        private List<Movie> GetMovies(int offset, int limit)
+        private List<movie> GetMovies(int offset, int limit)
         {
-            List<Movie> movies = new List<Movie>();
+            List<movie> movies = new List<movie>();
             string query = "SELECT * FROM Movies LIMIT @limit OFFSET @offset";
 
             using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -432,7 +432,7 @@
                 {
                     while (reader.Read())
                     {
-                        movies.Add(new Movie
+                        movies.Add(new movie
                         {
                             Id = reader.GetInt32("movie_id"),
                             Title = reader.GetString("title"),
@@ -468,9 +468,9 @@
                 }
             }
         }
-        private List<Movie> GetMoviesByGenre(string genre)
+        private List<movie> GetMoviesByGenre(string genre)
         {
-            List<Movie> movies = new List<Movie>();
+            List<movie> movies = new List<movie>();
             string query = "SELECT * FROM Movies WHERE LOWER(genre) LIKE CONCAT('%', LOWER(@genre), '%')";
 
             using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -481,7 +481,7 @@
                 {
                     while (reader.Read())
                     {
-                        movies.Add(new Movie
+                        movies.Add(new movie
                         {
                             Id = reader.GetInt32("movie_id"),
                             Title = reader.GetString("title"),
@@ -497,9 +497,9 @@
 
             return movies;
         }
-        private List<Movie> GetAllMovies()
+        private List<movie> GetAllMovies()
         {
-            List<Movie> movies = new List<Movie>();
+            List<movie> movies = new List<movie>();
             string query = "SELECT * FROM Movies"; // No genre filter
 
             using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -508,7 +508,7 @@
                 {
                     while (reader.Read())
                     {
-                        movies.Add(new Movie
+                        movies.Add(new movie
                         {
                             Id = reader.GetInt32("movie_id"),
                             Title = reader.GetString("title"),
@@ -524,7 +524,7 @@
 
             return movies;
         }
-        private void ShowMovieDetails(Movie movie)
+        private void ShowMovieDetails(movie movie)
         {
             try
             {
@@ -640,7 +640,7 @@
             search_tb.Clear();
             search_txt_Leave(sender, e);
 
-            if (search_list.SelectedItem is Movie selectedMovie)
+            if (search_list.SelectedItem is movie selectedMovie)
             {
                 // Avoid adding the same movie twice
                 if (!IsMovieAlreadyInPanel(selectedMovie, recentlysearch_flp))
@@ -651,11 +651,11 @@
             this.ActiveControl = null; // Remove focus from search_txt, so the cursor disappears
         }
         //search
-        private void DisplaySingleMovie(Movie movie, FlowLayoutPanel targetPanel)
+        private void DisplaySingleMovie(movie movie, FlowLayoutPanel targetPanel)
         {
             Panel moviePanel = new Panel
             {
-                Size = new Size(160, 200),
+                Size = new Size(140, 180),
                 Margin = new Padding(5),
                 BackColor = Color.Gray,
                 Cursor = Cursors.Hand,
@@ -664,7 +664,7 @@
 
             PictureBox poster = new PictureBox
             {
-                Size = new Size(                                                                                            ),
+                Size = new Size(140, 180),
                 Location = new Point(5, 0),
                 BackColor = Color.Black,
                 SizeMode = PictureBoxSizeMode.StretchImage,
@@ -700,7 +700,7 @@
             targetPanel.Controls.Add(moviePanel);
         }
 
-        private bool IsMovieAlreadyInPanel(Movie movie, FlowLayoutPanel panel)
+        private bool IsMovieAlreadyInPanel(movie movie, FlowLayoutPanel panel)
         {
             // Iterate through all panels in the FlowLayoutPanel
             foreach (Control control in panel.Controls)
@@ -714,7 +714,7 @@
         }
         private void search_list_Click(object sender, EventArgs e)
         {
-            if (search_list.SelectedItem is Movie selectedMovie)
+            if (search_list.SelectedItem is movie selectedMovie)
             {
                 // Try to get the full movie from the database by title
                 var fullMovie = GetFullMovieByTitle(selectedMovie.Title);
@@ -762,12 +762,12 @@
             }
         }    
 
-        private void ShowMovieDetailsForm(Movie movie)
+        private void ShowMovieDetailsForm(movie movie)
         {
             movie_details_form detailsForm = new movie_details_form(movie, userId);
             detailsForm.ShowDialog();
         }
-        private Movie GetFullMovieByTitle(string title)
+        private movie GetFullMovieByTitle(string title)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string query = "SELECT * FROM movies WHERE title = @title LIMIT 1";
@@ -783,7 +783,7 @@
                     {
                         if (reader.Read())
                         {
-                            return new Movie
+                            return new movie
                             {
                                 Title = reader.GetString("title"),
                                 Description = reader.GetString("description"),
@@ -823,7 +823,7 @@
                         {
                             while (reader.Read())
                             {
-                                var movie = new Movie
+                                var movie = new movie
                                 {
                                     Title = reader.GetString("title"),
                                     ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url")
@@ -886,7 +886,7 @@
                                 int releaseYear = reader.GetInt32("release_year");
                                 string imageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url");
 
-                                Movie movie = new Movie
+                                movie movie = new movie
                                 {
                                     Id = movieId, // 🆕 Assign movie_id here
                                     Title = title,
@@ -909,7 +909,7 @@
             }
 
         }
-        private void DisplayMovieInRecentlySearch(Movie movie)
+        private void DisplayMovieInRecentlySearch(movie movie)
         {
             // Check for existing panel by movie ID
             foreach (Control control in recentlysearch_flp.Controls)
@@ -925,7 +925,7 @@
             // Create panel for movie
             Panel moviePanel = new Panel
             {
-                Size = new Size(160, 200),
+                Size = new Size(140, 180),
                 Margin = new Padding(5),
                 BackColor = Color.Gray,
                 Cursor = Cursors.Hand,
@@ -934,7 +934,7 @@
 
             PictureBox poster = new PictureBox
             {
-                Size = new Size(159, 189),
+                Size = new Size(140, 180),
                 Location = new Point(5, 0),
                 BackColor = Color.Black,
                 SizeMode = PictureBoxSizeMode.StretchImage,
@@ -966,7 +966,7 @@
             recentlysearch_flp.Controls.Add(moviePanel);
 
         }
-        private void SaveRecentSearch(int userId, Movie movie)
+        private void SaveRecentSearch(int userId, movie movie)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string query = "INSERT IGNORE INTO recent_searches (user_id, movie_id, movie_title, movie_description, movie_genre, release_year, image_url) " +
@@ -1013,7 +1013,7 @@
                 LoadMoreMovies();
             }
         }
-        private void EnsureMovieExistsInMoviesTable(Movie movie)
+        private void EnsureMovieExistsInMoviesTable(movie movie)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string checkQuery = "SELECT movie_id FROM movies WHERE title = @title";

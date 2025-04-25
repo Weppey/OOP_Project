@@ -217,7 +217,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1200, 32);
+            this.panel1.Size = new System.Drawing.Size(1052, 32);
             this.panel1.TabIndex = 67;
             // 
             // movie_details_form
@@ -226,7 +226,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1200, 620);
+            this.ClientSize = new System.Drawing.Size(1052, 620);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.movie_panel);
             this.DoubleBuffered = true;

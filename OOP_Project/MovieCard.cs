@@ -17,10 +17,10 @@ namespace OOP_Project
     {
         private PictureBox poster_pb;
         private int currentUserId;
-        private Movie _moovie;
+        private movie _moovie;
         private ToolTip tooltip = new ToolTip();
 
-        public MovieCard(Movie moovie)
+        public MovieCard(movie moovie)
         {
             InitializeComponent();
             _moovie = moovie;

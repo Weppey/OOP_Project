@@ -345,9 +345,9 @@
             // 
             this.allMovie_panel.BackColor = System.Drawing.Color.Gray;
             this.allMovie_panel.Controls.Add(this.allMovie_flp);
-            this.allMovie_panel.Location = new System.Drawing.Point(37, 355);
+            this.allMovie_panel.Location = new System.Drawing.Point(25, 355);
             this.allMovie_panel.Name = "allMovie_panel";
-            this.allMovie_panel.Size = new System.Drawing.Size(1127, 253);
+            this.allMovie_panel.Size = new System.Drawing.Size(1156, 253);
             this.allMovie_panel.TabIndex = 61;
             // 
             // allMovie_flp
@@ -357,7 +357,7 @@
             this.allMovie_flp.Location = new System.Drawing.Point(30, 16);
             this.allMovie_flp.Name = "allMovie_flp";
             this.allMovie_flp.Padding = new System.Windows.Forms.Padding(5);
-            this.allMovie_flp.Size = new System.Drawing.Size(1067, 220);
+            this.allMovie_flp.Size = new System.Drawing.Size(1084, 220);
             this.allMovie_flp.TabIndex = 0;
             this.allMovie_flp.WrapContents = false;
             this.allMovie_flp.Scroll += new System.Windows.Forms.ScrollEventHandler(this.allMovie_flp_Scroll);
@@ -414,9 +414,9 @@
             // 
             this.popularmovie_pnl.BackColor = System.Drawing.Color.Gray;
             this.popularmovie_pnl.Controls.Add(this.recentlysearch_flp);
-            this.popularmovie_pnl.Location = new System.Drawing.Point(37, 672);
+            this.popularmovie_pnl.Location = new System.Drawing.Point(25, 672);
             this.popularmovie_pnl.Name = "popularmovie_pnl";
-            this.popularmovie_pnl.Size = new System.Drawing.Size(1127, 255);
+            this.popularmovie_pnl.Size = new System.Drawing.Size(1156, 255);
             this.popularmovie_pnl.TabIndex = 63;
             // 
             // recentlysearch_flp
@@ -424,16 +424,16 @@
             this.recentlysearch_flp.BackColor = System.Drawing.Color.White;
             this.recentlysearch_flp.Location = new System.Drawing.Point(30, 13);
             this.recentlysearch_flp.Name = "recentlysearch_flp";
-            this.recentlysearch_flp.Size = new System.Drawing.Size(1067, 229);
+            this.recentlysearch_flp.Size = new System.Drawing.Size(1084, 229);
             this.recentlysearch_flp.TabIndex = 0;
             // 
             // viewport_panel
             // 
             this.viewport_panel.BackColor = System.Drawing.Color.Gray;
             this.viewport_panel.Controls.Add(this.recommendedMovie_flp);
-            this.viewport_panel.Location = new System.Drawing.Point(37, 63);
+            this.viewport_panel.Location = new System.Drawing.Point(25, 63);
             this.viewport_panel.Name = "viewport_panel";
-            this.viewport_panel.Size = new System.Drawing.Size(1127, 242);
+            this.viewport_panel.Size = new System.Drawing.Size(1156, 242);
             this.viewport_panel.TabIndex = 60;
             // 
             // recommendedMovie_flp
@@ -443,7 +443,7 @@
             this.recommendedMovie_flp.Location = new System.Drawing.Point(30, 13);
             this.recommendedMovie_flp.Name = "recommendedMovie_flp";
             this.recommendedMovie_flp.Padding = new System.Windows.Forms.Padding(5);
-            this.recommendedMovie_flp.Size = new System.Drawing.Size(1067, 209);
+            this.recommendedMovie_flp.Size = new System.Drawing.Size(1084, 209);
             this.recommendedMovie_flp.TabIndex = 0;
             this.recommendedMovie_flp.WrapContents = false;
             // 
@@ -531,13 +531,13 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(1388, 791);
-            this.Controls.Add(this.AdminControl_panel);
             this.Controls.Add(this.profile_btn);
-            this.Controls.Add(this.movie_panel);
             this.Controls.Add(this.form_lbl);
             this.Controls.Add(this.leftdock_pnl);
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
+            this.Controls.Add(this.AdminControl_panel);
+            this.Controls.Add(this.movie_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

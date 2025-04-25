@@ -10,12 +10,13 @@ using System.Windows.Forms;
 using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using ComponentFactory.Krypton.Toolkit;
 using MySql.Data.MySqlClient;
+using System.Drawing.Drawing2D;
 
 namespace OOP_Project
 {
     public partial class movie_details_form : KryptonForm
     {
-        private Movie _moovie;
+        private movie _moovie;
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
         private int currentUserId;
         private int movieId;
@@ -25,8 +26,8 @@ namespace OOP_Project
 
         public int MovieID { get; set; }
         public int CurrentUserId { get; set; }
-
-        public movie_details_form(Movie moovie, int userId)
+        private MySqlConnection connection;
+        public movie_details_form(movie moovie, int userId)
         {
             InitializeComponent();
             _moovie = moovie;
@@ -40,8 +41,25 @@ namespace OOP_Project
             tooltip.ReshowDelay = 100;
             tooltip.ShowAlways = true;
             tooltip.SetToolTip(description_lbl, "Close");
-        }
 
+            CurvePanel(movie_panel, 30);
+            movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+            CurvePanel(movieDetails_panel, 30);
+            movieDetails_panel.Resize += (s, args) => CurvePanel(movieDetails_panel, 20);
+        }
+        private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
+        {
+            GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
+            path.StartFigure(); // Start the shape definition
+
+            // Add arcs to the path to define the four rounded corners
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90); // Bottom-right corner
+            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90); // Bottom-left corner
+            path.CloseFigure(); // Close the shape definition
+            panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
+        }
         private void MovieDetailsForm_Load(object sender, EventArgs e)
         {
             int baseWidth = 1200;
@@ -62,12 +80,13 @@ namespace OOP_Project
 
                 // Apply scaling
                 this.Scale(new SizeF(scale, scale));
-
-                this.StartPosition = FormStartPosition.CenterScreen;
             }
 
+
+            // Center the form
             this.StartPosition = FormStartPosition.CenterScreen;
 
+            // Update movie details on the form
             title_lbl.Text = _moovie.Title;
             description_lbl.Text = _moovie.Description;
             genre_lbl.Text = _moovie.Genre;
@@ -75,6 +94,7 @@ namespace OOP_Project
 
             try
             {
+                // Load movie poster if available
                 if (!string.IsNullOrEmpty(_moovie.ImageUrl))
                 {
                     poster_pb.Load(_moovie.ImageUrl);
@@ -86,13 +106,17 @@ namespace OOP_Project
                     poster_pb.Image = Properties.Resources.fallback;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                // In case of an error loading the poster or trailer, show fallback and log the error
                 poster_pb.Image = Properties.Resources.fallback;
+                MessageBox.Show("Error loading movie details: " + ex.Message);
             }
 
-            CheckFavoriteStatus(); // NEW LINE
+            // Check if the movie is marked as favorite (you can expand this logic as needed)
+            CheckFavoriteStatus();
         }
+
 
         private void CheckFavoriteStatus()
         {
