@@ -502,7 +502,7 @@
             // AdminControl_panel
             // 
             this.AdminControl_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.AdminControl_panel.Location = new System.Drawing.Point(142, 121);
+            this.AdminControl_panel.Location = new System.Drawing.Point(142, 122);
             this.AdminControl_panel.Name = "AdminControl_panel";
             this.AdminControl_panel.Size = new System.Drawing.Size(1214, 614);
             this.AdminControl_panel.TabIndex = 65;
@@ -552,13 +552,13 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(1388, 791);
-            this.Controls.Add(this.userProfile_panel);
             this.Controls.Add(this.profile_btn);
             this.Controls.Add(this.form_lbl);
             this.Controls.Add(this.leftdock_pnl);
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
             this.Controls.Add(this.AdminControl_panel);
+            this.Controls.Add(this.userProfile_panel);
             this.Controls.Add(this.movie_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home_form";

@@ -12,13 +12,14 @@
         using System.Collections.Generic;
         using System.Linq;
         using MySqlX.XDevAPI;
+using System.Security.Cryptography.X509Certificates;
 
 
 
 
 
 
-    namespace OOP_Project
+namespace OOP_Project
     {
         public partial class home_form : KryptonForm
         {
@@ -35,6 +36,7 @@
             private string userType; // Variable to store the type of user (admin or regular)
             private int currentUserId; // Variable to store the current user's ID
 
+
             private int userId; // Variable to store a user's ID, potentially for a selected user
 
 
@@ -43,18 +45,20 @@
             int pageSize = 20; // Defines how many items to display per page
             bool isLoading = false; // Flag to indicate whether data is currently loading
 
-            public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
+        private int userIdFromLogin;
+
+        public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
             {
                 InitializeComponent(); // Initializes the form components (UI elements)
 
-                if (userIdFromLogin <= 0)  // Check if the user session is valid
-                {
-                    MessageBox.Show("Invalid user session. Please log in again.", "Session Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // If user ID is invalid, show an error message and prompt for login again
-                    login_form login = new login_form(); // Create a new login form instance
-                    login.Show(); // Show the login form
-                    this.Close(); // Close the current form (home_form)
-                    return; // Exit the constructor to prevent further execution
-                }
+            //    if (userIdFromLogin <= 0)  // Check if the user session is valid
+           //     {
+           //         MessageBox.Show("Invalid user session. Please log in again.", "Session Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // If user ID is invalid, show an error message and prompt for login again
+             //       login_form login = new login_form(); // Create a new login form instance
+            //        login.Show(); // Show the login form
+            //        this.Close(); // Close the current form (home_form)
+            //        return; // Exit the constructor to prevent further execution
+            //    }
 
                 // Assign user details from the login
                 userType = userTypeFromLogin; // Store the user's type (admin or regular)
@@ -137,7 +141,7 @@
             {
                 connection.Open(); // ✅ Must open it before any SQL
                 DisplayAllMovies();
-                LoadMoreMovies();
+                
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
                 {
@@ -202,6 +206,8 @@
 
             return genres;
         }
+        private HashSet<int> displayedMovies = new HashSet<int>(); // Track displayed movie IDs
+
         private void DisplayMoviesByGenre(List<string> genres)
         {
             if (genres == null || genres.Count == 0)
@@ -209,7 +215,9 @@
                 MessageBox.Show("No genres to display.");
                 return;
             }
-            recommendedMovie_flp.Controls.Clear();
+
+            recommendedMovie_flp.Controls.Clear(); // Clear existing movies
+            displayedMovies.Clear(); // Reset the displayed movie IDs
 
             foreach (string genre in genres)
             {
@@ -224,6 +232,11 @@
 
                 foreach (var movie in movies)
                 {
+                    if (displayedMovies.Contains(movie.Id)) // Check if the movie is already displayed
+                    {
+                        continue; // Skip if the movie is already added
+                    }
+
                     Panel moviePanel = new Panel
                     {
                         Size = new Size(140, 180),
@@ -262,6 +275,7 @@
                     moviePanel.Click += (s, e) =>
                     {
                         LogMovieView(currentUserId, movie.Id);
+                        LogMovieInteraction(currentUserId, movie.Id);
                         ShowMovieDetails(movie);
                     };
 
@@ -270,82 +284,17 @@
                         ctrl.Click += (s, e) =>
                         {
                             LogMovieView(currentUserId, movie.Id);
+                            LogMovieInteraction(currentUserId, movie.Id);
                             ShowMovieDetails(movie);
                         };
                     }
 
-
                     recommendedMovie_flp.Controls.Add(moviePanel);
+                    displayedMovies.Add(movie.Id); // Mark this movie as displayed
                 }
             }
         }
-        private void LoadMoreMovies()
-        {
-            if (isLoading) return;
-            isLoading = true;
 
-            List<movie> movies = GetMovies(currentPage * pageSize, pageSize);
-
-            if (movies == null || movies.Count == 0)
-            {
-                isLoading = false;
-                return;
-            }
-
-            foreach (var movie in movies)
-            {
-                Panel moviePanel = new Panel
-                {
-                    Size = new Size(140, 180),
-                    Margin = new Padding(5),
-                    BackColor = Color.Gray,
-                    Cursor = Cursors.Hand
-                };
-
-                PictureBox poster = new PictureBox
-                {
-                    Size = new Size(140, 180),
-                    Location = new Point(5, 0),
-                    BackColor = Color.Black,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                    BorderStyle = BorderStyle.FixedSingle
-                };
-
-                try
-                {
-                    if (!string.IsNullOrEmpty(movie.ImageUrl))
-                        poster.Load(movie.ImageUrl);
-                    else
-                        poster.Image = Properties.Resources.fallback;
-                }
-                catch
-                {
-                    poster.Image = Properties.Resources.fallback;
-                }
-
-                moviePanel.Controls.Add(poster);
-
-                moviePanel.Click += (s, e) =>
-                {
-                    LogMovieView(currentUserId, movie.Id);
-                    ShowMovieDetails(movie);
-                };
-
-                foreach (Control ctrl in moviePanel.Controls)
-                {
-                    ctrl.Click += (s, e) =>
-                    {
-                        LogMovieView(currentUserId, movie.Id);
-                        ShowMovieDetails(movie);
-                    };
-                }
-
-                allMovie_flp.Controls.Add(moviePanel);
-            }
-
-            currentPage++;
-            isLoading = false;
-        }
         private void DisplayAllMovies()
         {
             allMovie_flp.Controls.Clear(); // Clear the previous movies
@@ -404,6 +353,7 @@
                 moviePanel.Click += (s, e) =>
                 {
                     LogMovieView(currentUserId, movie.Id);
+                    LogMovieInteraction(currentUserId, movie.Id);
                     ShowMovieDetails(movie);
                 };
 
@@ -412,6 +362,7 @@
                     ctrl.Click += (s, e) =>
                     {
                         LogMovieView(currentUserId, movie.Id);
+                        LogMovieInteraction(currentUserId, movie.Id);
                         ShowMovieDetails(movie);
                     };
                 }
@@ -449,26 +400,101 @@
 
             return movies;
         }
-        private void LogMovieView(int userId, int movieId)
+        public void LogMovieView(int userId, int movieId)
         {
             string insertQuery = "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
 
-            using (MySqlCommand cmd = new MySqlCommand(insertQuery, connection))
+            try
             {
-                cmd.Parameters.AddWithValue("@userId", userId);
-                cmd.Parameters.AddWithValue("@movieId", movieId);
-                cmd.Parameters.AddWithValue("@viewedAt", DateTime.Now);
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open(); // YOU MUST OPEN CONNECTION
 
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Failed to log movie view: " + ex.Message);
+                    using (MySqlCommand cmd = new MySqlCommand(insertQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+                        cmd.Parameters.AddWithValue("@movieId", movieId);
+                        cmd.Parameters.AddWithValue("@viewedAt", DateTime.Now);
+
+                        cmd.ExecuteNonQuery(); // Now it can execute successfully
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to log movie view: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
+        public void LogMovieInteraction(int userId, int movieId)
+        {
+            string checkUserQuery = "SELECT COUNT(*) FROM users WHERE user_id = @userId";
+            string checkMovieQuery = "SELECT COUNT(*) FROM movies WHERE movie_id = @movieId";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open(); // Open the connection to the database
+
+                    // Check if user exists
+                    using (MySqlCommand checkUserCmd = new MySqlCommand(checkUserQuery, conn))
+                    {
+                        checkUserCmd.Parameters.AddWithValue("@userId", userId);
+                        int userExists = Convert.ToInt32(checkUserCmd.ExecuteScalar()); // <-- You forgot this line!
+
+                        if (userExists == 0)
+                        {
+                            MessageBox.Show("The user does not exist. Please check the user ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+
+                    // Check if movie exists
+                    using (MySqlCommand checkMovieCmd = new MySqlCommand(checkMovieQuery, conn))
+                    {
+                        checkMovieCmd.Parameters.AddWithValue("@movieId", movieId);
+                        int movieExists = Convert.ToInt32(checkMovieCmd.ExecuteScalar());
+
+                        if (movieExists == 0)
+                        {
+                            MessageBox.Show("The movie does not exist. Please check the movie ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                    }
+
+                    // If both user and movie exist, insert into movie_interaction
+                    string insertQuery = "INSERT INTO movie_interaction (user_id, movie_id, created_at) VALUES (@userId, @movieId, @createdAt)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(insertQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+                        cmd.Parameters.AddWithValue("@movieId", movieId);
+                        cmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Log movie view
+                    string logViewQuery = "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
+                    using (MySqlCommand cmdView = new MySqlCommand(logViewQuery, conn))
+                    {
+                        cmdView.Parameters.AddWithValue("@userId", userId);
+                        cmdView.Parameters.AddWithValue("@movieId", movieId);
+                        cmdView.Parameters.AddWithValue("@viewedAt", DateTime.Now);
+
+                        cmdView.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to log movie interaction: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
         private List<movie> GetMoviesByGenre(string genre)
         {
             List<movie> movies = new List<movie>();
@@ -525,12 +551,12 @@
 
             return movies;
         }
-        private void ShowMovieDetails(movie movie)
+        public void ShowMovieDetails(movie movie)
         {
             try
             {
                 var movieDetailsForm = new movie_details_form(movie, StayLoggedIn.GetCurrentUserId().Value);
-                movieDetailsForm.StartPosition = FormStartPosition.CenterScreen;
+                movieDetailsForm.StartPosition = FormStartPosition.CenterParent;
                 movieDetailsForm.ShowDialog();
             }
             catch (Exception ex)
@@ -588,10 +614,34 @@
         private void popular_btn_Click(object sender, EventArgs e)
         {
             form_lbl.Text = "POPULAR";
+
+            DisplayAllMovies();
+            
+            List<string> genres = GetUserGenres(currentUserId);
+            if (genres != null && genres.Count > 0)
+            {
+                DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+            }
+            else
+            {
+                MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void settings_btn_Click(object sender, EventArgs e)
         {
             form_lbl.Text = "SETTINGS";
+
+            DisplayAllMovies();
+       
+            List<string> genres = GetUserGenres(currentUserId);
+            if (genres != null && genres.Count > 0)
+            {
+                DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+            }
+            else
+            {
+                MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private bool IsValidUrl(string url)
         {
@@ -725,7 +775,7 @@
 
                         // Show movie details form
                         var movieDetailsForm = new movie_details_form(fullMovie, userId.Value);
-                        movieDetailsForm.StartPosition = FormStartPosition.CenterScreen;
+                        movieDetailsForm.StartPosition = FormStartPosition.CenterParent;
                         movieDetailsForm.ShowDialog();
 
                         // Check if the movie is already in the recently searched list
@@ -851,7 +901,7 @@
                 search_tb.ForeColor = Color.Gray; // Change the text color to gray for placeholder
             }
         }
-        private void LoadRecentSearches(int currentUserId)
+        public void LoadRecentSearches(int currentUserId)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string query = "SELECT movie_id, movie_title, movie_description, movie_genre, release_year, image_url " +
@@ -992,6 +1042,20 @@
         }
         private void home_btn_Click(object sender, EventArgs e)
         {
+            //reload home_form
+                DisplayAllMovies();
+                
+                List<string> genres = GetUserGenres(currentUserId);
+                if (genres != null && genres.Count > 0)
+                {
+                    DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+                }
+                else
+                {
+                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            
+
             form_lbl.Text = "HOME";
             AdminControl_panel.Visible = false;
             userProfile_panel.Visible = false;
@@ -1011,27 +1075,54 @@
             else
             {
                 AdminControl_panel.Visible = false;
+                //Reload the home_form
+                DisplayAllMovies();
+               
+                List<string> genres = GetUserGenres(currentUserId);
+                if (genres != null && genres.Count > 0)
+                {
+                    DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+                }
+                else
+                {
+                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
 
         }
 
         private void profile_btn_Click(object sender, EventArgs e)
         {
+            ProfileControl userProfilePanel = new ProfileControl(userType, currentUserId);
             if (!userProfile_panel.Visible)
             {
                 form_lbl.Text = "PROFILE";
+
                 userProfile_panel.Visible = true;
                 AdminControl_panel.Visible = false;
 
 
-                ProfileControl userProfilePanel = new ProfileControl();
-             //   userProfilePanel.Dock = DockStyle.Fill; // Optional: make it fill the panel
-                userProfile_panel.Controls.Add(userProfilePanel);
+                userProfile_panel.Controls.Clear();
 
+                userProfilePanel.LoadProfileData();
+
+          //      userProfilePanel.Dock = DockStyle.Fill; // Optional: make it fill the panel
+                userProfile_panel.Controls.Add(userProfilePanel);
             }
             else
             {
                 userProfile_panel.Visible = false;
+                DisplayAllMovies();
+
+                List<string> genres = GetUserGenres(currentUserId);
+                if (genres != null && genres.Count > 0)
+                {
+                    DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+                }
+                else
+                {
+                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -1040,7 +1131,7 @@
             if (e.Type == ScrollEventType.EndScroll &&
              allMovie_flp.VerticalScroll.Value + allMovie_flp.ClientSize.Height >= allMovie_flp.VerticalScroll.Maximum)
             {
-                LoadMoreMovies();
+                DisplayAllMovies();
             }
         }
         private void EnsureMovieExistsInMoviesTable(movie movie)
