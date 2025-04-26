@@ -222,11 +222,11 @@
     <Compile Include="AdminControl.Designer.cs">
       <DependentUpon>AdminControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="admin_form.cs">
-      <SubType>Form</SubType>
+    <Compile Include="commentCard.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="admin_form.Designer.cs">
-      <DependentUpon>admin_form.cs</DependentUpon>
+    <Compile Include="commentCard.Designer.cs">
+      <DependentUpon>commentCard.cs</DependentUpon>
     </Compile>
     <Compile Include="Components\MovieItem.cs">
       <SubType>UserControl</SubType>
@@ -292,8 +292,8 @@
     <EmbeddedResource Include="AdminControl.resx">
       <DependentUpon>AdminControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="admin_form.resx">
-      <DependentUpon>admin_form.cs</DependentUpon>
+    <EmbeddedResource Include="commentCard.resx">
+      <DependentUpon>commentCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Components\MovieItem.resx">
       <DependentUpon>MovieItem.cs</DependentUpon>
@@ -445,6 +445,16 @@
     <None Include="Resources\icons8-verify-28.png" />
     <None Include="Resources\icons8-edit-user-281.png" />
     <None Include="Resources\icons8-close-241.png" />
+    <None Include="Resources\icons8-star-28.png" />
+    <None Include="Resources\icons8-rating-28.png" />
+    <None Include="Resources\icons8-star-28 %281%29.png" />
+    <None Include="Resources\icons8-star-281.png" />
+    <None Include="Resources\icons8-rating-281.png" />
+    <None Include="Resources\icons8-rating-28 %281%29.png" />
+    <None Include="Resources\icons8-star-28-yellow.png" />
+    <None Include="Resources\icons8-star-white.png" />
+    <None Include="Resources\icons8-submit-283.png" />
+    <None Include="Resources\icons8-avatar-28.png" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />

@@ -28,8 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.close_pb = new System.Windows.Forms.PictureBox();
             this.movie_panel = new System.Windows.Forms.Panel();
+            this.submit_comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.comment_tb = new System.Windows.Forms.TextBox();
+            this.comments_panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.ratings_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ratings_panel = new System.Windows.Forms.Panel();
+            this.ratingStar5_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ratingStar4_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ratingStar3_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ratingStar2_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.ratingStar1_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.title_lbl = new System.Windows.Forms.Label();
             this.comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -39,30 +48,28 @@
             this.genre_lbl = new System.Windows.Forms.Label();
             this.poster_pb = new System.Windows.Forms.PictureBox();
             this.dateRelease_lbl = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
+            this.navigationDock_panel = new System.Windows.Forms.Panel();
+            this.close_pb = new System.Windows.Forms.PictureBox();
+            this.commentBorder_panel = new System.Windows.Forms.Panel();
             this.movie_panel.SuspendLayout();
+            this.ratings_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.movieDetails_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.navigationDock_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
+            this.commentBorder_panel.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // close_pb
-            // 
-            this.close_pb.BackColor = System.Drawing.Color.Transparent;
-            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
-            this.close_pb.Location = new System.Drawing.Point(1018, 6);
-            this.close_pb.Name = "close_pb";
-            this.close_pb.Size = new System.Drawing.Size(25, 23);
-            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.close_pb.TabIndex = 18;
-            this.close_pb.TabStop = false;
-            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
             // 
             // movie_panel
             // 
+            this.movie_panel.AutoScroll = true;
             this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.movie_panel.Controls.Add(this.commentBorder_panel);
+            this.movie_panel.Controls.Add(this.submit_comment_btn);
+            this.movie_panel.Controls.Add(this.comment_tb);
+            this.movie_panel.Controls.Add(this.ratings_btn);
+            this.movie_panel.Controls.Add(this.ratings_panel);
             this.movie_panel.Controls.Add(this.webView21);
             this.movie_panel.Controls.Add(this.title_lbl);
             this.movie_panel.Controls.Add(this.comment_btn);
@@ -70,8 +77,177 @@
             this.movie_panel.Controls.Add(this.movieDetails_panel);
             this.movie_panel.Location = new System.Drawing.Point(39, 65);
             this.movie_panel.Name = "movie_panel";
-            this.movie_panel.Size = new System.Drawing.Size(981, 543);
+            this.movie_panel.Size = new System.Drawing.Size(979, 573);
             this.movie_panel.TabIndex = 66;
+            // 
+            // submit_comment_btn
+            // 
+            this.submit_comment_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.submit_comment_btn.Location = new System.Drawing.Point(791, 552);
+            this.submit_comment_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.submit_comment_btn.Name = "submit_comment_btn";
+            this.submit_comment_btn.Size = new System.Drawing.Size(145, 56);
+            this.submit_comment_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
+            this.submit_comment_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.submit_comment_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.submit_comment_btn.StateCommon.Border.Rounding = 20;
+            this.submit_comment_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.submit_comment_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.submit_comment_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.submit_comment_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.submit_comment_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.submit_comment_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.submit_comment_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.submit_comment_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.submit_comment_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.submit_comment_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.submit_comment_btn.TabIndex = 79;
+            this.submit_comment_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_insert_column_right_28;
+            this.submit_comment_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.submit_comment_btn.Values.Text = "Submit";
+            this.submit_comment_btn.Visible = false;
+            this.submit_comment_btn.Click += new System.EventHandler(this.submit_comment_btn_Click);
+            // 
+            // comment_tb
+            // 
+            this.comment_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comment_tb.Location = new System.Drawing.Point(292, 552);
+            this.comment_tb.Multiline = true;
+            this.comment_tb.Name = "comment_tb";
+            this.comment_tb.Size = new System.Drawing.Size(498, 53);
+            this.comment_tb.TabIndex = 80;
+            this.comment_tb.Visible = false;
+            // 
+            // comments_panel
+            // 
+            this.comments_panel.AutoSize = true;
+            this.comments_panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.comments_panel.Location = new System.Drawing.Point(36, 31);
+            this.comments_panel.Name = "comments_panel";
+            this.comments_panel.Size = new System.Drawing.Size(891, 99);
+            this.comments_panel.TabIndex = 81;
+            // 
+            // ratings_btn
+            // 
+            this.ratings_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.ratings_btn.Location = new System.Drawing.Point(291, 483);
+            this.ratings_btn.Name = "ratings_btn";
+            this.ratings_btn.Size = new System.Drawing.Size(37, 45);
+            this.ratings_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.ratings_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.ratings_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratings_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratings_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratings_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratings_btn.TabIndex = 77;
+            this.ratings_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_rating_28__1_;
+            this.ratings_btn.Values.Text = "";
+            this.ratings_btn.Click += new System.EventHandler(this.ratings_btn_Click);
+            // 
+            // ratings_panel
+            // 
+            this.ratings_panel.BackColor = System.Drawing.Color.Gray;
+            this.ratings_panel.Controls.Add(this.ratingStar5_btn);
+            this.ratings_panel.Controls.Add(this.ratingStar4_btn);
+            this.ratings_panel.Controls.Add(this.ratingStar3_btn);
+            this.ratings_panel.Controls.Add(this.ratingStar2_btn);
+            this.ratings_panel.Controls.Add(this.ratingStar1_btn);
+            this.ratings_panel.Location = new System.Drawing.Point(334, 483);
+            this.ratings_panel.Margin = new System.Windows.Forms.Padding(10);
+            this.ratings_panel.Name = "ratings_panel";
+            this.ratings_panel.Padding = new System.Windows.Forms.Padding(3);
+            this.ratings_panel.Size = new System.Drawing.Size(195, 45);
+            this.ratings_panel.TabIndex = 76;
+            this.ratings_panel.Visible = false;
+            // 
+            // ratingStar5_btn
+            // 
+            this.ratingStar5_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.ratingStar5_btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ratingStar5_btn.Location = new System.Drawing.Point(151, 3);
+            this.ratingStar5_btn.Name = "ratingStar5_btn";
+            this.ratingStar5_btn.Size = new System.Drawing.Size(37, 39);
+            this.ratingStar5_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar5_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar5_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar5_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar5_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar5_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar5_btn.TabIndex = 74;
+            this.ratingStar5_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
+            this.ratingStar5_btn.Values.Text = "";
+            // 
+            // ratingStar4_btn
+            // 
+            this.ratingStar4_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.ratingStar4_btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ratingStar4_btn.Location = new System.Drawing.Point(114, 3);
+            this.ratingStar4_btn.Name = "ratingStar4_btn";
+            this.ratingStar4_btn.Size = new System.Drawing.Size(37, 39);
+            this.ratingStar4_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar4_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar4_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar4_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar4_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar4_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar4_btn.TabIndex = 75;
+            this.ratingStar4_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
+            this.ratingStar4_btn.Values.Text = "";
+            // 
+            // ratingStar3_btn
+            // 
+            this.ratingStar3_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.ratingStar3_btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ratingStar3_btn.Location = new System.Drawing.Point(77, 3);
+            this.ratingStar3_btn.Name = "ratingStar3_btn";
+            this.ratingStar3_btn.Size = new System.Drawing.Size(37, 39);
+            this.ratingStar3_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar3_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar3_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar3_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar3_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar3_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar3_btn.TabIndex = 71;
+            this.ratingStar3_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
+            this.ratingStar3_btn.Values.Text = "";
+            // 
+            // ratingStar2_btn
+            // 
+            this.ratingStar2_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.ratingStar2_btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ratingStar2_btn.Location = new System.Drawing.Point(40, 3);
+            this.ratingStar2_btn.Name = "ratingStar2_btn";
+            this.ratingStar2_btn.Size = new System.Drawing.Size(37, 39);
+            this.ratingStar2_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar2_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar2_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar2_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar2_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar2_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar2_btn.TabIndex = 72;
+            this.ratingStar2_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
+            this.ratingStar2_btn.Values.Text = "";
+            // 
+            // ratingStar1_btn
+            // 
+            this.ratingStar1_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.ratingStar1_btn.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ratingStar1_btn.Location = new System.Drawing.Point(3, 3);
+            this.ratingStar1_btn.Name = "ratingStar1_btn";
+            this.ratingStar1_btn.Size = new System.Drawing.Size(37, 39);
+            this.ratingStar1_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar1_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar1_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar1_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.ratingStar1_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar1_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar1_btn.TabIndex = 73;
+            this.ratingStar1_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
+            this.ratingStar1_btn.Values.Text = "";
             // 
             // webView21
             // 
@@ -126,6 +302,7 @@
             this.comment_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_comments_28;
             this.comment_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.comment_btn.Values.Text = "Comments";
+            this.comment_btn.Click += new System.EventHandler(this.comment_btn_Click_1);
             // 
             // favorite_btn
             // 
@@ -167,6 +344,7 @@
             this.movieDetails_panel.Controls.Add(this.poster_pb);
             this.movieDetails_panel.Controls.Add(this.dateRelease_lbl);
             this.movieDetails_panel.Location = new System.Drawing.Point(45, 82);
+            this.movieDetails_panel.Margin = new System.Windows.Forms.Padding(10);
             this.movieDetails_panel.Name = "movieDetails_panel";
             this.movieDetails_panel.Size = new System.Drawing.Size(210, 454);
             this.movieDetails_panel.TabIndex = 67;
@@ -215,14 +393,37 @@
             this.dateRelease_lbl.TabIndex = 28;
             this.dateRelease_lbl.Text = "Date Release";
             // 
-            // panel1
+            // navigationDock_panel
             // 
-            this.panel1.Controls.Add(this.close_pb);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1052, 32);
-            this.panel1.TabIndex = 67;
+            this.navigationDock_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.navigationDock_panel.Controls.Add(this.close_pb);
+            this.navigationDock_panel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.navigationDock_panel.Location = new System.Drawing.Point(0, 0);
+            this.navigationDock_panel.Name = "navigationDock_panel";
+            this.navigationDock_panel.Size = new System.Drawing.Size(1053, 32);
+            this.navigationDock_panel.TabIndex = 67;
+            // 
+            // close_pb
+            // 
+            this.close_pb.BackColor = System.Drawing.Color.Transparent;
+            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
+            this.close_pb.Location = new System.Drawing.Point(1018, 6);
+            this.close_pb.Name = "close_pb";
+            this.close_pb.Size = new System.Drawing.Size(25, 23);
+            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.close_pb.TabIndex = 18;
+            this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
+            // 
+            // commentBorder_panel
+            // 
+            this.commentBorder_panel.AutoSize = true;
+            this.commentBorder_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.commentBorder_panel.Controls.Add(this.comments_panel);
+            this.commentBorder_panel.Location = new System.Drawing.Point(18, 607);
+            this.commentBorder_panel.Name = "commentBorder_panel";
+            this.commentBorder_panel.Size = new System.Drawing.Size(932, 187);
+            this.commentBorder_panel.TabIndex = 82;
             // 
             // movie_details_form
             // 
@@ -230,8 +431,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1052, 620);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1053, 669);
+            this.Controls.Add(this.navigationDock_panel);
             this.Controls.Add(this.movie_panel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -244,14 +445,17 @@
             this.StateCommon.Border.Rounding = 15;
             this.Text = "MovieDetailsForm";
             this.Load += new System.EventHandler(this.MovieDetailsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.movie_panel.ResumeLayout(false);
             this.movie_panel.PerformLayout();
+            this.ratings_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.movieDetails_panel.ResumeLayout(false);
             this.movieDetails_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
-            this.panel1.ResumeLayout(false);
+            this.navigationDock_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
+            this.commentBorder_panel.ResumeLayout(false);
+            this.commentBorder_panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -266,9 +470,20 @@
         private System.Windows.Forms.PictureBox poster_pb;
         private System.Windows.Forms.Label dateRelease_lbl;
         private System.Windows.Forms.Label description_lbl;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel navigationDock_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton comment_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton favorite_btn;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton ratingStar3_btn;
+        private System.Windows.Forms.Panel ratings_panel;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton ratingStar5_btn;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton ratingStar4_btn;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton ratingStar2_btn;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton ratingStar1_btn;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton ratings_btn;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton submit_comment_btn;
+        private System.Windows.Forms.TextBox comment_tb;
+        private System.Windows.Forms.FlowLayoutPanel comments_panel;
+        private System.Windows.Forms.Panel commentBorder_panel;
     }
 }

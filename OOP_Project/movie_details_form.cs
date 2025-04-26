@@ -28,8 +28,7 @@ namespace OOP_Project
 
         private bool isFavorited = false;
 
-        public int MovieID { get; set; }
-        public int CurrentUserId { get; set; }
+        private int currentMovieId;
         private MySqlConnection connection;
         public movie_details_form(movie moovie, int userId)
         {
@@ -37,8 +36,12 @@ namespace OOP_Project
             InitializeComponent();
             _moovie = moovie;
             currentUserId = userId;
-            movieId = moovie.Id;
+
+            movieId = moovie.Id;        // <-- set this first
+            currentMovieId = movieId;    // <-- then assign
+
             poster_pb.SizeMode = PictureBoxSizeMode.Zoom;
+
 
             //Tooltip messages
             tooltip.AutoPopDelay = 5000;
@@ -51,6 +54,9 @@ namespace OOP_Project
             movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
             CurvePanel(movieDetails_panel, 30);
             movieDetails_panel.Resize += (s, args) => CurvePanel(movieDetails_panel, 20);
+
+            CurvePanel(ratings_panel, 30);
+            ratings_panel.Resize += (s, args) => CurvePanel(ratings_panel, 20);
         }
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
@@ -67,6 +73,10 @@ namespace OOP_Project
         }
         private void MovieDetailsForm_Load(object sender, EventArgs e)
         {
+            //  movie_panel.Size = new Size(981, 575);
+            //this.Size = new Size(1052, 672);
+            LoadComments();
+
             webView21.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted;
             // Update movie details on the form
             title_lbl.Text = _moovie.Title;
@@ -75,6 +85,15 @@ namespace OOP_Project
             dateRelease_lbl.Text = "Year released: " + _moovie.ReleaseYear;
 
             LoadTrailerAsync();
+
+
+            // Attach the click event handlers
+            ratingStar1_btn.Click += StarButton_Click;
+            ratingStar2_btn.Click += StarButton_Click;
+            ratingStar3_btn.Click += StarButton_Click;
+            ratingStar4_btn.Click += StarButton_Click;
+            ratingStar5_btn.Click += StarButton_Click;
+
 
             try
             {
@@ -251,7 +270,7 @@ namespace OOP_Project
 
         private void AddToFavorites(int userId, int movieId)
         {
-           // MessageBox.Show($"AddToFavorites called with UserID: {userId}, MovieID: {movieId}");
+            // MessageBox.Show($"AddToFavorites called with UserID: {userId}, MovieID: {movieId}");
             if (userId <= 0 || movieId <= 0)
             {
                 MessageBox.Show("Invalid user or movie ID.");
@@ -344,25 +363,10 @@ namespace OOP_Project
             }
         }
 
-
-        // Other event handlers...
-
-        private void comment_btn_Click(object sender, EventArgs e)
-        {
-            if (this.Size.Height == 620)
-            {
-                this.Size = new Size(1050, 700);
-            }
-            else
-            {
-                this.Size = new Size(1050, 620);
-            }
-        }
-
         private void close_pb_Click(object sender, EventArgs e)
         {
             // Stop the video by setting the src to a blank page or empty content
-            if (webView21!= null && webView21.CoreWebView2 != null)
+            if (webView21 != null && webView21.CoreWebView2 != null)
             {
                 webView21.CoreWebView2.Navigate("about:blank");
             }
@@ -374,22 +378,328 @@ namespace OOP_Project
 
         private void description_lbl_Click(object sender, EventArgs e)
         {
-            if (description_lbl.Width == 210)
+            if (description_lbl.Height == 125)
             {
                 tooltip.SetToolTip(description_lbl, "Close"); // Fixed missing closing quote
-                description_lbl.Width = 300;
+                description_lbl.Height = 200;
                 description_lbl.BackColor = Color.Silver;
                 description_lbl.ForeColor = Color.Black;
+                movieDetails_panel.AutoScroll = true;
+                movie_panel.AutoScroll = true;
             }
             else
             {
-                description_lbl.Width = 210;
+                description_lbl.Height = 125;
                 tooltip.SetToolTip(description_lbl, "Expand");
                 description_lbl.BackColor = Color.Transparent;
                 description_lbl.ForeColor = Color.White;
+                movieDetails_panel.AutoScroll = false;
+                movie_panel.AutoScroll = false;
             }
         }
 
-        
+        private Timer expandTimer;
+        private int targetWidth;
+        private int currentWidth;
+
+        private void StartExpandAnimation()
+        {
+            ratings_panel.Visible = true;
+            targetWidth = 195;  // Set this to the final width (195 in your case)
+            currentWidth = 0;   // Start with the panel collapsed (width = 0)
+
+            ratings_panel.Width = currentWidth;  // Set initial width
+
+            expandTimer = new Timer();
+            expandTimer.Interval = 10;  // Speed of the expansion (milliseconds)
+            expandTimer.Tick += (s, e) =>
+            {
+                currentWidth += 5; // Adjust this value to control how fast it expands
+                if (currentWidth >= targetWidth)
+                {
+                    currentWidth = targetWidth;
+                    expandTimer.Stop(); // Stop the timer once the panel has expanded fully
+                }
+
+                ratings_panel.Width = currentWidth;  // Update the width of the panel
+            };
+            expandTimer.Start();
+        }
+
+        private void StartCollapseAnimation()
+        {
+            int currentWidth = ratings_panel.Width;
+
+            expandTimer = new Timer();
+            expandTimer.Interval = 10;  // Speed of the collapse (milliseconds)
+            expandTimer.Tick += (s, e) =>
+            {
+                currentWidth -= 5; // Adjust this value to control how fast it collapses
+                if (currentWidth <= 0)
+                {
+                    currentWidth = 0;
+                    expandTimer.Stop(); // Stop the timer once the panel has collapsed fully
+                    ratings_panel.Visible = false;  // Hide the panel once collapsed
+                }
+
+                ratings_panel.Width = currentWidth;  // Update the width of the panel
+            };
+            expandTimer.Start();
+        }
+
+        private void ratings_btn_Click(object sender, EventArgs e)
+        {
+            if (!ratings_panel.Visible)
+            {
+                // Start expanding animation for the ratings panel
+                StartExpandAnimation();
+            }
+            else
+            {
+                // Start collapsing animation for the ratings panel
+                StartCollapseAnimation();
+            }
+        }
+
+
+        private void InitializeStars()
+        {
+            KryptonButton[] stars = { ratingStar1_btn, ratingStar2_btn, ratingStar3_btn, ratingStar4_btn, ratingStar5_btn };
+
+            for (int i = 0; i < stars.Length; i++)
+            {
+                int rating = i + 1;
+                stars[i].Click += (s, e) =>
+                {
+                    SetStars(rating);
+                    SaveRatingToDatabase(rating);
+                };
+            }
+        }
+
+        KryptonButton[] stars;
+        int currentRating = 0; // store selected rating
+
+
+        private void SaveRatingToDatabase(int rating)
+        {
+            string query = @"SELECT COUNT(*) FROM movie_interaction 
+                     WHERE user_id = @userId AND movie_id = @movieId";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    // Check if the rating already exists in the database
+                    using (MySqlCommand checkCmd = new MySqlCommand(query, conn))
+                    {
+                        checkCmd.Parameters.AddWithValue("@userId", currentUserId); // current logged-in user
+                        checkCmd.Parameters.AddWithValue("@movieId", movieId); // current movie
+
+                        int ratingCount = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                        // If rating exists, update it
+                        if (ratingCount > 0)
+                        {
+                            string updateQuery = @"UPDATE movie_interaction 
+                                           SET rating = @rating 
+                                           WHERE user_id = @userId AND movie_id = @movieId";
+
+                            using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
+                            {
+                                updateCmd.Parameters.AddWithValue("@rating", rating);
+                                updateCmd.Parameters.AddWithValue("@userId", currentUserId);
+                                updateCmd.Parameters.AddWithValue("@movieId", movieId);
+
+                                updateCmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            // If no existing rating, insert new record
+                            string insertQuery = @"INSERT INTO movie_interaction (user_id, movie_id, rating, created_at) 
+                                           VALUES (@userId, @movieId, @rating, @createdAt)";
+
+                            using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn))
+                            {
+                                insertCmd.Parameters.AddWithValue("@userId", currentUserId);
+                                insertCmd.Parameters.AddWithValue("@movieId", movieId);
+                                insertCmd.Parameters.AddWithValue("@rating", rating);
+                                insertCmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
+
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to save rating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void SetStars(int rating)
+        {
+            KryptonButton[] stars = { ratingStar1_btn, ratingStar2_btn, ratingStar3_btn, ratingStar4_btn, ratingStar5_btn };
+
+            for (int i = 0; i < stars.Length; i++)
+            {
+                if (i < rating)
+                    stars[i].Values.Image = Properties.Resources.icons8_star_28_yellow; // Yellow star for selected
+                else
+                    stars[i].Values.Image = Properties.Resources.icons8_star_white; // Gray star for unselected
+            }
+
+            currentRating = rating; // Store the current rating
+        }
+
+        private void StarButton_Click(object sender, EventArgs e)
+        {
+            // Get the clicked star's rating (determine which star was clicked)
+            int rating = 0;
+            if (sender == ratingStar1_btn) rating = 1;
+            else if (sender == ratingStar2_btn) rating = 2;
+            else if (sender == ratingStar3_btn) rating = 3;
+            else if (sender == ratingStar4_btn) rating = 4;
+            else if (sender == ratingStar5_btn) rating = 5;
+
+            // Set the stars and save the rating to the database
+            SetStars(rating);
+            SaveRatingToDatabase(rating);
+        }
+
+        private void submit_comment_btn_Click(object sender, EventArgs e)
+        {
+            string commentText = comment_tb.Text.Trim();
+            if (string.IsNullOrEmpty(commentText))
+            {
+                MessageBox.Show("Comment cannot be empty!");
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    // Check if the movie exists
+                    string checkMovieQuery = "SELECT COUNT(*) FROM movies WHERE movie_id = @movieId";
+                    using (MySqlCommand checkMovieCmd = new MySqlCommand(checkMovieQuery, conn))
+                    {
+                        checkMovieCmd.Parameters.AddWithValue("@movieId", currentMovieId);
+
+                        int movieCount = Convert.ToInt32(checkMovieCmd.ExecuteScalar());
+                        if (movieCount == 0)
+                        {
+                            MessageBox.Show("The selected movie does not exist.");
+                            return;
+                        }
+                    }
+
+                    // Insert a new comment (ALWAYS insert, even if same user)
+                    string insertQuery = "INSERT INTO movie_interaction (user_id, movie_id, comment, created_at) VALUES (@userId, @movieId, @comment, NOW())";
+                    using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn))
+                    {
+                        insertCmd.Parameters.AddWithValue("@userId", currentUserId);
+                        insertCmd.Parameters.AddWithValue("@movieId", currentMovieId);
+                        insertCmd.Parameters.AddWithValue("@comment", commentText);
+                        insertCmd.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Comment posted successfully!");
+                comment_tb.Clear();
+                LoadComments(); // Refresh comments
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error posting comment: " + ex.Message);
+            }
+        }
+
+        private void LoadComments()
+        {
+            comments_panel.Controls.Clear(); // Clear old comments
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = @"
+            SELECT u.username, u.avatar, i.comment, i.created_at 
+            FROM movie_interaction i
+            JOIN users u ON i.user_id = u.user_id
+            WHERE i.movie_id = @movieId AND i.comment IS NOT NULL
+            ORDER BY i.created_at DESC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@movieId", currentMovieId);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (!reader.HasRows)
+                            {
+                                Label noCommentLabel = new Label();
+                                noCommentLabel.Text = "No comments yet. Be the first to comment!";
+                                noCommentLabel.Font = new Font("Segoe UI", 10, FontStyle.Italic);
+                                noCommentLabel.ForeColor = Color.Gray;
+                                noCommentLabel.AutoSize = true;
+                                noCommentLabel.Margin = new Padding(1);
+                                comments_panel.Controls.Add(noCommentLabel);
+                            }
+                            else
+                            {
+                                while (reader.Read())
+                                {
+                                    string username = reader.GetString("username");
+                                    string comment = reader.GetString("comment");
+                                    DateTime createdAt = reader.GetDateTime("created_at");
+
+                                    // Create commentCard (your UserControl)
+                                    commentCard card = new commentCard();
+                                    card.SetComment(username, comment, createdAt);
+
+                                    // Optional: Adjust card sizing if needed
+                                    card.Width = comments_panel.Width - 30;
+                                    card.Margin = new Padding(1);
+
+                                    comments_panel.Controls.Add(card);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading comments: " + ex.Message);
+            }
+        }
+
+        private void comment_btn_Click_1(object sender, EventArgs e)
+        {
+            if (!submit_comment_btn.Visible)
+            {
+                submit_comment_btn.Visible = true;
+                comment_tb.Visible = true;
+
+                movie_panel.AutoScroll = true;
+
+            }
+            else
+            {
+
+                submit_comment_btn.Visible = false;
+                comment_tb.Visible = false;
+
+                movie_panel.AutoScroll = false;
+            }
+        }
+
     }
 }
