@@ -59,13 +59,6 @@ namespace OOP_Project
             DisplayRecentlyViewedMovies();
             LoadProfileData();
 
-            string[] preferences = { "Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Documentary", "Drama", "Family", "Fantasy", "History", "Horror", "Musical", "Mystery", "Romance", "Sci-Fi", "Sport", "Thriller", "War", "Western" };
-            // Populate the CheckedListBox with movie genres
-            foreach (var genre in preferences)
-            {
-                preferences_clb.Items.Add(genre);
-            }
-
         }
 
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius)
