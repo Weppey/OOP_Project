@@ -13,12 +13,6 @@ namespace OOP_Project
     public partial class ProfileControl : UserControl
     {
         private string connectionString = "server=localhost;user=root;password=your_password;database=your_database;";
-        private string originalUsername;
-        private string originalEmail;
-        private DateTime originalBirthdate;
-        private int originalAge;
-        private string originalGender;
-        private List<string> originalPreferences = new List<string>();
 
         public ProfileControl()
         {

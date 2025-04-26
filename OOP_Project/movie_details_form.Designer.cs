@@ -30,6 +30,7 @@
         {
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.movie_panel = new System.Windows.Forms.Panel();
+            this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.title_lbl = new System.Windows.Forms.Label();
             this.comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.favorite_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -38,10 +39,10 @@
             this.genre_lbl = new System.Windows.Forms.Label();
             this.poster_pb = new System.Windows.Forms.PictureBox();
             this.dateRelease_lbl = new System.Windows.Forms.Label();
-            this.movieTrailer_panel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.movie_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.movieDetails_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.panel1.SuspendLayout();
@@ -62,15 +63,26 @@
             // movie_panel
             // 
             this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.movie_panel.Controls.Add(this.webView21);
             this.movie_panel.Controls.Add(this.title_lbl);
             this.movie_panel.Controls.Add(this.comment_btn);
             this.movie_panel.Controls.Add(this.favorite_btn);
             this.movie_panel.Controls.Add(this.movieDetails_panel);
-            this.movie_panel.Controls.Add(this.movieTrailer_panel);
             this.movie_panel.Location = new System.Drawing.Point(39, 65);
             this.movie_panel.Name = "movie_panel";
             this.movie_panel.Size = new System.Drawing.Size(981, 543);
             this.movie_panel.TabIndex = 66;
+            // 
+            // webView21
+            // 
+            this.webView21.AllowExternalDrop = true;
+            this.webView21.CreationProperties = null;
+            this.webView21.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.webView21.Location = new System.Drawing.Point(292, 82);
+            this.webView21.Name = "webView21";
+            this.webView21.Size = new System.Drawing.Size(644, 393);
+            this.webView21.TabIndex = 70;
+            this.webView21.ZoomFactor = 1D;
             // 
             // title_lbl
             // 
@@ -203,14 +215,6 @@
             this.dateRelease_lbl.TabIndex = 28;
             this.dateRelease_lbl.Text = "Date Release";
             // 
-            // movieTrailer_panel
-            // 
-            this.movieTrailer_panel.BackColor = System.Drawing.Color.White;
-            this.movieTrailer_panel.Location = new System.Drawing.Point(293, 82);
-            this.movieTrailer_panel.Name = "movieTrailer_panel";
-            this.movieTrailer_panel.Size = new System.Drawing.Size(643, 386);
-            this.movieTrailer_panel.TabIndex = 66;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.close_pb);
@@ -243,6 +247,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.movie_panel.ResumeLayout(false);
             this.movie_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.movieDetails_panel.ResumeLayout(false);
             this.movieDetails_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
@@ -264,6 +269,6 @@
         private System.Windows.Forms.Panel panel1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton comment_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton favorite_btn;
-        private System.Windows.Forms.Panel movieTrailer_panel;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
     }
 }

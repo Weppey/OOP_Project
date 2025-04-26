@@ -325,7 +325,7 @@
             this.birthdate_dtp.Name = "birthdate_dtp";
             this.birthdate_dtp.Size = new System.Drawing.Size(130, 25);
             this.birthdate_dtp.TabIndex = 104;
-            this.birthdate_dtp.VisibleChanged += new System.EventHandler(this.birthdate_dtp_VisibleChanged);
+
             // 
             // ProfileControl
             // 

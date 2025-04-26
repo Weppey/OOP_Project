@@ -11,6 +11,8 @@ using static Org.BouncyCastle.Crypto.Engines.SM2Engine;
 using ComponentFactory.Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using System.Drawing.Drawing2D;
+using Microsoft.Web.WebView2.Core;
+
 
 namespace OOP_Project
 {
@@ -21,6 +23,8 @@ namespace OOP_Project
         private int currentUserId;
         private int movieId;
         private ToolTip tooltip = new ToolTip();
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView2;
+
 
         private bool isFavorited = false;
 
@@ -29,6 +33,7 @@ namespace OOP_Project
         private MySqlConnection connection;
         public movie_details_form(movie moovie, int userId)
         {
+
             InitializeComponent();
             _moovie = moovie;
             currentUserId = userId;
@@ -62,35 +67,14 @@ namespace OOP_Project
         }
         private void MovieDetailsForm_Load(object sender, EventArgs e)
         {
-            int baseWidth = 1200;
-            int baseHeight = 620;
-
-            // Get screen resolution (working area avoids taskbar)
-            int screenWidth = Screen.PrimaryScreen.WorkingArea.Width;
-            int screenHeight = Screen.PrimaryScreen.WorkingArea.Height;
-
-            // If screen is smaller, calculate scale
-            if (screenWidth < baseWidth || screenHeight < baseHeight)
-            {
-                float scaleX = (float)screenWidth / baseWidth;
-                float scaleY = (float)screenHeight / baseHeight;
-
-                // Use the smaller scale to make sure it fits
-                float scale = Math.Min(scaleX, scaleY);
-
-                // Apply scaling
-                this.Scale(new SizeF(scale, scale));
-            }
-
-
-            // Center the form
-            this.StartPosition = FormStartPosition.CenterScreen;
-
+            webView21.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted;
             // Update movie details on the form
             title_lbl.Text = _moovie.Title;
             description_lbl.Text = _moovie.Description;
             genre_lbl.Text = _moovie.Genre;
             dateRelease_lbl.Text = "Year released: " + _moovie.ReleaseYear;
+
+            LoadTrailerAsync();
 
             try
             {
@@ -115,6 +99,116 @@ namespace OOP_Project
 
             // Check if the movie is marked as favorite (you can expand this logic as needed)
             CheckFavoriteStatus();
+        }
+
+        private void WebView2_CoreWebView2InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
+        {
+            if (e.IsSuccess)
+            {
+                // WebView2 is initialized, now load the trailer
+                LoadTrailerAsync();
+            }
+            else
+            {
+                MessageBox.Show("WebView2 initialization failed: " + e.InitializationException.Message);
+            }
+        }
+        private async Task LoadTrailerAsync()
+        {
+            string trailerUrl = GetTrailerUrl(movieId);
+
+            if (string.IsNullOrEmpty(trailerUrl))
+            {
+                MessageBox.Show("Trailer URL is missing for this movie.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (webView21 == null)
+            {
+                MessageBox.Show("WebView2 control is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            await webView21.EnsureCoreWebView2Async();
+
+            if (trailerUrl.Contains("youtu"))
+            {
+                string videoId = ExtractYouTubeVideoId(trailerUrl);
+                if (string.IsNullOrEmpty(videoId))
+                {
+                    MessageBox.Show("Invalid YouTube URL.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Construct the embed URL
+                string embedUrl = $"https://www.youtube.com/embed/{videoId}?autoplay=1&controls=1";
+
+                // Create HTML to embed in WebView2
+                string html = $@"
+        <html>
+            <body style='margin:0px;padding:0px;overflow:hidden;background-color:black;'>
+                <iframe width='100%' height='100%' src='{embedUrl}' frameborder='0' allowfullscreen></iframe>
+            </body>
+        </html>";
+
+                // Navigate to the constructed HTML
+                webView21.NavigateToString(html);
+            }
+            else
+            {
+                // Handle other video formats (MP4) here
+                string html = $@"
+        <html>
+            <body style='margin:0px;padding:0px;overflow:hidden;background-color:black;'>
+                <video width='100%' height='100%' controls autoplay>
+                    <source src='{trailerUrl}' type='video/mp4'>
+                    Your browser does not support the video tag.
+                </video>
+            </body>
+        </html>";
+
+                webView21.NavigateToString(html);
+            }
+        }
+
+        private string ExtractYouTubeVideoId(string url)
+        {
+            if (url.Contains("youtu.be/"))
+            {
+                // Short YouTube link
+                var uri = new Uri(url);
+                return uri.AbsolutePath.Trim('/');
+            }
+            else if (url.Contains("youtube.com/watch"))
+            {
+                // Regular YouTube link
+                var query = System.Web.HttpUtility.ParseQueryString(new Uri(url).Query);
+                return query["v"];
+            }
+            return "";
+        }
+
+
+        private string GetTrailerUrl(int movieId)
+        {
+            string trailerUrl = "";
+            string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT trailer_link FROM movies WHERE movie_id = @movieId";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@movieId", movieId);
+
+                object result = cmd.ExecuteScalar();
+                if (result != null)
+                {
+                    trailerUrl = result.ToString();
+                }
+            }
+
+            return trailerUrl;
         }
 
 
@@ -267,8 +361,16 @@ namespace OOP_Project
 
         private void close_pb_Click(object sender, EventArgs e)
         {
+            // Stop the video by setting the src to a blank page or empty content
+            if (webView21!= null && webView21.CoreWebView2 != null)
+            {
+                webView21.CoreWebView2.Navigate("about:blank");
+            }
+
+            // Close the form
             Close();
         }
+
 
         private void description_lbl_Click(object sender, EventArgs e)
         {
@@ -288,5 +390,6 @@ namespace OOP_Project
             }
         }
 
+        
     }
 }
