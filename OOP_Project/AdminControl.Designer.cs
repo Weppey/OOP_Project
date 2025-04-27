@@ -32,8 +32,8 @@ namespace OOP_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.releaseYear_dtp = new System.Windows.Forms.DateTimePicker();
             this.title_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.movies_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -50,13 +50,6 @@ namespace OOP_Project
             this.logo_pb = new System.Windows.Forms.PictureBox();
             this.editUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.editMovie_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.movieEditor_panel = new System.Windows.Forms.Panel();
-            this.movieFillUp_panel = new System.Windows.Forms.Panel();
-            this.trailerUrl_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.poster_pb = new System.Windows.Forms.PictureBox();
-            this.movieControlBtn_panel = new System.Windows.Forms.Panel();
-            this.movieEditor_lbl = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.userEditor_panel = new System.Windows.Forms.Panel();
             this.dataGrid_panel = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.users_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -66,9 +59,7 @@ namespace OOP_Project
             this.usertype_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.age_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.userGenre_clb = new System.Windows.Forms.CheckedListBox();
-            this.securityQuestion_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.userID_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.securityAnswer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.emailVerified_cb = new System.Windows.Forms.CheckBox();
             this.Birthdate_dtp = new System.Windows.Forms.DateTimePicker();
             this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -80,24 +71,33 @@ namespace OOP_Project
             this.deleteUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.usersEditor_lbl = new System.Windows.Forms.Label();
             this.userSearchBox_tb = new System.Windows.Forms.TextBox();
+            this.movieEditor_panel = new System.Windows.Forms.Panel();
+            this.movieFillUp_panel = new System.Windows.Forms.Panel();
+            this.trailerUrl_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.poster_pb = new System.Windows.Forms.PictureBox();
+            this.movieControlBtn_panel = new System.Windows.Forms.Panel();
+            this.movieEditor_lbl = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.securityAnswer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.securityQuestion_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.movies_dgv)).BeginInit();
             this.Admin_panel.SuspendLayout();
             this.buttonDock_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
-            this.movieEditor_panel.SuspendLayout();
-            this.movieFillUp_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
-            this.movieControlBtn_panel.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.userEditor_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_panel)).BeginInit();
             this.dataGrid_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.users_dgv)).BeginInit();
             this.fillup_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
             this.controlBtn_panel.SuspendLayout();
+            this.movieEditor_panel.SuspendLayout();
+            this.movieFillUp_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
+            this.movieControlBtn_panel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
             this.SuspendLayout();
             // 
             // releaseYear_dtp
@@ -127,8 +127,8 @@ namespace OOP_Project
             this.movies_dgv.AllowUserToAddRows = false;
             this.movies_dgv.AllowUserToDeleteRows = false;
             this.movies_dgv.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.movies_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.movies_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.movies_dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.movies_dgv.ColumnHeadersHeight = 40;
             this.movies_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -138,11 +138,11 @@ namespace OOP_Project
             this.movies_dgv.Name = "movies_dgv";
             this.movies_dgv.ReadOnly = true;
             this.movies_dgv.RowHeadersVisible = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            this.movies_dgv.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.movies_dgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.movies_dgv.RowTemplate.Height = 35;
             this.movies_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.movies_dgv.Size = new System.Drawing.Size(977, 275);
@@ -431,89 +431,6 @@ namespace OOP_Project
             this.editMovie_btn.Values.Text = "Edit Movie";
             this.editMovie_btn.Click += new System.EventHandler(this.editMovie_btn_Click);
             // 
-            // movieEditor_panel
-            // 
-            this.movieEditor_panel.Controls.Add(this.movieFillUp_panel);
-            this.movieEditor_panel.Controls.Add(this.movieControlBtn_panel);
-            this.movieEditor_panel.Controls.Add(this.panel1);
-            this.movieEditor_panel.Controls.Add(this.searchBox_tb);
-            this.movieEditor_panel.Location = new System.Drawing.Point(187, 3);
-            this.movieEditor_panel.Name = "movieEditor_panel";
-            this.movieEditor_panel.Size = new System.Drawing.Size(1024, 665);
-            this.movieEditor_panel.TabIndex = 88;
-            this.movieEditor_panel.Visible = false;
-            // 
-            // movieFillUp_panel
-            // 
-            this.movieFillUp_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.movieFillUp_panel.Controls.Add(this.title_tb);
-            this.movieFillUp_panel.Controls.Add(this.posterUrl_tb);
-            this.movieFillUp_panel.Controls.Add(this.trailerUrl_tb);
-            this.movieFillUp_panel.Controls.Add(this.genre_clb);
-            this.movieFillUp_panel.Controls.Add(this.releaseYear_dtp);
-            this.movieFillUp_panel.Controls.Add(this.poster_pb);
-            this.movieFillUp_panel.Controls.Add(this.description_tb);
-            this.movieFillUp_panel.Location = new System.Drawing.Point(224, 26);
-            this.movieFillUp_panel.Name = "movieFillUp_panel";
-            this.movieFillUp_panel.Size = new System.Drawing.Size(775, 302);
-            this.movieFillUp_panel.TabIndex = 92;
-            // 
-            // trailerUrl_tb
-            // 
-            this.trailerUrl_tb.Location = new System.Drawing.Point(213, 111);
-            this.trailerUrl_tb.Multiline = true;
-            this.trailerUrl_tb.Name = "trailerUrl_tb";
-            this.trailerUrl_tb.Size = new System.Drawing.Size(290, 44);
-            this.trailerUrl_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
-            this.trailerUrl_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.trailerUrl_tb.TabIndex = 90;
-            this.trailerUrl_tb.Text = "Enter trailer URL...";
-            this.trailerUrl_tb.Enter += new System.EventHandler(this.trailerUrl_tb_Enter);
-            this.trailerUrl_tb.Leave += new System.EventHandler(this.trailerUrl_tb_Leave);
-            // 
-            // poster_pb
-            // 
-            this.poster_pb.BackColor = System.Drawing.Color.White;
-            this.poster_pb.Image = global::OOP_Project.Properties.Resources._1_2;
-            this.poster_pb.Location = new System.Drawing.Point(21, 20);
-            this.poster_pb.Name = "poster_pb";
-            this.poster_pb.Size = new System.Drawing.Size(180, 255);
-            this.poster_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.poster_pb.TabIndex = 83;
-            this.poster_pb.TabStop = false;
-            // 
-            // movieControlBtn_panel
-            // 
-            this.movieControlBtn_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.movieControlBtn_panel.Controls.Add(this.remove_btn);
-            this.movieControlBtn_panel.Controls.Add(this.Clear_btn);
-            this.movieControlBtn_panel.Controls.Add(this.update_btn);
-            this.movieControlBtn_panel.Controls.Add(this.movieEditor_lbl);
-            this.movieControlBtn_panel.Controls.Add(this.insert_btn);
-            this.movieControlBtn_panel.Location = new System.Drawing.Point(22, 26);
-            this.movieControlBtn_panel.Name = "movieControlBtn_panel";
-            this.movieControlBtn_panel.Size = new System.Drawing.Size(180, 302);
-            this.movieControlBtn_panel.TabIndex = 91;
-            // 
-            // movieEditor_lbl
-            // 
-            this.movieEditor_lbl.AutoSize = true;
-            this.movieEditor_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold);
-            this.movieEditor_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.movieEditor_lbl.Location = new System.Drawing.Point(17, 24);
-            this.movieEditor_lbl.Name = "movieEditor_lbl";
-            this.movieEditor_lbl.Size = new System.Drawing.Size(149, 26);
-            this.movieEditor_lbl.TabIndex = 88;
-            this.movieEditor_lbl.Text = "Movie Editor";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.movies_dgv);
-            this.panel1.Location = new System.Drawing.Point(22, 374);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(977, 275);
-            this.panel1.TabIndex = 89;
-            // 
             // userEditor_panel
             // 
             this.userEditor_panel.Controls.Add(this.dataGrid_panel);
@@ -655,18 +572,6 @@ namespace OOP_Project
             this.userGenre_clb.Size = new System.Drawing.Size(454, 124);
             this.userGenre_clb.TabIndex = 86;
             // 
-            // securityQuestion_cmb
-            // 
-            this.securityQuestion_cmb.DropDownWidth = 183;
-            this.securityQuestion_cmb.Location = new System.Drawing.Point(30, 210);
-            this.securityQuestion_cmb.Name = "securityQuestion_cmb";
-            this.securityQuestion_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.securityQuestion_cmb.Size = new System.Drawing.Size(213, 20);
-            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
-            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securityQuestion_cmb.TabIndex = 88;
-            this.securityQuestion_cmb.Text = "Security Question";
-            // 
             // userID_tb
             // 
             this.userID_tb.Location = new System.Drawing.Point(30, 56);
@@ -678,18 +583,6 @@ namespace OOP_Project
             this.userID_tb.Text = "Enter user ID...";
             this.userID_tb.Enter += new System.EventHandler(this.userID_tb_Enter);
             this.userID_tb.Leave += new System.EventHandler(this.userID_tb_Leave);
-            // 
-            // securityAnswer_tb
-            // 
-            this.securityAnswer_tb.Location = new System.Drawing.Point(30, 244);
-            this.securityAnswer_tb.Name = "securityAnswer_tb";
-            this.securityAnswer_tb.Size = new System.Drawing.Size(213, 26);
-            this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
-            this.securityAnswer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securityAnswer_tb.TabIndex = 90;
-            this.securityAnswer_tb.Text = "Enter security answer...";
-            this.securityAnswer_tb.Enter += new System.EventHandler(this.securityAnswer_tb_Enter);
-            this.securityAnswer_tb.Leave += new System.EventHandler(this.securityAnswer_tb_Leave);
             // 
             // emailVerified_cb
             // 
@@ -902,6 +795,113 @@ namespace OOP_Project
             this.userSearchBox_tb.Enter += new System.EventHandler(this.userSearchBox_tb_Enter);
             this.userSearchBox_tb.Leave += new System.EventHandler(this.userSearchBox_tb_Leave);
             // 
+            // movieEditor_panel
+            // 
+            this.movieEditor_panel.Controls.Add(this.movieFillUp_panel);
+            this.movieEditor_panel.Controls.Add(this.movieControlBtn_panel);
+            this.movieEditor_panel.Controls.Add(this.panel1);
+            this.movieEditor_panel.Controls.Add(this.searchBox_tb);
+            this.movieEditor_panel.Location = new System.Drawing.Point(187, 3);
+            this.movieEditor_panel.Name = "movieEditor_panel";
+            this.movieEditor_panel.Size = new System.Drawing.Size(1024, 665);
+            this.movieEditor_panel.TabIndex = 88;
+            this.movieEditor_panel.Visible = false;
+            // 
+            // movieFillUp_panel
+            // 
+            this.movieFillUp_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.movieFillUp_panel.Controls.Add(this.title_tb);
+            this.movieFillUp_panel.Controls.Add(this.posterUrl_tb);
+            this.movieFillUp_panel.Controls.Add(this.trailerUrl_tb);
+            this.movieFillUp_panel.Controls.Add(this.genre_clb);
+            this.movieFillUp_panel.Controls.Add(this.releaseYear_dtp);
+            this.movieFillUp_panel.Controls.Add(this.poster_pb);
+            this.movieFillUp_panel.Controls.Add(this.description_tb);
+            this.movieFillUp_panel.Location = new System.Drawing.Point(224, 26);
+            this.movieFillUp_panel.Name = "movieFillUp_panel";
+            this.movieFillUp_panel.Size = new System.Drawing.Size(775, 302);
+            this.movieFillUp_panel.TabIndex = 92;
+            // 
+            // trailerUrl_tb
+            // 
+            this.trailerUrl_tb.Location = new System.Drawing.Point(213, 111);
+            this.trailerUrl_tb.Multiline = true;
+            this.trailerUrl_tb.Name = "trailerUrl_tb";
+            this.trailerUrl_tb.Size = new System.Drawing.Size(290, 44);
+            this.trailerUrl_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
+            this.trailerUrl_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.trailerUrl_tb.TabIndex = 90;
+            this.trailerUrl_tb.Text = "Enter trailer URL...";
+            this.trailerUrl_tb.Enter += new System.EventHandler(this.trailerUrl_tb_Enter);
+            this.trailerUrl_tb.Leave += new System.EventHandler(this.trailerUrl_tb_Leave);
+            // 
+            // poster_pb
+            // 
+            this.poster_pb.BackColor = System.Drawing.Color.White;
+            this.poster_pb.Image = global::OOP_Project.Properties.Resources._1_2;
+            this.poster_pb.Location = new System.Drawing.Point(21, 20);
+            this.poster_pb.Name = "poster_pb";
+            this.poster_pb.Size = new System.Drawing.Size(180, 255);
+            this.poster_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.poster_pb.TabIndex = 83;
+            this.poster_pb.TabStop = false;
+            // 
+            // movieControlBtn_panel
+            // 
+            this.movieControlBtn_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.movieControlBtn_panel.Controls.Add(this.remove_btn);
+            this.movieControlBtn_panel.Controls.Add(this.Clear_btn);
+            this.movieControlBtn_panel.Controls.Add(this.update_btn);
+            this.movieControlBtn_panel.Controls.Add(this.movieEditor_lbl);
+            this.movieControlBtn_panel.Controls.Add(this.insert_btn);
+            this.movieControlBtn_panel.Location = new System.Drawing.Point(22, 26);
+            this.movieControlBtn_panel.Name = "movieControlBtn_panel";
+            this.movieControlBtn_panel.Size = new System.Drawing.Size(180, 302);
+            this.movieControlBtn_panel.TabIndex = 91;
+            // 
+            // movieEditor_lbl
+            // 
+            this.movieEditor_lbl.AutoSize = true;
+            this.movieEditor_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold);
+            this.movieEditor_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.movieEditor_lbl.Location = new System.Drawing.Point(17, 24);
+            this.movieEditor_lbl.Name = "movieEditor_lbl";
+            this.movieEditor_lbl.Size = new System.Drawing.Size(149, 26);
+            this.movieEditor_lbl.TabIndex = 88;
+            this.movieEditor_lbl.Text = "Movie Editor";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.movies_dgv);
+            this.panel1.Location = new System.Drawing.Point(22, 374);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(977, 275);
+            this.panel1.TabIndex = 89;
+            // 
+            // securityAnswer_tb
+            // 
+            this.securityAnswer_tb.Location = new System.Drawing.Point(30, 244);
+            this.securityAnswer_tb.Name = "securityAnswer_tb";
+            this.securityAnswer_tb.Size = new System.Drawing.Size(213, 26);
+            this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
+            this.securityAnswer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.securityAnswer_tb.TabIndex = 90;
+            this.securityAnswer_tb.Text = "Enter security answer...";
+            this.securityAnswer_tb.Enter += new System.EventHandler(this.securityAnswer_tb_Enter);
+            this.securityAnswer_tb.Leave += new System.EventHandler(this.securityAnswer_tb_Leave);
+            // 
+            // securityQuestion_cmb
+            // 
+            this.securityQuestion_cmb.DropDownWidth = 183;
+            this.securityQuestion_cmb.Location = new System.Drawing.Point(30, 210);
+            this.securityQuestion_cmb.Name = "securityQuestion_cmb";
+            this.securityQuestion_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.securityQuestion_cmb.Size = new System.Drawing.Size(213, 20);
+            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
+            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.securityQuestion_cmb.TabIndex = 88;
+            this.securityQuestion_cmb.Text = "Security Question";
+            // 
             // AdminControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -915,14 +915,6 @@ namespace OOP_Project
             this.Admin_panel.ResumeLayout(false);
             this.buttonDock_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
-            this.movieEditor_panel.ResumeLayout(false);
-            this.movieEditor_panel.PerformLayout();
-            this.movieFillUp_panel.ResumeLayout(false);
-            this.movieFillUp_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
-            this.movieControlBtn_panel.ResumeLayout(false);
-            this.movieControlBtn_panel.PerformLayout();
-            this.panel1.ResumeLayout(false);
             this.userEditor_panel.ResumeLayout(false);
             this.userEditor_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_panel)).EndInit();
@@ -931,10 +923,18 @@ namespace OOP_Project
             this.fillup_panel.ResumeLayout(false);
             this.fillup_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
             this.controlBtn_panel.ResumeLayout(false);
             this.controlBtn_panel.PerformLayout();
+            this.movieEditor_panel.ResumeLayout(false);
+            this.movieEditor_panel.PerformLayout();
+            this.movieFillUp_panel.ResumeLayout(false);
+            this.movieFillUp_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
+            this.movieControlBtn_panel.ResumeLayout(false);
+            this.movieControlBtn_panel.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -966,8 +966,6 @@ namespace OOP_Project
         private System.Windows.Forms.CheckedListBox userGenre_clb;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox age_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox email_tb;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox securityAnswer_tb;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox securityQuestion_cmb;
         private System.Windows.Forms.Label Genre_lbl;
         private System.Windows.Forms.DateTimePicker Birthdate_dtp;
         private ComponentFactory.Krypton.Toolkit.KryptonButton verify_btn;
@@ -987,5 +985,7 @@ namespace OOP_Project
         private KryptonTextBox trailerUrl_tb;
         private Panel movieControlBtn_panel;
         private Panel movieFillUp_panel;
+        private KryptonComboBox securityQuestion_cmb;
+        private KryptonTextBox securityAnswer_tb;
     }
 }

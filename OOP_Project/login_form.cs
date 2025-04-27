@@ -158,9 +158,10 @@ namespace OOP_Project
 
         private void forgotPassword_llbl_Click(object sender, EventArgs e)
         {
+            this.Hide();
             account_recovery_form recoveryForm = new account_recovery_form();
             recoveryForm.Show();
-            this.Hide();
+
         }
 
         private void userName_tb_Enter(object sender, EventArgs e)

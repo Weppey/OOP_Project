@@ -152,6 +152,7 @@
             this.code_tb.Name = "code_tb";
             this.code_tb.Size = new System.Drawing.Size(157, 25);
             this.code_tb.TabIndex = 41;
+            this.code_tb.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.code_tb.Enter += new System.EventHandler(this.code_tb_Enter);
             this.code_tb.Leave += new System.EventHandler(this.code_tb_Leave);
             // 

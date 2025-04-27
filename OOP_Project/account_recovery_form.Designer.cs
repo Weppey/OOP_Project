@@ -99,7 +99,7 @@
             this.confirm_btn.StateCommon.Content.Image.Effect = ComponentFactory.Krypton.Toolkit.PaletteImageEffect.Disabled;
             this.confirm_btn.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
             this.confirm_btn.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, 5, -1);
-            this.confirm_btn.TabIndex = 59;
+            this.confirm_btn.TabIndex = 6;
             this.confirm_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_right_162;
             this.confirm_btn.Values.Text = "Confirm";
             this.confirm_btn.Click += new System.EventHandler(this.confirm_btn_Click);
@@ -113,7 +113,7 @@
             this.email_tb.Location = new System.Drawing.Point(114, 205);
             this.email_tb.Name = "email_tb";
             this.email_tb.Size = new System.Drawing.Size(151, 22);
-            this.email_tb.TabIndex = 48;
+            this.email_tb.TabIndex = 1;
             // 
             // logo_pb
             // 
@@ -150,6 +150,7 @@
             this.send_llbl.TabIndex = 47;
             this.send_llbl.TabStop = true;
             this.send_llbl.Text = "Click here to send a recovery code";
+            this.send_llbl.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.send_llbl_LinkClicked);
             // 
             // recoveryC_tb
             // 
@@ -162,7 +163,7 @@
             this.recoveryC_tb.Name = "recoveryC_tb";
             this.recoveryC_tb.PasswordChar = '*';
             this.recoveryC_tb.Size = new System.Drawing.Size(146, 25);
-            this.recoveryC_tb.TabIndex = 20;
+            this.recoveryC_tb.TabIndex = 5;
             // 
             // recovery_lbl
             // 
@@ -185,7 +186,7 @@
             this.confirmpassword_tb.Name = "confirmpassword_tb";
             this.confirmpassword_tb.PasswordChar = '*';
             this.confirmpassword_tb.Size = new System.Drawing.Size(151, 22);
-            this.confirmpassword_tb.TabIndex = 14;
+            this.confirmpassword_tb.TabIndex = 3;
             // 
             // newpassword_tb
             // 
@@ -197,7 +198,7 @@
             this.newpassword_tb.Name = "newpassword_tb";
             this.newpassword_tb.PasswordChar = '*';
             this.newpassword_tb.Size = new System.Drawing.Size(151, 22);
-            this.newpassword_tb.TabIndex = 12;
+            this.newpassword_tb.TabIndex = 2;
             // 
             // Lbl_message
             // 

@@ -361,7 +361,7 @@ namespace OOP_Project
 
         private void LoadUsers()
         {
-            string query = "SELECT user_id, username, email, age, gender, birthdate, preferences, email_verified, user_type, signup_date FROM users"; // Specify only the columns you need
+            string query = "SELECT user_id, username, email, age, gender, birthdate, preferences, email_verified, user_type, signup_date, signup_date, security_question, security_answer FROM users"; // Specify only the columns you need
             MySqlCommand cmd = new MySqlCommand(query, connection);
             MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
             usersTable.Clear();
@@ -524,6 +524,9 @@ namespace OOP_Project
                 email_tb.Text = row.Cells["email"].Value.ToString();
                 age_tb.Text = row.Cells["age"].Value.ToString();
                 gender_cmb.SelectedItem = row.Cells["gender"].Value.ToString();
+                securityQuestion_cmb.SelectedItem = row.Cells["security_question"].Value.ToString();
+                securityAnswer_tb.Text = row.Cells["security_answer"].Value.ToString();
+
 
                 // Load genre preferences (comma separated)
                 string preferences = row.Cells["preferences"].Value.ToString();

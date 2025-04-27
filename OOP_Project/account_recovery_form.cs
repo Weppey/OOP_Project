@@ -51,57 +51,7 @@ namespace OOP_Project
             panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
         }
 
-        private void send_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            string email = email_tb.Text;
 
-
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                MessageBox.Show("Please enter your email.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // Optional: Check if email format is valid (basic check)
-            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-            {
-                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT username FROM users WHERE email = @Email";
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    cmd.Parameters.AddWithValue("@Email", email);
-
-                    object result = cmd.ExecuteScalar();
-
-                    if (result != null)
-                    {
-                        // Generate and send the recovery code
-                        recoveryCode = GenerateRecoveryCode();
-                        SendRecoveryEmail(email, recoveryCode);
-                        MessageBox.Show("A recovery code has been sent to your email.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        // Start cooldown
-                        send_llbl.Enabled = false; // Disable the LinkLabel
-                        StartCooldown();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Email not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private async void StartCooldown()
         {
@@ -151,11 +101,11 @@ namespace OOP_Project
         <div style='max-width: 600px; margin: auto; background-color: #1c1c1c; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5);'>
             <h1 style='color: #e50914; text-align: center;'>Remmm</h1>
             <h2 style='color: #ffffff; text-align: center;'>Password Recovery</h2>
-            <p style='text-align: center;'>We've received a request to reset your password. Use the code below to continue:</p>
+            <p style='color: #ffffff;text-align: center;'>We've received a request to reset your password. Use the code below to continue:</p>
             <div style='margin: 30px auto; width: fit-content; padding: 15px 30px; background-color: #e50914; color: #ffffff; font-size: 28px; font-weight: bold; border-radius: 6px; text-align: center;'>
                 {recoveryCode}
             </div>
-            <p style='text-align: center;'>Didn't request this? Just ignore this message.</p>
+            <p style='color: #ffffff;text-align: center;'>Didn't request this? Just ignore this message.</p>
             <hr style='border-color: #333333; margin: 30px 0;'>
             <p style='font-size: 12px; text-align: center; color: #aaaaaa;'>
                 Need help? Contact us at 
@@ -300,5 +250,56 @@ namespace OOP_Project
             LoginForm.Show();
         }
 
+        private void send_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            string email = email_tb.Text;
+
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                MessageBox.Show("Please enter your email.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Optional: Check if email format is valid (basic check)
+            if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT username FROM users WHERE email = @Email";
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@Email", email);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        // Generate and send the recovery code
+                        recoveryCode = GenerateRecoveryCode();
+                        SendRecoveryEmail(email, recoveryCode);
+                        MessageBox.Show("A recovery code has been sent to your email.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Start cooldown
+                        send_llbl.Enabled = false; // Disable the LinkLabel
+                        StartCooldown();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Email not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

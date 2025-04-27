@@ -68,11 +68,11 @@ namespace OOP_Project
         <div style='max-width: 600px; margin: auto; background-color: #000000; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5);'>
             <h1 style='color: #e50914; text-align: center; font-size: 36px;'>Remmm</h1>
             <h2 style='color: #ffffff; text-align: center;'>Verify Your Email</h2>
-            <p style='text-align: center; font-size: 16px;'>To continue using Remmm, please verify your email by entering the code below:</p>
+            <p style='color: #ffffff; text-align: center; font-size: 16px;'>To continue using Remmm, please verify your email by entering the code below:</p>
             <div style='margin: 30px auto; width: fit-content; padding: 15px 30px; background-color: #e50914; color: #ffffff; font-size: 28px; font-weight: bold; border-radius: 6px; text-align: center;'>
                 {confirmationCode}
             </div>
-            <p style='text-align: center; font-size: 16px;'>If you did not request this verification, feel free to ignore this email.</p>
+            <p style='color: #ffffff;text-align: center; font-size: 16px;'>If you did not request this verification, feel free to ignore this email.</p>
             <hr style='border-color: #333333; margin: 30px 0;'>
             <p style='font-size: 12px; text-align: center; color: #aaaaaa;'>
                 Need help? Contact us at 
