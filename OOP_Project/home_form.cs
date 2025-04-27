@@ -11,7 +11,9 @@
         using System.IO;
         using System.Collections.Generic;
         using System.Linq;
-        using MySqlX.XDevAPI;
+using System.Net.Http;
+
+using MySqlX.XDevAPI;
 using System.Security.Cryptography.X509Certificates;
 
 
@@ -87,6 +89,7 @@ namespace OOP_Project
                 tooltip.SetToolTip(search_tb, "Search your movie");
                 tooltip.SetToolTip(profile_btn, "Profile");
         }
+        
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
             GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
@@ -126,6 +129,7 @@ namespace OOP_Project
             {
                 MessageBox.Show("Please log in first.");
             }
+
 
             recommendedMovie_flp.FlowDirection = FlowDirection.LeftToRight;
             recommendedMovie_flp.WrapContents = true;
@@ -208,7 +212,7 @@ namespace OOP_Project
         }
         private HashSet<int> displayedMovies = new HashSet<int>(); // Track displayed movie IDs
 
-        private void DisplayMoviesByGenre(List<string> genres)
+        private async void DisplayMoviesByGenre(List<string> genres)
         {
             if (genres == null || genres.Count == 0)
             {
@@ -254,21 +258,33 @@ namespace OOP_Project
                         BorderStyle = BorderStyle.FixedSingle
                     };
 
-                    try
+                    // Load cached image URLs
+                    var cachedImages = StayLoggedIn.GetCachedImageUrls();
+
+                    // Check if the image URL is cached
+                    if (!string.IsNullOrEmpty(movie.ImageUrl) && cachedImages.Contains(movie.ImageUrl))
                     {
-                        if (!string.IsNullOrEmpty(movie.ImageUrl))
-                        {
-                            poster.Load(movie.ImageUrl);
-                        }
-                        else
-                        {
-                            poster.Image = Properties.Resources.fallback;
-                        }
+                        // Load the image from the cache if it is already cached
+                        var image = await Task.Run(() => LoadImageFromCache(movie.ImageUrl));
+                        poster.Image = image ?? Properties.Resources.fallback;
                     }
-                    catch
+                    else if (!string.IsNullOrEmpty(movie.ImageUrl))
                     {
+                        // Download and cache the image if not in cache
+                        var image = await Task.Run(() => DownloadImageAndCache(movie.ImageUrl));
+                        poster.Image = image ?? Properties.Resources.fallback;
+
+                        // Add to the cached images
+                        var currentCachedImages = cachedImages.ToList();
+                        currentCachedImages.Add(movie.ImageUrl);
+                        StayLoggedIn.SaveCachedImages(currentCachedImages.ToArray()); // Save updated cache
+                    }
+                    else
+                    {
+                        // Use fallback image if no URL is available
                         poster.Image = Properties.Resources.fallback;
                     }
+
 
                     // Add poster to the movie panel
                     moviePanel.Controls.Add(poster);
@@ -295,7 +311,7 @@ namespace OOP_Project
             }
         }
 
-        private void DisplayAllMovies()
+        private async void DisplayAllMovies()
         {
             allMovie_flp.Controls.Clear(); // Clear the previous movies
 
@@ -332,17 +348,39 @@ namespace OOP_Project
                 // Try to load the movie poster image
                 try
                 {
+                    // Load cached image URLs
+                    var cachedImages = StayLoggedIn.GetCachedImageUrls();
+
                     if (!string.IsNullOrEmpty(movie.ImageUrl))
                     {
-                        poster.Load(movie.ImageUrl);
+                        // Check if the image is already cached
+                        if (cachedImages.Contains(movie.ImageUrl))
+                        {
+                            // Load the image from the cache if it is already cached
+                            var image = LoadImageFromCache(movie.ImageUrl);
+                            poster.Image = image ?? Properties.Resources.fallback;
+                        }
+                        else
+                        {
+                            // Download and cache the image if not in cache
+                            var image = await DownloadImageAndCache(movie.ImageUrl);
+                            poster.Image = image ?? Properties.Resources.fallback;
+
+                            // Add to the cached images and save the cache
+                            var currentCachedImages = cachedImages.ToList();
+                            currentCachedImages.Add(movie.ImageUrl);
+                            StayLoggedIn.SaveCachedImages(currentCachedImages.ToArray()); // Save updated cache
+                        }
                     }
                     else
                     {
                         poster.Image = Properties.Resources.fallback;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
+                    // Log the error to help debug if needed
+                    Console.WriteLine("Error loading movie poster: " + ex.Message);
                     poster.Image = Properties.Resources.fallback;
                 }
 
@@ -366,10 +404,12 @@ namespace OOP_Project
                         ShowMovieDetails(movie);
                     };
                 }
+
                 // Add the movie panel to the flow layout panel
                 allMovie_flp.Controls.Add(moviePanel);
             }
         }
+
         private List<movie> GetMovies(int offset, int limit)
         {
             List<movie> movies = new List<movie>();
@@ -567,20 +607,30 @@ namespace OOP_Project
         private void close_pb_Click(object sender, EventArgs e)
         {
             string msg = "Do you want to leave this page?";
-            string title = "Confirm Naviagtion";
+            string title = "Confirm Navigation";
             MessageBoxButtons btn = MessageBoxButtons.YesNo;
             MessageBoxIcon icon = MessageBoxIcon.Question;
             DialogResult result = MessageBox.Show(msg, title, btn, icon);
+
             if (result == DialogResult.Yes)
             {
+                // Ensure the session is saved before exiting
+                var currentSession = StayLoggedIn.LoadUserSession();
+                if (currentSession.HasValue)
+                {
+                    StayLoggedIn.SaveUserSession(currentSession.Value.userType, currentSession.Value.userId);
+                }
+
+                // Close the application
                 Application.Exit();
             }
             else
             {
-                return;
+                return; // Do nothing if user cancels the close
             }
-
         }
+
+
         private void close_pb_MouseEnter(object sender, EventArgs e)
         {
             close_pb.BackColor = Color.FromArgb(226, 0, 39);
@@ -614,8 +664,6 @@ namespace OOP_Project
         private void popular_btn_Click(object sender, EventArgs e)
         {
             form_lbl.Text = "POPULAR";
-
-            DisplayAllMovies();
             
             List<string> genres = GetUserGenres(currentUserId);
             if (genres != null && genres.Count > 0)
@@ -657,25 +705,30 @@ namespace OOP_Project
 
             if (result == DialogResult.Yes)
             {
+                // Save the session if needed
+                var currentSession = StayLoggedIn.LoadUserSession();
+                if (currentSession.HasValue)
+                {
+                    StayLoggedIn.SaveUserSession(currentSession.Value.userType, currentSession.Value.userId);
+                }
 
+                // Clear the session
                 StayLoggedIn.ClearSession();
 
-                // Use a new process to restart the app
-                System.Diagnostics.Process.Start(Application.ExecutablePath);
-
-                // Then close the current app entirely
-                Application.Exit();
-
-
+                // Hide the current home form and show the login form
+                this.Hide();
                 login_form loginForm = new login_form();
-                loginForm.Show();
-            }
+                loginForm.ShowDialog(); // Show the login form modally
 
+                // After the login form is closed, close the current app (home form)
+                this.Close();
+            }
             else
             {
-                return;
+                return; // Do nothing if user cancels
             }
         }
+
         private void search_list_SelectedIndexChanged(object sender, EventArgs e)
         {
             //seacrch
@@ -694,7 +747,7 @@ namespace OOP_Project
             this.ActiveControl = null; // Remove focus from search_txt, so the cursor disappears
         }
         //search
-        private void DisplaySingleMovie(movie movie, FlowLayoutPanel targetPanel)
+        private async void DisplaySingleMovie(movie movie, FlowLayoutPanel targetPanel)
         {
             Panel moviePanel = new Panel
             {
@@ -714,24 +767,33 @@ namespace OOP_Project
                 BorderStyle = BorderStyle.FixedSingle
             };
 
-            try
+            // Load cached image URLs
+            var cachedImages = StayLoggedIn.GetCachedImageUrls();
+
+            // Check if the image URL is cached
+            if (!string.IsNullOrEmpty(movie.ImageUrl) && cachedImages.Contains(movie.ImageUrl))
             {
-                // Load the movie poster image if URL is provided
-                if (!string.IsNullOrEmpty(movie.ImageUrl))
-                {
-                    poster.Load(movie.ImageUrl);
-                }
-                else
-                {
-                    // Use fallback image if no URL is available
-                    poster.Image = Properties.Resources.fallback;
-                }
+                // Load the image from the cache if it is already cached
+                var image = await Task.Run(() => LoadImageFromCache(movie.ImageUrl));
+                poster.Image = image ?? Properties.Resources.fallback;
             }
-            catch
+            else if (!string.IsNullOrEmpty(movie.ImageUrl))
             {
-                // Use fallback image in case of an error loading the image
+                // Download and cache the image if not in cache
+                var image = await Task.Run(() => DownloadImageAndCache(movie.ImageUrl));
+                poster.Image = image ?? Properties.Resources.fallback;
+
+                // Add to the cached images
+                var currentCachedImages = cachedImages.ToList();
+                currentCachedImages.Add(movie.ImageUrl);
+                StayLoggedIn.SaveCachedImages(currentCachedImages.ToArray()); // Save updated cache
+            }
+            else
+            {
+                // Use fallback image if no URL is available
                 poster.Image = Properties.Resources.fallback;
             }
+
             // Add poster to the movie panel
             moviePanel.Controls.Add(poster);
 
@@ -739,9 +801,87 @@ namespace OOP_Project
             moviePanel.Click += (s, e) => ShowMovieDetails(movie);
             poster.Click += (s, e) => ShowMovieDetails(movie);
 
-            moviePanel.Controls.Add(poster);
             targetPanel.Controls.Add(moviePanel);
         }
+
+        private Image LoadImageFromCache(string imageUrl)
+        {
+            try
+            {
+                string cacheFolder = Path.Combine(Application.StartupPath, "ImageCache");
+                string imageFileName = Path.GetFileName(imageUrl);
+                string cachePath = Path.Combine(cacheFolder, imageFileName);
+
+                // Ensure the cache folder exists
+                if (File.Exists(cachePath))
+                {
+                    return Image.FromFile(cachePath);
+                }
+            }
+            catch
+            {
+                // If there's an error, fallback to default image
+                return Properties.Resources.fallback;
+            }
+
+            return null; // Return null if not cached
+        }
+
+        private async Task<Image> DownloadImageAndCache(string imageUrl)
+        {
+            string cacheFolder = Path.Combine(Application.StartupPath, "ImageCache");
+            string imageFileName = Path.GetFileName(imageUrl);
+            string cachePath = Path.Combine(cacheFolder, imageFileName);
+
+            // Ensure the cache folder exists
+            Directory.CreateDirectory(cacheFolder);
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Download the image as bytes
+                    var imageBytes = await client.GetByteArrayAsync(imageUrl);
+
+                    // Save the image to the cache
+                    File.WriteAllBytes(cachePath, imageBytes);
+
+                    // Load and return the image from the cache
+                    using (var ms = new MemoryStream(imageBytes))
+                    {
+                        return Image.FromStream(ms);
+                    }
+                }
+            }
+            catch
+            {
+                // Fallback to default image in case of error
+                return Properties.Resources.fallback;
+            }
+        }
+
+
+        // Async method to load the image and set it to the PictureBox
+        private async Task LoadImageAsync(string imageUrl, PictureBox pictureBox)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var imageBytes = await client.GetByteArrayAsync(imageUrl);
+                    using (var ms = new MemoryStream(imageBytes))
+                    {
+                        pictureBox.Image = Image.FromStream(ms);
+                    }
+                }
+            }
+            catch
+            {
+                // Fallback to default image in case of any error
+                pictureBox.Image = Properties.Resources.fallback;
+            }
+        }
+
 
         private bool IsMovieAlreadyInPanel(movie movie, FlowLayoutPanel panel)
         {
@@ -952,7 +1092,7 @@ namespace OOP_Project
             }
 
         }
-        private void DisplayMovieInRecentlySearch(movie movie)
+        private async void DisplayMovieInRecentlySearch(movie movie)
         {
             // Check for existing panel by movie ID
             foreach (Control control in recentlysearch_flp.Controls)
@@ -984,21 +1124,33 @@ namespace OOP_Project
                 BorderStyle = BorderStyle.FixedSingle
             };
 
-            try
+            // Load cached image URLs
+            var cachedImages = StayLoggedIn.GetCachedImageUrls();
+
+            // Check if the image URL is cached
+            if (!string.IsNullOrEmpty(movie.ImageUrl) && cachedImages.Contains(movie.ImageUrl))
             {
-                if (!string.IsNullOrEmpty(movie.ImageUrl))
-                {
-                    poster.Load(movie.ImageUrl);
-                }
-                else
-                {
-                    poster.Image = Properties.Resources.fallback;
-                }
+                // Load the image from the cache if it is already cached
+                var image = await Task.Run(() => LoadImageFromCache(movie.ImageUrl));
+                poster.Image = image ?? Properties.Resources.fallback;
             }
-            catch
+            else if (!string.IsNullOrEmpty(movie.ImageUrl))
             {
+                // Download and cache the image if not in cache
+                var image = await Task.Run(() => DownloadImageAndCache(movie.ImageUrl));
+                poster.Image = image ?? Properties.Resources.fallback;
+
+                // Add to the cached images
+                var currentCachedImages = cachedImages.ToList();
+                currentCachedImages.Add(movie.ImageUrl);
+                StayLoggedIn.SaveCachedImages(currentCachedImages.ToArray()); // Save updated cache
+            }
+            else
+            {
+                // Use fallback image if no URL is available
                 poster.Image = Properties.Resources.fallback;
             }
+
 
             moviePanel.Controls.Add(poster);
 
@@ -1009,6 +1161,7 @@ namespace OOP_Project
             recentlysearch_flp.Controls.Add(moviePanel);
 
         }
+
         private void SaveRecentSearch(int userId, movie movie)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
@@ -1076,7 +1229,6 @@ namespace OOP_Project
             {
                 AdminControl_panel.Visible = false;
                 //Reload the home_form
-                DisplayAllMovies();
                
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -1112,7 +1264,6 @@ namespace OOP_Project
             else
             {
                 userProfile_panel.Visible = false;
-                DisplayAllMovies();
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)

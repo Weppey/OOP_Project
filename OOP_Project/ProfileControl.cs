@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Drawing.Printing;
 using System.Web.UI.HtmlControls;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace OOP_Project
 {
@@ -43,7 +45,7 @@ namespace OOP_Project
         private void userProfile_cs_Load(object sender, EventArgs e)
         {
             connection = new MySqlConnection(connectionString);
-            DisplayRecentlyViewedMovies();
+
             Reload();
 
             CurvePanel(profileDetails_panel, 30);
@@ -307,7 +309,7 @@ namespace OOP_Project
 
 
   
-        public void DisplayRecentlyViewedMovies()
+        public async void DisplayRecentlyViewedMovies()
         {
             home_form homeForm = new home_form(userType, userId);
             if (homeForm == null)
@@ -371,19 +373,30 @@ namespace OOP_Project
                     BorderStyle = BorderStyle.FixedSingle
                 };
 
-                try
+                // Load cached image URLs
+                var cachedImages = StayLoggedIn.GetCachedImageUrls();
+
+                // Check if the image URL is cached
+                if (!string.IsNullOrEmpty(movie.ImageUrl) && cachedImages.Contains(movie.ImageUrl))
                 {
-                    if (!string.IsNullOrEmpty(movie.ImageUrl))
-                    {
-                        poster.Load(movie.ImageUrl);
-                    }
-                    else
-                    {
-                        poster.Image = Properties.Resources.fallback;
-                    }
+                    // Load the image from the cache if it is already cached
+                    var image = await Task.Run(() => LoadImageFromCache(movie.ImageUrl));
+                    poster.Image = image ?? Properties.Resources.fallback;
                 }
-                catch
+                else if (!string.IsNullOrEmpty(movie.ImageUrl))
                 {
+                    // Download and cache the image if not in cache
+                    var image = await Task.Run(() => DownloadImageAndCache(movie.ImageUrl));
+                    poster.Image = image ?? Properties.Resources.fallback;
+
+                    // Add to the cached images
+                    var currentCachedImages = cachedImages.ToList();
+                    currentCachedImages.Add(movie.ImageUrl);
+                    StayLoggedIn.SaveCachedImages(currentCachedImages.ToArray()); // Save updated cache
+                }
+                else
+                {
+                    // Use fallback image if no URL is available
                     poster.Image = Properties.Resources.fallback;
                 }
 
@@ -412,6 +425,85 @@ namespace OOP_Project
             }
         }
 
+        // Async method to load the image and set it to the PictureBox
+        private async Task LoadImageAsync(string imageUrl, PictureBox pictureBox)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var imageBytes = await client.GetByteArrayAsync(imageUrl);
+                    using (var ms = new MemoryStream(imageBytes))
+                    {
+                        pictureBox.Image = Image.FromStream(ms);
+                    }
+                }
+            }
+            catch
+            {
+                // Fallback to default image in case of any error
+                pictureBox.Image = Properties.Resources.fallback;
+            }
+        }
+
+        private Image LoadImageFromCache(string imageUrl)
+        {
+            try
+            {
+                string cacheFolder = Path.Combine(Application.StartupPath, "ImageCache");
+                string imageFileName = Path.GetFileName(imageUrl);
+                string cachePath = Path.Combine(cacheFolder, imageFileName);
+
+                // Ensure the cache folder exists
+                if (File.Exists(cachePath))
+                {
+                    return Image.FromFile(cachePath);
+                }
+            }
+            catch
+            {
+                // If there's an error, fallback to default image
+                return Properties.Resources.fallback;
+            }
+
+            return null; // Return null if not cached
+        }
+
+        private async Task<Image> DownloadImageAndCache(string imageUrl)
+        {
+            // Sanitize the URL to make it a valid filename
+            string imageFileName = Path.GetFileName(Uri.UnescapeDataString(imageUrl)); // Decode URL and get the file name
+            imageFileName = string.Concat(imageFileName.Split(Path.GetInvalidFileNameChars())); // Remove invalid characters
+
+            string cacheFolder = Path.Combine(Application.StartupPath, "ImageCache");
+            string cachePath = Path.Combine(cacheFolder, imageFileName);
+
+            // Ensure the cache folder exists
+            Directory.CreateDirectory(cacheFolder);
+
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    // Download the image as bytes
+                    var imageBytes = await client.GetByteArrayAsync(imageUrl);
+
+                    // Save the image to the cache
+                    File.WriteAllBytes(cachePath, imageBytes);
+
+                    // Load and return the image from the cache
+                    using (var ms = new MemoryStream(imageBytes))
+                    {
+                        return Image.FromStream(ms);
+                    }
+                }
+            }
+            catch
+            {
+                // Fallback to default image in case of error
+                return Properties.Resources.fallback;
+            }
+        }
 
         public List<movie> GetRecentlyViewedMovies(int userId)
         {

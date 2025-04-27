@@ -64,7 +64,6 @@
             this.loginDock_panel.Name = "loginDock_panel";
             this.loginDock_panel.Size = new System.Drawing.Size(254, 650);
             this.loginDock_panel.TabIndex = 20;
-            this.loginDock_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.loginDock_panel_Paint);
             // 
             // password_tb
             // 
@@ -87,7 +86,6 @@
             this.userName_tb.Size = new System.Drawing.Size(153, 26);
             this.userName_tb.TabIndex = 11;
             this.userName_tb.Text = "Username";
-            this.userName_tb.TextChanged += new System.EventHandler(this.userName_tb_TextChanged);
             this.userName_tb.Enter += new System.EventHandler(this.userName_tb_Enter);
             this.userName_tb.Leave += new System.EventHandler(this.userName_tb_Leave);
             // 

@@ -8,17 +8,15 @@ using System.Drawing.Drawing2D;
 using ComponentFactory.Krypton.Toolkit;
 using System.Drawing;
 
-
 namespace OOP_Project
 {
     public partial class login_form : KryptonForm
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-        
+
         public login_form()
         {
             InitializeComponent();
-
         }
 
         private void login_btn_Click(object sender, EventArgs e)
@@ -84,7 +82,25 @@ namespace OOP_Project
         private void login_form_Load(object sender, EventArgs e)
         {
             this.AcceptButton = login_btn;
+
+            // Check if session exists
+            var userSession = StayLoggedIn.LoadUserSession();
+            if (userSession != null)
+            {
+                // The session already exists, proceed directly to home_form
+                this.Hide();
+
+                // Destructure the session tuple into userType and userId
+                var (userType, userId) = userSession.Value;
+
+                home_form homeForm = new home_form(userType, userId);
+                homeForm.ShowDialog();
+                this.Close();
+            }
         }
+
+
+
 
         private void signUp_lbl_Click(object sender, EventArgs e)
         {
@@ -185,15 +201,5 @@ namespace OOP_Project
             }
         }
 
-        private void userName_tb_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void loginDock_panel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-     
     }
 }
