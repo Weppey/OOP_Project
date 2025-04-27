@@ -25,7 +25,7 @@ namespace OOP_Project
         private ToolTip tooltip = new ToolTip();
         private Microsoft.Web.WebView2.WinForms.WebView2 webView2;
 
-
+        private string userType;
         private bool isFavorited = false;
 
         private int currentMovieId;
@@ -270,10 +270,9 @@ namespace OOP_Project
 
         private void AddToFavorites(int userId, int movieId)
         {
-            // MessageBox.Show($"AddToFavorites called with UserID: {userId}, MovieID: {movieId}");
             if (userId <= 0 || movieId <= 0)
             {
-                MessageBox.Show("Invalid user or movie ID.");
+                MessageBox.Show("Invalid user or movie ID. Please ensure both are valid.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -296,7 +295,7 @@ namespace OOP_Project
 
                         if (exists > 0)
                         {
-                            MessageBox.Show("This movie is already in your favorites.");
+                            MessageBox.Show("This movie is already in your favorites.", "Already Favorited", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             isFavorited = true;
                             favorite_btn.Text = "Remove from Favorites";  // Correct text for already favorited
                             return;
@@ -312,20 +311,23 @@ namespace OOP_Project
                         int rowsAffected = insertCmd.ExecuteNonQuery();
                         if (rowsAffected > 0)
                         {
-                            MessageBox.Show("Added to Favorites!");
+                            MessageBox.Show("Movie has been successfully added to your favorites!", "Added to Favorites", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             isFavorited = true;  // Update favorite status
                             favorite_btn.Text = "Remove from Favorites";  // Correct text after adding
+                                                                          // Create an instance of FavoriteControl
+                            FavoriteControl favoriteControl = new FavoriteControl(userType, currentUserId);
+                            favoriteControl.Reload();
                         }
                         else
                         {
-                            MessageBox.Show("Failed to add to favorites.");
+                            MessageBox.Show("Failed to add movie to favorites. Please try again later.", "Operation Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error adding to favorites: " + ex.Message);
+                MessageBox.Show($"Error adding to favorites: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -346,22 +348,25 @@ namespace OOP_Project
                         int rows = cmd.ExecuteNonQuery();
                         if (rows > 0)
                         {
-                            MessageBox.Show("Removed from favorites.");
+                            MessageBox.Show("Movie has been successfully removed from your favorites.", "Removed from Favorites", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             isFavorited = false;  // Update favorite status
                             favorite_btn.Text = "Add to Favorites";  // Correct text after removal
+                            FavoriteControl favoriteControl = new FavoriteControl(userType, currentUserId);
+                            favoriteControl.Reload();
                         }
                         else
                         {
-                            MessageBox.Show("Failed to remove from favorites.");
+                            MessageBox.Show("Failed to remove movie from favorites. Please try again later.", "Operation Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error removing from favorites: " + ex.Message);
+                MessageBox.Show($"Error removing from favorites: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void close_pb_Click(object sender, EventArgs e)
         {

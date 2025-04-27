@@ -15,6 +15,7 @@ using System.Net.Http;
 
 using MySqlX.XDevAPI;
 using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks.Sources;
 
 
 
@@ -653,13 +654,32 @@ namespace OOP_Project
         }
         private void favorite_btn_Click(object sender, EventArgs e)
         {
+            if (Favorite_panel.Visible == false)
+            {
+                form_lbl.Text = "FAVORITE";
+                Favorite_panel.Visible = true;
+                userProfile_panel.Visible = false;
+                AdminControl_panel.Visible = false;
 
-            form_lbl.Text = "FAVORITE";
-            favorite_form favoriteForm = new favorite_form(currentUserId, userType);
-            favoriteForm.StartPosition = FormStartPosition.CenterParent;
-            favoriteForm.Location = new Point(200, 50);
-            favoriteForm.ShowDialog();
+                // Create an instance of FavoriteControl
+                FavoriteControl favoriteControl = new FavoriteControl(userType, currentUserId);
+                // Clear any existing controls from Favorite_panel if necessary
+                Favorite_panel.Controls.Clear();
+                // Add the FavoriteControl to the Favorite_panel
+                Favorite_panel.Controls.Add(favoriteControl);
+
+                // Optionally set FavoriteControl's dock property to fill the parent panel
+                favoriteControl.Dock = DockStyle.Fill; // Fills the parent panel (Favorite_panel)
+
+            }
+            else
+            {
+                Favorite_panel.Visible = false;
+
+            }
         }
+
+
 
         private void popular_btn_Click(object sender, EventArgs e)
         {

@@ -234,6 +234,12 @@
     <Compile Include="Components\MovieItem.Designer.cs">
       <DependentUpon>MovieItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="FavoriteControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FavoriteControl.Designer.cs">
+      <DependentUpon>FavoriteControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="favorite_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -297,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Components\MovieItem.resx">
       <DependentUpon>MovieItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FavoriteControl.resx">
+      <DependentUpon>FavoriteControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="favorite_form.resx">
       <DependentUpon>favorite_form.cs</DependentUpon>

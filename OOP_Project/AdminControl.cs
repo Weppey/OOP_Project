@@ -105,6 +105,8 @@ namespace OOP_Project
             CurvePanel(Admin_panel, 30);
             Admin_panel.Resize += (s, aargs) => CurvePanel(Admin_panel, 20);
 
+            //USERS
+
             CurvePanel(controlBtn_panel, 30);
             controlBtn_panel.Resize += (s, aargs) => CurvePanel(controlBtn_panel, 20);
 
@@ -113,6 +115,15 @@ namespace OOP_Project
 
             CurvePanel(dataGrid_panel, 30);
             dataGrid_panel.Resize += (s, aargs) => CurvePanel(dataGrid_panel, 20);
+
+            //MOVIES
+
+            CurvePanel(movieFillUp_panel, 30);
+            movieFillUp_panel.Resize += (s, aargs) => CurvePanel(movieFillUp_panel, 20);
+
+
+            CurvePanel(movieControlBtn_panel, 30);
+            movieControlBtn_panel.Resize += (s, aargs) => CurvePanel(movieControlBtn_panel, 20);
         }
 
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
@@ -190,15 +201,7 @@ namespace OOP_Project
             };
         }
 
-        private void insert_btn_Click(object sender, EventArgs e)
-        {
-            insert_btn.Visible = true;
-            title_tb.Text = "";
-            posterUrl_tb.Text = "";
-            poster_pb.Image = null;
-            description_tb.Text = ""; // Clear the description textbox as well
-            MovieClearCheckedItems();
-        }
+
 
         private void MovieClearCheckedItems()
         {
@@ -216,13 +219,14 @@ namespace OOP_Project
             string selectedGenres = GetSelectedGenres();
 
             // Prepare the query to update the movie
-            string query = "UPDATE movies SET title=@title, genre=@genre, release_year=@release, image_url=@url, description=@description WHERE movie_id=@id";
+            string query = "UPDATE movies SET title=@title, genre=@genre, release_year=@release, image_url=@imageurl, trailer_link=@trailerurl description=@description WHERE movie_id=@id";
 
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", title_tb.Text);
             cmd.Parameters.AddWithValue("@genre", selectedGenres); // Using the comma-separated genres
             cmd.Parameters.AddWithValue("@release", releaseYear_dtp.Value.Year); // Only the year
-            cmd.Parameters.AddWithValue("@url", posterUrl_tb.Text);
+            cmd.Parameters.AddWithValue("@imageurl", posterUrl_tb.Text);
+            cmd.Parameters.AddWithValue("@trailerurl", trailerUrl_tb.Text);
             cmd.Parameters.AddWithValue("@description", description_tb.Text); // Add description
             cmd.Parameters.AddWithValue("@id", movieId);
 
@@ -279,6 +283,8 @@ namespace OOP_Project
                 posterUrl_tb.Text = row.Cells["image_url"].Value.ToString();
                 poster_pb.ImageLocation = row.Cells["image_url"].Value.ToString(); // Optional
 
+                trailerUrl_tb.Text = row.Cells["trailer_link"].Value.ToString();
+
                 // Set description
                 description_tb.Text = row.Cells["description"].Value.ToString();
 
@@ -304,6 +310,18 @@ namespace OOP_Project
             }
         }
 
+        private void Clear_btn_Click(object sender, EventArgs e)
+        {
+            insert_btn.Visible = true;
+            title_tb.Text = "Enter title...";
+            posterUrl_tb.Text = "Enter poster URL...";
+            poster_pb.Image = null;
+            description_tb.Text = "Enter description..."; // Clear the description textbox as well
+            trailerUrl_tb.Text = "Enter trailer URL...";
+            releaseYear_dtp.Value = DateTime.Now;
+            MovieClearCheckedItems();
+        }
+
         private void submit_btn_Click(object sender, EventArgs e)
         {
             string selectedGenres = GetSelectedGenres();
@@ -312,12 +330,13 @@ namespace OOP_Project
             int releaseYear = releaseYear_dtp.Value.Year;
 
             // Insert query with description
-            string query = "INSERT INTO movies (title, genre, release_year, image_url, description) VALUES (@title, @genre, @release, @url, @description)";
+            string query = "INSERT INTO movies (title, genre, release_year, image_url, trailer_url, description) VALUES (@title, @genre, @release, @imageurl, trailerurl, @description)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", title_tb.Text);
             cmd.Parameters.AddWithValue("@genre", selectedGenres); // Save genres as a comma-separated string
             cmd.Parameters.AddWithValue("@release", releaseYear); // Pass the release year (as integer)
-            cmd.Parameters.AddWithValue("@url", posterUrl_tb.Text);
+            cmd.Parameters.AddWithValue("@imageurl", posterUrl_tb.Text);
+            cmd.Parameters.AddWithValue("@trailerurl", trailerUrl_tb.Text);
             cmd.Parameters.AddWithValue("@description", description_tb.Text); // Save the description
             cmd.ExecuteNonQuery();
             MovieClearCheckedItems();
@@ -342,7 +361,7 @@ namespace OOP_Project
 
         private void LoadUsers()
         {
-            string query = "SELECT * FROM users";
+            string query = "SELECT user_id, username, email, age, gender, birthdate, preferences, email_verified, user_type, signup_date FROM users"; // Specify only the columns you need
             MySqlCommand cmd = new MySqlCommand(query, connection);
             MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
             usersTable.Clear();
@@ -350,6 +369,7 @@ namespace OOP_Project
             usersBindingSource.DataSource = usersTable;
             users_dgv.DataSource = usersBindingSource;
         }
+
 
         private void LoadUserDetails(int userId)
         {
@@ -524,9 +544,6 @@ namespace OOP_Project
                         }
                     }
                 }
-
-                securityQuestion_cmb.Text = row.Cells["security_question"].Value.ToString();
-                securityAnswer_tb.Text = row.Cells["security_answer"].Value.ToString();
 
                 // Set birthdate (assuming it's stored as DateTime in db)
                 if (DateTime.TryParse(row.Cells["birthdate"].Value?.ToString(), out DateTime birthdate))
@@ -792,30 +809,30 @@ namespace OOP_Project
 
         private void cancel_btn_Click(object sender, EventArgs e)
         {
-            // Reset the textboxes to their placeholder text or default values and set the text color to silver
-            username_tb.StateCommon.Content.Color1 = Color.Silver;
-            username_tb.Text = "Username";
+            // Reset the textboxes to their placeholder text or default values and set the text color to gray
+            username_tb.StateCommon.Content.Color1 = Color.Gray;
+            username_tb.Text = "Enter username...";
 
-            email_tb.StateCommon.Content.Color1 = Color.Silver;
-            email_tb.Text = "Email";
+            email_tb.StateCommon.Content.Color1 = Color.Gray;
+            email_tb.Text = "Enter email...";
 
-            age_tb.StateCommon.Content.Color1 = Color.Silver;
-            age_tb.Text = "Age";
+            age_tb.StateCommon.Content.Color1 = Color.Gray;
+            age_tb.Text = "Enter age...";
 
-            userID_tb.StateCommon.Content.Color1 = Color.Silver;
-            userID_tb.Text = "User ID";
+            userID_tb.StateCommon.Content.Color1 = Color.Gray;
+            userID_tb.Text = "Enter user ID...";
 
-            securityAnswer_tb.StateCommon.Content.Color1 = Color.Silver;
+            securityAnswer_tb.StateCommon.Content.Color1 = Color.Gray;
             securityAnswer_tb.Text = "Security Answer";
 
             // Reset combo boxes to their default state (no selection)
             gender_cmb.SelectedIndex = -1;
-            gender_cmb.Text = "Gender";
-            gender_cmb.StateCommon.ComboBox.Content.Color1 = Color.Silver;
+            gender_cmb.Text = "Select gender...";
+            gender_cmb.StateCommon.ComboBox.Content.Color1 = Color.Gray;
 
             securityQuestion_cmb.SelectedIndex = -1;
             usertype_cmb.SelectedIndex = -1;
-            usertype_cmb.Text = "User type";
+            usertype_cmb.Text = "Select user type";
 
             // Reset the checked list box to default (no checked items)
             genre_clb.ClearSelected();
@@ -845,7 +862,7 @@ namespace OOP_Project
         // Username textbox enter and leave events
         private void username_tb_Enter(object sender, EventArgs e)
         {
-            if (username_tb.Text == "Username")
+            if (username_tb.Text == "Enter username...")
             {
                 username_tb.StateCommon.Content.Color1 = Color.Black;
                 username_tb.Text = "";
@@ -856,15 +873,15 @@ namespace OOP_Project
         {
             if (username_tb.Text == "")
             {
-                username_tb.StateCommon.Content.Color1 = Color.Silver;
-                username_tb.Text = "Username";
+                username_tb.StateCommon.Content.Color1 = Color.Gray;
+                username_tb.Text = "Enter username...";
             }
         }
 
         // UserID textbox enter and leave events
         private void userID_tb_Enter(object sender, EventArgs e)
         {
-            if (userID_tb.Text == "User ID")
+            if (userID_tb.Text == "Enter user ID...")
             {
                 userID_tb.StateCommon.Content.Color1 = Color.Black;
                 userID_tb.Text = "";
@@ -875,15 +892,15 @@ namespace OOP_Project
         {
             if (userID_tb.Text == "")
             {
-                userID_tb.StateCommon.Content.Color1 = Color.Silver;
-                userID_tb.Text = "User ID";
+                userID_tb.StateCommon.Content.Color1 = Color.Gray;
+                userID_tb.Text = "Enter user ID...";
             }
         }
 
         // Email textbox enter and leave events
         private void email_tb_Enter(object sender, EventArgs e)
         {
-            if (email_tb.Text == "Email")
+            if (email_tb.Text == "Enter email...")
             {
                 email_tb.StateCommon.Content.Color1 = Color.Black;
                 email_tb.Text = "";
@@ -894,15 +911,15 @@ namespace OOP_Project
         {
             if (email_tb.Text == "")
             {
-                email_tb.StateCommon.Content.Color1 = Color.Silver;
-                email_tb.Text = "Email";
+                email_tb.StateCommon.Content.Color1 = Color.Gray;
+                email_tb.Text = "Enter email...";
             }
         }
 
         // Age textbox enter and leave events
         private void age_tb_Enter(object sender, EventArgs e)
         {
-            if (age_tb.Text == "Age")
+            if (age_tb.Text == "Enter age...")
             {
                 age_tb.StateCommon.Content.Color1 = Color.Black;
                 age_tb.Text = "";
@@ -913,10 +930,99 @@ namespace OOP_Project
         {
             if (age_tb.Text == "")
             {
-                age_tb.StateCommon.Content.Color1 = Color.Silver;
-                age_tb.Text = "Age";
+                age_tb.StateCommon.Content.Color1 = Color.Gray;
+                age_tb.Text = "Enter age...";
             }
         }
 
+        private void title_tb_Leave(object sender, EventArgs e)
+        {
+            if (title_tb.Text == "")
+            {
+                title_tb.StateCommon.Content.Color1 = Color.Gray;
+                title_tb.Text = "Enter title...";
+            }
+        }
+
+        private void title_tb_Enter(object sender, EventArgs e)
+        {
+            if (title_tb.Text == "Enter title...")
+            {
+                title_tb.StateCommon.Content.Color1 = Color.Black;
+                title_tb.Text = "";
+            }
+        }
+
+        private void posterUrl_tb_Leave(object sender, EventArgs e)
+        {
+            if (posterUrl_tb.Text == "")
+            {
+                posterUrl_tb.StateCommon.Content.Color1 = Color.Gray;
+                posterUrl_tb.Text = "Enter poster URL...";
+            }
+        }
+
+        private void posterUrl_tb_Enter(object sender, EventArgs e)
+        {
+            if (posterUrl_tb.Text == "Enter poster URL...")
+            {
+                posterUrl_tb.StateCommon.Content.Color1 = Color.Black;
+                posterUrl_tb.Text = "";
+            }
+        }
+
+        private void trailerUrl_tb_Leave(object sender, EventArgs e)
+        {
+            if (trailerUrl_tb.Text == "")
+            {
+                trailerUrl_tb.StateCommon.Content.Color1 = Color.Gray;
+                trailerUrl_tb.Text = "Enter trailer URL...";
+            }
+        }
+
+        private void trailerUrl_tb_Enter(object sender, EventArgs e)
+        {
+            if (trailerUrl_tb.Text == "Enter trailer URL...")
+            {
+                trailerUrl_tb.StateCommon.Content.Color1 = Color.Black;
+                trailerUrl_tb.Text = "";
+            }
+        }
+
+        private void description_tb_Leave(object sender, EventArgs e)
+        {
+            if (description_tb.Text == "")
+            {
+                description_tb.StateCommon.Content.Color1 = Color.Gray;
+                description_tb.Text = "Enter description...";
+            }
+        }
+
+        private void description_tb_Enter(object sender, EventArgs e)
+        {
+            if (description_tb.Text == "Enter description...")
+            {
+                description_tb.StateCommon.Content.Color1 = Color.Black;
+                description_tb.Text = "";
+            }
+        }
+
+        private void securityAnswer_tb_Leave(object sender, EventArgs e)
+        {
+            if (securityAnswer_tb.Text == "")
+            {
+                securityAnswer_tb.StateCommon.Content.Color1 = Color.Gray;
+                securityAnswer_tb.Text = "Enter security answer...";
+            }
+        }
+
+        private void securityAnswer_tb_Enter(object sender, EventArgs e)
+        {
+            if (securityAnswer_tb.Text == "Enter security answer...")
+            {
+                securityAnswer_tb.StateCommon.Content.Color1 = Color.Black;
+                securityAnswer_tb.Text = "";
+            }
+        }
     }
 }

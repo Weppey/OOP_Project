@@ -264,7 +264,7 @@ namespace OOP_Project
                 // Disable edit mode
                 DisableEditMode();
 
-                // Reload profile data
+                //   profile data
                 LoadProfileData();
             }
             catch (Exception ex)

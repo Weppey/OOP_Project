@@ -39,7 +39,6 @@
             this.adminsettings_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.signOut_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.logo_panel = new System.Windows.Forms.Panel();
-            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.form_lbl = new System.Windows.Forms.Label();
             this.movie_panel = new System.Windows.Forms.Panel();
             this.allMovie_lbl = new System.Windows.Forms.Label();
@@ -56,17 +55,19 @@
             this.profile_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.AdminControl_panel = new System.Windows.Forms.Panel();
             this.userProfile_panel = new System.Windows.Forms.Panel();
+            this.Favorite_panel = new System.Windows.Forms.Panel();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
             this.leftdock_pnl.SuspendLayout();
             this.menu2_panel.SuspendLayout();
             this.menu_panel.SuspendLayout();
             this.logo_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             this.movie_panel.SuspendLayout();
             this.allMovie_panel.SuspendLayout();
             this.popularmovie_pnl.SuspendLayout();
             this.viewport_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             this.SuspendLayout();
@@ -296,17 +297,6 @@
             this.logo_panel.Size = new System.Drawing.Size(109, 100);
             this.logo_panel.TabIndex = 0;
             // 
-            // logo_pb
-            // 
-            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_2;
-            this.logo_pb.Location = new System.Drawing.Point(0, 0);
-            this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(109, 100);
-            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo_pb.TabIndex = 0;
-            this.logo_pb.TabStop = false;
-            // 
             // form_lbl
             // 
             this.form_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -336,7 +326,7 @@
             this.movie_panel.Controls.Add(this.search_tb);
             this.movie_panel.Controls.Add(this.popularmovie_pnl);
             this.movie_panel.Controls.Add(this.viewport_panel);
-            this.movie_panel.Location = new System.Drawing.Point(142, 121);
+            this.movie_panel.Location = new System.Drawing.Point(146, 126);
             this.movie_panel.Name = "movie_panel";
             this.movie_panel.Size = new System.Drawing.Size(1214, 614);
             this.movie_panel.TabIndex = 61;
@@ -502,7 +492,7 @@
             // AdminControl_panel
             // 
             this.AdminControl_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.AdminControl_panel.Location = new System.Drawing.Point(142, 122);
+            this.AdminControl_panel.Location = new System.Drawing.Point(148, 123);
             this.AdminControl_panel.Name = "AdminControl_panel";
             this.AdminControl_panel.Size = new System.Drawing.Size(1214, 614);
             this.AdminControl_panel.TabIndex = 65;
@@ -511,11 +501,31 @@
             // userProfile_panel
             // 
             this.userProfile_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.userProfile_panel.Location = new System.Drawing.Point(143, 122);
+            this.userProfile_panel.Location = new System.Drawing.Point(145, 122);
             this.userProfile_panel.Name = "userProfile_panel";
             this.userProfile_panel.Size = new System.Drawing.Size(1214, 614);
             this.userProfile_panel.TabIndex = 66;
             this.userProfile_panel.Visible = false;
+            // 
+            // Favorite_panel
+            // 
+            this.Favorite_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.Favorite_panel.Location = new System.Drawing.Point(148, 124);
+            this.Favorite_panel.Name = "Favorite_panel";
+            this.Favorite_panel.Size = new System.Drawing.Size(1214, 614);
+            this.Favorite_panel.TabIndex = 66;
+            this.Favorite_panel.Visible = false;
+            // 
+            // logo_pb
+            // 
+            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_2;
+            this.logo_pb.Location = new System.Drawing.Point(0, 0);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(109, 100);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pb.TabIndex = 0;
+            this.logo_pb.TabStop = false;
             // 
             // close_pb
             // 
@@ -552,13 +562,14 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(1388, 791);
+            this.Controls.Add(this.userProfile_panel);
             this.Controls.Add(this.profile_btn);
             this.Controls.Add(this.form_lbl);
             this.Controls.Add(this.leftdock_pnl);
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
+            this.Controls.Add(this.Favorite_panel);
             this.Controls.Add(this.AdminControl_panel);
-            this.Controls.Add(this.userProfile_panel);
             this.Controls.Add(this.movie_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home_form";
@@ -577,12 +588,12 @@
             this.menu2_panel.ResumeLayout(false);
             this.menu_panel.ResumeLayout(false);
             this.logo_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             this.movie_panel.ResumeLayout(false);
             this.movie_panel.PerformLayout();
             this.allMovie_panel.ResumeLayout(false);
             this.popularmovie_pnl.ResumeLayout(false);
             this.viewport_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             this.ResumeLayout(false);
@@ -619,5 +630,6 @@
         private System.Windows.Forms.Panel AdminControl_panel;
         private System.Windows.Forms.Panel userProfile_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton home_btn;
+        private System.Windows.Forms.Panel Favorite_panel;
     }
 }
