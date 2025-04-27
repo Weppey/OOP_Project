@@ -1,4 +1,8 @@
-﻿namespace OOP_Project
+﻿using ComponentFactory.Krypton.Toolkit;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace OOP_Project
 {
     partial class AdminControl
     {
@@ -29,6 +33,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.releaseYear_dtp = new System.Windows.Forms.DateTimePicker();
             this.title_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.movies_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -41,43 +46,53 @@
             this.description_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.insert_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.Admin_panel = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonDock_panel = new System.Windows.Forms.Panel();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.editUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.editMovie_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.userEditor_panel = new System.Windows.Forms.Panel();
-            this.usertype_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.insertUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.userSearchBox_tb = new System.Windows.Forms.TextBox();
-            this.usersEditor_lbl = new System.Windows.Forms.Label();
-            this.userID_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.emailVerified_cb = new System.Windows.Forms.CheckBox();
-            this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.deleteUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.verify_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.Genre_lbl = new System.Windows.Forms.Label();
-            this.Birthdate_dtp = new System.Windows.Forms.DateTimePicker();
-            this.securityAnswer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.securityQuestion_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.userGenre_clb = new System.Windows.Forms.CheckedListBox();
-            this.age_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.dataGrid_panel = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
+            this.users_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.fillup_panel = new System.Windows.Forms.Panel();
             this.email_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.username_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.users_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
+            this.usertype_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.age_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.userGenre_clb = new System.Windows.Forms.CheckedListBox();
+            this.securityQuestion_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.userID_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.securityAnswer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.emailVerified_cb = new System.Windows.Forms.CheckBox();
+            this.Birthdate_dtp = new System.Windows.Forms.DateTimePicker();
+            this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.Genre_lbl = new System.Windows.Forms.Label();
+            this.verify_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.controlBtn_panel = new System.Windows.Forms.Panel();
+            this.insertUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.cancel_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.deleteUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.usersEditor_lbl = new System.Windows.Forms.Label();
+            this.userSearchBox_tb = new System.Windows.Forms.TextBox();
             this.movieEditor_panel = new System.Windows.Forms.Panel();
             this.movieEditor_lbl = new System.Windows.Forms.Label();
-            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.poster_pb = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.movies_dgv)).BeginInit();
             this.Admin_panel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.userEditor_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.users_dgv)).BeginInit();
-            this.movieEditor_panel.SuspendLayout();
+            this.buttonDock_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
+            this.userEditor_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_panel)).BeginInit();
+            this.dataGrid_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.users_dgv)).BeginInit();
+            this.fillup_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
+            this.controlBtn_panel.SuspendLayout();
+            this.movieEditor_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // releaseYear_dtp
@@ -102,26 +117,45 @@
             // 
             this.movies_dgv.AllowUserToAddRows = false;
             this.movies_dgv.AllowUserToDeleteRows = false;
+            this.movies_dgv.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.movies_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.movies_dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.movies_dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            this.movies_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.movies_dgv.Location = new System.Drawing.Point(22, 334);
+            this.movies_dgv.ColumnHeadersHeight = 40;
+            this.movies_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.movies_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.movies_dgv.Location = new System.Drawing.Point(0, 0);
+            this.movies_dgv.MultiSelect = false;
             this.movies_dgv.Name = "movies_dgv";
             this.movies_dgv.ReadOnly = true;
-            this.movies_dgv.Size = new System.Drawing.Size(912, 214);
-            this.movies_dgv.StateCommon.Background.Color1 = System.Drawing.Color.Red;
-            this.movies_dgv.StateCommon.Background.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.movies_dgv.RowHeadersVisible = false;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.movies_dgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.movies_dgv.RowTemplate.Height = 35;
+            this.movies_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.movies_dgv.Size = new System.Drawing.Size(912, 315);
+            this.movies_dgv.StateCommon.Background.Color1 = System.Drawing.Color.White;
+            this.movies_dgv.StateCommon.Background.Color2 = System.Drawing.Color.White;
             this.movies_dgv.StateCommon.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
             this.movies_dgv.StateCommon.DataCell.Back.Color1 = System.Drawing.Color.White;
             this.movies_dgv.StateCommon.DataCell.Back.Color2 = System.Drawing.Color.White;
             this.movies_dgv.StateCommon.DataCell.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.movies_dgv.StateCommon.DataCell.Border.Rounding = 5;
+            this.movies_dgv.StateCommon.DataCell.Border.Rounding = 0;
+            this.movies_dgv.StateCommon.DataCell.Content.Color1 = System.Drawing.Color.Black;
+            this.movies_dgv.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.movies_dgv.StateCommon.HeaderColumn.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.movies_dgv.StateCommon.HeaderColumn.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.movies_dgv.StateCommon.HeaderColumn.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.movies_dgv.StateCommon.HeaderColumn.Border.Rounding = 5;
+            this.movies_dgv.StateCommon.HeaderColumn.Border.Rounding = 0;
+            this.movies_dgv.StateCommon.HeaderColumn.Content.Color1 = System.Drawing.Color.White;
+            this.movies_dgv.StateCommon.HeaderColumn.Content.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.movies_dgv.TabIndex = 75;
             this.movies_dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.movies_dgv_CellClick);
             // 
@@ -288,24 +322,36 @@
             // Admin_panel
             // 
             this.Admin_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
-            this.Admin_panel.Controls.Add(this.panel1);
-            this.Admin_panel.Controls.Add(this.userEditor_panel);
+            this.Admin_panel.Controls.Add(this.buttonDock_panel);
             this.Admin_panel.Controls.Add(this.movieEditor_panel);
+            this.Admin_panel.Controls.Add(this.userEditor_panel);
             this.Admin_panel.Location = new System.Drawing.Point(3, 3);
             this.Admin_panel.Name = "Admin_panel";
-            this.Admin_panel.Size = new System.Drawing.Size(1214, 614);
+            this.Admin_panel.Size = new System.Drawing.Size(1214, 696);
             this.Admin_panel.TabIndex = 87;
             // 
-            // panel1
+            // buttonDock_panel
             // 
-            this.panel1.Controls.Add(this.logo_pb);
-            this.panel1.Controls.Add(this.editUser_btn);
-            this.panel1.Controls.Add(this.editMovie_btn);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(181, 614);
-            this.panel1.TabIndex = 89;
+            this.buttonDock_panel.Controls.Add(this.logo_pb);
+            this.buttonDock_panel.Controls.Add(this.editUser_btn);
+            this.buttonDock_panel.Controls.Add(this.editMovie_btn);
+            this.buttonDock_panel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.buttonDock_panel.Location = new System.Drawing.Point(0, 0);
+            this.buttonDock_panel.Name = "buttonDock_panel";
+            this.buttonDock_panel.Size = new System.Drawing.Size(172, 696);
+            this.buttonDock_panel.TabIndex = 89;
+            // 
+            // logo_pb
+            // 
+            this.logo_pb.BackColor = System.Drawing.Color.White;
+            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Top;
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_3;
+            this.logo_pb.Location = new System.Drawing.Point(0, 0);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(172, 164);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pb.TabIndex = 91;
+            this.logo_pb.TabStop = false;
             // 
             // editUser_btn
             // 
@@ -313,7 +359,7 @@
             this.editUser_btn.Location = new System.Drawing.Point(6, 263);
             this.editUser_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.editUser_btn.Name = "editUser_btn";
-            this.editUser_btn.Size = new System.Drawing.Size(172, 45);
+            this.editUser_btn.Size = new System.Drawing.Size(163, 45);
             this.editUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.editUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.editUser_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -344,7 +390,7 @@
             this.editMovie_btn.Location = new System.Drawing.Point(6, 191);
             this.editMovie_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.editMovie_btn.Name = "editMovie_btn";
-            this.editMovie_btn.Size = new System.Drawing.Size(172, 45);
+            this.editMovie_btn.Size = new System.Drawing.Size(163, 45);
             this.editMovie_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.editMovie_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.editMovie_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -371,29 +417,110 @@
             // 
             // userEditor_panel
             // 
-            this.userEditor_panel.Controls.Add(this.usertype_cmb);
-            this.userEditor_panel.Controls.Add(this.insertUser_btn);
+            this.userEditor_panel.Controls.Add(this.dataGrid_panel);
+            this.userEditor_panel.Controls.Add(this.fillup_panel);
+            this.userEditor_panel.Controls.Add(this.controlBtn_panel);
             this.userEditor_panel.Controls.Add(this.userSearchBox_tb);
-            this.userEditor_panel.Controls.Add(this.usersEditor_lbl);
-            this.userEditor_panel.Controls.Add(this.userID_tb);
-            this.userEditor_panel.Controls.Add(this.emailVerified_cb);
-            this.userEditor_panel.Controls.Add(this.gender_cmb);
-            this.userEditor_panel.Controls.Add(this.deleteUser_btn);
-            this.userEditor_panel.Controls.Add(this.verify_btn);
-            this.userEditor_panel.Controls.Add(this.Genre_lbl);
-            this.userEditor_panel.Controls.Add(this.Birthdate_dtp);
-            this.userEditor_panel.Controls.Add(this.securityAnswer_tb);
-            this.userEditor_panel.Controls.Add(this.securityQuestion_cmb);
-            this.userEditor_panel.Controls.Add(this.userGenre_clb);
-            this.userEditor_panel.Controls.Add(this.age_tb);
-            this.userEditor_panel.Controls.Add(this.email_tb);
-            this.userEditor_panel.Controls.Add(this.username_tb);
-            this.userEditor_panel.Controls.Add(this.users_dgv);
             this.userEditor_panel.Location = new System.Drawing.Point(189, 2);
             this.userEditor_panel.Name = "userEditor_panel";
-            this.userEditor_panel.Size = new System.Drawing.Size(1024, 632);
+            this.userEditor_panel.Size = new System.Drawing.Size(1024, 666);
             this.userEditor_panel.TabIndex = 89;
             this.userEditor_panel.Visible = false;
+            // 
+            // dataGrid_panel
+            // 
+            this.dataGrid_panel.Controls.Add(this.users_dgv);
+            this.dataGrid_panel.Location = new System.Drawing.Point(20, 375);
+            this.dataGrid_panel.Name = "dataGrid_panel";
+            this.dataGrid_panel.Size = new System.Drawing.Size(980, 291);
+            this.dataGrid_panel.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.dataGrid_panel.TabIndex = 106;
+            // 
+            // users_dgv
+            // 
+            this.users_dgv.AllowUserToAddRows = false;
+            this.users_dgv.AllowUserToDeleteRows = false;
+            this.users_dgv.AllowUserToResizeRows = false;
+            this.users_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.users_dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.users_dgv.ColumnHeadersHeight = 40;
+            this.users_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.users_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.users_dgv.Location = new System.Drawing.Point(0, 0);
+            this.users_dgv.MultiSelect = false;
+            this.users_dgv.Name = "users_dgv";
+            this.users_dgv.ReadOnly = true;
+            this.users_dgv.RowHeadersVisible = false;
+            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.users_dgv.RowTemplate.Height = 35;
+            this.users_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.users_dgv.Size = new System.Drawing.Size(980, 291);
+            this.users_dgv.StateCommon.Background.Color1 = System.Drawing.Color.White;
+            this.users_dgv.StateCommon.Background.Color2 = System.Drawing.Color.White;
+            this.users_dgv.StateCommon.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
+            this.users_dgv.StateCommon.DataCell.Back.Color1 = System.Drawing.Color.White;
+            this.users_dgv.StateCommon.DataCell.Back.Color2 = System.Drawing.Color.White;
+            this.users_dgv.StateCommon.DataCell.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.users_dgv.StateCommon.DataCell.Border.Rounding = 0;
+            this.users_dgv.StateCommon.DataCell.Content.Color1 = System.Drawing.Color.Black;
+            this.users_dgv.StateCommon.DataCell.Content.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.users_dgv.StateCommon.HeaderColumn.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.users_dgv.StateCommon.HeaderColumn.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.users_dgv.StateCommon.HeaderColumn.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.users_dgv.StateCommon.HeaderColumn.Border.Rounding = 0;
+            this.users_dgv.StateCommon.HeaderColumn.Content.Color1 = System.Drawing.Color.White;
+            this.users_dgv.StateCommon.HeaderColumn.Content.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.users_dgv.TabIndex = 81;
+            this.users_dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_dgv_CellClick);
+            // 
+            // fillup_panel
+            // 
+            this.fillup_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.fillup_panel.Controls.Add(this.email_tb);
+            this.fillup_panel.Controls.Add(this.username_tb);
+            this.fillup_panel.Controls.Add(this.usertype_cmb);
+            this.fillup_panel.Controls.Add(this.age_tb);
+            this.fillup_panel.Controls.Add(this.userGenre_clb);
+            this.fillup_panel.Controls.Add(this.securityQuestion_cmb);
+            this.fillup_panel.Controls.Add(this.userID_tb);
+            this.fillup_panel.Controls.Add(this.securityAnswer_tb);
+            this.fillup_panel.Controls.Add(this.emailVerified_cb);
+            this.fillup_panel.Controls.Add(this.Birthdate_dtp);
+            this.fillup_panel.Controls.Add(this.gender_cmb);
+            this.fillup_panel.Controls.Add(this.Genre_lbl);
+            this.fillup_panel.Controls.Add(this.verify_btn);
+            this.fillup_panel.Location = new System.Drawing.Point(235, 36);
+            this.fillup_panel.Name = "fillup_panel";
+            this.fillup_panel.Size = new System.Drawing.Size(765, 293);
+            this.fillup_panel.TabIndex = 105;
+            // 
+            // email_tb
+            // 
+            this.email_tb.Location = new System.Drawing.Point(30, 91);
+            this.email_tb.Name = "email_tb";
+            this.email_tb.Size = new System.Drawing.Size(213, 26);
+            this.email_tb.StateCommon.Content.Color1 = System.Drawing.Color.Silver;
+            this.email_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.email_tb.TabIndex = 83;
+            this.email_tb.Text = "Email";
+            this.email_tb.Enter += new System.EventHandler(this.email_tb_Enter);
+            this.email_tb.Leave += new System.EventHandler(this.email_tb_Leave);
+            // 
+            // username_tb
+            // 
+            this.username_tb.Location = new System.Drawing.Point(30, 23);
+            this.username_tb.Name = "username_tb";
+            this.username_tb.Size = new System.Drawing.Size(213, 26);
+            this.username_tb.StateCommon.Content.Color1 = System.Drawing.Color.Silver;
+            this.username_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username_tb.TabIndex = 82;
+            this.username_tb.Text = "Username";
+            this.username_tb.Enter += new System.EventHandler(this.username_tb_Enter);
+            this.username_tb.Leave += new System.EventHandler(this.username_tb_Leave);
             // 
             // usertype_cmb
             // 
@@ -401,7 +528,7 @@
             this.usertype_cmb.Items.AddRange(new object[] {
             "member",
             "admin"});
-            this.usertype_cmb.Location = new System.Drawing.Point(475, 87);
+            this.usertype_cmb.Location = new System.Drawing.Point(276, 62);
             this.usertype_cmb.Name = "usertype_cmb";
             this.usertype_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.usertype_cmb.Size = new System.Drawing.Size(160, 20);
@@ -410,77 +537,84 @@
             this.usertype_cmb.TabIndex = 102;
             this.usertype_cmb.Text = "User type";
             // 
-            // insertUser_btn
+            // age_tb
             // 
-            this.insertUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.insertUser_btn.Location = new System.Drawing.Point(20, 73);
-            this.insertUser_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
-            this.insertUser_btn.Name = "insertUser_btn";
-            this.insertUser_btn.Size = new System.Drawing.Size(132, 45);
-            this.insertUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
-            this.insertUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
-            this.insertUser_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.insertUser_btn.StateCommon.Border.Rounding = 20;
-            this.insertUser_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.insertUser_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
-            this.insertUser_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.insertUser_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.insertUser_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.insertUser_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.insertUser_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.insertUser_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.insertUser_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.insertUser_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.insertUser_btn.TabIndex = 101;
-            this.insertUser_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_submit_281;
-            this.insertUser_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.insertUser_btn.Values.Text = "Insert";
-            this.insertUser_btn.Click += new System.EventHandler(this.insertUser_btn_Click);
+            this.age_tb.Location = new System.Drawing.Point(30, 132);
+            this.age_tb.Name = "age_tb";
+            this.age_tb.Size = new System.Drawing.Size(93, 26);
+            this.age_tb.StateCommon.Content.Color1 = System.Drawing.Color.Silver;
+            this.age_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.age_tb.TabIndex = 84;
+            this.age_tb.Text = "Age";
+            this.age_tb.Enter += new System.EventHandler(this.age_tb_Enter);
+            this.age_tb.Leave += new System.EventHandler(this.age_tb_Leave);
             // 
-            // userSearchBox_tb
+            // userGenre_clb
             // 
-            this.userSearchBox_tb.Location = new System.Drawing.Point(686, 291);
-            this.userSearchBox_tb.Name = "userSearchBox_tb";
-            this.userSearchBox_tb.Size = new System.Drawing.Size(266, 20);
-            this.userSearchBox_tb.TabIndex = 100;
-            this.userSearchBox_tb.Click += new System.EventHandler(this.userSearchBox_tb_Click);
-            this.userSearchBox_tb.TextChanged += new System.EventHandler(this.userSearchBox_tb_TextChanged);
+            this.userGenre_clb.FormattingEnabled = true;
+            this.userGenre_clb.Location = new System.Drawing.Point(281, 121);
+            this.userGenre_clb.MultiColumn = true;
+            this.userGenre_clb.Name = "userGenre_clb";
+            this.userGenre_clb.Size = new System.Drawing.Size(454, 124);
+            this.userGenre_clb.TabIndex = 86;
             // 
-            // usersEditor_lbl
+            // securityQuestion_cmb
             // 
-            this.usersEditor_lbl.AutoSize = true;
-            this.usersEditor_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usersEditor_lbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.usersEditor_lbl.Location = new System.Drawing.Point(24, 20);
-            this.usersEditor_lbl.Name = "usersEditor_lbl";
-            this.usersEditor_lbl.Size = new System.Drawing.Size(142, 26);
-            this.usersEditor_lbl.TabIndex = 99;
-            this.usersEditor_lbl.Text = "Users Editor";
+            this.securityQuestion_cmb.DropDownWidth = 183;
+            this.securityQuestion_cmb.Location = new System.Drawing.Point(30, 210);
+            this.securityQuestion_cmb.Name = "securityQuestion_cmb";
+            this.securityQuestion_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.securityQuestion_cmb.Size = new System.Drawing.Size(213, 20);
+            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
+            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.securityQuestion_cmb.TabIndex = 88;
+            this.securityQuestion_cmb.Text = "Security Question";
             // 
             // userID_tb
             // 
-            this.userID_tb.Location = new System.Drawing.Point(229, 81);
+            this.userID_tb.Location = new System.Drawing.Point(30, 56);
             this.userID_tb.Name = "userID_tb";
             this.userID_tb.Size = new System.Drawing.Size(93, 26);
+            this.userID_tb.StateCommon.Content.Color1 = System.Drawing.Color.Silver;
             this.userID_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userID_tb.TabIndex = 98;
             this.userID_tb.Text = "User ID";
+            this.userID_tb.Enter += new System.EventHandler(this.userID_tb_Enter);
+            this.userID_tb.Leave += new System.EventHandler(this.userID_tb_Leave);
+            // 
+            // securityAnswer_tb
+            // 
+            this.securityAnswer_tb.Location = new System.Drawing.Point(30, 244);
+            this.securityAnswer_tb.Name = "securityAnswer_tb";
+            this.securityAnswer_tb.Size = new System.Drawing.Size(213, 26);
+            this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Silver;
+            this.securityAnswer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.securityAnswer_tb.TabIndex = 90;
+            this.securityAnswer_tb.Text = "Answer";
             // 
             // emailVerified_cb
             // 
             this.emailVerified_cb.AutoSize = true;
             this.emailVerified_cb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailVerified_cb.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.emailVerified_cb.Location = new System.Drawing.Point(702, 49);
+            this.emailVerified_cb.Location = new System.Drawing.Point(503, 24);
             this.emailVerified_cb.Name = "emailVerified_cb";
             this.emailVerified_cb.Size = new System.Drawing.Size(122, 23);
             this.emailVerified_cb.TabIndex = 97;
             this.emailVerified_cb.Text = "Is email verified";
             this.emailVerified_cb.UseVisualStyleBackColor = true;
+            // 
+            // Birthdate_dtp
+            // 
+            this.Birthdate_dtp.CalendarForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.Birthdate_dtp.CalendarTitleBackColor = System.Drawing.SystemColors.ControlText;
+            this.Birthdate_dtp.CalendarTitleForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.Birthdate_dtp.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Birthdate_dtp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.Birthdate_dtp.Location = new System.Drawing.Point(276, 23);
+            this.Birthdate_dtp.Name = "Birthdate_dtp";
+            this.Birthdate_dtp.Size = new System.Drawing.Size(200, 26);
+            this.Birthdate_dtp.TabIndex = 91;
             // 
             // gender_cmb
             // 
@@ -489,50 +623,30 @@
             "Male",
             "Female",
             "Prefer not to say"});
-            this.gender_cmb.Location = new System.Drawing.Point(229, 200);
+            this.gender_cmb.Location = new System.Drawing.Point(30, 175);
             this.gender_cmb.Name = "gender_cmb";
             this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gender_cmb.Size = new System.Drawing.Size(93, 20);
-            this.gender_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
+            this.gender_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
             this.gender_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gender_cmb.TabIndex = 96;
             this.gender_cmb.Text = "Gender";
             // 
-            // deleteUser_btn
+            // Genre_lbl
             // 
-            this.deleteUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.deleteUser_btn.Location = new System.Drawing.Point(20, 126);
-            this.deleteUser_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
-            this.deleteUser_btn.Name = "deleteUser_btn";
-            this.deleteUser_btn.Size = new System.Drawing.Size(132, 45);
-            this.deleteUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
-            this.deleteUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
-            this.deleteUser_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.deleteUser_btn.StateCommon.Border.Rounding = 20;
-            this.deleteUser_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.deleteUser_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
-            this.deleteUser_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.deleteUser_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.deleteUser_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.deleteUser_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.deleteUser_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.deleteUser_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.deleteUser_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.deleteUser_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.deleteUser_btn.TabIndex = 95;
-            this.deleteUser_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_delete_document_28;
-            this.deleteUser_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.deleteUser_btn.Values.Text = "Delete";
-            this.deleteUser_btn.Click += new System.EventHandler(this.deleteUser_btn_Click);
+            this.Genre_lbl.AutoSize = true;
+            this.Genre_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Genre_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Genre_lbl.Location = new System.Drawing.Point(277, 91);
+            this.Genre_lbl.Name = "Genre_lbl";
+            this.Genre_lbl.Size = new System.Drawing.Size(124, 19);
+            this.Genre_lbl.TabIndex = 93;
+            this.Genre_lbl.Text = "Genre Preferences:";
             // 
             // verify_btn
             // 
             this.verify_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.verify_btn.Location = new System.Drawing.Point(829, 40);
+            this.verify_btn.Location = new System.Drawing.Point(630, 15);
             this.verify_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.verify_btn.Name = "verify_btn";
             this.verify_btn.Size = new System.Drawing.Size(105, 49);
@@ -560,115 +674,137 @@
             this.verify_btn.Values.Text = "Verify";
             this.verify_btn.Click += new System.EventHandler(this.verify_btn_Click);
             // 
-            // Genre_lbl
+            // controlBtn_panel
             // 
-            this.Genre_lbl.AutoSize = true;
-            this.Genre_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Genre_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Genre_lbl.Location = new System.Drawing.Point(476, 116);
-            this.Genre_lbl.Name = "Genre_lbl";
-            this.Genre_lbl.Size = new System.Drawing.Size(124, 19);
-            this.Genre_lbl.TabIndex = 93;
-            this.Genre_lbl.Text = "Genre Preferences:";
+            this.controlBtn_panel.AutoSize = true;
+            this.controlBtn_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.controlBtn_panel.Controls.Add(this.insertUser_btn);
+            this.controlBtn_panel.Controls.Add(this.cancel_btn);
+            this.controlBtn_panel.Controls.Add(this.deleteUser_btn);
+            this.controlBtn_panel.Controls.Add(this.usersEditor_lbl);
+            this.controlBtn_panel.Location = new System.Drawing.Point(20, 36);
+            this.controlBtn_panel.Name = "controlBtn_panel";
+            this.controlBtn_panel.Size = new System.Drawing.Size(186, 293);
+            this.controlBtn_panel.TabIndex = 104;
             // 
-            // Birthdate_dtp
+            // insertUser_btn
             // 
-            this.Birthdate_dtp.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Birthdate_dtp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.Birthdate_dtp.Location = new System.Drawing.Point(475, 48);
-            this.Birthdate_dtp.Name = "Birthdate_dtp";
-            this.Birthdate_dtp.Size = new System.Drawing.Size(200, 26);
-            this.Birthdate_dtp.TabIndex = 91;
-            // 
-            // securityAnswer_tb
-            // 
-            this.securityAnswer_tb.Location = new System.Drawing.Point(229, 269);
-            this.securityAnswer_tb.Name = "securityAnswer_tb";
-            this.securityAnswer_tb.Size = new System.Drawing.Size(213, 26);
-            this.securityAnswer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securityAnswer_tb.TabIndex = 90;
-            this.securityAnswer_tb.Text = "Answer";
-            // 
-            // securityQuestion_cmb
-            // 
-            this.securityQuestion_cmb.DropDownWidth = 183;
-            this.securityQuestion_cmb.Location = new System.Drawing.Point(229, 235);
-            this.securityQuestion_cmb.Name = "securityQuestion_cmb";
-            this.securityQuestion_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.securityQuestion_cmb.Size = new System.Drawing.Size(213, 20);
-            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
-            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securityQuestion_cmb.TabIndex = 88;
-            this.securityQuestion_cmb.Text = "Security Question";
-            // 
-            // userGenre_clb
-            // 
-            this.userGenre_clb.FormattingEnabled = true;
-            this.userGenre_clb.Location = new System.Drawing.Point(480, 146);
-            this.userGenre_clb.MultiColumn = true;
-            this.userGenre_clb.Name = "userGenre_clb";
-            this.userGenre_clb.Size = new System.Drawing.Size(454, 124);
-            this.userGenre_clb.TabIndex = 86;
-            // 
-            // age_tb
-            // 
-            this.age_tb.Location = new System.Drawing.Point(229, 157);
-            this.age_tb.Name = "age_tb";
-            this.age_tb.Size = new System.Drawing.Size(93, 26);
-            this.age_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.age_tb.TabIndex = 84;
-            this.age_tb.Text = "Age";
-            // 
-            // email_tb
-            // 
-            this.email_tb.Location = new System.Drawing.Point(229, 113);
-            this.email_tb.Name = "email_tb";
-            this.email_tb.Size = new System.Drawing.Size(213, 26);
-            this.email_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.email_tb.TabIndex = 83;
-            this.email_tb.Text = "Email";
-            // 
-            // username_tb
-            // 
-            this.username_tb.Location = new System.Drawing.Point(229, 48);
-            this.username_tb.Name = "username_tb";
-            this.username_tb.Size = new System.Drawing.Size(213, 26);
-            this.username_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username_tb.TabIndex = 82;
-            this.username_tb.Text = "Username";
-            // 
-            // users_dgv
-            // 
-            this.users_dgv.AllowUserToAddRows = false;
-            this.users_dgv.AllowUserToDeleteRows = false;
-            this.users_dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.users_dgv.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            this.users_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.users_dgv.Location = new System.Drawing.Point(40, 329);
-            this.users_dgv.Name = "users_dgv";
-            this.users_dgv.ReadOnly = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.users_dgv.Size = new System.Drawing.Size(912, 260);
-            this.users_dgv.StateCommon.Background.Color1 = System.Drawing.Color.Red;
-            this.users_dgv.StateCommon.Background.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.users_dgv.StateCommon.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
-            this.users_dgv.StateCommon.DataCell.Back.Color1 = System.Drawing.Color.White;
-            this.users_dgv.StateCommon.DataCell.Back.Color2 = System.Drawing.Color.White;
-            this.users_dgv.StateCommon.DataCell.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.insertUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.insertUser_btn.Location = new System.Drawing.Point(22, 68);
+            this.insertUser_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.insertUser_btn.Name = "insertUser_btn";
+            this.insertUser_btn.Size = new System.Drawing.Size(132, 45);
+            this.insertUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
+            this.insertUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.insertUser_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.users_dgv.StateCommon.DataCell.Border.Rounding = 5;
-            this.users_dgv.StateCommon.HeaderColumn.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            this.insertUser_btn.StateCommon.Border.Rounding = 20;
+            this.insertUser_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.insertUser_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.insertUser_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.insertUser_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.insertUser_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.insertUser_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.insertUser_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.insertUser_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.insertUser_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.insertUser_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.users_dgv.StateCommon.HeaderColumn.Border.Rounding = 5;
-            this.users_dgv.TabIndex = 81;
-            this.users_dgv.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.users_dgv_CellClick);
+            this.insertUser_btn.TabIndex = 101;
+            this.insertUser_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_submit_281;
+            this.insertUser_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.insertUser_btn.Values.Text = "Insert";
+            this.insertUser_btn.Click += new System.EventHandler(this.insertUser_btn_Click);
+            // 
+            // cancel_btn
+            // 
+            this.cancel_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.cancel_btn.Location = new System.Drawing.Point(22, 171);
+            this.cancel_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.cancel_btn.Name = "cancel_btn";
+            this.cancel_btn.Size = new System.Drawing.Size(132, 45);
+            this.cancel_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
+            this.cancel_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.cancel_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.cancel_btn.StateCommon.Border.Rounding = 20;
+            this.cancel_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.cancel_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.cancel_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.cancel_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.cancel_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.cancel_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cancel_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cancel_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cancel_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cancel_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.cancel_btn.TabIndex = 103;
+            this.cancel_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
+            this.cancel_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.cancel_btn.Values.Text = "Cancel";
+            this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
+            // 
+            // deleteUser_btn
+            // 
+            this.deleteUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.deleteUser_btn.Location = new System.Drawing.Point(22, 121);
+            this.deleteUser_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.deleteUser_btn.Name = "deleteUser_btn";
+            this.deleteUser_btn.Size = new System.Drawing.Size(132, 45);
+            this.deleteUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
+            this.deleteUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.deleteUser_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.deleteUser_btn.StateCommon.Border.Rounding = 20;
+            this.deleteUser_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.deleteUser_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.deleteUser_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.deleteUser_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.deleteUser_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.deleteUser_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.deleteUser_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.deleteUser_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.deleteUser_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.deleteUser_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.deleteUser_btn.TabIndex = 95;
+            this.deleteUser_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_delete_document_28;
+            this.deleteUser_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.deleteUser_btn.Values.Text = "Delete";
+            this.deleteUser_btn.Click += new System.EventHandler(this.deleteUser_btn_Click);
+            // 
+            // usersEditor_lbl
+            // 
+            this.usersEditor_lbl.AutoSize = true;
+            this.usersEditor_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.usersEditor_lbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.usersEditor_lbl.Location = new System.Drawing.Point(17, 19);
+            this.usersEditor_lbl.Name = "usersEditor_lbl";
+            this.usersEditor_lbl.Size = new System.Drawing.Size(142, 26);
+            this.usersEditor_lbl.TabIndex = 99;
+            this.usersEditor_lbl.Text = "Users Editor";
+            // 
+            // userSearchBox_tb
+            // 
+            this.userSearchBox_tb.Location = new System.Drawing.Point(666, 349);
+            this.userSearchBox_tb.Name = "userSearchBox_tb";
+            this.userSearchBox_tb.Size = new System.Drawing.Size(334, 20);
+            this.userSearchBox_tb.TabIndex = 100;
+            this.userSearchBox_tb.Click += new System.EventHandler(this.userSearchBox_tb_Click);
+            this.userSearchBox_tb.TextChanged += new System.EventHandler(this.userSearchBox_tb_TextChanged);
+            this.userSearchBox_tb.Enter += new System.EventHandler(this.userSearchBox_tb_Enter);
+            this.userSearchBox_tb.Leave += new System.EventHandler(this.userSearchBox_tb_Leave);
             // 
             // movieEditor_panel
             // 
+            this.movieEditor_panel.Controls.Add(this.panel1);
             this.movieEditor_panel.Controls.Add(this.movieEditor_lbl);
             this.movieEditor_panel.Controls.Add(this.poster_pb);
             this.movieEditor_panel.Controls.Add(this.insert_btn);
@@ -676,7 +812,6 @@
             this.movieEditor_panel.Controls.Add(this.releaseYear_dtp);
             this.movieEditor_panel.Controls.Add(this.genre_clb);
             this.movieEditor_panel.Controls.Add(this.title_tb);
-            this.movieEditor_panel.Controls.Add(this.movies_dgv);
             this.movieEditor_panel.Controls.Add(this.posterUrl_tb);
             this.movieEditor_panel.Controls.Add(this.searchBox_tb);
             this.movieEditor_panel.Controls.Add(this.remove_btn);
@@ -684,7 +819,7 @@
             this.movieEditor_panel.Controls.Add(this.Clear_btn);
             this.movieEditor_panel.Location = new System.Drawing.Point(187, 3);
             this.movieEditor_panel.Name = "movieEditor_panel";
-            this.movieEditor_panel.Size = new System.Drawing.Size(1024, 632);
+            this.movieEditor_panel.Size = new System.Drawing.Size(1024, 665);
             this.movieEditor_panel.TabIndex = 88;
             this.movieEditor_panel.Visible = false;
             // 
@@ -699,18 +834,6 @@
             this.movieEditor_lbl.TabIndex = 88;
             this.movieEditor_lbl.Text = "Movie Editor";
             // 
-            // logo_pb
-            // 
-            this.logo_pb.BackColor = System.Drawing.Color.White;
-            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Top;
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_3;
-            this.logo_pb.Location = new System.Drawing.Point(0, 0);
-            this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(181, 164);
-            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo_pb.TabIndex = 91;
-            this.logo_pb.TabStop = false;
-            // 
             // poster_pb
             // 
             this.poster_pb.BackColor = System.Drawing.Color.White;
@@ -722,6 +845,14 @@
             this.poster_pb.TabIndex = 83;
             this.poster_pb.TabStop = false;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.movies_dgv);
+            this.panel1.Location = new System.Drawing.Point(22, 334);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(912, 315);
+            this.panel1.TabIndex = 89;
+            // 
             // AdminControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -729,21 +860,28 @@
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.Admin_panel);
             this.Name = "AdminControl";
-            this.Size = new System.Drawing.Size(1214, 614);
+            this.Size = new System.Drawing.Size(1214, 701);
             this.Load += new System.EventHandler(this.AdminMovieControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.movies_dgv)).EndInit();
             this.Admin_panel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
+            this.buttonDock_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             this.userEditor_panel.ResumeLayout(false);
             this.userEditor_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid_panel)).EndInit();
+            this.dataGrid_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.users_dgv)).EndInit();
+            this.fillup_panel.ResumeLayout(false);
+            this.fillup_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
+            this.controlBtn_panel.ResumeLayout(false);
+            this.controlBtn_panel.PerformLayout();
             this.movieEditor_panel.ResumeLayout(false);
             this.movieEditor_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -764,7 +902,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton insert_btn;
         private System.Windows.Forms.Panel Admin_panel;
         private System.Windows.Forms.Panel movieEditor_panel;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel buttonDock_panel;
         private System.Windows.Forms.PictureBox logo_pb;
         private ComponentFactory.Krypton.Toolkit.KryptonButton editUser_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton editMovie_btn;
@@ -788,5 +926,10 @@
         private System.Windows.Forms.TextBox userSearchBox_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonButton insertUser_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox usertype_cmb;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton cancel_btn;
+        private System.Windows.Forms.Panel controlBtn_panel;
+        private System.Windows.Forms.Panel fillup_panel;
+        private KryptonPanel dataGrid_panel;
+        private Panel panel1;
     }
 }

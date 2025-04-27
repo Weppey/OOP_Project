@@ -77,7 +77,8 @@ namespace OOP_Project
             {
                 connection.Open();
                 LoadMovies();
-                SetupSearchPlaceholder();
+                SetupSearchMoviesPlaceholder();
+                SetupSearchUsersPlaceholder();
                 LoadUsers();
 
             }
@@ -101,9 +102,17 @@ namespace OOP_Project
                 userGenre_clb.Items.Add(genre);
             }
 
-            SetupSearchPlaceholder();
             CurvePanel(Admin_panel, 30);
             Admin_panel.Resize += (s, aargs) => CurvePanel(Admin_panel, 20);
+
+            CurvePanel(controlBtn_panel, 30);
+            controlBtn_panel.Resize += (s, aargs) => CurvePanel(controlBtn_panel, 20);
+
+            CurvePanel(fillup_panel, 30);
+            fillup_panel.Resize += (s, aargs) => CurvePanel(fillup_panel, 20);
+
+            CurvePanel(dataGrid_panel, 30);
+            dataGrid_panel.Resize += (s, aargs) => CurvePanel(dataGrid_panel, 20);
         }
 
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
@@ -133,7 +142,7 @@ namespace OOP_Project
             return string.Join(",", selectedGenres);
         }
 
-        private void SetupSearchPlaceholder()
+        private void SetupSearchMoviesPlaceholder()
         {
             searchBox_tb.Text = "Search movies...";
             searchBox_tb.ForeColor = Color.Gray;
@@ -153,6 +162,30 @@ namespace OOP_Project
                 {
                     searchBox_tb.Text = "Search movies...";
                     searchBox_tb.ForeColor = Color.Gray;
+                }
+            };
+        }
+
+        private void SetupSearchUsersPlaceholder()
+        {
+            userSearchBox_tb.Text = "Search users...";
+            userSearchBox_tb.ForeColor = Color.Gray;
+
+            userSearchBox_tb.GotFocus += (s, e) =>
+            {
+                if (userSearchBox_tb.Text == "Search users...")
+                {
+                    userSearchBox_tb.Text = "";
+                    userSearchBox_tb.ForeColor = Color.Black;
+                }
+            };
+
+            userSearchBox_tb.LostFocus += (s, e) =>
+            {
+                if (string.IsNullOrWhiteSpace(userSearchBox_tb.Text))
+                {
+                    userSearchBox_tb.Text = "Search users...";
+                    userSearchBox_tb.ForeColor = Color.Gray;
                 }
             };
         }
@@ -352,12 +385,13 @@ namespace OOP_Project
                 }
                 else
                 {
-                    usertype_cmb.SelectedIndex = -1; // fallback if value is unknown
+                    usertype_cmb.SelectedIndex = -1; // fallback
                 }
             }
 
             reader.Close();
         }
+
 
 
         // Function to save the changes made to a user's details
@@ -455,17 +489,75 @@ namespace OOP_Project
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = users_dgv.Rows[e.RowIndex];
-                int userId = Convert.ToInt32(row.Cells["user_id"].Value); // Assuming "user_id" is a column in your DataGridView
-                userID_tb.Text = userId.ToString(); // Set userId in the hidden TextBox
 
-                // Load user details into the user editor panel
-                LoadUserDetails(userId);
+                username_tb.StateCommon.Content.Color1 = Color.Black;
+                userID_tb.StateCommon.Content.Color1 = Color.Black;
+                email_tb.StateCommon.Content.Color1 = Color.Black;
+                age_tb.StateCommon.Content.Color1 = Color.Black;
+                securityAnswer_tb.StateCommon.Content.Color1 = Color.Black;
+                usertype_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+                securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+                gender_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
 
-                // Set flag to false since we are editing an existing user
+                userID_tb.Text = row.Cells["user_id"].Value.ToString();
+                username_tb.Text = row.Cells["username"].Value.ToString();
+                email_tb.Text = row.Cells["email"].Value.ToString();
+                age_tb.Text = row.Cells["age"].Value.ToString();
+                gender_cmb.SelectedItem = row.Cells["gender"].Value.ToString();
+
+                // Load genre preferences (comma separated)
+                string preferences = row.Cells["preferences"].Value.ToString();
+                string[] selectedGenres = preferences.Split(',');
+
+                // Deselect all first
+                for (int i = 0; i < userGenre_clb.Items.Count; i++)
+                    userGenre_clb.SetItemChecked(i, false);
+
+                // Select matching genres
+                foreach (var genre in selectedGenres)
+                {
+                    for (int i = 0; i < userGenre_clb.Items.Count; i++)
+                    {
+                        if (userGenre_clb.Items[i].ToString().Equals(genre.Trim(), StringComparison.OrdinalIgnoreCase))
+                        {
+                            userGenre_clb.SetItemChecked(i, true);
+                        }
+                    }
+                }
+
+                securityQuestion_cmb.Text = row.Cells["security_question"].Value.ToString();
+                securityAnswer_tb.Text = row.Cells["security_answer"].Value.ToString();
+
+                // Set birthdate (assuming it's stored as DateTime in db)
+                if (DateTime.TryParse(row.Cells["birthdate"].Value?.ToString(), out DateTime birthdate))
+                {
+                    Birthdate_dtp.Value = birthdate;
+                }
+
+                // Email verified (checkbox)
+                if (row.Cells["email_verified"].Value != null)
+                {
+                    bool isEmailVerified = Convert.ToBoolean(row.Cells["email_verified"].Value);
+                    emailVerified_cb.Checked = isEmailVerified;
+                }
+
+                // User type
+                string userType = row.Cells["user_type"].Value.ToString();
+                if (usertype_cmb.Items.Contains(userType))
+                {
+                    usertype_cmb.SelectedItem = userType;
+                }
+                else
+                {
+                    usertype_cmb.SelectedIndex = -1;
+                }
+
+                // Editing existing user
                 isInsertingNewUser = false;
-                insertUser_btn.Text = "Save Changes"; // Change button text to "Save Changes"
+                insertUser_btn.Text = "Save Changes";
             }
         }
+
 
 
         private void editUser_btn_Click(object sender, EventArgs e)
@@ -482,28 +574,32 @@ namespace OOP_Project
             }
         }
 
-
-
         private void userSearchBox_tb_Click(object sender, EventArgs e)
         {
-            userBindingSource.Clear(); // Clears the data source
-            users_dgv.Refresh(); // Refresh the DataGridView to update the UI
             string searchQuery = userSearchBox_tb.Text.ToLower(); // Get the search text
 
             string query = "SELECT * FROM users WHERE username LIKE @searchQuery OR email LIKE @searchQuery";
-
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@searchQuery", "%" + searchQuery + "%");
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
-            // Clear the DataGridView rows before adding new data
-            if (users_dgv.Rows.Count > 0)
+            // Remove the binding from the DataGridView before clearing
+            users_dgv.DataSource = null;
+
+            // Clear the existing rows
+            users_dgv.Rows.Clear();
+
+            // Manually define columns if they don't exist
+            if (users_dgv.Columns.Count == 0)
             {
-                users_dgv.Rows.Clear(); // Clear the existing rows in DataGridView
+                users_dgv.Columns.Add("user_id", "User ID");
+                users_dgv.Columns.Add("username", "Username");
+                users_dgv.Columns.Add("email", "Email");
+                users_dgv.Columns.Add("gender", "Gender");
             }
 
-            // Load new data into the DataGridView
+            // Add data rows
             while (reader.Read())
             {
                 int userId = Convert.ToInt32(reader["user_id"]);
@@ -516,10 +612,29 @@ namespace OOP_Project
             }
 
             reader.Close();
-
-            // Optionally, you can assign the data source to the BindingSource
-            userBindingSource.DataSource = users_dgv;
         }
+
+        private void userSearchBox_tb_Enter(object sender, EventArgs e)
+        {
+            // If the TextBox is currently showing the placeholder text, clear it when it gains focus
+            if (userSearchBox_tb.Text == "Search...")
+            {
+                userSearchBox_tb.Text = "";
+                userSearchBox_tb.ForeColor = System.Drawing.Color.Black; // Set text color to black
+            }
+        }
+
+        private void userSearchBox_tb_Leave(object sender, EventArgs e)
+        {
+            // If the TextBox is empty when it loses focus, display the placeholder text
+            if (string.IsNullOrWhiteSpace(userSearchBox_tb.Text))
+            {
+                userSearchBox_tb.Text = "Search..."; // Set placeholder text
+                userSearchBox_tb.ForeColor = System.Drawing.Color.Gray; // Set color for placeholder text
+            }
+        }
+
+
 
 
         private void userSearchBox_tb_TextChanged(object sender, EventArgs e)
@@ -527,14 +642,12 @@ namespace OOP_Project
             string searchQuery = userSearchBox_tb.Text.ToLower(); // Get the search text
 
             string query = "SELECT * FROM users WHERE username LIKE @searchQuery OR email LIKE @searchQuery";
-
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@searchQuery", "%" + searchQuery + "%");
 
             MySqlDataReader reader = cmd.ExecuteReader();
 
-            // Clear the BindingSource (if used) or DataGridView rows
-            userBindingSource.Clear(); // Clear BindingSource if you're using it
+            users_dgv.Rows.Clear(); // Important: Clear before adding new rows
 
             while (reader.Read())
             {
@@ -543,21 +656,22 @@ namespace OOP_Project
                 string email = reader["email"].ToString();
                 string gender = reader["gender"].ToString();
 
-                // Add the user data to the DataTable
                 users_dgv.Rows.Add(userId, username, email, gender);
             }
 
-            // Close the reader and bind the DataTable to the BindingSource
             reader.Close();
-            userBindingSource.DataSource = users_dgv; // Bind the DataTable to BindingSource
         }
+
 
         private void insertUser_btn_Click(object sender, EventArgs e)
         {
             // Check if any required fields are null or empty
             if (string.IsNullOrWhiteSpace(username_tb.Text) || string.IsNullOrWhiteSpace(email_tb.Text))
             {
-                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please ensure that the 'Username' and 'Email' fields are filled out before proceeding.",
+                                "Missing Required Information",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
                 return; // Stop further execution if validation fails
             }
 
@@ -590,28 +704,26 @@ namespace OOP_Project
                 cmd.Parameters.AddWithValue("@securityAnswer", securityAnswer_tb.Text);
                 cmd.Parameters.AddWithValue("@birthdate", Birthdate_dtp.Value.Date);
                 cmd.Parameters.AddWithValue("@emailVerified", emailVerified_cb.Checked);
-                cmd.Parameters.AddWithValue("@userType", usertype_cmb.SelectedItem?.ToString() ?? "user"); // Default to "user" if not selected
+                cmd.Parameters.AddWithValue("@userType", usertype_cmb.SelectedItem?.ToString() ?? "user");
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("New user added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("New user has been successfully added to the system. You can now view their details.",
+                                "User Added Successfully",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
 
                 ResetUserForm();
                 LoadUsers();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to add user.\n\nError: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred while adding the user. Please try again.\n\nError: {ex.Message}",
+                                "Error Adding User",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
 
-
-        private void UserClearCheckedItems()
-        {
-            for (int i = 0; i < genre_clb.Items.Count; i++)
-            {
-                userGenre_clb.SetItemChecked(i, false);
-            }
-        }
         private void UpdateUserDetails()
         {
             try
@@ -634,32 +746,177 @@ namespace OOP_Project
                 cmd.Parameters.AddWithValue("@userId", Convert.ToInt32(userID_tb.Text));
 
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("User details updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("User details updated successfully! All changes have been saved.",
+                                "User Updated",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
 
                 LoadUsers();
                 ResetUserForm();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to update user.\n\nError: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Failed to update user details.\n\nError: {ex.Message}\nPlease try again.",
+                                "Error Updating User",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
             }
         }
+
         private void ResetUserForm()
         {
             // Reset the form for a new user insertion
-                username_tb.Clear();
-                email_tb.Clear();
-                userID_tb.Clear();
-                age_tb.Clear();
-                gender_cmb.SelectedIndex = -1;
-                securityQuestion_cmb.SelectedIndex = -1;
-                securityAnswer_tb.Clear();
-                Birthdate_dtp.Value = DateTime.Now;
-                emailVerified_cb.Checked = false;
-                usertype_cmb.SelectedIndex = -1; // Reset user type
-                UserClearCheckedItems();
-                isInsertingNewUser = true;
-                insertUser_btn.Text = "Add User";
+            username_tb.Clear();
+            email_tb.Clear();
+            userID_tb.Clear();
+            age_tb.Clear();
+            gender_cmb.SelectedIndex = -1;
+            securityQuestion_cmb.SelectedIndex = -1;
+            securityAnswer_tb.Clear();
+            Birthdate_dtp.Value = DateTime.Now;
+            emailVerified_cb.Checked = false;
+            usertype_cmb.SelectedIndex = -1; // Reset user type
+            UserClearCheckedItems();
+            isInsertingNewUser = true;
+            insertUser_btn.Text = "Add User";
         }
+
+
+        private void UserClearCheckedItems()
+        {
+            for (int i = 0; i < genre_clb.Items.Count; i++)
+            {
+                userGenre_clb.SetItemChecked(i, false);
+            }
+        }
+
+        private void cancel_btn_Click(object sender, EventArgs e)
+        {
+            // Reset the textboxes to their placeholder text or default values and set the text color to silver
+            username_tb.StateCommon.Content.Color1 = Color.Silver;
+            username_tb.Text = "Username";
+
+            email_tb.StateCommon.Content.Color1 = Color.Silver;
+            email_tb.Text = "Email";
+
+            age_tb.StateCommon.Content.Color1 = Color.Silver;
+            age_tb.Text = "Age";
+
+            userID_tb.StateCommon.Content.Color1 = Color.Silver;
+            userID_tb.Text = "User ID";
+
+            securityAnswer_tb.StateCommon.Content.Color1 = Color.Silver;
+            securityAnswer_tb.Text = "Security Answer";
+
+            // Reset combo boxes to their default state (no selection)
+            gender_cmb.SelectedIndex = -1;
+            gender_cmb.Text = "Gender";
+            gender_cmb.StateCommon.ComboBox.Content.Color1 = Color.Silver;
+
+            securityQuestion_cmb.SelectedIndex = -1;
+            usertype_cmb.SelectedIndex = -1;
+            usertype_cmb.Text = "User type";
+
+            // Reset the checked list box to default (no checked items)
+            genre_clb.ClearSelected();
+            userGenre_clb.ClearSelected();
+
+            // Reset the DateTimePicker to the current date
+            Birthdate_dtp.Value = DateTime.Now;
+
+            // Reset the email verification checkbox and set its color
+            emailVerified_cb.Checked = false;
+
+            // Set button text back to "Add User" for new user creation
+            insertUser_btn.Text = "Add User";
+
+            // Reset the DataGridView selection if it's being used for user selection
+            if (movies_dgv.SelectedRows.Count > 0)
+            {
+                movies_dgv.ClearSelection();
+            }
+
+            // Optionally reset the form or perform any additional cleanup
+            isInsertingNewUser = true; // Assuming you want to reset to insert mode for a new user
+        }
+
+
+
+        // Username textbox enter and leave events
+        private void username_tb_Enter(object sender, EventArgs e)
+        {
+            if (username_tb.Text == "Username")
+            {
+                username_tb.StateCommon.Content.Color1 = Color.Black;
+                username_tb.Text = "";
+            }
+        }
+
+        private void username_tb_Leave(object sender, EventArgs e)
+        {
+            if (username_tb.Text == "")
+            {
+                username_tb.StateCommon.Content.Color1 = Color.Silver;
+                username_tb.Text = "Username";
+            }
+        }
+
+        // UserID textbox enter and leave events
+        private void userID_tb_Enter(object sender, EventArgs e)
+        {
+            if (userID_tb.Text == "User ID")
+            {
+                userID_tb.StateCommon.Content.Color1 = Color.Black;
+                userID_tb.Text = "";
+            }
+        }
+
+        private void userID_tb_Leave(object sender, EventArgs e)
+        {
+            if (userID_tb.Text == "")
+            {
+                userID_tb.StateCommon.Content.Color1 = Color.Silver;
+                userID_tb.Text = "User ID";
+            }
+        }
+
+        // Email textbox enter and leave events
+        private void email_tb_Enter(object sender, EventArgs e)
+        {
+            if (email_tb.Text == "Email")
+            {
+                email_tb.StateCommon.Content.Color1 = Color.Black;
+                email_tb.Text = "";
+            }
+        }
+
+        private void email_tb_Leave(object sender, EventArgs e)
+        {
+            if (email_tb.Text == "")
+            {
+                email_tb.StateCommon.Content.Color1 = Color.Silver;
+                email_tb.Text = "Email";
+            }
+        }
+
+        // Age textbox enter and leave events
+        private void age_tb_Enter(object sender, EventArgs e)
+        {
+            if (age_tb.Text == "Age")
+            {
+                age_tb.StateCommon.Content.Color1 = Color.Black;
+                age_tb.Text = "";
+            }
+        }
+
+        private void age_tb_Leave(object sender, EventArgs e)
+        {
+            if (age_tb.Text == "")
+            {
+                age_tb.StateCommon.Content.Color1 = Color.Silver;
+                age_tb.Text = "Age";
+            }
+        }
+
     }
 }

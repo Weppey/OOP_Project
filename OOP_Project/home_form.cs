@@ -1222,6 +1222,7 @@ namespace OOP_Project
                 form_lbl.Text = "ADMIN";
                 AdminControl_panel.Visible = true;
                 userProfile_panel.Visible = false;
+                AdminControl_panel.Controls.Clear();
                 AdminControl adminPanel = new AdminControl();
                 AdminControl_panel.Controls.Add(adminPanel);
             }
