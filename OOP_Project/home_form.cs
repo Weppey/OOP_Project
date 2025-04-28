@@ -30,8 +30,10 @@ namespace OOP_Project
             // This object will be used to manage the connection to the MySQL database,
             // allowing the application to open a connection, run commands, and interact with the database.
             private MySqlConnection connection;
+            private Timer inactivityTimer;
 
-            private ToolTip tooltip = new ToolTip();
+
+        private ToolTip tooltip = new ToolTip();
         // Connection string to connect to the database, specifying the server, database, and login credentials.
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
 
@@ -53,7 +55,7 @@ namespace OOP_Project
         public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
             {
                 InitializeComponent(); // Initializes the form components (UI elements)
-
+            InitializeInactivityTimer();
             //    if (userIdFromLogin <= 0)  // Check if the user session is valid
            //     {
            //         MessageBox.Show("Invalid user session. Please log in again.", "Session Error", MessageBoxButtons.OK, MessageBoxIcon.Error); // If user ID is invalid, show an error message and prompt for login again
@@ -1345,8 +1347,49 @@ namespace OOP_Project
                 }
             }
         }
+
+
+        private void InitializeInactivityTimer()
+        {
+            inactivityTimer = new Timer();
+            inactivityTimer.Interval = 20000; // 20 seconds
+            inactivityTimer.Tick += InactivityTimer_Tick;
+            inactivityTimer.Start();
+
+            this.MouseMove += ResetInactivityTimer;
+            this.KeyDown += ResetInactivityTimer;
+        }
+
+        private void ResetInactivityTimer(object sender, EventArgs e)
+        {
+            inactivityTimer.Stop();
+            inactivityTimer.Start();
+        }
+
+        private void InactivityTimer_Tick(object sender, EventArgs e)
+        {
+            inactivityTimer.Stop(); 
+
+            var result = MessageBox.Show("Are You Still There?", "Inactivity Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.No)
+            {
+                // User clicked YES --> log them out
+                signOut_btn_Click(null, null);
+            }
+            else
+            {
+                // User clicked yes, Program Will Continue running
+                inactivityTimer.Start(); //Reset timer
+            }
+        }
+
+       
+       
     }
 
 }
+
+
 
 
