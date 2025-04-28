@@ -29,9 +29,11 @@
         private void InitializeComponent()
         {
             this.movie_panel = new System.Windows.Forms.Panel();
+            this.comment_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.commentBorder_panel = new System.Windows.Forms.Panel();
+            this.comments_panel = new System.Windows.Forms.FlowLayoutPanel();
             this.submit_comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.comment_tb = new System.Windows.Forms.TextBox();
-            this.comments_panel = new System.Windows.Forms.FlowLayoutPanel();
             this.ratings_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ratings_panel = new System.Windows.Forms.Panel();
             this.ratingStar5_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -50,21 +52,21 @@
             this.dateRelease_lbl = new System.Windows.Forms.Label();
             this.navigationDock_panel = new System.Windows.Forms.Panel();
             this.close_pb = new System.Windows.Forms.PictureBox();
-            this.commentBorder_panel = new System.Windows.Forms.Panel();
             this.movie_panel.SuspendLayout();
+            this.commentBorder_panel.SuspendLayout();
             this.ratings_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.movieDetails_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.navigationDock_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
-            this.commentBorder_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // movie_panel
             // 
             this.movie_panel.AutoScroll = true;
             this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.movie_panel.Controls.Add(this.comment_lbl);
             this.movie_panel.Controls.Add(this.commentBorder_panel);
             this.movie_panel.Controls.Add(this.submit_comment_btn);
             this.movie_panel.Controls.Add(this.comment_tb);
@@ -79,6 +81,37 @@
             this.movie_panel.Name = "movie_panel";
             this.movie_panel.Size = new System.Drawing.Size(979, 573);
             this.movie_panel.TabIndex = 66;
+            // 
+            // comment_lbl
+            // 
+            this.comment_lbl.Location = new System.Drawing.Point(18, 583);
+            this.comment_lbl.Name = "comment_lbl";
+            this.comment_lbl.Size = new System.Drawing.Size(120, 28);
+            this.comment_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
+            this.comment_lbl.StateCommon.ShortText.Color2 = System.Drawing.Color.White;
+            this.comment_lbl.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comment_lbl.TabIndex = 83;
+            this.comment_lbl.Values.Text = "Comments:";
+            // 
+            // commentBorder_panel
+            // 
+            this.commentBorder_panel.AutoSize = true;
+            this.commentBorder_panel.BackColor = System.Drawing.Color.White;
+            this.commentBorder_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.commentBorder_panel.Controls.Add(this.comments_panel);
+            this.commentBorder_panel.Location = new System.Drawing.Point(18, 617);
+            this.commentBorder_panel.Name = "commentBorder_panel";
+            this.commentBorder_panel.Size = new System.Drawing.Size(932, 187);
+            this.commentBorder_panel.TabIndex = 82;
+            // 
+            // comments_panel
+            // 
+            this.comments_panel.AutoSize = true;
+            this.comments_panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.comments_panel.Location = new System.Drawing.Point(36, 31);
+            this.comments_panel.Name = "comments_panel";
+            this.comments_panel.Size = new System.Drawing.Size(891, 99);
+            this.comments_panel.TabIndex = 81;
             // 
             // submit_comment_btn
             // 
@@ -115,21 +148,16 @@
             // comment_tb
             // 
             this.comment_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comment_tb.ForeColor = System.Drawing.Color.Gray;
             this.comment_tb.Location = new System.Drawing.Point(292, 552);
             this.comment_tb.Multiline = true;
             this.comment_tb.Name = "comment_tb";
             this.comment_tb.Size = new System.Drawing.Size(498, 53);
             this.comment_tb.TabIndex = 80;
+            this.comment_tb.Text = "Enter comments...";
             this.comment_tb.Visible = false;
-            // 
-            // comments_panel
-            // 
-            this.comments_panel.AutoSize = true;
-            this.comments_panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.comments_panel.Location = new System.Drawing.Point(36, 31);
-            this.comments_panel.Name = "comments_panel";
-            this.comments_panel.Size = new System.Drawing.Size(891, 99);
-            this.comments_panel.TabIndex = 81;
+            this.comment_tb.Enter += new System.EventHandler(this.comment_tb_Enter);
+            this.comment_tb.Leave += new System.EventHandler(this.comment_tb_Leave);
             // 
             // ratings_btn
             // 
@@ -415,16 +443,6 @@
             this.close_pb.TabStop = false;
             this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
             // 
-            // commentBorder_panel
-            // 
-            this.commentBorder_panel.AutoSize = true;
-            this.commentBorder_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.commentBorder_panel.Controls.Add(this.comments_panel);
-            this.commentBorder_panel.Location = new System.Drawing.Point(18, 607);
-            this.commentBorder_panel.Name = "commentBorder_panel";
-            this.commentBorder_panel.Size = new System.Drawing.Size(932, 187);
-            this.commentBorder_panel.TabIndex = 82;
-            // 
             // movie_details_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -447,6 +465,8 @@
             this.Load += new System.EventHandler(this.MovieDetailsForm_Load);
             this.movie_panel.ResumeLayout(false);
             this.movie_panel.PerformLayout();
+            this.commentBorder_panel.ResumeLayout(false);
+            this.commentBorder_panel.PerformLayout();
             this.ratings_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.movieDetails_panel.ResumeLayout(false);
@@ -454,8 +474,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.navigationDock_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
-            this.commentBorder_panel.ResumeLayout(false);
-            this.commentBorder_panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -485,5 +503,6 @@
         private System.Windows.Forms.TextBox comment_tb;
         private System.Windows.Forms.FlowLayoutPanel comments_panel;
         private System.Windows.Forms.Panel commentBorder_panel;
+        private ComponentFactory.Krypton.Toolkit.KryptonLabel comment_lbl;
     }
 }

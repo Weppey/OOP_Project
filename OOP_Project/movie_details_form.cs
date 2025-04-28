@@ -12,6 +12,7 @@ using ComponentFactory.Krypton.Toolkit;
 using MySql.Data.MySqlClient;
 using System.Drawing.Drawing2D;
 using Microsoft.Web.WebView2.Core;
+using System.IO;
 
 
 namespace OOP_Project
@@ -30,7 +31,7 @@ namespace OOP_Project
 
         private int currentMovieId;
         private MySqlConnection connection;
-        public movie_details_form(movie moovie, int userId)
+        public movie_details_form(movie moovie, int userId, int interactionId = 0, string comment = "")
         {
 
             InitializeComponent();
@@ -52,8 +53,15 @@ namespace OOP_Project
 
             CurvePanel(movie_panel, 30);
             movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
+
             CurvePanel(movieDetails_panel, 30);
             movieDetails_panel.Resize += (s, args) => CurvePanel(movieDetails_panel, 20);
+
+            CurvePanel(commentBorder_panel, 30);
+            commentBorder_panel.Resize += (s, args) => CurvePanel(commentBorder_panel, 20);
+
+            CurvePanel(comments_panel, 30);
+            comments_panel.Resize += (s, args) => CurvePanel(comments_panel, 20);
 
             CurvePanel(ratings_panel, 30);
             ratings_panel.Resize += (s, args) => CurvePanel(ratings_panel, 20);
@@ -119,6 +127,7 @@ namespace OOP_Project
             // Check if the movie is marked as favorite (you can expand this logic as needed)
             CheckFavoriteStatus();
         }
+
 
         private void WebView2_CoreWebView2InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
         {
@@ -578,10 +587,18 @@ namespace OOP_Project
         private void submit_comment_btn_Click(object sender, EventArgs e)
         {
             string commentText = comment_tb.Text.Trim();
-            if (string.IsNullOrEmpty(commentText))
+            if (string.IsNullOrEmpty(commentText) || commentText == "Enter comments...")
             {
-                MessageBox.Show("Comment cannot be empty!");
+                comment_tb.BackColor = Color.MistyRose; // Light red background to warn
+                ToolTip tooltip = new ToolTip();
+                tooltip.ToolTipTitle = "Invalid Comment";
+                tooltip.Show("Please enter a comment before submitting.", comment_tb, 0, -40, 2000);
+
                 return;
+            }
+            else
+            {
+                comment_tb.BackColor = Color.White; // Reset background if valid
             }
 
             try
@@ -625,21 +642,112 @@ namespace OOP_Project
             }
         }
 
-        private void LoadComments()
+
+        private void editComment_btn_Click(object sender, EventArgs e)
+        {
+            // Assuming you have the Interaction ID stored in the UserControl or retrieved in some way
+            int interactionId = 123; // Replace with actual Interaction ID
+
+            string currentComment = comment_lbl.Text; // Assuming you have a label for the comment text
+
+            // Show the comment in the text box to edit
+            comment_tb.Text = currentComment;
+            comment_tb.Focus(); // Optionally focus the textbox for editing
+
+            // Change the button to save changes
+            submit_comment_btn.Text = "Save Changes"; // Or change it to something indicating editing
+
+            // Handle the Save Changes functionality
+            submit_comment_btn.Click += new EventHandler((object clickSender, EventArgs clickE) =>
+            {
+                string updatedComment = comment_tb.Text.Trim();
+                if (!string.IsNullOrEmpty(updatedComment) && updatedComment != "Enter comments...")
+                {
+                    try
+                    {
+                        using (MySqlConnection conn = new MySqlConnection(connectionString))
+                        {
+                            conn.Open();
+
+                            string updateQuery = "UPDATE movie_interaction SET comment = @comment WHERE interaction_id = @interactionId";
+                            using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
+                            {
+                                updateCmd.Parameters.AddWithValue("@comment", updatedComment);
+                                updateCmd.Parameters.AddWithValue("@interactionId", interactionId);
+                                updateCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        MessageBox.Show("Comment updated successfully!");
+                        comment_tb.Clear();
+                        LoadComments(); // Refresh comments
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error updating comment: " + ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a valid comment.");
+                }
+            });
+        }
+
+
+        private void deleteComment_btn_Click(object sender, EventArgs e)
+        {
+            int interactionId = 123; // Replace with actual Interaction ID
+
+            DialogResult result = MessageBox.Show("Are you sure you want to delete this comment?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    using (MySqlConnection conn = new MySqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        string deleteQuery = "DELETE FROM movie_interaction WHERE interaction_id = @interactionId";
+                        using (MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn))
+                        {
+                            deleteCmd.Parameters.AddWithValue("@interactionId", interactionId);
+                            deleteCmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Comment deleted successfully.");
+                    LoadComments(); // Refresh comments
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting comment: " + ex.Message);
+                }
+            }
+        }
+
+
+
+        public void LoadComments()
         {
             comments_panel.Controls.Clear(); // Clear old comments
+
+            if (comment_tb.Text == "")
+            {
+                comment_tb.ForeColor = Color.Gray;
+                comment_tb.Text = "Enter comments...";
+            }
 
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = @"
-            SELECT u.username, u.avatar, i.comment, i.created_at 
-            FROM movie_interaction i
-            JOIN users u ON i.user_id = u.user_id
-            WHERE i.movie_id = @movieId AND i.comment IS NOT NULL
-            ORDER BY i.created_at DESC";
+string query = @"
+    SELECT i.interaction_id, u.username, u.avatar, i.comment, i.created_at 
+    FROM movie_interaction i
+    JOIN users u ON i.user_id = u.user_id
+    WHERE i.movie_id = @movieId AND i.comment IS NOT NULL
+    ORDER BY i.created_at DESC";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -669,6 +777,29 @@ namespace OOP_Project
                                     commentCard card = new commentCard();
                                     card.SetComment(username, comment, createdAt);
 
+                                    // Handle Avatar (BLOB)
+                                    if (!reader.IsDBNull(reader.GetOrdinal("avatar")))
+                                    {
+                                        byte[] avatarBytes = (byte[])reader["avatar"];
+
+                                        if (avatarBytes.Length > 0)
+                                        {
+                                            using (MemoryStream ms = new MemoryStream(avatarBytes))
+                                            {
+                                                Image avatarImage = Image.FromStream(ms);
+                                                card.SetAvatar(avatarImage);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            card.SetAvatar(null); // Set default avatar if BLOB is empty
+                                        }
+                                    }
+                                    else
+                                    {
+                                        card.SetAvatar(null); // No avatar saved
+                                    }
+
                                     // Optional: Adjust card sizing if needed
                                     card.Width = comments_panel.Width - 30;
                                     card.Margin = new Padding(1);
@@ -685,6 +816,8 @@ namespace OOP_Project
                 MessageBox.Show("Error loading comments: " + ex.Message);
             }
         }
+
+
 
         private void comment_btn_Click_1(object sender, EventArgs e)
         {
@@ -706,5 +839,24 @@ namespace OOP_Project
             }
         }
 
+        private void comment_tb_Leave(object sender, EventArgs e)
+        {
+            if (comment_tb.Text == "")
+            {
+                comment_tb.ForeColor = Color.Gray;
+                comment_tb.Text = "Enter comments...";
+            }
+
+            }
+
+        private void comment_tb_Enter(object sender, EventArgs e)
+        {
+            if (comment_tb.Text == "Enter comments...")
+            {
+                comment_tb.BackColor = Color.White;
+                comment_tb.ForeColor = Color.Black;
+                comment_tb.Text = "";
+            }
+        }
     }
 }

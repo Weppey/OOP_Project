@@ -59,7 +59,9 @@ namespace OOP_Project
             this.usertype_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.age_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.userGenre_clb = new System.Windows.Forms.CheckedListBox();
+            this.securityQuestion_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.userID_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
+            this.securityAnswer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.emailVerified_cb = new System.Windows.Forms.CheckBox();
             this.Birthdate_dtp = new System.Windows.Forms.DateTimePicker();
             this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -78,8 +80,6 @@ namespace OOP_Project
             this.movieControlBtn_panel = new System.Windows.Forms.Panel();
             this.movieEditor_lbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.securityAnswer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.securityQuestion_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.movies_dgv)).BeginInit();
             this.Admin_panel.SuspendLayout();
             this.buttonDock_panel.SuspendLayout();
@@ -90,6 +90,7 @@ namespace OOP_Project
             ((System.ComponentModel.ISupportInitialize)(this.users_dgv)).BeginInit();
             this.fillup_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
             this.controlBtn_panel.SuspendLayout();
             this.movieEditor_panel.SuspendLayout();
@@ -97,7 +98,6 @@ namespace OOP_Project
             ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.movieControlBtn_panel.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
             this.SuspendLayout();
             // 
             // releaseYear_dtp
@@ -457,6 +457,7 @@ namespace OOP_Project
             this.users_dgv.AllowUserToAddRows = false;
             this.users_dgv.AllowUserToDeleteRows = false;
             this.users_dgv.AllowUserToResizeRows = false;
+            this.users_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.users_dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.users_dgv.ColumnHeadersHeight = 40;
             this.users_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -465,14 +466,8 @@ namespace OOP_Project
             this.users_dgv.MultiSelect = false;
             this.users_dgv.Name = "users_dgv";
             this.users_dgv.ReadOnly = true;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.users_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.users_dgv.RowHeadersVisible = false;
+            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.users_dgv.RowTemplate.Height = 35;
             this.users_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.users_dgv.Size = new System.Drawing.Size(980, 291);
@@ -557,6 +552,7 @@ namespace OOP_Project
             this.usertype_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usertype_cmb.TabIndex = 102;
             this.usertype_cmb.Text = "Select user type...";
+            this.usertype_cmb.Visible = false;
             // 
             // age_tb
             // 
@@ -579,6 +575,18 @@ namespace OOP_Project
             this.userGenre_clb.Size = new System.Drawing.Size(454, 124);
             this.userGenre_clb.TabIndex = 86;
             // 
+            // securityQuestion_cmb
+            // 
+            this.securityQuestion_cmb.DropDownWidth = 183;
+            this.securityQuestion_cmb.Location = new System.Drawing.Point(30, 210);
+            this.securityQuestion_cmb.Name = "securityQuestion_cmb";
+            this.securityQuestion_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.securityQuestion_cmb.Size = new System.Drawing.Size(213, 20);
+            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
+            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.securityQuestion_cmb.TabIndex = 88;
+            this.securityQuestion_cmb.Text = "Security Question";
+            // 
             // userID_tb
             // 
             this.userID_tb.Location = new System.Drawing.Point(30, 56);
@@ -590,6 +598,18 @@ namespace OOP_Project
             this.userID_tb.Text = "Enter user ID...";
             this.userID_tb.Enter += new System.EventHandler(this.userID_tb_Enter);
             this.userID_tb.Leave += new System.EventHandler(this.userID_tb_Leave);
+            // 
+            // securityAnswer_tb
+            // 
+            this.securityAnswer_tb.Location = new System.Drawing.Point(30, 244);
+            this.securityAnswer_tb.Name = "securityAnswer_tb";
+            this.securityAnswer_tb.Size = new System.Drawing.Size(213, 26);
+            this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
+            this.securityAnswer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.securityAnswer_tb.TabIndex = 90;
+            this.securityAnswer_tb.Text = "Enter security answer...";
+            this.securityAnswer_tb.Enter += new System.EventHandler(this.securityAnswer_tb_Enter);
+            this.securityAnswer_tb.Leave += new System.EventHandler(this.securityAnswer_tb_Leave);
             // 
             // emailVerified_cb
             // 
@@ -672,6 +692,7 @@ namespace OOP_Project
             this.verify_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_verify_28;
             this.verify_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.verify_btn.Values.Text = "Verify";
+            this.verify_btn.Visible = false;
             this.verify_btn.Click += new System.EventHandler(this.verify_btn_Click);
             // 
             // controlBtn_panel
@@ -885,30 +906,6 @@ namespace OOP_Project
             this.panel1.Size = new System.Drawing.Size(977, 275);
             this.panel1.TabIndex = 89;
             // 
-            // securityAnswer_tb
-            // 
-            this.securityAnswer_tb.Location = new System.Drawing.Point(30, 244);
-            this.securityAnswer_tb.Name = "securityAnswer_tb";
-            this.securityAnswer_tb.Size = new System.Drawing.Size(213, 26);
-            this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
-            this.securityAnswer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securityAnswer_tb.TabIndex = 90;
-            this.securityAnswer_tb.Text = "Enter security answer...";
-            this.securityAnswer_tb.Enter += new System.EventHandler(this.securityAnswer_tb_Enter);
-            this.securityAnswer_tb.Leave += new System.EventHandler(this.securityAnswer_tb_Leave);
-            // 
-            // securityQuestion_cmb
-            // 
-            this.securityQuestion_cmb.DropDownWidth = 183;
-            this.securityQuestion_cmb.Location = new System.Drawing.Point(30, 210);
-            this.securityQuestion_cmb.Name = "securityQuestion_cmb";
-            this.securityQuestion_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.securityQuestion_cmb.Size = new System.Drawing.Size(213, 20);
-            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
-            this.securityQuestion_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securityQuestion_cmb.TabIndex = 88;
-            this.securityQuestion_cmb.Text = "Security Question";
-            // 
             // AdminControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -930,6 +927,7 @@ namespace OOP_Project
             this.fillup_panel.ResumeLayout(false);
             this.fillup_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
             this.controlBtn_panel.ResumeLayout(false);
             this.controlBtn_panel.PerformLayout();
@@ -941,7 +939,6 @@ namespace OOP_Project
             this.movieControlBtn_panel.ResumeLayout(false);
             this.movieControlBtn_panel.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
             this.ResumeLayout(false);
 
         }

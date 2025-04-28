@@ -111,6 +111,12 @@ namespace OOP_Project
             }
         }
 
+        public void FavoriteButtonClick()
+        {
+            // Manually call the favorite_btn_Click event handler
+            favorite_btn_Click(favorite_btn, EventArgs.Empty);  // Simulate the click event
+        }
+
         public async void home_form_Load(object sender, EventArgs e)
         {
 
@@ -664,7 +670,6 @@ namespace OOP_Project
 
                 // Optionally set FavoriteControl's dock property to fill the parent panel
                 favoriteControl.Dock = DockStyle.Fill; // Fills the parent panel (Favorite_panel)
-
 
             }
             else

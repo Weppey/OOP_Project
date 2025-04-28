@@ -553,6 +553,16 @@ namespace OOP_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_edit_20__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-edit-20 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_edit_28 {
             get {
                 object obj = ResourceManager.GetObject("icons8-edit-28", resourceCulture);
@@ -1356,6 +1366,16 @@ namespace OOP_Project.Properties {
         internal static System.Drawing.Bitmap icons8_submit_283 {
             get {
                 object obj = ResourceManager.GetObject("icons8-submit-283", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_trash_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-trash-20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
