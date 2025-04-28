@@ -51,15 +51,20 @@ namespace OOP_Project
 
         public void Reload()
         {
-            favoriteMovie_panel.Controls.Clear();
+            // Clear the existing favorite movie controls
+            favoriteMovie_flp.Controls.Clear();
+            favoriteMovie_flp.Controls.Clear(); // Clear existing movies
 
-            // Fetch the updated list of favorite movies after removal or addition.
-            List<movie> favoriteMovies = GetFavoriteMovies(currentUserId, 0, 10);  // Adjust limit and offset as needed
+            // Fetch the updated list of favorite movies from database
+            List<movie> updatedFavoriteMovies = GetFavoriteMovies(currentUserId, 0, 10); // Adjust limit/offset if needed
 
-            // Clear the existing controls and display the updated favorite movies.
-            DisplayFavoriteMovies(favoriteMovies, favoriteMovie_flp);
+            // Display the refreshed favorite movies
+            DisplayFavoriteMovies(updatedFavoriteMovies, favoriteMovie_flp);
 
+            // Optionally re-curve the panel if resizing messed it up
+            CurvePanel(favoriteMovie_flp, 30);
         }
+
 
         private async void DisplayFavoriteMovies(List<movie> favoriteMovies, FlowLayoutPanel targetPanel)
         {

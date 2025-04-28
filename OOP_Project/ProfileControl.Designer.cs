@@ -111,6 +111,7 @@
             // 
             // changeAvatar_btn
             // 
+            this.changeAvatar_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
             this.changeAvatar_btn.Location = new System.Drawing.Point(2, 101);
             this.changeAvatar_btn.Margin = new System.Windows.Forms.Padding(20, 100, 3, 3);
             this.changeAvatar_btn.Name = "changeAvatar_btn";
