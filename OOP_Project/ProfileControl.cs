@@ -558,16 +558,29 @@ namespace OOP_Project
             return movies;
         }
 
+        private bool isAvatarButtonToggled = false;
         private void changeAvatar_btn_Click(object sender, EventArgs e)
         {
-            // Create a dialog for avatar selection
-            using (Form avatarSelectionForm = new Form())
+            if (!isAvatarButtonToggled)
             {
-                avatarSelectionForm.Text = "Choose Avatar";
-                avatarSelectionForm.Size = new Size(300, 200);
+                // Toggle ON - Dark background
+                changeAvatar_btn.StateCommon.Back.Color1 = Color.FromArgb(30, 30, 30);
+                changeAvatar_btn.StateCommon.Back.Color2 = Color.FromArgb(30, 30, 30);
+                changeAvatar_btn.StateNormal.Back.Color1 = Color.FromArgb(30, 30, 30);
+                changeAvatar_btn.StateNormal.Back.Color2 = Color.FromArgb(30, 30, 30);
+                changeAvatar_btn.StateTracking.Back.Color1 = Color.FromArgb(30, 30, 30);
+                changeAvatar_btn.StateTracking.Back.Color2 = Color.FromArgb(30, 30, 30);
 
-                // Define the avatars
-                List<Image> avatarOptions = new List<Image>
+                isAvatarButtonToggled = true;
+
+                // Create a dialog for avatar selection
+                using (Form avatarSelectionForm = new Form())
+                {
+                    avatarSelectionForm.Text = "Choose Avatar";
+                    avatarSelectionForm.Size = new Size(300, 200);
+
+                    // Define the avatars
+                    List<Image> avatarOptions = new List<Image>
         {
             Properties.Resources.avatar_default, // Replace with actual images or paths
             Properties.Resources.avatar_male,
@@ -575,33 +588,48 @@ namespace OOP_Project
             Properties.Resources.avatar_women2
         };
 
-                // Create buttons for each avatar option
-                int x = 20; // Initial X position for avatars
-                foreach (var avatar in avatarOptions)
-                {
-                    Button avatarButton = new Button
+                    // Create buttons for each avatar option
+                    int x = 20; // Initial X position for avatars
+                    foreach (var avatar in avatarOptions)
                     {
-                        Size = new Size(60, 60),
-                        Location = new Point(x, 20),
-                        BackgroundImage = avatar,
-                        BackgroundImageLayout = ImageLayout.Stretch
-                    };
+                        Button avatarButton = new Button
+                        {
+                            Size = new Size(60, 60),
+                            Location = new Point(x, 20),
+                            BackgroundImage = avatar,
+                            BackgroundImageLayout = ImageLayout.Stretch
+                        };
 
-                    avatarButton.Click += (s, args) =>
-                    {
-                        // Set the selected avatar as the profile picture
-                        avatar_pb.Image = avatar;
+                        avatarButton.Click += (s, args) =>
+                        {
+                            // Set the selected avatar as the profile picture
+                            avatar_pb.Image = avatar;
 
-                        // Close the avatar selection form
-                        avatarSelectionForm.Close();
-                    };
-                    avatarSelectionForm.AutoSize = true;
-                    avatarSelectionForm.StartPosition = FormStartPosition.CenterParent;
-                    avatarSelectionForm.Controls.Add(avatarButton);
-                    x += 80; // Add some space between avatar buttons
+                            // Close the avatar selection form
+                            avatarSelectionForm.Close();
+                        };
+                        avatarSelectionForm.AutoSize = true;
+                        avatarSelectionForm.StartPosition = FormStartPosition.CenterParent;
+                        avatarSelectionForm.Controls.Add(avatarButton);
+                        x += 80; // Add some space between avatar buttons
+                    }
+
+                    avatarSelectionForm.ShowDialog();
                 }
+            }
+            else
+            {
+                // Toggle OFF - Transparent background
+                Color transparent = Color.FromArgb(0, 0, 0, 0);
 
-                avatarSelectionForm.ShowDialog();
+                changeAvatar_btn.StateCommon.Back.Color1 = transparent;
+                changeAvatar_btn.StateCommon.Back.Color2 = transparent;
+                changeAvatar_btn.StateNormal.Back.Color1 = transparent;
+                changeAvatar_btn.StateNormal.Back.Color2 = transparent;
+                changeAvatar_btn.StateTracking.Back.Color1 = transparent;
+                changeAvatar_btn.StateTracking.Back.Color2 = transparent;
+
+                isAvatarButtonToggled = false;
             }
         }
 

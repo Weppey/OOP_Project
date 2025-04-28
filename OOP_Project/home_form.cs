@@ -1345,6 +1345,26 @@ namespace OOP_Project
                 }
             }
         }
+
+        private void kryptonCheckButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (kryptonCheckButton1.Checked)
+            {
+                // Toggled ON
+                kryptonCheckButton1.StateCommon.Back.Color1 = Color.Transparent;
+                kryptonCheckButton1.StateCommon.Back.Color2 = Color.Transparent;
+                kryptonCheckButton1.StateCommon.Border.Color1 = Color.Gold;
+                kryptonCheckButton1.StateCommon.Border.Color2 = Color.Gold;
+            }
+            else
+            {
+                // Toggled OFF
+                kryptonCheckButton1.StateCommon.Back.Color1 = Color.Transparent;
+                kryptonCheckButton1.StateCommon.Back.Color2 = Color.Transparent;
+                kryptonCheckButton1.StateCommon.Border.Color1 = Color.Transparent;
+                kryptonCheckButton1.StateCommon.Border.Color2 = Color.Transparent;
+            }
+        }
     }
 
 }
