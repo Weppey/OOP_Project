@@ -240,12 +240,6 @@
     <Compile Include="FavoriteControl.Designer.cs">
       <DependentUpon>FavoriteControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="favorite_form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="favorite_form.Designer.cs">
-      <DependentUpon>favorite_form.cs</DependentUpon>
-    </Compile>
     <Compile Include="home_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,12 +253,6 @@
       <DependentUpon>login_form.cs</DependentUpon>
     </Compile>
     <Compile Include="movie.cs" />
-    <Compile Include="MovieCard.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="MovieCard.Designer.cs">
-      <DependentUpon>MovieCard.cs</DependentUpon>
-    </Compile>
     <Compile Include="movie_details_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,17 +295,11 @@
     <EmbeddedResource Include="FavoriteControl.resx">
       <DependentUpon>FavoriteControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="favorite_form.resx">
-      <DependentUpon>favorite_form.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="home_form.resx">
       <DependentUpon>home_form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login_form.resx">
       <DependentUpon>login_form.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MovieCard.resx">
-      <DependentUpon>MovieCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="movie_details_form.resx">
       <DependentUpon>movie_details_form.cs</DependentUpon>

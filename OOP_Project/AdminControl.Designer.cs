@@ -465,6 +465,13 @@ namespace OOP_Project
             this.users_dgv.MultiSelect = false;
             this.users_dgv.Name = "users_dgv";
             this.users_dgv.ReadOnly = true;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.users_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.users_dgv.RowHeadersVisible = false;
             this.users_dgv.RowTemplate.Height = 35;
             this.users_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

@@ -215,13 +215,16 @@ namespace OOP_Project
             preferences_clb.Enabled = false;
             age_tb.ReadOnly = true;
             gender_tb.ReadOnly = true;
-            birthdate_dtp.Enabled = true;
-            cancel_btn.Enabled = false;
-            save_btn.Enabled = false;
+            birthdate_dtp.Visible = true;
+            cancel_btn.Visible = false;
+            save_btn.Visible = false;
+            editProfile_btn.Visible = false;
             onClicked = 0;
 
             // Restore edit button image
-            editProfile_btn.Values.Image = Properties.Resources.icons8_close_24;
+            editProfile_btn.Values.Image = Properties.Resources.icons8_edit_user_28; // Switch back to close icon
+            LoadProfileData();
+
         }
 
         private void save_btn_Click(object sender, EventArgs e)
@@ -266,6 +269,7 @@ namespace OOP_Project
 
                 //   profile data
                 LoadProfileData();
+                editProfile_btn.Values.Image = Properties.Resources.icons8_edit_user_28; // Switch back to close icon
             }
             catch (Exception ex)
             {

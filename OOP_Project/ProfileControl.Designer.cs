@@ -37,6 +37,7 @@
             this.cancel_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.save_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.editProfile_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.avatar_pb = new System.Windows.Forms.PictureBox();
             this.preferences_lbl = new System.Windows.Forms.Label();
             this.username_lbl = new System.Windows.Forms.Label();
             this.preferences_clb = new System.Windows.Forms.CheckedListBox();
@@ -48,7 +49,6 @@
             this.age_tb = new System.Windows.Forms.TextBox();
             this.birthdate_lbl = new System.Windows.Forms.Label();
             this.age_lbl = new System.Windows.Forms.Label();
-            this.avatar_pb = new System.Windows.Forms.PictureBox();
             this.recentlyViewMovie_panel.SuspendLayout();
             this.profileDetails_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.avatar_pb)).BeginInit();
@@ -179,7 +179,7 @@
             this.cancel_btn.TabIndex = 103;
             this.cancel_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_close_241;
             this.cancel_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.cancel_btn.Values.Text = "Save";
+            this.cancel_btn.Values.Text = "Cancel";
             this.cancel_btn.Visible = false;
             this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
             // 
@@ -244,6 +244,16 @@
             this.editProfile_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.editProfile_btn.Values.Text = "";
             this.editProfile_btn.Click += new System.EventHandler(this.editProfile_btn_Click);
+            // 
+            // avatar_pb
+            // 
+            this.avatar_pb.BackColor = System.Drawing.Color.White;
+            this.avatar_pb.Location = new System.Drawing.Point(128, 59);
+            this.avatar_pb.Name = "avatar_pb";
+            this.avatar_pb.Size = new System.Drawing.Size(150, 150);
+            this.avatar_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.avatar_pb.TabIndex = 0;
+            this.avatar_pb.TabStop = false;
             // 
             // preferences_lbl
             // 
@@ -356,16 +366,6 @@
             this.age_lbl.Size = new System.Drawing.Size(36, 17);
             this.age_lbl.TabIndex = 7;
             this.age_lbl.Text = "Age:";
-            // 
-            // avatar_pb
-            // 
-            this.avatar_pb.BackColor = System.Drawing.Color.White;
-            this.avatar_pb.Location = new System.Drawing.Point(128, 59);
-            this.avatar_pb.Name = "avatar_pb";
-            this.avatar_pb.Size = new System.Drawing.Size(150, 150);
-            this.avatar_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.avatar_pb.TabIndex = 0;
-            this.avatar_pb.TabStop = false;
             // 
             // ProfileControl
             // 
