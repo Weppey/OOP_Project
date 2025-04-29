@@ -96,20 +96,19 @@ namespace OOP_Project
             // 
             // profileBack_panel
             // 
-            this.profileBack_panel.BackColor = System.Drawing.Color.White;
+            this.profileBack_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
             this.profileBack_panel.Controls.Add(this.userAvatar);
-            this.profileBack_panel.Location = new System.Drawing.Point(8, 7);
+            this.profileBack_panel.Location = new System.Drawing.Point(11, 15);
             this.profileBack_panel.Name = "profileBack_panel";
-            this.profileBack_panel.Size = new System.Drawing.Size(60, 60);
+            this.profileBack_panel.Size = new System.Drawing.Size(55, 55);
             this.profileBack_panel.TabIndex = 6;
             // 
             // userAvatar
             // 
             this.userAvatar.BackColor = System.Drawing.Color.Transparent;
-            this.userAvatar.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.userAvatar.Location = new System.Drawing.Point(0, 0);
+            this.userAvatar.Location = new System.Drawing.Point(5, 11);
             this.userAvatar.Name = "userAvatar";
-            this.userAvatar.Size = new System.Drawing.Size(60, 60);
+            this.userAvatar.Size = new System.Drawing.Size(45, 45);
             this.userAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.userAvatar.TabIndex = 5;
             this.userAvatar.TabStop = false;
@@ -119,7 +118,7 @@ namespace OOP_Project
             this.dateLabel.AutoSize = true;
             this.dateLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateLabel.ForeColor = System.Drawing.Color.DarkSlateGray;
-            this.dateLabel.Location = new System.Drawing.Point(712, 68);
+            this.dateLabel.Location = new System.Drawing.Point(645, 65);
             this.dateLabel.Name = "dateLabel";
             this.dateLabel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dateLabel.Size = new System.Drawing.Size(33, 15);

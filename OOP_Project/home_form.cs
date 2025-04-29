@@ -1350,7 +1350,7 @@ namespace OOP_Project
         private void InitializeInactivityTimer()
         {
             inactivityTimer = new Timer();
-            inactivityTimer.Interval = 20000; // 20 seconds
+            inactivityTimer.Interval = 200000; // 20 seconds
             inactivityTimer.Tick += InactivityTimer_Tick;
             inactivityTimer.Start();
 

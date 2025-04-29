@@ -59,7 +59,7 @@ namespace OOP_Project
 
         private void commentCard_Load(object sender, EventArgs e)
         {
-            CurvePanel(profileBack_panel, 30);
+            CurvePanel(profileBack_panel, 60);
             profileBack_panel.Resize += (s, args) => CurvePanel(profileBack_panel, 20);
 
             CurvePanel(commentBackColor, 30);
