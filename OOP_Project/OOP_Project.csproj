@@ -222,6 +222,12 @@
     <Compile Include="AdminControl.Designer.cs">
       <DependentUpon>AdminControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="AutoClosingMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoClosingMessageBox.Designer.cs">
+      <DependentUpon>AutoClosingMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="commentCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -246,6 +252,7 @@
     <Compile Include="home_form.Designer.cs">
       <DependentUpon>home_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="InactivityManager.cs" />
     <Compile Include="login_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -285,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminControl.resx">
       <DependentUpon>AdminControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoClosingMessageBox.resx">
+      <DependentUpon>AutoClosingMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="commentCard.resx">
       <DependentUpon>commentCard.cs</DependentUpon>

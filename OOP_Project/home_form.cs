@@ -30,8 +30,7 @@ namespace OOP_Project
             // This object will be used to manage the connection to the MySQL database,
             // allowing the application to open a connection, run commands, and interact with the database.
             private MySqlConnection connection;
-            private Timer inactivityTimer;
-
+        private static bool isProfilePanelActive = false;
 
         private ToolTip tooltip = new ToolTip();
         // Connection string to connect to the database, specifying the server, database, and login credentials.
@@ -55,10 +54,14 @@ namespace OOP_Project
         public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
             {
                 InitializeComponent(); // Initializes the form components (UI elements)
-            InitializeInactivityTimer();
+            InactivityManager.Initialize(this);
 
-                // Assign user details from the login
-                userType = userTypeFromLogin; // Store the user's type (admin or regular)
+            this.MouseMove += (s, ev) => InactivityManager.ResetTimer();
+            this.KeyDown += (s, ev) => InactivityManager.ResetTimer();
+
+
+            // Assign user details from the login
+            userType = userTypeFromLogin; // Store the user's type (admin or regular)
                 currentUserId = userIdFromLogin; // Store the current user's ID
 
                 HandleAccess(); // Handle access based on the user's type (admin or regular user)
@@ -607,6 +610,8 @@ namespace OOP_Project
         }
         private void close_pb_Click(object sender, EventArgs e)
         {
+            InactivityManager.ResetTimer();
+            InactivityManager.Pause();
             string msg = "Do you want to leave this page?";
             string title = "Confirm Navigation";
             MessageBoxButtons btn = MessageBoxButtons.YesNo;
@@ -627,6 +632,7 @@ namespace OOP_Project
             }
             else
             {
+                InactivityManager.Resume();
                 return; // Do nothing if user cancels the close
             }
         }
@@ -656,6 +662,8 @@ namespace OOP_Project
         {
             if (Favorite_panel.Visible == false)
             {
+                InactivityManager.Pause();
+                InactivityManager.ResetTimer();
                 form_lbl.Text = "FAVORITE";
                 Favorite_panel.Visible = true;
                 userProfile_panel.Visible = false;
@@ -717,6 +725,7 @@ namespace OOP_Project
         }
         private void signOut_btn_Click(object sender, EventArgs e)
         {
+            InactivityManager.Pause();
             string msg = "Do you really want to sign out?";
             string title = "Confirm Navigation";
             MessageBoxButtons btn = MessageBoxButtons.YesNo;
@@ -745,6 +754,8 @@ namespace OOP_Project
             }
             else
             {
+                InactivityManager.ResetTimer();
+                InactivityManager.Resume();
                 return; // Do nothing if user cancels
             }
         }
@@ -1242,19 +1253,26 @@ namespace OOP_Project
                 form_lbl.Text = "ADMIN";
                 AdminControl_panel.Visible = true;
                 userProfile_panel.Visible = false;
-                AdminControl_panel.Controls.Clear();
+
+                isProfilePanelActive = false; // If Admin panel is shown, the profile is inactive
+                InactivityManager.Pause(); // Pause the inactivity timer for Admin panel
+
                 AdminControl adminPanel = new AdminControl();
                 AdminControl_panel.Controls.Add(adminPanel);
             }
             else
             {
                 AdminControl_panel.Visible = false;
-                //Reload the home_form
-               
+
+                if (!isProfilePanelActive)
+                {
+                    InactivityManager.Resume();  // Resume only if Profile is not active
+                }
+
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
                 {
-                    DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+                    DisplayMoviesByGenre(genres);
                 }
                 else
                 {
@@ -1267,24 +1285,33 @@ namespace OOP_Project
         private void profile_btn_Click(object sender, EventArgs e)
         {
             ProfileControl userProfilePanel = new ProfileControl(userType, currentUserId);
+
             if (!userProfile_panel.Visible)
             {
                 form_lbl.Text = "PROFILE";
 
+                // Show profile, hide other panels
                 userProfile_panel.Visible = true;
                 AdminControl_panel.Visible = false;
 
+                // Pause the inactivity timer when the profile is shown
+                Console.WriteLine("Pausing inactivity timer...");
+                InactivityManager.Pause();  // Pause the inactivity timer
+                Console.WriteLine("Inactivity timer paused.");
 
                 userProfile_panel.Controls.Clear();
-
                 userProfilePanel.LoadProfileData();
-
-          //      userProfilePanel.Dock = DockStyle.Fill; // Optional: make it fill the panel
                 userProfile_panel.Controls.Add(userProfilePanel);
             }
             else
             {
+                // Hide profile, resume inactivity timer
                 userProfile_panel.Visible = false;
+
+                // Resume inactivity timer when the profile is closed
+                Console.WriteLine("Resuming inactivity timer...");
+                InactivityManager.Resume();
+                Console.WriteLine("Inactivity timer resumed.");
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -1297,6 +1324,7 @@ namespace OOP_Project
                 }
             }
         }
+
 
         private void allMovie_flp_Scroll(object sender, ScrollEventArgs e)
         {
@@ -1347,40 +1375,7 @@ namespace OOP_Project
         }
 
 
-        private void InitializeInactivityTimer()
-        {
-            inactivityTimer = new Timer();
-            inactivityTimer.Interval = 200000; // 20 seconds
-            inactivityTimer.Tick += InactivityTimer_Tick;
-            inactivityTimer.Start();
-
-            this.MouseMove += ResetInactivityTimer;
-            this.KeyDown += ResetInactivityTimer;
-        }
-
-        private void ResetInactivityTimer(object sender, EventArgs e)
-        {
-            inactivityTimer.Stop();
-            inactivityTimer.Start();
-        }
-
-        private void InactivityTimer_Tick(object sender, EventArgs e)
-        {
-            inactivityTimer.Stop(); 
-
-            var result = MessageBox.Show("Are You Still There?", "Inactivity Check", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.No)
-            {
-                // User clicked YES --> log them out
-                signOut_btn_Click(null, null);
-            }
-            else
-            {
-                // User clicked yes, Program Will Continue running
-                inactivityTimer.Start(); //Reset timer
-            }
-        }
+       
 
        
        
