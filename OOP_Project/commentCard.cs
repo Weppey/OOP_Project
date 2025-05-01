@@ -11,10 +11,11 @@ namespace OOP_Project
     public partial class commentCard : UserControl
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-        private int movieId;
-        private int userId;
+
         private int interactionId;
-        private bool isOwner;
+        private int commentUserId;
+        private int currentUserId;
+        private int parentMovieId;
 
 
         public commentCard()
@@ -22,17 +23,26 @@ namespace OOP_Project
             InitializeComponent();
         }
 
-
-        public void SetCommentInfo(int interactionId, int movieId, int userId, bool isOwner)
+        public void InitializeCommentCard(int interactionId, int commentUserId, int currentUserId, int movieId)
         {
             this.interactionId = interactionId;
-            this.movieId = movieId;
-            this.userId = userId;
-            this.isOwner = isOwner;
+            this.commentUserId = commentUserId;
+            this.currentUserId = currentUserId;
+            this.parentMovieId = movieId;
 
-            editComment_btn.Visible = isOwner;
-            deleteComment_btn.Visible = isOwner;
+            // Show buttons only if current user is the comment author
+            if (commentUserId == currentUserId)
+            {
+                editComment_btn.Visible = true;
+                deleteComment_btn.Visible = true;
+            }
+            else
+            {
+                editComment_btn.Visible = false;
+                deleteComment_btn.Visible = false;
+            }
         }
+
 
         private void CurvePanel(Panel panel, int radius)
         {
@@ -68,7 +78,7 @@ namespace OOP_Project
                 userAvatar.Visible = true;
             }
         }
-
+         
         private void commentCard_Load(object sender, EventArgs e)
         {
             CurvePanel(profileBack_panel, 60);
@@ -81,63 +91,50 @@ namespace OOP_Project
 
         }
 
-
         private void deleteComment_btn_Click(object sender, EventArgs e)
         {
-            var confirmResult = MessageBox.Show("Are you sure to delete this comment?", "Confirm Delete", MessageBoxButtons.YesNo);
-            if (confirmResult == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to delete this comment?", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string deleteQuery = "DELETE FROM movie_interaction WHERE interaction_id = @interactionId AND user_id = @userId";
-                    MySqlCommand cmd = new MySqlCommand(deleteQuery, conn);
-                    cmd.Parameters.AddWithValue("@interactionId", interactionId);
-                    cmd.Parameters.AddWithValue("@userId", userId);
-
-                    int rows = cmd.ExecuteNonQuery();
-                    if (rows > 0)
+                    string query = "DELETE FROM movie_interaction WHERE interaction_id = @id";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        this.Parent.Controls.Remove(this);
-                        this.Dispose();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to delete comment.");
+                        cmd.Parameters.AddWithValue("@id", interactionId);
+                        cmd.ExecuteNonQuery();
                     }
                 }
+
+                // Optionally notify parent form to reload comments
+                MessageBox.Show("Comment deleted.");
+                this.Parent.Controls.Remove(this); // Remove card from panel
             }
         }
-
-
         private void editComment_btn_Click(object sender, EventArgs e)
         {
-            string currentComment = comment_lbl.Text.Substring(2); // remove ": "
-            string newComment = Microsoft.VisualBasic.Interaction.InputBox("Edit your comment:", "Edit Comment", currentComment);
+            string currentText = comment_lbl.Text.Substring(2); // Remove ": " prefix
+            string newText = Interaction.InputBox("Edit your comment:", "Edit Comment", currentText);
 
-            if (!string.IsNullOrWhiteSpace(newComment) && newComment != currentComment)
+            if (!string.IsNullOrWhiteSpace(newText) && newText != currentText)
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string updateQuery = "UPDATE movie_interaction SET comment = @comment WHERE interaction_id = @interactionId AND user_id = @userId";
-                    MySqlCommand cmd = new MySqlCommand(updateQuery, conn);
-                    cmd.Parameters.AddWithValue("@comment", newComment);
-                    cmd.Parameters.AddWithValue("@interactionId", interactionId);
-                    cmd.Parameters.AddWithValue("@userId", userId);
-
-                    int rows = cmd.ExecuteNonQuery();
-                    if (rows > 0)
+                    string query = "UPDATE movie_interaction SET comment = @comment WHERE interaction_id = @id";
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        comment_lbl.Text = ": " + newComment;
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to update comment.");
+                        cmd.Parameters.AddWithValue("@comment", newText);
+                        cmd.Parameters.AddWithValue("@id", interactionId);
+                        cmd.ExecuteNonQuery();
                     }
                 }
+
+                comment_lbl.Text = ": " + newText;
+                MessageBox.Show("Comment updated.");
             }
         }
+
 
     }
 }

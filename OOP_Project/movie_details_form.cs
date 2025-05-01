@@ -129,6 +129,8 @@ namespace OOP_Project
         }
 
 
+
+
         private void WebView2_CoreWebView2InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
         {
             if (e.IsSuccess)
@@ -729,25 +731,19 @@ namespace OOP_Project
 
         public void LoadComments()
         {
-            comments_panel.Controls.Clear(); // Clear old comments
-
-            if (comment_tb.Text == "")
-            {
-                comment_tb.ForeColor = Color.Gray;
-                comment_tb.Text = "Enter comments...";
-            }
+            comments_panel.Controls.Clear();
 
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-string query = @"
-    SELECT i.interaction_id, u.username, u.avatar, i.comment, i.created_at 
-    FROM movie_interaction i
-    JOIN users u ON i.user_id = u.user_id
-    WHERE i.movie_id = @movieId AND i.comment IS NOT NULL
-    ORDER BY i.created_at DESC";
+                    string query = @"
+                SELECT i.interaction_id, i.user_id, u.username, u.avatar, i.comment, i.created_at 
+                FROM movie_interaction i
+                JOIN users u ON i.user_id = u.user_id
+                WHERE i.movie_id = @movieId AND i.comment IS NOT NULL
+                ORDER BY i.created_at DESC";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -757,52 +753,53 @@ string query = @"
                         {
                             if (!reader.HasRows)
                             {
-                                Label noCommentLabel = new Label();
-                                noCommentLabel.Text = "No comments yet. Be the first to comment!";
-                                noCommentLabel.Font = new Font("Segoe UI", 10, FontStyle.Italic);
-                                noCommentLabel.ForeColor = Color.Gray;
-                                noCommentLabel.AutoSize = true;
-                                noCommentLabel.Margin = new Padding(1);
+                                Label noCommentLabel = new Label
+                                {
+                                    Text = "No comments yet. Be the first to comment!",
+                                    Font = new Font("Segoe UI", 10, FontStyle.Italic),
+                                    ForeColor = Color.Gray,
+                                    AutoSize = true,
+                                    Margin = new Padding(1)
+                                };
                                 comments_panel.Controls.Add(noCommentLabel);
                             }
                             else
                             {
                                 while (reader.Read())
                                 {
-                                    string username = reader.GetString("username");
-                                    string comment = reader.GetString("comment");
+                                    string username = reader["username"]?.ToString() ?? "Unknown";
+                                    string comment = reader["comment"]?.ToString() ?? "";
                                     DateTime createdAt = reader.GetDateTime("created_at");
+                                    int interactionId = reader.GetInt32("interaction_id");
+                                    int commentUserId = reader.GetInt32("user_id");
 
-                                    // Create commentCard (your UserControl)
                                     commentCard card = new commentCard();
                                     card.SetComment(username, comment, createdAt);
 
-                                    // Handle Avatar (BLOB)
                                     if (!reader.IsDBNull(reader.GetOrdinal("avatar")))
                                     {
                                         byte[] avatarBytes = (byte[])reader["avatar"];
-
                                         if (avatarBytes.Length > 0)
                                         {
                                             using (MemoryStream ms = new MemoryStream(avatarBytes))
+                                            using (Image avatarImage = Image.FromStream(ms))
                                             {
-                                                Image avatarImage = Image.FromStream(ms);
-                                                card.SetAvatar(avatarImage);
+                                                card.SetAvatar((Image)avatarImage.Clone());
                                             }
                                         }
                                         else
                                         {
-                                            card.SetAvatar(null); // Set default avatar if BLOB is empty
+                                            card.SetAvatar(null);
                                         }
                                     }
                                     else
                                     {
-                                        card.SetAvatar(null); // No avatar saved
+                                        card.SetAvatar(null);
                                     }
 
-                                    // Optional: Adjust card sizing if needed
                                     card.Width = comments_panel.Width - 30;
                                     card.Margin = new Padding(1);
+                                    card.InitializeCommentCard(interactionId, commentUserId, currentUserId, movieId);
 
                                     comments_panel.Controls.Add(card);
                                 }
@@ -816,6 +813,7 @@ string query = @"
                 MessageBox.Show("Error loading comments: " + ex.Message);
             }
         }
+
 
 
 
