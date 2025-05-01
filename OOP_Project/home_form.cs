@@ -49,15 +49,16 @@ namespace OOP_Project
             int pageSize = 20; // Defines how many items to display per page
             bool isLoading = false; // Flag to indicate whether data is currently loading
 
+        private Timer inactivityTimer;
+        private DateTime lastActivityTime;
+        private int inactivityLimitSeconds = 300;
+
+
         private int userIdFromLogin;
 
         public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
             {
                 InitializeComponent(); // Initializes the form components (UI elements)
-            InactivityManager.Initialize(this);
-
-            this.MouseMove += (s, ev) => InactivityManager.ResetTimer();
-            this.KeyDown += (s, ev) => InactivityManager.ResetTimer();
 
 
             // Assign user details from the login
@@ -120,9 +121,39 @@ namespace OOP_Project
             favorite_btn_Click(favorite_btn, EventArgs.Empty);  // Simulate the click event
         }
 
+        private void InactivityTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan inactivity = DateTime.Now - lastActivityTime;
+            if (inactivity.TotalSeconds >= inactivityLimitSeconds)
+            {
+                inactivityTimer.Stop();
+                MessageBox.Show("You've been inactive for 5 minutes. Logging out...");
+
+                // Add logout or lock logic here
+                Application.Restart(); // or call logout method
+            }
+        }
+
+
+
         public async void home_form_Load(object sender, EventArgs e)
         {
+            if (userType == "admin")
+            {
+                lastActivityTime = DateTime.Now;
 
+                inactivityTimer = new Timer();
+                inactivityTimer.Interval = 1000;
+                inactivityTimer.Tick += InactivityTimer_Tick;
+                inactivityTimer.Start();
+            }
+
+            // Attach MouseMove to all controls
+            this.MouseMove += AllControls_MouseMove;
+            AttachMouseMoveToAllControls(this);
+
+            // Hook global mouse move event
+            this.MouseMove += home_form_MouseMove;
             // Get the userId from the session
             int? userId = StayLoggedIn.GetCurrentUserId();
             if (userId.HasValue)
@@ -191,6 +222,11 @@ namespace OOP_Project
             allMovie_panel.Resize += (s, aargs) => CurvePanel(allMovie_panel, 20);
 
 
+        }
+
+        private void home_form_MouseMove(object sender, MouseEventArgs e)
+        {
+            lastActivityTime = DateTime.Now;
         }
         private List<string> GetUserGenres(int userId)
         {
@@ -610,8 +646,6 @@ namespace OOP_Project
         }
         private void close_pb_Click(object sender, EventArgs e)
         {
-            InactivityManager.ResetTimer();
-            InactivityManager.Pause();
             string msg = "Do you want to leave this page?";
             string title = "Confirm Navigation";
             MessageBoxButtons btn = MessageBoxButtons.YesNo;
@@ -632,7 +666,6 @@ namespace OOP_Project
             }
             else
             {
-                InactivityManager.Resume();
                 return; // Do nothing if user cancels the close
             }
         }
@@ -662,8 +695,6 @@ namespace OOP_Project
         {
             if (Favorite_panel.Visible == false)
             {
-                InactivityManager.Pause();
-                InactivityManager.ResetTimer();
                 form_lbl.Text = "FAVORITE";
                 Favorite_panel.Visible = true;
                 userProfile_panel.Visible = false;
@@ -725,7 +756,6 @@ namespace OOP_Project
         }
         private void signOut_btn_Click(object sender, EventArgs e)
         {
-            InactivityManager.Pause();
             string msg = "Do you really want to sign out?";
             string title = "Confirm Navigation";
             MessageBoxButtons btn = MessageBoxButtons.YesNo;
@@ -754,8 +784,6 @@ namespace OOP_Project
             }
             else
             {
-                InactivityManager.ResetTimer();
-                InactivityManager.Resume();
                 return; // Do nothing if user cancels
             }
         }
@@ -1227,7 +1255,7 @@ namespace OOP_Project
         private void home_btn_Click(object sender, EventArgs e)
         {
             //reload home_form
-                DisplayAllMovies();
+                //DisplayAllMovies();
                 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -1243,6 +1271,7 @@ namespace OOP_Project
             form_lbl.Text = "HOME";
             AdminControl_panel.Visible = false;
             userProfile_panel.Visible = false;
+            userProfile_panel.Visible = false;
 
         }
 
@@ -1255,7 +1284,6 @@ namespace OOP_Project
                 userProfile_panel.Visible = false;
 
                 isProfilePanelActive = false; // If Admin panel is shown, the profile is inactive
-                InactivityManager.Pause(); // Pause the inactivity timer for Admin panel
 
                 AdminControl adminPanel = new AdminControl();
                 AdminControl_panel.Controls.Add(adminPanel);
@@ -1263,11 +1291,6 @@ namespace OOP_Project
             else
             {
                 AdminControl_panel.Visible = false;
-
-                if (!isProfilePanelActive)
-                {
-                    InactivityManager.Resume();  // Resume only if Profile is not active
-                }
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -1296,7 +1319,6 @@ namespace OOP_Project
 
                 // Pause the inactivity timer when the profile is shown
                 Console.WriteLine("Pausing inactivity timer...");
-                InactivityManager.Pause();  // Pause the inactivity timer
                 Console.WriteLine("Inactivity timer paused.");
 
                 userProfile_panel.Controls.Clear();
@@ -1305,13 +1327,7 @@ namespace OOP_Project
             }
             else
             {
-                // Hide profile, resume inactivity timer
                 userProfile_panel.Visible = false;
-
-                // Resume inactivity timer when the profile is closed
-                Console.WriteLine("Resuming inactivity timer...");
-                InactivityManager.Resume();
-                Console.WriteLine("Inactivity timer resumed.");
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -1374,11 +1390,55 @@ namespace OOP_Project
             }
         }
 
+        private void userProfile_panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            lastActivityTime = DateTime.Now;
+        }
 
-       
+        private void Favorite_panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            lastActivityTime = DateTime.Now;
+        }
 
-       
-       
+        private void AdminControl_panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            lastActivityTime = DateTime.Now;
+        }
+
+        private void movie_panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            lastActivityTime = DateTime.Now;
+        }
+
+        private void menu_panel_MouseMove(object sender, MouseEventArgs e)
+        {
+            lastActivityTime = DateTime.Now;
+        }
+
+        private void logo_pb_Click(object sender, EventArgs e)
+        {
+            lastActivityTime = DateTime.Now;
+        }
+
+        private void AllControls_MouseMove(object sender, MouseEventArgs e)
+        {
+            lastActivityTime = DateTime.Now;
+        }
+
+        private void AttachMouseMoveToAllControls(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                ctrl.MouseMove += AllControls_MouseMove;
+
+                // If the control contains more controls (e.g., a panel), recurse
+                if (ctrl.HasChildren)
+                {
+                    AttachMouseMoveToAllControls(ctrl);
+                }
+            }
+        }
+
     }
 
 }
