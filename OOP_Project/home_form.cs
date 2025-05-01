@@ -51,7 +51,7 @@ namespace OOP_Project
 
         private Timer inactivityTimer;
         private DateTime lastActivityTime;
-        private int inactivityLimitSeconds = 300;
+        private int inactivityLimitSeconds = 3;
 
 
         private int userIdFromLogin;
@@ -129,8 +129,16 @@ namespace OOP_Project
                 inactivityTimer.Stop();
                 MessageBox.Show("You've been inactive for 5 minutes. Logging out...");
 
-                // Add logout or lock logic here
-                Application.Restart(); // or call logout method
+                // Clear the session
+                StayLoggedIn.ClearSession();
+
+                // Hide the current home form and show the login form
+                this.Hide();
+                login_form loginForm = new login_form();
+                loginForm.ShowDialog(); // Show the login form modally
+
+                // After the login form is closed, close the current app (home form)
+                this.Close();
             }
         }
 
@@ -699,7 +707,7 @@ namespace OOP_Project
                 Favorite_panel.Visible = true;
                 userProfile_panel.Visible = false;
                 AdminControl_panel.Visible = false;
-
+                movie_panel.Visible = false;
                 // Create an instance of FavoriteControl
                 FavoriteControl favoriteControl = new FavoriteControl(userType, currentUserId);
                 // Clear any existing controls from Favorite_panel if necessary
@@ -714,6 +722,20 @@ namespace OOP_Project
             else
             {
                 Favorite_panel.Visible = false;
+                userProfile_panel.Visible = false;
+                AdminControl_panel.Visible = false;
+                movie_panel.Visible = true;
+                popular_panel.Visible = false;
+
+                List<string> genres = GetUserGenres(currentUserId);
+                if (genres != null && genres.Count > 0)
+                {
+                    DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+                }
+                else
+                {
+                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
 
             }
         }
@@ -722,23 +744,55 @@ namespace OOP_Project
 
         private void popular_btn_Click(object sender, EventArgs e)
         {
-            form_lbl.Text = "POPULAR";
-            
-            List<string> genres = GetUserGenres(currentUserId);
-            if (genres != null && genres.Count > 0)
+            if (popular_panel.Visible == false)
             {
-                DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+                form_lbl.Text = "POPULAR";
+                // Create an instance of FavoriteControl
+                PopularControl popularControl = new PopularControl(userType, currentUserId);
+                // Clear any existing controls from Favorite_panel if necessary
+                popular_panel.Controls.Clear();
+                // Add the FavoriteControl to the Favorite_panel
+                popular_panel.Controls.Add(popularControl);
+
+                // Optionally set FavoriteControl's dock property to fill the parent panel
+                popularControl.Dock = DockStyle.Fill; // Fills the parent panel (Favorite_panel)
+
+                popular_panel.Visible = true;
+                Favorite_panel.Visible = false;
+                userProfile_panel.Visible = false;
+                AdminControl_panel.Visible = false;
+                movie_panel.Visible = false;
             }
             else
             {
-                MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                form_lbl.Text = "HOME";
+
+                popular_panel.Visible = false;
+                Favorite_panel.Visible = false;
+                userProfile_panel.Visible = false;
+                AdminControl_panel.Visible = false;
+                movie_panel.Visible = true;
+
+                List<string> genres = GetUserGenres(currentUserId);
+                if (genres != null && genres.Count > 0)
+                {
+                    DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+                }
+                else
+                {
+                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
         private void settings_btn_Click(object sender, EventArgs e)
         {
             form_lbl.Text = "SETTINGS";
 
-            DisplayAllMovies();
+            Favorite_panel.Visible = false;
+            userProfile_panel.Visible = false;
+            AdminControl_panel.Visible = false;
+            movie_panel.Visible = false;
+            popular_panel.Visible = false;
        
             List<string> genres = GetUserGenres(currentUserId);
             if (genres != null && genres.Count > 0)
@@ -1051,7 +1105,6 @@ namespace OOP_Project
             }
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string query = "SELECT title, image_url FROM movies WHERE title LIKE @keyword LIMIT 10";
-            search_list.Items.Clear();
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connStr))
@@ -1255,7 +1308,9 @@ namespace OOP_Project
         private void home_btn_Click(object sender, EventArgs e)
         {
             //reload home_form
-                //DisplayAllMovies();
+            //DisplayAllMovies();
+
+            movie_panel.Visible = true;
                 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -1271,7 +1326,8 @@ namespace OOP_Project
             form_lbl.Text = "HOME";
             AdminControl_panel.Visible = false;
             userProfile_panel.Visible = false;
-            userProfile_panel.Visible = false;
+            popular_panel.Visible = false;
+            Favorite_panel.Visible = false;
 
         }
 
@@ -1282,6 +1338,8 @@ namespace OOP_Project
                 form_lbl.Text = "ADMIN";
                 AdminControl_panel.Visible = true;
                 userProfile_panel.Visible = false;
+                movie_panel.Visible = false;
+                Favorite_panel.Visible = false;
 
                 isProfilePanelActive = false; // If Admin panel is shown, the profile is inactive
 
@@ -1291,6 +1349,10 @@ namespace OOP_Project
             else
             {
                 AdminControl_panel.Visible = false;
+                userProfile_panel.Visible = false;
+                AdminControl_panel.Visible = false;
+                movie_panel.Visible = true;
+                popular_panel.Visible = false;
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -1316,6 +1378,9 @@ namespace OOP_Project
                 // Show profile, hide other panels
                 userProfile_panel.Visible = true;
                 AdminControl_panel.Visible = false;
+                Favorite_panel.Visible = false;
+                popular_panel.Visible = false;
+                movie_panel.Visible = false;
 
                 // Pause the inactivity timer when the profile is shown
                 Console.WriteLine("Pausing inactivity timer...");
@@ -1328,6 +1393,10 @@ namespace OOP_Project
             else
             {
                 userProfile_panel.Visible = false;
+                AdminControl_panel.Visible = false;
+                popular_panel.Visible= false;
+                Favorite_panel.Visible= false;
+                movie_panel.Visible= true;
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)

@@ -266,6 +266,12 @@
     <Compile Include="movie_details_form.Designer.cs">
       <DependentUpon>movie_details_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="PopularControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="PopularControl.Designer.cs">
+      <DependentUpon>PopularControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="signup_form.cs">
@@ -313,6 +319,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="movie_details_form.resx">
       <DependentUpon>movie_details_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PopularControl.resx">
+      <DependentUpon>PopularControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
