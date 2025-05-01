@@ -634,9 +634,10 @@ namespace OOP_Project
                     }
                 }
 
-                MessageBox.Show("Comment posted successfully!");
                 comment_tb.Clear();
                 LoadComments(); // Refresh comments
+                comment_tb.ForeColor = Color.Gray;
+                comment_tb.Text = "Enter comments...";
             }
             catch (Exception ex)
             {
@@ -693,7 +694,8 @@ namespace OOP_Project
                 {
                     MessageBox.Show("Please enter a valid comment.");
                 }
-            });
+            }
+            );
         }
 
 
@@ -802,6 +804,9 @@ namespace OOP_Project
                                     card.InitializeCommentCard(interactionId, commentUserId, currentUserId, movieId);
 
                                     comments_panel.Controls.Add(card);
+
+                                    comment_tb.ForeColor = Color.Gray;
+                                    comment_tb.Text = "Enter comments...";
                                 }
                             }
                         }

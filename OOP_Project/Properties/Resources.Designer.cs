@@ -1183,6 +1183,16 @@ namespace OOP_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_save_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_save_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_search_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-search-50", resourceCulture);

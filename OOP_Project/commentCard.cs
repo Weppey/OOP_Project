@@ -111,30 +111,76 @@ namespace OOP_Project
                 this.Parent.Controls.Remove(this); // Remove card from panel
             }
         }
+        int isClicked = 0;
         private void editComment_btn_Click(object sender, EventArgs e)
         {
-            string currentText = comment_lbl.Text.Substring(2); // Remove ": " prefix
-            string newText = Interaction.InputBox("Edit your comment:", "Edit Comment", currentText);
-
-            if (!string.IsNullOrWhiteSpace(newText) && newText != currentText)
+            if (isClicked == 0)
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open();
-                    string query = "UPDATE movie_interaction SET comment = @comment WHERE interaction_id = @id";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@comment", newText);
-                        cmd.Parameters.AddWithValue("@id", interactionId);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+                editComment_btn.Values.Image = Properties.Resources.icons8_save_20;
+                comment_tb.Text = comment_lbl.Text.TrimStart(':', ' ').Trim();
+                comment_lbl.Visible = false;
+                comment_tb.Visible = true;
+                comment_tb.Focus();
+                comment_tb.SelectAll();
+                isClicked = 1;
+            }
+            else if(isClicked == 1)
+            {
+                SaveEditedComment();
+                editComment_btn.Values.Image = Properties.Resources.icons8_edit_20__1_;
+                comment_tb.Text = comment_lbl.Text.TrimStart(':', ' ').Trim();
+                comment_lbl.Visible = true;
+                comment_tb.Visible = false;
+                comment_tb.Focus();
+                comment_tb.SelectAll();
+                isClicked = 0;
+            }
+            
+        }
 
-                comment_lbl.Text = ": " + newText;
-                MessageBox.Show("Comment updated.");
+        private void comment_tb_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SaveEditedComment();
+                editComment_btn.Values.Image = Properties.Resources.icons8_edit_20__1_;
+                isClicked = 0;
+                e.SuppressKeyPress = true; // Prevent ding sound
             }
         }
 
+        private void SaveEditedComment()
+        {
+            string newText = comment_tb.Text.Trim();
+
+            if (!string.IsNullOrWhiteSpace(newText))
+            {
+                try
+                {
+                    using (MySqlConnection conn = new MySqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        string query = "UPDATE movie_interaction SET comment = @comment WHERE interaction_id = @id";
+
+                        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@comment", newText);
+                            cmd.Parameters.AddWithValue("@id", interactionId);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    // Update UI
+                    comment_lbl.Text = ": " + newText;
+                    comment_lbl.Visible = true;
+                    comment_tb.Visible = false;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to update comment: " + ex.Message);
+                }
+            }
+        }
 
     }
 }

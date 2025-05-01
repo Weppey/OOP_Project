@@ -31,8 +31,9 @@ namespace OOP_Project
             this.userAvatar = new System.Windows.Forms.PictureBox();
             this.dateLabel = new System.Windows.Forms.Label();
             this.commentBackColor = new System.Windows.Forms.Panel();
-            this.comment_lbl = new System.Windows.Forms.Label();
             this.separatorPanel = new System.Windows.Forms.Panel();
+            this.comment_lbl = new System.Windows.Forms.Label();
+            this.comment_tb = new System.Windows.Forms.TextBox();
             this.commentBG_panel.SuspendLayout();
             this.profileBack_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userAvatar)).BeginInit();
@@ -130,11 +131,20 @@ namespace OOP_Project
             // 
             this.commentBackColor.AutoSize = true;
             this.commentBackColor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.commentBackColor.Controls.Add(this.comment_tb);
             this.commentBackColor.Controls.Add(this.comment_lbl);
             this.commentBackColor.Location = new System.Drawing.Point(75, 25);
             this.commentBackColor.Name = "commentBackColor";
-            this.commentBackColor.Size = new System.Drawing.Size(684, 40);
+            this.commentBackColor.Size = new System.Drawing.Size(687, 40);
             this.commentBackColor.TabIndex = 1;
+            // 
+            // separatorPanel
+            // 
+            this.separatorPanel.BackColor = System.Drawing.Color.Gray;
+            this.separatorPanel.Location = new System.Drawing.Point(74, 21);
+            this.separatorPanel.Name = "separatorPanel";
+            this.separatorPanel.Size = new System.Drawing.Size(756, 1);
+            this.separatorPanel.TabIndex = 3;
             // 
             // comment_lbl
             // 
@@ -147,13 +157,18 @@ namespace OOP_Project
             this.comment_lbl.TabIndex = 2;
             this.comment_lbl.Text = "> Comment:";
             // 
-            // separatorPanel
+            // comment_tb
             // 
-            this.separatorPanel.BackColor = System.Drawing.Color.Gray;
-            this.separatorPanel.Location = new System.Drawing.Point(74, 21);
-            this.separatorPanel.Name = "separatorPanel";
-            this.separatorPanel.Size = new System.Drawing.Size(756, 1);
-            this.separatorPanel.TabIndex = 3;
+            this.comment_tb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
+            this.comment_tb.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.comment_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comment_tb.Location = new System.Drawing.Point(3, 3);
+            this.comment_tb.Multiline = true;
+            this.comment_tb.Name = "comment_tb";
+            this.comment_tb.Size = new System.Drawing.Size(681, 34);
+            this.comment_tb.TabIndex = 3;
+            this.comment_tb.Visible = false;
+            this.comment_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comment_tb_KeyDown);
             // 
             // commentCard
             // 
@@ -180,7 +195,6 @@ namespace OOP_Project
         private Label username_lbl;
         private Panel commentBG_panel;
         private Panel commentBackColor;
-        private Label comment_lbl;
         private Panel separatorPanel; // Added separator panel for the border between username and comment
         private Label dateLabel;
         private PictureBox userAvatar;
@@ -188,5 +202,7 @@ namespace OOP_Project
         private Panel panel1;
         private ComponentFactory.Krypton.Toolkit.KryptonButton deleteComment_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton editComment_btn;
+        private TextBox comment_tb;
+        private Label comment_lbl;
     }
 }

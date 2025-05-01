@@ -64,12 +64,9 @@
             // 
             // movie_panel
             // 
-            this.movie_panel.AutoScroll = true;
             this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.movie_panel.Controls.Add(this.comment_lbl);
             this.movie_panel.Controls.Add(this.commentBorder_panel);
-            this.movie_panel.Controls.Add(this.submit_comment_btn);
-            this.movie_panel.Controls.Add(this.comment_tb);
             this.movie_panel.Controls.Add(this.ratings_btn);
             this.movie_panel.Controls.Add(this.ratings_panel);
             this.movie_panel.Controls.Add(this.webView21);
@@ -84,7 +81,7 @@
             // 
             // comment_lbl
             // 
-            this.comment_lbl.Location = new System.Drawing.Point(18, 583);
+            this.comment_lbl.Location = new System.Drawing.Point(18, 572);
             this.comment_lbl.Name = "comment_lbl";
             this.comment_lbl.Size = new System.Drawing.Size(120, 28);
             this.comment_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
@@ -99,40 +96,44 @@
             this.commentBorder_panel.BackColor = System.Drawing.Color.White;
             this.commentBorder_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.commentBorder_panel.Controls.Add(this.comments_panel);
-            this.commentBorder_panel.Location = new System.Drawing.Point(18, 617);
+            this.commentBorder_panel.Controls.Add(this.comment_tb);
+            this.commentBorder_panel.Controls.Add(this.submit_comment_btn);
+            this.commentBorder_panel.Location = new System.Drawing.Point(18, 606);
             this.commentBorder_panel.Name = "commentBorder_panel";
-            this.commentBorder_panel.Size = new System.Drawing.Size(932, 187);
+            this.commentBorder_panel.Size = new System.Drawing.Size(932, 191);
             this.commentBorder_panel.TabIndex = 82;
             // 
             // comments_panel
             // 
             this.comments_panel.AutoSize = true;
             this.comments_panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.comments_panel.Location = new System.Drawing.Point(36, 31);
+            this.comments_panel.Location = new System.Drawing.Point(26, 87);
             this.comments_panel.Name = "comments_panel";
             this.comments_panel.Size = new System.Drawing.Size(891, 99);
             this.comments_panel.TabIndex = 81;
             // 
             // submit_comment_btn
             // 
-            this.submit_comment_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.submit_comment_btn.Location = new System.Drawing.Point(791, 552);
+            this.submit_comment_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Cluster;
+            this.submit_comment_btn.Location = new System.Drawing.Point(772, 15);
             this.submit_comment_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.submit_comment_btn.Name = "submit_comment_btn";
             this.submit_comment_btn.Size = new System.Drawing.Size(145, 56);
-            this.submit_comment_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
+            this.submit_comment_btn.StateCommon.Back.Color1 = System.Drawing.Color.Black;
             this.submit_comment_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.submit_comment_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.submit_comment_btn.StateCommon.Border.Rounding = 20;
             this.submit_comment_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.submit_comment_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
-            this.submit_comment_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.submit_comment_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.submit_comment_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.submit_comment_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.submit_comment_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.submit_comment_btn.StateDisabled.Back.Color1 = System.Drawing.Color.Cyan;
+            this.submit_comment_btn.StateDisabled.Back.Color2 = System.Drawing.Color.Blue;
+            this.submit_comment_btn.StateNormal.Back.Color1 = System.Drawing.Color.Cyan;
+            this.submit_comment_btn.StateNormal.Back.Color2 = System.Drawing.Color.Blue;
+            this.submit_comment_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.submit_comment_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.submit_comment_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.submit_comment_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.submit_comment_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.submit_comment_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.submit_comment_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -149,10 +150,10 @@
             // 
             this.comment_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comment_tb.ForeColor = System.Drawing.Color.Gray;
-            this.comment_tb.Location = new System.Drawing.Point(292, 552);
+            this.comment_tb.Location = new System.Drawing.Point(26, 18);
             this.comment_tb.Multiline = true;
             this.comment_tb.Name = "comment_tb";
-            this.comment_tb.Size = new System.Drawing.Size(498, 53);
+            this.comment_tb.Size = new System.Drawing.Size(736, 53);
             this.comment_tb.TabIndex = 80;
             this.comment_tb.Text = "Enter comments...";
             this.comment_tb.Visible = false;
@@ -162,7 +163,7 @@
             // ratings_btn
             // 
             this.ratings_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.ratings_btn.Location = new System.Drawing.Point(291, 483);
+            this.ratings_btn.Location = new System.Drawing.Point(291, 492);
             this.ratings_btn.Name = "ratings_btn";
             this.ratings_btn.Size = new System.Drawing.Size(37, 45);
             this.ratings_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
@@ -184,7 +185,7 @@
             this.ratings_panel.Controls.Add(this.ratingStar3_btn);
             this.ratings_panel.Controls.Add(this.ratingStar2_btn);
             this.ratings_panel.Controls.Add(this.ratingStar1_btn);
-            this.ratings_panel.Location = new System.Drawing.Point(334, 483);
+            this.ratings_panel.Location = new System.Drawing.Point(334, 492);
             this.ratings_panel.Margin = new System.Windows.Forms.Padding(10);
             this.ratings_panel.Name = "ratings_panel";
             this.ratings_panel.Padding = new System.Windows.Forms.Padding(3);
@@ -304,7 +305,7 @@
             // comment_btn
             // 
             this.comment_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.comment_btn.Location = new System.Drawing.Point(649, 483);
+            this.comment_btn.Location = new System.Drawing.Point(649, 492);
             this.comment_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.comment_btn.Name = "comment_btn";
             this.comment_btn.Size = new System.Drawing.Size(132, 45);
@@ -335,7 +336,7 @@
             // favorite_btn
             // 
             this.favorite_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.favorite_btn.Location = new System.Drawing.Point(804, 483);
+            this.favorite_btn.Location = new System.Drawing.Point(804, 492);
             this.favorite_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.favorite_btn.Name = "favorite_btn";
             this.favorite_btn.Size = new System.Drawing.Size(132, 45);
