@@ -5,7 +5,7 @@ using OOP_Project;
 public static class InactivityManager
 {
     private static Timer inactivityTimer;
-    private static int inactivityInterval = 5000; // 10 seconds for testing (adjust as needed)
+    private static int inactivityInterval = 500000; // 10 seconds for testing (adjust as needed)
     private static bool isPaused = false;
     private static Form ownerForm; // Form that owns the session
 

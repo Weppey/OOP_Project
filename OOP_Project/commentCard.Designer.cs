@@ -85,6 +85,7 @@ namespace OOP_Project
             this.editComment_btn.TabIndex = 7;
             this.editComment_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_20__1_;
             this.editComment_btn.Values.Text = "";
+            this.editComment_btn.Click += new System.EventHandler(this.editComment_btn_Click);
             // 
             // panel1
             // 
