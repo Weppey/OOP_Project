@@ -253,7 +253,6 @@
     <Compile Include="home_form.Designer.cs">
       <DependentUpon>home_form.cs</DependentUpon>
     </Compile>
-    <Compile Include="InactivityManager.cs" />
     <Compile Include="login_form.cs">
       <SubType>Form</SubType>
     </Compile>

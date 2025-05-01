@@ -59,7 +59,6 @@
             this.Favorite_panel = new System.Windows.Forms.Panel();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
-            this.kryptonButton1 = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.leftdock_pnl.SuspendLayout();
             this.menu2_panel.SuspendLayout();
             this.menu_panel.SuspendLayout();
@@ -556,13 +555,6 @@
             this.minimize_pb.MouseEnter += new System.EventHandler(this.minimize_pb_MouseEnter);
             this.minimize_pb.MouseLeave += new System.EventHandler(this.minimize_pb_MouseLeave);
             // 
-            // kryptonButton1
-            // 
-            this.kryptonButton1.Location = new System.Drawing.Point(-15, -15);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.Size = new System.Drawing.Size(90, 25);
-            this.kryptonButton1.TabIndex = 0;
-            // 
             // home_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -570,13 +562,12 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(1388, 791);
-            this.Controls.Add(this.kryptonButton1);
-            this.Controls.Add(this.userProfile_panel);
             this.Controls.Add(this.profile_btn);
             this.Controls.Add(this.form_lbl);
             this.Controls.Add(this.leftdock_pnl);
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
+            this.Controls.Add(this.userProfile_panel);
             this.Controls.Add(this.Favorite_panel);
             this.Controls.Add(this.AdminControl_panel);
             this.Controls.Add(this.movie_panel);
@@ -593,6 +584,7 @@
             this.StateCommon.Header.ButtonEdgeInset = -10;
             this.Text = "home_form";
             this.Load += new System.EventHandler(this.home_form_Load);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.home_form_MouseMove);
             this.leftdock_pnl.ResumeLayout(false);
             this.menu2_panel.ResumeLayout(false);
             this.menu_panel.ResumeLayout(false);
@@ -640,6 +632,5 @@
         private System.Windows.Forms.Panel userProfile_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton home_btn;
         private System.Windows.Forms.Panel Favorite_panel;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton kryptonButton1;
     }
 }
