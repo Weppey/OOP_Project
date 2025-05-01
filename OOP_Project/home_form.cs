@@ -51,7 +51,7 @@ namespace OOP_Project
 
         private Timer inactivityTimer;
         private DateTime lastActivityTime;
-        private int inactivityLimitSeconds = 3;
+        private int inactivityLimitSeconds = 20;
 
 
         private int userIdFromLogin;
@@ -141,8 +141,6 @@ namespace OOP_Project
                 this.Close();
             }
         }
-
-
 
         public async void home_form_Load(object sender, EventArgs e)
         {
@@ -708,6 +706,7 @@ namespace OOP_Project
                 userProfile_panel.Visible = false;
                 AdminControl_panel.Visible = false;
                 movie_panel.Visible = false;
+                popular_panel.Visible = false;
                 // Create an instance of FavoriteControl
                 FavoriteControl favoriteControl = new FavoriteControl(userType, currentUserId);
                 // Clear any existing controls from Favorite_panel if necessary
@@ -1034,7 +1033,7 @@ namespace OOP_Project
                         // Check if the movie is already in the recently searched list
                         if (IsMovieAlreadyInPanel(fullMovie, recentlysearch_flp))
                         {
-                           //
+                            //
                         }
                         else
                         {
@@ -1056,7 +1055,7 @@ namespace OOP_Project
                 search_list.ClearSelected();
                 search_list.Visible = false;
             }
-        }    
+        }
 
         private void ShowMovieDetailsForm(movie movie)
         {
@@ -1105,6 +1104,7 @@ namespace OOP_Project
             }
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string query = "SELECT title, image_url FROM movies WHERE title LIKE @keyword LIMIT 10";
+            search_list.Items.Clear();
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connStr))
