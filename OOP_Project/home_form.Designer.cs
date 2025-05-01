@@ -104,6 +104,7 @@
             this.menu_panel.Name = "menu_panel";
             this.menu_panel.Size = new System.Drawing.Size(109, 692);
             this.menu_panel.TabIndex = 0;
+            this.menu_panel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menu_panel_MouseMove);
             // 
             // home_btn
             // 
@@ -307,6 +308,7 @@
             this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logo_pb.TabIndex = 0;
             this.logo_pb.TabStop = false;
+            this.logo_pb.Click += new System.EventHandler(this.logo_pb_Click);
             // 
             // form_lbl
             // 
@@ -341,6 +343,7 @@
             this.movie_panel.Name = "movie_panel";
             this.movie_panel.Size = new System.Drawing.Size(1214, 614);
             this.movie_panel.TabIndex = 61;
+            this.movie_panel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movie_panel_MouseMove);
             // 
             // allMovie_lbl
             // 
@@ -508,6 +511,7 @@
             this.AdminControl_panel.Size = new System.Drawing.Size(1214, 614);
             this.AdminControl_panel.TabIndex = 65;
             this.AdminControl_panel.Visible = false;
+            this.AdminControl_panel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.AdminControl_panel_MouseMove);
             // 
             // userProfile_panel
             // 
@@ -517,6 +521,7 @@
             this.userProfile_panel.Size = new System.Drawing.Size(1214, 614);
             this.userProfile_panel.TabIndex = 66;
             this.userProfile_panel.Visible = false;
+            this.userProfile_panel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.userProfile_panel_MouseMove);
             // 
             // Favorite_panel
             // 
@@ -526,6 +531,7 @@
             this.Favorite_panel.Size = new System.Drawing.Size(1214, 614);
             this.Favorite_panel.TabIndex = 66;
             this.Favorite_panel.Visible = false;
+            this.Favorite_panel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Favorite_panel_MouseMove);
             // 
             // close_pb
             // 
