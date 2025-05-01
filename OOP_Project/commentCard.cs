@@ -17,6 +17,8 @@ namespace OOP_Project
         private int currentUserId;
         private int parentMovieId;
 
+        private string userType;
+
 
         public commentCard()
         {
