@@ -39,6 +39,7 @@
             this.adminsettings_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.signOut_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.logo_panel = new System.Windows.Forms.Panel();
+            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.form_lbl = new System.Windows.Forms.Label();
             this.movie_panel = new System.Windows.Forms.Panel();
             this.allMovie_lbl = new System.Windows.Forms.Label();
@@ -48,7 +49,7 @@
             this.suggest_lbl = new System.Windows.Forms.Label();
             this.search_list = new System.Windows.Forms.ListBox();
             this.search_tb = new System.Windows.Forms.TextBox();
-            this.popularmovie_pnl = new System.Windows.Forms.Panel();
+            this.recentlyMovie_panel = new System.Windows.Forms.Panel();
             this.recentlysearch_flp = new System.Windows.Forms.FlowLayoutPanel();
             this.viewport_panel = new System.Windows.Forms.Panel();
             this.recommendedMovie_flp = new System.Windows.Forms.FlowLayoutPanel();
@@ -57,18 +58,17 @@
             this.userProfile_panel = new System.Windows.Forms.Panel();
             this.Favorite_panel = new System.Windows.Forms.Panel();
             this.popular_panel = new System.Windows.Forms.Panel();
-            this.logo_pb = new System.Windows.Forms.PictureBox();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
             this.leftdock_pnl.SuspendLayout();
             this.menu2_panel.SuspendLayout();
             this.menu_panel.SuspendLayout();
             this.logo_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             this.movie_panel.SuspendLayout();
             this.allMovie_panel.SuspendLayout();
-            this.popularmovie_pnl.SuspendLayout();
+            this.recentlyMovie_panel.SuspendLayout();
             this.viewport_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
             this.SuspendLayout();
@@ -298,11 +298,19 @@
             this.logo_panel.Size = new System.Drawing.Size(109, 100);
             this.logo_panel.TabIndex = 0;
             // 
+            // logo_pb
+            // 
+            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_2;
+            this.logo_pb.Location = new System.Drawing.Point(0, 0);
+            this.logo_pb.Name = "logo_pb";
+            this.logo_pb.Size = new System.Drawing.Size(109, 100);
+            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pb.TabIndex = 0;
+            this.logo_pb.TabStop = false;
+            // 
             // form_lbl
             // 
-            this.form_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.form_lbl.AutoSize = true;
             this.form_lbl.Font = new System.Drawing.Font("Times New Roman", 20F);
             this.form_lbl.ForeColor = System.Drawing.Color.White;
@@ -325,7 +333,7 @@
             this.movie_panel.Controls.Add(this.suggest_lbl);
             this.movie_panel.Controls.Add(this.search_list);
             this.movie_panel.Controls.Add(this.search_tb);
-            this.movie_panel.Controls.Add(this.popularmovie_pnl);
+            this.movie_panel.Controls.Add(this.recentlyMovie_panel);
             this.movie_panel.Controls.Add(this.viewport_panel);
             this.movie_panel.Location = new System.Drawing.Point(146, 126);
             this.movie_panel.Name = "movie_panel";
@@ -345,21 +353,25 @@
             // 
             // allMovie_panel
             // 
+            this.allMovie_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.allMovie_panel.BackColor = System.Drawing.Color.Gray;
             this.allMovie_panel.Controls.Add(this.allMovie_flp);
             this.allMovie_panel.Location = new System.Drawing.Point(25, 355);
             this.allMovie_panel.Name = "allMovie_panel";
-            this.allMovie_panel.Size = new System.Drawing.Size(1156, 253);
+            this.allMovie_panel.Size = new System.Drawing.Size(1156, 315);
             this.allMovie_panel.TabIndex = 61;
             // 
             // allMovie_flp
             // 
+            this.allMovie_flp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.allMovie_flp.AutoScroll = true;
             this.allMovie_flp.BackColor = System.Drawing.Color.White;
-            this.allMovie_flp.Location = new System.Drawing.Point(30, 16);
+            this.allMovie_flp.Location = new System.Drawing.Point(18, 16);
             this.allMovie_flp.Name = "allMovie_flp";
             this.allMovie_flp.Padding = new System.Windows.Forms.Padding(5);
-            this.allMovie_flp.Size = new System.Drawing.Size(1084, 220);
+            this.allMovie_flp.Size = new System.Drawing.Size(1117, 279);
             this.allMovie_flp.TabIndex = 0;
             this.allMovie_flp.WrapContents = false;
             this.allMovie_flp.Scroll += new System.Windows.Forms.ScrollEventHandler(this.allMovie_flp_Scroll);
@@ -369,7 +381,7 @@
             this.recent_lbl.AutoSize = true;
             this.recent_lbl.Font = new System.Drawing.Font("Times New Roman", 20F);
             this.recent_lbl.ForeColor = System.Drawing.Color.White;
-            this.recent_lbl.Location = new System.Drawing.Point(37, 638);
+            this.recent_lbl.Location = new System.Drawing.Point(37, 689);
             this.recent_lbl.Name = "recent_lbl";
             this.recent_lbl.Size = new System.Drawing.Size(234, 31);
             this.recent_lbl.TabIndex = 68;
@@ -388,6 +400,7 @@
             // 
             // search_list
             // 
+            this.search_list.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.search_list.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search_list.FormattingEnabled = true;
             this.search_list.ItemHeight = 19;
@@ -398,9 +411,11 @@
             this.search_list.Visible = false;
             this.search_list.Click += new System.EventHandler(this.search_list_Click);
             this.search_list.SelectedIndexChanged += new System.EventHandler(this.search_list_SelectedIndexChanged);
+            this.search_list.TabIndexChanged += new System.EventHandler(this.search_list_TabIndexChanged);
             // 
             // search_tb
             // 
+            this.search_tb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.search_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.search_tb.ForeColor = System.Drawing.Color.Gray;
             this.search_tb.Location = new System.Drawing.Point(827, 26);
@@ -412,25 +427,33 @@
             this.search_tb.Enter += new System.EventHandler(this.search_txt_Enter);
             this.search_tb.Leave += new System.EventHandler(this.search_txt_Leave);
             // 
-            // popularmovie_pnl
+            // recentlyMovie_panel
             // 
-            this.popularmovie_pnl.BackColor = System.Drawing.Color.Gray;
-            this.popularmovie_pnl.Controls.Add(this.recentlysearch_flp);
-            this.popularmovie_pnl.Location = new System.Drawing.Point(25, 672);
-            this.popularmovie_pnl.Name = "popularmovie_pnl";
-            this.popularmovie_pnl.Size = new System.Drawing.Size(1156, 255);
-            this.popularmovie_pnl.TabIndex = 63;
+            this.recentlyMovie_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.recentlyMovie_panel.BackColor = System.Drawing.Color.Gray;
+            this.recentlyMovie_panel.Controls.Add(this.recentlysearch_flp);
+            this.recentlyMovie_panel.Location = new System.Drawing.Point(25, 723);
+            this.recentlyMovie_panel.Name = "recentlyMovie_panel";
+            this.recentlyMovie_panel.Size = new System.Drawing.Size(1156, 255);
+            this.recentlyMovie_panel.TabIndex = 63;
             // 
             // recentlysearch_flp
             // 
+            this.recentlysearch_flp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.recentlysearch_flp.AutoScroll = true;
             this.recentlysearch_flp.BackColor = System.Drawing.Color.White;
-            this.recentlysearch_flp.Location = new System.Drawing.Point(30, 13);
+            this.recentlysearch_flp.Location = new System.Drawing.Point(18, 13);
             this.recentlysearch_flp.Name = "recentlysearch_flp";
-            this.recentlysearch_flp.Size = new System.Drawing.Size(1084, 229);
+            this.recentlysearch_flp.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.recentlysearch_flp.Size = new System.Drawing.Size(1117, 229);
             this.recentlysearch_flp.TabIndex = 0;
             // 
             // viewport_panel
             // 
+            this.viewport_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.viewport_panel.BackColor = System.Drawing.Color.Gray;
             this.viewport_panel.Controls.Add(this.recommendedMovie_flp);
             this.viewport_panel.Location = new System.Drawing.Point(25, 63);
@@ -440,17 +463,20 @@
             // 
             // recommendedMovie_flp
             // 
+            this.recommendedMovie_flp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.recommendedMovie_flp.AutoScroll = true;
             this.recommendedMovie_flp.BackColor = System.Drawing.Color.White;
-            this.recommendedMovie_flp.Location = new System.Drawing.Point(30, 13);
+            this.recommendedMovie_flp.Location = new System.Drawing.Point(18, 13);
             this.recommendedMovie_flp.Name = "recommendedMovie_flp";
             this.recommendedMovie_flp.Padding = new System.Windows.Forms.Padding(5);
-            this.recommendedMovie_flp.Size = new System.Drawing.Size(1084, 209);
+            this.recommendedMovie_flp.Size = new System.Drawing.Size(1121, 209);
             this.recommendedMovie_flp.TabIndex = 0;
             this.recommendedMovie_flp.WrapContents = false;
             // 
             // profile_btn
             // 
+            this.profile_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.profile_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.ButtonSpec;
             this.profile_btn.Location = new System.Drawing.Point(1320, 60);
             this.profile_btn.Name = "profile_btn";
@@ -492,6 +518,9 @@
             // 
             // AdminControl_panel
             // 
+            this.AdminControl_panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.AdminControl_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.AdminControl_panel.Location = new System.Drawing.Point(148, 123);
             this.AdminControl_panel.Name = "AdminControl_panel";
@@ -526,19 +555,9 @@
             this.popular_panel.TabIndex = 67;
             this.popular_panel.Visible = false;
             // 
-            // logo_pb
-            // 
-            this.logo_pb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_2;
-            this.logo_pb.Location = new System.Drawing.Point(0, 0);
-            this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(109, 100);
-            this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.logo_pb.TabIndex = 0;
-            this.logo_pb.TabStop = false;
-            // 
             // close_pb
             // 
+            this.close_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.close_pb.BackColor = System.Drawing.Color.Transparent;
             this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
             this.close_pb.Location = new System.Drawing.Point(1349, 12);
@@ -553,6 +572,7 @@
             // 
             // minimize_pb
             // 
+            this.minimize_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimize_pb.BackColor = System.Drawing.Color.Transparent;
             this.minimize_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
             this.minimize_pb.Location = new System.Drawing.Point(1320, 12);
@@ -600,12 +620,12 @@
             this.menu2_panel.ResumeLayout(false);
             this.menu_panel.ResumeLayout(false);
             this.logo_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             this.movie_panel.ResumeLayout(false);
             this.movie_panel.PerformLayout();
             this.allMovie_panel.ResumeLayout(false);
-            this.popularmovie_pnl.ResumeLayout(false);
+            this.recentlyMovie_panel.ResumeLayout(false);
             this.viewport_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
             this.ResumeLayout(false);
@@ -627,7 +647,7 @@
         private System.Windows.Forms.Panel movie_panel;
         private System.Windows.Forms.Panel viewport_panel;
         private System.Windows.Forms.FlowLayoutPanel recommendedMovie_flp;
-        private System.Windows.Forms.Panel popularmovie_pnl;
+        private System.Windows.Forms.Panel recentlyMovie_panel;
         private System.Windows.Forms.FlowLayoutPanel recentlysearch_flp;
         private ComponentFactory.Krypton.Toolkit.KryptonButton adminsettings_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton signOut_btn;

@@ -51,7 +51,7 @@ namespace OOP_Project
 
         private Timer inactivityTimer;
         private DateTime lastActivityTime;
-        private int inactivityLimitSeconds = 20;
+        private int inactivityLimitSeconds = 600;
 
 
         private int userIdFromLogin;
@@ -144,6 +144,7 @@ namespace OOP_Project
 
         public async void home_form_Load(object sender, EventArgs e)
         {
+        
             if (userType == "admin")
             {
                 lastActivityTime = DateTime.Now;
@@ -170,6 +171,7 @@ namespace OOP_Project
             {
                 MessageBox.Show("Please log in first.");
             }
+
 
 
             recommendedMovie_flp.FlowDirection = FlowDirection.LeftToRight;
@@ -212,7 +214,7 @@ namespace OOP_Project
             CurvePanel(recommendedMovie_flp, 30);
             recommendedMovie_flp.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
-            CurvePanel(popularmovie_pnl, 30);
+            CurvePanel(recentlyMovie_panel, 30);
             movie_panel.Resize += (s, args) => CurvePanel(movie_panel, 20);
 
             CurvePanel(recentlysearch_flp, 30);
@@ -1066,6 +1068,7 @@ namespace OOP_Project
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string query = "SELECT * FROM movies WHERE title = @title LIMIT 1";
+            search_list.Items.Clear();
 
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
@@ -1478,6 +1481,24 @@ namespace OOP_Project
             }
         }
 
+        private void search_list_TabIndexChanged(object sender, EventArgs e)
+        {
+            //seacrch
+            // Clear the search_txt TextBox
+            search_tb.Clear();
+            search_txt_Leave(sender, e);
+
+            if (search_list.SelectedItem is movie selectedMovie)
+            {
+                // Avoid adding the same movie twice
+                if (!IsMovieAlreadyInPanel(selectedMovie, recentlysearch_flp))
+                {
+                    DisplaySingleMovie(selectedMovie, recentlysearch_flp);
+                }
+            }
+            this.ActiveControl = null; // Remove focus from search_txt, so the cursor disappears
+
+        }
     }
 
 }

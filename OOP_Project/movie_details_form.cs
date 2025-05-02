@@ -31,9 +31,10 @@ namespace OOP_Project
 
         private int currentMovieId;
         private MySqlConnection connection;
+
+        private string currentUserType;
         public movie_details_form(movie moovie, int userId, int interactionId = 0, string comment = "")
         {
-
             InitializeComponent();
             _moovie = moovie;
             currentUserId = userId;
@@ -698,39 +699,6 @@ namespace OOP_Project
             );
         }
 
-
-        private void deleteComment_btn_Click(object sender, EventArgs e)
-        {
-            int interactionId = 123; // Replace with actual Interaction ID
-
-            DialogResult result = MessageBox.Show("Are you sure you want to delete this comment?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                try
-                {
-                    using (MySqlConnection conn = new MySqlConnection(connectionString))
-                    {
-                        conn.Open();
-                        string deleteQuery = "DELETE FROM movie_interaction WHERE interaction_id = @interactionId";
-                        using (MySqlCommand deleteCmd = new MySqlCommand(deleteQuery, conn))
-                        {
-                            deleteCmd.Parameters.AddWithValue("@interactionId", interactionId);
-                            deleteCmd.ExecuteNonQuery();
-                        }
-                    }
-
-                    MessageBox.Show("Comment deleted successfully.");
-                    LoadComments(); // Refresh comments
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error deleting comment: " + ex.Message);
-                }
-            }
-        }
-
-
-
         public void LoadComments()
         {
             comments_panel.Controls.Clear();
@@ -799,10 +767,19 @@ namespace OOP_Project
                                         card.SetAvatar(null);
                                     }
 
+                                    // Assign current and comment user info
+                                    card.CommentOwnerId = commentUserId;
+                                    card.CurrentUserId = currentUserId;
+                                    card.UserType = currentUserType; // Set this before calling SetPermissions
+                                    card.SetPermissions();           // Call this AFTER setting all 3
+                                    Console.WriteLine($"[DEBUG] Adding comment by {username} (UserID: {commentUserId})");
+                                    Console.WriteLine($"[DEBUG] CurrentUserId: {currentUserId}, CurrentUserType: {currentUserType}");
+
+
+                                    card.InitializeCommentCard(interactionId, commentUserId, currentUserId, currentMovieId);
+
                                     card.Width = comments_panel.Width - 30;
                                     card.Margin = new Padding(1);
-                                    card.InitializeCommentCard(interactionId, commentUserId, currentUserId, movieId);
-
                                     comments_panel.Controls.Add(card);
 
                                     comment_tb.ForeColor = Color.Gray;
@@ -818,6 +795,7 @@ namespace OOP_Project
                 MessageBox.Show("Error loading comments: " + ex.Message);
             }
         }
+
 
 
 

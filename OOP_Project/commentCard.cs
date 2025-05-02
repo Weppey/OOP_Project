@@ -80,9 +80,12 @@ namespace OOP_Project
                 userAvatar.Visible = true;
             }
         }
-         
+        public int CommentOwnerId { get; set; }
+        public int CurrentUserId { get; set; }
+        public string UserType { get; set; }
         private void commentCard_Load(object sender, EventArgs e)
         {
+            SetPermissions();
             CurvePanel(profileBack_panel, 60);
             profileBack_panel.Resize += (s, args) => CurvePanel(profileBack_panel, 20);
 
@@ -93,8 +96,30 @@ namespace OOP_Project
 
         }
 
+        public void SetPermissions()
+        {
+            Console.WriteLine($"[DEBUG] UserType: {UserType}, CurrentUserId: {CurrentUserId}, CommentOwnerId: {CommentOwnerId}");
+
+            if (UserType == "admin" || CurrentUserId == CommentOwnerId)
+            {
+                Console.WriteLine("[DEBUG] Permission granted to show delete button.");
+                deleteComment_btn.Visible = true;
+            }
+            else
+            {
+                Console.WriteLine("[DEBUG] No permission to show delete button.");
+                deleteComment_btn.Visible = false;
+            }
+        }
+
+
         private void deleteComment_btn_Click(object sender, EventArgs e)
         {
+            if (UserType != "admin" && CurrentUserId != CommentOwnerId)
+            {
+                MessageBox.Show("You do not have permission to delete this comment.");
+                return;
+            }
             if (MessageBox.Show("Are you sure you want to delete this comment?", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -113,6 +138,7 @@ namespace OOP_Project
                 this.Parent.Controls.Remove(this); // Remove card from panel
             }
         }
+
         int isClicked = 0;
         private void editComment_btn_Click(object sender, EventArgs e)
         {
