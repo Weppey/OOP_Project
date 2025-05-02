@@ -16,6 +16,7 @@ using System.Net.Http;
 using MySqlX.XDevAPI;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks.Sources;
+using Mysqlx.Crud;
 
 
 
@@ -1013,7 +1014,7 @@ namespace OOP_Project
         {
             if (search_list.SelectedItem is movie selectedMovie)
             {
-                // Try to get the full movie from the database by title
+                // Fetch full movie details from DB
                 var fullMovie = GetFullMovieByTitle(selectedMovie.Title);
 
                 if (fullMovie != null)
@@ -1021,27 +1022,19 @@ namespace OOP_Project
                     int? userId = StayLoggedIn.GetCurrentUserId();
                     if (userId.HasValue)
                     {
-                        // Ensure the movie exists in the 'movies' table
+                        // Ensure movie exists in main Movies table (adds ID if new)
                         EnsureMovieExistsInMoviesTable(fullMovie);
 
-                        // Save movie to the recent_searches table
+                        // Update or insert into recent_searches with current time
                         SaveRecentSearch(userId.Value, fullMovie);
 
-                        // Show movie details form
+                        // ✅ Reload all 7 recent movies from DB, correctly sorted
+                        LoadRecentSearches(userId.Value);
+
+                        // ✅ Show movie details
                         var movieDetailsForm = new movie_details_form(fullMovie, userId.Value);
                         movieDetailsForm.StartPosition = FormStartPosition.CenterParent;
                         movieDetailsForm.ShowDialog();
-
-                        // Check if the movie is already in the recently searched list
-                        if (IsMovieAlreadyInPanel(fullMovie, recentlysearch_flp))
-                        {
-                            //
-                        }
-                        else
-                        {
-                            // Display movie in the recently searched flow panel
-                            DisplaySingleMovie(fullMovie, recentlysearch_flp);
-                        }
                     }
                     else
                     {
@@ -1050,14 +1043,74 @@ namespace OOP_Project
                 }
                 else
                 {
-                    // Show message if movie is not found in the database
                     MessageBox.Show("Movie not found in the database.");
                 }
 
+                // Reset UI after click
                 search_list.ClearSelected();
                 search_list.Visible = false;
+                search_tb.Clear();
+                search_txt_Leave(sender, e);
+                this.ActiveControl = null;
             }
         }
+
+
+
+        private void SaveRecentSearch(int userId, movie movie)
+        {
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string checkQuery = "SELECT COUNT(*) FROM recent_searches WHERE user_id = @userId AND movie_id = @movieId";
+            string insertQuery = "INSERT INTO recent_searches (user_id, movie_id, movie_title, movie_description, movie_genre, release_year, image_url, search_date) " +
+                                 "VALUES (@userId, @movieId, @movieTitle, @movieDescription, @movieGenre, @releaseYear, @imageUrl, NOW())";
+            string updateQuery = "UPDATE recent_searches SET search_date = NOW() WHERE user_id = @userId AND movie_id = @movieId";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(checkQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+                        cmd.Parameters.AddWithValue("@movieId", movie.Id);
+
+                        int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                        if (count > 0)
+                        {
+                            using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, conn))
+                            {
+                                updateCmd.Parameters.AddWithValue("@userId", userId);
+                                updateCmd.Parameters.AddWithValue("@movieId", movie.Id);
+                                updateCmd.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, conn))
+                            {
+                                insertCmd.Parameters.AddWithValue("@userId", userId);
+                                insertCmd.Parameters.AddWithValue("@movieId", movie.Id);
+                                insertCmd.Parameters.AddWithValue("@movieTitle", movie.Title);
+                                insertCmd.Parameters.AddWithValue("@movieDescription", movie.Description);
+                                insertCmd.Parameters.AddWithValue("@movieGenre", movie.Genre);
+                                insertCmd.Parameters.AddWithValue("@releaseYear", movie.ReleaseYear);
+                                insertCmd.Parameters.AddWithValue("@imageUrl", movie.ImageUrl ?? (object)DBNull.Value);
+
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
 
         private void ShowMovieDetailsForm(movie movie)
         {
@@ -1156,71 +1209,78 @@ namespace OOP_Project
                 search_tb.ForeColor = Color.Gray; // Change the text color to gray for placeholder
             }
         }
-        public void LoadRecentSearches(int currentUserId)
+public void LoadRecentSearches(int currentUserId)
+{
+    string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+    string query = "SELECT movie_id, movie_title, movie_description, movie_genre, release_year, image_url " +
+                   "FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 7"; // Order by search_date
+
+    try
+    {
+        using (MySqlConnection conn = new MySqlConnection(connStr))
         {
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT movie_id, movie_title, movie_description, movie_genre, release_year, image_url " +
-                           "FROM recent_searches WHERE user_id = @userId ORDER BY id DESC LIMIT 20";
-
-            try
+            conn.Open();
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
-                using (MySqlConnection conn = new MySqlConnection(connStr))
+                cmd.Parameters.AddWithValue("@userId", currentUserId);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    recentlysearch_flp.Controls.Clear();
+
+                    while (reader.Read())
                     {
-                        cmd.Parameters.AddWithValue("@userId", currentUserId);
+                        int movieId = reader.GetInt32("movie_id");
+                        string title = reader.GetString("movie_title");
+                        string description = reader.GetString("movie_description");
+                        string genre = reader.GetString("movie_genre");
+                        int releaseYear = reader.GetInt32("release_year");
+                        string imageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url");
 
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        movie movie = new movie
                         {
-                            recentlysearch_flp.Controls.Clear();
+                            Id = movieId,
+                            Title = title,
+                            Description = description,
+                            Genre = genre,
+                            ReleaseYear = releaseYear,
+                            ImageUrl = imageUrl
+                        };
 
-                            while (reader.Read())
-                            {
-                                int movieId = reader.GetInt32("movie_id");
-                                string title = reader.GetString("movie_title");
-                                string description = reader.GetString("movie_description");
-                                string genre = reader.GetString("movie_genre");
-                                int releaseYear = reader.GetInt32("release_year");
-                                string imageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url");
-
-                                movie movie = new movie
-                                {
-                                    Id = movieId, // 🆕 Assign movie_id here
-                                    Title = title,
-                                    Description = description,
-                                    Genre = genre,
-                                    ReleaseYear = releaseYear,
-                                    ImageUrl = imageUrl
-                                };
-
-                                DisplayMovieInRecentlySearch(movie);
-
-                            }
-                        }
+                        // Display each movie in the panel at top
+                        DisplayMovieInRecentlySearch(movie);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-
         }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Error loading recent searches: " + ex.Message);
+    }
+}
+
+
+
         private async void DisplayMovieInRecentlySearch(movie movie)
         {
-            // Check for existing panel by movie ID
+            // Remove duplicate if it exists
             foreach (Control control in recentlysearch_flp.Controls)
             {
-                if (control is Panel panel && panel.Tag != null && panel.Tag.ToString() == movie.Id.ToString())
+                if (control is Panel panel && panel.Tag is int movieId && movieId == movie.Id)
                 {
-                    // 🛑 Duplication detected — show an error message
-                    MessageBox.Show($"Duplicate movie detected: {movie.Title} (ID: {movie.Id})", "Duplicate Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
+                    recentlysearch_flp.Controls.Remove(panel);
+                    break;
                 }
             }
 
-            // Create panel for movie
+            // Limit to 7 posters
+            if (recentlysearch_flp.Controls.Count >= 7)
+            {
+                recentlysearch_flp.Controls.RemoveAt(recentlysearch_flp.Controls.Count - 1);
+            }
+
+            // Create a simple panel
             Panel moviePanel = new Panel
             {
                 Size = new Size(140, 180),
@@ -1233,81 +1293,45 @@ namespace OOP_Project
             PictureBox poster = new PictureBox
             {
                 Size = new Size(140, 180),
-                Location = new Point(5, 0),
+                Location = new Point(0, 0),
                 BackColor = Color.Black,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 BorderStyle = BorderStyle.FixedSingle
             };
 
-            // Load cached image URLs
             var cachedImages = StayLoggedIn.GetCachedImageUrls();
 
-            // Check if the image URL is cached
             if (!string.IsNullOrEmpty(movie.ImageUrl) && cachedImages.Contains(movie.ImageUrl))
             {
-                // Load the image from the cache if it is already cached
                 var image = await Task.Run(() => LoadImageFromCache(movie.ImageUrl));
                 poster.Image = image ?? Properties.Resources.fallback;
             }
             else if (!string.IsNullOrEmpty(movie.ImageUrl))
             {
-                // Download and cache the image if not in cache
                 var image = await Task.Run(() => DownloadImageAndCache(movie.ImageUrl));
                 poster.Image = image ?? Properties.Resources.fallback;
 
-                // Add to the cached images
-                var currentCachedImages = cachedImages.ToList();
-                currentCachedImages.Add(movie.ImageUrl);
-                StayLoggedIn.SaveCachedImages(currentCachedImages.ToArray()); // Save updated cache
+                var updatedCache = cachedImages.ToList();
+                updatedCache.Add(movie.ImageUrl);
+                StayLoggedIn.SaveCachedImages(updatedCache.ToArray());
             }
             else
             {
-                // Use fallback image if no URL is available
                 poster.Image = Properties.Resources.fallback;
             }
 
-
-            moviePanel.Controls.Add(poster);
-
-            // Add click event to show details of the movie
+            // Click to show movie details
             moviePanel.Click += (s, e) => ShowMovieDetails(movie);
             poster.Click += (s, e) => ShowMovieDetails(movie);
 
+            // Add poster to panel
+            moviePanel.Controls.Add(poster);
+
+            // Add to panel (newest on the left)
             recentlysearch_flp.Controls.Add(moviePanel);
-
+            recentlysearch_flp.Controls.SetChildIndex(moviePanel, 0);
         }
 
-        private void SaveRecentSearch(int userId, movie movie)
-        {
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "INSERT IGNORE INTO recent_searches (user_id, movie_id, movie_title, movie_description, movie_genre, release_year, image_url) " +
-                           "VALUES (@userId, @movieId, @movieTitle, @movieDescription, @movieGenre, @releaseYear, @imageUrl)";
-
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connStr))
-                {
-                    conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@userId", userId);
-                        cmd.Parameters.AddWithValue("@movieId", movie.Id);
-                        cmd.Parameters.AddWithValue("@movieTitle", movie.Title);
-                        cmd.Parameters.AddWithValue("@movieDescription", movie.Description);
-                        cmd.Parameters.AddWithValue("@movieGenre", movie.Genre);
-                        cmd.Parameters.AddWithValue("@releaseYear", movie.ReleaseYear);
-                        cmd.Parameters.AddWithValue("@imageUrl", movie.ImageUrl ?? (object)DBNull.Value);
-
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-
-        }
         private void home_btn_Click(object sender, EventArgs e)
         {
             //reload home_form
