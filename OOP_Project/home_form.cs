@@ -88,6 +88,9 @@ namespace OOP_Project
                 tooltip.SetToolTip(adminsettings_btn, "Admin");
                 tooltip.SetToolTip(search_tb, "Search your movie");
                 tooltip.SetToolTip(profile_btn, "Profile");
+          
+
+
         }
         
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
@@ -848,7 +851,7 @@ namespace OOP_Project
         {
             //seacrch
             // Clear the search_txt TextBox
-            search_tb.Clear();
+           
             search_txt_Leave(sender, e);
 
             if (search_list.SelectedItem is movie selectedMovie)
@@ -1209,78 +1212,79 @@ namespace OOP_Project
                 search_tb.ForeColor = Color.Gray; // Change the text color to gray for placeholder
             }
         }
-public void LoadRecentSearches(int currentUserId)
-{
-    string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-    string query = "SELECT movie_id, movie_title, movie_description, movie_genre, release_year, image_url " +
-                   "FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 7"; // Order by search_date
-
-    try
-    {
-        using (MySqlConnection conn = new MySqlConnection(connStr))
+        public async Task LoadRecentSearches(int currentUserId)
         {
-            conn.Open();
-            using (MySqlCommand cmd = new MySqlCommand(query, conn))
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = @"
+        SELECT movie_id, movie_title, movie_description, movie_genre, release_year, image_url 
+        FROM ( 
+            SELECT * FROM recent_searches 
+            WHERE user_id = @userId 
+            ORDER BY search_date DESC
+        ) AS ordered
+        GROUP BY movie_id
+        ORDER BY search_date DESC
+        LIMIT 7;
+    ";
+
+            try
             {
-                cmd.Parameters.AddWithValue("@userId", currentUserId);
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (MySqlConnection conn = new MySqlConnection(connStr))
                 {
-                    recentlysearch_flp.Controls.Clear();
-
-                    while (reader.Read())
+                    await conn.OpenAsync();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        int movieId = reader.GetInt32("movie_id");
-                        string title = reader.GetString("movie_title");
-                        string description = reader.GetString("movie_description");
-                        string genre = reader.GetString("movie_genre");
-                        int releaseYear = reader.GetInt32("release_year");
-                        string imageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url");
-
-                        movie movie = new movie
+                        cmd.Parameters.AddWithValue("@userId", currentUserId);
+                        using (var reader = (MySqlDataReader)await cmd.ExecuteReaderAsync())
                         {
-                            Id = movieId,
-                            Title = title,
-                            Description = description,
-                            Genre = genre,
-                            ReleaseYear = releaseYear,
-                            ImageUrl = imageUrl
-                        };
+                            recentlysearch_flp.FlowDirection = FlowDirection.LeftToRight;
+                            recentlysearch_flp.WrapContents = false;
+                            recentlysearch_flp.Controls.Clear();
 
-                        // Display each movie in the panel at top
-                        DisplayMovieInRecentlySearch(movie);
+                            HashSet<int> addedMovieIds = new HashSet<int>();
+
+                            while (await reader.ReadAsync())
+                            {
+                                int movieId = reader.GetInt32("movie_id");
+
+                                // Skip duplicates early
+                                if (addedMovieIds.Contains(movieId))
+                                    continue;
+
+                                addedMovieIds.Add(movieId);
+
+                                string title = reader.GetString("movie_title");
+                                string description = reader.GetString("movie_description");
+                                string genre = reader.GetString("movie_genre");
+                                int releaseYear = reader.GetInt32("release_year");
+                                string imageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url");
+
+                                movie movie = new movie
+                                {
+                                    Id = movieId,
+                                    Title = title,
+                                    Description = description,
+                                    Genre = genre,
+                                    ReleaseYear = releaseYear,
+                                    ImageUrl = imageUrl
+                                };
+
+                                await DisplayMovieInRecentlySearchAsync(movie);
+                            }
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading recent searches: " + ex.Message);
+            }
         }
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show("Error loading recent searches: " + ex.Message);
-    }
-}
 
 
-
-        private async void DisplayMovieInRecentlySearch(movie movie)
+        private async Task DisplayMovieInRecentlySearchAsync(movie movie)
         {
-            // Remove duplicate if it exists
-            foreach (Control control in recentlysearch_flp.Controls)
-            {
-                if (control is Panel panel && panel.Tag is int movieId && movieId == movie.Id)
-                {
-                    recentlysearch_flp.Controls.Remove(panel);
-                    break;
-                }
-            }
-
-            // Limit to 7 posters
-            if (recentlysearch_flp.Controls.Count >= 7)
-            {
-                recentlysearch_flp.Controls.RemoveAt(recentlysearch_flp.Controls.Count - 1);
-            }
-
-            // Create a simple panel
+            // Same content as before...
             Panel moviePanel = new Panel
             {
                 Size = new Size(140, 180),
@@ -1320,16 +1324,12 @@ public void LoadRecentSearches(int currentUserId)
                 poster.Image = Properties.Resources.fallback;
             }
 
-            // Click to show movie details
             moviePanel.Click += (s, e) => ShowMovieDetails(movie);
             poster.Click += (s, e) => ShowMovieDetails(movie);
 
-            // Add poster to panel
             moviePanel.Controls.Add(poster);
 
-            // Add to panel (newest on the left)
             recentlysearch_flp.Controls.Add(moviePanel);
-            recentlysearch_flp.Controls.SetChildIndex(moviePanel, 0);
         }
 
         private void home_btn_Click(object sender, EventArgs e)
