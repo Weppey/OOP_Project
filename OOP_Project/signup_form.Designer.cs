@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(signup_form));
             this.minimize_pb = new System.Windows.Forms.PictureBox();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.mySqlCommand1 = new MySql.Data.MySqlClient.MySqlCommand();
@@ -353,6 +354,7 @@
             this.Controls.Add(this.signup_panel);
             this.Controls.Add(this.close_pb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "signup_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -360,7 +362,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.StateCommon.Border.Rounding = 15;
-            this.Text = "signup_form";
+            this.Text = "SignUp Remmm";
             this.Load += new System.EventHandler(this.signup_form_Load);
             this.Shown += new System.EventHandler(this.signup_form_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();

@@ -217,6 +217,7 @@
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "login_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateActive.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
@@ -229,7 +230,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.StateCommon.Border.Rounding = 15;
             this.StateCommon.Border.Width = 1;
-            this.Text = "REMMM";
+            this.Text = "Login - Remmm";
             this.Load += new System.EventHandler(this.login_form_Load);
             this.loginDock_panel.ResumeLayout(false);
             this.loginDock_panel.PerformLayout();

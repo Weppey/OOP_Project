@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(verification_form));
             this.Panel_verify = new System.Windows.Forms.Panel();
             this.note_lbl = new System.Windows.Forms.Label();
             this.logo_pb = new System.Windows.Forms.PictureBox();
@@ -216,9 +217,10 @@
             this.Controls.Add(this.cls_pb);
             this.Controls.Add(this.Panel_verify);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "verification_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "verification_form";
+            this.Text = "Verification - Remmm";
             this.Panel_verify.ResumeLayout(false);
             this.Panel_verify.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();

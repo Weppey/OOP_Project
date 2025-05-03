@@ -85,6 +85,7 @@ namespace OOP_Project
             //  movie_panel.Size = new Size(981, 575);
             //this.Size = new Size(1052, 672);
             LoadComments();
+            FetchCurrentRatingFromDatabase();
 
             webView21.CoreWebView2InitializationCompleted += WebView2_CoreWebView2InitializationCompleted;
             // Update movie details on the form
@@ -129,7 +130,35 @@ namespace OOP_Project
             CheckFavoriteStatus();
         }
 
+        private void FetchCurrentRatingFromDatabase()
+        {
+            string query = @"SELECT rating FROM movie_interaction WHERE user_id = @userId AND movie_id = @movieId";
 
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", currentUserId); // current logged-in user
+                        cmd.Parameters.AddWithValue("@movieId", movieId); // current movie
+
+                        var result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            int rating = Convert.ToInt32(result);
+                            SetStars(rating); // Update stars based on the rating
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to fetch rating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
         private void WebView2_CoreWebView2InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
@@ -418,9 +447,13 @@ namespace OOP_Project
         private Timer expandTimer;
         private int targetWidth;
         private int currentWidth;
+        private bool isAnimating = false; // Flag to track animation state
 
         private void StartExpandAnimation()
         {
+            if (isAnimating) return; // Prevent animation if one is already in progress
+
+            isAnimating = true; // Mark animation as in progress
             ratings_panel.Visible = true;
             targetWidth = 195;  // Set this to the final width (195 in your case)
             currentWidth = 0;   // Start with the panel collapsed (width = 0)
@@ -428,14 +461,15 @@ namespace OOP_Project
             ratings_panel.Width = currentWidth;  // Set initial width
 
             expandTimer = new Timer();
-            expandTimer.Interval = 10;  // Speed of the expansion (milliseconds)
+            expandTimer.Interval = 1;  // Speed of the expansion (milliseconds)
             expandTimer.Tick += (s, e) =>
             {
-                currentWidth += 5; // Adjust this value to control how fast it expands
+                currentWidth += 15; // Increased increment to speed up the expansion (adjust as needed)
                 if (currentWidth >= targetWidth)
                 {
                     currentWidth = targetWidth;
                     expandTimer.Stop(); // Stop the timer once the panel has expanded fully
+                    isAnimating = false; // Mark animation as finished
                 }
 
                 ratings_panel.Width = currentWidth;  // Update the width of the panel
@@ -445,18 +479,22 @@ namespace OOP_Project
 
         private void StartCollapseAnimation()
         {
+            if (isAnimating) return; // Prevent animation if one is already in progress
+
+            isAnimating = true; // Mark animation as in progress
             int currentWidth = ratings_panel.Width;
 
             expandTimer = new Timer();
-            expandTimer.Interval = 10;  // Speed of the collapse (milliseconds)
+            expandTimer.Interval = 1;  // Speed of the collapse (milliseconds)
             expandTimer.Tick += (s, e) =>
             {
-                currentWidth -= 5; // Adjust this value to control how fast it collapses
+                currentWidth -= 15; // Increased decrement to speed up the collapse (adjust as needed)
                 if (currentWidth <= 0)
                 {
                     currentWidth = 0;
                     expandTimer.Stop(); // Stop the timer once the panel has collapsed fully
                     ratings_panel.Visible = false;  // Hide the panel once collapsed
+                    isAnimating = false; // Mark animation as finished
                 }
 
                 ratings_panel.Width = currentWidth;  // Update the width of the panel

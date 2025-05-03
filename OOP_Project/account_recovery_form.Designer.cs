@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(account_recovery_form));
             this.background_panel = new System.Windows.Forms.Panel();
             this.securityQuestion_panel = new System.Windows.Forms.Panel();
             this.back_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -547,13 +548,14 @@
             this.Controls.Add(this.min_pb);
             this.Controls.Add(this.cls_pb);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "account_recovery_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.StateCommon.Border.Rounding = 15;
-            this.Text = "account_recovery_form";
+            this.Text = "Account Recovery - Remmm";
             this.Load += new System.EventHandler(this.account_recovery_form_Load);
             this.background_panel.ResumeLayout(false);
             this.securityQuestion_panel.ResumeLayout(false);

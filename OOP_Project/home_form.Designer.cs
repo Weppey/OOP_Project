@@ -675,6 +675,7 @@
             this.Controls.Add(this.AdminControl_panel);
             this.Controls.Add(this.movie_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "home_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
@@ -685,7 +686,7 @@
             this.StateCommon.Border.Rounding = 15;
             this.StateCommon.Border.Width = 1;
             this.StateCommon.Header.ButtonEdgeInset = -10;
-            this.Text = "home_form";
+            this.Text = "Home - Remmm";
             this.Load += new System.EventHandler(this.home_form_Load);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.home_form_MouseMove);
             this.leftdock_pnl.ResumeLayout(false);

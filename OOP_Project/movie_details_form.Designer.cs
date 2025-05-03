@@ -32,8 +32,8 @@
             this.comment_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.commentBorder_panel = new System.Windows.Forms.Panel();
             this.comments_panel = new System.Windows.Forms.FlowLayoutPanel();
-            this.submit_comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.comment_tb = new System.Windows.Forms.TextBox();
+            this.submit_comment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ratings_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.ratings_panel = new System.Windows.Forms.Panel();
             this.ratingStar5_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -112,6 +112,20 @@
             this.comments_panel.Size = new System.Drawing.Size(891, 99);
             this.comments_panel.TabIndex = 81;
             // 
+            // comment_tb
+            // 
+            this.comment_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comment_tb.ForeColor = System.Drawing.Color.Gray;
+            this.comment_tb.Location = new System.Drawing.Point(26, 18);
+            this.comment_tb.Multiline = true;
+            this.comment_tb.Name = "comment_tb";
+            this.comment_tb.Size = new System.Drawing.Size(736, 53);
+            this.comment_tb.TabIndex = 80;
+            this.comment_tb.Text = "Enter comments...";
+            this.comment_tb.Visible = false;
+            this.comment_tb.Enter += new System.EventHandler(this.comment_tb_Enter);
+            this.comment_tb.Leave += new System.EventHandler(this.comment_tb_Leave);
+            // 
             // submit_comment_btn
             // 
             this.submit_comment_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Cluster;
@@ -146,26 +160,12 @@
             this.submit_comment_btn.Visible = false;
             this.submit_comment_btn.Click += new System.EventHandler(this.submit_comment_btn_Click);
             // 
-            // comment_tb
-            // 
-            this.comment_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comment_tb.ForeColor = System.Drawing.Color.Gray;
-            this.comment_tb.Location = new System.Drawing.Point(26, 18);
-            this.comment_tb.Multiline = true;
-            this.comment_tb.Name = "comment_tb";
-            this.comment_tb.Size = new System.Drawing.Size(736, 53);
-            this.comment_tb.TabIndex = 80;
-            this.comment_tb.Text = "Enter comments...";
-            this.comment_tb.Visible = false;
-            this.comment_tb.Enter += new System.EventHandler(this.comment_tb_Enter);
-            this.comment_tb.Leave += new System.EventHandler(this.comment_tb_Leave);
-            // 
             // ratings_btn
             // 
             this.ratings_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.ratings_btn.Location = new System.Drawing.Point(291, 492);
+            this.ratings_btn.Location = new System.Drawing.Point(288, 492);
             this.ratings_btn.Name = "ratings_btn";
-            this.ratings_btn.Size = new System.Drawing.Size(37, 45);
+            this.ratings_btn.Size = new System.Drawing.Size(45, 45);
             this.ratings_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.ratings_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
             this.ratings_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
@@ -206,6 +206,11 @@
             this.ratingStar5_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ratingStar5_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.ratingStar5_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar5_btn.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar5_btn.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar5_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.ratingStar5_btn.TabIndex = 74;
             this.ratingStar5_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
             this.ratingStar5_btn.Values.Text = "";
@@ -223,6 +228,11 @@
             this.ratingStar4_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ratingStar4_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.ratingStar4_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar4_btn.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar4_btn.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar4_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.ratingStar4_btn.TabIndex = 75;
             this.ratingStar4_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
             this.ratingStar4_btn.Values.Text = "";
@@ -240,6 +250,11 @@
             this.ratingStar3_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ratingStar3_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.ratingStar3_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar3_btn.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar3_btn.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar3_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.ratingStar3_btn.TabIndex = 71;
             this.ratingStar3_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
             this.ratingStar3_btn.Values.Text = "";
@@ -257,6 +272,11 @@
             this.ratingStar2_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ratingStar2_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.ratingStar2_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar2_btn.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar2_btn.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar2_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.ratingStar2_btn.TabIndex = 72;
             this.ratingStar2_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
             this.ratingStar2_btn.Values.Text = "";
@@ -274,6 +294,11 @@
             this.ratingStar1_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ratingStar1_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.ratingStar1_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ratingStar1_btn.StateTracking.Border.Color1 = System.Drawing.Color.Transparent;
+            this.ratingStar1_btn.StateTracking.Border.Color2 = System.Drawing.Color.Transparent;
+            this.ratingStar1_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.ratingStar1_btn.TabIndex = 73;
             this.ratingStar1_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_star_white;
             this.ratingStar1_btn.Values.Text = "";
