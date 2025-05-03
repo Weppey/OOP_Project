@@ -1273,6 +1273,16 @@ namespace OOP_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_settings_502 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-settings-502", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_sign_out_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-sign-out-50", resourceCulture);

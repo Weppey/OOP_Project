@@ -52,7 +52,7 @@ namespace OOP_Project
 
         private Timer inactivityTimer;
         private DateTime lastActivityTime;
-        private int inactivityLimitSeconds = 600;
+        private int inactivityLimitSeconds = 300;
 
 
         private int userIdFromLogin;
@@ -60,7 +60,6 @@ namespace OOP_Project
         public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
             {
                 InitializeComponent(); // Initializes the form components (UI elements)
-
 
             // Assign user details from the login
             userType = userTypeFromLogin; // Store the user's type (admin or regular)
@@ -113,6 +112,11 @@ namespace OOP_Project
             {
                 adminsettings_btn.Visible = true; // If the user is an admin, show the admin button
             }
+            else if(userType.ToLower() == "master")
+            {
+                AdminControl admin = new AdminControl(userType, userId);
+                admin.HandleMasterAccess();
+            }
             else
             {
                 adminsettings_btn.Visible = false; // If the user is not an admin, hide the admin button
@@ -148,7 +152,7 @@ namespace OOP_Project
 
         public async void home_form_Load(object sender, EventArgs e)
         {
-        
+
             if (userType == "admin")
             {
                 lastActivityTime = DateTime.Now;
@@ -161,6 +165,7 @@ namespace OOP_Project
 
             // Attach MouseMove to all controls
             this.MouseMove += AllControls_MouseMove;
+            
             AttachMouseMoveToAllControls(this);
 
             // Hook global mouse move event
@@ -713,6 +718,7 @@ namespace OOP_Project
                 AdminControl_panel.Visible = false;
                 movie_panel.Visible = false;
                 popular_panel.Visible = false;
+                settings_panel.Visible = false;
                 // Create an instance of FavoriteControl
                 FavoriteControl favoriteControl = new FavoriteControl(userType, currentUserId);
                 // Clear any existing controls from Favorite_panel if necessary
@@ -731,6 +737,7 @@ namespace OOP_Project
                 AdminControl_panel.Visible = false;
                 movie_panel.Visible = true;
                 popular_panel.Visible = false;
+                settings_panel.Visible = false;
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -767,6 +774,7 @@ namespace OOP_Project
                 userProfile_panel.Visible = false;
                 AdminControl_panel.Visible = false;
                 movie_panel.Visible = false;
+                settings_panel.Visible = false;
             }
             else
             {
@@ -777,6 +785,7 @@ namespace OOP_Project
                 userProfile_panel.Visible = false;
                 AdminControl_panel.Visible = false;
                 movie_panel.Visible = true;
+                settings_panel.Visible = false;
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -791,22 +800,46 @@ namespace OOP_Project
         }
         private void settings_btn_Click(object sender, EventArgs e)
         {
-            form_lbl.Text = "SETTINGS";
-
-            Favorite_panel.Visible = false;
-            userProfile_panel.Visible = false;
-            AdminControl_panel.Visible = false;
-            movie_panel.Visible = false;
-            popular_panel.Visible = false;
-       
-            List<string> genres = GetUserGenres(currentUserId);
-            if (genres != null && genres.Count > 0)
+            if (settings_panel.Visible == false)
             {
-                DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+                form_lbl.Text = "SETTINGS";
+                Favorite_panel.Visible = false;
+                userProfile_panel.Visible = false;
+                AdminControl_panel.Visible = false;
+                movie_panel.Visible = false;
+                popular_panel.Visible = false;
+                settings_panel.Visible = true;
+                
+                // Create an instance of FavoriteControl
+                settingsControl settings = new settingsControl();
+                // Clear any existing controls from Favorite_panel if necessary
+                settings_panel.Controls.Clear();
+                // Add the FavoriteControl to the Favorite_panel
+                settings_panel.Controls.Add(settings);
+
+                // Optionally set FavoriteControl's dock property to fill the parent panel
+                settings.Dock = DockStyle.Fill; // Fills the parent panel (Favorite_panel)
+
             }
             else
             {
-                MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Favorite_panel.Visible = false;
+                userProfile_panel.Visible = false;
+                AdminControl_panel.Visible = false;
+                movie_panel.Visible = true;
+                popular_panel.Visible = false;
+                settings_panel.Visible = false;
+
+                List<string> genres = GetUserGenres(currentUserId);
+                if (genres != null && genres.Count > 0)
+                {
+                    DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+                }
+                else
+                {
+                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
         }
         private bool IsValidUrl(string url)
@@ -1355,6 +1388,7 @@ namespace OOP_Project
             userProfile_panel.Visible = false;
             popular_panel.Visible = false;
             Favorite_panel.Visible = false;
+            settings_panel.Visible = false;
 
         }
 
@@ -1367,10 +1401,11 @@ namespace OOP_Project
                 userProfile_panel.Visible = false;
                 movie_panel.Visible = false;
                 Favorite_panel.Visible = false;
+                settings_panel.Visible = false;
 
                 isProfilePanelActive = false; // If Admin panel is shown, the profile is inactive
 
-                AdminControl adminPanel = new AdminControl();
+                AdminControl adminPanel = new AdminControl(userType, userId);
                 AdminControl_panel.Controls.Add(adminPanel);
             }
             else
@@ -1380,6 +1415,7 @@ namespace OOP_Project
                 AdminControl_panel.Visible = false;
                 movie_panel.Visible = true;
                 popular_panel.Visible = false;
+                settings_panel.Visible = false;
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
@@ -1408,6 +1444,7 @@ namespace OOP_Project
                 Favorite_panel.Visible = false;
                 popular_panel.Visible = false;
                 movie_panel.Visible = false;
+                settings_panel.Visible = false;
 
                 // Pause the inactivity timer when the profile is shown
                 Console.WriteLine("Pausing inactivity timer...");
@@ -1424,6 +1461,7 @@ namespace OOP_Project
                 popular_panel.Visible= false;
                 Favorite_panel.Visible= false;
                 movie_panel.Visible= true;
+                settings_panel.Visible = false;
 
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)

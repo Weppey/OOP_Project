@@ -29,11 +29,13 @@ namespace OOP_Project
 
         private BindingSource userBindingSource = new BindingSource();
         private bool isInsertingNewUser = true;
-        public AdminControl()
+
+        private string userType;
+
+        public AdminControl(string userTypeFromLogin, int userIdFromLogin)
         {
             InitializeComponent();
-           
-
+            userType = userTypeFromLogin;
             tooltip.IsBalloon = false;                        // Makes it balloon-shaped
             tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
             tooltip.ForeColor = Color.Black;                 // Text color
@@ -70,8 +72,15 @@ namespace OOP_Project
             movies_dgv.DataSource = movieBindingSource;
         }
 
+        public void HandleMasterAccess()
+        {
+                usertype_cmb.Visible = true;
+       
+        }
+
         private void AdminMovieControl_Load(object sender, EventArgs e)
         {
+            HandleMasterAccess();
             connection = new MySqlConnection(connectionString);
             try
             {
@@ -219,14 +228,14 @@ namespace OOP_Project
             string selectedGenres = GetSelectedGenres();
 
             // Prepare the query to update the movie
-            string query = "UPDATE movies SET title=@title, genre=@genre, release_year=@release, image_url=@imageurl, trailer_link=@trailerurl description=@description WHERE movie_id=@id";
+            string query = "UPDATE movies SET title=@title, genre=@genre, release_year=@release, image_url=@imageurl, trailer_link=@trailerlink, description=@description WHERE movie_id=@id";
 
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", title_tb.Text);
             cmd.Parameters.AddWithValue("@genre", selectedGenres); // Using the comma-separated genres
             cmd.Parameters.AddWithValue("@release", releaseYear_dtp.Value.Year); // Only the year
             cmd.Parameters.AddWithValue("@imageurl", posterUrl_tb.Text);
-            cmd.Parameters.AddWithValue("@trailerurl", trailerUrl_tb.Text);
+            cmd.Parameters.AddWithValue("@trailerlink", trailerUrl_tb.Text);
             cmd.Parameters.AddWithValue("@description", description_tb.Text); // Add description
             cmd.Parameters.AddWithValue("@id", movieId);
 
@@ -330,13 +339,13 @@ namespace OOP_Project
             int releaseYear = releaseYear_dtp.Value.Year;
 
             // Insert query with description
-            string query = "INSERT INTO movies (title, genre, release_year, image_url, trailer_url, description) VALUES (@title, @genre, @release, @imageurl, trailerurl, @description)";
+            string query = "INSERT INTO movies (title, genre, release_year, image_url, trailer_link, description) VALUES (@title, @genre, @release, @imageurl, @trailer_link, @description)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", title_tb.Text);
             cmd.Parameters.AddWithValue("@genre", selectedGenres); // Save genres as a comma-separated string
             cmd.Parameters.AddWithValue("@release", releaseYear); // Pass the release year (as integer)
             cmd.Parameters.AddWithValue("@imageurl", posterUrl_tb.Text);
-            cmd.Parameters.AddWithValue("@trailerurl", trailerUrl_tb.Text);
+            cmd.Parameters.AddWithValue("@trailerlink", trailerUrl_tb.Text);
             cmd.Parameters.AddWithValue("@description", description_tb.Text); // Save the description
             cmd.ExecuteNonQuery();
             MovieClearCheckedItems();

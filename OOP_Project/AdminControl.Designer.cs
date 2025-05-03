@@ -34,6 +34,7 @@ namespace OOP_Project
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.releaseYear_dtp = new System.Windows.Forms.DateTimePicker();
             this.title_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.movies_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -371,13 +372,31 @@ namespace OOP_Project
             // 
             // editUser_btn
             // 
-            this.editUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.editUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
             this.editUser_btn.Location = new System.Drawing.Point(6, 263);
             this.editUser_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.editUser_btn.Name = "editUser_btn";
+            this.editUser_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
+            this.editUser_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
+            this.editUser_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
+            this.editUser_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.editUser_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.editUser_btn.OverrideDefault.Border.Width = 1;
+            this.editUser_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
+            this.editUser_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
+            this.editUser_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
+            this.editUser_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.editUser_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.editUser_btn.OverrideFocus.Border.Width = 1;
             this.editUser_btn.Size = new System.Drawing.Size(163, 45);
-            this.editUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
-            this.editUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.editUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.editUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.editUser_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
+            this.editUser_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.editUser_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
@@ -385,6 +404,11 @@ namespace OOP_Project
             this.editUser_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
             this.editUser_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.editUser_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.editUser_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
+            this.editUser_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
+            this.editUser_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.editUser_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.editUser_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.editUser_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -402,13 +426,31 @@ namespace OOP_Project
             // 
             // editMovie_btn
             // 
-            this.editMovie_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.editMovie_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
             this.editMovie_btn.Location = new System.Drawing.Point(6, 191);
             this.editMovie_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.editMovie_btn.Name = "editMovie_btn";
+            this.editMovie_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
+            this.editMovie_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.editMovie_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.editMovie_btn.OverrideDefault.Border.Width = 1;
+            this.editMovie_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
+            this.editMovie_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.editMovie_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.editMovie_btn.OverrideFocus.Border.Width = 1;
             this.editMovie_btn.Size = new System.Drawing.Size(163, 45);
-            this.editMovie_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
-            this.editMovie_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.editMovie_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.editMovie_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
@@ -416,6 +458,11 @@ namespace OOP_Project
             this.editMovie_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
             this.editMovie_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.editMovie_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
+            this.editMovie_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.editMovie_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.editMovie_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.editMovie_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -433,6 +480,7 @@ namespace OOP_Project
             // 
             // userEditor_panel
             // 
+            this.userEditor_panel.AutoScroll = true;
             this.userEditor_panel.Controls.Add(this.dataGrid_panel);
             this.userEditor_panel.Controls.Add(this.fillup_panel);
             this.userEditor_panel.Controls.Add(this.controlBtn_panel);
@@ -457,7 +505,6 @@ namespace OOP_Project
             this.users_dgv.AllowUserToAddRows = false;
             this.users_dgv.AllowUserToDeleteRows = false;
             this.users_dgv.AllowUserToResizeRows = false;
-            this.users_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.users_dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.users_dgv.ColumnHeadersHeight = 40;
             this.users_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -467,7 +514,11 @@ namespace OOP_Project
             this.users_dgv.Name = "users_dgv";
             this.users_dgv.ReadOnly = true;
             this.users_dgv.RowHeadersVisible = false;
-            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.users_dgv.RowTemplate.Height = 35;
             this.users_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.users_dgv.Size = new System.Drawing.Size(980, 291);
@@ -825,6 +876,7 @@ namespace OOP_Project
             // 
             // movieEditor_panel
             // 
+            this.movieEditor_panel.AutoScroll = true;
             this.movieEditor_panel.Controls.Add(this.movieFillUp_panel);
             this.movieEditor_panel.Controls.Add(this.movieControlBtn_panel);
             this.movieEditor_panel.Controls.Add(this.panel1);
