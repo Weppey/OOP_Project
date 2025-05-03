@@ -45,6 +45,7 @@
             this.language_cmb = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.security_panel = new System.Windows.Forms.Panel();
+            this.changePassword_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.updateSecurity_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.securityAnswer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.securityQuestion_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -55,6 +56,7 @@
             this.darkmode_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.lightmode_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.apply_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.changeEmail_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.settings_panel.SuspendLayout();
             this.appinfo_panel.SuspendLayout();
             this.system_panel.SuspendLayout();
@@ -278,6 +280,8 @@
             // security_panel
             // 
             this.security_panel.BackColor = System.Drawing.Color.Maroon;
+            this.security_panel.Controls.Add(this.changeEmail_btn);
+            this.security_panel.Controls.Add(this.changePassword_btn);
             this.security_panel.Controls.Add(this.updateSecurity_btn);
             this.security_panel.Controls.Add(this.securityAnswer_tb);
             this.security_panel.Controls.Add(this.securityQuestion_cmb);
@@ -285,6 +289,60 @@
             this.security_panel.Name = "security_panel";
             this.security_panel.Size = new System.Drawing.Size(349, 215);
             this.security_panel.TabIndex = 2;
+            // 
+            // changePassword_btn
+            // 
+            this.changePassword_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.changePassword_btn.Location = new System.Drawing.Point(15, 104);
+            this.changePassword_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.changePassword_btn.Name = "changePassword_btn";
+            this.changePassword_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
+            this.changePassword_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changePassword_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changePassword_btn.OverrideDefault.Border.Width = 1;
+            this.changePassword_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
+            this.changePassword_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changePassword_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changePassword_btn.OverrideFocus.Border.Width = 1;
+            this.changePassword_btn.Size = new System.Drawing.Size(147, 48);
+            this.changePassword_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changePassword_btn.StateCommon.Border.Rounding = 20;
+            this.changePassword_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.changePassword_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
+            this.changePassword_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changePassword_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.changePassword_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.changePassword_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changePassword_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changePassword_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changePassword_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changePassword_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changePassword_btn.TabIndex = 107;
+            this.changePassword_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
+            this.changePassword_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.changePassword_btn.Values.Text = "Change password";
+            this.changePassword_btn.Click += new System.EventHandler(this.changePassword_btn_Click);
             // 
             // updateSecurity_btn
             // 
@@ -318,7 +376,7 @@
             // 
             // securityAnswer_tb
             // 
-            this.securityAnswer_tb.Location = new System.Drawing.Point(23, 60);
+            this.securityAnswer_tb.Location = new System.Drawing.Point(23, 46);
             this.securityAnswer_tb.Name = "securityAnswer_tb";
             this.securityAnswer_tb.Size = new System.Drawing.Size(290, 26);
             this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
@@ -329,7 +387,7 @@
             // securityQuestion_cmb
             // 
             this.securityQuestion_cmb.DropDownWidth = 213;
-            this.securityQuestion_cmb.Location = new System.Drawing.Point(23, 33);
+            this.securityQuestion_cmb.Location = new System.Drawing.Point(23, 19);
             this.securityQuestion_cmb.Name = "securityQuestion_cmb";
             this.securityQuestion_cmb.Size = new System.Drawing.Size(290, 21);
             this.securityQuestion_cmb.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -398,6 +456,7 @@
             this.clearRecentSearch_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.clearRecentSearch_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.Values.Text = "Clear recently search";
+            this.clearRecentSearch_btn.Click += new System.EventHandler(this.clearRecentSearch_btn_Click);
             // 
             // clearHistory_btn
             // 
@@ -451,6 +510,7 @@
             this.clearHistory_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.clearHistory_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.clearHistory_btn.Values.Text = "Clear view history";
+            this.clearHistory_btn.Click += new System.EventHandler(this.clearHistory_btn_Click);
             // 
             // theme_panel
             // 
@@ -599,6 +659,59 @@
             this.apply_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.apply_btn.Values.Text = "Apply";
             // 
+            // changeEmail_btn
+            // 
+            this.changeEmail_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.changeEmail_btn.Location = new System.Drawing.Point(185, 104);
+            this.changeEmail_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.changeEmail_btn.Name = "changeEmail_btn";
+            this.changeEmail_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
+            this.changeEmail_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changeEmail_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changeEmail_btn.OverrideDefault.Border.Width = 1;
+            this.changeEmail_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
+            this.changeEmail_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changeEmail_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changeEmail_btn.OverrideFocus.Border.Width = 1;
+            this.changeEmail_btn.Size = new System.Drawing.Size(147, 48);
+            this.changeEmail_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changeEmail_btn.StateCommon.Border.Rounding = 20;
+            this.changeEmail_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.changeEmail_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changeEmail_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.changeEmail_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.changeEmail_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changeEmail_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changeEmail_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changeEmail_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.changeEmail_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.changeEmail_btn.TabIndex = 108;
+            this.changeEmail_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
+            this.changeEmail_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.changeEmail_btn.Values.Text = "Change email";
+            // 
             // settingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -654,5 +767,7 @@
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel language_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox gender_cmb;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton changePassword_btn;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton changeEmail_btn;
     }
 }

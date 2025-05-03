@@ -17,6 +17,7 @@ using RestSharp.Authenticators;
 using System.Net.Mail;
 using ComponentFactory.Krypton.Toolkit;
 using System.Drawing.Drawing2D;
+using System.IO;
 
 
 namespace OOP_Project
@@ -430,12 +431,30 @@ namespace OOP_Project
             string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
             string hashedAnswer = BCrypt.Net.BCrypt.HashPassword(securityAnswer);
             string verificationCode = GenerateConfirmationCode();
+            DateTime codeGeneratedAt = DateTime.Now; // Get the current timestamp for code generation
+            DateTime verificationCodeSentAt = DateTime.Now; // Timestamp when the email is sent
+
+            // Convert default avatar to byte array
+            byte[] avatarBytes = null;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                if (gender == "Male") 
+                { 
+                     Properties.Resources.avatar_default.Save(ms, System.Drawing.Imaging.ImageFormat.Png); // Convert the default avatar image from resources
+                }
+                else
+                {
+                    Properties.Resources.avatar_women.Save(ms, System.Drawing.Imaging.ImageFormat.Png); // Convert the default avatar image from resources
+                }
+                avatarBytes = ms.ToArray(); // Convert to byte array
+            }
 
             try
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
                     connection.Open();
+
                     // Check if the username already exists
                     string checkUsernameQuery = "SELECT COUNT(*) FROM users WHERE username = @username";
                     MySqlCommand checkUsernameCmd = new MySqlCommand(checkUsernameQuery, connection);
@@ -448,9 +467,11 @@ namespace OOP_Project
                         return; // Exit early, no data will reach the database
                     }
 
-                    // Insert the user into the database if all validations pass
-                    string query = "INSERT INTO users (username, email, password, gender, birthdate, age, preferences, user_type, security_question, security_answer, verification_code) " +
-                                   "VALUES (@username, @email, @password, @gender, @birthdate, @age, @preferences, 'member', @security_question, @security_answer, @verification_code)";
+                    // Insert the user into the database
+                    string query = "INSERT INTO users (username, email, password, gender, birthdate, age, preferences, user_type, security_question, security_answer, " +
+                                   "verification_code, email_verified, code_generated_at, verification_code_sent_at, avatar) " +
+                                   "VALUES (@username, @email, @password, @gender, @birthdate, @age, @preferences, 'member', @security_question, @security_answer, " +
+                                   "@verification_code, 0, @code_generated_at, @verification_code_sent_at, @avatar)"; // email_verified starts as 0 (false)
 
                     string preferences = string.Join(", ", preferences_clb.CheckedItems.Cast<string>());
 
@@ -466,6 +487,9 @@ namespace OOP_Project
                         cmd.Parameters.AddWithValue("@security_question", securityQuestion);
                         cmd.Parameters.AddWithValue("@security_answer", hashedAnswer);
                         cmd.Parameters.AddWithValue("@verification_code", verificationCode);
+                        cmd.Parameters.AddWithValue("@code_generated_at", codeGeneratedAt);
+                        cmd.Parameters.AddWithValue("@verification_code_sent_at", verificationCodeSentAt);
+                        cmd.Parameters.AddWithValue("@avatar", avatarBytes); // Insert default avatar into the database
 
                         cmd.ExecuteNonQuery();
                     }
@@ -480,7 +504,6 @@ namespace OOP_Project
                     verification_form verifyForm = new verification_form(email);
                     verifyForm.ShowDialog();
                     this.Close();
-
                 }
             }
             catch (Exception ex)
@@ -488,5 +511,6 @@ namespace OOP_Project
                 MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

@@ -27,6 +27,7 @@ namespace OOP_Project
         int pageSize = 20;
 
 
+
         public ProfileControl(string userTypeFromLogin, int userIdFromLogin)
         {
             InitializeComponent();
@@ -355,13 +356,15 @@ namespace OOP_Project
                 if (existingPanel != null)
                 {
                     recentlyViewMovie_flp.Controls.Remove(existingPanel);
-                    existingPanel.Dispose(); // Optional: release resources if needed
+                    // Do not dispose — we'll reuse the movie ID below
                 }
+
+
 
                 // Create new movie panel
                 Panel moviePanel = new Panel
                 {
-                    Size = new Size(140, 180),
+                    Size = new Size(120, 160),
                     Margin = new Padding(5),
                     BackColor = Color.Gray,
                     Cursor = Cursors.Hand,
@@ -370,7 +373,7 @@ namespace OOP_Project
 
                 PictureBox poster = new PictureBox
                 {
-                    Size = new Size(140, 180),
+                    Size = new Size(120, 160),
                     Location = new Point(5, 0),
                     BackColor = Color.Black,
                     SizeMode = PictureBoxSizeMode.Zoom,

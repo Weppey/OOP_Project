@@ -224,11 +224,11 @@
             // 
             // gender_cmb
             // 
+            this.gender_cmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.gender_cmb.DropDownWidth = 183;
             this.gender_cmb.Items.AddRange(new object[] {
-            "Female",
             "Male",
-            "Prefer not to say"});
+            "Female"});
             this.gender_cmb.Location = new System.Drawing.Point(402, 219);
             this.gender_cmb.Name = "gender_cmb";
             this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -236,7 +236,6 @@
             this.gender_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
             this.gender_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gender_cmb.TabIndex = 59;
-            this.gender_cmb.Text = "N/A";
             this.gender_cmb.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox1_SelectedIndexChanged);
             this.gender_cmb.Enter += new System.EventHandler(this.gender_cmb_Enter);
             this.gender_cmb.Leave += new System.EventHandler(this.gender_cmb_Leave);
@@ -386,7 +385,6 @@
         private System.Diagnostics.Process process_prcs;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox gender_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox email_tb;
-        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker birthday_dtp;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox answer_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox securityq_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel question_lbl;
@@ -398,5 +396,6 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel acc_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox pass_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonButton sign_btn;
+        private ComponentFactory.Krypton.Toolkit.KryptonDateTimePicker birthday_dtp;
     }
 }

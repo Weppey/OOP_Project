@@ -1,16 +1,16 @@
-﻿        using System;
-        using System.Data;
-        using System.Drawing;
-        using System.Threading.Tasks;
-        using System.Web.SessionState;
-        using System.Windows.Forms;
-        using MySql.Data.MySqlClient;
-        using System.Drawing.Drawing2D;
-        using ComponentFactory.Krypton.Toolkit;
-        using System.Drawing.Imaging;
-        using System.IO;
-        using System.Collections.Generic;
-        using System.Linq;
+﻿using System;
+using System.Data;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Web.SessionState;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using System.Drawing.Drawing2D;
+using ComponentFactory.Krypton.Toolkit;
+using System.Drawing.Imaging;
+using System.IO;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 
 using MySqlX.XDevAPI;
@@ -18,80 +18,70 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks.Sources;
 using Mysqlx.Crud;
 
-
-
-
-
-
 namespace OOP_Project
+{
+    public partial class home_form : KryptonForm
     {
-        public partial class home_form : KryptonForm
-        {
-            // Declare a private field named 'connection' of type 'MySqlConnection'.
-            // This object will be used to manage the connection to the MySQL database,
-            // allowing the application to open a connection, run commands, and interact with the database.
-            private MySqlConnection connection;
+        // Declare a private field named 'connection' of type 'MySqlConnection'.
+        // This object will be used to manage the connection to the MySQL database,
+        // allowing the application to open a connection, run commands, and interact with the database.
+        private MySqlConnection connection;
         private static bool isProfilePanelActive = false;
 
         private ToolTip tooltip = new ToolTip();
         // Connection string to connect to the database, specifying the server, database, and login credentials.
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString =
+            "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
 
-            // User-related variables
-            private string userType; // Variable to store the type of user (admin or regular)
-            private int currentUserId; // Variable to store the current user's ID
+        // User-related variables
+        private string userType; // Variable to store the type of user (admin or regular)
+        private int currentUserId; // Variable to store the current user's ID
 
+        private int userId; // Variable to store a user's ID, potentially for a selected user
 
-            private int userId; // Variable to store a user's ID, potentially for a selected user
-
-
-            // Pagination-related variables
-            int currentPage = 0; // Tracks the current page number for pagination
-            int pageSize = 20; // Defines how many items to display per page
-            bool isLoading = false; // Flag to indicate whether data is currently loading
+        // Pagination-related variables
+        int currentPage = 0; // Tracks the current page number for pagination
+        int pageSize = 20; // Defines how many items to display per page
+        bool isLoading = false; // Flag to indicate whether data is currently loading
 
         private Timer inactivityTimer;
         private DateTime lastActivityTime;
         private int inactivityLimitSeconds = 300;
 
-
         private int userIdFromLogin;
 
         public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
-            {
-                InitializeComponent(); // Initializes the form components (UI elements)
+        {
+            InitializeComponent(); // Initializes the form components (UI elements)
 
             // Assign user details from the login
             userType = userTypeFromLogin; // Store the user's type (admin or regular)
-                currentUserId = userIdFromLogin; // Store the current user's ID
+            currentUserId = userIdFromLogin; // Store the current user's ID
 
-                HandleAccess(); // Handle access based on the user's type (admin or regular user)
+            HandleAccess(); // Handle access based on the user's type (admin or regular user)
 
             //Tooltip messages
-            tooltip.IsBalloon = false;                        // Makes it balloon-shaped
-            tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
-            tooltip.ForeColor = Color.Black;                 // Text color
-            tooltip.UseFading = true;                        // Smooth fade-in/out
-            tooltip.UseAnimation = true;                     // Animate appearance
+            tooltip.IsBalloon = false; // Makes it balloon-shaped
+            tooltip.BackColor = Color.LightYellow; // Tooltip background color (only works in custom-drawn tips)
+            tooltip.ForeColor = Color.Black; // Text color
+            tooltip.UseFading = true; // Smooth fade-in/out
+            tooltip.UseAnimation = true; // Animate appearance
 
             tooltip.AutoPopDelay = 5000;
-                tooltip.InitialDelay = 100;
-                tooltip.ReshowDelay = 100;
-                tooltip.ShowAlways = true;
-                
-                tooltip.SetToolTip(home_btn, "Home");
-                tooltip.SetToolTip(favorite_btn, "Favorite");
-                tooltip.SetToolTip(popular_btn, "Popular");
-                tooltip.SetToolTip(signOut_btn, "Sign Out");
-                tooltip.SetToolTip(settings_btn, "Settings");
-                tooltip.SetToolTip(adminsettings_btn, "Admin");
-                tooltip.SetToolTip(search_tb, "Search your movie");
-                tooltip.SetToolTip(profile_btn, "Profile");
-          
+            tooltip.InitialDelay = 100;
+            tooltip.ReshowDelay = 100;
+            tooltip.ShowAlways = true;
 
-
+            tooltip.SetToolTip(home_btn, "Home");
+            tooltip.SetToolTip(favorite_btn, "Favorite");
+            tooltip.SetToolTip(popular_btn, "Popular");
+            tooltip.SetToolTip(signOut_btn, "Sign Out");
+            tooltip.SetToolTip(settings_btn, "Settings");
+            tooltip.SetToolTip(adminsettings_btn, "Admin");
+            tooltip.SetToolTip(search_tb, "Search your movie");
+            tooltip.SetToolTip(profile_btn, "Profile");
         }
-        
+
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
             GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
@@ -100,7 +90,11 @@ namespace OOP_Project
             // Add arcs to the path to define the four rounded corners
             path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90); // Top-left corner
             path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90); // Top-left corner
-            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90); // Bottom-right corner
+            path.AddArc(
+                new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius),
+                0,
+                90
+            ); // Bottom-right corner
             path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90); // Bottom-left corner
             path.CloseFigure(); // Close the shape definition
             panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
@@ -108,13 +102,13 @@ namespace OOP_Project
 
         private void HandleAccess() // Method to handle access control for different user types (admin or regular)
         {
-            if (userType.ToLower() == "admin")  // Check if the user type is "admin"
+            if (userType.ToLower() == "admin") // Check if the user type is "admin"
             {
                 adminsettings_btn.Visible = true; // If the user is an admin, show the admin button
             }
-            else if(userType.ToLower() == "master")
+            else if (userType.ToLower() == "master")
             {
-                AdminControl admin = new AdminControl(userType, userId);
+                AdminControl admin = new AdminControl(userType, currentUserId);
                 admin.HandleMasterAccess();
             }
             else
@@ -126,7 +120,7 @@ namespace OOP_Project
         public void FavoriteButtonClick()
         {
             // Manually call the favorite_btn_Click event handler
-            favorite_btn_Click(favorite_btn, EventArgs.Empty);  // Simulate the click event
+            favorite_btn_Click(favorite_btn, EventArgs.Empty); // Simulate the click event
         }
 
         private void InactivityTimer_Tick(object sender, EventArgs e)
@@ -150,9 +144,36 @@ namespace OOP_Project
             }
         }
 
+        public void Reload()
+        {
+            int? userId = StayLoggedIn.GetCurrentUserId();
+            if (userId.HasValue)
+            {
+                LoadRecentSearches(userId.Value); // Pass userId to load recent searches
+            }
+            else
+            {
+                MessageBox.Show("Please log in first.");
+            }
+
+            List<string> genres = GetUserGenres(currentUserId);
+            if (genres != null && genres.Count > 0)
+            {
+                DisplayMoviesByGenre(genres); // Display movies based on multiple genres
+            }
+            else
+            {
+                MessageBox.Show(
+                    "No genre preferences found.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+        }
+
         public async void home_form_Load(object sender, EventArgs e)
         {
-
             if (userType == "admin")
             {
                 lastActivityTime = DateTime.Now;
@@ -165,7 +186,7 @@ namespace OOP_Project
 
             // Attach MouseMove to all controls
             this.MouseMove += AllControls_MouseMove;
-            
+
             AttachMouseMoveToAllControls(this);
 
             // Hook global mouse move event
@@ -174,14 +195,12 @@ namespace OOP_Project
             int? userId = StayLoggedIn.GetCurrentUserId();
             if (userId.HasValue)
             {
-                LoadRecentSearches(userId.Value);  // Pass userId to load recent searches
+                LoadRecentSearches(userId.Value); // Pass userId to load recent searches
             }
             else
             {
                 MessageBox.Show("Please log in first.");
             }
-
-
 
             recommendedMovie_flp.FlowDirection = FlowDirection.LeftToRight;
             recommendedMovie_flp.WrapContents = true;
@@ -191,13 +210,15 @@ namespace OOP_Project
             allMovie_flp.WrapContents = true;
             allMovie_flp.AutoScroll = true;
 
-            connection = new MySqlConnection("Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;");
+            connection = new MySqlConnection(
+                "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;"
+            );
 
             try
             {
                 connection.Open(); // ✅ Must open it before any SQL
                 DisplayAllMovies();
-                
+
                 List<string> genres = GetUserGenres(currentUserId);
                 if (genres != null && genres.Count > 0)
                 {
@@ -205,7 +226,12 @@ namespace OOP_Project
                 }
                 else
                 {
-                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "No genre preferences found.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
             catch (Exception ex)
@@ -237,8 +263,6 @@ namespace OOP_Project
 
             CurvePanel(AdminControl_panel, 30);
             allMovie_panel.Resize += (s, aargs) => CurvePanel(allMovie_panel, 20);
-
-
         }
 
         private void home_form_MouseMove(object sender, MouseEventArgs e)
@@ -258,10 +282,11 @@ namespace OOP_Project
                 if (!string.IsNullOrEmpty(result))
                 {
                     // Split genres by commas and trim spaces
-                    genres = result.Split(',')
-                                   .Select(g => g.Trim())
-                                   .Where(g => !string.IsNullOrEmpty(g)) // Ensure no empty genres are included
-                                   .ToList();
+                    genres = result
+                        .Split(',')
+                        .Select(g => g.Trim())
+                        .Where(g => !string.IsNullOrEmpty(g)) // Ensure no empty genres are included
+                        .ToList();
                 }
             }
 
@@ -319,7 +344,10 @@ namespace OOP_Project
                     var cachedImages = StayLoggedIn.GetCachedImageUrls();
 
                     // Check if the image URL is cached
-                    if (!string.IsNullOrEmpty(movie.ImageUrl) && cachedImages.Contains(movie.ImageUrl))
+                    if (
+                        !string.IsNullOrEmpty(movie.ImageUrl)
+                        && cachedImages.Contains(movie.ImageUrl)
+                    )
                     {
                         // Load the image from the cache if it is already cached
                         var image = await Task.Run(() => LoadImageFromCache(movie.ImageUrl));
@@ -341,7 +369,6 @@ namespace OOP_Project
                         // Use fallback image if no URL is available
                         poster.Image = Properties.Resources.fallback;
                     }
-
 
                     // Add poster to the movie panel
                     moviePanel.Controls.Add(poster);
@@ -481,16 +508,26 @@ namespace OOP_Project
                 {
                     while (reader.Read())
                     {
-                        movies.Add(new movie
-                        {
-                            Id = reader.GetInt32("movie_id"),
-                            Title = reader.GetString("title"),
-                            Description = reader.IsDBNull(reader.GetOrdinal("description")) ? "" : reader.GetString("description"),
-                            Genre = reader.IsDBNull(reader.GetOrdinal("genre")) ? "" : reader.GetString("genre"),
-                            ReleaseYear = reader.GetInt32("release_year"),
-                            Rating = reader.IsDBNull(reader.GetOrdinal("rating")) ? 0 : reader.GetDecimal("rating"),
-                            ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? "" : reader.GetString("image_url")
-                        });
+                        movies.Add(
+                            new movie
+                            {
+                                Id = reader.GetInt32("movie_id"),
+                                Title = reader.GetString("title"),
+                                Description = reader.IsDBNull(reader.GetOrdinal("description"))
+                                    ? ""
+                                    : reader.GetString("description"),
+                                Genre = reader.IsDBNull(reader.GetOrdinal("genre"))
+                                    ? ""
+                                    : reader.GetString("genre"),
+                                ReleaseYear = reader.GetInt32("release_year"),
+                                Rating = reader.IsDBNull(reader.GetOrdinal("rating"))
+                                    ? 0
+                                    : reader.GetDecimal("rating"),
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
+                                    ? ""
+                                    : reader.GetString("image_url")
+                            }
+                        );
                     }
                 }
             }
@@ -499,7 +536,8 @@ namespace OOP_Project
         }
         public void LogMovieView(int userId, int movieId)
         {
-            string insertQuery = "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
+            string insertQuery =
+                "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
 
             try
             {
@@ -519,7 +557,12 @@ namespace OOP_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to log movie view: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Failed to log movie view: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
 
@@ -542,7 +585,12 @@ namespace OOP_Project
 
                         if (userExists == 0)
                         {
-                            MessageBox.Show("The user does not exist. Please check the user ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(
+                                "The user does not exist. Please check the user ID.",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
                             return;
                         }
                     }
@@ -555,13 +603,19 @@ namespace OOP_Project
 
                         if (movieExists == 0)
                         {
-                            MessageBox.Show("The movie does not exist. Please check the movie ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(
+                                "The movie does not exist. Please check the movie ID.",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
                             return;
                         }
                     }
 
                     // If both user and movie exist, insert into movie_interaction
-                    string insertQuery = "INSERT INTO movie_interaction (user_id, movie_id, created_at) VALUES (@userId, @movieId, @createdAt)";
+                    string insertQuery =
+                        "INSERT INTO movie_interaction (user_id, movie_id, created_at) VALUES (@userId, @movieId, @createdAt)";
 
                     using (MySqlCommand cmd = new MySqlCommand(insertQuery, conn))
                     {
@@ -573,7 +627,8 @@ namespace OOP_Project
                     }
 
                     // Log movie view
-                    string logViewQuery = "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
+                    string logViewQuery =
+                        "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
                     using (MySqlCommand cmdView = new MySqlCommand(logViewQuery, conn))
                     {
                         cmdView.Parameters.AddWithValue("@userId", userId);
@@ -586,16 +641,20 @@ namespace OOP_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed to log movie interaction: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Failed to log movie interaction: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
-
-
 
         private List<movie> GetMoviesByGenre(string genre)
         {
             List<movie> movies = new List<movie>();
-            string query = "SELECT * FROM Movies WHERE LOWER(genre) LIKE CONCAT('%', LOWER(@genre), '%')";
+            string query =
+                "SELECT * FROM Movies WHERE LOWER(genre) LIKE CONCAT('%', LOWER(@genre), '%')";
 
             using (MySqlCommand cmd = new MySqlCommand(query, connection))
             {
@@ -605,16 +664,26 @@ namespace OOP_Project
                 {
                     while (reader.Read())
                     {
-                        movies.Add(new movie
-                        {
-                            Id = reader.GetInt32("movie_id"),
-                            Title = reader.GetString("title"),
-                            Description = reader.IsDBNull(reader.GetOrdinal("description")) ? "" : reader.GetString("description"),
-                            Genre = reader.IsDBNull(reader.GetOrdinal("genre")) ? "" : reader.GetString("genre"),
-                            ReleaseYear = reader.GetInt32("release_year"),
-                            Rating = reader.IsDBNull(reader.GetOrdinal("rating")) ? 0 : reader.GetDecimal("rating"),
-                            ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? "" : reader.GetString("image_url")
-                        });
+                        movies.Add(
+                            new movie
+                            {
+                                Id = reader.GetInt32("movie_id"),
+                                Title = reader.GetString("title"),
+                                Description = reader.IsDBNull(reader.GetOrdinal("description"))
+                                    ? ""
+                                    : reader.GetString("description"),
+                                Genre = reader.IsDBNull(reader.GetOrdinal("genre"))
+                                    ? ""
+                                    : reader.GetString("genre"),
+                                ReleaseYear = reader.GetInt32("release_year"),
+                                Rating = reader.IsDBNull(reader.GetOrdinal("rating"))
+                                    ? 0
+                                    : reader.GetDecimal("rating"),
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
+                                    ? ""
+                                    : reader.GetString("image_url")
+                            }
+                        );
                     }
                 }
             }
@@ -632,16 +701,26 @@ namespace OOP_Project
                 {
                     while (reader.Read())
                     {
-                        movies.Add(new movie
-                        {
-                            Id = reader.GetInt32("movie_id"),
-                            Title = reader.GetString("title"),
-                            Description = reader.IsDBNull(reader.GetOrdinal("description")) ? "" : reader.GetString("description"),
-                            Genre = reader.IsDBNull(reader.GetOrdinal("genre")) ? "" : reader.GetString("genre"),
-                            ReleaseYear = reader.GetInt32("release_year"),
-                            Rating = reader.IsDBNull(reader.GetOrdinal("rating")) ? 0 : reader.GetDecimal("rating"),
-                            ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? "" : reader.GetString("image_url")
-                        });
+                        movies.Add(
+                            new movie
+                            {
+                                Id = reader.GetInt32("movie_id"),
+                                Title = reader.GetString("title"),
+                                Description = reader.IsDBNull(reader.GetOrdinal("description"))
+                                    ? ""
+                                    : reader.GetString("description"),
+                                Genre = reader.IsDBNull(reader.GetOrdinal("genre"))
+                                    ? ""
+                                    : reader.GetString("genre"),
+                                ReleaseYear = reader.GetInt32("release_year"),
+                                Rating = reader.IsDBNull(reader.GetOrdinal("rating"))
+                                    ? 0
+                                    : reader.GetDecimal("rating"),
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
+                                    ? ""
+                                    : reader.GetString("image_url")
+                            }
+                        );
                     }
                 }
             }
@@ -652,7 +731,10 @@ namespace OOP_Project
         {
             try
             {
-                var movieDetailsForm = new movie_details_form(movie, StayLoggedIn.GetCurrentUserId().Value);
+                var movieDetailsForm = new movie_details_form(
+                    movie,
+                    StayLoggedIn.GetCurrentUserId().Value
+                );
                 movieDetailsForm.StartPosition = FormStartPosition.CenterParent;
                 movieDetailsForm.ShowDialog();
             }
@@ -675,7 +757,10 @@ namespace OOP_Project
                 var currentSession = StayLoggedIn.LoadUserSession();
                 if (currentSession.HasValue)
                 {
-                    StayLoggedIn.SaveUserSession(currentSession.Value.userType, currentSession.Value.userId);
+                    StayLoggedIn.SaveUserSession(
+                        currentSession.Value.userType,
+                        currentSession.Value.userId
+                    );
                 }
 
                 // Close the application
@@ -686,7 +771,6 @@ namespace OOP_Project
                 return; // Do nothing if user cancels the close
             }
         }
-
 
         private void close_pb_MouseEnter(object sender, EventArgs e)
         {
@@ -728,7 +812,6 @@ namespace OOP_Project
 
                 // Optionally set FavoriteControl's dock property to fill the parent panel
                 favoriteControl.Dock = DockStyle.Fill; // Fills the parent panel (Favorite_panel)
-
             }
             else
             {
@@ -746,13 +829,15 @@ namespace OOP_Project
                 }
                 else
                 {
-                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "No genre preferences found.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
-
             }
         }
-
-
 
         private void popular_btn_Click(object sender, EventArgs e)
         {
@@ -794,7 +879,12 @@ namespace OOP_Project
                 }
                 else
                 {
-                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "No genre preferences found.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
         }
@@ -809,9 +899,10 @@ namespace OOP_Project
                 movie_panel.Visible = false;
                 popular_panel.Visible = false;
                 settings_panel.Visible = true;
-                
+
                 // Create an instance of FavoriteControl
-                settingsControl settings = new settingsControl();
+                settingsControl settings = new settingsControl(userType, currentUserId);
+
                 // Clear any existing controls from Favorite_panel if necessary
                 settings_panel.Controls.Clear();
                 // Add the FavoriteControl to the Favorite_panel
@@ -819,7 +910,6 @@ namespace OOP_Project
 
                 // Optionally set FavoriteControl's dock property to fill the parent panel
                 settings.Dock = DockStyle.Fill; // Fills the parent panel (Favorite_panel)
-
             }
             else
             {
@@ -837,16 +927,26 @@ namespace OOP_Project
                 }
                 else
                 {
-                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "No genre preferences found.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
-
             }
         }
         private bool IsValidUrl(string url)
         {
-            return Uri.IsWellFormedUriString(url, UriKind.Absolute) && (url.StartsWith("http://") || url.StartsWith("https://"));
+            return Uri.IsWellFormedUriString(url, UriKind.Absolute)
+                && (url.StartsWith("http://") || url.StartsWith("https://"));
         }
         private void signOut_btn_Click(object sender, EventArgs e)
+        {
+            logOut();
+        }
+
+        public void logOut()
         {
             string msg = "Do you really want to sign out?";
             string title = "Confirm Navigation";
@@ -860,7 +960,10 @@ namespace OOP_Project
                 var currentSession = StayLoggedIn.LoadUserSession();
                 if (currentSession.HasValue)
                 {
-                    StayLoggedIn.SaveUserSession(currentSession.Value.userType, currentSession.Value.userId);
+                    StayLoggedIn.SaveUserSession(
+                        currentSession.Value.userType,
+                        currentSession.Value.userId
+                    );
                 }
 
                 // Clear the session
@@ -908,7 +1011,6 @@ namespace OOP_Project
                 this.ActiveControl = null;
             }
         }
-
 
         //search
         private async void DisplaySingleMovie(movie movie, FlowLayoutPanel targetPanel)
@@ -1024,7 +1126,6 @@ namespace OOP_Project
             }
         }
 
-
         // Async method to load the image and set it to the PictureBox
         private async Task LoadImageAsync(string imageUrl, PictureBox pictureBox)
         {
@@ -1046,13 +1147,16 @@ namespace OOP_Project
             }
         }
 
-
         private bool IsMovieAlreadyInPanel(movie movie, FlowLayoutPanel panel)
         {
             // Iterate through all panels in the FlowLayoutPanel
             foreach (Control control in panel.Controls)
             {
-                if (control is Panel moviePanel && moviePanel.Tag is int movieId && movieId == movie.Id)
+                if (
+                    control is Panel moviePanel
+                    && moviePanel.Tag is int movieId
+                    && movieId == movie.Id
+                )
                 {
                     return true; // Movie already exists in the panel
                 }
@@ -1097,22 +1201,22 @@ namespace OOP_Project
             }
         }
 
-
         private void LoadRecentSearchSuggestions()
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
+            string query =
+                "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
 
             try
             {
-                search_list.Items.Clear();  // Clear previous search results
+                search_list.Items.Clear(); // Clear previous search results
 
                 using (MySqlConnection conn = new MySqlConnection(connStr))
                 {
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@userId", currentUserId);  // Make sure currentUserId is set
+                        cmd.Parameters.AddWithValue("@userId", currentUserId); // Make sure currentUserId is set
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -1120,7 +1224,7 @@ namespace OOP_Project
                             {
                                 var movie = new movie
                                 {
-                                    Title = reader.GetString("movie_title")  // Should match the SELECT
+                                    Title = reader.GetString("movie_title") // Should match the SELECT
                                 };
 
                                 search_list.Items.Add(movie);
@@ -1137,16 +1241,16 @@ namespace OOP_Project
             }
         }
 
-
-
-
         private void SaveRecentSearch(int userId, movie movie)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string checkQuery = "SELECT COUNT(*) FROM recent_searches WHERE user_id = @userId AND movie_id = @movieId";
-            string insertQuery = "INSERT INTO recent_searches (user_id, movie_id, movie_title, movie_description, movie_genre, release_year, image_url, search_date) " +
-                                 "VALUES (@userId, @movieId, @movieTitle, @movieDescription, @movieGenre, @releaseYear, @imageUrl, NOW())";
-            string updateQuery = "UPDATE recent_searches SET search_date = NOW() WHERE user_id = @userId AND movie_id = @movieId";
+            string checkQuery =
+                "SELECT COUNT(*) FROM recent_searches WHERE user_id = @userId AND movie_id = @movieId";
+            string insertQuery =
+                "INSERT INTO recent_searches (user_id, movie_id, movie_title, movie_description, movie_genre, release_year, image_url, search_date) "
+                + "VALUES (@userId, @movieId, @movieTitle, @movieDescription, @movieGenre, @releaseYear, @imageUrl, NOW())";
+            string updateQuery =
+                "UPDATE recent_searches SET search_date = NOW() WHERE user_id = @userId AND movie_id = @movieId";
 
             try
             {
@@ -1177,10 +1281,19 @@ namespace OOP_Project
                                 insertCmd.Parameters.AddWithValue("@userId", userId);
                                 insertCmd.Parameters.AddWithValue("@movieId", movie.Id);
                                 insertCmd.Parameters.AddWithValue("@movieTitle", movie.Title);
-                                insertCmd.Parameters.AddWithValue("@movieDescription", movie.Description);
+                                insertCmd.Parameters.AddWithValue(
+                                    "@movieDescription",
+                                    movie.Description
+                                );
                                 insertCmd.Parameters.AddWithValue("@movieGenre", movie.Genre);
-                                insertCmd.Parameters.AddWithValue("@releaseYear", movie.ReleaseYear);
-                                insertCmd.Parameters.AddWithValue("@imageUrl", movie.ImageUrl ?? (object)DBNull.Value);
+                                insertCmd.Parameters.AddWithValue(
+                                    "@releaseYear",
+                                    movie.ReleaseYear
+                                );
+                                insertCmd.Parameters.AddWithValue(
+                                    "@imageUrl",
+                                    movie.ImageUrl ?? (object)DBNull.Value
+                                );
 
                                 insertCmd.ExecuteNonQuery();
                             }
@@ -1193,7 +1306,6 @@ namespace OOP_Project
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
 
         private void ShowMovieDetailsForm(movie movie)
         {
@@ -1223,7 +1335,9 @@ namespace OOP_Project
                                 Description = reader.GetString("description"),
                                 Genre = reader.GetString("genre"),
                                 ReleaseYear = reader.GetInt32("release_year"),
-                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url")
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
+                                    ? null
+                                    : reader.GetString("image_url")
                             };
                         }
                     }
@@ -1240,7 +1354,6 @@ namespace OOP_Project
                 LoadRecentSearchSuggestions(); // ✅ pass userId
                 return;
             }
-
 
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string query = "SELECT title, image_url FROM movies WHERE title LIKE @keyword LIMIT 10";
@@ -1261,7 +1374,9 @@ namespace OOP_Project
                                 var movie = new movie
                                 {
                                     Title = reader.GetString("title"),
-                                    ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url")
+                                    ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
+                                        ? null
+                                        : reader.GetString("image_url")
                                 };
                                 search_list.Items.Add(movie);
                             }
@@ -1276,9 +1391,6 @@ namespace OOP_Project
             }
         }
 
-       
-
-
         private void search_txt_Enter(object sender, EventArgs e)
         {
             if (search_tb.ForeColor == Color.Gray)
@@ -1292,7 +1404,8 @@ namespace OOP_Project
         {
             List<string> recentTitles = new List<string>();
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
+            string query =
+                "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
 
             try
             {
@@ -1323,10 +1436,8 @@ namespace OOP_Project
             return string.Join(", ", recentTitles);
         }
 
-
         private void search_txt_Leave(object sender, EventArgs e)
         {
-
             if (string.IsNullOrWhiteSpace(search_tb.Text))
             {
                 search_tb.Text = "Search..."; // Set the placeholder text
@@ -1336,17 +1447,18 @@ namespace OOP_Project
         public async Task LoadRecentSearches(int currentUserId)
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = @"
-        SELECT movie_id, movie_title, movie_description, movie_genre, release_year, image_url 
-        FROM ( 
-            SELECT * FROM recent_searches 
-            WHERE user_id = @userId 
+            string query =
+                @"
+            SELECT movie_id, movie_title, movie_description, movie_genre, release_year, image_url 
+            FROM ( 
+                SELECT * FROM recent_searches 
+                WHERE user_id = @userId 
+                ORDER BY search_date DESC
+            ) AS ordered
+            GROUP BY movie_id
             ORDER BY search_date DESC
-        ) AS ordered
-        GROUP BY movie_id
-        ORDER BY search_date DESC
-        LIMIT 7;
-    ";
+            LIMIT 7;
+        ";
 
             try
             {
@@ -1378,7 +1490,9 @@ namespace OOP_Project
                                 string description = reader.GetString("movie_description");
                                 string genre = reader.GetString("movie_genre");
                                 int releaseYear = reader.GetInt32("release_year");
-                                string imageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url");
+                                string imageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
+                                    ? null
+                                    : reader.GetString("image_url");
 
                                 movie movie = new movie
                                 {
@@ -1401,7 +1515,6 @@ namespace OOP_Project
                 MessageBox.Show("Error loading recent searches: " + ex.Message);
             }
         }
-
 
         private async Task DisplayMovieInRecentlySearchAsync(movie movie)
         {
@@ -1455,21 +1568,9 @@ namespace OOP_Project
 
         private void home_btn_Click(object sender, EventArgs e)
         {
-            //reload home_form
-            //DisplayAllMovies();
+            Reload();
 
             movie_panel.Visible = true;
-                
-                List<string> genres = GetUserGenres(currentUserId);
-                if (genres != null && genres.Count > 0)
-                {
-                    DisplayMoviesByGenre(genres); // Display movies based on multiple genres
-                }
-                else
-                {
-                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            
 
             form_lbl.Text = "HOME";
             AdminControl_panel.Visible = false;
@@ -1477,7 +1578,6 @@ namespace OOP_Project
             popular_panel.Visible = false;
             Favorite_panel.Visible = false;
             settings_panel.Visible = false;
-
         }
 
         private void admin_button_Click(object sender, EventArgs e)
@@ -1512,10 +1612,14 @@ namespace OOP_Project
                 }
                 else
                 {
-                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "No genre preferences found.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
-
         }
 
         private void profile_btn_Click(object sender, EventArgs e)
@@ -1546,9 +1650,9 @@ namespace OOP_Project
             {
                 userProfile_panel.Visible = false;
                 AdminControl_panel.Visible = false;
-                popular_panel.Visible= false;
-                Favorite_panel.Visible= false;
-                movie_panel.Visible= true;
+                popular_panel.Visible = false;
+                Favorite_panel.Visible = false;
+                movie_panel.Visible = true;
                 settings_panel.Visible = false;
 
                 List<string> genres = GetUserGenres(currentUserId);
@@ -1558,16 +1662,23 @@ namespace OOP_Project
                 }
                 else
                 {
-                    MessageBox.Show("No genre preferences found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "No genre preferences found.",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning
+                    );
                 }
             }
         }
 
-
         private void allMovie_flp_Scroll(object sender, ScrollEventArgs e)
         {
-            if (e.Type == ScrollEventType.EndScroll &&
-             allMovie_flp.VerticalScroll.Value + allMovie_flp.ClientSize.Height >= allMovie_flp.VerticalScroll.Maximum)
+            if (
+                e.Type == ScrollEventType.EndScroll
+                && allMovie_flp.VerticalScroll.Value + allMovie_flp.ClientSize.Height
+                    >= allMovie_flp.VerticalScroll.Maximum
+            )
             {
                 DisplayAllMovies();
             }
@@ -1576,8 +1687,9 @@ namespace OOP_Project
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string checkQuery = "SELECT movie_id FROM movies WHERE title = @title";
-            string insertQuery = "INSERT INTO movies (title, description, genre, release_year, image_url) " +
-                                 "VALUES (@title, @description, @genre, @releaseYear, @imageUrl); SELECT LAST_INSERT_ID();";
+            string insertQuery =
+                "INSERT INTO movies (title, description, genre, release_year, image_url) "
+                + "VALUES (@title, @description, @genre, @releaseYear, @imageUrl); SELECT LAST_INSERT_ID();";
 
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
@@ -1602,7 +1714,12 @@ namespace OOP_Project
                             insertCmd.Parameters.AddWithValue("@description", movie.Description);
                             insertCmd.Parameters.AddWithValue("@genre", movie.Genre);
                             insertCmd.Parameters.AddWithValue("@releaseYear", movie.ReleaseYear);
-                            insertCmd.Parameters.AddWithValue("@imageUrl", string.IsNullOrEmpty(movie.ImageUrl) ? DBNull.Value : (object)movie.ImageUrl);
+                            insertCmd.Parameters.AddWithValue(
+                                "@imageUrl",
+                                string.IsNullOrEmpty(movie.ImageUrl)
+                                  ? DBNull.Value
+                                  : (object)movie.ImageUrl
+                            );
 
                             object insertedId = insertCmd.ExecuteScalar();
                             movie.Id = Convert.ToInt32(insertedId);
@@ -1655,10 +1772,8 @@ namespace OOP_Project
                 search_tb.ForeColor = Color.Gray;
             }
         }
-
-
     }
-    }
+}
 
 
 

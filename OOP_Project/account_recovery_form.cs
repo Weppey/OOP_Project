@@ -22,6 +22,9 @@ namespace OOP_Project
         private int attemptCount = 0;
         private DateTime? lockoutUntil = null;
 
+        private int userId;
+        private string userType;
+
 
         public account_recovery_form()
         {
@@ -197,11 +200,21 @@ namespace OOP_Project
                         cmd.Parameters.AddWithValue("@Password", hashedPassword);
                         cmd.Parameters.AddWithValue("@Email", email_tb.Text);
                         cmd.ExecuteNonQuery();
-                        SendSuccessfulRecoveryEmail(Email);
+                        
                         MessageBox.Show("Password has been successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                        login_form loginForm = new login_form();
-                        loginForm.Show();
+                        if (Application.OpenForms["home_form"] != null)
+                        {
+                            this.Close();
+                            StayLoggedIn.ClearSession();
+                            Application.Restart();
+                            SendSuccessfulRecoveryEmail(Email);
+                        }
+                        else
+                        {
+                            this.Close();
+                            login_form loginForm = new login_form();
+                            loginForm.ShowDialog();
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -222,9 +235,16 @@ namespace OOP_Project
 
         private void cls_pb_Click(object sender, EventArgs e)
         {
-            this.Close();
-            login_form LoginForm = new login_form();
-            LoginForm.Show();
+            if (Application.OpenForms["home_form"] != null)
+            {
+                this.Close();
+            }
+            else
+            {
+                this.Close();
+                login_form LoginForm = new login_form();
+                LoginForm.Show();
+            }
         }
 
         private void send_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -290,9 +310,9 @@ namespace OOP_Project
                 securityQuestion_panel.Visible = false;
             }
         }
-
         private void sqConfirm_btn_Click(object sender, EventArgs e)
         {
+
             string email = sqEmail_tb.Text.Trim();
             string selectedQuestion = securityq_cmb.Text;
             string answer = securityQuestionAnswer_tb.Text.Trim();
@@ -362,9 +382,19 @@ namespace OOP_Project
                             updateCmd.ExecuteNonQuery();
 
                             MessageBox.Show("Password has been successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.Close();
-                            login_form loginForm = new login_form();
-                            loginForm.Show();
+                            if (Application.OpenForms["home_form"] != null)
+                            {
+                                this.Close();
+                                StayLoggedIn.ClearSession();
+                                Application.Restart();
+                                SendSuccessfulRecoveryEmail(email);
+                            }
+                            else
+                            {
+                                this.Close();
+                                login_form loginForm = new login_form();
+                                loginForm.ShowDialog();
+                            }
                         }
                         else
                         {
@@ -503,15 +533,17 @@ namespace OOP_Project
 
         private void sqShowpassword_chk_CheckedChanged(object sender, EventArgs e)
         {
-            if (sqConfirmPassword_tb.PasswordChar == '*')
+            if (sqShowpassword_chk.Checked)
             {
-                sqConfirmPassword_tb.PasswordChar = ('*');
-                sqNewPassword_tb.PasswordChar = ('*');
+                sqConfirmPassword_tb.PasswordChar = ('\0');
+                sqNewPassword_tb.PasswordChar = ('\0');
             }
             else
             {
                 sqConfirmPassword_tb.PasswordChar = ('\0');
                 sqNewPassword_tb.PasswordChar = ('\0');
+                sqConfirmPassword_tb.PasswordChar = ('*');
+                sqNewPassword_tb.PasswordChar = ('*');
             }
         }
 

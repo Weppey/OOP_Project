@@ -21,9 +21,11 @@ namespace OOP_Project
 
         private void login_btn_Click(object sender, EventArgs e)
         {
+            // Trim any unnecessary whitespace from the input fields
             string username = userName_tb.Text.Trim();
             string password = password_tb.Text.Trim();
 
+            // Check if both username and password are provided
             if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
             {
                 MessageBox.Show("Please enter both username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -34,39 +36,49 @@ namespace OOP_Project
             {
                 using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    connection.Open();
+                    connection.Open();  // Open the connection to the database
 
+                    // SQL query to fetch user details
                     string query = "SELECT user_id, password, user_type FROM users WHERE username = @username LIMIT 1";
+
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
+                        // Add parameter to prevent SQL injection
                         cmd.Parameters.AddWithValue("@username", username);
 
+                        // Execute the query and read the result
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
-                            if (reader.Read())
+                            if (reader.Read())  // If a matching record is found
                             {
-                                string storedHash = reader["password"].ToString();
-                                string userType = reader["user_type"].ToString();
-                                int userId = Convert.ToInt32(reader["user_id"]);
+                                string storedHash = reader["password"].ToString(); // Get stored password hash
+                                string userType = reader["user_type"].ToString();  // Get the user type (admin, regular, etc.)
+                                int userId = Convert.ToInt32(reader["user_id"]);  // Get the user ID
 
+                                // Verify the password using BCrypt
                                 if (BCrypt.Net.BCrypt.Verify(password, storedHash))
                                 {
-                                    StayLoggedIn.SaveUserSession(userType, userId); // Save session first
+                                    // Save the session information, such as user type and ID
+                                    StayLoggedIn.SaveUserSession(userType, userId);
 
+                                    // Provide feedback to the user
                                     MessageBox.Show($"Welcome back, {username}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                                    // Hide the login form and show the home form
                                     this.Hide();
                                     home_form homeForm = new home_form(userType, userId);
-                                    homeForm.ShowDialog();
-                                    this.Close();
+                                    homeForm.ShowDialog(); // Display the home form modally
+                                    this.Close();  // Close the login form after successful login
                                 }
                                 else
                                 {
+                                    // Handle incorrect password
                                     MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
+                                // Handle case where no user is found with the entered username
                                 MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
@@ -75,9 +87,11 @@ namespace OOP_Project
             }
             catch (Exception ex)
             {
+                // Catch and display any errors that occur during the login process
                 MessageBox.Show("An error occurred while attempting to log in:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void login_form_Load(object sender, EventArgs e)
         {

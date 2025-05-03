@@ -71,17 +71,19 @@
             this.recentlyViewMovie_panel.Controls.Add(this.recentlyViewMovie_flp);
             this.recentlyViewMovie_panel.Location = new System.Drawing.Point(485, 83);
             this.recentlyViewMovie_panel.Name = "recentlyViewMovie_panel";
-            this.recentlyViewMovie_panel.Size = new System.Drawing.Size(711, 523);
+            this.recentlyViewMovie_panel.Size = new System.Drawing.Size(726, 523);
             this.recentlyViewMovie_panel.TabIndex = 73;
             // 
             // recentlyViewMovie_flp
             // 
             this.recentlyViewMovie_flp.AutoScroll = true;
             this.recentlyViewMovie_flp.BackColor = System.Drawing.Color.White;
+            this.recentlyViewMovie_flp.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.recentlyViewMovie_flp.Location = new System.Drawing.Point(18, 16);
             this.recentlyViewMovie_flp.Name = "recentlyViewMovie_flp";
             this.recentlyViewMovie_flp.Padding = new System.Windows.Forms.Padding(5);
-            this.recentlyViewMovie_flp.Size = new System.Drawing.Size(675, 489);
+            this.recentlyViewMovie_flp.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.recentlyViewMovie_flp.Size = new System.Drawing.Size(693, 489);
             this.recentlyViewMovie_flp.TabIndex = 0;
             // 
             // profileDetails_panel

@@ -651,6 +651,7 @@ namespace OOP_Project
                 userSearchBox_tb.Text = "";
                 userSearchBox_tb.ForeColor = System.Drawing.Color.Black; // Set text color to black
             }
+
         }
 
         private void userSearchBox_tb_Leave(object sender, EventArgs e)

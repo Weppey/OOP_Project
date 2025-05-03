@@ -85,13 +85,15 @@ namespace OOP_Project
                     if (result != null && result.ToString() == enteredCode)
                     {
                         // Mark the user as verified
-                        string updateQuery = "UPDATE users SET verification_code = NULL, email_verified = 1 WHERE email = @Email";
+                        string updateQuery = "UPDATE users SET email_verified = 1 WHERE email = @Email";
+                        //old string updateQuery
+                        //string updateQuery = "UPDATE users SET verification_code = NULL, email_verified = 1 WHERE email = @Email";
                         MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection);
                         updateCmd.Parameters.AddWithValue("@Email", userEmail);
                         updateCmd.ExecuteNonQuery();
 
                         MessageBox.Show("Verification successful! You can now log in.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        SendAccountVerifiedEmail(userEmail);
                         this.Hide();
                         login_form loginForm = new login_form();
                         loginForm.ShowDialog();
@@ -108,6 +110,54 @@ namespace OOP_Project
                 MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private async Task SendAccountVerifiedEmail(string email)
+        {
+            try
+            {
+                // Set up SMTP client
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential("remmm.help@gmail.com", "nwvo tqpy onmt aohm"),  // Updated email credentials
+                    EnableSsl = true
+                };
+
+                // Create the email message
+                MailMessage mailMessage = new MailMessage
+                {
+                    From = new MailAddress("remmm.help@gmail.com"),
+                    Subject = "Account Verified Successfully",
+                    IsBodyHtml = true, // Set this to true to allow HTML content
+                    Body = $@"
+        <html>
+            <body style='font-family: Arial, sans-serif; color: #333333; background-color: #141414; padding: 20px;'>
+                <div style='background-color: #1c1c1c; padding: 20px; border-radius: 10px;'>
+                    <h2 style='color: #28a745; font-size: 24px;'>Account Verified Successfully</h2>
+                    <p style='color: #ffffff;'>Hi there,</p>
+                    <p style='color: #ffffff;'>We're happy to inform you that your account has been successfully verified. You can now fully access all the features of your account.</p>
+                    <p style='color: #ffffff; margin-top: 20px;'>Thank you for completing the verification process.</p>
+                    <p style='color: #888888; font-size: 12px;'>Best regards, <br> Remmm Support Team</p>
+                    <footer style='margin-top: 30px; text-align: center; font-size: 12px; color: #888888;'>
+                        <p style='color: #888888;'>For any issues, contact us at <a href='mailto:remmm.help@gmail.com' style='color: #28a745;'>remmm.help@gmail.com</a></p>
+                    </footer>
+                </div>
+            </body>
+        </html>"
+                };
+
+                mailMessage.To.Add(email);
+
+                // Send the email
+                await Task.Run(() => smtpClient.Send(mailMessage));
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to send email: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
 
         private async Task SendVerificationEmail(string email, string confirmationCode)
         {

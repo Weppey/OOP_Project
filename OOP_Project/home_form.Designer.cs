@@ -668,12 +668,12 @@
             this.Controls.Add(this.leftdock_pnl);
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
-            this.Controls.Add(this.movie_panel);
             this.Controls.Add(this.settings_panel);
             this.Controls.Add(this.popular_panel);
             this.Controls.Add(this.userProfile_panel);
             this.Controls.Add(this.Favorite_panel);
             this.Controls.Add(this.AdminControl_panel);
+            this.Controls.Add(this.movie_panel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "home_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -12,6 +12,7 @@ using System.Drawing.Drawing2D;
 using System.Security.Policy;
 using System.Threading.Tasks;
 using WinFormsToolTip = System.Windows.Forms.ToolTip;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace OOP_Project
 {
@@ -22,10 +23,15 @@ namespace OOP_Project
         private MySqlConnection connection;
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
 
-
-        public settingsControl()
+        private int userId;
+        private string userType;
+        public settingsControl(string userType, int userId)
         {
             InitializeComponent();
+            this.userId = userId;
+            this.userType = userType;
+
+            connection = new MySqlConnection(connectionString);
 
             tooltip.IsBalloon = false;                        // Makes it balloon-shaped
             tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
@@ -80,5 +86,96 @@ namespace OOP_Project
         {
 
         }
+
+        private void changePassword_btn_Click(object sender, EventArgs e)
+        {
+            account_recovery_form recovery = new account_recovery_form();
+            recovery.Show();
+
+        }
+
+        private void clearHistory_btn_Click(object sender, EventArgs e)
+        {
+
+            DialogResult result = MessageBox.Show("Are you sure you want to clear your recently viewed movies?",
+    "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    using (MySqlConnection conn = new MySqlConnection("Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;"))
+                    {
+                        conn.Open();
+
+                        string deleteQuery = "DELETE FROM movie_interaction WHERE user_id = @userId";
+
+                        using (MySqlCommand cmd = new MySqlCommand(deleteQuery, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@userId", userId); // Make sure this is passed to settingsControl
+
+                            int rows = cmd.ExecuteNonQuery();
+
+                            MessageBox.Show(rows > 0
+                                ? "Recently viewed movies cleared."
+                                : "No recently viewed movies to clear.",
+                                "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+
+                    // Optional: refresh UI if neede
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to clear recently viewed movies.\n" + ex.Message,
+                        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void clearRecentSearch_btn_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you want to clear your recently search movies?",
+"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    // Open the database connection
+                    connection.Open();
+
+                    // Define the SQL command to delete recent searches for the logged-in user
+                    string query = "DELETE FROM recent_searches WHERE user_id = @userId";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId); // Or use currentUserId if applicable
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Search history cleared successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            home_form home = new home_form(userType, userId);
+                            home.Reload();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No search history found to clear.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    if (connection.State == ConnectionState.Open)
+                        connection.Close();
+                }
+            }
+        }
+
     }
 }
