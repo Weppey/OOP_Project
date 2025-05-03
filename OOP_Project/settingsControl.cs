@@ -61,7 +61,8 @@ namespace OOP_Project
 
             CurvePanel(system_panel, 30);
             system_panel.Resize += (s, aargs) => CurvePanel(system_panel, 20);
-        }
+
+    }
 
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
@@ -132,11 +133,10 @@ namespace OOP_Project
                 }
             }
         }
-
         private void clearRecentSearch_btn_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show("Are you sure you want to clear your recently search movies?",
-"Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 try

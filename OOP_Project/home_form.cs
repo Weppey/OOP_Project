@@ -30,8 +30,7 @@ namespace OOP_Project
 
         private ToolTip tooltip = new ToolTip();
         // Connection string to connect to the database, specifying the server, database, and login credentials.
-        private string connectionString =
-            "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
 
         // User-related variables
         private string userType; // Variable to store the type of user (admin or regular)
@@ -53,6 +52,7 @@ namespace OOP_Project
         public home_form(string userTypeFromLogin, int userIdFromLogin) // Constructor for the home_form class, which initializes the form and handles user session.
         {
             InitializeComponent(); // Initializes the form components (UI elements)
+            connection = new MySqlConnection(connectionString);
 
             // Assign user details from the login
             userType = userTypeFromLogin; // Store the user's type (admin or regular)
@@ -170,6 +170,9 @@ namespace OOP_Project
                     MessageBoxIcon.Warning
                 );
             }
+
+            if (connection.State == ConnectionState.Open)
+                connection.Close();
         }
 
         public async void home_form_Load(object sender, EventArgs e)
@@ -274,24 +277,55 @@ namespace OOP_Project
             List<string> genres = new List<string>();
             string query = "SELECT preferences FROM users WHERE user_id = @userId";
 
-            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            try
             {
-                cmd.Parameters.AddWithValue("@userId", userId);
-                var result = cmd.ExecuteScalar()?.ToString();
-
-                if (!string.IsNullOrEmpty(result))
+                // Check if the connection is open, and if not, open it.
+                if (connection.State != ConnectionState.Open)
                 {
-                    // Split genres by commas and trim spaces
-                    genres = result
-                        .Split(',')
-                        .Select(g => g.Trim())
-                        .Where(g => !string.IsNullOrEmpty(g)) // Ensure no empty genres are included
-                        .ToList();
+                    connection.Open();
+                }
+
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    // Execute the query and get the result
+                    var result = cmd.ExecuteScalar();
+
+                    // Check if result is DBNull or null
+                    if (result != DBNull.Value && result != null)
+                    {
+                        string preferences = result.ToString();
+
+                        if (!string.IsNullOrEmpty(preferences))
+                        {
+                            // Split genres by commas and trim spaces
+                            genres = preferences
+                                .Split(',')
+                                .Select(g => g.Trim())
+                                .Where(g => !string.IsNullOrEmpty(g)) // Ensure no empty genres are included
+                                .ToList();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while retrieving user genres: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Ensure the connection is closed after the operation.
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
                 }
             }
 
             return genres;
         }
+
+
         private HashSet<int> displayedMovies = new HashSet<int>(); // Track displayed movie IDs
 
         private async void DisplayMoviesByGenre(List<string> genres)
@@ -653,43 +687,65 @@ namespace OOP_Project
         private List<movie> GetMoviesByGenre(string genre)
         {
             List<movie> movies = new List<movie>();
-            string query =
-                "SELECT * FROM Movies WHERE LOWER(genre) LIKE CONCAT('%', LOWER(@genre), '%')";
 
-            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            // Ensure the connection is open
+            if (connection.State != ConnectionState.Open)
             {
-                cmd.Parameters.AddWithValue("@genre", genre);
-
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                try
                 {
-                    while (reader.Read())
+                    connection.Open();  // Open the connection if it's not already open
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred while opening the connection: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return movies; // Return empty list on failure to open connection
+                }
+            }
+
+            string query = "SELECT * FROM Movies WHERE LOWER(genre) LIKE CONCAT('%', LOWER(@genre), '%')";
+
+            try
+            {
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                {
+                    cmd.Parameters.AddWithValue("@genre", genre);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        movies.Add(
-                            new movie
-                            {
-                                Id = reader.GetInt32("movie_id"),
-                                Title = reader.GetString("title"),
-                                Description = reader.IsDBNull(reader.GetOrdinal("description"))
-                                    ? ""
-                                    : reader.GetString("description"),
-                                Genre = reader.IsDBNull(reader.GetOrdinal("genre"))
-                                    ? ""
-                                    : reader.GetString("genre"),
-                                ReleaseYear = reader.GetInt32("release_year"),
-                                Rating = reader.IsDBNull(reader.GetOrdinal("rating"))
-                                    ? 0
-                                    : reader.GetDecimal("rating"),
-                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
-                                    ? ""
-                                    : reader.GetString("image_url")
-                            }
-                        );
+                        while (reader.Read())
+                        {
+                            movies.Add(
+                                new movie
+                                {
+                                    Id = reader.GetInt32("movie_id"),
+                                    Title = reader.GetString("title"),
+                                    Description = reader.IsDBNull(reader.GetOrdinal("description")) ? "" : reader.GetString("description"),
+                                    Genre = reader.IsDBNull(reader.GetOrdinal("genre")) ? "" : reader.GetString("genre"),
+                                    ReleaseYear = reader.GetInt32("release_year"),
+                                    Rating = reader.IsDBNull(reader.GetOrdinal("rating")) ? 0 : reader.GetDecimal("rating"),
+                                    ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? "" : reader.GetString("image_url")
+                                }
+                            );
+                        }
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while fetching movies: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Ensure the connection is closed after the operation
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
                 }
             }
 
             return movies;
         }
+
         private List<movie> GetAllMovies()
         {
             List<movie> movies = new List<movie>();
@@ -796,6 +852,7 @@ namespace OOP_Project
         {
             if (Favorite_panel.Visible == false)
             {
+                Reload();
                 form_lbl.Text = "FAVORITE";
                 Favorite_panel.Visible = true;
                 userProfile_panel.Visible = false;
@@ -843,6 +900,7 @@ namespace OOP_Project
         {
             if (popular_panel.Visible == false)
             {
+                Reload();
                 form_lbl.Text = "POPULAR";
                 // Create an instance of FavoriteControl
                 PopularControl popularControl = new PopularControl(userType, currentUserId);
@@ -892,6 +950,7 @@ namespace OOP_Project
         {
             if (settings_panel.Visible == false)
             {
+                Reload();
                 form_lbl.Text = "SETTINGS";
                 Favorite_panel.Visible = false;
                 userProfile_panel.Visible = false;
@@ -1584,6 +1643,7 @@ namespace OOP_Project
         {
             if (AdminControl_panel.Visible == false)
             {
+                Reload();
                 form_lbl.Text = "ADMIN";
                 AdminControl_panel.Visible = true;
                 userProfile_panel.Visible = false;
@@ -1628,6 +1688,7 @@ namespace OOP_Project
 
             if (!userProfile_panel.Visible)
             {
+                Reload();
                 form_lbl.Text = "PROFILE";
 
                 // Show profile, hide other panels

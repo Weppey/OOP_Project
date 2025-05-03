@@ -614,6 +614,8 @@ namespace OOP_Project
                         avatarSelectionForm.AutoSize = true;
                         avatarSelectionForm.StartPosition = FormStartPosition.CenterParent;
                         avatarSelectionForm.Controls.Add(avatarButton);
+                        avatarSelectionForm.ShowIcon = false;
+                        avatarSelectionForm.ShowInTaskbar = false;
                         x += 80; // Add some space between avatar buttons
                     }
 
