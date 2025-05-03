@@ -882,21 +882,34 @@ namespace OOP_Project
 
         private void search_list_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //seacrch
-            // Clear the search_txt TextBox
-           
-            search_txt_Leave(sender, e);
-
             if (search_list.SelectedItem is movie selectedMovie)
             {
-                // Avoid adding the same movie twice
-                if (!IsMovieAlreadyInPanel(selectedMovie, recentlysearch_flp))
+                movie fullMovie = GetFullMovieByTitle(selectedMovie.Title);
+                if (fullMovie != null)
                 {
-                    DisplaySingleMovie(selectedMovie, recentlysearch_flp);
+                    int? userId = StayLoggedIn.GetCurrentUserId();
+                    if (userId.HasValue)
+                    {
+                        EnsureMovieExistsInMoviesTable(fullMovie);
+                        SaveRecentSearch(userId.Value, fullMovie);
+                        LoadRecentSearches(userId.Value);
+
+                        var detailsForm = new movie_details_form(fullMovie, userId.Value);
+                        detailsForm.StartPosition = FormStartPosition.CenterParent;
+                        detailsForm.ShowDialog();
+                    }
                 }
+
+                // Clear selection and UI cleanup
+                search_tb.Clear();
+                search_txt_Leave(sender, e);
+                search_list.ClearSelected();
+                search_list.Visible = false;
+                this.ActiveControl = null;
             }
-            this.ActiveControl = null; // Remove focus from search_txt, so the cursor disappears
         }
+
+
         //search
         private async void DisplaySingleMovie(movie movie, FlowLayoutPanel targetPanel)
         {
@@ -1050,7 +1063,6 @@ namespace OOP_Project
         {
             if (search_list.SelectedItem is movie selectedMovie)
             {
-                // Fetch full movie details from DB
                 var fullMovie = GetFullMovieByTitle(selectedMovie.Title);
 
                 if (fullMovie != null)
@@ -1058,16 +1070,10 @@ namespace OOP_Project
                     int? userId = StayLoggedIn.GetCurrentUserId();
                     if (userId.HasValue)
                     {
-                        // Ensure movie exists in main Movies table (adds ID if new)
                         EnsureMovieExistsInMoviesTable(fullMovie);
-
-                        // Update or insert into recent_searches with current time
                         SaveRecentSearch(userId.Value, fullMovie);
-
-                        // ✅ Reload all 7 recent movies from DB, correctly sorted
                         LoadRecentSearches(userId.Value);
 
-                        // ✅ Show movie details
                         var movieDetailsForm = new movie_details_form(fullMovie, userId.Value);
                         movieDetailsForm.StartPosition = FormStartPosition.CenterParent;
                         movieDetailsForm.ShowDialog();
@@ -1082,7 +1088,7 @@ namespace OOP_Project
                     MessageBox.Show("Movie not found in the database.");
                 }
 
-                // Reset UI after click
+                // Reset UI
                 search_list.ClearSelected();
                 search_list.Visible = false;
                 search_tb.Clear();
@@ -1090,6 +1096,47 @@ namespace OOP_Project
                 this.ActiveControl = null;
             }
         }
+
+
+        private void LoadRecentSearchSuggestions()
+        {
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
+
+            try
+            {
+                search_list.Items.Clear();  // Clear previous search results
+
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", currentUserId);  // Make sure currentUserId is set
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                var movie = new movie
+                                {
+                                    Title = reader.GetString("movie_title")  // Should match the SELECT
+                                };
+
+                                search_list.Items.Add(movie);
+                            }
+                        }
+                    }
+                }
+
+                search_list.Visible = search_list.Items.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
 
 
 
@@ -1190,10 +1237,11 @@ namespace OOP_Project
 
             if (string.IsNullOrEmpty(keyword))
             {
-                search_list.Visible = false;
-                search_list.Items.Clear();
+                LoadRecentSearchSuggestions(); // ✅ pass userId
                 return;
             }
+
+
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
             string query = "SELECT title, image_url FROM movies WHERE title LIKE @keyword LIMIT 10";
             search_list.Items.Clear();
@@ -1215,8 +1263,7 @@ namespace OOP_Project
                                     Title = reader.GetString("title"),
                                     ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url")) ? null : reader.GetString("image_url")
                                 };
-
-                                search_list.Items.Add(movie); // Will display movie.Title due to ToString override
+                                search_list.Items.Add(movie);
                             }
                         }
                     }
@@ -1228,14 +1275,55 @@ namespace OOP_Project
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+       
+
+
         private void search_txt_Enter(object sender, EventArgs e)
         {
-            if (search_tb.Text == "Search...")
+            if (search_tb.ForeColor == Color.Gray)
             {
                 search_tb.Text = "";
                 search_tb.ForeColor = Color.Black;
             }
         }
+
+        private string GetRecentSearchTitles(int userId)
+        {
+            List<string> recentTitles = new List<string>();
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string title = reader.GetString("movie_title");
+                                recentTitles.Add(title);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+            // Join the titles into a single string (separated by commas)
+            return string.Join(", ", recentTitles);
+        }
+
+
         private void search_txt_Leave(object sender, EventArgs e)
         {
 
@@ -1545,10 +1633,7 @@ namespace OOP_Project
 
         private void search_list_TabIndexChanged(object sender, EventArgs e)
         {
-            //seacrch
-            // Clear the search_txt TextBox
-            search_tb.Clear();
-            search_txt_Leave(sender, e);
+            search_txt_Leave(sender, e); // still useful to keep placeholder logic
 
             if (search_list.SelectedItem is movie selectedMovie)
             {
@@ -1557,13 +1642,23 @@ namespace OOP_Project
                 {
                     DisplaySingleMovie(selectedMovie, recentlysearch_flp);
                 }
+
+                // Clear the TextBox and remove focus
+                search_tb.Clear();
+                this.ActiveControl = null;
             }
-            this.ActiveControl = null; // Remove focus from search_txt, so the cursor disappears
-
+            else if (string.IsNullOrWhiteSpace(search_tb.Text) || search_tb.Text == "Search...")
+            {
+                // Display 3 most recent searched titles
+                string placeholder = GetRecentSearchTitles(currentUserId); // Make sure currentUserId is available
+                search_tb.Text = placeholder;
+                search_tb.ForeColor = Color.Gray;
+            }
         }
-    }
 
-}
+
+    }
+    }
 
 
 
