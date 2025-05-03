@@ -771,9 +771,6 @@ namespace OOP_Project
                                     card.CommentOwnerId = commentUserId;
                                     card.CurrentUserId = currentUserId;
                                     card.UserType = currentUserType; 
-                                    Console.WriteLine($"[DEBUG] Adding comment by {username} (UserID: {commentUserId})");
-                                    Console.WriteLine($"[DEBUG] CurrentUserId: {currentUserId}, CurrentUserType: {currentUserType}");
-
 
                                     card.InitializeCommentCard(interactionId, commentUserId, currentUserId, currentMovieId);
 

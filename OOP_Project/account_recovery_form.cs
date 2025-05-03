@@ -148,20 +148,6 @@ namespace OOP_Project
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void password_chkb_CheckedChanged(object sender, EventArgs e)
-        {
-            if(password_chkb.Checked)
-            {
-                newpassword_tb.PasswordChar = '\0';
-                confirmpassword_tb.PasswordChar = '\0';
-            }
-            else
-            {
-                newpassword_tb.PasswordChar = '*';
-                confirmpassword_tb.PasswordChar = '*';
-            }
-        }
-
 
         private void recoveryC_tb_TextChanged(object sender, EventArgs e)
         {
@@ -503,5 +489,45 @@ namespace OOP_Project
             smtpClient.Send(mailMessage);
         }
 
+        private void back_btn_Click(object sender, EventArgs e)
+        {
+            if (securityQuestion_panel.Visible == false)
+            {
+                securityQuestion_panel.Visible = false;
+            }
+            else
+            {
+                securityQuestion_panel.Visible = false;
+            }
+        }
+
+        private void sqShowpassword_chk_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sqConfirmPassword_tb.PasswordChar == '*')
+            {
+                sqConfirmPassword_tb.PasswordChar = ('*');
+                sqNewPassword_tb.PasswordChar = ('*');
+            }
+            else
+            {
+                sqConfirmPassword_tb.PasswordChar = ('\0');
+                sqNewPassword_tb.PasswordChar = ('\0');
+            }
+        }
+
+
+        private void password_chkb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (password_chkb.Checked)
+            {
+                newpassword_tb.PasswordChar = '\0';
+                confirmpassword_tb.PasswordChar = '\0';
+            }
+            else
+            {
+                newpassword_tb.PasswordChar = '*';
+                confirmpassword_tb.PasswordChar = '*';
+            }
+        }
     }
 }

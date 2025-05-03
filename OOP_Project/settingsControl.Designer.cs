@@ -40,6 +40,10 @@
             this.deleteAccount_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.appinfo_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.system_panel = new System.Windows.Forms.Panel();
+            this.timezone_cmb = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.kryptonComboBox1 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
+            this.language_cmb = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.security_panel = new System.Windows.Forms.Panel();
             this.updateSecurity_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.securityAnswer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -51,19 +55,15 @@
             this.darkmode_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.lightmode_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.apply_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.language_cmb = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.timezone_cmb = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonComboBox1 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.settings_panel.SuspendLayout();
             this.appinfo_panel.SuspendLayout();
             this.system_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
             this.security_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
             this.privacy_panel.SuspendLayout();
             this.theme_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // settings_panel
@@ -87,11 +87,11 @@
             // 
             this.system_lbl.Location = new System.Drawing.Point(424, 325);
             this.system_lbl.Name = "system_lbl";
-            this.system_lbl.Size = new System.Drawing.Size(151, 28);
+            this.system_lbl.Size = new System.Drawing.Size(149, 28);
             this.system_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
             this.system_lbl.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.system_lbl.TabIndex = 8;
-            this.system_lbl.Values.Text = "Privacy settings";
+            this.system_lbl.Values.Text = "System settings";
             // 
             // securtySettings_lbl
             // 
@@ -223,6 +223,58 @@
             this.system_panel.Size = new System.Drawing.Size(349, 217);
             this.system_panel.TabIndex = 3;
             // 
+            // timezone_cmb
+            // 
+            this.timezone_cmb.Location = new System.Drawing.Point(43, 122);
+            this.timezone_cmb.Name = "timezone_cmb";
+            this.timezone_cmb.Size = new System.Drawing.Size(89, 22);
+            this.timezone_cmb.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
+            this.timezone_cmb.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.timezone_cmb.TabIndex = 101;
+            this.timezone_cmb.Values.Text = "Time Zone:";
+            // 
+            // kryptonComboBox1
+            // 
+            this.kryptonComboBox1.DropDownWidth = 183;
+            this.kryptonComboBox1.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Prefer not to say"});
+            this.kryptonComboBox1.Location = new System.Drawing.Point(130, 124);
+            this.kryptonComboBox1.Name = "kryptonComboBox1";
+            this.kryptonComboBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.kryptonComboBox1.Size = new System.Drawing.Size(156, 20);
+            this.kryptonComboBox1.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
+            this.kryptonComboBox1.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonComboBox1.TabIndex = 102;
+            this.kryptonComboBox1.Text = "Select gender...";
+            // 
+            // language_cmb
+            // 
+            this.language_cmb.Location = new System.Drawing.Point(43, 71);
+            this.language_cmb.Name = "language_cmb";
+            this.language_cmb.Size = new System.Drawing.Size(81, 22);
+            this.language_cmb.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
+            this.language_cmb.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.language_cmb.TabIndex = 99;
+            this.language_cmb.Values.Text = "Language:";
+            // 
+            // gender_cmb
+            // 
+            this.gender_cmb.DropDownWidth = 183;
+            this.gender_cmb.Items.AddRange(new object[] {
+            "Male",
+            "Female",
+            "Prefer not to say"});
+            this.gender_cmb.Location = new System.Drawing.Point(130, 73);
+            this.gender_cmb.Name = "gender_cmb";
+            this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.gender_cmb.Size = new System.Drawing.Size(156, 20);
+            this.gender_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
+            this.gender_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gender_cmb.TabIndex = 100;
+            this.gender_cmb.Text = "Select gender...";
+            // 
             // security_panel
             // 
             this.security_panel.BackColor = System.Drawing.Color.Maroon;
@@ -266,9 +318,9 @@
             // 
             // securityAnswer_tb
             // 
-            this.securityAnswer_tb.Location = new System.Drawing.Point(63, 86);
+            this.securityAnswer_tb.Location = new System.Drawing.Point(23, 60);
             this.securityAnswer_tb.Name = "securityAnswer_tb";
-            this.securityAnswer_tb.Size = new System.Drawing.Size(213, 26);
+            this.securityAnswer_tb.Size = new System.Drawing.Size(290, 26);
             this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.securityAnswer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.securityAnswer_tb.TabIndex = 91;
@@ -277,9 +329,9 @@
             // securityQuestion_cmb
             // 
             this.securityQuestion_cmb.DropDownWidth = 213;
-            this.securityQuestion_cmb.Location = new System.Drawing.Point(63, 44);
+            this.securityQuestion_cmb.Location = new System.Drawing.Point(23, 33);
             this.securityQuestion_cmb.Name = "securityQuestion_cmb";
-            this.securityQuestion_cmb.Size = new System.Drawing.Size(213, 21);
+            this.securityQuestion_cmb.Size = new System.Drawing.Size(290, 21);
             this.securityQuestion_cmb.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.securityQuestion_cmb.TabIndex = 0;
             this.securityQuestion_cmb.Text = "Security Question...";
@@ -547,58 +599,6 @@
             this.apply_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.apply_btn.Values.Text = "Apply";
             // 
-            // language_cmb
-            // 
-            this.language_cmb.Location = new System.Drawing.Point(43, 71);
-            this.language_cmb.Name = "language_cmb";
-            this.language_cmb.Size = new System.Drawing.Size(81, 22);
-            this.language_cmb.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.language_cmb.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.language_cmb.TabIndex = 99;
-            this.language_cmb.Values.Text = "Language:";
-            // 
-            // gender_cmb
-            // 
-            this.gender_cmb.DropDownWidth = 183;
-            this.gender_cmb.Items.AddRange(new object[] {
-            "Male",
-            "Female",
-            "Prefer not to say"});
-            this.gender_cmb.Location = new System.Drawing.Point(130, 73);
-            this.gender_cmb.Name = "gender_cmb";
-            this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.gender_cmb.Size = new System.Drawing.Size(156, 20);
-            this.gender_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
-            this.gender_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gender_cmb.TabIndex = 100;
-            this.gender_cmb.Text = "Select gender...";
-            // 
-            // timezone_cmb
-            // 
-            this.timezone_cmb.Location = new System.Drawing.Point(43, 122);
-            this.timezone_cmb.Name = "timezone_cmb";
-            this.timezone_cmb.Size = new System.Drawing.Size(89, 22);
-            this.timezone_cmb.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.timezone_cmb.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timezone_cmb.TabIndex = 101;
-            this.timezone_cmb.Values.Text = "Time Zone:";
-            // 
-            // kryptonComboBox1
-            // 
-            this.kryptonComboBox1.DropDownWidth = 183;
-            this.kryptonComboBox1.Items.AddRange(new object[] {
-            "Male",
-            "Female",
-            "Prefer not to say"});
-            this.kryptonComboBox1.Location = new System.Drawing.Point(130, 124);
-            this.kryptonComboBox1.Name = "kryptonComboBox1";
-            this.kryptonComboBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.kryptonComboBox1.Size = new System.Drawing.Size(156, 20);
-            this.kryptonComboBox1.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
-            this.kryptonComboBox1.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonComboBox1.TabIndex = 102;
-            this.kryptonComboBox1.Text = "Select gender...";
-            // 
             // settingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -614,13 +614,13 @@
             this.appinfo_panel.PerformLayout();
             this.system_panel.ResumeLayout(false);
             this.system_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
             this.security_panel.ResumeLayout(false);
             this.security_panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
             this.privacy_panel.ResumeLayout(false);
             this.theme_panel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

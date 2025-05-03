@@ -30,7 +30,9 @@
         {
             this.background_panel = new System.Windows.Forms.Panel();
             this.securityQuestion_panel = new System.Windows.Forms.Panel();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.back_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.tooManyatemp_lbl = new System.Windows.Forms.Label();
+            this.sqShowpassword_chk = new System.Windows.Forms.CheckBox();
             this.sqConfirmPassword_tb = new System.Windows.Forms.TextBox();
             this.confirmPass_lbl = new System.Windows.Forms.Label();
             this.sqNewPassword_tb = new System.Windows.Forms.TextBox();
@@ -61,7 +63,6 @@
             this.password_chkb = new System.Windows.Forms.CheckBox();
             this.min_pb = new System.Windows.Forms.PictureBox();
             this.cls_pb = new System.Windows.Forms.PictureBox();
-            this.tooManyatemp_lbl = new System.Windows.Forms.Label();
             this.background_panel.SuspendLayout();
             this.securityQuestion_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.securityq_cmb)).BeginInit();
@@ -86,8 +87,9 @@
             // 
             this.securityQuestion_panel.BackColor = System.Drawing.Color.Transparent;
             this.securityQuestion_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.securityQuestion_panel.Controls.Add(this.back_btn);
             this.securityQuestion_panel.Controls.Add(this.tooManyatemp_lbl);
-            this.securityQuestion_panel.Controls.Add(this.checkBox1);
+            this.securityQuestion_panel.Controls.Add(this.sqShowpassword_chk);
             this.securityQuestion_panel.Controls.Add(this.sqConfirmPassword_tb);
             this.securityQuestion_panel.Controls.Add(this.confirmPass_lbl);
             this.securityQuestion_panel.Controls.Add(this.sqNewPassword_tb);
@@ -107,17 +109,50 @@
             this.securityQuestion_panel.TabIndex = 24;
             this.securityQuestion_panel.Visible = false;
             // 
-            // checkBox1
+            // back_btn
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
-            this.checkBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.checkBox1.Location = new System.Drawing.Point(202, 295);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(108, 19);
-            this.checkBox1.TabIndex = 51;
-            this.checkBox1.Text = "Show password";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.back_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.back_btn.Location = new System.Drawing.Point(32, 455);
+            this.back_btn.Name = "back_btn";
+            this.back_btn.Size = new System.Drawing.Size(91, 27);
+            this.back_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
+            this.back_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.back_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.back_btn.StateCommon.Border.Rounding = 5;
+            this.back_btn.StateCommon.Content.Image.Effect = ComponentFactory.Krypton.Toolkit.PaletteImageEffect.Disabled;
+            this.back_btn.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.back_btn.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, 5, -1);
+            this.back_btn.TabIndex = 73;
+            this.back_btn.Values.Text = "Back";
+            this.back_btn.Click += new System.EventHandler(this.back_btn_Click);
+            // 
+            // tooManyatemp_lbl
+            // 
+            this.tooManyatemp_lbl.AutoSize = true;
+            this.tooManyatemp_lbl.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tooManyatemp_lbl.ForeColor = System.Drawing.Color.Red;
+            this.tooManyatemp_lbl.Location = new System.Drawing.Point(49, 127);
+            this.tooManyatemp_lbl.Name = "tooManyatemp_lbl";
+            this.tooManyatemp_lbl.Size = new System.Drawing.Size(252, 13);
+            this.tooManyatemp_lbl.TabIndex = 72;
+            this.tooManyatemp_lbl.Text = "Too many attempt, come back after 15 minutes!\r\n";
+            this.tooManyatemp_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tooManyatemp_lbl.Visible = false;
+            // 
+            // sqShowpassword_chk
+            // 
+            this.sqShowpassword_chk.AutoSize = true;
+            this.sqShowpassword_chk.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold);
+            this.sqShowpassword_chk.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.sqShowpassword_chk.Location = new System.Drawing.Point(202, 295);
+            this.sqShowpassword_chk.Name = "sqShowpassword_chk";
+            this.sqShowpassword_chk.Size = new System.Drawing.Size(108, 19);
+            this.sqShowpassword_chk.TabIndex = 51;
+            this.sqShowpassword_chk.Text = "Show password";
+            this.sqShowpassword_chk.UseVisualStyleBackColor = true;
+            this.sqShowpassword_chk.CheckedChanged += new System.EventHandler(this.sqShowpassword_chk_CheckedChanged);
             // 
             // sqConfirmPassword_tb
             // 
@@ -474,6 +509,7 @@
             this.password_chkb.TabIndex = 16;
             this.password_chkb.Text = "Show password";
             this.password_chkb.UseVisualStyleBackColor = true;
+            this.password_chkb.CheckedChanged += new System.EventHandler(this.password_chkb_CheckedChanged);
             // 
             // min_pb
             // 
@@ -500,19 +536,6 @@
             this.cls_pb.TabIndex = 50;
             this.cls_pb.TabStop = false;
             this.cls_pb.Click += new System.EventHandler(this.cls_pb_Click);
-            // 
-            // tooManyatemp_lbl
-            // 
-            this.tooManyatemp_lbl.AutoSize = true;
-            this.tooManyatemp_lbl.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tooManyatemp_lbl.ForeColor = System.Drawing.Color.Red;
-            this.tooManyatemp_lbl.Location = new System.Drawing.Point(49, 127);
-            this.tooManyatemp_lbl.Name = "tooManyatemp_lbl";
-            this.tooManyatemp_lbl.Size = new System.Drawing.Size(252, 13);
-            this.tooManyatemp_lbl.TabIndex = 72;
-            this.tooManyatemp_lbl.Text = "Too many attempt, come back after 15 minutes!\r\n";
-            this.tooManyatemp_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tooManyatemp_lbl.Visible = false;
             // 
             // account_recovery_form
             // 
@@ -579,7 +602,8 @@
         private System.Windows.Forms.Label confirmPass_lbl;
         private System.Windows.Forms.TextBox sqNewPassword_tb;
         private System.Windows.Forms.Label newpass_lbl;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox sqShowpassword_chk;
         private System.Windows.Forms.Label tooManyatemp_lbl;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton back_btn;
     }
 }

@@ -17,6 +17,7 @@ namespace OOP_Project
 {
     public partial class settingsControl : UserControl
     {
+
         WinFormsToolTip tooltip = new WinFormsToolTip();
         private MySqlConnection connection;
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
