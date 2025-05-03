@@ -160,7 +160,7 @@ namespace OOP_Project
         {
             this.Hide();
             account_recovery_form recoveryForm = new account_recovery_form();
-            recoveryForm.Show();
+            recoveryForm.ShowDialog();
 
         }
 

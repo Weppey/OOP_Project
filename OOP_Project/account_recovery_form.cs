@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Net.Mail;
 using ComponentFactory.Krypton.Toolkit;
 using System.Drawing;
+using System.Net;
 
 namespace OOP_Project
 {
@@ -18,6 +19,10 @@ namespace OOP_Project
         private string recoveryCode;
         private int cooldownTime = 300; // 5 minutes cooldown in seconds
 
+        private int attemptCount = 0;
+        private DateTime? lockoutUntil = null;
+
+
         public account_recovery_form()
         {
             InitializeComponent();
@@ -25,9 +30,13 @@ namespace OOP_Project
 
         private void account_recovery_form_Load(object sender, EventArgs e)
         {
-            // Form load logic (if any)
+            string[] securityQuestions = { "What is your mother's maiden name?", "What was your first pet's name?", "What was your first car?", "What elementary school did you attend?", "What is your favorite food?" };
+            securityq_cmb.Items.AddRange(securityQuestions);
+
             CurvePanel(background_panel, 30);
             background_panel.Resize += (s, args) => CurvePanel(background_panel, 20);
+            CurvePanel(securityQuestion_panel, 30);
+            securityQuestion_panel.Resize += (s, args) => CurvePanel(securityQuestion_panel, 20);
         }
 
         private bool IsValidPassword(string password)
@@ -153,25 +162,6 @@ namespace OOP_Project
             }
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void email_lbl_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void recoveryC_tb_TextChanged(object sender, EventArgs e)
         {
@@ -186,6 +176,7 @@ namespace OOP_Project
             string enteredCode = recoveryC_tb.Text;
             string newPassword = newpassword_tb.Text;
             string confirmPassword = confirmpassword_tb.Text;
+            string Email = email_tb.Text;
 
 
             if (string.IsNullOrWhiteSpace(enteredCode) || string.IsNullOrWhiteSpace(newPassword) || string.IsNullOrWhiteSpace(confirmPassword))
@@ -220,7 +211,7 @@ namespace OOP_Project
                         cmd.Parameters.AddWithValue("@Password", hashedPassword);
                         cmd.Parameters.AddWithValue("@Email", email_tb.Text);
                         cmd.ExecuteNonQuery();
-
+                        SendSuccessfulRecoveryEmail(Email);
                         MessageBox.Show("Password has been successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                         login_form loginForm = new login_form();
@@ -301,5 +292,216 @@ namespace OOP_Project
                 MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void tryAnotherWay_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (securityQuestion_panel.Visible == false)
+            {
+                securityQuestion_panel.Visible = true;
+            }
+            else
+            {
+                securityQuestion_panel.Visible = false;
+            }
+        }
+
+        private void sqConfirm_btn_Click(object sender, EventArgs e)
+        {
+            string email = sqEmail_tb.Text.Trim();
+            string selectedQuestion = securityq_cmb.Text;
+            string answer = securityQuestionAnswer_tb.Text.Trim();
+            string newPassword = sqNewPassword_tb.Text;
+            string confirmPassword = sqConfirmPassword_tb.Text;
+
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(selectedQuestion) ||
+                string.IsNullOrWhiteSpace(answer) || string.IsNullOrWhiteSpace(newPassword) ||
+                string.IsNullOrWhiteSpace(confirmPassword))
+            {
+                MessageBox.Show("Please complete all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            IsStrongPassword(newPassword);
+
+            if (!IsValidPassword(newPassword))
+            {
+                MessageBox.Show("Password must contain at least one uppercase letter and one special character!", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (newPassword != confirmPassword)
+            {
+                MessageBox.Show("Passwords do not match. Please re-enter them.", "Password Mismatch", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT security_answer FROM users WHERE email = @Email AND security_question = @Question";
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Question", selectedQuestion);
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (lockoutUntil != null && DateTime.Now < lockoutUntil)
+                    {
+                        MessageBox.Show($"Too many failed attempts. Try again at {lockoutUntil.Value}.", "Locked Out", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        tooManyatemp_lbl.Visible = true;
+                        return;
+                    }
+                    else
+                    {
+                        tooManyatemp_lbl.Visible = false;
+                    }
+
+                    if (result != null)
+                    {
+                        string storedHashedAnswer = result.ToString();
+
+                        if (BCrypt.Net.BCrypt.Verify(answer, storedHashedAnswer))
+                        {
+                            // Reset attempt counter
+                            attemptCount = 0;
+
+                            // Update password
+                            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
+                            string updateQuery = "UPDATE users SET password = @Password WHERE email = @Email";
+                            MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection);
+                            updateCmd.Parameters.AddWithValue("@Password", hashedPassword);
+                            updateCmd.Parameters.AddWithValue("@Email", email);
+                            updateCmd.ExecuteNonQuery();
+
+                            MessageBox.Show("Password has been successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                            login_form loginForm = new login_form();
+                            loginForm.Show();
+                        }
+                        else
+                        {
+                            attemptCount++;
+                            if (attemptCount >= 5)
+                            {
+                                lockoutUntil = DateTime.Now.AddHours(1);
+                                SendSuspiciousActivityEmail(email);
+                                MessageBox.Show("Too many failed attempts. You are locked out for 1 hour.", "Locked Out", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Incorrect security answer. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        attemptCount++;
+                        if (attemptCount >= 5)
+                        {
+                            lockoutUntil = DateTime.Now.AddMinutes(15); // lock for 15 minutes
+                            MessageBox.Show("Too many failed attempts. You are locked out for 15 minutes.", "Account Locked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            int remainingAttempts = 5 - attemptCount;
+                            MessageBox.Show($"Incorrect answer. You have {remainingAttempts} attempt(s) remaining.", "Incorrect Answer", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void SendSuspiciousActivityEmail(string email)
+        {
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("remmm.help@gmail.com", "nwvo tqpy onmt aohm"),
+                EnableSsl = true,
+            };
+
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress("remmm.help@gmail.com"),
+                Subject = "⚠️ Remmm Password Recovery Attempt",
+                IsBodyHtml = true,
+                BodyEncoding = Encoding.UTF8,
+                Body = $@"
+<html>
+    <body style='background-color: #141414; font-family: Helvetica, Arial, sans-serif; color: #ffffff; padding: 20px;'>
+        <div style='max-width: 600px; margin: auto; background-color: #1c1c1c; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5);'>
+            <h1 style='color: #e50914; text-align: center;'>Remmm</h1>
+            <h2 style='color: #ffcc00; text-align: center;'>Suspicious Activity Alert</h2>
+            <p style='color: #ffffff; text-align: center;'>Someone tried to recover your account using the security question method.</p>
+            <p style='color: #ffffff; text-align: center;'>If this wasn't you, please secure your account immediately.</p>
+            <hr style='border-color: #333333; margin: 30px 0;'>
+            <p style='font-size: 12px; text-align: center; color: #aaaaaa;'>
+                Need help? Contact us at 
+                <a href='mailto:remmm.help@gmail.com' style='color: #e50914; text-decoration: none;'>remmm.help@gmail.com</a>
+            </p>
+            <p style='text-align: center; font-size: 12px; color: #555;'>© 2025 Remmm. All rights reserved.</p>
+        </div>
+    </body>
+</html>"
+            };
+
+            mailMessage.To.Add(email);
+            smtpClient.Send(mailMessage);
+        }
+
+        private bool IsStrongPassword(string password)
+        {
+            bool hasUpper = password.Any(char.IsUpper);
+            bool hasLower = password.Any(char.IsLower);
+            bool hasDigit = password.Any(char.IsDigit);
+            bool hasSymbol = password.Any(ch => !char.IsLetterOrDigit(ch));
+            return password.Length >= 8 && hasUpper && hasLower && hasDigit && hasSymbol;
+        }
+
+        private void SendSuccessfulRecoveryEmail(string Email)
+        {
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("remmm.help@gmail.com", "nwvo tqpy onmt aohm"),
+                EnableSsl = true,
+            };
+
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress("remmm.help@gmail.com"),
+                Subject = "✅ Remmm Password Successfully Reset",
+                IsBodyHtml = true,
+                BodyEncoding = Encoding.UTF8,
+                Body = @"
+<html>
+    <body style='background-color: #141414; font-family: Helvetica, Arial, sans-serif; color: #ffffff; padding: 20px;'>
+        <div style='max-width: 600px; margin: auto; background-color: #1c1c1c; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5);'>
+            <h1 style='color: #e50914; text-align: center;'>Remmm</h1>
+            <h2 style='color: #00cc66; text-align: center;'>Password Reset Successful</h2>
+            <p style='color: #ffffff; text-align: center;'>Your password has been successfully updated through the security question recovery method.</p>
+            <p style='color: #ffffff; text-align: center;'>If this was not you, please change your password immediately and contact our support team.</p>
+            <hr style='border-color: #333333; margin: 30px 0;'>
+            <p style='font-size: 12px; text-align: center; color: #aaaaaa;'>
+                Need help? Contact us at 
+                <a href='mailto:remmm.help@gmail.com' style='color: #e50914; text-decoration: none;'>remmm.help@gmail.com</a>
+            </p>
+            <p style='text-align: center; font-size: 12px; color: #555;'>© 2025 Remmm. All rights reserved.</p>
+        </div>
+    </body>
+</html>"
+            };
+
+            mailMessage.To.Add(Email);
+            smtpClient.Send(mailMessage);
+        }
+
     }
 }

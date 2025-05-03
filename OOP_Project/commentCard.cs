@@ -4,21 +4,20 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
-using Microsoft.VisualBasic;
 
 namespace OOP_Project
 {
     public partial class commentCard : UserControl
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-
         private int interactionId;
         private int commentUserId;
         private int currentUserId;
         private int parentMovieId;
 
-        private string userType;
-
+        public string UserType { get; set; }
+        public int CommentOwnerId { get; set; }
+        public int CurrentUserId { get; set; }
 
         public commentCard()
         {
@@ -31,20 +30,46 @@ namespace OOP_Project
             this.commentUserId = commentUserId;
             this.currentUserId = currentUserId;
             this.parentMovieId = movieId;
+            this.CommentOwnerId = commentUserId;
+            this.CurrentUserId = currentUserId;
 
-            // Show buttons only if current user is the comment author
-            if (commentUserId == currentUserId)
+            // Fetch user type from database
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
-                editComment_btn.Visible = true;
-                deleteComment_btn.Visible = true;
+                conn.Open();
+                string query = "SELECT user_type FROM users WHERE user_id = @id";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", currentUserId);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            UserType = reader["user_type"].ToString();
+                        }
+                        else
+                        {
+                            UserType = "guest"; // fallback
+                        }
+                    }
+                }
             }
-            else
-            {
-                editComment_btn.Visible = false;
-                deleteComment_btn.Visible = false;
-            }
+
+            // Set button visibility based on permission
+            bool hasPermission = (currentUserId == commentUserId) || (UserType == "admin") || (UserType == "master");
+
+            editComment_btn.Visible = hasPermission;
+            deleteComment_btn.Visible = hasPermission;
         }
 
+        private void commentCard_Load(object sender, EventArgs e)
+        {
+            CurvePanel(profileBack_panel, 60);
+            profileBack_panel.Resize += (s, args) => CurvePanel(profileBack_panel, 20);
+
+            CurvePanel(commentBackColor, 30);
+            commentBackColor.Resize += (s, args) => CurvePanel(commentBackColor, 20);
+        }
 
         private void CurvePanel(Panel panel, int radius)
         {
@@ -69,57 +94,18 @@ namespace OOP_Project
 
         public void SetAvatar(Image avatarImage)
         {
-            if (avatarImage != null)
-            {
-                userAvatar.Image = avatarImage;
-                userAvatar.Visible = true;
-            }
-            else
-            {
-                userAvatar.Image = Properties.Resources.avatar_default;
-                userAvatar.Visible = true;
-            }
+            userAvatar.Image = avatarImage ?? Properties.Resources.avatar_default;
+            userAvatar.Visible = true;
         }
-        public int CommentOwnerId { get; set; }
-        public int CurrentUserId { get; set; }
-        public string UserType { get; set; }
-        private void commentCard_Load(object sender, EventArgs e)
-        {
-            SetPermissions();
-            CurvePanel(profileBack_panel, 60);
-            profileBack_panel.Resize += (s, args) => CurvePanel(profileBack_panel, 20);
-
-            CurvePanel(commentBackColor, 30);
-            commentBackColor.Resize += (s, args) => CurvePanel(commentBackColor, 20);
-
-            movie_details_form parentForm = this.FindForm() as movie_details_form;
-
-        }
-
-        public void SetPermissions()
-        {
-            Console.WriteLine($"[DEBUG] UserType: {UserType}, CurrentUserId: {CurrentUserId}, CommentOwnerId: {CommentOwnerId}");
-
-            if (UserType == "admin" || CurrentUserId == CommentOwnerId)
-            {
-                Console.WriteLine("[DEBUG] Permission granted to show delete button.");
-                deleteComment_btn.Visible = true;
-            }
-            else
-            {
-                Console.WriteLine("[DEBUG] No permission to show delete button.");
-                deleteComment_btn.Visible = false;
-            }
-        }
-
 
         private void deleteComment_btn_Click(object sender, EventArgs e)
         {
-            if (UserType != "admin" && CurrentUserId != CommentOwnerId)
+            if (UserType != "admin" && UserType != "master" && CurrentUserId != CommentOwnerId)
             {
                 MessageBox.Show("You do not have permission to delete this comment.");
                 return;
             }
+
             if (MessageBox.Show("Are you sure you want to delete this comment?", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -133,7 +119,6 @@ namespace OOP_Project
                     }
                 }
 
-                // Optionally notify parent form to reload comments
                 MessageBox.Show("Comment deleted.");
                 this.Parent.Controls.Remove(this); // Remove card from panel
             }
@@ -152,18 +137,14 @@ namespace OOP_Project
                 comment_tb.SelectAll();
                 isClicked = 1;
             }
-            else if(isClicked == 1)
+            else if (isClicked == 1)
             {
                 SaveEditedComment();
                 editComment_btn.Values.Image = Properties.Resources.icons8_edit_20__1_;
-                comment_tb.Text = comment_lbl.Text.TrimStart(':', ' ').Trim();
                 comment_lbl.Visible = true;
                 comment_tb.Visible = false;
-                comment_tb.Focus();
-                comment_tb.SelectAll();
                 isClicked = 0;
             }
-            
         }
 
         private void comment_tb_KeyDown(object sender, KeyEventArgs e)
@@ -198,7 +179,6 @@ namespace OOP_Project
                         }
                     }
 
-                    // Update UI
                     comment_lbl.Text = ": " + newText;
                     comment_lbl.Visible = true;
                     comment_tb.Visible = false;
@@ -209,6 +189,5 @@ namespace OOP_Project
                 }
             }
         }
-
     }
 }

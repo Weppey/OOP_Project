@@ -173,7 +173,7 @@ namespace OOP_Project
                 // Enable editing
                 changeAvatar_btn.Visible = true;
                 username_tb.ReadOnly = false;
-                email_tb.ReadOnly = false;
+                email_tb.ReadOnly = true;
                 preferences_clb.Enabled = true;
                 age_tb.ReadOnly = false;
                 gender_tb.ReadOnly = false;

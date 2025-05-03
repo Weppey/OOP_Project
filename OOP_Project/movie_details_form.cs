@@ -770,8 +770,7 @@ namespace OOP_Project
                                     // Assign current and comment user info
                                     card.CommentOwnerId = commentUserId;
                                     card.CurrentUserId = currentUserId;
-                                    card.UserType = currentUserType; // Set this before calling SetPermissions
-                                    card.SetPermissions();           // Call this AFTER setting all 3
+                                    card.UserType = currentUserType; 
                                     Console.WriteLine($"[DEBUG] Adding comment by {username} (UserID: {commentUserId})");
                                     Console.WriteLine($"[DEBUG] CurrentUserId: {currentUserId}, CurrentUserType: {currentUserType}");
 
