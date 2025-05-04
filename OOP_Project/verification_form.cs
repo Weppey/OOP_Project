@@ -1,15 +1,17 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ComponentFactory.Krypton.Toolkit;
 
 namespace OOP_Project
 {
-    public partial class verification_form : Form
+    public partial class verification_form : KryptonForm
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
         private string userEmail;
@@ -24,8 +26,23 @@ namespace OOP_Project
             userEmail = email;
             resend_llbl.Enabled = false;
             StartCooldown();
-        }
 
+            CurvePanel(Panel_verify, 30);
+            Panel_verify.Resize += (s, args) => CurvePanel(Panel_verify, 20);
+        }
+        private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
+        {
+            GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
+            path.StartFigure(); // Start the shape definition
+
+            // Add arcs to the path to define the four rounded corners
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90); // Top-left corner
+            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90); // Bottom-right corner
+            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90); // Bottom-left corner
+            path.CloseFigure(); // Close the shape definition
+            panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
+        }
 
         private async void resend_llbl_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

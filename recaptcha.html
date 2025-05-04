@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>reCAPTCHA Form</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .custom-recaptcha {
+            transform: scale(0.85); /* Adjust this scale if needed */
+            transform-origin: 0 0;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="captchaForm">
+        <!-- reCAPTCHA widget with callback -->
+        <div class="g-recaptcha custom-recaptcha"
+             data-sitekey="6LdqlS0rAAAAAFTVioHfIMWyotEKtAsN1Jokeslu"
+             data-callback="onCaptchaSuccess">
+        </div>
+        <br>
+    </form>
+
+    <script>
+        function onCaptchaSuccess() {
+            // Send a message to the C# WebView2 app
+            if (window.chrome && window.chrome.webview) {
+                window.chrome.webview.postMessage("captcha_success");
+            } else {
+                alert("CAPTCHA completed (testing in browser)");
+            }
+        }
+    </script>
+
+</body>
+</html>

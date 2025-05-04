@@ -41,15 +41,26 @@
             this.logo_pb = new System.Windows.Forms.PictureBox();
             this.close_pb = new System.Windows.Forms.PictureBox();
             this.minimize_pb = new System.Windows.Forms.PictureBox();
+            this.captcha_pb = new System.Windows.Forms.PictureBox();
+            this.captcha_tb = new System.Windows.Forms.TextBox();
+            this.refreshCaptcha_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.captcha_lbl = new System.Windows.Forms.Label();
+            this.attempt_lbl = new System.Windows.Forms.Label();
             this.loginDock_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.captcha_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // loginDock_panel
             // 
             this.loginDock_panel.BackColor = System.Drawing.Color.White;
+            this.loginDock_panel.Controls.Add(this.attempt_lbl);
+            this.loginDock_panel.Controls.Add(this.refreshCaptcha_btn);
+            this.loginDock_panel.Controls.Add(this.captcha_lbl);
+            this.loginDock_panel.Controls.Add(this.captcha_tb);
+            this.loginDock_panel.Controls.Add(this.captcha_pb);
             this.loginDock_panel.Controls.Add(this.password_tb);
             this.loginDock_panel.Controls.Add(this.userName_tb);
             this.loginDock_panel.Controls.Add(this.forgotPassword_llbl);
@@ -62,16 +73,16 @@
             this.loginDock_panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.loginDock_panel.Location = new System.Drawing.Point(0, 0);
             this.loginDock_panel.Name = "loginDock_panel";
-            this.loginDock_panel.Size = new System.Drawing.Size(254, 650);
+            this.loginDock_panel.Size = new System.Drawing.Size(271, 696);
             this.loginDock_panel.TabIndex = 20;
             // 
             // password_tb
             // 
             this.password_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password_tb.ForeColor = System.Drawing.Color.DarkGray;
-            this.password_tb.Location = new System.Drawing.Point(52, 297);
+            this.password_tb.Location = new System.Drawing.Point(28, 292);
             this.password_tb.Name = "password_tb";
-            this.password_tb.Size = new System.Drawing.Size(153, 26);
+            this.password_tb.Size = new System.Drawing.Size(209, 26);
             this.password_tb.TabIndex = 12;
             this.password_tb.Text = "Password";
             this.password_tb.Enter += new System.EventHandler(this.password_tb_Enter);
@@ -81,9 +92,9 @@
             // 
             this.userName_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userName_tb.ForeColor = System.Drawing.Color.DarkGray;
-            this.userName_tb.Location = new System.Drawing.Point(52, 257);
+            this.userName_tb.Location = new System.Drawing.Point(28, 252);
             this.userName_tb.Name = "userName_tb";
-            this.userName_tb.Size = new System.Drawing.Size(153, 26);
+            this.userName_tb.Size = new System.Drawing.Size(209, 26);
             this.userName_tb.TabIndex = 11;
             this.userName_tb.Text = "Username";
             this.userName_tb.Enter += new System.EventHandler(this.userName_tb_Enter);
@@ -95,7 +106,7 @@
             this.forgotPassword_llbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.forgotPassword_llbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.forgotPassword_llbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(80)))), ((int)(((byte)(80)))));
-            this.forgotPassword_llbl.Location = new System.Drawing.Point(50, 428);
+            this.forgotPassword_llbl.Location = new System.Drawing.Point(58, 572);
             this.forgotPassword_llbl.Name = "forgotPassword_llbl";
             this.forgotPassword_llbl.Size = new System.Drawing.Size(155, 12);
             this.forgotPassword_llbl.TabIndex = 10;
@@ -107,7 +118,7 @@
             this.protection_lbl.AutoSize = true;
             this.protection_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.protection_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.protection_lbl.Location = new System.Drawing.Point(17, 584);
+            this.protection_lbl.Location = new System.Drawing.Point(24, 629);
             this.protection_lbl.Name = "protection_lbl";
             this.protection_lbl.Size = new System.Drawing.Size(225, 45);
             this.protection_lbl.TabIndex = 7;
@@ -120,7 +131,7 @@
             this.signUp_lbl.Cursor = System.Windows.Forms.Cursors.Hand;
             this.signUp_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.signUp_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.signUp_lbl.Location = new System.Drawing.Point(31, 555);
+            this.signUp_lbl.Location = new System.Drawing.Point(38, 600);
             this.signUp_lbl.Name = "signUp_lbl";
             this.signUp_lbl.Size = new System.Drawing.Size(182, 12);
             this.signUp_lbl.TabIndex = 6;
@@ -132,7 +143,7 @@
             this.signIn_lbl.AutoSize = true;
             this.signIn_lbl.Font = new System.Drawing.Font("Impact", 14F);
             this.signIn_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.signIn_lbl.Location = new System.Drawing.Point(92, 219);
+            this.signIn_lbl.Location = new System.Drawing.Point(105, 210);
             this.signIn_lbl.Name = "signIn_lbl";
             this.signIn_lbl.Size = new System.Drawing.Size(63, 23);
             this.signIn_lbl.TabIndex = 5;
@@ -141,7 +152,7 @@
             // login_btn
             // 
             this.login_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.login_btn.Location = new System.Drawing.Point(122, 355);
+            this.login_btn.Location = new System.Drawing.Point(140, 509);
             this.login_btn.Name = "login_btn";
             this.login_btn.Size = new System.Drawing.Size(97, 30);
             this.login_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
@@ -160,7 +171,7 @@
             // 
             // showPass_chkb
             // 
-            this.showPass_chkb.Location = new System.Drawing.Point(111, 329);
+            this.showPass_chkb.Location = new System.Drawing.Point(129, 324);
             this.showPass_chkb.Name = "showPass_chkb";
             this.showPass_chkb.Size = new System.Drawing.Size(108, 20);
             this.showPass_chkb.TabIndex = 3;
@@ -170,7 +181,7 @@
             // logo_pb
             // 
             this.logo_pb.Image = global::OOP_Project.Properties.Resources._11;
-            this.logo_pb.Location = new System.Drawing.Point(52, 45);
+            this.logo_pb.Location = new System.Drawing.Point(63, 43);
             this.logo_pb.Name = "logo_pb";
             this.logo_pb.Size = new System.Drawing.Size(150, 150);
             this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -181,7 +192,7 @@
             // 
             this.close_pb.BackColor = System.Drawing.Color.Transparent;
             this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
-            this.close_pb.Location = new System.Drawing.Point(1015, 12);
+            this.close_pb.Location = new System.Drawing.Point(1055, 12);
             this.close_pb.Name = "close_pb";
             this.close_pb.Size = new System.Drawing.Size(25, 23);
             this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -195,7 +206,7 @@
             // 
             this.minimize_pb.BackColor = System.Drawing.Color.Transparent;
             this.minimize_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
-            this.minimize_pb.Location = new System.Drawing.Point(986, 12);
+            this.minimize_pb.Location = new System.Drawing.Point(1026, 12);
             this.minimize_pb.Name = "minimize_pb";
             this.minimize_pb.Size = new System.Drawing.Size(25, 23);
             this.minimize_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -205,6 +216,70 @@
             this.minimize_pb.MouseEnter += new System.EventHandler(this.minimize_pb_MouseEnter);
             this.minimize_pb.MouseLeave += new System.EventHandler(this.minimize_pb_MouseLeave);
             // 
+            // captcha_pb
+            // 
+            this.captcha_pb.Location = new System.Drawing.Point(28, 392);
+            this.captcha_pb.Name = "captcha_pb";
+            this.captcha_pb.Size = new System.Drawing.Size(209, 65);
+            this.captcha_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.captcha_pb.TabIndex = 0;
+            this.captcha_pb.TabStop = false;
+            // 
+            // captcha_tb
+            // 
+            this.captcha_tb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.captcha_tb.ForeColor = System.Drawing.Color.DarkGray;
+            this.captcha_tb.Location = new System.Drawing.Point(109, 463);
+            this.captcha_tb.Name = "captcha_tb";
+            this.captcha_tb.Size = new System.Drawing.Size(128, 26);
+            this.captcha_tb.TabIndex = 13;
+            this.captcha_tb.Text = "Enter code...";
+            this.captcha_tb.Enter += new System.EventHandler(this.captcha_tb_Enter);
+            this.captcha_tb.Leave += new System.EventHandler(this.captcha_tb_Leave);
+            // 
+            // refreshCaptcha_btn
+            // 
+            this.refreshCaptcha_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
+            this.refreshCaptcha_btn.Location = new System.Drawing.Point(26, 463);
+            this.refreshCaptcha_btn.Name = "refreshCaptcha_btn";
+            this.refreshCaptcha_btn.Size = new System.Drawing.Size(78, 26);
+            this.refreshCaptcha_btn.StateCommon.Back.Color1 = System.Drawing.Color.LightGray;
+            this.refreshCaptcha_btn.StateCommon.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(239)))), ((int)(((byte)(239)))));
+            this.refreshCaptcha_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.refreshCaptcha_btn.StateCommon.Border.Rounding = 5;
+            this.refreshCaptcha_btn.StateCommon.Content.Image.Effect = ComponentFactory.Krypton.Toolkit.PaletteImageEffect.Disabled;
+            this.refreshCaptcha_btn.StateCommon.Content.Image.ImageH = ComponentFactory.Krypton.Toolkit.PaletteRelativeAlign.Far;
+            this.refreshCaptcha_btn.StateCommon.Content.Padding = new System.Windows.Forms.Padding(5, -1, 5, -1);
+            this.refreshCaptcha_btn.TabIndex = 13;
+            this.refreshCaptcha_btn.Values.Text = "Refresh";
+            this.refreshCaptcha_btn.Click += new System.EventHandler(this.refreshCaptcha_btn_Click);
+            // 
+            // captcha_lbl
+            // 
+            this.captcha_lbl.AutoSize = true;
+            this.captcha_lbl.Font = new System.Drawing.Font("Impact", 14F);
+            this.captcha_lbl.ForeColor = System.Drawing.Color.Teal;
+            this.captcha_lbl.Location = new System.Drawing.Point(22, 366);
+            this.captcha_lbl.Name = "captcha_lbl";
+            this.captcha_lbl.Size = new System.Drawing.Size(80, 23);
+            this.captcha_lbl.TabIndex = 13;
+            this.captcha_lbl.Text = "Captcha:";
+            // 
+            // attempt_lbl
+            // 
+            this.attempt_lbl.AutoSize = true;
+            this.attempt_lbl.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attempt_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
+            this.attempt_lbl.Location = new System.Drawing.Point(102, 371);
+            this.attempt_lbl.Name = "attempt_lbl";
+            this.attempt_lbl.Size = new System.Drawing.Size(103, 13);
+            this.attempt_lbl.TabIndex = 14;
+            this.attempt_lbl.Text = "Too many attempt:";
+            this.attempt_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.attempt_lbl.Visible = false;
+            // 
             // login_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,7 +287,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
             this.BackgroundImage = global::OOP_Project.Properties.Resources.login_wall2;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1052, 650);
+            this.ClientSize = new System.Drawing.Size(1092, 696);
             this.Controls.Add(this.loginDock_panel);
             this.Controls.Add(this.close_pb);
             this.Controls.Add(this.minimize_pb);
@@ -237,6 +312,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.captcha_pb)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -255,6 +331,11 @@
         private System.Windows.Forms.Label forgotPassword_llbl;
         private System.Windows.Forms.TextBox password_tb;
         private System.Windows.Forms.TextBox userName_tb;
+        private System.Windows.Forms.Label captcha_lbl;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton refreshCaptcha_btn;
+        private System.Windows.Forms.TextBox captcha_tb;
+        private System.Windows.Forms.PictureBox captcha_pb;
+        private System.Windows.Forms.Label attempt_lbl;
     }
 }
 

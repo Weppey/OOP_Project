@@ -31,9 +31,10 @@ namespace OOP_Project
             this.userAvatar = new System.Windows.Forms.PictureBox();
             this.dateLabel = new System.Windows.Forms.Label();
             this.commentBackColor = new System.Windows.Forms.Panel();
-            this.separatorPanel = new System.Windows.Forms.Panel();
-            this.comment_lbl = new System.Windows.Forms.Label();
             this.comment_tb = new System.Windows.Forms.TextBox();
+            this.comment_lbl = new System.Windows.Forms.Label();
+            this.separatorPanel = new System.Windows.Forms.Panel();
+            this.commentReply_lbl = new System.Windows.Forms.Label();
             this.commentBG_panel.SuspendLayout();
             this.profileBack_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userAvatar)).BeginInit();
@@ -55,6 +56,7 @@ namespace OOP_Project
             // 
             this.commentBG_panel.AutoSize = true;
             this.commentBG_panel.BackColor = System.Drawing.Color.White;
+            this.commentBG_panel.Controls.Add(this.commentReply_lbl);
             this.commentBG_panel.Controls.Add(this.deleteComment_btn);
             this.commentBG_panel.Controls.Add(this.editComment_btn);
             this.commentBG_panel.Controls.Add(this.panel1);
@@ -138,25 +140,6 @@ namespace OOP_Project
             this.commentBackColor.Size = new System.Drawing.Size(687, 40);
             this.commentBackColor.TabIndex = 1;
             // 
-            // separatorPanel
-            // 
-            this.separatorPanel.BackColor = System.Drawing.Color.Gray;
-            this.separatorPanel.Location = new System.Drawing.Point(74, 21);
-            this.separatorPanel.Name = "separatorPanel";
-            this.separatorPanel.Size = new System.Drawing.Size(756, 1);
-            this.separatorPanel.TabIndex = 3;
-            // 
-            // comment_lbl
-            // 
-            this.comment_lbl.AutoSize = true;
-            this.comment_lbl.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.comment_lbl.ForeColor = System.Drawing.Color.White;
-            this.comment_lbl.Location = new System.Drawing.Point(8, 9);
-            this.comment_lbl.Name = "comment_lbl";
-            this.comment_lbl.Size = new System.Drawing.Size(87, 19);
-            this.comment_lbl.TabIndex = 2;
-            this.comment_lbl.Text = "> Comment:";
-            // 
             // comment_tb
             // 
             this.comment_tb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(200)))), ((int)(((byte)(200)))));
@@ -169,6 +152,38 @@ namespace OOP_Project
             this.comment_tb.TabIndex = 3;
             this.comment_tb.Visible = false;
             this.comment_tb.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comment_tb_KeyDown);
+            // 
+            // comment_lbl
+            // 
+            this.comment_lbl.AutoSize = true;
+            this.comment_lbl.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.comment_lbl.ForeColor = System.Drawing.Color.White;
+            this.comment_lbl.Location = new System.Drawing.Point(8, 9);
+            this.comment_lbl.Name = "comment_lbl";
+            this.comment_lbl.Size = new System.Drawing.Size(87, 19);
+            this.comment_lbl.TabIndex = 2;
+            this.comment_lbl.Text = "> Comment:";
+            // 
+            // separatorPanel
+            // 
+            this.separatorPanel.BackColor = System.Drawing.Color.Gray;
+            this.separatorPanel.Location = new System.Drawing.Point(74, 21);
+            this.separatorPanel.Name = "separatorPanel";
+            this.separatorPanel.Size = new System.Drawing.Size(756, 1);
+            this.separatorPanel.TabIndex = 3;
+            // 
+            // commentReply_lbl
+            // 
+            this.commentReply_lbl.AutoSize = true;
+            this.commentReply_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commentReply_lbl.ForeColor = System.Drawing.Color.Red;
+            this.commentReply_lbl.Location = new System.Drawing.Point(722, 5);
+            this.commentReply_lbl.Name = "commentReply_lbl";
+            this.commentReply_lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.commentReply_lbl.Size = new System.Drawing.Size(40, 15);
+            this.commentReply_lbl.TabIndex = 9;
+            this.commentReply_lbl.Text = "Edited";
+            this.commentReply_lbl.Visible = false;
             // 
             // commentCard
             // 
@@ -204,5 +219,6 @@ namespace OOP_Project
         private ComponentFactory.Krypton.Toolkit.KryptonButton editComment_btn;
         private TextBox comment_tb;
         private Label comment_lbl;
+        private Label commentReply_lbl;
     }
 }

@@ -107,24 +107,27 @@ namespace OOP_Project
 
             try
             {
-                // Load movie poster if available
+                // Check if ImageUrl is provided
                 if (!string.IsNullOrEmpty(_moovie.ImageUrl))
                 {
-                    poster_pb.Load(_moovie.ImageUrl);
+                    poster_pb.Load(_moovie.ImageUrl); // Try loading the image
                     this.BackgroundImage = poster_pb.Image;
                     movie_panel.BackgroundImageLayout = ImageLayout.Stretch;
                 }
                 else
                 {
+                    // Image URL is missing
                     poster_pb.Image = Properties.Resources.fallback;
+                    MessageBox.Show("Movie poster is missing.", "Missing Poster", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                // In case of an error loading the poster or trailer, show fallback and log the error
+                // Something went wrong while loading the image
                 poster_pb.Image = Properties.Resources.fallback;
-                MessageBox.Show("Error loading movie details: " + ex.Message);
+                MessageBox.Show("Error loading movie poster: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
 
             // Check if the movie is marked as favorite (you can expand this logic as needed)
             CheckFavoriteStatus();
@@ -146,10 +149,15 @@ namespace OOP_Project
                         cmd.Parameters.AddWithValue("@movieId", movieId); // current movie
 
                         var result = cmd.ExecuteScalar();
-                        if (result != null)
+
+                        if (result != null && result != DBNull.Value)
                         {
                             int rating = Convert.ToInt32(result);
-                            SetStars(rating); // Update stars based on the rating
+                            SetStars(rating); // Show existing rating
+                        }
+                        else
+                        {
+                            SetStars(0); // No rating found — show all unselected
                         }
                     }
                 }
@@ -159,6 +167,7 @@ namespace OOP_Project
                 MessageBox.Show("Failed to fetch rating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
 
         private void WebView2_CoreWebView2InitializationCompleted(object sender, CoreWebView2InitializationCompletedEventArgs e)
@@ -747,11 +756,12 @@ namespace OOP_Project
                 {
                     conn.Open();
                     string query = @"
-                SELECT i.interaction_id, i.user_id, u.username, u.avatar, i.comment, i.created_at 
+                SELECT i.interaction_id, i.user_id, u.username, u.avatar, 
+                       i.comment, i.created_at, i.edited_comment
                 FROM movie_interaction i
                 JOIN users u ON i.user_id = u.user_id
                 WHERE i.movie_id = @movieId AND i.comment IS NOT NULL
-                ORDER BY i.created_at DESC";
+                ORDER BY i.created_at DESC"; // Using created_at for sorting
 
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
@@ -781,9 +791,23 @@ namespace OOP_Project
                                     int interactionId = reader.GetInt32("interaction_id");
                                     int commentUserId = reader.GetInt32("user_id");
 
+                                    // Check if edited_comment exists and show "[Edited]" in the commentReply_lbl
+                                    bool isEdited = !reader.IsDBNull(reader.GetOrdinal("edited_comment")) && Convert.ToBoolean(reader["edited_comment"]);
+
                                     commentCard card = new commentCard();
                                     card.SetComment(username, comment, createdAt);
 
+                                    // Add "[Edited]" to the commentReply_lbl if the comment was edited
+                                    if (isEdited)
+                                    {
+                                        card.isEdited();
+                                    }
+                                    else
+                                    {
+                                        card.isNotEdited();
+                                    }
+
+                                    // Handle avatar
                                     if (!reader.IsDBNull(reader.GetOrdinal("avatar")))
                                     {
                                         byte[] avatarBytes = (byte[])reader["avatar"];
@@ -808,7 +832,7 @@ namespace OOP_Project
                                     // Assign current and comment user info
                                     card.CommentOwnerId = commentUserId;
                                     card.CurrentUserId = currentUserId;
-                                    card.UserType = currentUserType; 
+                                    card.UserType = currentUserType;
 
                                     card.InitializeCommentCard(interactionId, commentUserId, currentUserId, currentMovieId);
 
@@ -829,9 +853,6 @@ namespace OOP_Project
                 MessageBox.Show("Error loading comments: " + ex.Message);
             }
         }
-
-
-
 
 
         private void comment_btn_Click_1(object sender, EventArgs e)

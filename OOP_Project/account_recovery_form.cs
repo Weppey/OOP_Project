@@ -40,6 +40,8 @@ namespace OOP_Project
             background_panel.Resize += (s, args) => CurvePanel(background_panel, 20);
             CurvePanel(securityQuestion_panel, 30);
             securityQuestion_panel.Resize += (s, args) => CurvePanel(securityQuestion_panel, 20);
+            CurvePanel(changeEmail_panel, 30);
+            changeEmail_panel.Resize += (s, args) => CurvePanel(changeEmail_panel, 20);
         }
 
         private bool IsValidPassword(string password)
@@ -147,7 +149,7 @@ namespace OOP_Project
         }
 
         private void minimize_pb_Click(object sender, EventArgs e)
-        {           
+        {
             this.WindowState = FormWindowState.Minimized;
         }
 
@@ -200,7 +202,7 @@ namespace OOP_Project
                         cmd.Parameters.AddWithValue("@Password", hashedPassword);
                         cmd.Parameters.AddWithValue("@Email", email_tb.Text);
                         cmd.ExecuteNonQuery();
-                        
+
                         MessageBox.Show("Password has been successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         if (Application.OpenForms["home_form"] != null)
                         {
@@ -560,6 +562,25 @@ namespace OOP_Project
                 newpassword_tb.PasswordChar = '*';
                 confirmpassword_tb.PasswordChar = '*';
             }
+        }
+
+        private void emailChange_cb_CheckedChanged(object sender, EventArgs e)
+        {
+            if (emailChange_cb.Checked)
+            {
+                confirmPassEmail_tb.PasswordChar = ('\0');
+                emailNewPassword_tb.PasswordChar = ('\0');
+            }
+            else
+            {
+                confirmPassEmail_tb.PasswordChar = ('*');
+                emailNewPassword_tb.PasswordChar = ('*');
+            }
+        }
+
+        private void sqEmailChange_btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

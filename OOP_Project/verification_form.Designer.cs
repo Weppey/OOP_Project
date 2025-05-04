@@ -39,12 +39,12 @@
             this.code_tb = new System.Windows.Forms.TextBox();
             this.status_lbl = new System.Windows.Forms.Label();
             this.code_lbl = new System.Windows.Forms.Label();
-            this.min_pb = new System.Windows.Forms.PictureBox();
-            this.cls_pb = new System.Windows.Forms.PictureBox();
+            this.minimize_pb = new System.Windows.Forms.PictureBox();
+            this.close_pb = new System.Windows.Forms.PictureBox();
             this.Panel_verify.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.min_pb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // Panel_verify
@@ -180,31 +180,31 @@
             this.code_lbl.TabIndex = 39;
             this.code_lbl.Text = "Code:";
             // 
-            // min_pb
+            // minimize_pb
             // 
-            this.min_pb.BackColor = System.Drawing.Color.Transparent;
-            this.min_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.min_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
-            this.min_pb.Location = new System.Drawing.Point(986, 12);
-            this.min_pb.Name = "min_pb";
-            this.min_pb.Size = new System.Drawing.Size(25, 23);
-            this.min_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.min_pb.TabIndex = 11;
-            this.min_pb.TabStop = false;
-            this.min_pb.Click += new System.EventHandler(this.min_pb_Click);
+            this.minimize_pb.BackColor = System.Drawing.Color.Transparent;
+            this.minimize_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.minimize_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
+            this.minimize_pb.Location = new System.Drawing.Point(986, 12);
+            this.minimize_pb.Name = "minimize_pb";
+            this.minimize_pb.Size = new System.Drawing.Size(25, 23);
+            this.minimize_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.minimize_pb.TabIndex = 11;
+            this.minimize_pb.TabStop = false;
+            this.minimize_pb.Click += new System.EventHandler(this.min_pb_Click);
             // 
-            // cls_pb
+            // close_pb
             // 
-            this.cls_pb.BackColor = System.Drawing.Color.Transparent;
-            this.cls_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.cls_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
-            this.cls_pb.Location = new System.Drawing.Point(1015, 12);
-            this.cls_pb.Name = "cls_pb";
-            this.cls_pb.Size = new System.Drawing.Size(25, 23);
-            this.cls_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.cls_pb.TabIndex = 10;
-            this.cls_pb.TabStop = false;
-            this.cls_pb.Click += new System.EventHandler(this.cls_pb_Click);
+            this.close_pb.BackColor = System.Drawing.Color.Transparent;
+            this.close_pb.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
+            this.close_pb.Location = new System.Drawing.Point(1015, 12);
+            this.close_pb.Name = "close_pb";
+            this.close_pb.Size = new System.Drawing.Size(25, 23);
+            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.close_pb.TabIndex = 10;
+            this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.cls_pb_Click);
             // 
             // verification_form
             // 
@@ -213,19 +213,23 @@
             this.BackColor = System.Drawing.Color.Silver;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1052, 650);
-            this.Controls.Add(this.min_pb);
-            this.Controls.Add(this.cls_pb);
+            this.Controls.Add(this.minimize_pb);
+            this.Controls.Add(this.close_pb);
             this.Controls.Add(this.Panel_verify);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "verification_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.StateCommon.Border.Rounding = 15;
             this.Text = "Verification - Remmm";
             this.Panel_verify.ResumeLayout(false);
             this.Panel_verify.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logo_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.min_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cls_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minimize_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -237,8 +241,8 @@
         private System.Windows.Forms.Label status_lbl;
         private System.Windows.Forms.Label code_lbl;
         private System.Windows.Forms.LinkLabel resend_llbl;
-        private System.Windows.Forms.PictureBox min_pb;
-        private System.Windows.Forms.PictureBox cls_pb;
+        private System.Windows.Forms.PictureBox minimize_pb;
+        private System.Windows.Forms.PictureBox close_pb;
         private System.Windows.Forms.Panel bg2_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonButton confirm_btn;
         private System.Windows.Forms.PictureBox logo_pb;

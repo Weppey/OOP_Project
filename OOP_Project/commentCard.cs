@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using ComponentFactory.Krypton.Toolkit;
+using MySql.Data.MySqlClient;
 using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -14,6 +15,7 @@ namespace OOP_Project
         private int commentUserId;
         private int currentUserId;
         private int parentMovieId;
+
 
         public string UserType { get; set; }
         public int CommentOwnerId { get; set; }
@@ -108,21 +110,33 @@ namespace OOP_Project
 
             if (MessageBox.Show("Are you sure you want to delete this comment?", "Confirm Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                try
                 {
-                    conn.Open();
-                    string query = "DELETE FROM movie_interaction WHERE interaction_id = @id";
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    using (MySqlConnection conn = new MySqlConnection(connectionString))
                     {
-                        cmd.Parameters.AddWithValue("@id", interactionId);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
+                        conn.Open();
+                        string query = @"UPDATE movie_interaction 
+                                 SET deleted_comment = TRUE, deleted_at = @deletedAt 
+                                 WHERE interaction_id = @id";
 
-                MessageBox.Show("Comment deleted.");
-                this.Parent.Controls.Remove(this); // Remove card from panel
+                        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@deletedAt", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@id", interactionId);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    MessageBox.Show("Comment marked as deleted.");
+                    this.Parent.Controls.Remove(this); // Remove card from panel
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to delete comment: " + ex.Message);
+                }
             }
         }
+
 
         int isClicked = 0;
         private void editComment_btn_Click(object sender, EventArgs e)
@@ -136,6 +150,7 @@ namespace OOP_Project
                 comment_tb.Focus();
                 comment_tb.SelectAll();
                 isClicked = 1;
+                
             }
             else if (isClicked == 1)
             {
@@ -145,6 +160,16 @@ namespace OOP_Project
                 comment_tb.Visible = false;
                 isClicked = 0;
             }
+        }
+
+        public void isEdited()
+        {
+            commentReply_lbl.Visible = true;
+        }
+
+        public void isNotEdited()
+        {
+            commentReply_lbl.Visible = false;
         }
 
         private void comment_tb_KeyDown(object sender, KeyEventArgs e)
@@ -169,16 +194,19 @@ namespace OOP_Project
                     using (MySqlConnection conn = new MySqlConnection(connectionString))
                     {
                         conn.Open();
-                        string query = "UPDATE movie_interaction SET comment = @comment WHERE interaction_id = @id";
+                        string query = @"UPDATE movie_interaction 
+                                 SET comment = @comment, edited_comment = TRUE, edited_at = @editedAt 
+                                 WHERE interaction_id = @id";
 
                         using (MySqlCommand cmd = new MySqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@comment", newText);
+                            cmd.Parameters.AddWithValue("@editedAt", DateTime.Now);
                             cmd.Parameters.AddWithValue("@id", interactionId);
                             cmd.ExecuteNonQuery();
+                            isEdited(); 
                         }
                     }
-
                     comment_lbl.Text = ": " + newText;
                     comment_lbl.Visible = true;
                     comment_tb.Visible = false;
@@ -189,5 +217,6 @@ namespace OOP_Project
                 }
             }
         }
+
     }
 }

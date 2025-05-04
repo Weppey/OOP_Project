@@ -7,20 +7,76 @@ using System.Web.SessionState;
 using System.Drawing.Drawing2D;
 using ComponentFactory.Krypton.Toolkit;
 using System.Drawing;
+using Microsoft.Web.WebView2.Core;
+using CaptchaGen;
+using System.Linq;
+using System.IO;
+using System.Threading.Tasks;
+
 
 namespace OOP_Project
 {
     public partial class login_form : KryptonForm
     {
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-
+        string currentCaptchaCode;
         public login_form()
         {
             InitializeComponent();
         }
-
-        private void login_btn_Click(object sender, EventArgs e)
+        private int failedAttempts = 0; // To track failed attempts
+        private int cooldownTime = 30;  // Cooldown time in seconds
+        private async void login_btn_Click(object sender, EventArgs e)
         {
+            // Check if the entered CAPTCHA matches the generated one
+            if (captcha_tb.Text.Trim().ToUpper() != currentCaptchaCode.ToUpper())
+            {
+                // Increment failed attempts
+                failedAttempts++;
+
+                // Provide visual feedback by changing the border color to red
+                captcha_tb.BackColor = Color.Pink;
+                captcha_tb.Focus(); // Focus back on the CAPTCHA textbox for quicker retry
+
+                // Show MessageBox with a custom message
+                MessageBox.Show("CAPTCHA is incorrect. Please try again.", "CAPTCHA Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Clear the CAPTCHA textbox and regenerate a new CAPTCHA
+                captcha_tb.Clear();
+                GenerateCaptcha();
+
+                // Disable the login button if there are more than 3 failed attempts
+                if (failedAttempts >= 3)
+                {
+                    login_btn.Enabled = false;
+
+                    // Show cooldown label
+                    attempt_lbl.Visible = true;
+                    attempt_lbl.Text = $"Please wait for {cooldownTime} seconds.";
+
+                    // Start cooldown timer
+                    for (int i = cooldownTime; i > 0; i--)
+                    {
+                        attempt_lbl.Text = $"Please wait for {i} seconds.";
+                        await Task.Delay(1000); // Wait for 1 second
+                    }
+
+                    // Re-enable the login button and hide the cooldown label
+                    login_btn.Enabled = true;
+                    attempt_lbl.Visible = false;
+
+                    // Show MessageBox for cooldown completion
+                    MessageBox.Show("You can now try logging in again.", "Cooldown Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                return;
+            }
+
+            // Reset failed attempts counter after successful CAPTCHA entry
+            failedAttempts = 0;
+
+            // Continue with login logic (username/password check, etc.)
+            MessageBox.Show("CAPTCHA verified!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             // Trim any unnecessary whitespace from the input fields
             string username = userName_tb.Text.Trim();
             string password = password_tb.Text.Trim();
@@ -92,9 +148,56 @@ namespace OOP_Project
             }
         }
 
-
-        private void login_form_Load(object sender, EventArgs e)
+        private void captcha_tb_Enter(object sender, EventArgs e)
         {
+            if (captcha_tb.Text == "Enter code...")
+            {
+                captcha_tb.Text = "";
+                captcha_tb.ForeColor = Color.Black;
+            }
+
+        }
+
+        private void captcha_tb_Leave(object sender, EventArgs e)
+        {
+            if (captcha_tb.Text == "")
+            {
+                captcha_tb.Text = "Enter code...";
+                captcha_tb.ForeColor = Color.Gray;
+            }
+        }
+
+        private void refreshCaptcha_btn_Click(object sender, EventArgs e)
+        {
+            GenerateCaptcha();
+        }
+        private void GenerateCaptcha()
+        {
+            currentCaptchaCode = GenerateRandomCode(5); // e.g., 5-character CAPTCHA
+
+            // Improved image dimensions and font settings
+            var captchaImageStream = ImageFactory.GenerateImage(currentCaptchaCode, 100, 250, 50);
+
+            // Convert MemoryStream to Image
+            using (var memoryStream = new MemoryStream())
+            {
+                captchaImageStream.CopyTo(memoryStream);
+                var captchaImage = Image.FromStream(memoryStream);
+                captcha_pb.Image = captchaImage;
+            }
+        }
+        private string GenerateRandomCode(int length)
+        {
+            const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // exclude similar-looking characters
+            Random rand = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+                .Select(s => s[rand.Next(s.Length)]).ToArray());
+        }
+
+
+        private async void login_form_Load(object sender, EventArgs e)
+        {
+            GenerateCaptcha();
             this.AcceptButton = login_btn;
 
             // Check if session exists
@@ -112,9 +215,16 @@ namespace OOP_Project
                 this.Close();
             }
         }
+        private void WebMessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs e)
+        {
+            string message = e.TryGetWebMessageAsString();
 
-
-
+           if (message == "captcha_success")
+            {
+                MessageBox.Show("CAPTCHA passed!");
+                // Proceed to the next logic like enabling login or user action
+            }
+        }
 
         private void signUp_lbl_Click(object sender, EventArgs e)
         {
@@ -215,6 +325,7 @@ namespace OOP_Project
                 password_tb.ForeColor = Color.Black;
             }
         }
+
 
     }
 }
