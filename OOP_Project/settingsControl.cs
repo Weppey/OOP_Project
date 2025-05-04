@@ -43,7 +43,12 @@ namespace OOP_Project
             tooltip.InitialDelay = 100;
             tooltip.ReshowDelay = 100;
             tooltip.ShowAlways = true;
+       
         }
+
+       
+
+
 
         private void settingsControl_Load(object sender, EventArgs e)
         {
@@ -61,6 +66,20 @@ namespace OOP_Project
 
             CurvePanel(system_panel, 30);
             system_panel.Resize += (s, aargs) => CurvePanel(system_panel, 20);
+
+     
+                if (ThemeManager.IsDarkMode)
+                {
+                    // Apply dark mode
+                    ThemeManager.ApplyDarkMode();
+                }
+                else
+                {
+                    // Apply light mode
+                    ThemeManager.ApplyLightMode();
+                }
+    
+
 
     }
 
@@ -256,6 +275,13 @@ namespace OOP_Project
             }
         }
 
+        private void lightmode_btn_Click(object sender, EventArgs e)
+        {
+            ThemeManager.ApplyLightMode();        }
 
+        private void darkmode_btn_Click(object sender, EventArgs e)
+        {
+            ThemeManager.ApplyDarkMode();
+        }
     }
 }

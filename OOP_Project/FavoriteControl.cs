@@ -33,7 +33,24 @@ namespace OOP_Project
             InitializeComponent();
             userType = userTypeFromLogin; // Store the user's type (admin or regular)
             currentUserId = userIdFromLogin; // Store the current user's ID
+            ApplyTheme(); // Apply the theme to the control
         }
+
+        public void ApplyTheme()
+        {
+            Color labelForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
+            Color panelColor = ThemeManager.IsDarkMode ? Color.FromArgb(26, 26, 26) : Color.White;
+            Color moviePanelColor = ThemeManager.IsDarkMode ? Color.Gray : Color.LightGray;
+
+            this.BackColor = panelColor;
+            panel1.BackColor = panelColor;
+            favorite_lbl.ForeColor = labelForeColor;
+            favorite_lbl.BackColor = Color.Transparent;
+            favoriteMovie_panel.BackColor = moviePanelColor;
+            favoriteMovie_flp.BackColor = Color.White;
+            favoriteMovie_flp.ForeColor = labelForeColor;
+        }
+
         public void FavoriteControl_Load(object sender, EventArgs e)
         {
             // Fetch the favorite movies first

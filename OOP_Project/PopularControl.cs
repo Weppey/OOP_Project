@@ -48,7 +48,30 @@ namespace OOP_Project
             InitializeComponent();
             userType = userTypeFromLogin; // Store the user's type (admin or regular)
             currentUserId = userIdFromLogin; // Store the current user's ID
+            ApplyTheme();
         }
+
+        public void ApplyTheme()
+        {
+            Color labelForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
+            Color basePanelColor = ThemeManager.IsDarkMode ? Color.FromArgb(26, 26, 26) : Color.White;
+            Color moviePanelColor = ThemeManager.IsDarkMode ? Color.Gray : Color.LightGray;
+            Color flowPanelColor = Color.White; // Always white
+
+            // Main background
+            this.BackColor = basePanelColor;
+            popularPanel_panel.BackColor = basePanelColor;
+
+            // Movie area
+            popularMovie_panel.BackColor = moviePanelColor;
+            popularMovie_flp.BackColor = flowPanelColor;
+            popularMovie_flp.ForeColor = labelForeColor;
+
+            // Label
+            popular_lbl.ForeColor = labelForeColor;
+            popular_lbl.BackColor = Color.Transparent;
+        }
+
         public void Reload()
         {
             // Clear the existing favorite movie controls
