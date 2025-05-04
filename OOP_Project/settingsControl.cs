@@ -91,8 +91,16 @@ namespace OOP_Project
         private void changePassword_btn_Click(object sender, EventArgs e)
         {
             account_recovery_form recovery = new account_recovery_form();
-            recovery.Show();
+            recovery.ChangePassword();
+            recovery.ShowDialog();
 
+        }
+
+        private void changeEmail_btn_Click(object sender, EventArgs e)
+        {
+            account_recovery_form recovery = new account_recovery_form();
+            recovery.ChangeEmail();
+            recovery.ShowDialog();
         }
 
         private void clearHistory_btn_Click(object sender, EventArgs e)
@@ -176,6 +184,7 @@ namespace OOP_Project
                 }
             }
         }
+
 
     }
 }

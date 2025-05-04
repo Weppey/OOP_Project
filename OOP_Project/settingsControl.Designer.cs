@@ -340,6 +340,7 @@
             this.changeEmail_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.changeEmail_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.changeEmail_btn.Values.Text = "Change email";
+            this.changeEmail_btn.Click += new System.EventHandler(this.changeEmail_btn_Click);
             // 
             // changePassword_btn
             // 

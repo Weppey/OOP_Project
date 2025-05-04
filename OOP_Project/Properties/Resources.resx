@@ -154,14 +154,17 @@
   <data name="icons8-edit-user-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-edit-user-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-minimize-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\icons8-minimize-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8_save_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-save-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-contact-24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-contact-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-facebook-501" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-facebook-501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-bookmark-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-bookmark-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Netflix-N-Symbol-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Netflix-N-Symbol-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -186,6 +189,9 @@
   </data>
   <data name="icons8-check-mark-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-check-mark-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8-star-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-star-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-remove-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-remove-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -213,9 +219,6 @@
   </data>
   <data name="icons8-maximize-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-maximize-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8_save_20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-save-20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-home-501" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-home-501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -286,9 +289,6 @@
   <data name="icons8-rating-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-rating-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-insert-column-right-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-insert-column-right-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8-done-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\icons8-done-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -298,17 +298,14 @@
   <data name="icons8-edit-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-edit-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-settings-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\icons8-settings-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8-document-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-document-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-delete-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-delete-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-folder-501" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-folder-501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-star-28-yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-star-28-yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-left-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-left-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -409,9 +406,6 @@
   <data name="icons8-maximize-501" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-maximize-501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-star-28-yellow" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-star-28-yellow.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8-delete-document-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-delete-document-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -493,8 +487,8 @@
   <data name="login_wall1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\login_wall1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-bookmark-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-bookmark-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-insert-column-right-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-insert-column-right-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-fire-321" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-fire-321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -517,6 +511,9 @@
   <data name="icons8-about-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-about-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-settings-502" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-settings-502.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-star-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-star-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -529,6 +526,9 @@
   <data name="icons8-filter-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-filter-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-folder-501" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8-folder-501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-left-28 (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-left-28 (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -538,11 +538,14 @@
   <data name="icons8-plus-50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-plus-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="icons8-minimize-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\icons8-minimize-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="icons8-about-501" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-about-501.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-star-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-star-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8-settings-48" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\icons8-settings-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8-edit-delivery-terms-28" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8-edit-delivery-terms-28.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -553,7 +556,7 @@
   <data name="login_wall" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\login_wall.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8-settings-502" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8-settings-502.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="a-minecraft-movie-3840x2160-21613" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\a-minecraft-movie-3840x2160-21613.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
