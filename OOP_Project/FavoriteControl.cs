@@ -85,51 +85,152 @@ namespace OOP_Project
                 Margin = new Padding(5),
                 BackColor = Color.Gray,
                 Cursor = Cursors.Hand,
-                Tag = movie.Id // Set movie ID as Tag to detect duplicates
+                Tag = movie.Id
             };
 
             PictureBox poster = new PictureBox
             {
                 Size = new Size(140, 180),
-                Location = new Point(5, 0),
+                Location = new Point(0, 0),
                 BackColor = Color.Black,
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                BorderStyle = BorderStyle.FixedSingle
+                BorderStyle = BorderStyle.FixedSingle,
+                Image = Properties.Resources.icons8_loading_50 // Show a loading image first
             };
 
-            // Try to load the movie poster image
+            // Add poster to panel and panel to UI first
+            moviePanel.Controls.Add(poster);
+            targetPanel.Controls.Add(moviePanel);
+
+            // Add click handlers
+            // Shared click behavior
+            EventHandler clickHandler = (s, e) =>
+            {
+                LogMovieInteraction(currentUserId, movie.Id);
+                ShowMovieDetails(movie);
+            };
+            moviePanel.Click += clickHandler;
+            poster.Click += clickHandler;
+
+            // Load image in background
+            _ = Task.Run(async () =>
+            {
+                try
+                {
+                    string cachedImagePath = null;
+                    if (!string.IsNullOrEmpty(movie.ImageUrl))
+                    {
+                        cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
+                    }
+
+                    Image imageToShow = File.Exists(cachedImagePath)
+                        ? Image.FromFile(cachedImagePath)
+                        : Properties.Resources.fallback;
+
+                    // Safe UI update
+                    if (poster.IsHandleCreated)
+                    {
+                        poster.Invoke((MethodInvoker)(() =>
+                        {
+                            poster.Image = imageToShow;
+                        }));
+                    }
+                }
+                catch
+                {
+                    if (poster.IsHandleCreated)
+                    {
+                        poster.Invoke((MethodInvoker)(() =>
+                        {
+                            poster.Image = Properties.Resources.fallback;
+                        }));
+                    }
+                }
+            });
+        }
+
+        public void LogMovieInteraction(int userId, int movieId)
+        {
+            string checkUserQuery = "SELECT COUNT(*) FROM users WHERE user_id = @userId";
+            string checkMovieQuery = "SELECT COUNT(*) FROM movies WHERE movie_id = @movieId";
+
             try
             {
-                if (!string.IsNullOrEmpty(movie.ImageUrl))
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
-                    string cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
-                    if (cachedImagePath != null)
+                    conn.Open(); // Open the connection to the database
+
+                    // Check if user exists
+                    using (MySqlCommand checkUserCmd = new MySqlCommand(checkUserQuery, conn))
                     {
-                        poster.Image = Image.FromFile(cachedImagePath);
+                        checkUserCmd.Parameters.AddWithValue("@userId", userId);
+                        int userExists = Convert.ToInt32(checkUserCmd.ExecuteScalar()); // <-- You forgot this line!
+
+                        if (userExists == 0)
+                        {
+                            MessageBox.Show(
+                                "The user does not exist. Please check the user ID.",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                            return;
+                        }
                     }
-                    else
+
+                    // Check if movie exists
+                    using (MySqlCommand checkMovieCmd = new MySqlCommand(checkMovieQuery, conn))
                     {
-                        poster.Image = Properties.Resources.fallback;
+                        checkMovieCmd.Parameters.AddWithValue("@movieId", movieId);
+                        int movieExists = Convert.ToInt32(checkMovieCmd.ExecuteScalar());
+
+                        if (movieExists == 0)
+                        {
+                            MessageBox.Show(
+                                "The movie does not exist. Please check the movie ID.",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error
+                            );
+                            return;
+                        }
                     }
-                }
-                else
-                {
-                    poster.Image = Properties.Resources.fallback;
+
+                    // If both user and movie exist, insert into movie_interaction
+                    string insertQuery =
+                        "INSERT INTO movie_interaction (user_id, movie_id, created_at) VALUES (@userId, @movieId, @createdAt)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(insertQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@userId", userId);
+                        cmd.Parameters.AddWithValue("@movieId", movieId);
+                        cmd.Parameters.AddWithValue("@createdAt", DateTime.Now);
+
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    // Log movie view
+                    string logViewQuery =
+                        "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
+                    using (MySqlCommand cmdView = new MySqlCommand(logViewQuery, conn))
+                    {
+                        cmdView.Parameters.AddWithValue("@userId", userId);
+                        cmdView.Parameters.AddWithValue("@movieId", movieId);
+                        cmdView.Parameters.AddWithValue("@viewedAt", DateTime.Now);
+
+                        cmdView.ExecuteNonQuery();
+                    }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                poster.Image = Properties.Resources.fallback;
+                MessageBox.Show(
+                    "Failed to log movie interaction: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
-
-            // Add poster to the movie panel
-            moviePanel.Controls.Add(poster);
-
-            // Attach click to both panel and poster (for better UX)
-            moviePanel.Click += (s, e) => ShowMovieDetails(movie);
-            poster.Click += (s, e) => ShowMovieDetails(movie);
-
-            targetPanel.Controls.Add(moviePanel);
         }
 
         public void ShowMovieDetails(movie movie)

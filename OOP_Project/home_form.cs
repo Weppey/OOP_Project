@@ -353,11 +353,9 @@ namespace OOP_Project
 
                 foreach (var movie in movies)
                 {
-                    if (displayedMovies.Contains(movie.Id)) // Check if the movie is already displayed
-                    {
-                        continue; // Skip if the movie is already added
-                    }
+                    if (displayedMovies.Contains(movie.Id)) continue;
 
+                    // Create a panel to hold the movie poster
                     Panel moviePanel = new Panel
                     {
                         Size = new Size(140, 180),
@@ -366,77 +364,89 @@ namespace OOP_Project
                         Cursor = Cursors.Hand
                     };
 
+                    // Create a PictureBox for the movie poster
                     PictureBox poster = new PictureBox
                     {
                         Size = new Size(140, 180),
                         Location = new Point(5, 0),
                         BackColor = Color.Black,
                         SizeMode = PictureBoxSizeMode.Zoom,
-                        BorderStyle = BorderStyle.FixedSingle
+                        BorderStyle = BorderStyle.FixedSingle,
+                        Image = Properties.Resources.icons8_loading_50 // Show loading first
                     };
 
-                    // Try to load the movie poster image
-                    try
-                    {
-                        if (!string.IsNullOrEmpty(movie.ImageUrl))
-                        {
-                            string cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
-                            if (cachedImagePath != null)
-                            {
-                                poster.Image = Image.FromFile(cachedImagePath);
-                            }
-                            else
-                            {
-                                poster.Image = Properties.Resources.fallback;
-                            }
-                        }
-                        else
-                        {
-                            poster.Image = Properties.Resources.fallback;
-                        }
-                    }
-                    catch
-                    {
-                        poster.Image = Properties.Resources.fallback;
-                    }
-
-
-
-                    // Add poster to the movie panel
+                    // Add poster first to panel, and panel to UI
                     moviePanel.Controls.Add(poster);
-                    moviePanel.Click += (s, e) =>
+                    recommendedMovie_flp.Controls.Add(moviePanel);
+                    displayedMovies.Add(movie.Id);
+
+                    // Shared click behavior
+                    EventHandler clickHandler = (s, e) =>
                     {
-                        LogMovieView(currentUserId, movie.Id);
                         LogMovieInteraction(currentUserId, movie.Id);
                         ShowMovieDetails(movie);
                     };
 
+                    moviePanel.Click += clickHandler;
                     foreach (Control ctrl in moviePanel.Controls)
-                    {
-                        ctrl.Click += (s, e) =>
-                        {
-                            LogMovieView(currentUserId, movie.Id);
-                            LogMovieInteraction(currentUserId, movie.Id);
-                            ShowMovieDetails(movie);
-                        };
-                    }
+                        ctrl.Click += clickHandler;
 
-                    recommendedMovie_flp.Controls.Add(moviePanel);
-                    displayedMovies.Add(movie.Id); // Mark this movie as displayed
+                    // Load image in background
+                    _ = Task.Run(async () =>
+                    {
+                        try
+                        {
+                            string cachedImagePath = null;
+                            if (!string.IsNullOrEmpty(movie.ImageUrl))
+                            {
+                                cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
+                            }
+
+                            Image imageToShow = File.Exists(cachedImagePath)
+                                ? Image.FromFile(cachedImagePath)
+                                : Properties.Resources.fallback;
+
+                            // Safe UI update
+                            if (poster.IsHandleCreated)
+                            {
+                                poster.Invoke((MethodInvoker)(() =>
+                                {
+                                    poster.Image = imageToShow;
+                                }));
+                            }
+                        }
+                        catch
+                        {
+                            if (poster.IsHandleCreated)
+                            {
+                                poster.Invoke((MethodInvoker)(() =>
+                                {
+                                    poster.Image = Properties.Resources.fallback;
+                                }));
+                            }
+                        }
+                    });
                 }
             }
         }
 
+
         private async void DisplayAllMovies()
         {
-            allMovie_flp.Controls.Clear(); // Clear the previous movies
+            if (!this.IsHandleCreated)
+            {
+                await Task.Delay(100); // Ensure handle is created
+                if (!this.IsHandleCreated) return;
+            }
+
+            this.Invoke((MethodInvoker)(() => allMovie_flp.Controls.Clear())); // Clear the previous movies
 
             // Get all movies
             List<movie> allMovies = GetAllMovies();
 
             if (allMovies == null || allMovies.Count == 0)
             {
-                MessageBox.Show("No movies to display.");
+                this.Invoke((MethodInvoker)(() => MessageBox.Show("No movies to display.")));
                 return;
             }
 
@@ -458,7 +468,8 @@ namespace OOP_Project
                     Location = new Point(5, 0),
                     BackColor = Color.Black,
                     SizeMode = PictureBoxSizeMode.Zoom,
-                    BorderStyle = BorderStyle.FixedSingle
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Image = Properties.Resources.icons8_loading_50 // use a loading image
                 };
 
                 // Try to load the movie poster image
@@ -469,49 +480,57 @@ namespace OOP_Project
                         string cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
                         if (cachedImagePath != null)
                         {
-                            poster.Image = Image.FromFile(cachedImagePath);
+                            this.Invoke((MethodInvoker)(() =>
+                            {
+                                poster.Image = Image.FromFile(cachedImagePath);
+                            }));
                         }
                         else
                         {
-                            poster.Image = Properties.Resources.fallback;
+                            this.Invoke((MethodInvoker)(() =>
+                            {
+                                poster.Image = Properties.Resources.fallback;
+                            }));
                         }
                     }
                     else
                     {
-                        poster.Image = Properties.Resources.fallback;
+                        this.Invoke((MethodInvoker)(() =>
+                        {
+                            poster.Image = Properties.Resources.fallback;
+                        }));
                     }
                 }
                 catch
                 {
-                    poster.Image = Properties.Resources.fallback;
+                    this.Invoke((MethodInvoker)(() =>
+                    {
+                        poster.Image = Properties.Resources.fallback;
+                    }));
                 }
 
-
-                // Add poster to the movie panel
                 moviePanel.Controls.Add(poster);
 
                 // Movie panel click event to show movie details
-                moviePanel.Click += (s, e) =>
+                EventHandler clickHandler = (s, e) =>
                 {
-                    LogMovieView(currentUserId, movie.Id);
                     LogMovieInteraction(currentUserId, movie.Id);
                     ShowMovieDetails(movie);
                 };
 
+                moviePanel.Click += clickHandler;
                 foreach (Control ctrl in moviePanel.Controls)
                 {
-                    ctrl.Click += (s, e) =>
-                    {
-                        LogMovieView(currentUserId, movie.Id);
-                        LogMovieInteraction(currentUserId, movie.Id);
-                        ShowMovieDetails(movie);
-                    };
+                    ctrl.Click += clickHandler;
                 }
 
-                // Add the movie panel to the flow layout panel
-                allMovie_flp.Controls.Add(moviePanel);
+                this.Invoke((MethodInvoker)(() =>
+                {
+                    allMovie_flp.Controls.Add(moviePanel);
+                }));
             }
         }
+
 
         private List<movie> GetMovies(int offset, int limit)
         {
@@ -553,38 +572,7 @@ namespace OOP_Project
 
             return movies;
         }
-        public void LogMovieView(int userId, int movieId)
-        {
-            string insertQuery =
-                "INSERT INTO movie_views (user_id, movie_id, viewed_at) VALUES (@userId, @movieId, @viewedAt)";
-
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open(); // YOU MUST OPEN CONNECTION
-
-                    using (MySqlCommand cmd = new MySqlCommand(insertQuery, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@userId", userId);
-                        cmd.Parameters.AddWithValue("@movieId", movieId);
-                        cmd.Parameters.AddWithValue("@viewedAt", DateTime.Now);
-
-                        cmd.ExecuteNonQuery(); // Now it can execute successfully
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(
-                    "Failed to log movie view: " + ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error
-                );
-            }
-        }
-
+  
         public void LogMovieInteraction(int userId, int movieId)
         {
             string checkUserQuery = "SELECT COUNT(*) FROM users WHERE user_id = @userId";
@@ -837,7 +825,7 @@ namespace OOP_Project
         {
             if (Favorite_panel.Visible == false)
             {
-                Reload();
+           
                 form_lbl.Text = "FAVORITE";
                 Favorite_panel.Visible = true;
                 userProfile_panel.Visible = false;
@@ -857,6 +845,7 @@ namespace OOP_Project
             }
             else
             {
+                Reload();
                 Favorite_panel.Visible = false;
                 userProfile_panel.Visible = false;
                 AdminControl_panel.Visible = false;
@@ -885,7 +874,7 @@ namespace OOP_Project
         {
             if (popular_panel.Visible == false)
             {
-                Reload();
+             
                 form_lbl.Text = "POPULAR";
                 // Create an instance of FavoriteControl
                 PopularControl popularControl = new PopularControl(userType, currentUserId);
@@ -1073,19 +1062,30 @@ namespace OOP_Project
             PictureBox poster = new PictureBox
             {
                 Size = new Size(140, 180),
-                Location = new Point(5, 0),
+                Location = new Point(0, 0),
                 BackColor = Color.Black,
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                BorderStyle = BorderStyle.FixedSingle
+                BorderStyle = BorderStyle.FixedSingle,
+                Image = Properties.Resources.icons8_loading_50 // Optional loading placeholder
             };
 
-            // Try to load the movie poster image
+            moviePanel.Controls.Add(poster);
+
+            // Attach only one safe click handler to avoid double openings
+            EventHandler openDetailsHandler = (s, e) => ShowMovieDetails(movie);
+            moviePanel.Click += openDetailsHandler;
+            poster.Click += openDetailsHandler;
+
+            // Add to target panel
+            targetPanel.Controls.Add(moviePanel);
+
+            // Load poster asynchronously
             try
             {
                 if (!string.IsNullOrEmpty(movie.ImageUrl))
                 {
                     string cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
-                    if (cachedImagePath != null)
+                    if (!string.IsNullOrEmpty(cachedImagePath) && File.Exists(cachedImagePath))
                     {
                         poster.Image = Image.FromFile(cachedImagePath);
                     }
@@ -1103,17 +1103,8 @@ namespace OOP_Project
             {
                 poster.Image = Properties.Resources.fallback;
             }
-
-
-            // Add poster to the movie panel
-            moviePanel.Controls.Add(poster);
-
-            // Attach click to both panel and poster (for better UX)
-            moviePanel.Click += (s, e) => ShowMovieDetails(movie);
-            poster.Click += (s, e) => ShowMovieDetails(movie);
-
-            targetPanel.Controls.Add(moviePanel);
         }
+
 
         private bool IsMovieAlreadyInPanel(movie movie, FlowLayoutPanel panel)
         {
@@ -1480,7 +1471,7 @@ namespace OOP_Project
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading recent searches: " + ex.Message);
+                MessageBox.Show("Error loading recent searches: " + ex.Message);    
             }
         }
 
@@ -1502,25 +1493,60 @@ namespace OOP_Project
                 Location = new Point(0, 0),
                 BackColor = Color.Black,
                 SizeMode = PictureBoxSizeMode.StretchImage,
-                BorderStyle = BorderStyle.FixedSingle
+                BorderStyle = BorderStyle.FixedSingle,
+                Image = Properties.Resources.icons8_loading_50 // use a loading image
             };
 
-            // Try to load the movie poster image
-            try
+
+            moviePanel.Controls.Add(poster);
+            recentlysearch_flp.Controls.Add(moviePanel);
+
+            // Load image in background
+            await Task.Run(async () =>
             {
-                if (!string.IsNullOrEmpty(movie.ImageUrl))
+                try
                 {
-                    poster.Load(movie.ImageUrl);
+                    if (!string.IsNullOrEmpty(movie.ImageUrl))
+                    {
+                        string cachedPath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
+                        if (cachedPath != null && File.Exists(cachedPath))
+                        {
+                            Image loadedImage = Image.FromFile(cachedPath);
+
+                            // Safe UI update
+                            poster.Invoke((MethodInvoker)(() =>
+                            {
+                                poster.Image = loadedImage;
+                            }));
+                        }
+                        else
+                        {
+                            poster.Invoke((MethodInvoker)(() =>
+                            {
+                                poster.Image = Properties.Resources.fallback;
+                            }));
+                        }
+                    }
+                    else
+                    {
+                        poster.Invoke((MethodInvoker)(() =>
+                        {
+                            poster.Image = Properties.Resources.fallback;
+                        }));
+                    }
                 }
-                else
+                catch
                 {
-                    poster.Image = Properties.Resources.fallback;
+                    if (poster.IsHandleCreated)
+                    {
+                        poster.Invoke((MethodInvoker)(() =>
+                        {
+                            poster.Image = Properties.Resources.fallback;
+                        }));
+                    }
+
                 }
-            }
-            catch
-            {
-                poster.Image = Properties.Resources.fallback;
-            }
+            });
 
             moviePanel.Click += (s, e) => ShowMovieDetails(movie);
             poster.Click += (s, e) => ShowMovieDetails(movie);
@@ -1532,8 +1558,6 @@ namespace OOP_Project
 
         private void home_btn_Click(object sender, EventArgs e)
         {
-            Reload();
-
             movie_panel.Visible = true;
 
             form_lbl.Text = "HOME";
@@ -1614,7 +1638,6 @@ namespace OOP_Project
             }
             else
             {
-                Reload();
                 userProfile_panel.Visible = false;
                 AdminControl_panel.Visible = false;
                 popular_panel.Visible = false;

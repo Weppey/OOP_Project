@@ -315,10 +315,13 @@ namespace OOP_Project
 
         public async void DisplayRecentlyViewedMovies()
         {
-            home_form homeForm = new home_form(userType, userId);
+            home_form homeForm = this.FindForm() as home_form;
+
             if (homeForm == null)
             {
-                homeForm = new home_form(userType, userId);
+                // Optional: Handle error or fallback
+                MessageBox.Show("Home form not found.");
+                return;
             }
 
             List<movie> recentMovies = GetRecentlyViewedMovies(currentUserId);
@@ -334,99 +337,122 @@ namespace OOP_Project
                         ForeColor = Color.Gray,
                         Font = new Font("Arial", 10, FontStyle.Italic)
                     };
-                    recentlyViewMovie_flp.Controls.Add(noRecentLabel);
+
+                    if (recentlyViewMovie_flp.IsHandleCreated)
+                    {
+                        recentlyViewMovie_flp.Invoke((MethodInvoker)(() =>
+                        {
+                            recentlyViewMovie_flp.Controls.Add(noRecentLabel);
+                        }));
+                    }
                 }
                 return;
             }
+
             foreach (var movie in recentMovies)
+            {
+                // Remove duplicates
+                Control existingPanel = recentlyViewMovie_flp.Controls
+                    .Cast<Control>()
+                    .FirstOrDefault(ctrl => ctrl.Tag is int id && id == movie.Id);
+
+                if (existingPanel != null)
                 {
-                    // Remove existing if duplicate
-                    Control existingPanel = null;
-                    foreach (Control ctrl in recentlyViewMovie_flp.Controls)
+                    if (recentlyViewMovie_flp.IsHandleCreated)
                     {
-                        if (ctrl.Tag is int id && id == movie.Id)
+                        recentlyViewMovie_flp.Invoke((MethodInvoker)(() =>
                         {
-                            existingPanel = ctrl;
-                            break;
-                        }
-                    }
-
-                    if (existingPanel != null)
-                    {
-                        recentlyViewMovie_flp.Controls.Remove(existingPanel);
-                        existingPanel.Dispose(); // Clean up
-                    }
-
-                    // Create movie panel
-                    Panel moviePanel = new Panel
-                    {
-                        Size = new Size(120, 160),
-                        Margin = new Padding(5),
-                        BackColor = Color.Gray,
-                        Cursor = Cursors.Hand,
-                        Tag = movie.Id
-                    };
-
-                    PictureBox poster = new PictureBox
-                    {
-                        Size = new Size(120, 160),
-                        Location = new Point(5, 0),
-                        BackColor = Color.Black,
-                        SizeMode = PictureBoxSizeMode.Zoom,
-                        BorderStyle = BorderStyle.FixedSingle
-                    };
-
-                // Try to load the movie poster image
-                try
-                {
-                    if (!string.IsNullOrEmpty(movie.ImageUrl))
-                    {
-                        string cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
-                        if (cachedImagePath != null)
-                        {
-                            poster.Image = Image.FromFile(cachedImagePath);
-                        }
-                        else
-                        {
-                            poster.Image = Properties.Resources.fallback;
-                        }
-                    }
-                    else
-                    {
-                        poster.Image = Properties.Resources.fallback;
+                            recentlyViewMovie_flp.Controls.Remove(existingPanel);
+                            existingPanel.Dispose();
+                        }));
                     }
                 }
-                catch
+
+                // Create panel and placeholder
+                Panel moviePanel = new Panel
                 {
-                    poster.Image = Properties.Resources.fallback;
-                }
+                    Size = new Size(120, 160),
+                    Margin = new Padding(5),
+                    BackColor = Color.Gray,
+                    Cursor = Cursors.Hand,
+                    Tag = movie.Id
+                };
+
+                PictureBox poster = new PictureBox
+                {
+                    Size = new Size(120, 160),
+                    Location = new Point(0, 0),
+                    BackColor = Color.Black,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                    BorderStyle = BorderStyle.FixedSingle,
+                    Image = Properties.Resources.icons8_loading_50
+                };
 
                 moviePanel.Controls.Add(poster);
 
-                    // Shared click handler
-                    EventHandler clickHandler = (s, e) =>
+                EventHandler clickHandler = (s, e) =>
+                {
+                    homeForm.LogMovieInteraction(currentUserId, movie.Id);
+                    homeForm.ShowMovieDetails(movie);
+                };
+
+                moviePanel.Click += clickHandler;
+                foreach (Control ctrl in moviePanel.Controls)
+                    ctrl.Click += clickHandler;
+
+                if (recentlyViewMovie_flp.IsHandleCreated)
+                {
+                    recentlyViewMovie_flp.Invoke((MethodInvoker)(() =>
                     {
-                        homeForm.LogMovieView(currentUserId, movie.Id);
-                        homeForm.LogMovieInteraction(currentUserId, movie.Id);
-                        homeForm.ShowMovieDetails(movie);
-                    };
+                        recentlyViewMovie_flp.Controls.Add(moviePanel);
 
-                    moviePanel.Click += clickHandler;
-                    foreach (Control ctrl in moviePanel.Controls)
-                        ctrl.Click += clickHandler;
-
-                    // Add at the end (default behavior)
-                    recentlyViewMovie_flp.Controls.Add(moviePanel);
-
-                    // Keep only latest 10
-                    if (recentlyViewMovie_flp.Controls.Count > 20)
-                    {
-                        Control first = recentlyViewMovie_flp.Controls[0];
-                        recentlyViewMovie_flp.Controls.Remove(first);
-                        first.Dispose();
-                    }
+                        // Keep max 20
+                        if (recentlyViewMovie_flp.Controls.Count > 20)
+                        {
+                            Control first = recentlyViewMovie_flp.Controls[0];
+                            recentlyViewMovie_flp.Controls.Remove(first);
+                            first.Dispose();
+                        }
+                    }));
                 }
+
+                // Load poster asynchronously
+                _ = Task.Run(async () =>
+                {
+                    try
+                    {
+                        string cachedImagePath = null;
+                        if (!string.IsNullOrEmpty(movie.ImageUrl))
+                        {
+                            cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
+                        }
+
+                        Image imageToShow = File.Exists(cachedImagePath)
+                            ? Image.FromFile(cachedImagePath)
+                            : Properties.Resources.fallback;
+
+                        if (poster.IsHandleCreated)
+                        {
+                            poster.Invoke((MethodInvoker)(() =>
+                            {
+                                poster.Image = imageToShow;
+                            }));
+                        }
+                    }
+                    catch
+                    {
+                        if (poster.IsHandleCreated)
+                        {
+                            poster.Invoke((MethodInvoker)(() =>
+                            {
+                                poster.Image = Properties.Resources.fallback;
+                            }));
+                        }
+                    }
+                });
+            }
         }
+
 
 
         public List<movie> GetRecentlyViewedMovies(int userId)
