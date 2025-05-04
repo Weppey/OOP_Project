@@ -486,6 +486,45 @@ namespace OOP_Project
             expandTimer.Start();
         }
 
+        private void UpdateMovieAverageRating(int movieId)
+        {
+            string averageQuery = @"SELECT AVG(rating) FROM movie_interaction WHERE movie_id = @movieId";
+            string updateMovieQuery = @"UPDATE movies SET rating = @averageRating WHERE movie_id = @movieId";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    // Get average rating
+                    double averageRating = 0;
+                    using (MySqlCommand avgCmd = new MySqlCommand(averageQuery, conn))
+                    {
+                        avgCmd.Parameters.AddWithValue("@movieId", movieId);
+                        object result = avgCmd.ExecuteScalar();
+                        if (result != DBNull.Value)
+                        {
+                            averageRating = Math.Round(Convert.ToDouble(result), 2); // Round to 2 decimal places
+                        }
+                    }
+
+                    // Update the movie's rating
+                    using (MySqlCommand updateCmd = new MySqlCommand(updateMovieQuery, conn))
+                    {
+                        updateCmd.Parameters.AddWithValue("@averageRating", averageRating);
+                        updateCmd.Parameters.AddWithValue("@movieId", movieId);
+                        updateCmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to update movie average rating: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
         private void StartCollapseAnimation()
         {
             if (isAnimating) return; // Prevent animation if one is already in progress
@@ -577,7 +616,8 @@ namespace OOP_Project
                                 updateCmd.Parameters.AddWithValue("@userId", currentUserId);
                                 updateCmd.Parameters.AddWithValue("@movieId", movieId);
 
-                                updateCmd.ExecuteNonQuery();
+                                updateCmd.ExecuteNonQuery(); UpdateMovieAverageRating(movieId);
+
                             }
                         }
                         else
