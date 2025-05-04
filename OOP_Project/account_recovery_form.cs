@@ -33,8 +33,12 @@ namespace OOP_Project
 
         private void account_recovery_form_Load(object sender, EventArgs e)
         {
+
             string[] securityQuestions = { "What is your mother's maiden name?", "What was your first pet's name?", "What was your first car?", "What elementary school did you attend?", "What is your favorite food?" };
             securityq_cmb.Items.AddRange(securityQuestions);
+
+            string[] securityEmailQuestions = { "What is your mother's maiden name?", "What was your first pet's name?", "What was your first car?", "What elementary school did you attend?", "What is your favorite food?" };
+            sqEmailChange_cmb.Items.AddRange(securityEmailQuestions);
 
             CurvePanel(background_panel, 30);
             background_panel.Resize += (s, args) => CurvePanel(background_panel, 20);
@@ -162,6 +166,23 @@ namespace OOP_Project
             }
         }
 
+        public void ChangePassword()
+        {
+            Panel_Recovery.Visible = true;
+            securityQuestion_panel.Visible = false;
+            changeEmail_panel.Visible = false;
+
+            background_panel.BackgroundImage = Properties.Resources._31;
+        }
+
+        public void ChangeEmail()
+        {
+            changeEmail_panel.Visible = true;
+            securityQuestion_panel.Visible = false;
+            Panel_Recovery.Visible = false;
+
+            background_panel.BackgroundImage = Properties.Resources.a_minecraft_movie_3840x2160_21613;
+        }
         private void confirm_btn_Click(object sender, EventArgs e)
         {
             string enteredCode = recoveryC_tb.Text;
@@ -568,19 +589,134 @@ namespace OOP_Project
         {
             if (emailChange_cb.Checked)
             {
-                confirmPassEmail_tb.PasswordChar = ('\0');
-                emailNewPassword_tb.PasswordChar = ('\0');
+                emailPassword_tb.PasswordChar = ('\0');
             }
             else
             {
-                confirmPassEmail_tb.PasswordChar = ('*');
-                emailNewPassword_tb.PasswordChar = ('*');
+                emailPassword_tb.PasswordChar = ('*');
             }
         }
+            private void sqEmailChange_btn_Click(object sender, EventArgs e)
+            {
+                string email = oldEmail_tb.Text.Trim();
+                string selectedQuestion = sqEmailChange_cmb.Text;
+                string answer = sqAnswerEmail_tb.Text.Trim();
+                string newEmail = newEmail_tb.Text.Trim();
+                string emailPassword = emailPassword_tb.Text.Trim();
 
-        private void sqEmailChange_btn_Click(object sender, EventArgs e)
-        {
+                // Check if any required field is empty
+                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(selectedQuestion) ||
+                    string.IsNullOrWhiteSpace(answer) || string.IsNullOrWhiteSpace(newEmail) || string.IsNullOrWhiteSpace(emailPassword))
+                {
+                    MessageBox.Show("Please complete all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
+                    // Clear the textboxes with invalid input
+                    if (string.IsNullOrWhiteSpace(email)) oldEmail_tb.Clear();
+                    if (string.IsNullOrWhiteSpace(selectedQuestion)) sqEmailChange_cmb.SelectedIndex = -1;
+                    if (string.IsNullOrWhiteSpace(answer)) sqAnswerEmail_tb.Clear();
+                    if (string.IsNullOrWhiteSpace(newEmail)) newEmail_tb.Clear();
+                    if (string.IsNullOrWhiteSpace(emailPassword)) emailPassword_tb.Clear();
+
+                    return;
+                }
+
+                try
+                {
+                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        // Check if the new email already exists
+                        string checkEmailQuery = "SELECT COUNT(*) FROM users WHERE email = @NewEmail";
+                        MySqlCommand checkEmailCmd = new MySqlCommand(checkEmailQuery, connection);
+                        checkEmailCmd.Parameters.AddWithValue("@NewEmail", newEmail);
+                        int emailCount = Convert.ToInt32(checkEmailCmd.ExecuteScalar());
+
+                        if (emailCount > 0)
+                        {
+                            MessageBox.Show("The new email address is already registered. Please choose a different email.", "Email Already Registered", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            // Clear the new email textbox if there's an error
+                            newEmail_tb.Clear();
+                            return;
+                        }
+
+                        // Proceed with the rest of the process if email is not taken
+                        string query = "SELECT password, security_answer FROM users WHERE email = @Email AND security_question = @Question";
+                        MySqlCommand cmd = new MySqlCommand(query, connection);
+                        cmd.Parameters.AddWithValue("@Email", email);
+                        cmd.Parameters.AddWithValue("@Question", selectedQuestion);
+
+                        // Execute the query and process the result in one step
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read()) // Check if data is returned
+                            {
+                                string storedHashedPassword = reader.GetString("password");
+                                string storedHashedAnswer = reader.GetString("security_answer");
+
+                                // Verify password
+                                if (BCrypt.Net.BCrypt.Verify(emailPassword, storedHashedPassword))
+                                {
+                                    // Verify security answer
+                                    if (BCrypt.Net.BCrypt.Verify(answer, storedHashedAnswer))
+                                    {
+                                        // Close the reader before executing another command
+                                        reader.Close();
+
+                                        // Update email
+                                        string updateQuery = "UPDATE users SET email = @NewEmail WHERE email = @Email";
+                                        MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection);
+                                        updateCmd.Parameters.AddWithValue("@NewEmail", newEmail);
+                                        updateCmd.Parameters.AddWithValue("@Email", email);
+                                        updateCmd.ExecuteNonQuery();
+
+                                        MessageBox.Show("Email has been successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                        if (Application.OpenForms["home_form"] != null)
+                                        {
+                                            this.Close();
+                                            StayLoggedIn.ClearSession();
+                                            Application.Restart();
+                                            // SendSuccessfulEmailChangeNotification(newEmail);
+                                        }
+                                        else
+                                        {
+                                            this.Close();
+                                            login_form loginForm = new login_form();
+                                            loginForm.ShowDialog();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Incorrect security answer. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                        // Clear the answer textbox if there's an error
+                                        sqAnswerEmail_tb.Clear();
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Incorrect password. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                    // Clear the password textbox if there's an error
+                                    emailPassword_tb.Clear();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("No matching user found for the provided information.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                // Clear the email textbox if no match found
+                                oldEmail_tb.Clear();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
-}

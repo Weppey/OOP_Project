@@ -91,8 +91,16 @@ namespace OOP_Project
         private void changePassword_btn_Click(object sender, EventArgs e)
         {
             account_recovery_form recovery = new account_recovery_form();
-            recovery.Show();
+            recovery.ChangePassword();
+            recovery.ShowDialog();
 
+        }
+
+        private void changeEmail_btn_Click(object sender, EventArgs e)
+        {
+            account_recovery_form recovery = new account_recovery_form();
+            recovery.ChangeEmail();
+            recovery.ShowDialog();
         }
 
         private void clearHistory_btn_Click(object sender, EventArgs e)
@@ -176,6 +184,78 @@ namespace OOP_Project
                 }
             }
         }
+
+        private void deleteAccount_btn_Click(object sender, EventArgs e)
+        {
+            int currentUserId = userId; // Make sure this is assigned correctly from your session or logged-in user
+
+            DialogResult result = MessageBox.Show(
+                "This action will permanently delete your account and cannot be undone.\n\nAre you sure you want to continue?",
+                "Confirm Account Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                try
+                {
+                    string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+                    using (MySqlConnection conn = new MySqlConnection(connectionString))
+                    {
+                        conn.Open();
+                        string query = "DELETE FROM users WHERE user_id = @userId";
+                        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@userId", currentUserId);
+                            int rowsAffected = cmd.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
+                            {
+                                MessageBox.Show(
+                                    "Your account has been successfully deleted.",
+                                    "Account Deleted",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information
+                                );
+
+                                StayLoggedIn.ClearSession();
+                                login_form login = new login_form();
+                                login.ShowDialog();
+                            }
+                            else
+                            {
+                                MessageBox.Show(
+                                    "User not found. The account may have already been deleted.",
+                                    "Deletion Failed",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Exclamation
+                                );
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "An unexpected error occurred while deleting the account:\n\n" + ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                }
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Your account was not deleted.",
+                    "Operation Cancelled",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+        }
+
 
     }
 }

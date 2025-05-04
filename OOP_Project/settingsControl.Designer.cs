@@ -197,9 +197,10 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.deleteAccount_btn.TabIndex = 106;
-            this.deleteAccount_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_submit_281;
+            this.deleteAccount_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_trash_20;
             this.deleteAccount_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.deleteAccount_btn.Values.Text = "Delete my account";
+            this.deleteAccount_btn.Click += new System.EventHandler(this.deleteAccount_btn_Click);
             // 
             // appinfo_lbl
             // 
@@ -340,6 +341,7 @@
             this.changeEmail_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.changeEmail_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.changeEmail_btn.Values.Text = "Change email";
+            this.changeEmail_btn.Click += new System.EventHandler(this.changeEmail_btn_Click);
             // 
             // changePassword_btn
             // 

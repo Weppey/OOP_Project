@@ -78,7 +78,6 @@
             // 
             this.recentlyViewMovie_flp.AutoScroll = true;
             this.recentlyViewMovie_flp.BackColor = System.Drawing.Color.White;
-            this.recentlyViewMovie_flp.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.recentlyViewMovie_flp.Location = new System.Drawing.Point(18, 16);
             this.recentlyViewMovie_flp.Name = "recentlyViewMovie_flp";
             this.recentlyViewMovie_flp.Padding = new System.Windows.Forms.Padding(5);
