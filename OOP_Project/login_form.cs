@@ -12,6 +12,7 @@ using CaptchaGen;
 using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 namespace OOP_Project
@@ -95,7 +96,8 @@ namespace OOP_Project
                     connection.Open();  // Open the connection to the database
 
                     // SQL query to fetch user details
-                    string query = "SELECT user_id, password, user_type FROM users WHERE username = @username LIMIT 1";
+                    string query = "SELECT user_id, password, user_type, email_verified, email FROM users WHERE username = @username LIMIT 1";
+
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -110,33 +112,38 @@ namespace OOP_Project
                                 string storedHash = reader["password"].ToString(); // Get stored password hash
                                 string userType = reader["user_type"].ToString();  // Get the user type (admin, regular, etc.)
                                 int userId = Convert.ToInt32(reader["user_id"]);  // Get the user ID
+                                bool emailVerified = Convert.ToBoolean(reader["email_verified"]); // Check if email is verified
+                                string email = reader["email"].ToString();
 
                                 // Verify the password using BCrypt
                                 if (BCrypt.Net.BCrypt.Verify(password, storedHash))
                                 {
+                                    if (!emailVerified)
+                                    {
+                                        MessageBox.Show("Your email has not been verified. Please verify your email before logging in.", "Email Not Verified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                        this.Hide();
+                                        verification_form verify = new verification_form(email);
+                                        verify.ShowDialog();
+                                       
+                                        return; // Stop login process
+                                    }
+
                                     // Save the session information, such as user type and ID
                                     StayLoggedIn.SaveUserSession(userType, userId);
 
-                                    // Provide feedback to the user
                                     MessageBox.Show($"Welcome back, {username}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                    // Hide the login form and show the home form
                                     this.Hide();
                                     home_form homeForm = new home_form(userType, userId);
-                                    homeForm.ShowDialog(); // Display the home form modally
-                                    this.Close();  // Close the login form after successful login
+                                    homeForm.ShowDialog();
+                                    this.Close();
                                 }
                                 else
                                 {
-                                    // Handle incorrect password
                                     MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
-                            else
-                            {
-                                // Handle case where no user is found with the entered username
-                                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+
                         }
                     }
                 }
