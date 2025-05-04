@@ -903,6 +903,16 @@ namespace OOP_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_loading_50 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-loading-50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_maximize_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-maximize-50", resourceCulture);

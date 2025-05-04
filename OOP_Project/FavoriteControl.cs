@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static OOP_Project.StayLoggedIn;
 
 namespace OOP_Project
 {
@@ -96,30 +97,28 @@ namespace OOP_Project
                 BorderStyle = BorderStyle.FixedSingle
             };
 
-            // Load cached image URLs
-            var cachedImages = StayLoggedIn.GetCachedImageUrls();
-
-            // Check if the image URL is cached
-            if (!string.IsNullOrEmpty(movie.ImageUrl) && cachedImages.Contains(movie.ImageUrl))
+            // Try to load the movie poster image
+            try
             {
-                // Load the image from the cache if it is already cached
-                var image = await Task.Run(() => LoadImageFromCache(movie.ImageUrl));
-                poster.Image = image ?? Properties.Resources.fallback;
+                if (!string.IsNullOrEmpty(movie.ImageUrl))
+                {
+                    string cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
+                    if (cachedImagePath != null)
+                    {
+                        poster.Image = Image.FromFile(cachedImagePath);
+                    }
+                    else
+                    {
+                        poster.Image = Properties.Resources.fallback;
+                    }
+                }
+                else
+                {
+                    poster.Image = Properties.Resources.fallback;
+                }
             }
-            else if (!string.IsNullOrEmpty(movie.ImageUrl))
+            catch
             {
-                // Download and cache the image if not in cache
-                var image = await Task.Run(() => DownloadImageAndCache(movie.ImageUrl));
-                poster.Image = image ?? Properties.Resources.fallback;
-
-                // Add to the cached images
-                var currentCachedImages = cachedImages.ToList();
-                currentCachedImages.Add(movie.ImageUrl);
-                StayLoggedIn.SaveCachedImages(currentCachedImages.ToArray()); // Save updated cache
-            }
-            else
-            {
-                // Use fallback image if no URL is available
                 poster.Image = Properties.Resources.fallback;
             }
 

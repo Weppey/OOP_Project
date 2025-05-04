@@ -478,6 +478,8 @@
     <None Include="Resources\icons8-save-20.png" />
     <None Include="Resources\icons8-settings-502.png" />
     <None Include="Resources\a-minecraft-movie-3840x2160-21613.jpg" />
+    <Content Include="Resources\icons8-loading-50.png" />
+    <None Include="Resources\icons8-loading-501.png" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />
