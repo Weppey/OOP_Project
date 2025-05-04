@@ -1475,6 +1475,31 @@ namespace OOP_Project
             }
         }
 
+        private void search_list_TabIndexChanged(object sender, EventArgs e)
+        {
+            search_txt_Leave(sender, e); // still useful to keep placeholder logic
+
+            if (search_list.SelectedItem is movie selectedMovie)
+            {
+                // Avoid adding the same movie twice
+                if (!IsMovieAlreadyInPanel(selectedMovie, recentlysearch_flp))
+                {
+                    DisplaySingleMovie(selectedMovie, recentlysearch_flp);
+                }
+
+                // Clear the TextBox and remove focus
+                search_tb.Clear();
+                this.ActiveControl = null;
+            }
+            else if (string.IsNullOrWhiteSpace(search_tb.Text) || search_tb.Text == "Search...")
+            {
+                // Display 3 most recent searched titles
+                string placeholder = GetRecentSearchTitles(currentUserId); // Make sure currentUserId is available
+                search_tb.Text = placeholder;
+                search_tb.ForeColor = Color.Gray;
+            }
+        }
+
         private async Task DisplayMovieInRecentlySearchAsync(movie movie)
         {
             // Same content as before...
@@ -1555,6 +1580,7 @@ namespace OOP_Project
 
             recentlysearch_flp.Controls.Add(moviePanel);
         }
+
 
         private void home_btn_Click(object sender, EventArgs e)
         {
@@ -1738,30 +1764,7 @@ namespace OOP_Project
             }
         }
 
-        private void search_list_TabIndexChanged(object sender, EventArgs e)
-        {
-            search_txt_Leave(sender, e); // still useful to keep placeholder logic
-
-            if (search_list.SelectedItem is movie selectedMovie)
-            {
-                // Avoid adding the same movie twice
-                if (!IsMovieAlreadyInPanel(selectedMovie, recentlysearch_flp))
-                {
-                    DisplaySingleMovie(selectedMovie, recentlysearch_flp);
-                }
-
-                // Clear the TextBox and remove focus
-                search_tb.Clear();
-                this.ActiveControl = null;
-            }
-            else if (string.IsNullOrWhiteSpace(search_tb.Text) || search_tb.Text == "Search...")
-            {
-                // Display 3 most recent searched titles
-                string placeholder = GetRecentSearchTitles(currentUserId); // Make sure currentUserId is available
-                search_tb.Text = placeholder;
-                search_tb.ForeColor = Color.Gray;
-            }
-        }
+ 
     }
 }
 

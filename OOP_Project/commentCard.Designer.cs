@@ -24,6 +24,7 @@ namespace OOP_Project
         {
             this.username_lbl = new System.Windows.Forms.Label();
             this.commentBG_panel = new System.Windows.Forms.Panel();
+            this.commentReply_lbl = new System.Windows.Forms.Label();
             this.deleteComment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.editComment_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -34,7 +35,6 @@ namespace OOP_Project
             this.comment_tb = new System.Windows.Forms.TextBox();
             this.comment_lbl = new System.Windows.Forms.Label();
             this.separatorPanel = new System.Windows.Forms.Panel();
-            this.commentReply_lbl = new System.Windows.Forms.Label();
             this.commentBG_panel.SuspendLayout();
             this.profileBack_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userAvatar)).BeginInit();
@@ -55,7 +55,7 @@ namespace OOP_Project
             // commentBG_panel
             // 
             this.commentBG_panel.AutoSize = true;
-            this.commentBG_panel.BackColor = System.Drawing.Color.White;
+            this.commentBG_panel.BackColor = System.Drawing.Color.Transparent;
             this.commentBG_panel.Controls.Add(this.commentReply_lbl);
             this.commentBG_panel.Controls.Add(this.deleteComment_btn);
             this.commentBG_panel.Controls.Add(this.editComment_btn);
@@ -69,6 +69,19 @@ namespace OOP_Project
             this.commentBG_panel.Name = "commentBG_panel";
             this.commentBG_panel.Size = new System.Drawing.Size(848, 84);
             this.commentBG_panel.TabIndex = 1;
+            // 
+            // commentReply_lbl
+            // 
+            this.commentReply_lbl.AutoSize = true;
+            this.commentReply_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.commentReply_lbl.ForeColor = System.Drawing.Color.Red;
+            this.commentReply_lbl.Location = new System.Drawing.Point(722, 5);
+            this.commentReply_lbl.Name = "commentReply_lbl";
+            this.commentReply_lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.commentReply_lbl.Size = new System.Drawing.Size(40, 15);
+            this.commentReply_lbl.TabIndex = 9;
+            this.commentReply_lbl.Text = "Edited";
+            this.commentReply_lbl.Visible = false;
             // 
             // deleteComment_btn
             // 
@@ -171,19 +184,6 @@ namespace OOP_Project
             this.separatorPanel.Name = "separatorPanel";
             this.separatorPanel.Size = new System.Drawing.Size(756, 1);
             this.separatorPanel.TabIndex = 3;
-            // 
-            // commentReply_lbl
-            // 
-            this.commentReply_lbl.AutoSize = true;
-            this.commentReply_lbl.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.commentReply_lbl.ForeColor = System.Drawing.Color.Red;
-            this.commentReply_lbl.Location = new System.Drawing.Point(722, 5);
-            this.commentReply_lbl.Name = "commentReply_lbl";
-            this.commentReply_lbl.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.commentReply_lbl.Size = new System.Drawing.Size(40, 15);
-            this.commentReply_lbl.TabIndex = 9;
-            this.commentReply_lbl.Text = "Edited";
-            this.commentReply_lbl.Visible = false;
             // 
             // commentCard
             // 
