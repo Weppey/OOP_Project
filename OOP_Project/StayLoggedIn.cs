@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OOP_Project
@@ -10,7 +12,6 @@ namespace OOP_Project
         // Use AppData for session and cache files to avoid issues with restricted permissions
         private static readonly string appDataFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OOP_Project");
         private static readonly string sessionFilePath = Path.Combine(appDataFolder, "session.txt");
-        private static readonly string imageCacheFilePath = Path.Combine(appDataFolder, "imageCache.txt");
 
         static StayLoggedIn()
         {
@@ -72,36 +73,7 @@ namespace OOP_Project
                 MessageBox.Show($"Error clearing user session: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        // Save the cached image URLs to a file
-        public static void SaveCachedImages(string[] cachedImages)
-        {
-            try
-            {
-                File.WriteAllLines(imageCacheFilePath, cachedImages);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error saving cached images: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        // Load cached image URLs from the file
-        public static string[] GetCachedImageUrls()
-        {
-            try
-            {
-                if (File.Exists(imageCacheFilePath))
-                {
-                    return File.ReadAllLines(imageCacheFilePath);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading cached images: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            return new string[0]; // Return an empty array if no cached images
-        }
+   
 
         // Retrieve the current userId from the session file, if available
         public static int? GetCurrentUserId()
@@ -115,5 +87,56 @@ namespace OOP_Project
         {
             return LoadUserSession() != null;
         }
+
+        public static class ImageCacheHelper
+        {
+            private static readonly string cacheFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "OOP_Project", "ImageCache");
+
+            static ImageCacheHelper()
+            {
+                try
+                {
+                    Directory.CreateDirectory(cacheFolder);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error creating image cache directory: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            public static string GetCachedImagePath(string imageUrl)
+            {
+                // Generate a unique filename based on the image URL (hash it to avoid illegal characters)
+                string fileName = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(imageUrl)).Replace("/", "_") + ".jpg";
+                return Path.Combine(cacheFolder, fileName);
+            }
+
+            public static async Task<string> DownloadImageIfNotCachedAsync(string imageUrl)
+            {
+                string cachedPath = GetCachedImagePath(imageUrl);
+
+                if (!File.Exists(cachedPath))
+                {
+                    try
+                    {
+                        using (var client = new HttpClient())
+                        {
+                            var imageBytes = await client.GetByteArrayAsync(imageUrl);
+
+                            // If you're using .NET Framework, use WriteAllBytes instead of WriteAllBytesAsync
+                            File.WriteAllBytes(cachedPath, imageBytes);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Failed to download image: {ex.Message}", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return null;
+                    }
+                }
+
+                return cachedPath;
+            }
+
+        }
+        }
     }
-}

@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static OOP_Project.StayLoggedIn;
 
 namespace OOP_Project
 {
@@ -96,33 +97,30 @@ namespace OOP_Project
                 BorderStyle = BorderStyle.FixedSingle
             };
 
-            // Load cached image URLs
-            var cachedImages = StayLoggedIn.GetCachedImageUrls();
-
-            // Check if the image URL is cached
-            if (!string.IsNullOrEmpty(movie.ImageUrl) && cachedImages.Contains(movie.ImageUrl))
+            // Try to load the movie poster image
+            try
             {
-                // Load the image from the cache if it is already cached
-                var image = await Task.Run(() => LoadImageFromCache(movie.ImageUrl));
-                poster.Image = image ?? Properties.Resources.fallback;
+                if (!string.IsNullOrEmpty(movie.ImageUrl))
+                {
+                    string cachedImagePath = await ImageCacheHelper.DownloadImageIfNotCachedAsync(movie.ImageUrl);
+                    if (cachedImagePath != null)
+                    {
+                        poster.Image = Image.FromFile(cachedImagePath);
+                    }
+                    else
+                    {
+                        poster.Image = Properties.Resources.fallback;
+                    }
+                }
+                else
+                {
+                    poster.Image = Properties.Resources.fallback;
+                }
             }
-            else if (!string.IsNullOrEmpty(movie.ImageUrl))
+            catch
             {
-                // Download and cache the image if not in cache
-                var image = await Task.Run(() => DownloadImageAndCache(movie.ImageUrl));
-                poster.Image = image ?? Properties.Resources.fallback;
-
-                // Add to the cached images
-                var currentCachedImages = cachedImages.ToList();
-                currentCachedImages.Add(movie.ImageUrl);
-                StayLoggedIn.SaveCachedImages(currentCachedImages.ToArray()); // Save updated cache
-            }
-            else
-            {
-                // Use fallback image if no URL is available
                 poster.Image = Properties.Resources.fallback;
             }
-
             // Add poster to the movie panel
             moviePanel.Controls.Add(poster);
 
@@ -216,85 +214,6 @@ namespace OOP_Project
             path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90); // Bottom-left corner
             path.CloseFigure(); // Close the shape definition
             panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
-        }
-
-
-        private Image LoadImageFromCache(string imageUrl)
-        {
-            try
-            {
-                string cacheFolder = Path.Combine(Application.StartupPath, "ImageCache");
-                string imageFileName = Path.GetFileName(imageUrl);
-                string cachePath = Path.Combine(cacheFolder, imageFileName);
-
-                // Ensure the cache folder exists
-                if (File.Exists(cachePath))
-                {
-                    return Image.FromFile(cachePath);
-                }
-            }
-            catch
-            {
-                // If there's an error, fallback to default image
-                return Properties.Resources.fallback;
-            }
-
-            return null; // Return null if not cached
-        }
-
-        private async Task<Image> DownloadImageAndCache(string imageUrl)
-        {
-            string cacheFolder = Path.Combine(Application.StartupPath, "ImageCache");
-            string imageFileName = Path.GetFileName(imageUrl);
-            string cachePath = Path.Combine(cacheFolder, imageFileName);
-
-            // Ensure the cache folder exists
-            Directory.CreateDirectory(cacheFolder);
-
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    // Download the image as bytes
-                    var imageBytes = await client.GetByteArrayAsync(imageUrl);
-
-                    // Save the image to the cache
-                    File.WriteAllBytes(cachePath, imageBytes);
-
-                    // Load and return the image from the cache
-                    using (var ms = new MemoryStream(imageBytes))
-                    {
-                        return Image.FromStream(ms);
-                    }
-                }
-            }
-            catch
-            {
-                // Fallback to default image in case of error
-                return Properties.Resources.fallback;
-            }
-        }
-
-
-        // Async method to load the image and set it to the PictureBox
-        private async Task LoadImageAsync(string imageUrl, PictureBox pictureBox)
-        {
-            try
-            {
-                using (HttpClient client = new HttpClient())
-                {
-                    var imageBytes = await client.GetByteArrayAsync(imageUrl);
-                    using (var ms = new MemoryStream(imageBytes))
-                    {
-                        pictureBox.Image = Image.FromStream(ms);
-                    }
-                }
-            }
-            catch
-            {
-                // Fallback to default image in case of any error
-                pictureBox.Image = Properties.Resources.fallback;
-            }
         }
 
     }
