@@ -290,6 +290,7 @@
     <Compile Include="ProfileControl.Designer.cs">
       <DependentUpon>ProfileControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ThemeManager.cs" />
     <Compile Include="verification_form.cs">
       <SubType>Form</SubType>
     </Compile>

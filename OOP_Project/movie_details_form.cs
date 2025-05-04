@@ -66,7 +66,43 @@ namespace OOP_Project
 
             CurvePanel(ratings_panel, 30);
             ratings_panel.Resize += (s, args) => CurvePanel(ratings_panel, 20);
+            ApplyTheme(this);
         }
+
+
+        public void ApplyTheme(Form movie_details_form)
+        {
+            Color labelForeColor = ThemeManager.IsDarkMode ? Color.Gray : Color.Gray;
+            Color panelColor = ThemeManager.IsDarkMode ? Color.FromArgb(26, 26, 26) : Color.DarkGray;
+            Color moviePanelColor = ThemeManager.IsDarkMode ? Color.Gray : Color.LightGray;
+
+            this.BackColor = panelColor;
+            navigationDock_panel.BackColor = panelColor;
+
+            if (movie_details_form != null)
+            {
+                movie_details_form.BackColor = panelColor;
+
+                // Apply to all controls
+                ThemeManager.ApplyThemeToControls(
+                    movie_details_form.Controls,
+                    labelForeColor,
+                    panelColor,
+                    panelColor,
+                    panelColor,
+                    panelColor
+                );
+            }
+
+            // Local panels
+            movieDetails_panel.BackColor = moviePanelColor;
+            movie_panel.BackColor = moviePanelColor;
+
+    
+            title_lbl.ForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
+        }
+
+
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
             GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
@@ -433,25 +469,28 @@ namespace OOP_Project
 
         private void description_lbl_Click(object sender, EventArgs e)
         {
-            if (description_lbl.Height == 125)
+            bool isExpanded = description_lbl.Height > 125;
+
+            if (!isExpanded)
             {
-                tooltip.SetToolTip(description_lbl, "Close"); // Fixed missing closing quote
+                tooltip.SetToolTip(description_lbl, "Close");
                 description_lbl.Height = 200;
-                description_lbl.BackColor = Color.Silver;
-                description_lbl.ForeColor = Color.Black;
+                description_lbl.BackColor = ThemeManager.IsDarkMode ? Color.DarkGray : Color.Silver;
+                description_lbl.ForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
                 movieDetails_panel.AutoScroll = true;
                 movie_panel.AutoScroll = true;
             }
             else
             {
-                description_lbl.Height = 125;
                 tooltip.SetToolTip(description_lbl, "Expand");
+                description_lbl.Height = 125;
                 description_lbl.BackColor = Color.Transparent;
-                description_lbl.ForeColor = Color.White;
+                description_lbl.ForeColor = ThemeManager.IsDarkMode ? Color.White : Color.FromArgb(30, 30, 30);
                 movieDetails_panel.AutoScroll = false;
                 movie_panel.AutoScroll = false;
             }
         }
+
 
         private Timer expandTimer;
         private int targetWidth;
