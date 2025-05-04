@@ -95,7 +95,7 @@ namespace OOP_Project
                 try
                 {
                     conn.Open();
-                    string query = @"SELECT username, email, preferences, gender, age, avatar 
+                    string query = @"SELECT username, email, preferences, gender, age, birthdate, avatar 
                              FROM Users 
                              WHERE user_id = @userId";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
@@ -105,32 +105,41 @@ namespace OOP_Project
                     {
                         if (reader.Read())
                         {
-                            // Populate basic user details
+                            // Basic info
                             username_tb.Text = reader["username"].ToString();
                             email_tb.Text = reader["email"].ToString();
                             gender_tb.Text = reader["gender"].ToString();
                             age_tb.Text = reader["age"].ToString();
 
-                            // Retrieve and split preferences into an array (handle null/empty values)
+                            // Birthdate (check for null)
+                            if (reader["birthdate"] != DBNull.Value)
+                            {
+                                DateTime birthdate = Convert.ToDateTime(reader["birthdate"]);
+                                birthdate_dtp.Value = birthdate; // Assuming you're using a DateTimePicker named birthdate_dtp
+                            }
+                            else
+                            {
+                                birthdate_dtp.Value = DateTime.Today; // Default to today if missing
+                            }
+
+                            // Preferences
                             string preferences = reader["preferences"].ToString();
                             if (!string.IsNullOrEmpty(preferences))
                             {
-                                // Split the preferences (assuming they're stored as a comma-separated string)
                                 string[] userPreferences = preferences.Split(',');
 
-                                // Loop through the user's preferences and check the corresponding items
                                 foreach (string preference in userPreferences)
                                 {
                                     string trimmedPreference = preference.Trim();
                                     int index = preferences_clb.Items.IndexOf(trimmedPreference);
                                     if (index >= 0)
                                     {
-                                        preferences_clb.SetItemChecked(index, true); // Check the item if it's found
+                                        preferences_clb.SetItemChecked(index, true);
                                     }
                                 }
                             }
 
-                            // Load avatar (if exists)
+                            // Avatar
                             if (reader["avatar"] != DBNull.Value)
                             {
                                 byte[] avatarData = (byte[])reader["avatar"];
@@ -141,7 +150,7 @@ namespace OOP_Project
                             }
                             else
                             {
-                                avatar_pb.Image = Properties.Resources.avatar_default; // No avatar
+                                avatar_pb.Image = Properties.Resources.avatar_default;
                             }
                         }
                         else
@@ -156,6 +165,7 @@ namespace OOP_Project
                 }
             }
         }
+
 
 
         public string GetLoggedInUserId()
@@ -232,8 +242,8 @@ namespace OOP_Project
         private void save_btn_Click(object sender, EventArgs e)
         {
             string userId = GetLoggedInUserId(); // Get logged-in user's ID
-            string updatedUsername = username_tb.Text;
-            string updatedEmail = email_tb.Text;
+            string updatedUsername = username_tb.Text.Trim();
+            string updatedEmail = email_tb.Text.Trim();
             string updatedPreferences = string.Join(",", preferences_clb.CheckedItems.Cast<string>());
             string updatedGender = gender_tb.Text;
             int updatedAge = int.TryParse(age_tb.Text, out int ageResult) ? ageResult : 0;
@@ -244,14 +254,30 @@ namespace OOP_Project
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
+
+                    // Check if username already exists and belongs to a different user
+                    string checkUsernameQuery = "SELECT COUNT(*) FROM Users WHERE username = @username AND user_id != @userId";
+                    MySqlCommand checkCmd = new MySqlCommand(checkUsernameQuery, conn);
+                    checkCmd.Parameters.AddWithValue("@username", updatedUsername);
+                    checkCmd.Parameters.AddWithValue("@userId", userId);
+
+                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        MessageBox.Show("The username is already taken. Please choose a different one.", "Username Taken", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        LoadProfileData();
+                        return;
+                    }
+
+                    // Proceed with update
                     string query = @"UPDATE Users 
-                            SET username = @username, 
-                                email = @email, 
-                                preferences = @preferences, 
-                                gender = @gender, 
-                                age = @age, 
-                                avatar = @avatar 
-                            WHERE user_id = @userId";
+                             SET username = @username, 
+                                 email = @email, 
+                                 preferences = @preferences, 
+                                 gender = @gender, 
+                                 age = @age, 
+                                 avatar = @avatar 
+                             WHERE user_id = @userId";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@username", updatedUsername);
                     cmd.Parameters.AddWithValue("@email", updatedEmail);
@@ -266,18 +292,16 @@ namespace OOP_Project
 
                 MessageBox.Show("Profile updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Disable edit mode
                 DisableEditMode();
-
-                //   profile data
                 LoadProfileData();
-                editProfile_btn.Values.Image = Properties.Resources.icons8_edit_user_28; // Switch back to close icon
+                editProfile_btn.Values.Image = Properties.Resources.icons8_edit_user_28;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error updating profile: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         // Helper method to disable edit mode
         private void DisableEditMode()

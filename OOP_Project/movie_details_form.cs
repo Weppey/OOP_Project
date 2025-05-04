@@ -74,7 +74,7 @@ namespace OOP_Project
         {
             Color labelForeColor = ThemeManager.IsDarkMode ? Color.Gray : Color.Gray;
             Color panelColor = ThemeManager.IsDarkMode ? Color.FromArgb(26, 26, 26) : Color.DarkGray;
-            Color moviePanelColor = ThemeManager.IsDarkMode ? Color.Gray : Color.LightGray;
+            Color moviePanelColor = ThemeManager.IsDarkMode ? Color.FromArgb(26, 26, 26) : Color.LightGray;
 
             this.BackColor = panelColor;
             navigationDock_panel.BackColor = panelColor;
