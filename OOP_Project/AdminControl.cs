@@ -32,12 +32,14 @@ namespace OOP_Project
         private bool isInsertingNewUser = true;
 
         private string userType;
+        private int userId;
 
         public AdminControl(string userTypeFromLogin, int userIdFromLogin)
         {
             InitializeComponent();
 
             userType = userTypeFromLogin;
+            userId = userIdFromLogin;
             tooltip.IsBalloon = false;                        // Makes it balloon-shaped
             tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
             tooltip.ForeColor = Color.Black;                 // Text color
@@ -326,16 +328,19 @@ namespace OOP_Project
 
         private void Clear_btn_Click(object sender, EventArgs e)
         {
+            ClearMovieInput();
+        }
+        public void ClearMovieInput()
+        {
             insert_btn.Visible = true;
             title_tb.Text = "Enter title...";
             posterUrl_tb.Text = "Enter poster URL...";
-            poster_pb.Image = null;
+            poster_pb.Image = Properties.Resources._11;
             description_tb.Text = "Enter description..."; // Clear the description textbox as well
             trailerUrl_tb.Text = "Enter trailer URL...";
             releaseYear_dtp.Value = DateTime.Now;
             MovieClearCheckedItems();
         }
-
         private void submit_btn_Click(object sender, EventArgs e)
         {
             string selectedGenres = GetSelectedGenres();
@@ -356,7 +361,6 @@ namespace OOP_Project
             MovieClearCheckedItems();
             LoadMovies(); // Refresh the movie list
         }
-
         private void editMovie_btn_Click(object sender, EventArgs e)
         {
             if (movieEditor_panel.Visible == false)
@@ -364,7 +368,9 @@ namespace OOP_Project
                 movieEditor_panel.Visible = true;
                 userEditor_panel.Visible = false;
                 LoadMovies();
+                ClearMovieInput();
             }
+            
             else
             {
                 movieEditor_panel.Visible = false;
@@ -494,6 +500,7 @@ namespace OOP_Project
 
             SaveUserDetails(userId);
             LoadUsers();
+            avatar_pb.Image = Properties.Resources._11;
         }
 
         // Button to update the security question
@@ -516,6 +523,7 @@ namespace OOP_Project
             string query = "DELETE FROM users WHERE user_id=@userId";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@userId", userId);
+            avatar_pb.Image = Properties.Resources._11;
 
             cmd.ExecuteNonQuery();
             LoadUsers(); // Refresh the user list
@@ -528,6 +536,7 @@ namespace OOP_Project
         {
             if (e.RowIndex >= 0)
             {
+
                 DataGridViewRow row = users_dgv.Rows[e.RowIndex];
 
                 username_tb.StateCommon.Content.Color1 = Color.Black;
@@ -618,9 +627,6 @@ namespace OOP_Project
             }
         }
 
-
-
-
         private void editUser_btn_Click(object sender, EventArgs e)
         {
             if (userEditor_panel.Visible == false)
@@ -628,6 +634,7 @@ namespace OOP_Project
                 userEditor_panel.Visible = true;
                 movieEditor_panel.Visible = false;
                 LoadUsers();
+                ClearInput();
             }
             else
             {
@@ -854,6 +861,11 @@ namespace OOP_Project
 
         private void cancel_btn_Click(object sender, EventArgs e)
         {
+            ClearInput();
+        }
+
+        public void ClearInput()
+        {
             // Reset the textboxes to their placeholder text or default values and set the text color to gray
             username_tb.StateCommon.Content.Color1 = Color.Gray;
             username_tb.Text = "Enter username...";
@@ -879,6 +891,8 @@ namespace OOP_Project
             usertype_cmb.SelectedIndex = -1;
             usertype_cmb.Text = "Select user type";
 
+            avatar_pb.Image = Properties.Resources._11;
+
             // Reset the checked list box to default (no checked items)
             genre_clb.ClearSelected();
             userGenre_clb.ClearSelected();
@@ -901,7 +915,6 @@ namespace OOP_Project
             // Optionally reset the form or perform any additional cleanup
             isInsertingNewUser = true; // Assuming you want to reset to insert mode for a new user
         }
-
 
 
         // Username textbox enter and leave events

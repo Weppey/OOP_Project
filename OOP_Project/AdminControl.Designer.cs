@@ -55,6 +55,7 @@ namespace OOP_Project
             this.dataGrid_panel = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.users_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.fillup_panel = new System.Windows.Forms.Panel();
+            this.profile_lbl = new System.Windows.Forms.Label();
             this.avatar_pb = new System.Windows.Forms.PictureBox();
             this.email_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.username_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -81,7 +82,6 @@ namespace OOP_Project
             this.movieControlBtn_panel = new System.Windows.Forms.Panel();
             this.movieEditor_lbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.profile_lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.movies_dgv)).BeginInit();
             this.Admin_panel.SuspendLayout();
             this.buttonDock_panel.SuspendLayout();
@@ -342,8 +342,8 @@ namespace OOP_Project
             // 
             this.Admin_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.Admin_panel.Controls.Add(this.buttonDock_panel);
-            this.Admin_panel.Controls.Add(this.userEditor_panel);
             this.Admin_panel.Controls.Add(this.movieEditor_panel);
+            this.Admin_panel.Controls.Add(this.userEditor_panel);
             this.Admin_panel.Location = new System.Drawing.Point(3, 3);
             this.Admin_panel.Name = "Admin_panel";
             this.Admin_panel.Size = new System.Drawing.Size(1214, 696);
@@ -567,6 +567,17 @@ namespace OOP_Project
             this.fillup_panel.Name = "fillup_panel";
             this.fillup_panel.Size = new System.Drawing.Size(765, 293);
             this.fillup_panel.TabIndex = 105;
+            // 
+            // profile_lbl
+            // 
+            this.profile_lbl.AutoSize = true;
+            this.profile_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_lbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.profile_lbl.Location = new System.Drawing.Point(27, 15);
+            this.profile_lbl.Name = "profile_lbl";
+            this.profile_lbl.Size = new System.Drawing.Size(89, 26);
+            this.profile_lbl.TabIndex = 104;
+            this.profile_lbl.Text = "Avatar:";
             // 
             // avatar_pb
             // 
@@ -938,17 +949,6 @@ namespace OOP_Project
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(977, 275);
             this.panel1.TabIndex = 89;
-            // 
-            // profile_lbl
-            // 
-            this.profile_lbl.AutoSize = true;
-            this.profile_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.profile_lbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.profile_lbl.Location = new System.Drawing.Point(27, 15);
-            this.profile_lbl.Name = "profile_lbl";
-            this.profile_lbl.Size = new System.Drawing.Size(89, 26);
-            this.profile_lbl.TabIndex = 104;
-            this.profile_lbl.Text = "Avatar:";
             // 
             // AdminControl
             // 
