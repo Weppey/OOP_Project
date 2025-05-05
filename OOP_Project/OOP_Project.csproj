@@ -470,7 +470,6 @@
     <None Include="Resources\icons8-submit-283.png" />
     <None Include="Resources\icons8-avatar-28.png" />
     <None Include="Resources\avatar_male.png" />
-    <None Include="Resources\avatar_default.png" />
     <None Include="Resources\avatar_women.png" />
     <None Include="Resources\avatar_women2.png" />
     <None Include="Resources\icons8-avatar-281.png" />
@@ -479,6 +478,7 @@
     <None Include="Resources\icons8-save-20.png" />
     <None Include="Resources\icons8-settings-502.png" />
     <None Include="Resources\a-minecraft-movie-3840x2160-21613.jpg" />
+    <Content Include="Resources\avatar_default.png" />
     <Content Include="Resources\icons8-loading-50.png" />
     <None Include="Resources\icons8-loading-501.png" />
     <Content Include="Resources\Image-not-found.png" />
