@@ -55,6 +55,7 @@ namespace OOP_Project
             this.dataGrid_panel = new ComponentFactory.Krypton.Toolkit.KryptonPanel();
             this.users_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
             this.fillup_panel = new System.Windows.Forms.Panel();
+            this.avatar_pb = new System.Windows.Forms.PictureBox();
             this.email_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.username_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.usertype_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
@@ -67,7 +68,6 @@ namespace OOP_Project
             this.Birthdate_dtp = new System.Windows.Forms.DateTimePicker();
             this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.Genre_lbl = new System.Windows.Forms.Label();
-            this.verify_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.controlBtn_panel = new System.Windows.Forms.Panel();
             this.insertUser_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.cancel_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -81,6 +81,7 @@ namespace OOP_Project
             this.movieControlBtn_panel = new System.Windows.Forms.Panel();
             this.movieEditor_lbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.profile_lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.movies_dgv)).BeginInit();
             this.Admin_panel.SuspendLayout();
             this.buttonDock_panel.SuspendLayout();
@@ -90,6 +91,7 @@ namespace OOP_Project
             this.dataGrid_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.users_dgv)).BeginInit();
             this.fillup_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.avatar_pb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
@@ -547,6 +549,8 @@ namespace OOP_Project
             // fillup_panel
             // 
             this.fillup_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.fillup_panel.Controls.Add(this.profile_lbl);
+            this.fillup_panel.Controls.Add(this.avatar_pb);
             this.fillup_panel.Controls.Add(this.email_tb);
             this.fillup_panel.Controls.Add(this.username_tb);
             this.fillup_panel.Controls.Add(this.usertype_cmb);
@@ -559,15 +563,24 @@ namespace OOP_Project
             this.fillup_panel.Controls.Add(this.Birthdate_dtp);
             this.fillup_panel.Controls.Add(this.gender_cmb);
             this.fillup_panel.Controls.Add(this.Genre_lbl);
-            this.fillup_panel.Controls.Add(this.verify_btn);
             this.fillup_panel.Location = new System.Drawing.Point(235, 36);
             this.fillup_panel.Name = "fillup_panel";
             this.fillup_panel.Size = new System.Drawing.Size(765, 293);
             this.fillup_panel.TabIndex = 105;
             // 
+            // avatar_pb
+            // 
+            this.avatar_pb.BackColor = System.Drawing.Color.White;
+            this.avatar_pb.Location = new System.Drawing.Point(32, 48);
+            this.avatar_pb.Name = "avatar_pb";
+            this.avatar_pb.Size = new System.Drawing.Size(200, 200);
+            this.avatar_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.avatar_pb.TabIndex = 103;
+            this.avatar_pb.TabStop = false;
+            // 
             // email_tb
             // 
-            this.email_tb.Location = new System.Drawing.Point(30, 91);
+            this.email_tb.Location = new System.Drawing.Point(260, 92);
             this.email_tb.Name = "email_tb";
             this.email_tb.Size = new System.Drawing.Size(213, 26);
             this.email_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
@@ -579,7 +592,7 @@ namespace OOP_Project
             // 
             // username_tb
             // 
-            this.username_tb.Location = new System.Drawing.Point(30, 23);
+            this.username_tb.Location = new System.Drawing.Point(260, 24);
             this.username_tb.Name = "username_tb";
             this.username_tb.Size = new System.Drawing.Size(213, 26);
             this.username_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
@@ -595,7 +608,7 @@ namespace OOP_Project
             this.usertype_cmb.Items.AddRange(new object[] {
             "member",
             "admin"});
-            this.usertype_cmb.Location = new System.Drawing.Point(276, 62);
+            this.usertype_cmb.Location = new System.Drawing.Point(506, 63);
             this.usertype_cmb.Name = "usertype_cmb";
             this.usertype_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.usertype_cmb.Size = new System.Drawing.Size(160, 20);
@@ -607,7 +620,7 @@ namespace OOP_Project
             // 
             // age_tb
             // 
-            this.age_tb.Location = new System.Drawing.Point(30, 132);
+            this.age_tb.Location = new System.Drawing.Point(260, 133);
             this.age_tb.Name = "age_tb";
             this.age_tb.Size = new System.Drawing.Size(93, 26);
             this.age_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
@@ -620,16 +633,16 @@ namespace OOP_Project
             // userGenre_clb
             // 
             this.userGenre_clb.FormattingEnabled = true;
-            this.userGenre_clb.Location = new System.Drawing.Point(281, 121);
+            this.userGenre_clb.Location = new System.Drawing.Point(511, 122);
             this.userGenre_clb.MultiColumn = true;
             this.userGenre_clb.Name = "userGenre_clb";
-            this.userGenre_clb.Size = new System.Drawing.Size(454, 124);
+            this.userGenre_clb.Size = new System.Drawing.Size(230, 124);
             this.userGenre_clb.TabIndex = 86;
             // 
             // securityQuestion_cmb
             // 
             this.securityQuestion_cmb.DropDownWidth = 183;
-            this.securityQuestion_cmb.Location = new System.Drawing.Point(30, 210);
+            this.securityQuestion_cmb.Location = new System.Drawing.Point(260, 211);
             this.securityQuestion_cmb.Name = "securityQuestion_cmb";
             this.securityQuestion_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.securityQuestion_cmb.Size = new System.Drawing.Size(213, 20);
@@ -640,7 +653,7 @@ namespace OOP_Project
             // 
             // userID_tb
             // 
-            this.userID_tb.Location = new System.Drawing.Point(30, 56);
+            this.userID_tb.Location = new System.Drawing.Point(260, 57);
             this.userID_tb.Name = "userID_tb";
             this.userID_tb.Size = new System.Drawing.Size(93, 26);
             this.userID_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
@@ -652,7 +665,7 @@ namespace OOP_Project
             // 
             // securityAnswer_tb
             // 
-            this.securityAnswer_tb.Location = new System.Drawing.Point(30, 244);
+            this.securityAnswer_tb.Location = new System.Drawing.Point(260, 245);
             this.securityAnswer_tb.Name = "securityAnswer_tb";
             this.securityAnswer_tb.Size = new System.Drawing.Size(213, 26);
             this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
@@ -667,7 +680,7 @@ namespace OOP_Project
             this.emailVerified_cb.AutoSize = true;
             this.emailVerified_cb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailVerified_cb.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.emailVerified_cb.Location = new System.Drawing.Point(503, 24);
+            this.emailVerified_cb.Location = new System.Drawing.Point(506, 252);
             this.emailVerified_cb.Name = "emailVerified_cb";
             this.emailVerified_cb.Size = new System.Drawing.Size(122, 23);
             this.emailVerified_cb.TabIndex = 97;
@@ -682,7 +695,7 @@ namespace OOP_Project
             this.Birthdate_dtp.Checked = false;
             this.Birthdate_dtp.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Birthdate_dtp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.Birthdate_dtp.Location = new System.Drawing.Point(276, 23);
+            this.Birthdate_dtp.Location = new System.Drawing.Point(506, 24);
             this.Birthdate_dtp.Name = "Birthdate_dtp";
             this.Birthdate_dtp.Size = new System.Drawing.Size(200, 26);
             this.Birthdate_dtp.TabIndex = 91;
@@ -694,7 +707,7 @@ namespace OOP_Project
             "Male",
             "Female",
             "Prefer not to say"});
-            this.gender_cmb.Location = new System.Drawing.Point(30, 175);
+            this.gender_cmb.Location = new System.Drawing.Point(260, 176);
             this.gender_cmb.Name = "gender_cmb";
             this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gender_cmb.Size = new System.Drawing.Size(93, 20);
@@ -708,43 +721,11 @@ namespace OOP_Project
             this.Genre_lbl.AutoSize = true;
             this.Genre_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Genre_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Genre_lbl.Location = new System.Drawing.Point(277, 91);
+            this.Genre_lbl.Location = new System.Drawing.Point(507, 92);
             this.Genre_lbl.Name = "Genre_lbl";
             this.Genre_lbl.Size = new System.Drawing.Size(124, 19);
             this.Genre_lbl.TabIndex = 93;
             this.Genre_lbl.Text = "Genre Preferences:";
-            // 
-            // verify_btn
-            // 
-            this.verify_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.verify_btn.Location = new System.Drawing.Point(630, 15);
-            this.verify_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
-            this.verify_btn.Name = "verify_btn";
-            this.verify_btn.Size = new System.Drawing.Size(105, 49);
-            this.verify_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
-            this.verify_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
-            this.verify_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.verify_btn.StateCommon.Border.Rounding = 20;
-            this.verify_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.verify_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
-            this.verify_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.verify_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.verify_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.verify_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.verify_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.verify_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.verify_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.verify_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.verify_btn.TabIndex = 94;
-            this.verify_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_verify_28;
-            this.verify_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.verify_btn.Values.Text = "Verify";
-            this.verify_btn.Visible = false;
-            this.verify_btn.Click += new System.EventHandler(this.verify_btn_Click);
             // 
             // controlBtn_panel
             // 
@@ -958,6 +939,17 @@ namespace OOP_Project
             this.panel1.Size = new System.Drawing.Size(977, 275);
             this.panel1.TabIndex = 89;
             // 
+            // profile_lbl
+            // 
+            this.profile_lbl.AutoSize = true;
+            this.profile_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.profile_lbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.profile_lbl.Location = new System.Drawing.Point(27, 15);
+            this.profile_lbl.Name = "profile_lbl";
+            this.profile_lbl.Size = new System.Drawing.Size(89, 26);
+            this.profile_lbl.TabIndex = 104;
+            this.profile_lbl.Text = "Avatar:";
+            // 
             // AdminControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -978,6 +970,7 @@ namespace OOP_Project
             ((System.ComponentModel.ISupportInitialize)(this.users_dgv)).EndInit();
             this.fillup_panel.ResumeLayout(false);
             this.fillup_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.avatar_pb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usertype_cmb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
@@ -1024,7 +1017,6 @@ namespace OOP_Project
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox email_tb;
         private System.Windows.Forms.Label Genre_lbl;
         private System.Windows.Forms.DateTimePicker Birthdate_dtp;
-        private ComponentFactory.Krypton.Toolkit.KryptonButton verify_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton deleteUser_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox gender_cmb;
         private System.Windows.Forms.CheckBox emailVerified_cb;
@@ -1043,5 +1035,7 @@ namespace OOP_Project
         private Panel movieFillUp_panel;
         private KryptonComboBox securityQuestion_cmb;
         private KryptonTextBox securityAnswer_tb;
+        private PictureBox avatar_pb;
+        private Label profile_lbl;
     }
 }

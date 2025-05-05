@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WinFormsToolTip = System.Windows.Forms.ToolTip;
 using System.Windows.Forms;
+using System.IO;
 
 namespace OOP_Project
 {
@@ -35,6 +36,7 @@ namespace OOP_Project
         public AdminControl(string userTypeFromLogin, int userIdFromLogin)
         {
             InitializeComponent();
+
             userType = userTypeFromLogin;
             tooltip.IsBalloon = false;                        // Makes it balloon-shaped
             tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
@@ -57,7 +59,6 @@ namespace OOP_Project
             tooltip.SetToolTip(editMovie_btn, "Edit Movie");
             tooltip.SetToolTip(insertUser_btn, "Insert User");
             tooltip.SetToolTip(deleteUser_btn, "Delete User");
-            tooltip.SetToolTip(verify_btn, "Verify User");
 
         }
 
@@ -114,6 +115,9 @@ namespace OOP_Project
             CurvePanel(Admin_panel, 30);
             Admin_panel.Resize += (s, aargs) => CurvePanel(Admin_panel, 20);
 
+            CurvePanel(avatar_pb, 30);
+            avatar_pb.Resize += (s, aargs) => CurvePanel(avatar_pb, 20);
+
             //USERS
 
             CurvePanel(controlBtn_panel, 30);
@@ -135,19 +139,20 @@ namespace OOP_Project
             movieControlBtn_panel.Resize += (s, aargs) => CurvePanel(movieControlBtn_panel, 20);
         }
 
-        private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
+        private void CurvePanel(Control control, int radius)
         {
-            GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
-            path.StartFigure(); // Start the shape definition
+            GraphicsPath path = new GraphicsPath();
+            path.StartFigure();
 
-            // Add arcs to the path to define the four rounded corners
-            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90); // Top-left corner
-            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90); // Top-left corner
-            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90); // Bottom-right corner
-            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90); // Bottom-left corner
-            path.CloseFigure(); // Close the shape definition
-            panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90); // Top-left
+            path.AddArc(new Rectangle(control.Width - radius, 0, radius, radius), 270, 90); // Top-right
+            path.AddArc(new Rectangle(control.Width - radius, control.Height - radius, radius, radius), 0, 90); // Bottom-right
+            path.AddArc(new Rectangle(0, control.Height - radius, radius, radius), 90, 90); // Bottom-left
+
+            path.CloseFigure();
+            control.Region = new Region(path);
         }
+
         private string GetSelectedGenres()
         {
             List<string> selectedGenres = new List<string>();
@@ -370,7 +375,8 @@ namespace OOP_Project
 
         private void LoadUsers()
         {
-            string query = "SELECT user_id, username, email, age, gender, birthdate, preferences, email_verified, user_type, signup_date, signup_date, security_question, security_answer FROM users"; // Specify only the columns you need
+            string query = "SELECT user_id, username, email, age, gender, birthdate, preferences, email_verified, user_type, signup_date, security_question, security_answer, avatar FROM users";
+
             MySqlCommand cmd = new MySqlCommand(query, connection);
             MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
             usersTable.Clear();
@@ -404,8 +410,25 @@ namespace OOP_Project
 
                 securityQuestion_cmb.Text = reader["security_question"].ToString();
                 securityAnswer_tb.Text = reader["security_answer"].ToString();
+
                 Birthdate_dtp.Value = Convert.ToDateTime(reader["birthdate"]);
                 emailVerified_cb.Checked = Convert.ToBoolean(reader["email_verified"]);
+
+
+                //Load user avatar
+                if (!reader.IsDBNull(reader.GetOrdinal("avatar")))
+                {
+                    byte[] avatarData = (byte[])reader["avatar"];
+                    using (MemoryStream ms = new MemoryStream(avatarData))
+                    {
+                        avatar_pb.Image = Image.FromStream(ms);
+                    }
+                }
+                else
+                {
+                    avatar_pb.Image = Properties.Resources.avatar_default; // use a default image if no avatar is set
+                }
+
 
                 // ✅ Load user_type
                 if (usertype_cmb.Items.Contains(reader["user_type"].ToString()))
@@ -487,18 +510,6 @@ namespace OOP_Project
             MessageBox.Show("Security question updated successfully!");
         }
 
-        private void verify_btn_Click(object sender, EventArgs e)
-        {
-            int userId = Convert.ToInt32(userID_tb.Text);
-            string query = "UPDATE users SET email_verified=@emailVerified WHERE user_id=@userId";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@emailVerified", emailVerified_cb.Checked);
-            cmd.Parameters.AddWithValue("@userId", userId);
-
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("User email verify update successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
         private void deleteUser_btn_Click(object sender, EventArgs e)
         {
             int userId = Convert.ToInt32(userID_tb.Text);
@@ -536,7 +547,6 @@ namespace OOP_Project
                 securityQuestion_cmb.SelectedItem = row.Cells["security_question"].Value.ToString();
                 securityAnswer_tb.Text = row.Cells["security_answer"].Value.ToString();
 
-
                 // Load genre preferences (comma separated)
                 string preferences = row.Cells["preferences"].Value.ToString();
                 string[] selectedGenres = preferences.Split(',');
@@ -557,13 +567,13 @@ namespace OOP_Project
                     }
                 }
 
-                // Set birthdate (assuming it's stored as DateTime in db)
+                // Set birthdate
                 if (DateTime.TryParse(row.Cells["birthdate"].Value?.ToString(), out DateTime birthdate))
                 {
                     Birthdate_dtp.Value = birthdate;
                 }
 
-                // Email verified (checkbox)
+                // Email verified
                 if (row.Cells["email_verified"].Value != null)
                 {
                     bool isEmailVerified = Convert.ToBoolean(row.Cells["email_verified"].Value);
@@ -581,11 +591,33 @@ namespace OOP_Project
                     usertype_cmb.SelectedIndex = -1;
                 }
 
+                // ✅ Load avatar BLOB from DataGridView cell
+                if (row.Cells["avatar"].Value != DBNull.Value)
+                {
+                    byte[] avatarBytes = (byte[])row.Cells["avatar"].Value;
+                    if (avatarBytes.Length > 0)
+                    {
+                        using (MemoryStream ms = new MemoryStream(avatarBytes))
+                        {
+                            avatar_pb.Image = Image.FromStream(ms);
+                        }
+                    }
+                    else
+                    {
+                        avatar_pb.Image = Properties.Resources.avatar_default;
+                    }
+                }
+                else
+                {
+                    avatar_pb.Image = Properties.Resources.avatar_default;
+                }
+
                 // Editing existing user
                 isInsertingNewUser = false;
                 insertUser_btn.Text = "Save Changes";
             }
         }
+
 
 
 
