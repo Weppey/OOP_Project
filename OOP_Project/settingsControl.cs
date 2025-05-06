@@ -16,6 +16,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 
 namespace OOP_Project
 {
+
     public partial class settingsControl : UserControl
     {
 
@@ -43,45 +44,31 @@ namespace OOP_Project
             tooltip.InitialDelay = 100;
             tooltip.ReshowDelay = 100;
             tooltip.ShowAlways = true;
-       
+            ApplyTheme();
+
+
+        }
+        public void ApplyTheme()
+        {
+            // Get the correct color for text depending on the theme
+            Color labelForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
+
+            // Update the label colors (foreground/text color)
+            theme_lbl.ForeColor = labelForeColor;
+            securtySettings_lbl.ForeColor = labelForeColor;
+            privacy_lbl.ForeColor = labelForeColor;
+            system_lbl.ForeColor = labelForeColor;
+
+            // Ensure labels have transparent background
+            theme_lbl.BackColor = Color.Transparent;
+            securtySettings_lbl.BackColor = Color.Transparent;
+            privacy_lbl.BackColor = Color.Transparent;
+            system_lbl.BackColor = Color.Transparent;
+            settings_panel.BackColor = ThemeManager.IsDarkMode ? Color.Transparent : Color.LightGray;
         }
 
-       
 
 
-
-        private void settingsControl_Load(object sender, EventArgs e)
-        {
-            CurvePanel(appinfo_panel, 30);
-            appinfo_panel.Resize += (s, aargs) => CurvePanel(appinfo_panel, 20);
-
-            CurvePanel(privacy_panel, 30);
-            privacy_panel.Resize += (s, aargs) => CurvePanel(privacy_panel, 20);
-
-            CurvePanel(security_panel, 30);
-            security_panel.Resize += (s, aargs) => CurvePanel(security_panel, 20);
-
-            CurvePanel(theme_panel, 30);
-            theme_panel.Resize += (s, aargs) => CurvePanel(theme_panel, 20);
-
-            CurvePanel(system_panel, 30);
-            system_panel.Resize += (s, aargs) => CurvePanel(system_panel, 20);
-
-     
-                if (ThemeManager.IsDarkMode)
-                {
-                    // Apply dark mode
-                    ThemeManager.ApplyDarkMode();
-                }
-                else
-                {
-                    // Apply light mode
-                    ThemeManager.ApplyLightMode();
-                }
-    
-
-
-    }
 
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
@@ -277,11 +264,24 @@ namespace OOP_Project
 
         private void lightmode_btn_Click(object sender, EventArgs e)
         {
-            ThemeManager.ApplyLightMode();        }
+            ThemeManager.ApplyLightMode();
+            ApplyTheme();
+        }
 
         private void darkmode_btn_Click(object sender, EventArgs e)
         {
             ThemeManager.ApplyDarkMode();
+            ApplyTheme();
         }
+
+private void apply_btn_Click(object sender, EventArgs e)
+{
+    int? userId = StayLoggedIn.GetCurrentUserId();
+    if (userId == null) return;
+
+    UserThemeSettings.SaveTheme(userId.Value, ThemeManager.IsDarkMode);
+    MessageBox.Show("Theme preference saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+}
+
     }
 }

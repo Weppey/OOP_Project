@@ -13,6 +13,7 @@ using System.Linq;
 using System.IO;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using static OOP_Project.StayLoggedIn;
 
 
 namespace OOP_Project
@@ -28,115 +29,123 @@ namespace OOP_Project
         }
         private int failedAttempts = 0; // To track failed attempts
         private int cooldownTime = 30;  // Cooldown time in seconds
-        private async void login_btn_Click(object sender, EventArgs e)
+      private async void login_btn_Click(object sender, EventArgs e)
+{
+    // Check if CAPTCHA matches
+    if (string.IsNullOrEmpty(currentCaptchaCode) || captcha_tb.Text.Trim().ToUpper() != currentCaptchaCode.ToUpper())
+    {
+        failedAttempts++;
+
+        captcha_tb.BackColor = Color.Pink;
+        captcha_tb.Focus();
+        MessageBox.Show("CAPTCHA is incorrect. Please try again.", "CAPTCHA Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        captcha_tb.Clear();
+        GenerateCaptcha();
+
+        if (failedAttempts >= 3)
         {
-            // Check if CAPTCHA matches
-            if (string.IsNullOrEmpty(currentCaptchaCode) || captcha_tb.Text.Trim().ToUpper() != currentCaptchaCode.ToUpper())
+            login_btn.Enabled = false;
+            attempt_lbl.Visible = true;
+
+            for (int i = cooldownTime; i > 0; i--)
             {
-                failedAttempts++;
+                attempt_lbl.Text = $"Please wait for {i} seconds.";
+                await Task.Delay(1000);
+            }
 
-                captcha_tb.BackColor = Color.Pink;
-                captcha_tb.Focus();
-                MessageBox.Show("CAPTCHA is incorrect. Please try again.", "CAPTCHA Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                captcha_tb.Clear();
-                GenerateCaptcha();
+            login_btn.Enabled = true;
+            attempt_lbl.Visible = false;
+            MessageBox.Show("You can now try logging in again.", "Cooldown Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
-                if (failedAttempts >= 3)
+        return;
+    }
+
+    failedAttempts = 0; // Reset on correct CAPTCHA
+    captcha_tb.BackColor = Color.White;
+
+    string username = userName_tb.Text.Trim();
+    string password = password_tb.Text.Trim();
+
+    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+    {
+        MessageBox.Show("Please enter both username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        return;
+    }
+
+    try
+    {
+        using (MySqlConnection connection = new MySqlConnection(connectionString))
+        {
+            connection.Open();
+            string query = "SELECT user_id, password, user_type, email_verified, email, theme_preference FROM users WHERE username = @username LIMIT 1";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+            {
+                cmd.Parameters.AddWithValue("@username", username);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    login_btn.Enabled = false;
-                    attempt_lbl.Visible = true;
-
-                    for (int i = cooldownTime; i > 0; i--)
+                    if (!reader.Read())
                     {
-                        attempt_lbl.Text = $"Please wait for {i} seconds.";
-                        await Task.Delay(1000);
+                        MessageBox.Show("No user found with the entered username.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        password_tb.Text = "Password";
+                        password_tb.ForeColor = Color.Gray;
+                        userName_tb.Text = "Username";
+                        userName_tb.ForeColor = Color.Gray;
+                        return;
                     }
 
-                    login_btn.Enabled = true;
-                    attempt_lbl.Visible = false;
-                    MessageBox.Show("You can now try logging in again.", "Cooldown Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                    string storedHash = reader["password"].ToString();
+                    string userType = reader["user_type"].ToString();
+                    int userId = Convert.ToInt32(reader["user_id"]);
+                    bool emailVerified = Convert.ToBoolean(reader["email_verified"]);
+                    string email = reader["email"].ToString();
+                    string themePreference = reader["theme_preference"].ToString(); // ✅ added line
 
-                return;
-            }
-
-            failedAttempts = 0; // Reset on correct CAPTCHA
-            captcha_tb.BackColor = Color.White;
-
-            string username = userName_tb.Text.Trim();
-            string password = password_tb.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-            {
-                MessageBox.Show("Please enter both username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                using (MySqlConnection connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT user_id, password, user_type, email_verified, email FROM users WHERE username = @username LIMIT 1";
-
-                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    if (!BCrypt.Net.BCrypt.Verify(password, storedHash))
                     {
-                        cmd.Parameters.AddWithValue("@username", username);
+                        MessageBox.Show("Invalid password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        password_tb.Text = "Password";
+                        password_tb.ForeColor = Color.Gray;
+                        return;
+                    }
 
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (!reader.Read())
-                            {
-                                MessageBox.Show("No user found with the entered username.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                password_tb.Text = "Password";
-                                password_tb.ForeColor = Color.Gray;
-                                userName_tb.Text = "Username";
-                                userName_tb.ForeColor = Color.Gray;
-                                return;
-                            }
+                    if (!emailVerified)
+                    {
+                        MessageBox.Show("Your email has not been verified. Please verify your email before logging in.", "Email Not Verified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        this.Hide();
+                        verification_form verify = new verification_form(email);
+                        verify.ShowDialog();
+                        this.Show();
+                        GenerateCaptcha();
+                        return;
+                    }
+                            bool? savedTheme = UserThemeSettings.LoadTheme(userId);
+                            if (savedTheme == true)
+                                ThemeManager.ApplyDarkMode();
+                            else
+                                ThemeManager.ApplyLightMode();
 
-                            string storedHash = reader["password"].ToString();
-                            string userType = reader["user_type"].ToString();
-                            int userId = Convert.ToInt32(reader["user_id"]);
-                            bool emailVerified = Convert.ToBoolean(reader["email_verified"]);
-                            string email = reader["email"].ToString();
 
-                            if (!BCrypt.Net.BCrypt.Verify(password, storedHash))
-                            {
-                                MessageBox.Show("Invalid password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                password_tb.Text = "Password";
-                                password_tb.ForeColor = Color.Gray;
-                                return;
-                            }
-
-                            if (!emailVerified)
-                            {
-                                MessageBox.Show("Your email has not been verified. Please verify your email before logging in.", "Email Not Verified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                this.Hide();
-                                verification_form verify = new verification_form(email);
-                                verify.ShowDialog();
-                                this.Show();
-                                GenerateCaptcha();
-                                return;
-                            }
 
                             // Successful login
                             StayLoggedIn.SaveUserSession(userType, userId);
-                            MessageBox.Show($"Welcome back, {username}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Welcome back, {username}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            this.Hide();
-                            home_form home = new home_form(userType, userId);
-                            home.ShowDialog();
-                            this.Close();
-                        }
-                    }
+                    this.Hide();
+                    home_form home = new home_form(userType, userId);
+                    home.ShowDialog();
+                    this.Close();
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while attempting to log in:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("An error occurred while attempting to log in:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    }
+}
 
 
         private void captcha_tb_Enter(object sender, EventArgs e)

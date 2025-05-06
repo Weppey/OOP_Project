@@ -81,7 +81,39 @@ namespace OOP_Project
             tooltip.SetToolTip(adminsettings_btn, "Admin");
             tooltip.SetToolTip(search_tb, "Search your movie");
             tooltip.SetToolTip(profile_btn, "Profile");
+            this.Name = "home_form"; // Ensure this is set so ThemeManager recognizes it
+            ApplyTheme();
         }
+
+        public void ApplyTheme()
+        {
+            bool isDark = ThemeManager.IsDarkMode;
+
+            this.BackColor = isDark ? Color.FromArgb(30, 30, 30) : Color.LightGray;
+            menu_panel.BackColor = isDark ? Color.FromArgb(26, 26, 26) : Color.DarkGray;
+            viewport_panel.BackColor = isDark ? Color.Gray : Color.LightGray;
+            movie_panel.BackColor = isDark ? Color.FromArgb(26, 26, 26) : Color.White;
+            recommendedMovie_flp.BackColor = isDark ? Color.White : Color.White;
+            allMovie_flp.BackColor = isDark ? Color.White : Color.White;
+            recentlysearch_flp.BackColor = isDark ? Color.White : Color.White;
+            allMovie_panel.BackColor = isDark ? Color.Gray : Color.LightGray;
+            recentlyMovie_panel.BackColor = isDark ? Color.Gray : Color.LightGray;
+
+            // Label foreground colors
+            Color labelForeColor = isDark ? Color.White : Color.Black;
+
+            form_lbl.ForeColor = labelForeColor;
+            suggest_lbl.ForeColor = labelForeColor;
+            allMovie_lbl.ForeColor = labelForeColor;
+            recent_lbl.ForeColor = labelForeColor;
+
+            // Optional: transparent backgrounds for labels
+            form_lbl.BackColor = Color.Transparent;
+            suggest_lbl.BackColor = Color.Transparent;
+            allMovie_lbl.BackColor = Color.Transparent;
+            recent_lbl.BackColor = Color.Transparent;
+        }
+
 
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {

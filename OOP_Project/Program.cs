@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static OOP_Project.StayLoggedIn;
 
 namespace OOP_Project
 {
@@ -13,7 +14,9 @@ namespace OOP_Project
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Load both userType and userId from session
+            // Load the theme preference before starting the form
+            ThemeManager.LoadSavedThemePreference();
+
             var userSession = StayLoggedIn.LoadUserSession();
             if (userSession.HasValue)
             {
@@ -29,6 +32,8 @@ namespace OOP_Project
                 Application.Run(new login_form());
             }
         }
+
+
     }
 }
     

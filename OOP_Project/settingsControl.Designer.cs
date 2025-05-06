@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.settings_panel = new System.Windows.Forms.Panel();
-            this.system_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.securtySettings_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.privacy_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.theme_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
+            this.system_lbl = new System.Windows.Forms.Label();
+            this.privacy_lbl = new System.Windows.Forms.Label();
+            this.theme_lbl = new System.Windows.Forms.Label();
+            this.securtySettings_lbl = new System.Windows.Forms.Label();
             this.appinfo_panel = new System.Windows.Forms.Panel();
             this.privacy_linklbl = new System.Windows.Forms.LinkLabel();
             this.tos_linklbl = new System.Windows.Forms.LinkLabel();
@@ -70,9 +70,9 @@
             // settings_panel
             // 
             this.settings_panel.Controls.Add(this.system_lbl);
-            this.settings_panel.Controls.Add(this.securtySettings_lbl);
             this.settings_panel.Controls.Add(this.privacy_lbl);
             this.settings_panel.Controls.Add(this.theme_lbl);
+            this.settings_panel.Controls.Add(this.securtySettings_lbl);
             this.settings_panel.Controls.Add(this.appinfo_panel);
             this.settings_panel.Controls.Add(this.system_panel);
             this.settings_panel.Controls.Add(this.security_panel);
@@ -86,51 +86,47 @@
             // 
             // system_lbl
             // 
-            this.system_lbl.Location = new System.Drawing.Point(424, 325);
+            this.system_lbl.AutoSize = true;
+            this.system_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.system_lbl.ForeColor = System.Drawing.Color.White;
+            this.system_lbl.Location = new System.Drawing.Point(419, 325);
             this.system_lbl.Name = "system_lbl";
-            this.system_lbl.Size = new System.Drawing.Size(149, 28);
-            this.system_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.system_lbl.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.system_lbl.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.system_lbl.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
-            this.system_lbl.TabIndex = 8;
-            this.system_lbl.Values.Text = "System settings";
-            // 
-            // securtySettings_lbl
-            // 
-            this.securtySettings_lbl.Location = new System.Drawing.Point(424, 39);
-            this.securtySettings_lbl.Name = "securtySettings_lbl";
-            this.securtySettings_lbl.Size = new System.Drawing.Size(157, 28);
-            this.securtySettings_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.securtySettings_lbl.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securtySettings_lbl.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.securtySettings_lbl.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
-            this.securtySettings_lbl.TabIndex = 7;
-            this.securtySettings_lbl.Values.Text = "Security settings";
+            this.system_lbl.Size = new System.Drawing.Size(159, 27);
+            this.system_lbl.TabIndex = 12;
+            this.system_lbl.Text = "System settings";
             // 
             // privacy_lbl
             // 
-            this.privacy_lbl.Location = new System.Drawing.Point(43, 325);
+            this.privacy_lbl.AutoSize = true;
+            this.privacy_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.privacy_lbl.ForeColor = System.Drawing.Color.White;
+            this.privacy_lbl.Location = new System.Drawing.Point(38, 325);
             this.privacy_lbl.Name = "privacy_lbl";
-            this.privacy_lbl.Size = new System.Drawing.Size(151, 28);
-            this.privacy_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.privacy_lbl.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.privacy_lbl.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.privacy_lbl.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
-            this.privacy_lbl.TabIndex = 6;
-            this.privacy_lbl.Values.Text = "Privacy settings";
+            this.privacy_lbl.Size = new System.Drawing.Size(164, 27);
+            this.privacy_lbl.TabIndex = 11;
+            this.privacy_lbl.Text = "Privacy settings";
             // 
             // theme_lbl
             // 
-            this.theme_lbl.Location = new System.Drawing.Point(43, 39);
+            this.theme_lbl.AutoSize = true;
+            this.theme_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.theme_lbl.ForeColor = System.Drawing.Color.White;
+            this.theme_lbl.Location = new System.Drawing.Point(38, 40);
             this.theme_lbl.Name = "theme_lbl";
-            this.theme_lbl.Size = new System.Drawing.Size(74, 28);
-            this.theme_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.theme_lbl.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.theme_lbl.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.theme_lbl.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
-            this.theme_lbl.TabIndex = 5;
-            this.theme_lbl.Values.Text = "Theme";
+            this.theme_lbl.Size = new System.Drawing.Size(78, 27);
+            this.theme_lbl.TabIndex = 10;
+            this.theme_lbl.Text = "Theme";
+            // 
+            // securtySettings_lbl
+            // 
+            this.securtySettings_lbl.AutoSize = true;
+            this.securtySettings_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.securtySettings_lbl.ForeColor = System.Drawing.Color.White;
+            this.securtySettings_lbl.Location = new System.Drawing.Point(419, 40);
+            this.securtySettings_lbl.Name = "securtySettings_lbl";
+            this.securtySettings_lbl.Size = new System.Drawing.Size(172, 27);
+            this.securtySettings_lbl.TabIndex = 9;
+            this.securtySettings_lbl.Text = "Security Settings";
             // 
             // appinfo_panel
             // 
@@ -176,8 +172,6 @@
             this.version_lbl.Size = new System.Drawing.Size(138, 22);
             this.version_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.Black;
             this.version_lbl.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.version_lbl.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.version_lbl.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.version_lbl.TabIndex = 107;
             this.version_lbl.Values.Text = "App Version: 1.0.0";
             // 
@@ -190,30 +184,22 @@
             this.deleteAccount_btn.Size = new System.Drawing.Size(183, 45);
             this.deleteAccount_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.deleteAccount_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
-            this.deleteAccount_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.deleteAccount_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.deleteAccount_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.deleteAccount_btn.StateCommon.Border.Rounding = 20;
             this.deleteAccount_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.Black;
-            this.deleteAccount_btn.StateCommon.Content.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.deleteAccount_btn.StateCommon.Content.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.deleteAccount_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.deleteAccount_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.deleteAccount_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.deleteAccount_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.deleteAccount_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.deleteAccount_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.deleteAccount_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.deleteAccount_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.deleteAccount_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.deleteAccount_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.deleteAccount_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.deleteAccount_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.deleteAccount_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.deleteAccount_btn.TabIndex = 106;
             this.deleteAccount_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_trash_20;
             this.deleteAccount_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -227,8 +213,6 @@
             this.appinfo_lbl.Size = new System.Drawing.Size(91, 28);
             this.appinfo_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.Black;
             this.appinfo_lbl.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.appinfo_lbl.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.appinfo_lbl.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.appinfo_lbl.TabIndex = 8;
             this.appinfo_lbl.Values.Text = "App info";
             // 
@@ -252,8 +236,6 @@
             this.timezone_cmb.Size = new System.Drawing.Size(89, 22);
             this.timezone_cmb.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
             this.timezone_cmb.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timezone_cmb.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.timezone_cmb.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.timezone_cmb.TabIndex = 101;
             this.timezone_cmb.Values.Text = "Time Zone:";
             // 
@@ -280,8 +262,6 @@
             this.language_cmb.Size = new System.Drawing.Size(81, 22);
             this.language_cmb.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
             this.language_cmb.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.language_cmb.StateCommon.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.language_cmb.StateCommon.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.language_cmb.TabIndex = 99;
             this.language_cmb.Values.Text = "Language:";
             // 
@@ -321,59 +301,46 @@
             this.changeEmail_btn.Name = "changeEmail_btn";
             this.changeEmail_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
-            this.changeEmail_btn.OverrideDefault.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
             this.changeEmail_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changeEmail_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changeEmail_btn.OverrideDefault.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.OverrideDefault.Border.Width = 1;
             this.changeEmail_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
-            this.changeEmail_btn.OverrideFocus.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
             this.changeEmail_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changeEmail_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changeEmail_btn.OverrideFocus.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.OverrideFocus.Border.Width = 1;
             this.changeEmail_btn.Size = new System.Drawing.Size(147, 48);
             this.changeEmail_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
-            this.changeEmail_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changeEmail_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.StateCommon.Border.Rounding = 20;
             this.changeEmail_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.changeEmail_btn.StateCommon.Content.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.changeEmail_btn.StateCommon.Content.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.changeEmail_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.changeEmail_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changeEmail_btn.StateNormal.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.changeEmail_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.changeEmail_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changeEmail_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.changeEmail_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changeEmail_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changeEmail_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changeEmail_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changeEmail_btn.TabIndex = 108;
             this.changeEmail_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.changeEmail_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -388,59 +355,46 @@
             this.changePassword_btn.Name = "changePassword_btn";
             this.changePassword_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.changePassword_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
-            this.changePassword_btn.OverrideDefault.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
             this.changePassword_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changePassword_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changePassword_btn.OverrideDefault.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.OverrideDefault.Border.Width = 1;
             this.changePassword_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
             this.changePassword_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
-            this.changePassword_btn.OverrideFocus.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
             this.changePassword_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changePassword_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changePassword_btn.OverrideFocus.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.OverrideFocus.Border.Width = 1;
             this.changePassword_btn.Size = new System.Drawing.Size(147, 48);
             this.changePassword_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.changePassword_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
-            this.changePassword_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.changePassword_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.changePassword_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changePassword_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.StateCommon.Border.Rounding = 20;
             this.changePassword_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.changePassword_btn.StateCommon.Content.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.changePassword_btn.StateCommon.Content.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.changePassword_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.changePassword_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.changePassword_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.changePassword_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.changePassword_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changePassword_btn.StateNormal.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.changePassword_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.changePassword_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changePassword_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.changePassword_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changePassword_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.changePassword_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.changePassword_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.changePassword_btn.TabIndex = 107;
             this.changePassword_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.changePassword_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -464,8 +418,6 @@
             this.securityQuestion_cmb.Name = "securityQuestion_cmb";
             this.securityQuestion_cmb.Size = new System.Drawing.Size(290, 21);
             this.securityQuestion_cmb.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securityQuestion_cmb.StateCommon.Item.Content.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.securityQuestion_cmb.StateCommon.Item.Content.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.securityQuestion_cmb.TabIndex = 0;
             this.securityQuestion_cmb.Text = "Security Question...";
             // 
@@ -487,59 +439,46 @@
             this.clearRecentSearch_btn.Name = "clearRecentSearch_btn";
             this.clearRecentSearch_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
-            this.clearRecentSearch_btn.OverrideDefault.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
             this.clearRecentSearch_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearRecentSearch_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearRecentSearch_btn.OverrideDefault.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.OverrideDefault.Border.Width = 1;
             this.clearRecentSearch_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
-            this.clearRecentSearch_btn.OverrideFocus.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
             this.clearRecentSearch_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearRecentSearch_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearRecentSearch_btn.OverrideFocus.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.OverrideFocus.Border.Width = 1;
             this.clearRecentSearch_btn.Size = new System.Drawing.Size(275, 45);
             this.clearRecentSearch_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
-            this.clearRecentSearch_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearRecentSearch_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.StateCommon.Border.Rounding = 20;
             this.clearRecentSearch_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.clearRecentSearch_btn.StateCommon.Content.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.clearRecentSearch_btn.StateCommon.Content.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.clearRecentSearch_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.clearRecentSearch_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearRecentSearch_btn.StateNormal.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.clearRecentSearch_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.clearRecentSearch_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearRecentSearch_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.clearRecentSearch_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearRecentSearch_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearRecentSearch_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearRecentSearch_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearRecentSearch_btn.TabIndex = 106;
             this.clearRecentSearch_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.clearRecentSearch_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -554,59 +493,46 @@
             this.clearHistory_btn.Name = "clearHistory_btn";
             this.clearHistory_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.clearHistory_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
-            this.clearHistory_btn.OverrideDefault.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
             this.clearHistory_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearHistory_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearHistory_btn.OverrideDefault.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.OverrideDefault.Border.Width = 1;
             this.clearHistory_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
             this.clearHistory_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
-            this.clearHistory_btn.OverrideFocus.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
             this.clearHistory_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearHistory_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearHistory_btn.OverrideFocus.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.OverrideFocus.Border.Width = 1;
             this.clearHistory_btn.Size = new System.Drawing.Size(275, 45);
             this.clearHistory_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.clearHistory_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
-            this.clearHistory_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.clearHistory_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.clearHistory_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearHistory_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.StateCommon.Border.Rounding = 20;
             this.clearHistory_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.clearHistory_btn.StateCommon.Content.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.clearHistory_btn.StateCommon.Content.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.clearHistory_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.clearHistory_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.clearHistory_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.clearHistory_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.clearHistory_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearHistory_btn.StateNormal.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.clearHistory_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.clearHistory_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearHistory_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.clearHistory_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearHistory_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.clearHistory_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.clearHistory_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.clearHistory_btn.TabIndex = 105;
             this.clearHistory_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.clearHistory_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -632,59 +558,46 @@
             this.darkmode_btn.Name = "darkmode_btn";
             this.darkmode_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.darkmode_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
-            this.darkmode_btn.OverrideDefault.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
             this.darkmode_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.darkmode_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.darkmode_btn.OverrideDefault.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.OverrideDefault.Border.Width = 1;
             this.darkmode_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
             this.darkmode_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
-            this.darkmode_btn.OverrideFocus.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
             this.darkmode_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.darkmode_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.darkmode_btn.OverrideFocus.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.OverrideFocus.Border.Width = 1;
             this.darkmode_btn.Size = new System.Drawing.Size(275, 45);
             this.darkmode_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.darkmode_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
-            this.darkmode_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.darkmode_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.darkmode_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.darkmode_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.StateCommon.Border.Rounding = 20;
             this.darkmode_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.darkmode_btn.StateCommon.Content.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.darkmode_btn.StateCommon.Content.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.darkmode_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.darkmode_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.darkmode_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.darkmode_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.darkmode_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.darkmode_btn.StateNormal.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.darkmode_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.darkmode_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.darkmode_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.darkmode_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.darkmode_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.darkmode_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.darkmode_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.darkmode_btn.TabIndex = 104;
             this.darkmode_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.darkmode_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -699,59 +612,46 @@
             this.lightmode_btn.Name = "lightmode_btn";
             this.lightmode_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.lightmode_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
-            this.lightmode_btn.OverrideDefault.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.OverrideDefault.Border.Color1 = System.Drawing.Color.Red;
             this.lightmode_btn.OverrideDefault.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightmode_btn.OverrideDefault.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.lightmode_btn.OverrideDefault.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.OverrideDefault.Border.Width = 1;
             this.lightmode_btn.OverrideFocus.Back.Color1 = System.Drawing.Color.Transparent;
             this.lightmode_btn.OverrideFocus.Back.Color2 = System.Drawing.Color.Transparent;
-            this.lightmode_btn.OverrideFocus.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.OverrideFocus.Border.Color1 = System.Drawing.Color.Red;
             this.lightmode_btn.OverrideFocus.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightmode_btn.OverrideFocus.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.lightmode_btn.OverrideFocus.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.OverrideFocus.Border.Width = 1;
             this.lightmode_btn.Size = new System.Drawing.Size(275, 45);
             this.lightmode_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.lightmode_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
-            this.lightmode_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
             this.lightmode_btn.StateCommon.Border.Color2 = System.Drawing.Color.Transparent;
             this.lightmode_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.lightmode_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.StateCommon.Border.Rounding = 20;
             this.lightmode_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.lightmode_btn.StateCommon.Content.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.lightmode_btn.StateCommon.Content.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.lightmode_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.lightmode_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.lightmode_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.StateNormal.Border.Color1 = System.Drawing.Color.Transparent;
             this.lightmode_btn.StateNormal.Border.Color2 = System.Drawing.Color.Transparent;
             this.lightmode_btn.StateNormal.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.lightmode_btn.StateNormal.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.lightmode_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.lightmode_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightmode_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lightmode_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightmode_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lightmode_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.lightmode_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.lightmode_btn.TabIndex = 103;
             this.lightmode_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
             this.lightmode_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
@@ -767,34 +667,27 @@
             this.apply_btn.Size = new System.Drawing.Size(132, 45);
             this.apply_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.apply_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
-            this.apply_btn.StateCommon.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.apply_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.apply_btn.StateCommon.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.apply_btn.StateCommon.Border.Rounding = 20;
             this.apply_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.apply_btn.StateCommon.Content.ShortText.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
-            this.apply_btn.StateCommon.Content.ShortText.Trim = ComponentFactory.Krypton.Toolkit.PaletteTextTrim.Inherit;
             this.apply_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
             this.apply_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.apply_btn.StateNormal.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.apply_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.apply_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.apply_btn.StatePressed.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.apply_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.apply_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.apply_btn.StateTracking.Back.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.apply_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.apply_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.apply_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.apply_btn.StateTracking.Border.ImageStyle = ComponentFactory.Krypton.Toolkit.PaletteImageStyle.Inherit;
             this.apply_btn.TabIndex = 102;
             this.apply_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_submit_281;
             this.apply_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.apply_btn.Values.Text = "Apply";
+            this.apply_btn.Click += new System.EventHandler(this.apply_btn_Click);
             // 
             // settingsControl
             // 
@@ -804,7 +697,6 @@
             this.Controls.Add(this.settings_panel);
             this.Name = "settingsControl";
             this.Size = new System.Drawing.Size(1214, 614);
-            this.Load += new System.EventHandler(this.settingsControl_Load);
             this.settings_panel.ResumeLayout(false);
             this.settings_panel.PerformLayout();
             this.appinfo_panel.ResumeLayout(false);
@@ -830,14 +722,11 @@
         private System.Windows.Forms.Panel security_panel;
         private System.Windows.Forms.Panel privacy_panel;
         private System.Windows.Forms.Panel theme_panel;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel theme_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonButton apply_btn;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel privacy_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonButton darkmode_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton lightmode_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton clearRecentSearch_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton clearHistory_btn;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel securtySettings_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox securityQuestion_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox securityAnswer_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel version_lbl;
@@ -845,12 +734,15 @@
         private ComponentFactory.Krypton.Toolkit.KryptonLabel appinfo_lbl;
         private System.Windows.Forms.LinkLabel privacy_linklbl;
         private System.Windows.Forms.LinkLabel tos_linklbl;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel system_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel timezone_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel language_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonComboBox gender_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonButton changePassword_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton changeEmail_btn;
+        private System.Windows.Forms.Label theme_lbl;
+        private System.Windows.Forms.Label securtySettings_lbl;
+        private System.Windows.Forms.Label system_lbl;
+        private System.Windows.Forms.Label privacy_lbl;
     }
 }

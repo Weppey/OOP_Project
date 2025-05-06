@@ -11,6 +11,8 @@ using System.Web.UI.HtmlControls;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static OOP_Project.StayLoggedIn;
+using ComponentFactory.Krypton.Toolkit;
+
 
 namespace OOP_Project
 {
@@ -41,7 +43,42 @@ namespace OOP_Project
             {
                 preferences_clb.Items.Add(genre);
             }
+                ApplyTheme();
         }
+
+        public void ApplyTheme()
+        {
+            bool isDark = ThemeManager.IsDarkMode;
+
+            // Background colors
+            this.BackColor = isDark ? Color.FromArgb(26, 26, 26) : Color.White;
+            recentlyViewMovie_panel.BackColor = isDark ? Color.Gray : Color.LightGray;
+            profileDetails_panel.BackColor = isDark ? Color.FromArgb(30, 30, 30) : Color.Gray;
+            recentlyViewMovie_flp.BackColor = Color.White; // consistent in both themes
+
+            Color foreColor = isDark ? Color.White : Color.Black;
+
+            // Regular labels
+            username_lbl.ForeColor = foreColor;
+            email_lbl.ForeColor = foreColor;
+            birthdate_lbl.ForeColor = foreColor;
+            age_lbl.ForeColor = foreColor;
+            gender_lbl.ForeColor = foreColor;
+            preferences_lbl.ForeColor = foreColor;
+
+            KryptonButton[] buttons = new KryptonButton[]
+            {
+            editProfile_btn,
+            changeAvatar_btn,
+            cancel_btn,
+            save_btn
+            };
+
+            Color textColor = isDark ? Color.White : Color.Black;
+            Color lightBackColor = Color.Gainsboro;
+       
+        }
+
 
 
         private void userProfile_cs_Load(object sender, EventArgs e)

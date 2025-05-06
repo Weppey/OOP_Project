@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -27,6 +28,8 @@ namespace OOP_Project
         }
 
         // Save the user session (userType and userId)
+
+
         public static void SaveUserSession(string userType, int userId)
         {
             try
@@ -139,4 +142,49 @@ namespace OOP_Project
 
         }
         }
+    public static class UserThemeSettings
+    {
+        private static readonly string themeFilePath = Path.Combine(
+            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+            "OOP_Project", "theme_settings.json");
+
+        public class ThemePreference
+        {
+            public int UserId { get; set; }
+            public bool IsDarkMode { get; set; }
+        }
+
+        public static void SaveTheme(int userId, bool isDarkMode)
+        {
+            Dictionary<int, bool> settings;
+
+            if (File.Exists(themeFilePath))
+            {
+                var json = File.ReadAllText(themeFilePath);
+                settings = JsonConvert.DeserializeObject<Dictionary<int, bool>>(json)
+                           ?? new Dictionary<int, bool>();
+            }
+            else
+            {
+                settings = new Dictionary<int, bool>();
+            }
+
+            settings[userId] = isDarkMode;
+            File.WriteAllText(themeFilePath, JsonConvert.SerializeObject(settings));
+        }
+
+        public static bool? LoadTheme(int userId)
+        {
+            if (!File.Exists(themeFilePath))
+                return null;
+
+            var json = File.ReadAllText(themeFilePath);
+            var settings = JsonConvert.DeserializeObject<Dictionary<int, bool>>(json);
+
+            if (settings != null && settings.TryGetValue(userId, out bool isDarkMode))
+                return isDarkMode;
+
+            return null;
+        }
     }
+}
