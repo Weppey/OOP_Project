@@ -144,7 +144,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.home_btn.TabIndex = 1;
-            this.home_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_home_28;
+            this.home_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("home_btn.Values.Image")));
             this.home_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.home_btn.Values.Text = "";
             this.home_btn.Click += new System.EventHandler(this.home_btn_Click);
@@ -187,7 +187,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.favorite_btn.TabIndex = 2;
-            this.favorite_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_favorite_folder_28;
+            this.favorite_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("favorite_btn.Values.Image")));
             this.favorite_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.favorite_btn.Values.Text = "";
             this.favorite_btn.Click += new System.EventHandler(this.favorite_btn_Click);
@@ -230,7 +230,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.popular_btn.TabIndex = 3;
-            this.popular_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_fire_28;
+            this.popular_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("popular_btn.Values.Image")));
             this.popular_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.popular_btn.Values.Text = "";
             this.popular_btn.Click += new System.EventHandler(this.popular_btn_Click);
@@ -272,7 +272,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.settings_btn.TabIndex = 4;
-            this.settings_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_settings_28__1_;
+            this.settings_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("settings_btn.Values.Image")));
             this.settings_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.settings_btn.Values.Text = "";
             this.settings_btn.Click += new System.EventHandler(this.settings_btn_Click);
@@ -314,7 +314,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.adminsettings_btn.TabIndex = 5;
-            this.adminsettings_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_admin_settings_female_282;
+            this.adminsettings_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("adminsettings_btn.Values.Image")));
             this.adminsettings_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.adminsettings_btn.Values.Text = "";
             this.adminsettings_btn.Click += new System.EventHandler(this.admin_button_Click);
@@ -345,7 +345,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.signOut_btn.TabIndex = 6;
             this.signOut_btn.UseMnemonic = false;
-            this.signOut_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_left_28;
+            this.signOut_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("signOut_btn.Values.Image")));
             this.signOut_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.signOut_btn.Values.Text = "";
             this.signOut_btn.Click += new System.EventHandler(this.signOut_btn_Click);
@@ -363,7 +363,7 @@
             // logo_pb
             // 
             this.logo_pb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_2;
+            this.logo_pb.Image = ((System.Drawing.Image)(resources.GetObject("logo_pb.Image")));
             this.logo_pb.Location = new System.Drawing.Point(0, 0);
             this.logo_pb.Name = "logo_pb";
             this.logo_pb.Size = new System.Drawing.Size(109, 100);
@@ -630,7 +630,7 @@
             // 
             this.close_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.close_pb.BackColor = System.Drawing.Color.Transparent;
-            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
+            this.close_pb.Image = ((System.Drawing.Image)(resources.GetObject("close_pb.Image")));
             this.close_pb.Location = new System.Drawing.Point(1349, 12);
             this.close_pb.Name = "close_pb";
             this.close_pb.Size = new System.Drawing.Size(25, 23);
@@ -645,7 +645,7 @@
             // 
             this.minimize_pb.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.minimize_pb.BackColor = System.Drawing.Color.Transparent;
-            this.minimize_pb.Image = global::OOP_Project.Properties.Resources.icons8_minimize_24;
+            this.minimize_pb.Image = ((System.Drawing.Image)(resources.GetObject("minimize_pb.Image")));
             this.minimize_pb.Location = new System.Drawing.Point(1320, 12);
             this.minimize_pb.Name = "minimize_pb";
             this.minimize_pb.Size = new System.Drawing.Size(25, 23);

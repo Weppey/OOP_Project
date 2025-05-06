@@ -40,7 +40,8 @@ namespace OOP_Project
             popularMovie_panel.Resize += (s, args) => CurvePanel(popularMovie_panel, 20);
 
             CurvePanel(popularPanel_panel, 30);
-            popularPanel_panel.Resize += (s, args) => CurvePanel(popularPanel_panel, 20);
+            popularPanel_panel.Resize += (s, args) => CurvePanel(popularPanel_panel, 20); 
+
         }
 
         public PopularControl(string userTypeFromLogin, int userIdFromLogin)

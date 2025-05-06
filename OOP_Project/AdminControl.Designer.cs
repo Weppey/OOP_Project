@@ -34,6 +34,7 @@ namespace OOP_Project
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminControl));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.releaseYear_dtp = new System.Windows.Forms.DateTimePicker();
             this.title_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
@@ -241,7 +242,7 @@ namespace OOP_Project
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.update_btn.TabIndex = 82;
-            this.update_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_submit_281;
+            this.update_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("update_btn.Values.Image")));
             this.update_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.update_btn.Values.Text = "Update";
             this.update_btn.Click += new System.EventHandler(this.update_btn_Click);
@@ -342,8 +343,8 @@ namespace OOP_Project
             // 
             this.Admin_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.Admin_panel.Controls.Add(this.buttonDock_panel);
-            this.Admin_panel.Controls.Add(this.movieEditor_panel);
             this.Admin_panel.Controls.Add(this.userEditor_panel);
+            this.Admin_panel.Controls.Add(this.movieEditor_panel);
             this.Admin_panel.Location = new System.Drawing.Point(3, 3);
             this.Admin_panel.Name = "Admin_panel";
             this.Admin_panel.Size = new System.Drawing.Size(1214, 696);
@@ -475,7 +476,7 @@ namespace OOP_Project
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.editMovie_btn.TabIndex = 89;
-            this.editMovie_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
+            this.editMovie_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("editMovie_btn.Values.Image")));
             this.editMovie_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.editMovie_btn.Values.Text = "Edit Movie";
             this.editMovie_btn.Click += new System.EventHandler(this.editMovie_btn_Click);
@@ -777,7 +778,7 @@ namespace OOP_Project
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.insertUser_btn.TabIndex = 101;
-            this.insertUser_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_submit_281;
+            this.insertUser_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("insertUser_btn.Values.Image")));
             this.insertUser_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.insertUser_btn.Values.Text = "Insert";
             this.insertUser_btn.Click += new System.EventHandler(this.insertUser_btn_Click);
@@ -808,7 +809,7 @@ namespace OOP_Project
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.cancel_btn.TabIndex = 103;
-            this.cancel_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
+            this.cancel_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("cancel_btn.Values.Image")));
             this.cancel_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.cancel_btn.Values.Text = "Cancel";
             this.cancel_btn.Click += new System.EventHandler(this.cancel_btn_Click);
@@ -910,7 +911,7 @@ namespace OOP_Project
             // poster_pb
             // 
             this.poster_pb.BackColor = System.Drawing.Color.White;
-            this.poster_pb.Image = global::OOP_Project.Properties.Resources._1_2;
+            this.poster_pb.Image = ((System.Drawing.Image)(resources.GetObject("poster_pb.Image")));
             this.poster_pb.Location = new System.Drawing.Point(21, 20);
             this.poster_pb.Name = "poster_pb";
             this.poster_pb.Size = new System.Drawing.Size(180, 255);
@@ -934,6 +935,7 @@ namespace OOP_Project
             // movieEditor_lbl
             // 
             this.movieEditor_lbl.AutoSize = true;
+            this.movieEditor_lbl.BackColor = System.Drawing.Color.Transparent;
             this.movieEditor_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold);
             this.movieEditor_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.movieEditor_lbl.Location = new System.Drawing.Point(17, 24);
@@ -1008,7 +1010,6 @@ namespace OOP_Project
         private System.Windows.Forms.PictureBox logo_pb;
         private ComponentFactory.Krypton.Toolkit.KryptonButton editUser_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton editMovie_btn;
-        private System.Windows.Forms.Label movieEditor_lbl;
         private System.Windows.Forms.Panel userEditor_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonTextBox username_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonDataGridView users_dgv;
@@ -1037,5 +1038,6 @@ namespace OOP_Project
         private KryptonTextBox securityAnswer_tb;
         private PictureBox avatar_pb;
         private Label profile_lbl;
+        private Label movieEditor_lbl;
     }
 }

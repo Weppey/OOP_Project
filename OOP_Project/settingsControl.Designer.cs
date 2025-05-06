@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(settingsControl));
             this.settings_panel = new System.Windows.Forms.Panel();
             this.system_lbl = new System.Windows.Forms.Label();
             this.privacy_lbl = new System.Windows.Forms.Label();
@@ -201,7 +202,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.deleteAccount_btn.TabIndex = 106;
-            this.deleteAccount_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_trash_20;
+            this.deleteAccount_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("deleteAccount_btn.Values.Image")));
             this.deleteAccount_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.deleteAccount_btn.Values.Text = "Delete my account";
             this.deleteAccount_btn.Click += new System.EventHandler(this.deleteAccount_btn_Click);
@@ -342,7 +343,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.changeEmail_btn.TabIndex = 108;
-            this.changeEmail_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
+            this.changeEmail_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("changeEmail_btn.Values.Image")));
             this.changeEmail_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.changeEmail_btn.Values.Text = "Change email";
             this.changeEmail_btn.Click += new System.EventHandler(this.changeEmail_btn_Click);
@@ -396,7 +397,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.changePassword_btn.TabIndex = 107;
-            this.changePassword_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
+            this.changePassword_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("changePassword_btn.Values.Image")));
             this.changePassword_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.changePassword_btn.Values.Text = "Change password";
             this.changePassword_btn.Click += new System.EventHandler(this.changePassword_btn_Click);
@@ -480,7 +481,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.clearRecentSearch_btn.TabIndex = 106;
-            this.clearRecentSearch_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
+            this.clearRecentSearch_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("clearRecentSearch_btn.Values.Image")));
             this.clearRecentSearch_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.clearRecentSearch_btn.Values.Text = "Clear recently search";
             this.clearRecentSearch_btn.Click += new System.EventHandler(this.clearRecentSearch_btn_Click);
@@ -534,7 +535,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.clearHistory_btn.TabIndex = 105;
-            this.clearHistory_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
+            this.clearHistory_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("clearHistory_btn.Values.Image")));
             this.clearHistory_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.clearHistory_btn.Values.Text = "Clear view history";
             this.clearHistory_btn.Click += new System.EventHandler(this.clearHistory_btn_Click);
@@ -599,7 +600,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.darkmode_btn.TabIndex = 104;
-            this.darkmode_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
+            this.darkmode_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("darkmode_btn.Values.Image")));
             this.darkmode_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.darkmode_btn.Values.Text = "Dark mode";
             this.darkmode_btn.Click += new System.EventHandler(this.darkmode_btn_Click);
@@ -653,7 +654,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.lightmode_btn.TabIndex = 103;
-            this.lightmode_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_edit_delivery_terms_28;
+            this.lightmode_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("lightmode_btn.Values.Image")));
             this.lightmode_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.lightmode_btn.Values.Text = "Light mode";
             this.lightmode_btn.Click += new System.EventHandler(this.lightmode_btn_Click);
@@ -684,7 +685,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.apply_btn.TabIndex = 102;
-            this.apply_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_submit_281;
+            this.apply_btn.Values.Image = ((System.Drawing.Image)(resources.GetObject("apply_btn.Values.Image")));
             this.apply_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.apply_btn.Values.Text = "Apply";
             this.apply_btn.Click += new System.EventHandler(this.apply_btn_Click);

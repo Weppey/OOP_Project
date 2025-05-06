@@ -61,7 +61,40 @@ namespace OOP_Project
             tooltip.SetToolTip(editMovie_btn, "Edit Movie");
             tooltip.SetToolTip(insertUser_btn, "Insert User");
             tooltip.SetToolTip(deleteUser_btn, "Delete User");
+            ApplyTheme();
 
+        }
+        public void ApplyTheme()
+        {
+            Color labelForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
+            Color buttonPanelColor = ThemeManager.IsDarkMode ? Color.FromArgb(26, 26, 26) : Color.Gray;
+            Color controlPanelColor = ThemeManager.IsDarkMode ? Color.FromArgb(35, 35, 35) : Color.LightGray;
+            Color anotherColor = ThemeManager.IsDarkMode ? Color.DarkGray : Color.Gainsboro;
+            this.BackColor = buttonPanelColor;
+
+            buttonDock_panel.BackColor = buttonPanelColor;
+            movieEditor_panel.BackColor = buttonPanelColor;
+            userEditor_panel.BackColor = buttonPanelColor;
+            Admin_panel.BackColor = anotherColor;
+
+            movieControlBtn_panel.BackColor = controlPanelColor;
+            movieFillUp_panel.BackColor = controlPanelColor;
+            fillup_panel.BackColor = controlPanelColor;
+            controlBtn_panel.BackColor = controlPanelColor;
+
+            // Labels
+            profile_lbl.ForeColor = labelForeColor;
+            profile_lbl.BackColor = Color.Transparent;
+
+            Genre_lbl.ForeColor = labelForeColor;
+            Genre_lbl.BackColor = Color.Transparent;
+
+            movieEditor_lbl.ForeColor = labelForeColor;
+            movieEditor_lbl.BackColor = Color.Transparent;
+
+            // Controls
+            emailVerified_cb.ForeColor = labelForeColor;
+            emailVerified_cb.BackColor = controlPanelColor;
         }
 
         private void LoadMovies()

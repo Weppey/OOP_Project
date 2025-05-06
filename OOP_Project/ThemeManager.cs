@@ -43,10 +43,7 @@ public static class ThemeManager
         Color viewportColor,
         Color flowPanelColor)
     {
-        foreach (Form form in Application.OpenForms)
-        {
-            ApplyThemeToForm(form, foreColor, formBackColor, controlBackColor, darkPanelColor, viewportColor, flowPanelColor);
-        }
+       
     }
 
     public static void ApplyThemeToForm(
@@ -139,8 +136,7 @@ public static class ThemeManager
             }
             else
             {
-                control.ForeColor = foreColor;
-                control.BackColor = backColor;
+                continue;
             }
 
             // Panel coloring

@@ -1,31 +1,28 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using System.Security.Policy;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 using WinFormsToolTip = System.Windows.Forms.ToolTip;
-using Microsoft.VisualBasic.ApplicationServices;
 
 namespace OOP_Project
 {
-
     public partial class settingsControl : UserControl
     {
-
         WinFormsToolTip tooltip = new WinFormsToolTip();
         private MySqlConnection connection;
         private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private bool _originalThemePreference;
+        // Fields at the top of your settingsControl class:
+        private bool _themeSaved = false;
+    
+
+        // In your constructor, after userId is set:
 
         private int userId;
         private string userType;
+
         public settingsControl(string userType, int userId)
         {
             InitializeComponent();
@@ -34,64 +31,100 @@ namespace OOP_Project
 
             connection = new MySqlConnection(connectionString);
 
-            tooltip.IsBalloon = false;                        // Makes it balloon-shaped
-            tooltip.BackColor = Color.LightYellow;           // Tooltip background color (only works in custom-drawn tips)
-            tooltip.ForeColor = Color.Black;                 // Text color
-            tooltip.UseFading = true;                        // Smooth fade-in/out
-            tooltip.UseAnimation = true;                     // Animate appearance
-
+            tooltip.IsBalloon = false;
+            tooltip.BackColor = Color.LightYellow;
+            tooltip.ForeColor = Color.Black;
+            tooltip.UseFading = true;
+            tooltip.UseAnimation = true;
             tooltip.AutoPopDelay = 5000;
             tooltip.InitialDelay = 100;
             tooltip.ReshowDelay = 100;
             tooltip.ShowAlways = true;
+
+            _originalThemePreference = UserThemeSettings.LoadTheme(userId) ?? false;
+            _themeSaved = false;
+
+            if (_originalThemePreference)
+                ThemeManager.ApplyDarkMode();
+            else
+                ThemeManager.ApplyLightMode();
+
             ApplyTheme();
+            ApplyThemeToOpenForms();
 
+            this.VisibleChanged += settingsControl_VisibleChanged; 
 
+            // Curve panels...
+        CurvePanel(appinfo_panel, 30);
+            appinfo_panel.Resize += (s, aargs) => CurvePanel(appinfo_panel, 20);
+            CurvePanel(privacy_panel, 30);
+            privacy_panel.Resize += (s, aargs) => CurvePanel(privacy_panel, 20);
+            CurvePanel(security_panel, 30);
+            security_panel.Resize += (s, aargs) => CurvePanel(security_panel, 20);
+            CurvePanel(theme_panel, 30);
+            theme_panel.Resize += (s, aargs) => CurvePanel(theme_panel, 20);
+            CurvePanel(system_panel, 30);
+            system_panel.Resize += (s, aargs) => CurvePanel(system_panel, 20);
         }
+
         public void ApplyTheme()
         {
-            // Get the correct color for text depending on the theme
             Color labelForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
 
-            // Update the label colors (foreground/text color)
             theme_lbl.ForeColor = labelForeColor;
             securtySettings_lbl.ForeColor = labelForeColor;
             privacy_lbl.ForeColor = labelForeColor;
             system_lbl.ForeColor = labelForeColor;
 
-            // Ensure labels have transparent background
             theme_lbl.BackColor = Color.Transparent;
             securtySettings_lbl.BackColor = Color.Transparent;
             privacy_lbl.BackColor = Color.Transparent;
             system_lbl.BackColor = Color.Transparent;
-            settings_panel.BackColor = ThemeManager.IsDarkMode ? Color.Transparent : Color.LightGray;
+            settings_panel.BackColor = ThemeManager.IsDarkMode ? Color.Transparent : Color.Gainsboro;
         }
 
-
-
-
-        private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
+        private void ApplyThemeToOpenForms()
         {
-            GraphicsPath path = new GraphicsPath(); // Method to apply curved corners to a panel
-            path.StartFigure(); // Start the shape definition
-
-            // Add arcs to the path to define the four rounded corners
-            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90); // Top-left corner
-            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90); // Top-left corner
-            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90); // Bottom-right corner
-            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90); // Bottom-left corner
-            path.CloseFigure(); // Close the shape definition
-            panel.Region = new Region(path); // Apply the custom shape to the panel by setting its Region property
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is home_form homeForm)
+                {
+                    homeForm.ApplyTheme();
+                }
+                ApplyThemeToSettingsControlRecursive(form.Controls);
+            }
         }
 
-        private void language_cmb_Paint(object sender, PaintEventArgs e)
+        private void ApplyThemeToSettingsControlRecursive(Control.ControlCollection controls)
         {
+            foreach (Control control in controls)
+            {
+                if (control is settingsControl settingsControl && control != this)
+                {
+                    settingsControl.ApplyTheme();
+                }
+                else if (control is AdminControl adminCtrl)
+                {
+                    adminCtrl.ApplyTheme();
+                }
 
+                if (control.HasChildren)
+                {
+                    ApplyThemeToSettingsControlRecursive(control.Controls);
+                }
+            }
         }
 
-        private void gender_cmb_SelectedIndexChanged(object sender, EventArgs e)
+        private void CurvePanel(Panel panel, int radius)
         {
-
+            GraphicsPath path = new GraphicsPath();
+            path.StartFigure();
+            path.AddArc(new Rectangle(0, 0, radius, radius), 180, 90);
+            path.AddArc(new Rectangle(panel.Width - radius, 0, radius, radius), 270, 90);
+            path.AddArc(new Rectangle(panel.Width - radius, panel.Height - radius, radius, radius), 0, 90);
+            path.AddArc(new Rectangle(0, panel.Height - radius, radius, radius), 90, 90);
+            path.CloseFigure();
+            panel.Region = new Region(path);
         }
 
         private void changePassword_btn_Click(object sender, EventArgs e)
@@ -99,7 +132,6 @@ namespace OOP_Project
             account_recovery_form recovery = new account_recovery_form();
             recovery.ChangePassword();
             recovery.ShowDialog();
-
         }
 
         private void changeEmail_btn_Click(object sender, EventArgs e)
@@ -111,34 +143,26 @@ namespace OOP_Project
 
         private void clearHistory_btn_Click(object sender, EventArgs e)
         {
-
-            DialogResult result = MessageBox.Show("Are you sure you want to clear your recently viewed movies?",
-    "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Are you sure you want to clear your recently viewed movies?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
                 try
                 {
-                    using (MySqlConnection conn = new MySqlConnection("Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;"))
+                    using (MySqlConnection conn = new MySqlConnection(connectionString))
                     {
                         conn.Open();
-
                         string deleteQuery = "DELETE FROM movie_interaction WHERE user_id = @userId";
-
                         using (MySqlCommand cmd = new MySqlCommand(deleteQuery, conn))
                         {
-                            cmd.Parameters.AddWithValue("@userId", userId); // Make sure this is passed to settingsControl
-
+                            cmd.Parameters.AddWithValue("@userId", userId);
                             int rows = cmd.ExecuteNonQuery();
-
                             MessageBox.Show(rows > 0
                                 ? "Recently viewed movies cleared."
                                 : "No recently viewed movies to clear.",
                                 "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
-
-                    // Optional: refresh UI if neede
                 }
                 catch (Exception ex)
                 {
@@ -147,26 +171,20 @@ namespace OOP_Project
                 }
             }
         }
+
         private void clearRecentSearch_btn_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Are you sure you want to clear your recently search movies?",
-            "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("Are you sure you want to clear your recently search movies?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 try
                 {
-                    // Open the database connection
                     connection.Open();
-
-                    // Define the SQL command to delete recent searches for the logged-in user
                     string query = "DELETE FROM recent_searches WHERE user_id = @userId";
-
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
-                        cmd.Parameters.AddWithValue("@userId", userId); // Or use currentUserId if applicable
-
+                        cmd.Parameters.AddWithValue("@userId", userId);
                         int rowsAffected = cmd.ExecuteNonQuery();
-
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Search history cleared successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -193,95 +211,100 @@ namespace OOP_Project
 
         private void deleteAccount_btn_Click(object sender, EventArgs e)
         {
-            int currentUserId = userId; // Make sure this is assigned correctly from your session or logged-in user
-
             DialogResult result = MessageBox.Show(
                 "This action will permanently delete your account and cannot be undone.\n\nAre you sure you want to continue?",
                 "Confirm Account Deletion",
                 MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
+                MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
             {
                 try
                 {
-                    string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
                     using (MySqlConnection conn = new MySqlConnection(connectionString))
                     {
                         conn.Open();
                         string query = "DELETE FROM users WHERE user_id = @userId";
                         using (MySqlCommand cmd = new MySqlCommand(query, conn))
                         {
-                            cmd.Parameters.AddWithValue("@userId", currentUserId);
+                            cmd.Parameters.AddWithValue("@userId", userId);
                             int rowsAffected = cmd.ExecuteNonQuery();
-
                             if (rowsAffected > 0)
                             {
-                                MessageBox.Show(
-                                    "Your account has been successfully deleted.",
-                                    "Account Deleted",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information
-                                );
-
+                                MessageBox.Show("Your account has been successfully deleted.", "Account Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 StayLoggedIn.ClearSession();
                                 login_form login = new login_form();
                                 login.ShowDialog();
                             }
                             else
                             {
-                                MessageBox.Show(
-                                    "User not found. The account may have already been deleted.",
-                                    "Deletion Failed",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Exclamation
-                                );
+                                MessageBox.Show("User not found. The account may have already been deleted.", "Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                             }
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(
-                        "An unexpected error occurred while deleting the account:\n\n" + ex.Message,
-                        "Error",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Error
-                    );
+                    MessageBox.Show("An unexpected error occurred while deleting the account:\n\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show(
-                    "Your account was not deleted.",
-                    "Operation Cancelled",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information
-                );
+                MessageBox.Show("Your account was not deleted.", "Operation Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-        }
-
-        private void lightmode_btn_Click(object sender, EventArgs e)
-        {
-            ThemeManager.ApplyLightMode();
-            ApplyTheme();
         }
 
         private void darkmode_btn_Click(object sender, EventArgs e)
         {
-            ThemeManager.ApplyDarkMode();
+            ThemeManager.ApplyDarkMode();  // Preview only
             ApplyTheme();
+            ApplyThemeToOpenForms();
         }
 
-private void apply_btn_Click(object sender, EventArgs e)
-{
-    int? userId = StayLoggedIn.GetCurrentUserId();
-    if (userId == null) return;
+        private void lightmode_btn_Click(object sender, EventArgs e)
+        {
+            ThemeManager.ApplyLightMode();  // Preview only
+            ApplyTheme();
+            ApplyThemeToOpenForms();
+        }
 
-    UserThemeSettings.SaveTheme(userId.Value, ThemeManager.IsDarkMode);
-    MessageBox.Show("Theme preference saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-}
+
+
+
+private void apply_btn_Click(object sender, EventArgs e)
+        {
+            int? userId = StayLoggedIn.GetCurrentUserId();
+            if (userId == null) return;
+
+            UserThemeSettings.SaveTheme(userId.Value, ThemeManager.IsDarkMode);
+            _themeSaved = true;
+
+            MessageBox.Show("Theme preference saved!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // RevertTheme method
+        private void RevertTheme()
+        {
+            if (_originalThemePreference)
+                ThemeManager.ApplyDarkMode();
+            else
+                ThemeManager.ApplyLightMode();
+
+            ApplyTheme();              // Re-apply this control's theme
+            ApplyThemeToOpenForms();   // Re-apply across the app
+        }
+
+        // Detect when user navigates away from settingsControl
+        private void settingsControl_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!this.Visible && !_themeSaved)
+            {
+                RevertTheme();
+            }
+        }
+
+        // Hook this in constructor or Load event
+        // this.VisibleChanged += settingsControl_VisibleChanged;
 
     }
 }

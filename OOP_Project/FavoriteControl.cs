@@ -65,6 +65,9 @@ namespace OOP_Project
 
             CurvePanel(favoriteMovie_flp, 30);
             favoriteMovie_flp.Resize += (s, args) => CurvePanel(favoriteMovie_flp, 20);
+
+            CurvePanel(favoriteMovie_flp, 30);
+            favoriteMovie_flp.Resize += (s, args) => CurvePanel(panel1, 20);
         }
 
         public void Reload()

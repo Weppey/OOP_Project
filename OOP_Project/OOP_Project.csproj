@@ -291,7 +291,6 @@
       <DependentUpon>ProfileControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ThemeManager.cs" />
-    <Compile Include="UserThemeSettings.cs" />
     <Compile Include="verification_form.cs">
       <SubType>Form</SubType>
     </Compile>
