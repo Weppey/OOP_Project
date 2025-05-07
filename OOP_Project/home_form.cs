@@ -1222,15 +1222,12 @@ namespace OOP_Project
 
         private void search_list_Click(object sender, EventArgs e)
         {
-            if (search_list.SelectedItem == null)
-            {
-                // No item is selected, so exit early.
-                return;
-            }
-
             if (search_list.SelectedItem is movie selectedMovie)
             {
+                var selectedItem = search_list.SelectedItem;
+            
                 var fullMovie = GetFullMovieByTitle(selectedMovie.Title);
+
 
                 if (fullMovie != null)
                 {
@@ -1254,7 +1251,6 @@ namespace OOP_Project
                 {
                     MessageBox.Show("Movie not found in the database.");
                 }
-
                 // Reset UI
                 search_list.ClearSelected();
                 search_list.Visible = false;
@@ -1263,7 +1259,6 @@ namespace OOP_Project
                 this.ActiveControl = null;
             }
         }
-
 
         private void LoadRecentSearchSuggestions()
         {
@@ -1370,61 +1365,54 @@ namespace OOP_Project
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-        private async void search_txt_TextChanged(object sender, EventArgs e)
+    private void search_txt_TextChanged(object sender, EventArgs e)
+{
+    string keyword = search_tb.Text.Trim();
+
+    if (string.IsNullOrEmpty(keyword))
+    {
+        LoadRecentSearchSuggestions();
+        return;
+    }
+
+    string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+    string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
+    search_list.Items.Clear();
+    try
+    {
+        using (MySqlConnection conn = new MySqlConnection(connStr))
         {
-            string keyword = search_tb.Text.Trim();
-
-            // If the keyword is empty, load recent search suggestions
-            if (string.IsNullOrEmpty(keyword))
+            conn.Open();
+            using (MySqlCommand cmd = new MySqlCommand(query, conn))
             {
-                LoadRecentSearchSuggestions();
-                return;
-            }
+                cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
 
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
-            search_list.Items.Clear();
-
-            try
-            {
-                using (MySqlConnection conn = new MySqlConnection(connStr))
+                using (MySqlDataReader reader = cmd.ExecuteReader())
                 {
-                    await conn.OpenAsync();
-                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    while (reader.Read())
                     {
-                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
-
-                        using (MySqlDataReader reader = (MySqlDataReader)await cmd.ExecuteReaderAsync())
+                        var movie = new movie
                         {
-                            bool foundResults = false;
-
-                            while (await reader.ReadAsync())
-                            {
-                                var movie = new movie
-                                {
-                                    Title = reader.GetString("title")
-                                };
-                                search_list.Items.Add(movie);
-                                foundResults = true;
-                            }
-
-                            // If no results are found, display a custom message in the ListBox
-                            if (!foundResults)
-                            {
-                                search_list.Items.Add("No results found");
-                            }
-                        }
+                            Title = reader.GetString("title")
+                        };
+                        search_list.Items.Add(movie);
                     }
                 }
-
-                // Make the ListBox visible if there are any items
-                search_list.Visible = search_list.Items.Count > 0;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
             }
         }
+
+        if (search_list.Items.Count == 0)
+        {
+            search_list.Items.Add("No results found");
+        }
+
+        search_list.Visible = search_list.Items.Count > 0;
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show("Error: " + ex.Message);
+    }
+}
 
 
         private async Task LoadMovieSuggestions(string keyword)

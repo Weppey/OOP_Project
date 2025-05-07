@@ -98,8 +98,11 @@ namespace OOP_Project
             // Local panels
             movieDetails_panel.BackColor = moviePanelColor;
             movie_panel.BackColor = moviePanelColor;
+            movie_panel.BackColor = moviePanelColor;
+            genre_lbl.ForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
+            dateRelease_lbl.ForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
+            description_lbl.ForeColor = ThemeManager.IsDarkMode ? Color.White : Color.FromArgb(30, 30, 30);
 
-    
             title_lbl.ForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
         }
 
