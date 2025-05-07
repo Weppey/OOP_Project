@@ -31,7 +31,7 @@ namespace OOP_Project
 
         private int currentMovieId;
         private MySqlConnection connection;
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
         public int selectedMovieId;
         private string currentUserType;
         public movie_details_form(movie moovie, int userId, int interactionId = 0, string comment = "")
@@ -301,7 +301,7 @@ namespace OOP_Project
         private string GetTrailerUrl(int movieId)
         {
             string trailerUrl = "";
-            string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -979,9 +979,15 @@ namespace OOP_Project
         }
         private void watch_btn_Click(object sender, EventArgs e)
         {
+            // Stop the video by setting the src to a blank page or empty content
+            if (webView21 != null && webView21.CoreWebView2 != null)
+            {
+                webView21.CoreWebView2.Navigate("about:blank");
+            }
+
             int movieId = selectedMovieId; // Get this from your context
 
-            string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string query = "SELECT movie_url FROM movies WHERE movie_id = @movieId";
 
             try

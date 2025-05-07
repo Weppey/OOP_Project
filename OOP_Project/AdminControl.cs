@@ -21,7 +21,7 @@ namespace OOP_Project
         
             WinFormsToolTip tooltip = new WinFormsToolTip();
         private MySqlConnection connection;
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
 
         private DataTable movieTable = new DataTable();
         private BindingSource movieBindingSource = new BindingSource();
@@ -64,13 +64,15 @@ namespace OOP_Project
             tooltip.SetToolTip(deleteUser_btn, "Delete User");
             ApplyTheme();
 
+
         }
         public void ApplyTheme()
         {
             Color labelForeColor = ThemeManager.IsDarkMode ? Color.White : Color.Black;
             Color buttonPanelColor = ThemeManager.IsDarkMode ? Color.FromArgb(26, 26, 26) : Color.Gray;
-            Color controlPanelColor = ThemeManager.IsDarkMode ? Color.FromArgb(35, 35, 35) : Color.LightGray;
+            Color controlPanelColor = ThemeManager.IsDarkMode ? Color.FromArgb(35, 35, 35) : Color.DarkGray;
             Color anotherColor = ThemeManager.IsDarkMode ? Color.DarkGray : Color.Gainsboro;
+
             this.BackColor = buttonPanelColor;
 
             buttonDock_panel.BackColor = buttonPanelColor;
@@ -86,6 +88,7 @@ namespace OOP_Project
             // Labels
             profile_lbl.ForeColor = labelForeColor;
             profile_lbl.BackColor = Color.Transparent;
+            usersEditor_lbl.ForeColor = labelForeColor;   
 
             Genre_lbl.ForeColor = labelForeColor;
             Genre_lbl.BackColor = Color.Transparent;
@@ -111,8 +114,14 @@ namespace OOP_Project
 
         public void HandleMasterAccess()
         {
+            if (userType == "Master")
+            {
                 usertype_cmb.Visible = true;
-       
+            }
+            else
+            {
+                usertype_cmb.Visible = false;
+            }
         }
 
         private void AdminMovieControl_Load(object sender, EventArgs e)
@@ -124,7 +133,7 @@ namespace OOP_Project
                 connection.Open();
                 LoadMovies();
                 SetupSearchMoviesPlaceholder();
-                SetupSearchUsersPlaceholder();
+                //SetupSearchUsersPlaceholder();
                 LoadUsers();
 
             }
@@ -227,29 +236,6 @@ namespace OOP_Project
             };
         }
 
-        private void SetupSearchUsersPlaceholder()
-        {
-            userSearchBox_tb.Text = "Search users...";
-            userSearchBox_tb.ForeColor = Color.Gray;
-
-            userSearchBox_tb.GotFocus += (s, e) =>
-            {
-                if (userSearchBox_tb.Text == "Search users...")
-                {
-                    userSearchBox_tb.Text = "";
-                    userSearchBox_tb.ForeColor = Color.Black;
-                }
-            };
-
-            userSearchBox_tb.LostFocus += (s, e) =>
-            {
-                if (string.IsNullOrWhiteSpace(userSearchBox_tb.Text))
-                {
-                    userSearchBox_tb.Text = "Search users...";
-                    userSearchBox_tb.ForeColor = Color.Gray;
-                }
-            };
-        }
 
 
 
@@ -324,25 +310,38 @@ namespace OOP_Project
 
         private void remove_btn_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Delete this movie?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (movies_dgv.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a user from the table to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show("Delete this movie?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 insert_btn.Enabled = false;
-                int movieId = Convert.ToInt32(movies_dgv.CurrentRow.Cells["movie_id"].Value);
-                string query = "DELETE FROM movies WHERE movie_id=@id";
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@id", movieId);
-                cmd.ExecuteNonQuery();
 
-                title_tb.Text = "";
-                posterUrl_tb.Text = "";
-                releaseYear_dtp.Value = DateTime.Now;  // Set to a default value
-                description_tb.Text = "";
+                try
+                {
+                    int movieId = Convert.ToInt32(movies_dgv.CurrentRow.Cells["movie_id"].Value);
+                    string query = "DELETE FROM movies WHERE movie_id=@id";
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@id", movieId);
+                    cmd.ExecuteNonQuery();
 
-                poster_pb.Image = null;
+                    // Clear input fields
+                    title_tb.Text = "";
+                    posterUrl_tb.Text = "";
+                    releaseYear_dtp.Value = DateTime.Now;
+                    description_tb.Text = "";
+                    poster_pb.Image = null;
 
-
-                MovieClearCheckedItems();
-                LoadMovies();
+                    MovieClearCheckedItems();
+                    LoadMovies();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting movie: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
@@ -524,19 +523,7 @@ namespace OOP_Project
             }
         }
 
-        //user editor 
-
-        private void LoadUsers()
-        {
-            string query = "SELECT user_id, username, email, age, gender, birthdate, preferences, email_verified, user_type, signup_date, security_question, security_answer, avatar FROM users";
-
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-            usersTable.Clear();
-            adapter.Fill(usersTable);
-            usersBindingSource.DataSource = usersTable;
-            users_dgv.DataSource = usersBindingSource;
-        }
+ 
 
 
         private void LoadUserDetails(int userId)
@@ -552,6 +539,7 @@ namespace OOP_Project
                 email_tb.Text = reader["email"].ToString();
                 age_tb.Text = reader["age"].ToString();
                 gender_cmb.SelectedItem = reader["gender"].ToString();
+                securityQuestion_cmb.SelectedItem = reader["security_question"].ToString();
 
                 // Load genre preferences
                 string preferences = reader["preferences"].ToString();
@@ -666,88 +654,111 @@ namespace OOP_Project
 
         private void deleteUser_btn_Click(object sender, EventArgs e)
         {
-            int userId = Convert.ToInt32(userID_tb.Text);
-            string query = "DELETE FROM users WHERE user_id=@userId";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@userId", userId);
-            avatar_pb.Image = Properties.Resources._11;
+            if (users_dgv.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a user from the table to delete.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            cmd.ExecuteNonQuery();
-            LoadUsers(); // Refresh the user list
-            ResetUserForm();
-            MessageBox.Show("User removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Get selected user's type
+            string userType = users_dgv.CurrentRow.Cells["user_type"].Value.ToString();
+            if (userType.Equals("master", StringComparison.OrdinalIgnoreCase))
+            {
+                MessageBox.Show("You cannot delete a master user.", "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure you want to delete this user?", "Confirm Deletion", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                try
+                {
+                    int userId = Convert.ToInt32(users_dgv.CurrentRow.Cells["user_id"].Value);
+                    string query = "DELETE FROM users WHERE user_id=@userId";
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    cmd.ExecuteNonQuery();
+                    avatar_pb.Image = Properties.Resources._11;
+
+                    LoadUsers(); // Refresh the user list
+                    ResetUserForm();
+
+                    MessageBox.Show("User removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error deleting user: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
+
+
+
 
         // Function to handle user selection in the DataGridView for editing
         private void users_dgv_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
+            if (e.RowIndex < 0 || users_dgv.Rows[e.RowIndex].IsNewRow)
+                return;
+
+            DataGridViewRow row = users_dgv.Rows[e.RowIndex];
+
+            // Set text colors
+            username_tb.StateCommon.Content.Color1 = Color.Black;
+            userID_tb.StateCommon.Content.Color1 = Color.Black;
+            email_tb.StateCommon.Content.Color1 = Color.Black;
+            age_tb.StateCommon.Content.Color1 = Color.Black;
+            securityAnswer_tb.StateCommon.Content.Color1 = Color.Black;
+            usertype_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+            securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+            gender_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
+
+            userID_tb.Text = row.Cells["user_id"].Value?.ToString() ?? "";
+            username_tb.Text = row.Cells["username"].Value?.ToString() ?? "";
+            email_tb.Text = row.Cells["email"].Value?.ToString() ?? "";
+            age_tb.Text = row.Cells["age"].Value?.ToString() ?? "";
+
+            // Gender
+            string gender = row.Cells["gender"].Value?.ToString();
+            gender_cmb.SelectedItem = gender_cmb.Items.Contains(gender) ? gender : null;
+
+            // Security Question
+            string secQ = row.Cells["security_question"].Value?.ToString();
+            securityQuestion_cmb.SelectedItem = securityQuestion_cmb.Items.Contains(secQ) ? secQ : null;
+
+            securityAnswer_tb.Text = row.Cells["security_answer"].Value?.ToString() ?? "";
+
+            // Preferences (comma-separated)
+            string preferences = row.Cells["preferences"].Value?.ToString() ?? "";
+            string[] selectedGenres = preferences.Split(',');
+
+            for (int i = 0; i < userGenre_clb.Items.Count; i++)
+                userGenre_clb.SetItemChecked(i, false); // Deselect all
+
+            foreach (var genre in selectedGenres)
             {
-
-                DataGridViewRow row = users_dgv.Rows[e.RowIndex];
-
-                username_tb.StateCommon.Content.Color1 = Color.Black;
-                userID_tb.StateCommon.Content.Color1 = Color.Black;
-                email_tb.StateCommon.Content.Color1 = Color.Black;
-                age_tb.StateCommon.Content.Color1 = Color.Black;
-                securityAnswer_tb.StateCommon.Content.Color1 = Color.Black;
-                usertype_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-                securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-                gender_cmb.StateCommon.ComboBox.Content.Color1 = Color.Black;
-
-                userID_tb.Text = row.Cells["user_id"].Value.ToString();
-                username_tb.Text = row.Cells["username"].Value.ToString();
-                email_tb.Text = row.Cells["email"].Value.ToString();
-                age_tb.Text = row.Cells["age"].Value.ToString();
-                gender_cmb.SelectedItem = row.Cells["gender"].Value.ToString();
-                securityQuestion_cmb.SelectedItem = row.Cells["security_question"].Value.ToString();
-                securityAnswer_tb.Text = row.Cells["security_answer"].Value.ToString();
-
-                // Load genre preferences (comma separated)
-                string preferences = row.Cells["preferences"].Value.ToString();
-                string[] selectedGenres = preferences.Split(',');
-
-                // Deselect all first
                 for (int i = 0; i < userGenre_clb.Items.Count; i++)
-                    userGenre_clb.SetItemChecked(i, false);
-
-                // Select matching genres
-                foreach (var genre in selectedGenres)
                 {
-                    for (int i = 0; i < userGenre_clb.Items.Count; i++)
-                    {
-                        if (userGenre_clb.Items[i].ToString().Equals(genre.Trim(), StringComparison.OrdinalIgnoreCase))
-                        {
-                            userGenre_clb.SetItemChecked(i, true);
-                        }
-                    }
+                    if (userGenre_clb.Items[i].ToString().Equals(genre.Trim(), StringComparison.OrdinalIgnoreCase))
+                        userGenre_clb.SetItemChecked(i, true);
                 }
+            }
 
-                // Set birthdate
-                if (DateTime.TryParse(row.Cells["birthdate"].Value?.ToString(), out DateTime birthdate))
-                {
-                    Birthdate_dtp.Value = birthdate;
-                }
+            // Birthdate
+            if (DateTime.TryParse(row.Cells["birthdate"].Value?.ToString(), out DateTime birthdate))
+                Birthdate_dtp.Value = birthdate;
 
-                // Email verified
-                if (row.Cells["email_verified"].Value != null)
-                {
-                    bool isEmailVerified = Convert.ToBoolean(row.Cells["email_verified"].Value);
-                    emailVerified_cb.Checked = isEmailVerified;
-                }
+            // Email verified
+            if (bool.TryParse(row.Cells["email_verified"].Value?.ToString(), out bool isEmailVerified))
+                emailVerified_cb.Checked = isEmailVerified;
 
-                // User type
-                string userType = row.Cells["user_type"].Value.ToString();
-                if (usertype_cmb.Items.Contains(userType))
-                {
-                    usertype_cmb.SelectedItem = userType;
-                }
-                else
-                {
-                    usertype_cmb.SelectedIndex = -1;
-                }
+            // User type
+            string userType = row.Cells["user_type"].Value?.ToString();
+            usertype_cmb.SelectedItem = usertype_cmb.Items.Contains(userType) ? userType : null;
 
-                // ✅ Load avatar BLOB from DataGridView cell
+            // Avatar
+            try
+            {
                 if (row.Cells["avatar"].Value != DBNull.Value)
                 {
                     byte[] avatarBytes = (byte[])row.Cells["avatar"].Value;
@@ -760,33 +771,32 @@ namespace OOP_Project
                     }
                     else
                     {
-                        if (gender_cmb.Text == "Male")
-                        {
-                            avatar_pb.Image = Properties.Resources.avatar_default;
-                        }
-                        else
-                        {
-                            avatar_pb.Image = Properties.Resources.avatar_women;
-                        }
+                        SetDefaultAvatar();
                     }
                 }
                 else
                 {
-                    if (gender_cmb.Text == "Male")
-                    {
-                        avatar_pb.Image = Properties.Resources.avatar_default;
-                    }
-                    else
-                    {
-                        avatar_pb.Image = Properties.Resources.avatar_women;
-                    }
+                    SetDefaultAvatar();
                 }
-
-                // Editing existing user
-                isInsertingNewUser = false;
-                insertUser_btn.Text = "Save Changes";
             }
+            catch
+            {
+                SetDefaultAvatar(); // Fallback if image can't be loaded
+            }
+
+            // Editing mode
+            isInsertingNewUser = false;
+            insertUser_btn.Text = "Save Changes";
         }
+
+        // Helper
+        private void SetDefaultAvatar()
+        {
+            avatar_pb.Image = gender_cmb.Text == "Male"
+                ? Properties.Resources.avatar_male
+                : Properties.Resources.avatar_women;
+        }
+
 
         private void editUser_btn_Click(object sender, EventArgs e)
         {
@@ -802,96 +812,6 @@ namespace OOP_Project
                 userEditor_panel.Visible = false;
             }
         }
-
-        private void userSearchBox_tb_Click(object sender, EventArgs e)
-        {
-            string searchQuery = userSearchBox_tb.Text.ToLower(); // Get the search text
-
-            string query = "SELECT * FROM users WHERE username LIKE @searchQuery OR email LIKE @searchQuery";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@searchQuery", "%" + searchQuery + "%");
-
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            // Remove the binding from the DataGridView before clearing
-            users_dgv.DataSource = null;
-
-            // Clear the existing rows
-            users_dgv.Rows.Clear();
-
-            // Manually define columns if they don't exist
-            if (users_dgv.Columns.Count == 0)
-            {
-                users_dgv.Columns.Add("user_id", "User ID");
-                users_dgv.Columns.Add("username", "Username");
-                users_dgv.Columns.Add("email", "Email");
-                users_dgv.Columns.Add("gender", "Gender");
-            }
-
-            // Add data rows
-            while (reader.Read())
-            {
-                int userId = Convert.ToInt32(reader["user_id"]);
-                string username = reader["username"].ToString();
-                string email = reader["email"].ToString();
-                string gender = reader["gender"].ToString();
-
-                // Add the user data as a row in the DataGridView
-                users_dgv.Rows.Add(userId, username, email, gender);
-            }
-
-            reader.Close();
-        }
-
-        private void userSearchBox_tb_Enter(object sender, EventArgs e)
-        {
-            // If the TextBox is currently showing the placeholder text, clear it when it gains focus
-            if (userSearchBox_tb.Text == "Search...")
-            {
-                userSearchBox_tb.Text = "";
-                userSearchBox_tb.ForeColor = System.Drawing.Color.Black; // Set text color to black
-            }
-
-        }
-
-        private void userSearchBox_tb_Leave(object sender, EventArgs e)
-        {
-            // If the TextBox is empty when it loses focus, display the placeholder text
-            if (string.IsNullOrWhiteSpace(userSearchBox_tb.Text))
-            {
-                userSearchBox_tb.Text = "Search..."; // Set placeholder text
-                userSearchBox_tb.ForeColor = System.Drawing.Color.Gray; // Set color for placeholder text
-            }
-        }
-
-
-
-
-        private void userSearchBox_tb_TextChanged(object sender, EventArgs e)
-        {
-            string searchQuery = userSearchBox_tb.Text.ToLower(); // Get the search text
-
-            string query = "SELECT * FROM users WHERE username LIKE @searchQuery OR email LIKE @searchQuery";
-            MySqlCommand cmd = new MySqlCommand(query, connection);
-            cmd.Parameters.AddWithValue("@searchQuery", "%" + searchQuery + "%");
-
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            users_dgv.Rows.Clear(); // Important: Clear before adding new rows
-
-            while (reader.Read())
-            {
-                int userId = Convert.ToInt32(reader["user_id"]);
-                string username = reader["username"].ToString();
-                string email = reader["email"].ToString();
-                string gender = reader["gender"].ToString();
-
-                users_dgv.Rows.Add(userId, username, email, gender);
-            }
-
-            reader.Close();
-        }
-
 
         private void insertUser_btn_Click(object sender, EventArgs e)
         {
@@ -1266,5 +1186,48 @@ namespace OOP_Project
                 movieUrl_tb.Text = "Enter movie URL...";
             }
         }
+
+        private void UserSearchBox_tb_TextChanged(object sender, EventArgs e)
+        {
+            string searchQuery = UserSearchBox_tb.Text.Trim().ToLower(); // Get search input
+            if (string.IsNullOrEmpty(searchQuery))
+            {
+                LoadUsers(); // If no search query, load all users
+            }
+            else
+            {
+                SearchUsers(searchQuery); // Otherwise, search users
+            }
+        }
+
+        private void SearchUsers(string searchQuery)
+        {
+            LoadUsers(searchQuery); // Call LoadUsers with the search query
+        }
+
+        private void LoadUsers(string searchQuery = "")
+        {
+            string query = "SELECT user_id, username, email, age, gender, birthdate, preferences, email_verified, user_type, signup_date, security_question, security_answer, avatar " +
+                           "FROM users WHERE user_type != 'master'";
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query += " AND (username LIKE @searchQuery OR email LIKE @searchQuery)";
+            }
+
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                cmd.Parameters.AddWithValue("@searchQuery", "%" + searchQuery + "%");
+            }
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            usersTable.Clear();
+            adapter.Fill(usersTable);
+            usersBindingSource.DataSource = usersTable;
+            users_dgv.DataSource = usersBindingSource;
+        }
+
+
     }
 }

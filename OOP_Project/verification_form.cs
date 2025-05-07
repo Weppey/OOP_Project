@@ -13,14 +13,15 @@ namespace OOP_Project
 {
     public partial class verification_form : KryptonForm
     {
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
         private string userEmail;
         private string userName;
-        private string userId;
+        private int currentUserId;
+        private string currentUserType;
 
         private int cooldownTime = 300; // 5 minutes in seconds
 
-        public verification_form(string email)
+        public verification_form(string email, string confirmationcode)
         {
             InitializeComponent();
             userEmail = email;
@@ -77,7 +78,6 @@ namespace OOP_Project
             }
         }
 
-
         private void confirm_btn_Click(object sender, EventArgs e)
         {
             string enteredCode = code_tb.Text;
@@ -103,18 +103,36 @@ namespace OOP_Project
                     {
                         // Mark the user as verified
                         string updateQuery = "UPDATE users SET email_verified = 1 WHERE email = @Email";
-                        //old string updateQuery
-                        //string updateQuery = "UPDATE users SET verification_code = NULL, email_verified = 1 WHERE email = @Email";
                         MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection);
                         updateCmd.Parameters.AddWithValue("@Email", userEmail);
                         updateCmd.ExecuteNonQuery();
 
-                        MessageBox.Show("Verification successful! You can now log in.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        SendAccountVerifiedEmail(userEmail);
-                        this.Hide();
-                        login_form loginForm = new login_form();
-                        loginForm.ShowDialog();
-                        this.Close();
+                        // Get userType and userId for passing to home_form
+                        string getUserInfoQuery = "SELECT user_id, user_type FROM users WHERE email = @Email";
+                        MySqlCommand getUserInfoCmd = new MySqlCommand(getUserInfoQuery, connection);
+                        getUserInfoCmd.Parameters.AddWithValue("@Email", userEmail);
+
+                        using (MySqlDataReader reader = getUserInfoCmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                int userId = reader.GetInt32("user_id");
+                                string userType = reader.GetString("user_type");
+
+                                MessageBox.Show("Verification successful! You can now use your account.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                SendAccountVerifiedEmail(userEmail);
+
+                                // Hide current form and show home_form
+                                this.Hide();
+
+                                login_form login = new login_form();
+                                login.ShowDialog();
+                            }
+                            else
+                            {
+                                MessageBox.Show("User information could not be retrieved after verification.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
                     else
                     {
@@ -127,6 +145,7 @@ namespace OOP_Project
                 MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private async Task SendAccountVerifiedEmail(string email)
         {
             try

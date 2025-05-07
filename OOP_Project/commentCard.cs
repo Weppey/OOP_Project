@@ -10,7 +10,7 @@ namespace OOP_Project
 {
     public partial class commentCard : UserControl
     {
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
         private int interactionId;
         private int commentUserId;
         private int currentUserId;

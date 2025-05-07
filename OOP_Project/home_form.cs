@@ -32,7 +32,7 @@ namespace OOP_Project
 
         private ToolTip tooltip = new ToolTip();
         // Connection string to connect to the database, specifying the server, database, and login credentials.
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
 
         // User-related variables
         private string userType; // Variable to store the type of user (admin or regular)
@@ -269,7 +269,7 @@ namespace OOP_Project
             allMovie_flp.AutoScroll = true;
 
             connection = new MySqlConnection(
-                "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;"
+                "Server=localhost;Database=remmmdb;Uid=root;Pwd=;"
             );
 
             try
@@ -1188,7 +1188,7 @@ namespace OOP_Project
         }
         private movie GetFullMovieByTitle(string title)
         {
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string query = "SELECT * FROM movies WHERE title = @title LIMIT 1";
             search_list.Items.Clear();
 
@@ -1262,7 +1262,7 @@ namespace OOP_Project
 
         private void LoadRecentSearchSuggestions()
         {
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string query = "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
 
             try
@@ -1302,7 +1302,7 @@ namespace OOP_Project
 
         private void SaveRecentSearch(int userId, movie movie)
         {
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string checkQuery =
                 "SELECT COUNT(*) FROM recent_searches WHERE user_id = @userId AND movie_id = @movieId";
             string insertQuery =
@@ -1375,7 +1375,7 @@ namespace OOP_Project
         return;
     }
 
-    string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+    string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
     string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
     search_list.Items.Clear();
     try
@@ -1419,7 +1419,7 @@ namespace OOP_Project
         {
             //loadingIndicator.Visible = true; // Show loading spinner
 
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
 
             search_list.Items.Clear();
@@ -1465,7 +1465,7 @@ namespace OOP_Project
 
             AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
             // Add movies to autocomplete list
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string query = "SELECT title FROM movies LIMIT 100";
 
             try
@@ -1542,7 +1542,7 @@ namespace OOP_Project
         private string GetRecentSearchTitles(int userId)
         {
             List<string> recentTitles = new List<string>();
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string query =
                 "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
 
@@ -1588,8 +1588,8 @@ namespace OOP_Project
                     LoadRecentSearchSuggestions();
                     return;
                 }
-
-                string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+                    
+                string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
                 string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
                 search_list.Items.Clear();
                 try
@@ -1635,10 +1635,11 @@ namespace OOP_Project
                 search_tb.Text = "Search..."; // Set the placeholder text
                 search_tb.ForeColor = Color.Gray; // Change the text color to gray for placeholder
             }
+
         }
         public async Task LoadRecentSearches(int currentUserId)
         {
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string query =
                 @"
             SELECT movie_id, movie_title, movie_description, movie_genre, release_year, image_url 
@@ -1934,7 +1935,7 @@ namespace OOP_Project
         }
         private void EnsureMovieExistsInMoviesTable(movie movie)
         {
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string connStr = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string checkQuery = "SELECT movie_id FROM movies WHERE title = @title";
             string insertQuery =
                 "INSERT INTO movies (title, description, genre, release_year, image_url) "

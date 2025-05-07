@@ -18,7 +18,7 @@ namespace OOP_Project
     public partial class PopularControl : UserControl
     {
         private MySqlConnection connection;
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
         string userType;
         int currentUserId;
         int userId;

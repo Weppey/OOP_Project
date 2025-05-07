@@ -12,7 +12,7 @@ namespace OOP_Project
     {
         WinFormsToolTip tooltip = new WinFormsToolTip();
         private MySqlConnection connection;
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
         private bool _originalThemePreference;
         // Fields at the top of your settingsControl class:
         private bool _themeSaved = false;
@@ -230,6 +230,7 @@ namespace OOP_Project
                             {
                                 MessageBox.Show("Your account has been successfully deleted.", "Account Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 StayLoggedIn.ClearSession();
+                                this.Hide();
                                 login_form login = new login_form();
                                 login.ShowDialog();
                             }

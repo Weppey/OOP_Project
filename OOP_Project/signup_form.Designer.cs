@@ -124,11 +124,11 @@
             this.signup_panel.Controls.Add(this.showPass_chkb);
             this.signup_panel.Controls.Add(this.pass_tb);
             this.signup_panel.Controls.Add(this.user_tb);
-            this.signup_panel.Controls.Add(this.bg2_panel);
             this.signup_panel.Controls.Add(this.Lbl_Signup);
             this.signup_panel.Controls.Add(this.question_lbl);
             this.signup_panel.Controls.Add(this.birthdate_lbl);
             this.signup_panel.Controls.Add(this.gender_lbl);
+            this.signup_panel.Controls.Add(this.bg2_panel);
             this.signup_panel.Location = new System.Drawing.Point(105, 99);
             this.signup_panel.Name = "signup_panel";
             this.signup_panel.Size = new System.Drawing.Size(844, 451);
@@ -218,8 +218,9 @@
             // 
             // birthday_dtp
             // 
+            this.birthday_dtp.AutoShift = true;
             this.birthday_dtp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.birthday_dtp.Location = new System.Drawing.Point(402, 269);
+            this.birthday_dtp.Location = new System.Drawing.Point(402, 270);
             this.birthday_dtp.Name = "birthday_dtp";
             this.birthday_dtp.Size = new System.Drawing.Size(183, 20);
             this.birthday_dtp.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
@@ -238,13 +239,14 @@
             this.gender_cmb.Items.AddRange(new object[] {
             "Male",
             "Female"});
-            this.gender_cmb.Location = new System.Drawing.Point(402, 219);
+            this.gender_cmb.Location = new System.Drawing.Point(399, 218);
             this.gender_cmb.Name = "gender_cmb";
             this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.gender_cmb.Size = new System.Drawing.Size(183, 20);
             this.gender_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
             this.gender_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gender_cmb.TabIndex = 59;
+            this.gender_cmb.Text = "Select";
             this.gender_cmb.SelectedIndexChanged += new System.EventHandler(this.kryptonComboBox1_SelectedIndexChanged);
             this.gender_cmb.Enter += new System.EventHandler(this.gender_cmb_Enter);
             this.gender_cmb.Leave += new System.EventHandler(this.gender_cmb_Leave);
@@ -324,7 +326,7 @@
             // 
             // birthdate_lbl
             // 
-            this.birthdate_lbl.Location = new System.Drawing.Point(399, 254);
+            this.birthdate_lbl.Location = new System.Drawing.Point(396, 254);
             this.birthdate_lbl.Name = "birthdate_lbl";
             this.birthdate_lbl.Size = new System.Drawing.Size(63, 20);
             this.birthdate_lbl.TabIndex = 64;
@@ -333,7 +335,7 @@
             // 
             // gender_lbl
             // 
-            this.gender_lbl.Location = new System.Drawing.Point(399, 204);
+            this.gender_lbl.Location = new System.Drawing.Point(394, 200);
             this.gender_lbl.Name = "gender_lbl";
             this.gender_lbl.Size = new System.Drawing.Size(53, 20);
             this.gender_lbl.TabIndex = 65;

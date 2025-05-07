@@ -24,8 +24,8 @@ namespace OOP_Project
 {
     public partial class signup_form : KryptonForm
     {
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-
+        private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
+        public string confirmationcode;
         public signup_form()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace OOP_Project
             return Regex.IsMatch(password, pattern);
         }
 
-        private void SendConfirmationEmail(string email, string confirmationCode)
+        public void SendConfirmationEmail(string email, string confirmationCode)
         {
             try
             {
@@ -501,7 +501,7 @@ namespace OOP_Project
 
                     // Open the verification form
                     this.Hide();
-                    verification_form verifyForm = new verification_form(email);
+                    verification_form verifyForm = new verification_form(email, confirmationcode);
                     verifyForm.ShowDialog();
                     this.Close();
                 }

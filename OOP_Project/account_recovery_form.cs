@@ -15,7 +15,7 @@ namespace OOP_Project
 {
     public partial class account_recovery_form : KryptonForm
     {
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
         private string recoveryCode;
         private int cooldownTime = 300; // 5 minutes cooldown in seconds
 
@@ -596,128 +596,227 @@ namespace OOP_Project
                 emailPassword_tb.PasswordChar = ('*');
             }
         }
-            private void sqEmailChange_btn_Click(object sender, EventArgs e)
-            {
+        private async void sqEmailChange_btn_Click(object sender, EventArgs e)
+        {
                 string email = oldEmail_tb.Text.Trim();
-                string selectedQuestion = sqEmailChange_cmb.Text;
-                string answer = sqAnswerEmail_tb.Text.Trim();
-                string newEmail = newEmail_tb.Text.Trim();
-                string emailPassword = emailPassword_tb.Text.Trim();
+            string selectedQuestion = sqEmailChange_cmb.Text;
+            string answer = sqAnswerEmail_tb.Text.Trim();
+            string newEmail = newEmail_tb.Text.Trim();
+            string emailPassword = emailPassword_tb.Text.Trim();
 
-                // Check if any required field is empty
-                if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(selectedQuestion) ||
-                    string.IsNullOrWhiteSpace(answer) || string.IsNullOrWhiteSpace(newEmail) || string.IsNullOrWhiteSpace(emailPassword))
+            // Check if any required field is empty
+            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(selectedQuestion) ||
+                string.IsNullOrWhiteSpace(answer) || string.IsNullOrWhiteSpace(newEmail) || string.IsNullOrWhiteSpace(emailPassword))
+            {
+                MessageBox.Show("Please complete all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                // Clear the textboxes with invalid input
+                if (string.IsNullOrWhiteSpace(email)) oldEmail_tb.Clear();
+                if (string.IsNullOrWhiteSpace(selectedQuestion)) sqEmailChange_cmb.SelectedIndex = -1;
+                if (string.IsNullOrWhiteSpace(answer)) sqAnswerEmail_tb.Clear();
+                if (string.IsNullOrWhiteSpace(newEmail)) newEmail_tb.Clear();
+                if (string.IsNullOrWhiteSpace(emailPassword)) emailPassword_tb.Clear();
+
+                return;
+            }
+
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
                 {
-                    MessageBox.Show("Please complete all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    connection.Open();
 
-                    // Clear the textboxes with invalid input
-                    if (string.IsNullOrWhiteSpace(email)) oldEmail_tb.Clear();
-                    if (string.IsNullOrWhiteSpace(selectedQuestion)) sqEmailChange_cmb.SelectedIndex = -1;
-                    if (string.IsNullOrWhiteSpace(answer)) sqAnswerEmail_tb.Clear();
-                    if (string.IsNullOrWhiteSpace(newEmail)) newEmail_tb.Clear();
-                    if (string.IsNullOrWhiteSpace(emailPassword)) emailPassword_tb.Clear();
+                    // Check if the new email already exists
+                    string checkEmailQuery = "SELECT COUNT(*) FROM users WHERE email = @NewEmail";
+                    MySqlCommand checkEmailCmd = new MySqlCommand(checkEmailQuery, connection);
+                    checkEmailCmd.Parameters.AddWithValue("@NewEmail", newEmail);
+                    int emailCount = Convert.ToInt32(checkEmailCmd.ExecuteScalar());
 
-                    return;
-                }
-
-                try
-                {
-                    using (MySqlConnection connection = new MySqlConnection(connectionString))
+                    if (emailCount > 0)
                     {
-                        connection.Open();
+                        MessageBox.Show("The new email address is already registered. Please choose a different email.", "Email Already Registered", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        newEmail_tb.Clear();
+                        return;
+                    }
 
-                        // Check if the new email already exists
-                        string checkEmailQuery = "SELECT COUNT(*) FROM users WHERE email = @NewEmail";
-                        MySqlCommand checkEmailCmd = new MySqlCommand(checkEmailQuery, connection);
-                        checkEmailCmd.Parameters.AddWithValue("@NewEmail", newEmail);
-                        int emailCount = Convert.ToInt32(checkEmailCmd.ExecuteScalar());
+                    // Proceed with the rest of the process if email is not taken
+                    string query = "SELECT password, security_answer FROM users WHERE email = @Email AND security_question = @Question";
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    cmd.Parameters.AddWithValue("@Email", email);
+                    cmd.Parameters.AddWithValue("@Question", selectedQuestion);
 
-                        if (emailCount > 0)
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read()) // Check if data is returned
                         {
-                            MessageBox.Show("The new email address is already registered. Please choose a different email.", "Email Already Registered", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            string storedHashedPassword = reader.GetString("password");
+                            string storedHashedAnswer = reader.GetString("security_answer");
 
-                            // Clear the new email textbox if there's an error
-                            newEmail_tb.Clear();
-                            return;
-                        }
-
-                        // Proceed with the rest of the process if email is not taken
-                        string query = "SELECT password, security_answer FROM users WHERE email = @Email AND security_question = @Question";
-                        MySqlCommand cmd = new MySqlCommand(query, connection);
-                        cmd.Parameters.AddWithValue("@Email", email);
-                        cmd.Parameters.AddWithValue("@Question", selectedQuestion);
-
-                        // Execute the query and process the result in one step
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read()) // Check if data is returned
+                            // Verify password
+                            if (BCrypt.Net.BCrypt.Verify(emailPassword, storedHashedPassword))
                             {
-                                string storedHashedPassword = reader.GetString("password");
-                                string storedHashedAnswer = reader.GetString("security_answer");
-
-                                // Verify password
-                                if (BCrypt.Net.BCrypt.Verify(emailPassword, storedHashedPassword))
+                                // Verify security answer
+                                if (BCrypt.Net.BCrypt.Verify(answer, storedHashedAnswer))
                                 {
-                                    // Verify security answer
-                                    if (BCrypt.Net.BCrypt.Verify(answer, storedHashedAnswer))
+                                    reader.Close();
+
+                                    // Update email and reset verification
+                                    string updateQuery = "UPDATE users SET email = @NewEmail, email_verified = 0, verification_code = NULL WHERE email = @Email";
+                                    MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection);
+                                    updateCmd.Parameters.AddWithValue("@NewEmail", newEmail);
+                                    updateCmd.Parameters.AddWithValue("@Email", email);
+                                    updateCmd.ExecuteNonQuery();
+
+                                    // Generate and store new verification code
+                                    string newVerificationCode = GenerateConfirmationCode();
+                                    string updateVerificationCodeQuery = "UPDATE users SET verification_code = @VerificationCode WHERE email = @NewEmail";
+                                    MySqlCommand updateVerificationCodeCmd = new MySqlCommand(updateVerificationCodeQuery, connection);
+                                    updateVerificationCodeCmd.Parameters.AddWithValue("@VerificationCode", newVerificationCode);
+                                    updateVerificationCodeCmd.Parameters.AddWithValue("@NewEmail", newEmail);
+                                    updateVerificationCodeCmd.ExecuteNonQuery();
+
+                                    // Send code to new email
+                                    await SendVerificationCodeAsync(newEmail, newVerificationCode);
+
+                                    // Notify the user
+                                    MessageBox.Show("Email has been successfully updated. Please verify your new email.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    // Send confirmation email about the successful email change
+                                    SendSuccessfulEmailChangeNotification(newEmail);
+
+                                    // Handle form flow after success
+                                    if (Application.OpenForms["home_form"] != null)
                                     {
-                                        // Close the reader before executing another command
-                                        reader.Close();
-
-                                        // Update email
-                                        string updateQuery = "UPDATE users SET email = @NewEmail WHERE email = @Email";
-                                        MySqlCommand updateCmd = new MySqlCommand(updateQuery, connection);
-                                        updateCmd.Parameters.AddWithValue("@NewEmail", newEmail);
-                                        updateCmd.Parameters.AddWithValue("@Email", email);
-                                        updateCmd.ExecuteNonQuery();
-
-                                        MessageBox.Show("Email has been successfully updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                        if (Application.OpenForms["home_form"] != null)
-                                        {
-                                            this.Close();
-                                            StayLoggedIn.ClearSession();
-                                            Application.Restart();
-                                            // SendSuccessfulEmailChangeNotification(newEmail);
-                                        }
-                                        else
-                                        {
-                                            this.Close();
-                                            login_form loginForm = new login_form();
-                                            loginForm.ShowDialog();
-                                        }
+                                        this.Close();
+                                        StayLoggedIn.ClearSession();
+                                        Application.Restart();
                                     }
                                     else
                                     {
-                                        MessageBox.Show("Incorrect security answer. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                                        // Clear the answer textbox if there's an error
-                                        sqAnswerEmail_tb.Clear();
+                                        this.Close();
+                                        login_form loginForm = new login_form();
+                                        loginForm.ShowDialog();
                                     }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Incorrect password. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                                    // Clear the password textbox if there's an error
-                                    emailPassword_tb.Clear();
+                                    MessageBox.Show("Incorrect security answer. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    sqAnswerEmail_tb.Clear();
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("No matching user found for the provided information.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                                // Clear the email textbox if no match found
-                                oldEmail_tb.Clear();
+                                MessageBox.Show("Incorrect password. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                emailPassword_tb.Clear();
                             }
+                        }
+                        else
+                        {
+                            MessageBox.Show("No matching user found for the provided information.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            oldEmail_tb.Clear();
                         }
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Asynchronous version of SendVerificationCode
+        private async Task SendVerificationCodeAsync(string email, string verificationCode)
+        {
+            await Task.Run(() =>
+            {
+                SendVerificationCode(email, verificationCode); // Your existing method for sending the verification email
+            });
+        }
+
+        private string GenerateConfirmationCode()
+        {
+            Random random = new Random();
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Range(0, 6).Select(_ => chars[random.Next(chars.Length)]).ToArray());
+        }
+
+        private void SendVerificationCode(string email, string verificationCode)
+        {
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("remmm.help@gmail.com", "nwvo tqpy onmt aohm"),
+                EnableSsl = true,
+            };
+
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress("remmm.help@gmail.com"),
+                Subject = "✅ Verify Your New Email Address",
+                IsBodyHtml = true,
+                BodyEncoding = Encoding.UTF8,
+                Body = $@"
+<html>
+    <body style='background-color: #141414; font-family: Helvetica, Arial, sans-serif; color: #ffffff; padding: 20px;'>
+        <div style='max-width: 600px; margin: auto; background-color: #1c1c1c; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5);'>
+            <h1 style='color: #e50914; text-align: center;'>Remmm</h1>
+            <h2 style='color: #00cc66; text-align: center;'>Email Change Verification</h2>
+            <p style='color: #ffffff; text-align: center;'>We have received a request to change your email address. Please verify your new email by entering the verification code below:</p>
+            <p style='color: #ffffff; text-align: center; font-size: 18px; font-weight: bold;'>Verification Code: <span style='color: #e50914;'>{verificationCode}</span></p>
+            <p style='color: #ffffff; text-align: center;'>If you did not request this change, please ignore this email or contact our support team.</p>
+            <hr style='border-color: #333333; margin: 30px 0;'>
+            <p style='font-size: 12px; text-align: center; color: #aaaaaa;'>
+                Need help? Contact us at 
+                <a href='mailto:remmm.help@gmail.com' style='color: #e50914; text-decoration: none;'>remmm.help@gmail.com</a>
+            </p>
+            <p style='text-align: center; font-size: 12px; color: #555;'>© 2025 Remmm. All rights reserved.</p>
+        </div>
+    </body>
+</html>"
+            };
+
+            mailMessage.To.Add(email);
+            smtpClient.Send(mailMessage);
+        }
+
+        private void SendSuccessfulEmailChangeNotification(string newEmail)
+        {
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential("remmm.help@gmail.com", "nwvo tqpy onmt aohm"),
+                EnableSsl = true,
+            };
+
+            var mailMessage = new MailMessage
+            {
+                From = new MailAddress("remmm.help@gmail.com"),
+                Subject = "📧 Remmm Email Successfully Updated",
+                IsBodyHtml = true,
+                BodyEncoding = Encoding.UTF8,
+                Body = @"
+<html>
+    <body style='background-color: #141414; font-family: Helvetica, Arial, sans-serif; color: #ffffff; padding: 20px;'>
+        <div style='max-width: 600px; margin: auto; background-color: #1c1c1c; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.5);'>
+            <h1 style='color: #e50914; text-align: center;'>Remmm</h1>
+            <h2 style='color: #00cc66; text-align: center;'>Email Address Updated</h2>
+            <p style='color: #ffffff; text-align: center;'>Your email address has been successfully changed. All future account-related communication will be sent to this address.</p>
+            <p style='color: #ffffff; text-align: center;'>If you did not perform this action, please secure your account immediately and contact our support team.</p>
+            <hr style='border-color: #333333; margin: 30px 0;'>
+            <p style='font-size: 12px; text-align: center; color: #aaaaaa;'>
+                Need help? Contact us at 
+                <a href='mailto:remmm.help@gmail.com' style='color: #e50914; text-decoration: none;'>remmm.help@gmail.com</a>
+            </p>
+            <p style='text-align: center; font-size: 12px; color: #555;'>© 2025 Remmm. All rights reserved.</p>
+        </div>
+    </body>
+</html>"
+            };
+
+            mailMessage.To.Add(newEmail);
+            smtpClient.Send(mailMessage);
+        }
+
 
         private void cls_pb_MouseEnter(object sender, EventArgs e)
         {

@@ -20,9 +20,10 @@
     {
         public partial class login_form : KryptonForm
         {
-            private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            private string connectionString = "Server=localhost;Database=remmmdb;Uid=root;Pwd=;";
             string currentCaptchaCode;
-            public login_form()
+            public string confirmationcode;
+        public login_form()
             {
                 InitializeComponent();
                 GenerateCaptcha(); // This sets currentCaptchaCode  
@@ -138,9 +139,8 @@
                         {
                             MessageBox.Show("Your email has not been verified. Please verify your email before logging in.", "Email Not Verified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             this.Hide();
-                            verification_form verify = new verification_form(email);
+                            verification_form verify = new verification_form(email, confirmationcode);
                             verify.ShowDialog();
-                            this.Show();
                             GenerateCaptcha();
                             return;
                         }
