@@ -263,6 +263,12 @@
     <Compile Include="movie_details_form.Designer.cs">
       <DependentUpon>movie_details_form.cs</DependentUpon>
     </Compile>
+    <Compile Include="movie_stream_control.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="movie_stream_control.Designer.cs">
+      <DependentUpon>movie_stream_control.cs</DependentUpon>
+    </Compile>
     <Compile Include="PopularControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -320,6 +326,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="movie_details_form.resx">
       <DependentUpon>movie_details_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="movie_stream_control.resx">
+      <DependentUpon>movie_stream_control.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PopularControl.resx">
       <DependentUpon>PopularControl.cs</DependentUpon>
@@ -387,6 +396,7 @@
     <Content Include="icons\icons8-settings-28.png" />
     <Content Include="icons\icons8-settings-48.png" />
     <Content Include="icons\icons8-trash-48.png" />
+    <None Include="Resources\onionplay-logo.png" />
     <None Include="Resources\k.jpg" />
     <None Include="Resources\login_wall2.png" />
     <None Include="Resources\login_wall1.png" />
@@ -481,6 +491,8 @@
     <Content Include="Resources\avatar_default.png" />
     <Content Include="Resources\icons8-loading-50.png" />
     <None Include="Resources\icons8-loading-501.png" />
+    <None Include="Resources\icons8-maximize-20.png" />
+    <None Include="Resources\icons8-play-20.png" />
     <Content Include="Resources\Image-not-found.png" />
     <None Include="Resources\IMG_8370__1_-removebg-preview.png" />
     <None Include="Resources\IMG_8368 %281%29.PNG" />

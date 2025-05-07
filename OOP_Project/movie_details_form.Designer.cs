@@ -52,6 +52,7 @@
             this.dateRelease_lbl = new System.Windows.Forms.Label();
             this.navigationDock_panel = new System.Windows.Forms.Panel();
             this.close_pb = new System.Windows.Forms.PictureBox();
+            this.watch_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.movie_panel.SuspendLayout();
             this.commentBorder_panel.SuspendLayout();
             this.ratings_panel.SuspendLayout();
@@ -65,6 +66,7 @@
             // movie_panel
             // 
             this.movie_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
+            this.movie_panel.Controls.Add(this.watch_btn);
             this.movie_panel.Controls.Add(this.comment_lbl);
             this.movie_panel.Controls.Add(this.commentBorder_panel);
             this.movie_panel.Controls.Add(this.ratings_btn);
@@ -469,6 +471,37 @@
             this.close_pb.TabStop = false;
             this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
             // 
+            // watch_btn
+            // 
+            this.watch_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.watch_btn.Location = new System.Drawing.Point(804, 34);
+            this.watch_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.watch_btn.Name = "watch_btn";
+            this.watch_btn.Size = new System.Drawing.Size(132, 45);
+            this.watch_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
+            this.watch_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.watch_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.watch_btn.StateCommon.Border.Rounding = 20;
+            this.watch_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.watch_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.watch_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.watch_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.watch_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.watch_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.watch_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.watch_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.watch_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.watch_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.watch_btn.TabIndex = 84;
+            this.watch_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_favorite_folder_28;
+            this.watch_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.watch_btn.Values.Text = "Watch";
+            this.watch_btn.Click += new System.EventHandler(this.watch_btn_Click);
+            // 
             // movie_details_form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -530,5 +563,6 @@
         private System.Windows.Forms.FlowLayoutPanel comments_panel;
         private System.Windows.Forms.Panel commentBorder_panel;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel comment_lbl;
+        private ComponentFactory.Krypton.Toolkit.KryptonButton watch_btn;
     }
 }

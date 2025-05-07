@@ -913,6 +913,16 @@ namespace OOP_Project.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_maximize_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-maximize-20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_maximize_50 {
             get {
                 object obj = ResourceManager.GetObject("icons8-maximize-50", resourceCulture);
@@ -1036,6 +1046,16 @@ namespace OOP_Project.Properties {
         internal static System.Drawing.Bitmap icons8_picture_501 {
             get {
                 object obj = ResourceManager.GetObject("icons8-picture-501", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_play_20 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-play-20", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1536,6 +1556,16 @@ namespace OOP_Project.Properties {
         internal static System.Drawing.Bitmap Netflix_N_Symbol_logo {
             get {
                 object obj = ResourceManager.GetObject("Netflix-N-Symbol-logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap onionplay_logo {
+            get {
+                object obj = ResourceManager.GetObject("onionplay-logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

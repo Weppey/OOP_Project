@@ -63,8 +63,7 @@ namespace OOP_Project
             security_panel.Resize += (s, aargs) => CurvePanel(security_panel, 20);
             CurvePanel(theme_panel, 30);
             theme_panel.Resize += (s, aargs) => CurvePanel(theme_panel, 20);
-            CurvePanel(system_panel, 30);
-            system_panel.Resize += (s, aargs) => CurvePanel(system_panel, 20);
+
         }
 
         public void ApplyTheme()
@@ -74,12 +73,10 @@ namespace OOP_Project
             theme_lbl.ForeColor = labelForeColor;
             securtySettings_lbl.ForeColor = labelForeColor;
             privacy_lbl.ForeColor = labelForeColor;
-            system_lbl.ForeColor = labelForeColor;
 
             theme_lbl.BackColor = Color.Transparent;
             securtySettings_lbl.BackColor = Color.Transparent;
             privacy_lbl.BackColor = Color.Transparent;
-            system_lbl.BackColor = Color.Transparent;
             settings_panel.BackColor = ThemeManager.IsDarkMode ? Color.Transparent : Color.Gainsboro;
         }
 
@@ -302,9 +299,6 @@ private void apply_btn_Click(object sender, EventArgs e)
                 RevertTheme();
             }
         }
-
-        // Hook this in constructor or Load event
-        // this.VisibleChanged += settingsControl_VisibleChanged;
 
     }
 }

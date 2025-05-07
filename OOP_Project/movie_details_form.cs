@@ -13,6 +13,7 @@ using MySql.Data.MySqlClient;
 using System.Drawing.Drawing2D;
 using Microsoft.Web.WebView2.Core;
 using System.IO;
+using System.Diagnostics;
 
 
 namespace OOP_Project
@@ -20,7 +21,6 @@ namespace OOP_Project
     public partial class movie_details_form : KryptonForm
     {
         private movie _moovie;
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
         private int currentUserId;
         private int movieId;
         private ToolTip tooltip = new ToolTip();
@@ -31,7 +31,8 @@ namespace OOP_Project
 
         private int currentMovieId;
         private MySqlConnection connection;
-
+        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+        public int selectedMovieId;
         private string currentUserType;
         public movie_details_form(movie moovie, int userId, int interactionId = 0, string comment = "")
         {
@@ -41,7 +42,7 @@ namespace OOP_Project
 
             movieId = moovie.Id;        // <-- set this first
             currentMovieId = movieId;    // <-- then assign
-
+            selectedMovieId = movieId;
             poster_pb.SizeMode = PictureBoxSizeMode.Zoom;
 
 
@@ -962,7 +963,7 @@ namespace OOP_Project
                 comment_tb.Text = "Enter comments...";
             }
 
-            }
+            }   
 
         private void comment_tb_Enter(object sender, EventArgs e)
         {
@@ -973,5 +974,48 @@ namespace OOP_Project
                 comment_tb.Text = "";
             }
         }
+        private void watch_btn_Click(object sender, EventArgs e)
+        {
+            int movieId = selectedMovieId; // Get this from your context
+
+            string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT movie_url FROM movies WHERE movie_id = @movieId";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@movieId", movieId);
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string movieUrl = reader["movie_url"].ToString();
+
+                                if (!string.IsNullOrWhiteSpace(movieUrl) && Uri.IsWellFormedUriString(movieUrl, UriKind.Absolute))
+                                {
+                                    movie_stream_control webForm = new movie_stream_control(movieUrl);
+                                    webForm.Show(); // or Show()
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid or missing movie URL.");
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database error: " + ex.Message);
+            }
+        }
+
+
     }
 }

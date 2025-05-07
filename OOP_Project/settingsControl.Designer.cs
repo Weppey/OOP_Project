@@ -30,26 +30,16 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(settingsControl));
             this.settings_panel = new System.Windows.Forms.Panel();
-            this.system_lbl = new System.Windows.Forms.Label();
             this.privacy_lbl = new System.Windows.Forms.Label();
             this.theme_lbl = new System.Windows.Forms.Label();
             this.securtySettings_lbl = new System.Windows.Forms.Label();
             this.appinfo_panel = new System.Windows.Forms.Panel();
-            this.privacy_linklbl = new System.Windows.Forms.LinkLabel();
-            this.tos_linklbl = new System.Windows.Forms.LinkLabel();
             this.version_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.deleteAccount_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.appinfo_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.system_panel = new System.Windows.Forms.Panel();
-            this.timezone_cmb = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.kryptonComboBox1 = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
-            this.language_cmb = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
-            this.gender_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.security_panel = new System.Windows.Forms.Panel();
             this.changeEmail_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.changePassword_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
-            this.securityAnswer_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
-            this.securityQuestion_cmb = new ComponentFactory.Krypton.Toolkit.KryptonComboBox();
             this.privacy_panel = new System.Windows.Forms.Panel();
             this.clearRecentSearch_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.clearHistory_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
@@ -57,25 +47,24 @@
             this.darkmode_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.lightmode_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.apply_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.appinfo = new System.Windows.Forms.Label();
+            this.appinfo2 = new System.Windows.Forms.Label();
+            this.logo_pbp = new System.Windows.Forms.PictureBox();
             this.settings_panel.SuspendLayout();
             this.appinfo_panel.SuspendLayout();
-            this.system_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).BeginInit();
             this.security_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).BeginInit();
             this.privacy_panel.SuspendLayout();
             this.theme_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pbp)).BeginInit();
             this.SuspendLayout();
             // 
             // settings_panel
             // 
-            this.settings_panel.Controls.Add(this.system_lbl);
+            this.settings_panel.Controls.Add(this.logo_pbp);
             this.settings_panel.Controls.Add(this.privacy_lbl);
             this.settings_panel.Controls.Add(this.theme_lbl);
             this.settings_panel.Controls.Add(this.securtySettings_lbl);
             this.settings_panel.Controls.Add(this.appinfo_panel);
-            this.settings_panel.Controls.Add(this.system_panel);
             this.settings_panel.Controls.Add(this.security_panel);
             this.settings_panel.Controls.Add(this.privacy_panel);
             this.settings_panel.Controls.Add(this.theme_panel);
@@ -84,17 +73,6 @@
             this.settings_panel.Name = "settings_panel";
             this.settings_panel.Size = new System.Drawing.Size(1214, 614);
             this.settings_panel.TabIndex = 0;
-            // 
-            // system_lbl
-            // 
-            this.system_lbl.AutoSize = true;
-            this.system_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.system_lbl.ForeColor = System.Drawing.Color.White;
-            this.system_lbl.Location = new System.Drawing.Point(419, 325);
-            this.system_lbl.Name = "system_lbl";
-            this.system_lbl.Size = new System.Drawing.Size(159, 27);
-            this.system_lbl.TabIndex = 12;
-            this.system_lbl.Text = "System settings";
             // 
             // privacy_lbl
             // 
@@ -132,8 +110,8 @@
             // appinfo_panel
             // 
             this.appinfo_panel.BackColor = System.Drawing.Color.White;
-            this.appinfo_panel.Controls.Add(this.privacy_linklbl);
-            this.appinfo_panel.Controls.Add(this.tos_linklbl);
+            this.appinfo_panel.Controls.Add(this.appinfo2);
+            this.appinfo_panel.Controls.Add(this.appinfo);
             this.appinfo_panel.Controls.Add(this.version_lbl);
             this.appinfo_panel.Controls.Add(this.deleteAccount_btn);
             this.appinfo_panel.Controls.Add(this.appinfo_lbl);
@@ -142,33 +120,9 @@
             this.appinfo_panel.Size = new System.Drawing.Size(319, 542);
             this.appinfo_panel.TabIndex = 4;
             // 
-            // privacy_linklbl
-            // 
-            this.privacy_linklbl.AutoSize = true;
-            this.privacy_linklbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.privacy_linklbl.LinkColor = System.Drawing.Color.Red;
-            this.privacy_linklbl.Location = new System.Drawing.Point(99, 372);
-            this.privacy_linklbl.Name = "privacy_linklbl";
-            this.privacy_linklbl.Size = new System.Drawing.Size(130, 19);
-            this.privacy_linklbl.TabIndex = 109;
-            this.privacy_linklbl.TabStop = true;
-            this.privacy_linklbl.Text = "View Privacy Policy";
-            // 
-            // tos_linklbl
-            // 
-            this.tos_linklbl.AutoSize = true;
-            this.tos_linklbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tos_linklbl.LinkColor = System.Drawing.Color.Red;
-            this.tos_linklbl.Location = new System.Drawing.Point(91, 418);
-            this.tos_linklbl.Name = "tos_linklbl";
-            this.tos_linklbl.Size = new System.Drawing.Size(146, 19);
-            this.tos_linklbl.TabIndex = 108;
-            this.tos_linklbl.TabStop = true;
-            this.tos_linklbl.Text = "View Terms of Service";
-            // 
             // version_lbl
             // 
-            this.version_lbl.Location = new System.Drawing.Point(43, 83);
+            this.version_lbl.Location = new System.Drawing.Point(90, 72);
             this.version_lbl.Name = "version_lbl";
             this.version_lbl.Size = new System.Drawing.Size(138, 22);
             this.version_lbl.StateCommon.ShortText.Color1 = System.Drawing.Color.Black;
@@ -217,78 +171,11 @@
             this.appinfo_lbl.TabIndex = 8;
             this.appinfo_lbl.Values.Text = "App info";
             // 
-            // system_panel
-            // 
-            this.system_panel.BackColor = System.Drawing.Color.Firebrick;
-            this.system_panel.Controls.Add(this.timezone_cmb);
-            this.system_panel.Controls.Add(this.kryptonComboBox1);
-            this.system_panel.Controls.Add(this.language_cmb);
-            this.system_panel.Controls.Add(this.gender_cmb);
-            this.system_panel.ForeColor = System.Drawing.Color.Black;
-            this.system_panel.Location = new System.Drawing.Point(424, 359);
-            this.system_panel.Name = "system_panel";
-            this.system_panel.Size = new System.Drawing.Size(349, 217);
-            this.system_panel.TabIndex = 3;
-            // 
-            // timezone_cmb
-            // 
-            this.timezone_cmb.Location = new System.Drawing.Point(43, 122);
-            this.timezone_cmb.Name = "timezone_cmb";
-            this.timezone_cmb.Size = new System.Drawing.Size(89, 22);
-            this.timezone_cmb.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.timezone_cmb.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.timezone_cmb.TabIndex = 101;
-            this.timezone_cmb.Values.Text = "Time Zone:";
-            // 
-            // kryptonComboBox1
-            // 
-            this.kryptonComboBox1.DropDownWidth = 183;
-            this.kryptonComboBox1.Items.AddRange(new object[] {
-            "Male",
-            "Female",
-            "Prefer not to say"});
-            this.kryptonComboBox1.Location = new System.Drawing.Point(130, 124);
-            this.kryptonComboBox1.Name = "kryptonComboBox1";
-            this.kryptonComboBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.kryptonComboBox1.Size = new System.Drawing.Size(156, 20);
-            this.kryptonComboBox1.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
-            this.kryptonComboBox1.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonComboBox1.TabIndex = 102;
-            this.kryptonComboBox1.Text = "Select gender...";
-            // 
-            // language_cmb
-            // 
-            this.language_cmb.Location = new System.Drawing.Point(43, 71);
-            this.language_cmb.Name = "language_cmb";
-            this.language_cmb.Size = new System.Drawing.Size(81, 22);
-            this.language_cmb.StateCommon.ShortText.Color1 = System.Drawing.Color.White;
-            this.language_cmb.StateCommon.ShortText.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.language_cmb.TabIndex = 99;
-            this.language_cmb.Values.Text = "Language:";
-            // 
-            // gender_cmb
-            // 
-            this.gender_cmb.DropDownWidth = 183;
-            this.gender_cmb.Items.AddRange(new object[] {
-            "Male",
-            "Female",
-            "Prefer not to say"});
-            this.gender_cmb.Location = new System.Drawing.Point(130, 73);
-            this.gender_cmb.Name = "gender_cmb";
-            this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.gender_cmb.Size = new System.Drawing.Size(156, 20);
-            this.gender_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
-            this.gender_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gender_cmb.TabIndex = 100;
-            this.gender_cmb.Text = "Select gender...";
-            // 
             // security_panel
             // 
             this.security_panel.BackColor = System.Drawing.Color.Maroon;
             this.security_panel.Controls.Add(this.changeEmail_btn);
             this.security_panel.Controls.Add(this.changePassword_btn);
-            this.security_panel.Controls.Add(this.securityAnswer_tb);
-            this.security_panel.Controls.Add(this.securityQuestion_cmb);
             this.security_panel.Location = new System.Drawing.Point(424, 73);
             this.security_panel.Name = "security_panel";
             this.security_panel.Size = new System.Drawing.Size(349, 215);
@@ -297,7 +184,7 @@
             // changeEmail_btn
             // 
             this.changeEmail_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.changeEmail_btn.Location = new System.Drawing.Point(185, 104);
+            this.changeEmail_btn.Location = new System.Drawing.Point(43, 123);
             this.changeEmail_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.changeEmail_btn.Name = "changeEmail_btn";
             this.changeEmail_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
@@ -316,7 +203,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.changeEmail_btn.OverrideFocus.Border.Width = 1;
-            this.changeEmail_btn.Size = new System.Drawing.Size(147, 48);
+            this.changeEmail_btn.Size = new System.Drawing.Size(263, 48);
             this.changeEmail_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
             this.changeEmail_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
@@ -351,7 +238,7 @@
             // changePassword_btn
             // 
             this.changePassword_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.changePassword_btn.Location = new System.Drawing.Point(15, 104);
+            this.changePassword_btn.Location = new System.Drawing.Point(43, 38);
             this.changePassword_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
             this.changePassword_btn.Name = "changePassword_btn";
             this.changePassword_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
@@ -370,7 +257,7 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.changePassword_btn.OverrideFocus.Border.Width = 1;
-            this.changePassword_btn.Size = new System.Drawing.Size(147, 48);
+            this.changePassword_btn.Size = new System.Drawing.Size(263, 48);
             this.changePassword_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.changePassword_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
             this.changePassword_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
@@ -401,26 +288,6 @@
             this.changePassword_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.changePassword_btn.Values.Text = "Change password";
             this.changePassword_btn.Click += new System.EventHandler(this.changePassword_btn_Click);
-            // 
-            // securityAnswer_tb
-            // 
-            this.securityAnswer_tb.Location = new System.Drawing.Point(23, 46);
-            this.securityAnswer_tb.Name = "securityAnswer_tb";
-            this.securityAnswer_tb.Size = new System.Drawing.Size(290, 26);
-            this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
-            this.securityAnswer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securityAnswer_tb.TabIndex = 91;
-            this.securityAnswer_tb.Text = "Enter security answer...";
-            // 
-            // securityQuestion_cmb
-            // 
-            this.securityQuestion_cmb.DropDownWidth = 213;
-            this.securityQuestion_cmb.Location = new System.Drawing.Point(23, 19);
-            this.securityQuestion_cmb.Name = "securityQuestion_cmb";
-            this.securityQuestion_cmb.Size = new System.Drawing.Size(290, 21);
-            this.securityQuestion_cmb.StateCommon.Item.Content.ShortText.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.securityQuestion_cmb.TabIndex = 0;
-            this.securityQuestion_cmb.Text = "Security Question...";
             // 
             // privacy_panel
             // 
@@ -690,6 +557,42 @@
             this.apply_btn.Values.Text = "Apply";
             this.apply_btn.Click += new System.EventHandler(this.apply_btn_Click);
             // 
+            // appinfo
+            // 
+            this.appinfo.AutoSize = true;
+            this.appinfo.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appinfo.ForeColor = System.Drawing.Color.IndianRed;
+            this.appinfo.Location = new System.Drawing.Point(30, 143);
+            this.appinfo.Name = "appinfo";
+            this.appinfo.Size = new System.Drawing.Size(263, 150);
+            this.appinfo.TabIndex = 108;
+            this.appinfo.Text = resources.GetString("appinfo.Text");
+            this.appinfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // appinfo2
+            // 
+            this.appinfo2.AutoSize = true;
+            this.appinfo2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.appinfo2.ForeColor = System.Drawing.Color.IndianRed;
+            this.appinfo2.Location = new System.Drawing.Point(61, 343);
+            this.appinfo2.Name = "appinfo2";
+            this.appinfo2.Size = new System.Drawing.Size(195, 75);
+            this.appinfo2.TabIndex = 109;
+            this.appinfo2.Text = "The name \"Remmm\" is an acronym \r\nderived from the first names of \r\nthe applicatio" +
+    "n\'s developers:\r\nRafael, Ericka, Michael, Marry,\r\n and Mharcky.";
+            this.appinfo2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // logo_pbp
+            // 
+            this.logo_pbp.BackColor = System.Drawing.Color.White;
+            this.logo_pbp.Image = global::OOP_Project.Properties.Resources._1_3;
+            this.logo_pbp.Location = new System.Drawing.Point(424, 359);
+            this.logo_pbp.Name = "logo_pbp";
+            this.logo_pbp.Size = new System.Drawing.Size(349, 217);
+            this.logo_pbp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.logo_pbp.TabIndex = 12;
+            this.logo_pbp.TabStop = false;
+            // 
             // settingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -702,15 +605,10 @@
             this.settings_panel.PerformLayout();
             this.appinfo_panel.ResumeLayout(false);
             this.appinfo_panel.PerformLayout();
-            this.system_panel.ResumeLayout(false);
-            this.system_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gender_cmb)).EndInit();
             this.security_panel.ResumeLayout(false);
-            this.security_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.securityQuestion_cmb)).EndInit();
             this.privacy_panel.ResumeLayout(false);
             this.theme_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.logo_pbp)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -719,7 +617,6 @@
 
         private System.Windows.Forms.Panel settings_panel;
         private System.Windows.Forms.Panel appinfo_panel;
-        private System.Windows.Forms.Panel system_panel;
         private System.Windows.Forms.Panel security_panel;
         private System.Windows.Forms.Panel privacy_panel;
         private System.Windows.Forms.Panel theme_panel;
@@ -728,22 +625,16 @@
         private ComponentFactory.Krypton.Toolkit.KryptonButton lightmode_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton clearRecentSearch_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton clearHistory_btn;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox securityQuestion_cmb;
-        private ComponentFactory.Krypton.Toolkit.KryptonTextBox securityAnswer_tb;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel version_lbl;
         private ComponentFactory.Krypton.Toolkit.KryptonButton deleteAccount_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonLabel appinfo_lbl;
-        private System.Windows.Forms.LinkLabel privacy_linklbl;
-        private System.Windows.Forms.LinkLabel tos_linklbl;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel timezone_cmb;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox kryptonComboBox1;
-        private ComponentFactory.Krypton.Toolkit.KryptonLabel language_cmb;
-        private ComponentFactory.Krypton.Toolkit.KryptonComboBox gender_cmb;
         private ComponentFactory.Krypton.Toolkit.KryptonButton changePassword_btn;
         private ComponentFactory.Krypton.Toolkit.KryptonButton changeEmail_btn;
         private System.Windows.Forms.Label theme_lbl;
         private System.Windows.Forms.Label securtySettings_lbl;
-        private System.Windows.Forms.Label system_lbl;
         private System.Windows.Forms.Label privacy_lbl;
+        private System.Windows.Forms.Label appinfo2;
+        private System.Windows.Forms.Label appinfo;
+        private System.Windows.Forms.PictureBox logo_pbp;
     }
 }
