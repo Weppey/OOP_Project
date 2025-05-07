@@ -1,271 +1,312 @@
-﻿using System;
-using System.Data;
-using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using BCrypt.Net;
-using System.Web.SessionState;
-using System.Drawing.Drawing2D;
-using ComponentFactory.Krypton.Toolkit;
-using System.Drawing;
-using Microsoft.Web.WebView2.Core;
-using CaptchaGen;
-using System.Linq;
-using System.IO;
-using System.Threading.Tasks;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
-using static OOP_Project.StayLoggedIn;
+﻿    using System;
+    using System.Data;
+    using System.Windows.Forms;
+    using MySql.Data.MySqlClient;
+    using BCrypt.Net;
+    using System.Web.SessionState;
+    using System.Drawing.Drawing2D;
+    using ComponentFactory.Krypton.Toolkit;
+    using System.Drawing;
+    using Microsoft.Web.WebView2.Core;
+    using CaptchaGen;
+    using System.Linq;
+    using System.IO;
+    using System.Threading.Tasks;
+    using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+    using static OOP_Project.StayLoggedIn;
 
 
-namespace OOP_Project
-{
-    public partial class login_form : KryptonForm
+    namespace OOP_Project
     {
-        private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-        string currentCaptchaCode;
-        public login_form()
+        public partial class login_form : KryptonForm
         {
-            InitializeComponent();
-            GenerateCaptcha(); // This sets currentCaptchaCode  
-        }
-        private int failedAttempts = 0; // To track failed attempts
-        private int cooldownTime = 30;  // Cooldown time in seconds
-      private async void login_btn_Click(object sender, EventArgs e)
-{
-    // Check if CAPTCHA matches
-    if (string.IsNullOrEmpty(currentCaptchaCode) || captcha_tb.Text.Trim().ToUpper() != currentCaptchaCode.ToUpper())
-    {
-        failedAttempts++;
-
-        captcha_tb.BackColor = Color.Pink;
-        captcha_tb.Focus();
-        MessageBox.Show("CAPTCHA is incorrect. Please try again.", "CAPTCHA Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        captcha_tb.Clear();
-        GenerateCaptcha();
-
-        if (failedAttempts >= 3)
-        {
-            login_btn.Enabled = false;
-            attempt_lbl.Visible = true;
-
-            for (int i = cooldownTime; i > 0; i--)
+            private string connectionString = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string currentCaptchaCode;
+            public login_form()
             {
-                attempt_lbl.Text = $"Please wait for {i} seconds.";
-                await Task.Delay(1000);
+                InitializeComponent();
+                GenerateCaptcha(); // This sets currentCaptchaCode  
+            }
+            private int failedAttempts = 0; // To track failed attempts
+            private int cooldownTime = 30;  // Cooldown time in seconds
+
+        private bool IsInternetAvailable()
+        {
+            try
+            {
+                using (var client = new System.Net.WebClient())
+                using (client.OpenRead("http://www.google.com"))
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        private async void login_btn_Click(object sender, EventArgs e)
+    {
+            if (!IsInternetAvailable())
+            {
+                MessageBox.Show("No internet connection detected. The application will now close.",
+                                "Network Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit(); 
+                return;
             }
 
-            login_btn.Enabled = true;
-            attempt_lbl.Visible = false;
-            MessageBox.Show("You can now try logging in again.", "Cooldown Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Check if CAPTCHA matches
+            if (string.IsNullOrEmpty(currentCaptchaCode) || captcha_tb.Text.Trim().ToUpper() != currentCaptchaCode.ToUpper())
+        {
+            failedAttempts++;
+
+            captcha_tb.BackColor = Color.Pink;
+            captcha_tb.Focus();
+            MessageBox.Show("CAPTCHA is incorrect. Please try again.", "CAPTCHA Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            captcha_tb.Clear();
+            GenerateCaptcha();
+
+            if (failedAttempts >= 3)
+            {
+                login_btn.Enabled = false;
+                attempt_lbl.Visible = true;
+
+                for (int i = cooldownTime; i > 0; i--)
+                {
+                    attempt_lbl.Text = $"Please wait for {i} seconds.";
+                    await Task.Delay(1000);
+                }
+
+                login_btn.Enabled = true;
+                attempt_lbl.Visible = false;
+                MessageBox.Show("You can now try logging in again.", "Cooldown Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            return;
         }
 
-        return;
-    }
+        failedAttempts = 0; // Reset on correct CAPTCHA
+        captcha_tb.BackColor = Color.White;
 
-    failedAttempts = 0; // Reset on correct CAPTCHA
-    captcha_tb.BackColor = Color.White;
+        string username = userName_tb.Text.Trim();
+        string password = password_tb.Text.Trim();
 
-    string username = userName_tb.Text.Trim();
-    string password = password_tb.Text.Trim();
-
-    if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-    {
-        MessageBox.Show("Please enter both username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        return;
-    }
-
-    try
-    {
-        using (MySqlConnection connection = new MySqlConnection(connectionString))
+        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
         {
-            connection.Open();
-            string query = "SELECT user_id, password, user_type, email_verified, email, theme_preference FROM users WHERE username = @username LIMIT 1";
+            MessageBox.Show("Please enter both username and password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return;
+        }
 
-            using (MySqlCommand cmd = new MySqlCommand(query, connection))
+        try
+        {
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                cmd.Parameters.AddWithValue("@username", username);
+                connection.Open();
+                string query = "SELECT user_id, password, user_type, email_verified, email, theme_preference FROM users WHERE username = @username LIMIT 1";
 
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (MySqlCommand cmd = new MySqlCommand(query, connection))
                 {
-                    if (!reader.Read())
-                    {
-                        MessageBox.Show("No user found with the entered username.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        password_tb.Text = "Password";
-                        password_tb.ForeColor = Color.Gray;
-                        userName_tb.Text = "Username";
-                        userName_tb.ForeColor = Color.Gray;
-                        return;
-                    }
+                    cmd.Parameters.AddWithValue("@username", username);
 
-                    string storedHash = reader["password"].ToString();
-                    string userType = reader["user_type"].ToString();
-                    int userId = Convert.ToInt32(reader["user_id"]);
-                    bool emailVerified = Convert.ToBoolean(reader["email_verified"]);
-                    string email = reader["email"].ToString();
-                    string themePreference = reader["theme_preference"].ToString(); // ✅ added line
-
-                    if (!BCrypt.Net.BCrypt.Verify(password, storedHash))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        MessageBox.Show("Invalid password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        password_tb.Text = "Password";
-                        password_tb.ForeColor = Color.Gray;
-                        return;
-                    }
+                        if (!reader.Read())
+                        {
+                            MessageBox.Show("No user found with the entered username.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            password_tb.Text = "Password";
+                            password_tb.ForeColor = Color.Gray;
+                            userName_tb.Text = "Username";
+                            userName_tb.ForeColor = Color.Gray;
+                            return;
+                        }
 
-                    if (!emailVerified)
-                    {
-                        MessageBox.Show("Your email has not been verified. Please verify your email before logging in.", "Email Not Verified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        string storedHash = reader["password"].ToString();
+                        string userType = reader["user_type"].ToString();
+                        int userId = Convert.ToInt32(reader["user_id"]);
+                        bool emailVerified = Convert.ToBoolean(reader["email_verified"]);
+                        string email = reader["email"].ToString();
+                        string themePreference = reader["theme_preference"].ToString(); // ✅ added line
+
+                        if (!BCrypt.Net.BCrypt.Verify(password, storedHash))
+                        {
+                            MessageBox.Show("Invalid password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            password_tb.Text = "Password";
+                            password_tb.ForeColor = Color.Gray;
+                            return;
+                        }
+
+                        if (!emailVerified)
+                        {
+                            MessageBox.Show("Your email has not been verified. Please verify your email before logging in.", "Email Not Verified", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            this.Hide();
+                            verification_form verify = new verification_form(email);
+                            verify.ShowDialog();
+                            this.Show();
+                            GenerateCaptcha();
+                            return;
+                        }
+                                bool? savedTheme = UserThemeSettings.LoadTheme(userId);
+                                if (savedTheme == true)
+                                    ThemeManager.ApplyDarkMode();
+                                else
+                                    ThemeManager.ApplyLightMode();
+
+
+
+                                // Successful login
+                                StayLoggedIn.SaveUserSession(userType, userId);
+                        MessageBox.Show($"Welcome back, {username}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                         this.Hide();
-                        verification_form verify = new verification_form(email);
-                        verify.ShowDialog();
-                        this.Show();
-                        GenerateCaptcha();
-                        return;
+                        home_form home = new home_form(userType, userId);
+                        home.ShowDialog();
+                        this.Close();
                     }
-                            bool? savedTheme = UserThemeSettings.LoadTheme(userId);
-                            if (savedTheme == true)
-                                ThemeManager.ApplyDarkMode();
-                            else
-                                ThemeManager.ApplyLightMode();
-
-
-
-                            // Successful login
-                            StayLoggedIn.SaveUserSession(userType, userId);
-                    MessageBox.Show($"Welcome back, {username}!", "Login Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    this.Hide();
-                    home_form home = new home_form(userType, userId);
-                    home.ShowDialog();
-                    this.Close();
                 }
             }
         }
+        catch (Exception ex)
+        {
+            MessageBox.Show("An error occurred while attempting to log in:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
-    catch (Exception ex)
-    {
-        MessageBox.Show("An error occurred while attempting to log in:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-    }
-}
 
 
-        private void captcha_tb_Enter(object sender, EventArgs e)
-        {
-            if (captcha_tb.Text == "Enter code...")
+            private void captcha_tb_Enter(object sender, EventArgs e)
             {
-                captcha_tb.Text = "";
-                captcha_tb.ForeColor = Color.Black;
+                if (captcha_tb.Text == "Enter code...")
+                {
+                    captcha_tb.Text = "";
+                    captcha_tb.ForeColor = Color.Black;
+                }
+
             }
 
-        }
-
-        private void captcha_tb_Leave(object sender, EventArgs e)
-        {
-            if (captcha_tb.Text == "")
+            private void captcha_tb_Leave(object sender, EventArgs e)
             {
-                captcha_tb.Text = "Enter code...";
-                captcha_tb.ForeColor = Color.Gray;
+                if (captcha_tb.Text == "")
+                {
+                    captcha_tb.Text = "Enter code...";
+                    captcha_tb.ForeColor = Color.Gray;
+                }
             }
-        }
 
-        private void refreshCaptcha_btn_Click(object sender, EventArgs e)
-        {
-            GenerateCaptcha();
-        }
-        private void GenerateCaptcha()
-        {
-            currentCaptchaCode = GenerateRandomCode(5); // e.g., 5-character CAPTCHA
-
-            // Improved image dimensions and font settings
-            var captchaImageStream = ImageFactory.GenerateImage(currentCaptchaCode, 100, 250, 50);
-
-            // Convert MemoryStream to Image
-            using (var memoryStream = new MemoryStream())
+            private void refreshCaptcha_btn_Click(object sender, EventArgs e)
             {
-                captchaImageStream.CopyTo(memoryStream);
-                var captchaImage = Image.FromStream(memoryStream);
-                captcha_pb.Image = captchaImage;
+                GenerateCaptcha();
             }
-        }
-        private string GenerateRandomCode(int length)
-        {
-            const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // exclude similar-looking characters
-            Random rand = new Random();
-            return new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[rand.Next(s.Length)]).ToArray());
-        }
-
-
-        private async void login_form_Load(object sender, EventArgs e)
-        {
-            GenerateCaptcha();
-            if (string.IsNullOrEmpty(currentCaptchaCode))
+            private void GenerateCaptcha()
             {
-                MessageBox.Show("CAPTCHA not generated. Please refresh or restart the app.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                currentCaptchaCode = GenerateRandomCode(5); // e.g., 5-character CAPTCHA
+
+                // Improved image dimensions and font settings
+                var captchaImageStream = ImageFactory.GenerateImage(currentCaptchaCode, 100, 250, 50);
+
+                // Convert MemoryStream to Image
+                using (var memoryStream = new MemoryStream())
+                {
+                    captchaImageStream.CopyTo(memoryStream);
+                    var captchaImage = Image.FromStream(memoryStream);
+                    captcha_pb.Image = captchaImage;
+                }
+            }
+            private string GenerateRandomCode(int length)
+            {
+                const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; // exclude similar-looking characters
+                Random rand = new Random();
+                return new string(Enumerable.Repeat(chars, length)
+                    .Select(s => s[rand.Next(s.Length)]).ToArray());
+            }
+
+
+            private async void login_form_Load(object sender, EventArgs e)
+            {       
+
+            if (!IsInternetAvailable())
+            {
+                MessageBox.Show("No internet connection detected. Please check your connection and restart the application.",
+                                "Network Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                login_btn.Enabled = false;
+                refreshCaptcha_btn.Enabled = false;
                 return;
             }
 
-            this.AcceptButton = login_btn;
+            GenerateCaptcha();
+                if (string.IsNullOrEmpty(currentCaptchaCode))
+                {
+                    MessageBox.Show("CAPTCHA not generated. Please refresh or restart the app.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-            // Check if session exists
-            var userSession = StayLoggedIn.LoadUserSession();
-            if (userSession != null)
+                this.AcceptButton = login_btn;
+
+                // Check if session exists
+                var userSession = StayLoggedIn.LoadUserSession();
+                if (userSession != null)
+                {
+                    // The session already exists, proceed directly to home_form
+                    this.Hide();
+
+                    // Destructure the session tuple into userType and userId
+                    var (userType, userId) = userSession.Value;
+
+                    home_form homeForm = new home_form(userType, userId);
+                    homeForm.ShowDialog();
+                    this.Close();
+                }
+            }
+            private void WebMessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs e)
             {
-                // The session already exists, proceed directly to home_form
+                string message = e.TryGetWebMessageAsString();
+
+               if (message == "captcha_success")
+                {
+                    MessageBox.Show("CAPTCHA passed!");
+                    // Proceed to the next logic like enabling login or user action
+                }
+            }
+
+            private void signUp_lbl_Click(object sender, EventArgs e)
+            {
                 this.Hide();
-
-                // Destructure the session tuple into userType and userId
-                var (userType, userId) = userSession.Value;
-
-                home_form homeForm = new home_form(userType, userId);
-                homeForm.ShowDialog();
-                this.Close();
+                signup_form SignUp_Form = new signup_form();
+                SignUp_Form.ShowDialog();
             }
-        }
-        private void WebMessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs e)
-        {
-            string message = e.TryGetWebMessageAsString();
 
-           if (message == "captcha_success")
+            private void close_pb_Click(object sender, EventArgs e)
             {
-                MessageBox.Show("CAPTCHA passed!");
-                // Proceed to the next logic like enabling login or user action
+                string msg = "Do you want to leave this page?";
+                string title = "Confirm Naviagtion";
+                MessageBoxButtons btn = MessageBoxButtons.YesNo;
+                MessageBoxIcon icon = MessageBoxIcon.Question;
+                DialogResult result = MessageBox.Show(msg, title, btn, icon);
+                if (result == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
+                else
+                {
+                    return;
+                }
             }
-        }
 
-        private void signUp_lbl_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            signup_form SignUp_Form = new signup_form();
-            SignUp_Form.ShowDialog();
-        }
-
-        private void close_pb_Click(object sender, EventArgs e)
-        {
-            string msg = "Do you want to leave this page?";
-            string title = "Confirm Naviagtion";
-            MessageBoxButtons btn = MessageBoxButtons.YesNo;
-            MessageBoxIcon icon = MessageBoxIcon.Question;
-            DialogResult result = MessageBox.Show(msg, title, btn, icon);
-            if (result == DialogResult.Yes)
+            private void minimize_pb_Click(object sender, EventArgs e)
             {
-                Application.Exit();
+                this.WindowState = FormWindowState.Minimized;
             }
-            else
+
+            private void showPass_chkb_CheckedChanged(object sender, EventArgs e)
             {
-                return;
+                password_tb.PasswordChar = showPass_chkb.Checked ? '\0' : '*';
             }
-        }
 
-        private void minimize_pb_Click(object sender, EventArgs e)
+        private void close_pb_MouseEnter(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            close_pb.BackColor = Color.FromArgb(226, 0, 39);
         }
-
-        private void showPass_chkb_CheckedChanged(object sender, EventArgs e)
+        private void close_pb_MouseLeave(object sender, EventArgs e)
         {
-            password_tb.PasswordChar = showPass_chkb.Checked ? '\0' : '*';
+            close_pb.BackColor = Color.Transparent;
         }
-
         private void minimize_pb_MouseEnter(object sender, EventArgs e)
         {
             minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
@@ -276,62 +317,52 @@ namespace OOP_Project
             minimize_pb.BackColor = Color.Transparent;
         }
 
-        private void close_pb_MouseEnter(object sender, EventArgs e)
-        {
-            close_pb.BackColor = Color.FromArgb(226, 0, 39);
-        }
-
-        private void close_pb_MouseLeave(object sender, EventArgs e)
-        {
-            close_pb.BackColor = Color.Transparent;
-        }
-
         private void forgotPassword_llbl_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            account_recovery_form recoveryForm = new account_recovery_form();
-            recoveryForm.ShowDialog();
-
-        }
-
-        private void userName_tb_Enter(object sender, EventArgs e)
-        {
-            if (userName_tb.Text == "Username")
             {
-                userName_tb.Text = "";
-                userName_tb.ForeColor = Color.Black;
-            }
-        }
+                this.Hide();
+                account_recovery_form recoveryForm = new account_recovery_form();
+                recoveryForm.ShowDialog();
 
-        private void userName_tb_Leave(object sender, EventArgs e)
-        {
-            if (userName_tb.Text == "")
+            }
+
+            private void userName_tb_Enter(object sender, EventArgs e)
             {
-                userName_tb.Text = "Username";
-                userName_tb.ForeColor = Color.Gray;
+                if (userName_tb.Text == "Username")
+                {
+                    userName_tb.Text = "";
+                    userName_tb.ForeColor = Color.Black;
+                }
             }
-        }
 
-        private void password_tb_Leave(object sender, EventArgs e)
-        {
-            if (password_tb.Text == "")
+            private void userName_tb_Leave(object sender, EventArgs e)
             {
-                password_tb.PasswordChar = '\0';
-                password_tb.Text = "Password";
-                password_tb.ForeColor = Color.Gray;
+                if (userName_tb.Text == "")
+                {
+                    userName_tb.Text = "Username";
+                    userName_tb.ForeColor = Color.Gray;
+                }
             }
-        }
 
-        private void password_tb_Enter(object sender, EventArgs e)
-        {
-            if (password_tb.Text == "Password")
+            private void password_tb_Leave(object sender, EventArgs e)
             {
-                password_tb.PasswordChar = '*';
-                password_tb.Text = "";
-                password_tb.ForeColor = Color.Black;
+                if (password_tb.Text == "")
+                {
+                    password_tb.PasswordChar = '\0';
+                    password_tb.Text = "Password";
+                    password_tb.ForeColor = Color.Gray;
+                }
             }
+
+            private void password_tb_Enter(object sender, EventArgs e)
+            {
+                if (password_tb.Text == "Password")
+                {
+                    password_tb.PasswordChar = '*';
+                    password_tb.Text = "";
+                    password_tb.ForeColor = Color.Black;
+                }
+            }
+
+
         }
-
-
     }
-}

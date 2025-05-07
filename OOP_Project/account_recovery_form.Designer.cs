@@ -732,6 +732,8 @@
             this.cls_pb.TabIndex = 50;
             this.cls_pb.TabStop = false;
             this.cls_pb.Click += new System.EventHandler(this.cls_pb_Click);
+            this.cls_pb.MouseEnter += new System.EventHandler(this.cls_pb_MouseEnter);
+            this.cls_pb.MouseLeave += new System.EventHandler(this.cls_pb_MouseLeave);
             // 
             // account_recovery_form
             // 

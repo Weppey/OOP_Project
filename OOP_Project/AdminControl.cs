@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using WinFormsToolTip = System.Windows.Forms.ToolTip;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace OOP_Project
 {
@@ -262,13 +263,27 @@ namespace OOP_Project
 
         private void update_btn_Click(object sender, EventArgs e)
         {
+            if (movies_dgv.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a movie to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             int movieId = Convert.ToInt32(movies_dgv.CurrentRow.Cells["movie_id"].Value);
 
             // Get the selected genres as a comma-separated string
             string selectedGenres = GetSelectedGenres();
 
+            // Validate the URLs
+            if (!IsValidUrl(posterUrl_tb.Text) || !IsValidImagePoster(posterUrl_tb.Text) || !IsValidMovieUrl(movieUrl_tb.Text) || !IsValidUrl(trailerUrl_tb.Text))
+            {
+                MessageBox.Show("Please enter valid URLs for the poster, movie, and trailer. Ensure the poster URL ends with .jpg and the movie URL comes from onionplay.ch.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ClearMovieInput();
+                return;
+            }
+
             // Prepare the query to update the movie
-            string query = "UPDATE movies SET title=@title, genre=@genre, release_year=@release, image_url=@imageurl, trailer_link=@trailerlink, description=@description WHERE movie_id=@id";
+            string query = "UPDATE movies SET title=@title, genre=@genre, release_year=@release, image_url=@imageurl, movie_url=@movieurl, trailer_link=@trailerlink, description=@description WHERE movie_id=@id";
 
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", title_tb.Text);
@@ -278,12 +293,34 @@ namespace OOP_Project
             cmd.Parameters.AddWithValue("@trailerlink", trailerUrl_tb.Text);
             cmd.Parameters.AddWithValue("@description", description_tb.Text); // Add description
             cmd.Parameters.AddWithValue("@id", movieId);
+            cmd.Parameters.AddWithValue("@movieurl", movieUrl_tb.Text);
 
             // Execute the update query
             cmd.ExecuteNonQuery();
             MovieClearCheckedItems();
             LoadMovies(); // Refresh the movie list
         }
+
+        private bool IsValidUrl(string url)
+        {
+            // Simple regex to validate URL (you can adjust the pattern if needed)
+            string pattern = @"^(http|https)://([a-z0-9-]+\.)+[a-z]{2,3}(/.*)?$";
+            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            return regex.IsMatch(url);
+        }
+
+        private bool IsValidImagePoster(string url)
+        {
+            // Check if the URL ends with ".jpg"
+            return url.ToLower().EndsWith(".jpg");
+        }
+
+        private bool IsValidMovieUrl(string url)
+        {
+            // Check if the URL starts with "https://onionplay.ch"
+            return url.ToLower().StartsWith("https://onionplay.ch");
+        }
+
 
         private void remove_btn_Click(object sender, EventArgs e)
         {
@@ -334,6 +371,8 @@ namespace OOP_Project
 
                 trailerUrl_tb.Text = row.Cells["trailer_link"].Value.ToString();
 
+                movieUrl_tb.Text = row.Cells["movie_url"].Value.ToString() ;
+
                 // Set description
                 description_tb.Text = row.Cells["description"].Value.ToString();
 
@@ -362,6 +401,7 @@ namespace OOP_Project
         private void Clear_btn_Click(object sender, EventArgs e)
         {
             ClearMovieInput();
+    
         }
         public void ClearMovieInput()
         {
@@ -373,16 +413,64 @@ namespace OOP_Project
             trailerUrl_tb.Text = "Enter trailer URL...";
             releaseYear_dtp.Value = DateTime.Now;
             MovieClearCheckedItems();
+            movieUrl_tb.Text = "Enter movie URL...";
+
+            // Clear the selection in the DataGridView
+            if (movies_dgv.SelectedRows.Count > 0)
+            {
+                movies_dgv.ClearSelection(); // Deselect the selected row
+            }
         }
         private void submit_btn_Click(object sender, EventArgs e)
         {
+            // 1. Check if any of the fields contain the default placeholder text
+            if (title_tb.Text == "Enter title..." ||
+                posterUrl_tb.Text == "Enter poster URL..." ||
+                description_tb.Text == "Enter description..." ||
+                trailerUrl_tb.Text == "Enter trailer URL..." ||
+                movieUrl_tb.Text == "Enter movie URL..." ||
+                releaseYear_dtp.Value == DateTime.Now)
+            {
+                MessageBox.Show("Please fill out all fields before inserting a movie.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 2. Validate the email format
+            if (!IsValidEmail(email_tb.Text))
+            {
+                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 3. Check if the username already exists
+            if (IsUsernameTaken(username_tb.Text))
+            {
+                MessageBox.Show("This username is already taken. Please choose a different one.", "Username Taken", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 4. Check if a security question is selected
+            if (securityQuestion_cmb.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a security question.", "Security Question", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // 5. Check if gender is selected
+            if (string.IsNullOrWhiteSpace(gender_cmb.SelectedItem?.ToString()))
+            {
+                MessageBox.Show("Please select a gender.", "Gender Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // If all checks pass, proceed with inserting the movie
             string selectedGenres = GetSelectedGenres();
 
             // Extract just the year from the release year DateTimePicker
             int releaseYear = releaseYear_dtp.Value.Year;
 
             // Insert query with description
-            string query = "INSERT INTO movies (title, genre, release_year, image_url, trailer_link, description) VALUES (@title, @genre, @release, @imageurl, @trailer_link, @description)";
+            string query = "INSERT INTO movies (title, genre, release_year, image_url, trailer_link, movie_url, description) VALUES (@title, @genre, @release, @imageurl, @trailer_link, @movie_url, @description)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", title_tb.Text);
             cmd.Parameters.AddWithValue("@genre", selectedGenres); // Save genres as a comma-separated string
@@ -394,6 +482,32 @@ namespace OOP_Project
             MovieClearCheckedItems();
             LoadMovies(); // Refresh the movie list
         }
+
+        // Method to validate email format
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var mailAddress = new System.Net.Mail.MailAddress(email);
+                return mailAddress.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        // Method to check if the username already exists in the database
+        private bool IsUsernameTaken(string username)
+        {
+            string query = "SELECT COUNT(*) FROM users WHERE username = @username";
+            MySqlCommand cmd = new MySqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@username", username);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            return count > 0;
+        }
+
+
         private void editMovie_btn_Click(object sender, EventArgs e)
         {
             if (movieEditor_panel.Visible == false)
@@ -646,12 +760,26 @@ namespace OOP_Project
                     }
                     else
                     {
-                        avatar_pb.Image = Properties.Resources.avatar_default;
+                        if (gender_cmb.Text == "Male")
+                        {
+                            avatar_pb.Image = Properties.Resources.avatar_default;
+                        }
+                        else
+                        {
+                            avatar_pb.Image = Properties.Resources.avatar_women;
+                        }
                     }
                 }
                 else
                 {
-                    avatar_pb.Image = Properties.Resources.avatar_default;
+                    if (gender_cmb.Text == "Male")
+                    {
+                        avatar_pb.Image = Properties.Resources.avatar_default;
+                    }
+                    else
+                    {
+                        avatar_pb.Image = Properties.Resources.avatar_women;
+                    }
                 }
 
                 // Editing existing user
@@ -947,6 +1075,11 @@ namespace OOP_Project
 
             // Optionally reset the form or perform any additional cleanup
             isInsertingNewUser = true; // Assuming you want to reset to insert mode for a new user
+
+            if (users_dgv.SelectedRows.Count > 0)
+            {
+                users_dgv.ClearSelection(); // Deselect the selected row
+            }
         }
 
 
@@ -1113,6 +1246,24 @@ namespace OOP_Project
             {
                 securityAnswer_tb.StateCommon.Content.Color1 = Color.Black;
                 securityAnswer_tb.Text = "";
+            }
+        }
+
+        private void movie_url_Enter(object sender, EventArgs e)
+        {
+            if (movieUrl_tb.Text == "Enter movie URL...")
+            {
+                movieUrl_tb.StateCommon.Content.Color1 = Color.Black;
+                movieUrl_tb.Text = "";
+            }
+        }
+
+        private void movie_url_Leave(object sender, EventArgs e)
+        {
+            if (movieUrl_tb.Text == "")
+            {
+                movieUrl_tb.StateCommon.Content.Color1 = Color.Gray;
+                movieUrl_tb.Text = "Enter movie URL...";
             }
         }
     }

@@ -59,7 +59,21 @@ namespace OOP_Project
 
         private void CoreWebView2_NewWindowRequested(object sender, CoreWebView2NewWindowRequestedEventArgs e)
         {
-            e.Handled = true; // Prevent new window/popups
+            string requestedUrl = e.Uri;
+
+            if (requestedUrl == "https://onionplay.ch/donate/")
+            {
+                // Allow the popup to open inside the same WebView
+                webView21.CoreWebView2.Navigate(requestedUrl);
+
+                // Prevent it from opening in a new window
+                e.Handled = true;
+            }
+            else
+            {
+                // Block all other popups
+                e.Handled = true;
+            }
         }
 
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius)
@@ -90,17 +104,33 @@ namespace OOP_Project
                 disclaimer_lbl.Left = this.Width; // Start from the right edge again
             }
         }
-
+        int isFullScreen = 0;
         private void max_pb_Click(object sender, EventArgs e)
         {
-            if (WindowState == FormWindowState.Normal)
+            if (isFullScreen == 0)
             {
-                this.WindowState = FormWindowState.Maximized;
+                FullScreenForm();
+                isFullScreen = 1;
             }
             else
             {
-                this.WindowState = FormWindowState.Normal;
+                BackToNormal();
             }
         }
+
+        private void FullScreenForm()
+        {
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Normal; // Reset first in case it's already maximized
+            this.Bounds = Screen.PrimaryScreen.Bounds;
+            this.TopMost = true;
+        }
+        private void BackToNormal()
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.FormBorderStyle = FormBorderStyle.Sizable;
+            this.Bounds = Screen.PrimaryScreen.WorkingArea; // Optional: resize to working area
+        }
+
     }
 }

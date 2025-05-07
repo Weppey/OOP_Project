@@ -192,6 +192,8 @@
             this.minimize_pb.TabIndex = 11;
             this.minimize_pb.TabStop = false;
             this.minimize_pb.Click += new System.EventHandler(this.min_pb_Click);
+            this.minimize_pb.MouseEnter += new System.EventHandler(this.minimize_pb_MouseEnter);
+            this.minimize_pb.MouseLeave += new System.EventHandler(this.minimize_pb_MouseLeave);
             // 
             // close_pb
             // 
@@ -205,6 +207,8 @@
             this.close_pb.TabIndex = 10;
             this.close_pb.TabStop = false;
             this.close_pb.Click += new System.EventHandler(this.cls_pb_Click);
+            this.close_pb.MouseEnter += new System.EventHandler(this.close_pb_MouseEnter);
+            this.close_pb.MouseLeave += new System.EventHandler(this.close_pb_MouseLeave);
             // 
             // verification_form
             // 

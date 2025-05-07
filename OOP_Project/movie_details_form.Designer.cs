@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.movie_panel = new System.Windows.Forms.Panel();
+            this.watch_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.comment_lbl = new ComponentFactory.Krypton.Toolkit.KryptonLabel();
             this.commentBorder_panel = new System.Windows.Forms.Panel();
             this.comments_panel = new System.Windows.Forms.FlowLayoutPanel();
@@ -48,19 +49,18 @@
             this.movieDetails_panel = new System.Windows.Forms.Panel();
             this.description_lbl = new System.Windows.Forms.Label();
             this.genre_lbl = new System.Windows.Forms.Label();
+            this.poster_pb = new System.Windows.Forms.PictureBox();
             this.dateRelease_lbl = new System.Windows.Forms.Label();
             this.navigationDock_panel = new System.Windows.Forms.Panel();
-            this.watch_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
             this.close_pb = new System.Windows.Forms.PictureBox();
-            this.poster_pb = new System.Windows.Forms.PictureBox();
             this.movie_panel.SuspendLayout();
             this.commentBorder_panel.SuspendLayout();
             this.ratings_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.movieDetails_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.navigationDock_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // movie_panel
@@ -80,6 +80,37 @@
             this.movie_panel.Name = "movie_panel";
             this.movie_panel.Size = new System.Drawing.Size(979, 573);
             this.movie_panel.TabIndex = 66;
+            // 
+            // watch_btn
+            // 
+            this.watch_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
+            this.watch_btn.Location = new System.Drawing.Point(804, 34);
+            this.watch_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.watch_btn.Name = "watch_btn";
+            this.watch_btn.Size = new System.Drawing.Size(132, 45);
+            this.watch_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
+            this.watch_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
+            this.watch_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.watch_btn.StateCommon.Border.Rounding = 20;
+            this.watch_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
+            this.watch_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
+            this.watch_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
+            this.watch_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.watch_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.watch_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.watch_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.watch_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.watch_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.watch_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
+            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
+            this.watch_btn.TabIndex = 84;
+            this.watch_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_play_20;
+            this.watch_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
+            this.watch_btn.Values.Text = "Watch";
+            this.watch_btn.Click += new System.EventHandler(this.watch_btn_Click);
             // 
             // comment_lbl
             // 
@@ -429,6 +460,15 @@
             this.genre_lbl.TabIndex = 29;
             this.genre_lbl.Text = "Genre";
             // 
+            // poster_pb
+            // 
+            this.poster_pb.BackColor = System.Drawing.Color.White;
+            this.poster_pb.Location = new System.Drawing.Point(22, 19);
+            this.poster_pb.Name = "poster_pb";
+            this.poster_pb.Size = new System.Drawing.Size(166, 221);
+            this.poster_pb.TabIndex = 25;
+            this.poster_pb.TabStop = false;
+            // 
             // dateRelease_lbl
             // 
             this.dateRelease_lbl.AutoSize = true;
@@ -450,37 +490,6 @@
             this.navigationDock_panel.Size = new System.Drawing.Size(1053, 32);
             this.navigationDock_panel.TabIndex = 67;
             // 
-            // watch_btn
-            // 
-            this.watch_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.watch_btn.Location = new System.Drawing.Point(804, 34);
-            this.watch_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
-            this.watch_btn.Name = "watch_btn";
-            this.watch_btn.Size = new System.Drawing.Size(132, 45);
-            this.watch_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
-            this.watch_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
-            this.watch_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.watch_btn.StateCommon.Border.Rounding = 20;
-            this.watch_btn.StateCommon.Content.ShortText.Color1 = System.Drawing.Color.White;
-            this.watch_btn.StateNormal.Back.Color1 = System.Drawing.Color.Transparent;
-            this.watch_btn.StateNormal.Back.Color2 = System.Drawing.Color.Transparent;
-            this.watch_btn.StatePressed.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.watch_btn.StatePressed.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.watch_btn.StateTracking.Back.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.watch_btn.StateTracking.Back.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.watch_btn.StateTracking.Border.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.watch_btn.StateTracking.Border.Color2 = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.watch_btn.StateTracking.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
-            | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
-            this.watch_btn.TabIndex = 84;
-            this.watch_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_play_20;
-            this.watch_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
-            this.watch_btn.Values.Text = "Watch";
-            this.watch_btn.Click += new System.EventHandler(this.watch_btn_Click);
-            // 
             // close_pb
             // 
             this.close_pb.BackColor = System.Drawing.Color.Transparent;
@@ -492,15 +501,8 @@
             this.close_pb.TabIndex = 18;
             this.close_pb.TabStop = false;
             this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
-            // 
-            // poster_pb
-            // 
-            this.poster_pb.BackColor = System.Drawing.Color.White;
-            this.poster_pb.Location = new System.Drawing.Point(22, 19);
-            this.poster_pb.Name = "poster_pb";
-            this.poster_pb.Size = new System.Drawing.Size(166, 221);
-            this.poster_pb.TabIndex = 25;
-            this.poster_pb.TabStop = false;
+            this.close_pb.MouseEnter += new System.EventHandler(this.close_pb_MouseEnter);
+            this.close_pb.MouseLeave += new System.EventHandler(this.close_pb_MouseLeave);
             // 
             // movie_details_form
             // 
@@ -530,9 +532,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.movieDetails_panel.ResumeLayout(false);
             this.movieDetails_panel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.navigationDock_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.ResumeLayout(false);
 
         }

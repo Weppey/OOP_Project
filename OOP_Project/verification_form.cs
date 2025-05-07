@@ -281,5 +281,22 @@ namespace OOP_Project
             }
         }
 
+        private void close_pb_MouseEnter(object sender, EventArgs e)
+        {
+            close_pb.BackColor = Color.FromArgb(226, 0, 39);
+        }
+        private void close_pb_MouseLeave(object sender, EventArgs e)
+        {
+            close_pb.BackColor = Color.Transparent;
+        }
+        private void minimize_pb_MouseEnter(object sender, EventArgs e)
+        {
+            minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
+        }
+
+        private void minimize_pb_MouseLeave(object sender, EventArgs e)
+        {
+            minimize_pb.BackColor = Color.Transparent;
+        }
     }
 }

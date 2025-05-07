@@ -718,5 +718,16 @@ namespace OOP_Project
                     MessageBox.Show("Database error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+
+        private void cls_pb_MouseEnter(object sender, EventArgs e)
+        {
+            cls_pb.BackColor = Color.FromArgb(226, 0, 39);
         }
+
+        private void cls_pb_MouseLeave(object sender, EventArgs e)
+        {
+            cls_pb.BackColor = Color.FromArgb(0, 0, 0);
+        }
+
+    }
     }

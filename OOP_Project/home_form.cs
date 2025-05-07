@@ -114,6 +114,19 @@ namespace OOP_Project
             recent_lbl.BackColor = Color.Transparent;
         }
 
+        private bool IsInternetAvailable()
+        {
+            try
+            {
+                using (var client = new System.Net.WebClient())
+                using (client.OpenRead("http://www.google.com"))
+                    return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         private void CurvePanel(System.Windows.Forms.Panel panel, int radius) // Method to apply curved corners to a panel
         {
@@ -210,6 +223,14 @@ namespace OOP_Project
 
         public async void home_form_Load(object sender, EventArgs e)
         {
+            if (!IsInternetAvailable())
+            {
+                MessageBox.Show("No internet connection detected. The application will now close.",
+                                "Network Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+                return;
+            }
+
             if (userType == "admin")
             {
                 lastActivityTime = DateTime.Now;
@@ -839,20 +860,22 @@ namespace OOP_Project
         }
         private void close_pb_MouseLeave(object sender, EventArgs e)
         {
-            close_pb.BackColor = Color.FromArgb(0, 0, 0);
-        }
-        private void minimize_pb_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
+            close_pb.BackColor = Color.Transparent;
         }
         private void minimize_pb_MouseEnter(object sender, EventArgs e)
         {
             minimize_pb.BackColor = Color.FromArgb(50, 50, 50);
         }
+
         private void minimize_pb_MouseLeave(object sender, EventArgs e)
         {
-            minimize_pb.BackColor = Color.FromArgb(0, 0, 0);
+            minimize_pb.BackColor = Color.Transparent;
         }
+        private void minimize_pb_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
         public void favorite_btn_Click(object sender, EventArgs e)
         {
             if (Favorite_panel.Visible == false)
