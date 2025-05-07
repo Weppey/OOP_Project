@@ -189,6 +189,7 @@
             // 
             // securityq_cmb
             // 
+            this.securityq_cmb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.securityq_cmb.DropDownWidth = 183;
             this.securityq_cmb.Location = new System.Drawing.Point(402, 328);
             this.securityq_cmb.Name = "securityq_cmb";
@@ -229,7 +230,10 @@
             // 
             // gender_cmb
             // 
-            this.gender_cmb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gender_cmb.AutoCompleteCustomSource.AddRange(new string[] {
+            "Male",
+            "Female"});
+            this.gender_cmb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.gender_cmb.DropDownWidth = 183;
             this.gender_cmb.Items.AddRange(new object[] {
             "Male",
