@@ -18,6 +18,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks.Sources;
 using Mysqlx.Crud;
 using static OOP_Project.StayLoggedIn;
+using System.Text.RegularExpressions;
 
 namespace OOP_Project
 {
@@ -1093,12 +1094,14 @@ namespace OOP_Project
                     }
                 }
 
-                // Clear selection and UI cleanup
-                search_tb.Clear();
-                search_txt_Leave(sender, e);
-                search_list.ClearSelected();
-                search_list.Visible = false;
-                this.ActiveControl = null;
+                // Reset UI
+                this.BeginInvoke((MethodInvoker)delegate {
+                    search_tb.Clear();
+                    search_txt_Leave(sender, e);
+                    search_list.ClearSelected();
+                    search_list.Visible = false;
+                    this.ActiveControl = null;
+                });
             }
         }
 
@@ -1177,8 +1180,54 @@ namespace OOP_Project
             }
             return false; // Movie does not exist
         }
+
+        private void ShowMovieDetailsForm(movie movie)
+        {
+            movie_details_form detailsForm = new movie_details_form(movie, userId);
+            detailsForm.ShowDialog();
+        }
+        private movie GetFullMovieByTitle(string title)
+        {
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT * FROM movies WHERE title = @title LIMIT 1";
+            search_list.Items.Clear();
+
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                conn.Open();
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@title", title);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new movie
+                            {
+                                Title = reader.GetString("title"),
+                                Description = reader.GetString("description"),
+                                Genre = reader.GetString("genre"),
+                                ReleaseYear = reader.GetInt32("release_year"),
+                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
+                                    ? null
+                                    : reader.GetString("image_url")
+                            };
+                        }
+                    }
+                }
+            }
+            return null; // Return null if no movie found
+        }
+
         private void search_list_Click(object sender, EventArgs e)
         {
+            if (search_list.SelectedItem == null)
+            {
+                // No item is selected, so exit early.
+                return;
+            }
+
             if (search_list.SelectedItem is movie selectedMovie)
             {
                 var fullMovie = GetFullMovieByTitle(selectedMovie.Title);
@@ -1215,11 +1264,11 @@ namespace OOP_Project
             }
         }
 
+
         private void LoadRecentSearchSuggestions()
         {
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query =
-                "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
+            string query = "SELECT movie_title FROM recent_searches WHERE user_id = @userId ORDER BY search_date DESC LIMIT 3";
 
             try
             {
@@ -1230,7 +1279,7 @@ namespace OOP_Project
                     conn.Open();
                     using (MySqlCommand cmd = new MySqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@userId", currentUserId); // Make sure currentUserId is set
+                        cmd.Parameters.AddWithValue("@userId", currentUserId);
 
                         using (MySqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -1238,7 +1287,7 @@ namespace OOP_Project
                             {
                                 var movie = new movie
                                 {
-                                    Title = reader.GetString("movie_title") // Should match the SELECT
+                                    Title = reader.GetString("movie_title")
                                 };
 
                                 search_list.Items.Add(movie);
@@ -1254,6 +1303,7 @@ namespace OOP_Project
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
+
 
         private void SaveRecentSearch(int userId, movie movie)
         {
@@ -1320,57 +1370,70 @@ namespace OOP_Project
                 MessageBox.Show("Error: " + ex.Message);
             }
         }
-
-        private void ShowMovieDetailsForm(movie movie)
-        {
-            movie_details_form detailsForm = new movie_details_form(movie, userId);
-            detailsForm.ShowDialog();
-        }
-        private movie GetFullMovieByTitle(string title)
-        {
-            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT * FROM movies WHERE title = @title LIMIT 1";
-            search_list.Items.Clear();
-
-            using (MySqlConnection conn = new MySqlConnection(connStr))
-            {
-                conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@title", title);
-
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            return new movie
-                            {
-                                Title = reader.GetString("title"),
-                                Description = reader.GetString("description"),
-                                Genre = reader.GetString("genre"),
-                                ReleaseYear = reader.GetInt32("release_year"),
-                                ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
-                                    ? null
-                                    : reader.GetString("image_url")
-                            };
-                        }
-                    }
-                }
-            }
-            return null; // Return null if no movie found
-        }
-        private void search_txt_TextChanged(object sender, EventArgs e)
+        private async void search_txt_TextChanged(object sender, EventArgs e)
         {
             string keyword = search_tb.Text.Trim();
 
+            // If the keyword is empty, load recent search suggestions
             if (string.IsNullOrEmpty(keyword))
             {
-                LoadRecentSearchSuggestions(); // ✅ pass userId
+                LoadRecentSearchSuggestions();
                 return;
             }
 
             string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
-            string query = "SELECT title, image_url FROM movies WHERE title LIKE @keyword LIMIT 10";
+            string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
+            search_list.Items.Clear();
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    await conn.OpenAsync();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+
+                        using (MySqlDataReader reader = (MySqlDataReader)await cmd.ExecuteReaderAsync())
+                        {
+                            bool foundResults = false;
+
+                            while (await reader.ReadAsync())
+                            {
+                                var movie = new movie
+                                {
+                                    Title = reader.GetString("title")
+                                };
+                                search_list.Items.Add(movie);
+                                foundResults = true;
+                            }
+
+                            // If no results are found, display a custom message in the ListBox
+                            if (!foundResults)
+                            {
+                                search_list.Items.Add("No results found");
+                            }
+                        }
+                    }
+                }
+
+                // Make the ListBox visible if there are any items
+                search_list.Visible = search_list.Items.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+
+
+        private async Task LoadMovieSuggestions(string keyword)
+        {
+            //loadingIndicator.Visible = true; // Show loading spinner
+
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
+
             search_list.Items.Clear();
             try
             {
@@ -1381,23 +1444,61 @@ namespace OOP_Project
                     {
                         cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
 
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        using (var reader = (MySqlDataReader)await cmd.ExecuteReaderAsync())
+
                         {
-                            while (reader.Read())
+                            while (await reader.ReadAsync())
                             {
                                 var movie = new movie
                                 {
-                                    Title = reader.GetString("title"),
-                                    ImageUrl = reader.IsDBNull(reader.GetOrdinal("image_url"))
-                                        ? null
-                                        : reader.GetString("image_url")
+                                    Title = reader.GetString("title")
                                 };
                                 search_list.Items.Add(movie);
                             }
                         }
                     }
                 }
+
                 search_list.Visible = search_list.Items.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+               // loadingIndicator.Visible = false; // Hide loading spinner
+            }
+        }
+        private void SetupSearchBox()
+        {
+            search_tb.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            search_tb.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+            // Add movies to autocomplete list
+            string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+            string query = "SELECT title FROM movies LIMIT 100";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string title = reader.GetString("title");
+                                autoCompleteCollection.Add(title);
+                            }
+                        }
+                    }
+                }
+
+                search_tb.AutoCompleteCustomSource = autoCompleteCollection;
             }
             catch (Exception ex)
             {
@@ -1405,14 +1506,50 @@ namespace OOP_Project
             }
         }
 
-        private void search_txt_Enter(object sender, EventArgs e)
+
+        private void HighlightSearchMatch(string keyword, ListBox listBox)
         {
-            if (search_tb.ForeColor == Color.Gray)
+            for (int i = 0; i < listBox.Items.Count; i++)
             {
-                search_tb.Text = "";
-                search_tb.ForeColor = Color.Black;
+                if (listBox.Items[i] is movie movieItem)
+                {
+                    // Highlight the keyword in the title (case-insensitive)
+                    string highlightedTitle = movieItem.Title;
+
+                    // Using IndexOf to find the keyword without being case-sensitive
+                    int startIndex = highlightedTitle.IndexOf(keyword, StringComparison.OrdinalIgnoreCase);
+
+                    if (startIndex >= 0) // Keyword found
+                    {
+                        int length = keyword.Length;
+
+                        // Create a new string with HTML-like tags for highlighting
+                        highlightedTitle = highlightedTitle.Substring(0, startIndex) +
+                            $"<b>{highlightedTitle.Substring(startIndex, length)}</b>" +
+                            highlightedTitle.Substring(startIndex + length);
+                    }
+
+                    // Update the item text (just for display, preserve the movie object)
+                    listBox.Items[i] = new HighlightedItem
+                    {
+                        Movie = movieItem,
+                        DisplayText = highlightedTitle
+                    };
+                }
             }
         }
+
+
+        // Helper class to store movie object and highlighted text
+        public class HighlightedItem
+        {
+            public movie Movie { get; set; }
+            public string DisplayText { get; set; }
+
+            public override string ToString() => DisplayText;
+        }
+
+
 
         private string GetRecentSearchTitles(int userId)
         {
@@ -1449,7 +1586,60 @@ namespace OOP_Project
             // Join the titles into a single string (separated by commas)
             return string.Join(", ", recentTitles);
         }
+        private void search_txt_Enter(object sender, EventArgs e)
+        {
+            if (search_tb.ForeColor == Color.Gray)
+            {
+                search_tb.Text = "";
+                search_tb.ForeColor = Color.Black;
 
+                string keyword = search_tb.Text.Trim();
+
+                if (string.IsNullOrEmpty(keyword))
+                {
+                    LoadRecentSearchSuggestions();
+                    return;
+                }
+
+                string connStr = "Server=localhost;Database=movierecommendationdb;Uid=root;Pwd=;";
+                string query = "SELECT title FROM movies WHERE title LIKE @keyword LIMIT 10";
+                search_list.Items.Clear();
+                try
+                {
+                    using (MySqlConnection conn = new MySqlConnection(connStr))
+                    {
+                        conn.Open();
+                        using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@keyword", "%" + keyword + "%");
+
+                            using (MySqlDataReader reader = cmd.ExecuteReader())
+                            {
+                                while (reader.Read())
+                                {
+                                    var movie = new movie
+                                    {
+                                        Title = reader.GetString("title")
+                                    };
+                                    search_list.Items.Add(movie);
+                                }
+                            }
+                        }
+                    }
+
+                    if (search_list.Items.Count == 0)
+                    {
+                        search_list.Items.Add("No results found");
+                    }
+
+                    search_list.Visible = search_list.Items.Count > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
         private void search_txt_Leave(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(search_tb.Text))
@@ -1494,7 +1684,7 @@ namespace OOP_Project
                             {
                                 int movieId = reader.GetInt32("movie_id");
 
-                                // Skip duplicates early
+                                // Skip duplicates early    
                                 if (addedMovieIds.Contains(movieId))
                                     continue;
 

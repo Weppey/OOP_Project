@@ -31,15 +31,15 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(movie_stream_control));
             this.webView21 = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.background_panel = new System.Windows.Forms.Panel();
+            this.disclaimer_lbl = new System.Windows.Forms.Label();
+            this.website_logo = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dock = new System.Windows.Forms.Panel();
-            this.website_logo = new System.Windows.Forms.PictureBox();
-            this.disclaimer_lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.background_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.website_logo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.dock.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.website_logo)).BeginInit();
             this.SuspendLayout();
             // 
             // webView21
@@ -68,6 +68,31 @@
             this.background_panel.Size = new System.Drawing.Size(1341, 733);
             this.background_panel.TabIndex = 1;
             // 
+            // disclaimer_lbl
+            // 
+            this.disclaimer_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.disclaimer_lbl.AutoSize = true;
+            this.disclaimer_lbl.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.disclaimer_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.disclaimer_lbl.Location = new System.Drawing.Point(96, 769);
+            this.disclaimer_lbl.Name = "disclaimer_lbl";
+            this.disclaimer_lbl.Size = new System.Drawing.Size(1176, 17);
+            this.disclaimer_lbl.TabIndex = 3;
+            this.disclaimer_lbl.Text = "This app does not host or stream any content. All movies are streamed from third-" +
+    "party websites OnionPlay. We do not promote piracy and are not affiliated with t" +
+    "hese websites. Use at your own risk.";
+            // 
+            // website_logo
+            // 
+            this.website_logo.Image = global::OOP_Project.Properties.Resources.onionplay_logo;
+            this.website_logo.Location = new System.Drawing.Point(206, 12);
+            this.website_logo.Name = "website_logo";
+            this.website_logo.Size = new System.Drawing.Size(345, 99);
+            this.website_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.website_logo.TabIndex = 20;
+            this.website_logo.TabStop = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -90,31 +115,6 @@
             this.dock.Name = "dock";
             this.dock.Size = new System.Drawing.Size(1592, 114);
             this.dock.TabIndex = 2;
-            // 
-            // website_logo
-            // 
-            this.website_logo.Image = global::OOP_Project.Properties.Resources.onionplay_logo;
-            this.website_logo.Location = new System.Drawing.Point(206, 12);
-            this.website_logo.Name = "website_logo";
-            this.website_logo.Size = new System.Drawing.Size(345, 99);
-            this.website_logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.website_logo.TabIndex = 20;
-            this.website_logo.TabStop = false;
-            // 
-            // disclaimer_lbl
-            // 
-            this.disclaimer_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.disclaimer_lbl.AutoSize = true;
-            this.disclaimer_lbl.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.disclaimer_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.disclaimer_lbl.Location = new System.Drawing.Point(96, 769);
-            this.disclaimer_lbl.Name = "disclaimer_lbl";
-            this.disclaimer_lbl.Size = new System.Drawing.Size(1176, 17);
-            this.disclaimer_lbl.TabIndex = 3;
-            this.disclaimer_lbl.Text = "This app does not host or stream any content. All movies are streamed from third-" +
-    "party websites OnionPlay. We do not promote piracy and are not affiliated with t" +
-    "hese websites. Use at your own risk.";
             // 
             // movie_stream_control
             // 
@@ -143,9 +143,9 @@
             this.Load += new System.EventHandler(this.movie_stream_control_Load);
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.background_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.website_logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.dock.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.website_logo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -155,9 +155,9 @@
 
         private Microsoft.Web.WebView2.WinForms.WebView2 webView21;
         private System.Windows.Forms.Panel background_panel;
-        private System.Windows.Forms.Panel dock;
-        private System.Windows.Forms.PictureBox website_logo;
         private System.Windows.Forms.Label disclaimer_lbl;
+        private System.Windows.Forms.PictureBox website_logo;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel dock;
     }
 }
