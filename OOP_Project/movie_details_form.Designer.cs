@@ -48,19 +48,19 @@
             this.movieDetails_panel = new System.Windows.Forms.Panel();
             this.description_lbl = new System.Windows.Forms.Label();
             this.genre_lbl = new System.Windows.Forms.Label();
-            this.poster_pb = new System.Windows.Forms.PictureBox();
             this.dateRelease_lbl = new System.Windows.Forms.Label();
             this.navigationDock_panel = new System.Windows.Forms.Panel();
-            this.close_pb = new System.Windows.Forms.PictureBox();
             this.watch_btn = new ComponentFactory.Krypton.Toolkit.KryptonButton();
+            this.close_pb = new System.Windows.Forms.PictureBox();
+            this.poster_pb = new System.Windows.Forms.PictureBox();
             this.movie_panel.SuspendLayout();
             this.commentBorder_panel.SuspendLayout();
             this.ratings_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).BeginInit();
             this.movieDetails_panel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.navigationDock_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).BeginInit();
             this.SuspendLayout();
             // 
             // movie_panel
@@ -429,15 +429,6 @@
             this.genre_lbl.TabIndex = 29;
             this.genre_lbl.Text = "Genre";
             // 
-            // poster_pb
-            // 
-            this.poster_pb.BackColor = System.Drawing.Color.White;
-            this.poster_pb.Location = new System.Drawing.Point(22, 19);
-            this.poster_pb.Name = "poster_pb";
-            this.poster_pb.Size = new System.Drawing.Size(166, 221);
-            this.poster_pb.TabIndex = 25;
-            this.poster_pb.TabStop = false;
-            // 
             // dateRelease_lbl
             // 
             this.dateRelease_lbl.AutoSize = true;
@@ -458,18 +449,6 @@
             this.navigationDock_panel.Name = "navigationDock_panel";
             this.navigationDock_panel.Size = new System.Drawing.Size(1053, 32);
             this.navigationDock_panel.TabIndex = 67;
-            // 
-            // close_pb
-            // 
-            this.close_pb.BackColor = System.Drawing.Color.Transparent;
-            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
-            this.close_pb.Location = new System.Drawing.Point(1018, 6);
-            this.close_pb.Name = "close_pb";
-            this.close_pb.Size = new System.Drawing.Size(25, 23);
-            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.close_pb.TabIndex = 18;
-            this.close_pb.TabStop = false;
-            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
             // 
             // watch_btn
             // 
@@ -497,10 +476,31 @@
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.watch_btn.TabIndex = 84;
-            this.watch_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_favorite_folder_28;
+            this.watch_btn.Values.Image = global::OOP_Project.Properties.Resources.icons8_play_20;
             this.watch_btn.Values.ImageTransparentColor = System.Drawing.Color.Transparent;
             this.watch_btn.Values.Text = "Watch";
             this.watch_btn.Click += new System.EventHandler(this.watch_btn_Click);
+            // 
+            // close_pb
+            // 
+            this.close_pb.BackColor = System.Drawing.Color.Transparent;
+            this.close_pb.Image = global::OOP_Project.Properties.Resources.icons8_close_24;
+            this.close_pb.Location = new System.Drawing.Point(1018, 6);
+            this.close_pb.Name = "close_pb";
+            this.close_pb.Size = new System.Drawing.Size(25, 23);
+            this.close_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.close_pb.TabIndex = 18;
+            this.close_pb.TabStop = false;
+            this.close_pb.Click += new System.EventHandler(this.close_pb_Click);
+            // 
+            // poster_pb
+            // 
+            this.poster_pb.BackColor = System.Drawing.Color.White;
+            this.poster_pb.Location = new System.Drawing.Point(22, 19);
+            this.poster_pb.Name = "poster_pb";
+            this.poster_pb.Size = new System.Drawing.Size(166, 221);
+            this.poster_pb.TabIndex = 25;
+            this.poster_pb.TabStop = false;
             // 
             // movie_details_form
             // 
@@ -530,9 +530,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.webView21)).EndInit();
             this.movieDetails_panel.ResumeLayout(false);
             this.movieDetails_panel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.navigationDock_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.close_pb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.poster_pb)).EndInit();
             this.ResumeLayout(false);
 
         }
