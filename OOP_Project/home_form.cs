@@ -1634,6 +1634,7 @@ namespace OOP_Project
             {
                 search_tb.Text = "Search..."; // Set the placeholder text
                 search_tb.ForeColor = Color.Gray; // Change the text color to gray for placeholder
+                search_list.Hide();
             }
 
         }
@@ -1826,6 +1827,8 @@ namespace OOP_Project
             popular_panel.Visible = false;
             Favorite_panel.Visible = false;
             settings_panel.Visible = false;
+
+            recentlysearch_flp.Controls.Clear();
         }
 
         private void admin_button_Click(object sender, EventArgs e)

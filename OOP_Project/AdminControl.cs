@@ -434,33 +434,6 @@ namespace OOP_Project
                 return;
             }
 
-            // 2. Validate the email format
-            if (!IsValidEmail(email_tb.Text))
-            {
-                MessageBox.Show("Please enter a valid email address.", "Invalid Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // 3. Check if the username already exists
-            if (IsUsernameTaken(username_tb.Text))
-            {
-                MessageBox.Show("This username is already taken. Please choose a different one.", "Username Taken", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // 4. Check if a security question is selected
-            if (securityQuestion_cmb.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select a security question.", "Security Question", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            // 5. Check if gender is selected
-            if (string.IsNullOrWhiteSpace(gender_cmb.SelectedItem?.ToString()))
-            {
-                MessageBox.Show("Please select a gender.", "Gender Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             // If all checks pass, proceed with inserting the movie
             string selectedGenres = GetSelectedGenres();
@@ -469,7 +442,7 @@ namespace OOP_Project
             int releaseYear = releaseYear_dtp.Value.Year;
 
             // Insert query with description
-            string query = "INSERT INTO movies (title, genre, release_year, image_url, trailer_link, movie_url, description) VALUES (@title, @genre, @release, @imageurl, @trailer_link, @movie_url, @description)";
+            string query = "INSERT INTO movies (title, genre, release_year, image_url, trailer_link, movie_url, description) VALUES (@title, @genre, @release, @imageurl, @trailerlink, @movieurl, @description)";
             MySqlCommand cmd = new MySqlCommand(query, connection);
             cmd.Parameters.AddWithValue("@title", title_tb.Text);
             cmd.Parameters.AddWithValue("@genre", selectedGenres); // Save genres as a comma-separated string
@@ -477,6 +450,7 @@ namespace OOP_Project
             cmd.Parameters.AddWithValue("@imageurl", posterUrl_tb.Text);
             cmd.Parameters.AddWithValue("@trailerlink", trailerUrl_tb.Text);
             cmd.Parameters.AddWithValue("@description", description_tb.Text); // Save the description
+            cmd.Parameters.AddWithValue("@movieurl", movieUrl_tb.Text);
             cmd.ExecuteNonQuery();
             MovieClearCheckedItems();
             LoadMovies(); // Refresh the movie list

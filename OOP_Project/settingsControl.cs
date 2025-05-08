@@ -185,6 +185,7 @@ namespace OOP_Project
                         if (rowsAffected > 0)
                         {
                             MessageBox.Show("Search history cleared successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                         
                             home_form home = new home_form(userType, userId);
                             home.Reload();
                         }

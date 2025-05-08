@@ -979,11 +979,7 @@ namespace OOP_Project
         }
         private void watch_btn_Click(object sender, EventArgs e)
         {
-            // Stop the video by setting the src to a blank page or empty content
-            if (webView21 != null && webView21.CoreWebView2 != null)
-            {
-                webView21.CoreWebView2.Navigate("about:blank");
-            }
+
 
             int movieId = selectedMovieId; // Get this from your context
 

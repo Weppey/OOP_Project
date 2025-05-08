@@ -32,10 +32,10 @@ namespace OOP_Project
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminControl));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.releaseYear_dtp = new System.Windows.Forms.DateTimePicker();
             this.title_tb = new ComponentFactory.Krypton.Toolkit.KryptonTextBox();
             this.movies_dgv = new ComponentFactory.Krypton.Toolkit.KryptonDataGridView();
@@ -109,17 +109,19 @@ namespace OOP_Project
             // 
             this.releaseYear_dtp.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.releaseYear_dtp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.releaseYear_dtp.Location = new System.Drawing.Point(213, 199);
+            this.releaseYear_dtp.Location = new System.Drawing.Point(284, 245);
+            this.releaseYear_dtp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.releaseYear_dtp.Name = "releaseYear_dtp";
-            this.releaseYear_dtp.Size = new System.Drawing.Size(189, 26);
+            this.releaseYear_dtp.Size = new System.Drawing.Size(251, 30);
             this.releaseYear_dtp.TabIndex = 79;
             this.releaseYear_dtp.Value = new System.DateTime(2025, 4, 27, 0, 0, 0, 0);
             // 
             // title_tb
             // 
-            this.title_tb.Location = new System.Drawing.Point(213, 20);
+            this.title_tb.Location = new System.Drawing.Point(284, 25);
+            this.title_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.title_tb.Name = "title_tb";
-            this.title_tb.Size = new System.Drawing.Size(290, 26);
+            this.title_tb.Size = new System.Drawing.Size(387, 30);
             this.title_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.title_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.title_tb.TabIndex = 77;
@@ -132,25 +134,27 @@ namespace OOP_Project
             this.movies_dgv.AllowUserToAddRows = false;
             this.movies_dgv.AllowUserToDeleteRows = false;
             this.movies_dgv.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
-            this.movies_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.movies_dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.movies_dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.movies_dgv.ColumnHeadersHeight = 40;
             this.movies_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.movies_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.movies_dgv.Location = new System.Drawing.Point(0, 0);
+            this.movies_dgv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.movies_dgv.MultiSelect = false;
             this.movies_dgv.Name = "movies_dgv";
             this.movies_dgv.ReadOnly = true;
             this.movies_dgv.RowHeadersVisible = false;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            this.movies_dgv.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.movies_dgv.RowHeadersWidth = 51;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
+            this.movies_dgv.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.movies_dgv.RowTemplate.Height = 35;
             this.movies_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.movies_dgv.Size = new System.Drawing.Size(977, 275);
+            this.movies_dgv.Size = new System.Drawing.Size(1303, 338);
             this.movies_dgv.StateCommon.Background.Color1 = System.Drawing.Color.White;
             this.movies_dgv.StateCommon.Background.Color2 = System.Drawing.Color.White;
             this.movies_dgv.StateCommon.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
@@ -175,10 +179,11 @@ namespace OOP_Project
             // 
             // posterUrl_tb
             // 
-            this.posterUrl_tb.Location = new System.Drawing.Point(213, 50);
+            this.posterUrl_tb.Location = new System.Drawing.Point(284, 62);
+            this.posterUrl_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.posterUrl_tb.Multiline = true;
             this.posterUrl_tb.Name = "posterUrl_tb";
-            this.posterUrl_tb.Size = new System.Drawing.Size(290, 42);
+            this.posterUrl_tb.Size = new System.Drawing.Size(387, 52);
             this.posterUrl_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.posterUrl_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.posterUrl_tb.TabIndex = 81;
@@ -189,10 +194,10 @@ namespace OOP_Project
             // remove_btn
             // 
             this.remove_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.remove_btn.Location = new System.Drawing.Point(22, 131);
-            this.remove_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.remove_btn.Location = new System.Drawing.Point(29, 161);
+            this.remove_btn.Margin = new System.Windows.Forms.Padding(27, 6, 4, 4);
             this.remove_btn.Name = "remove_btn";
-            this.remove_btn.Size = new System.Drawing.Size(132, 45);
+            this.remove_btn.Size = new System.Drawing.Size(176, 55);
             this.remove_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.remove_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.remove_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -220,10 +225,10 @@ namespace OOP_Project
             // update_btn
             // 
             this.update_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.update_btn.Location = new System.Drawing.Point(22, 184);
-            this.update_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.update_btn.Location = new System.Drawing.Point(29, 226);
+            this.update_btn.Margin = new System.Windows.Forms.Padding(27, 6, 4, 4);
             this.update_btn.Name = "update_btn";
-            this.update_btn.Size = new System.Drawing.Size(132, 45);
+            this.update_btn.Size = new System.Drawing.Size(176, 55);
             this.update_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.update_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.update_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -251,10 +256,10 @@ namespace OOP_Project
             // Clear_btn
             // 
             this.Clear_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.Clear_btn.Location = new System.Drawing.Point(22, 230);
-            this.Clear_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.Clear_btn.Location = new System.Drawing.Point(29, 283);
+            this.Clear_btn.Margin = new System.Windows.Forms.Padding(27, 6, 4, 4);
             this.Clear_btn.Name = "Clear_btn";
-            this.Clear_btn.Size = new System.Drawing.Size(132, 45);
+            this.Clear_btn.Size = new System.Drawing.Size(176, 55);
             this.Clear_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.Clear_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.Clear_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -281,27 +286,30 @@ namespace OOP_Project
             // 
             // searchBox_tb
             // 
-            this.searchBox_tb.Location = new System.Drawing.Point(733, 348);
+            this.searchBox_tb.Location = new System.Drawing.Point(977, 428);
+            this.searchBox_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.searchBox_tb.Name = "searchBox_tb";
-            this.searchBox_tb.Size = new System.Drawing.Size(266, 20);
+            this.searchBox_tb.Size = new System.Drawing.Size(353, 22);
             this.searchBox_tb.TabIndex = 84;
             this.searchBox_tb.TextChanged += new System.EventHandler(this.searchBox_tb_TextChanged);
             // 
             // genre_clb
             // 
             this.genre_clb.FormattingEnabled = true;
-            this.genre_clb.Location = new System.Drawing.Point(512, 18);
+            this.genre_clb.Location = new System.Drawing.Point(683, 22);
+            this.genre_clb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.genre_clb.MultiColumn = true;
             this.genre_clb.Name = "genre_clb";
-            this.genre_clb.Size = new System.Drawing.Size(242, 199);
+            this.genre_clb.Size = new System.Drawing.Size(321, 242);
             this.genre_clb.TabIndex = 86;
             // 
             // description_tb
             // 
-            this.description_tb.Location = new System.Drawing.Point(213, 230);
+            this.description_tb.Location = new System.Drawing.Point(284, 283);
+            this.description_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.description_tb.Multiline = true;
             this.description_tb.Name = "description_tb";
-            this.description_tb.Size = new System.Drawing.Size(541, 50);
+            this.description_tb.Size = new System.Drawing.Size(721, 62);
             this.description_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.description_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.description_tb.TabIndex = 87;
@@ -312,10 +320,10 @@ namespace OOP_Project
             // insert_btn
             // 
             this.insert_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.insert_btn.Location = new System.Drawing.Point(22, 76);
-            this.insert_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.insert_btn.Location = new System.Drawing.Point(29, 94);
+            this.insert_btn.Margin = new System.Windows.Forms.Padding(27, 6, 4, 4);
             this.insert_btn.Name = "insert_btn";
-            this.insert_btn.Size = new System.Drawing.Size(132, 45);
+            this.insert_btn.Size = new System.Drawing.Size(176, 55);
             this.insert_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.insert_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.insert_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -344,11 +352,12 @@ namespace OOP_Project
             // 
             this.Admin_panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(26)))), ((int)(((byte)(26)))));
             this.Admin_panel.Controls.Add(this.buttonDock_panel);
-            this.Admin_panel.Controls.Add(this.userEditor_panel);
             this.Admin_panel.Controls.Add(this.movieEditor_panel);
-            this.Admin_panel.Location = new System.Drawing.Point(3, 3);
+            this.Admin_panel.Controls.Add(this.userEditor_panel);
+            this.Admin_panel.Location = new System.Drawing.Point(4, 4);
+            this.Admin_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Admin_panel.Name = "Admin_panel";
-            this.Admin_panel.Size = new System.Drawing.Size(1214, 696);
+            this.Admin_panel.Size = new System.Drawing.Size(1619, 857);
             this.Admin_panel.TabIndex = 87;
             // 
             // buttonDock_panel
@@ -358,8 +367,9 @@ namespace OOP_Project
             this.buttonDock_panel.Controls.Add(this.editMovie_btn);
             this.buttonDock_panel.Dock = System.Windows.Forms.DockStyle.Left;
             this.buttonDock_panel.Location = new System.Drawing.Point(0, 0);
+            this.buttonDock_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDock_panel.Name = "buttonDock_panel";
-            this.buttonDock_panel.Size = new System.Drawing.Size(172, 696);
+            this.buttonDock_panel.Size = new System.Drawing.Size(229, 857);
             this.buttonDock_panel.TabIndex = 89;
             // 
             // logo_pb
@@ -368,8 +378,9 @@ namespace OOP_Project
             this.logo_pb.Dock = System.Windows.Forms.DockStyle.Top;
             this.logo_pb.Image = global::OOP_Project.Properties.Resources._1_3;
             this.logo_pb.Location = new System.Drawing.Point(0, 0);
+            this.logo_pb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.logo_pb.Name = "logo_pb";
-            this.logo_pb.Size = new System.Drawing.Size(172, 164);
+            this.logo_pb.Size = new System.Drawing.Size(229, 202);
             this.logo_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logo_pb.TabIndex = 91;
             this.logo_pb.TabStop = false;
@@ -377,8 +388,8 @@ namespace OOP_Project
             // editUser_btn
             // 
             this.editUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.editUser_btn.Location = new System.Drawing.Point(6, 263);
-            this.editUser_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.editUser_btn.Location = new System.Drawing.Point(8, 324);
+            this.editUser_btn.Margin = new System.Windows.Forms.Padding(27, 6, 4, 4);
             this.editUser_btn.Name = "editUser_btn";
             this.editUser_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.editUser_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
@@ -396,7 +407,7 @@ namespace OOP_Project
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.editUser_btn.OverrideFocus.Border.Width = 1;
-            this.editUser_btn.Size = new System.Drawing.Size(163, 45);
+            this.editUser_btn.Size = new System.Drawing.Size(217, 55);
             this.editUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.editUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
             this.editUser_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
@@ -431,8 +442,8 @@ namespace OOP_Project
             // editMovie_btn
             // 
             this.editMovie_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.Alternate;
-            this.editMovie_btn.Location = new System.Drawing.Point(6, 191);
-            this.editMovie_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.editMovie_btn.Location = new System.Drawing.Point(8, 235);
+            this.editMovie_btn.Margin = new System.Windows.Forms.Padding(27, 6, 4, 4);
             this.editMovie_btn.Name = "editMovie_btn";
             this.editMovie_btn.OverrideDefault.Back.Color1 = System.Drawing.Color.Transparent;
             this.editMovie_btn.OverrideDefault.Back.Color2 = System.Drawing.Color.Transparent;
@@ -450,7 +461,7 @@ namespace OOP_Project
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Left) 
             | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Right)));
             this.editMovie_btn.OverrideFocus.Border.Width = 1;
-            this.editMovie_btn.Size = new System.Drawing.Size(163, 45);
+            this.editMovie_btn.Size = new System.Drawing.Size(217, 55);
             this.editMovie_btn.StateCommon.Back.Color1 = System.Drawing.Color.Transparent;
             this.editMovie_btn.StateCommon.Back.Color2 = System.Drawing.Color.Transparent;
             this.editMovie_btn.StateCommon.Border.Color1 = System.Drawing.Color.Transparent;
@@ -489,26 +500,29 @@ namespace OOP_Project
             this.userEditor_panel.Controls.Add(this.dataGrid_panel);
             this.userEditor_panel.Controls.Add(this.fillup_panel);
             this.userEditor_panel.Controls.Add(this.controlBtn_panel);
-            this.userEditor_panel.Location = new System.Drawing.Point(189, 2);
+            this.userEditor_panel.Location = new System.Drawing.Point(252, 2);
+            this.userEditor_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.userEditor_panel.Name = "userEditor_panel";
-            this.userEditor_panel.Size = new System.Drawing.Size(1024, 666);
+            this.userEditor_panel.Size = new System.Drawing.Size(1365, 820);
             this.userEditor_panel.TabIndex = 89;
             this.userEditor_panel.Visible = false;
             // 
             // UserSearchBox_tb
             // 
-            this.UserSearchBox_tb.Location = new System.Drawing.Point(659, 349);
+            this.UserSearchBox_tb.Location = new System.Drawing.Point(879, 430);
+            this.UserSearchBox_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.UserSearchBox_tb.Name = "UserSearchBox_tb";
-            this.UserSearchBox_tb.Size = new System.Drawing.Size(338, 20);
+            this.UserSearchBox_tb.Size = new System.Drawing.Size(449, 22);
             this.UserSearchBox_tb.TabIndex = 107;
             this.UserSearchBox_tb.TextChanged += new System.EventHandler(this.UserSearchBox_tb_TextChanged);
             // 
             // dataGrid_panel
             // 
             this.dataGrid_panel.Controls.Add(this.users_dgv);
-            this.dataGrid_panel.Location = new System.Drawing.Point(20, 375);
+            this.dataGrid_panel.Location = new System.Drawing.Point(27, 462);
+            this.dataGrid_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGrid_panel.Name = "dataGrid_panel";
-            this.dataGrid_panel.Size = new System.Drawing.Size(980, 291);
+            this.dataGrid_panel.Size = new System.Drawing.Size(1307, 358);
             this.dataGrid_panel.StateCommon.Color1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.dataGrid_panel.TabIndex = 106;
             // 
@@ -522,18 +536,20 @@ namespace OOP_Project
             this.users_dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.users_dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.users_dgv.Location = new System.Drawing.Point(0, 0);
+            this.users_dgv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.users_dgv.MultiSelect = false;
             this.users_dgv.Name = "users_dgv";
             this.users_dgv.ReadOnly = true;
             this.users_dgv.RowHeadersVisible = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.users_dgv.RowHeadersWidth = 51;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
+            this.users_dgv.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.users_dgv.RowTemplate.Height = 35;
             this.users_dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.users_dgv.Size = new System.Drawing.Size(980, 291);
+            this.users_dgv.Size = new System.Drawing.Size(1307, 358);
             this.users_dgv.StateCommon.Background.Color1 = System.Drawing.Color.White;
             this.users_dgv.StateCommon.Background.Color2 = System.Drawing.Color.White;
             this.users_dgv.StateCommon.BackStyle = ComponentFactory.Krypton.Toolkit.PaletteBackStyle.GridBackgroundList;
@@ -573,9 +589,10 @@ namespace OOP_Project
             this.fillup_panel.Controls.Add(this.Birthdate_dtp);
             this.fillup_panel.Controls.Add(this.gender_cmb);
             this.fillup_panel.Controls.Add(this.Genre_lbl);
-            this.fillup_panel.Location = new System.Drawing.Point(235, 36);
+            this.fillup_panel.Location = new System.Drawing.Point(313, 44);
+            this.fillup_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.fillup_panel.Name = "fillup_panel";
-            this.fillup_panel.Size = new System.Drawing.Size(765, 293);
+            this.fillup_panel.Size = new System.Drawing.Size(1020, 361);
             this.fillup_panel.TabIndex = 105;
             // 
             // profile_lbl
@@ -583,27 +600,30 @@ namespace OOP_Project
             this.profile_lbl.AutoSize = true;
             this.profile_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.profile_lbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.profile_lbl.Location = new System.Drawing.Point(27, 15);
+            this.profile_lbl.Location = new System.Drawing.Point(36, 18);
+            this.profile_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.profile_lbl.Name = "profile_lbl";
-            this.profile_lbl.Size = new System.Drawing.Size(89, 26);
+            this.profile_lbl.Size = new System.Drawing.Size(108, 35);
             this.profile_lbl.TabIndex = 104;
             this.profile_lbl.Text = "Avatar:";
             // 
             // avatar_pb
             // 
             this.avatar_pb.BackColor = System.Drawing.Color.White;
-            this.avatar_pb.Location = new System.Drawing.Point(32, 48);
+            this.avatar_pb.Location = new System.Drawing.Point(43, 59);
+            this.avatar_pb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.avatar_pb.Name = "avatar_pb";
-            this.avatar_pb.Size = new System.Drawing.Size(200, 200);
+            this.avatar_pb.Size = new System.Drawing.Size(267, 246);
             this.avatar_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.avatar_pb.TabIndex = 103;
             this.avatar_pb.TabStop = false;
             // 
             // email_tb
             // 
-            this.email_tb.Location = new System.Drawing.Point(260, 92);
+            this.email_tb.Location = new System.Drawing.Point(347, 113);
+            this.email_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.email_tb.Name = "email_tb";
-            this.email_tb.Size = new System.Drawing.Size(213, 26);
+            this.email_tb.Size = new System.Drawing.Size(284, 30);
             this.email_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.email_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.email_tb.TabIndex = 83;
@@ -613,9 +633,10 @@ namespace OOP_Project
             // 
             // username_tb
             // 
-            this.username_tb.Location = new System.Drawing.Point(260, 24);
+            this.username_tb.Location = new System.Drawing.Point(347, 30);
+            this.username_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.username_tb.Name = "username_tb";
-            this.username_tb.Size = new System.Drawing.Size(213, 26);
+            this.username_tb.Size = new System.Drawing.Size(284, 30);
             this.username_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.username_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.username_tb.TabIndex = 82;
@@ -630,10 +651,11 @@ namespace OOP_Project
             this.usertype_cmb.Items.AddRange(new object[] {
             "member",
             "admin"});
-            this.usertype_cmb.Location = new System.Drawing.Point(511, 63);
+            this.usertype_cmb.Location = new System.Drawing.Point(681, 78);
+            this.usertype_cmb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.usertype_cmb.Name = "usertype_cmb";
             this.usertype_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.usertype_cmb.Size = new System.Drawing.Size(160, 20);
+            this.usertype_cmb.Size = new System.Drawing.Size(213, 24);
             this.usertype_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Gray;
             this.usertype_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usertype_cmb.TabIndex = 102;
@@ -642,9 +664,10 @@ namespace OOP_Project
             // 
             // age_tb
             // 
-            this.age_tb.Location = new System.Drawing.Point(260, 133);
+            this.age_tb.Location = new System.Drawing.Point(347, 164);
+            this.age_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.age_tb.Name = "age_tb";
-            this.age_tb.Size = new System.Drawing.Size(93, 26);
+            this.age_tb.Size = new System.Drawing.Size(124, 30);
             this.age_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.age_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.age_tb.TabIndex = 84;
@@ -655,20 +678,22 @@ namespace OOP_Project
             // userGenre_clb
             // 
             this.userGenre_clb.FormattingEnabled = true;
-            this.userGenre_clb.Location = new System.Drawing.Point(511, 122);
+            this.userGenre_clb.Location = new System.Drawing.Point(681, 150);
+            this.userGenre_clb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.userGenre_clb.MultiColumn = true;
             this.userGenre_clb.Name = "userGenre_clb";
-            this.userGenre_clb.Size = new System.Drawing.Size(230, 124);
+            this.userGenre_clb.Size = new System.Drawing.Size(305, 140);
             this.userGenre_clb.TabIndex = 86;
             // 
             // securityQuestion_cmb
             // 
             this.securityQuestion_cmb.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.securityQuestion_cmb.DropDownWidth = 183;
-            this.securityQuestion_cmb.Location = new System.Drawing.Point(260, 211);
+            this.securityQuestion_cmb.Location = new System.Drawing.Point(347, 260);
+            this.securityQuestion_cmb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.securityQuestion_cmb.Name = "securityQuestion_cmb";
             this.securityQuestion_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.securityQuestion_cmb.Size = new System.Drawing.Size(213, 20);
+            this.securityQuestion_cmb.Size = new System.Drawing.Size(284, 24);
             this.securityQuestion_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
             this.securityQuestion_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.securityQuestion_cmb.TabIndex = 88;
@@ -676,9 +701,10 @@ namespace OOP_Project
             // 
             // userID_tb
             // 
-            this.userID_tb.Location = new System.Drawing.Point(260, 57);
+            this.userID_tb.Location = new System.Drawing.Point(347, 70);
+            this.userID_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.userID_tb.Name = "userID_tb";
-            this.userID_tb.Size = new System.Drawing.Size(93, 26);
+            this.userID_tb.Size = new System.Drawing.Size(124, 30);
             this.userID_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.userID_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.userID_tb.TabIndex = 98;
@@ -688,9 +714,10 @@ namespace OOP_Project
             // 
             // securityAnswer_tb
             // 
-            this.securityAnswer_tb.Location = new System.Drawing.Point(260, 245);
+            this.securityAnswer_tb.Location = new System.Drawing.Point(347, 302);
+            this.securityAnswer_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.securityAnswer_tb.Name = "securityAnswer_tb";
-            this.securityAnswer_tb.Size = new System.Drawing.Size(213, 26);
+            this.securityAnswer_tb.Size = new System.Drawing.Size(284, 30);
             this.securityAnswer_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.securityAnswer_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.securityAnswer_tb.TabIndex = 90;
@@ -703,9 +730,10 @@ namespace OOP_Project
             this.emailVerified_cb.AutoSize = true;
             this.emailVerified_cb.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.emailVerified_cb.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.emailVerified_cb.Location = new System.Drawing.Point(511, 252);
+            this.emailVerified_cb.Location = new System.Drawing.Point(681, 310);
+            this.emailVerified_cb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.emailVerified_cb.Name = "emailVerified_cb";
-            this.emailVerified_cb.Size = new System.Drawing.Size(122, 23);
+            this.emailVerified_cb.Size = new System.Drawing.Size(163, 26);
             this.emailVerified_cb.TabIndex = 97;
             this.emailVerified_cb.Text = "Is email verified";
             this.emailVerified_cb.UseVisualStyleBackColor = true;
@@ -718,9 +746,10 @@ namespace OOP_Project
             this.Birthdate_dtp.Checked = false;
             this.Birthdate_dtp.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Birthdate_dtp.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.Birthdate_dtp.Location = new System.Drawing.Point(511, 24);
+            this.Birthdate_dtp.Location = new System.Drawing.Point(681, 30);
+            this.Birthdate_dtp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Birthdate_dtp.Name = "Birthdate_dtp";
-            this.Birthdate_dtp.Size = new System.Drawing.Size(200, 26);
+            this.Birthdate_dtp.Size = new System.Drawing.Size(265, 30);
             this.Birthdate_dtp.TabIndex = 91;
             // 
             // gender_cmb
@@ -731,10 +760,11 @@ namespace OOP_Project
             "Male",
             "Female",
             "Prefer not to say"});
-            this.gender_cmb.Location = new System.Drawing.Point(260, 176);
+            this.gender_cmb.Location = new System.Drawing.Point(347, 217);
+            this.gender_cmb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gender_cmb.Name = "gender_cmb";
             this.gender_cmb.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.gender_cmb.Size = new System.Drawing.Size(93, 20);
+            this.gender_cmb.Size = new System.Drawing.Size(124, 24);
             this.gender_cmb.StateCommon.ComboBox.Content.Color1 = System.Drawing.Color.Silver;
             this.gender_cmb.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gender_cmb.TabIndex = 96;
@@ -745,9 +775,10 @@ namespace OOP_Project
             this.Genre_lbl.AutoSize = true;
             this.Genre_lbl.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Genre_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Genre_lbl.Location = new System.Drawing.Point(507, 92);
+            this.Genre_lbl.Location = new System.Drawing.Point(676, 113);
+            this.Genre_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Genre_lbl.Name = "Genre_lbl";
-            this.Genre_lbl.Size = new System.Drawing.Size(124, 19);
+            this.Genre_lbl.Size = new System.Drawing.Size(162, 22);
             this.Genre_lbl.TabIndex = 93;
             this.Genre_lbl.Text = "Genre Preferences:";
             // 
@@ -759,18 +790,19 @@ namespace OOP_Project
             this.controlBtn_panel.Controls.Add(this.cancel_btn);
             this.controlBtn_panel.Controls.Add(this.deleteUser_btn);
             this.controlBtn_panel.Controls.Add(this.usersEditor_lbl);
-            this.controlBtn_panel.Location = new System.Drawing.Point(20, 36);
+            this.controlBtn_panel.Location = new System.Drawing.Point(27, 44);
+            this.controlBtn_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.controlBtn_panel.Name = "controlBtn_panel";
-            this.controlBtn_panel.Size = new System.Drawing.Size(186, 293);
+            this.controlBtn_panel.Size = new System.Drawing.Size(261, 361);
             this.controlBtn_panel.TabIndex = 104;
             // 
             // insertUser_btn
             // 
             this.insertUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.insertUser_btn.Location = new System.Drawing.Point(22, 68);
-            this.insertUser_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.insertUser_btn.Location = new System.Drawing.Point(29, 84);
+            this.insertUser_btn.Margin = new System.Windows.Forms.Padding(27, 6, 4, 4);
             this.insertUser_btn.Name = "insertUser_btn";
-            this.insertUser_btn.Size = new System.Drawing.Size(132, 45);
+            this.insertUser_btn.Size = new System.Drawing.Size(176, 55);
             this.insertUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.insertUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.insertUser_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -798,10 +830,10 @@ namespace OOP_Project
             // cancel_btn
             // 
             this.cancel_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.cancel_btn.Location = new System.Drawing.Point(22, 171);
-            this.cancel_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.cancel_btn.Location = new System.Drawing.Point(29, 210);
+            this.cancel_btn.Margin = new System.Windows.Forms.Padding(27, 6, 4, 4);
             this.cancel_btn.Name = "cancel_btn";
-            this.cancel_btn.Size = new System.Drawing.Size(132, 45);
+            this.cancel_btn.Size = new System.Drawing.Size(176, 55);
             this.cancel_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.cancel_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.cancel_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -829,10 +861,10 @@ namespace OOP_Project
             // deleteUser_btn
             // 
             this.deleteUser_btn.ButtonStyle = ComponentFactory.Krypton.Toolkit.ButtonStyle.LowProfile;
-            this.deleteUser_btn.Location = new System.Drawing.Point(22, 121);
-            this.deleteUser_btn.Margin = new System.Windows.Forms.Padding(20, 5, 3, 3);
+            this.deleteUser_btn.Location = new System.Drawing.Point(29, 149);
+            this.deleteUser_btn.Margin = new System.Windows.Forms.Padding(27, 6, 4, 4);
             this.deleteUser_btn.Name = "deleteUser_btn";
-            this.deleteUser_btn.Size = new System.Drawing.Size(132, 45);
+            this.deleteUser_btn.Size = new System.Drawing.Size(176, 55);
             this.deleteUser_btn.StateCommon.Back.Color1 = System.Drawing.Color.Silver;
             this.deleteUser_btn.StateCommon.Back.Color2 = System.Drawing.Color.Gray;
             this.deleteUser_btn.StateCommon.Border.DrawBorders = ((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders)((((ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Top | ComponentFactory.Krypton.Toolkit.PaletteDrawBorders.Bottom) 
@@ -862,9 +894,10 @@ namespace OOP_Project
             this.usersEditor_lbl.AutoSize = true;
             this.usersEditor_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usersEditor_lbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.usersEditor_lbl.Location = new System.Drawing.Point(17, 19);
+            this.usersEditor_lbl.Location = new System.Drawing.Point(23, 23);
+            this.usersEditor_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.usersEditor_lbl.Name = "usersEditor_lbl";
-            this.usersEditor_lbl.Size = new System.Drawing.Size(142, 26);
+            this.usersEditor_lbl.Size = new System.Drawing.Size(176, 35);
             this.usersEditor_lbl.TabIndex = 99;
             this.usersEditor_lbl.Text = "Users Editor";
             // 
@@ -875,9 +908,10 @@ namespace OOP_Project
             this.movieEditor_panel.Controls.Add(this.movieControlBtn_panel);
             this.movieEditor_panel.Controls.Add(this.panel1);
             this.movieEditor_panel.Controls.Add(this.searchBox_tb);
-            this.movieEditor_panel.Location = new System.Drawing.Point(187, 3);
+            this.movieEditor_panel.Location = new System.Drawing.Point(249, 4);
+            this.movieEditor_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.movieEditor_panel.Name = "movieEditor_panel";
-            this.movieEditor_panel.Size = new System.Drawing.Size(1024, 665);
+            this.movieEditor_panel.Size = new System.Drawing.Size(1365, 818);
             this.movieEditor_panel.TabIndex = 88;
             this.movieEditor_panel.Visible = false;
             // 
@@ -892,17 +926,19 @@ namespace OOP_Project
             this.movieFillUp_panel.Controls.Add(this.releaseYear_dtp);
             this.movieFillUp_panel.Controls.Add(this.poster_pb);
             this.movieFillUp_panel.Controls.Add(this.description_tb);
-            this.movieFillUp_panel.Location = new System.Drawing.Point(224, 26);
+            this.movieFillUp_panel.Location = new System.Drawing.Point(299, 32);
+            this.movieFillUp_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.movieFillUp_panel.Name = "movieFillUp_panel";
-            this.movieFillUp_panel.Size = new System.Drawing.Size(775, 302);
+            this.movieFillUp_panel.Size = new System.Drawing.Size(1033, 372);
             this.movieFillUp_panel.TabIndex = 92;
             // 
             // movieUrl_tb
             // 
-            this.movieUrl_tb.Location = new System.Drawing.Point(213, 149);
+            this.movieUrl_tb.Location = new System.Drawing.Point(284, 183);
+            this.movieUrl_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.movieUrl_tb.Multiline = true;
             this.movieUrl_tb.Name = "movieUrl_tb";
-            this.movieUrl_tb.Size = new System.Drawing.Size(290, 44);
+            this.movieUrl_tb.Size = new System.Drawing.Size(387, 54);
             this.movieUrl_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.movieUrl_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.movieUrl_tb.TabIndex = 91;
@@ -912,10 +948,11 @@ namespace OOP_Project
             // 
             // trailerUrl_tb
             // 
-            this.trailerUrl_tb.Location = new System.Drawing.Point(213, 98);
+            this.trailerUrl_tb.Location = new System.Drawing.Point(284, 121);
+            this.trailerUrl_tb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.trailerUrl_tb.Multiline = true;
             this.trailerUrl_tb.Name = "trailerUrl_tb";
-            this.trailerUrl_tb.Size = new System.Drawing.Size(290, 44);
+            this.trailerUrl_tb.Size = new System.Drawing.Size(387, 54);
             this.trailerUrl_tb.StateCommon.Content.Color1 = System.Drawing.Color.Gray;
             this.trailerUrl_tb.StateCommon.Content.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.trailerUrl_tb.TabIndex = 90;
@@ -927,9 +964,10 @@ namespace OOP_Project
             // 
             this.poster_pb.BackColor = System.Drawing.Color.White;
             this.poster_pb.Image = ((System.Drawing.Image)(resources.GetObject("poster_pb.Image")));
-            this.poster_pb.Location = new System.Drawing.Point(21, 20);
+            this.poster_pb.Location = new System.Drawing.Point(28, 25);
+            this.poster_pb.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.poster_pb.Name = "poster_pb";
-            this.poster_pb.Size = new System.Drawing.Size(180, 255);
+            this.poster_pb.Size = new System.Drawing.Size(240, 314);
             this.poster_pb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.poster_pb.TabIndex = 83;
             this.poster_pb.TabStop = false;
@@ -942,9 +980,10 @@ namespace OOP_Project
             this.movieControlBtn_panel.Controls.Add(this.update_btn);
             this.movieControlBtn_panel.Controls.Add(this.movieEditor_lbl);
             this.movieControlBtn_panel.Controls.Add(this.insert_btn);
-            this.movieControlBtn_panel.Location = new System.Drawing.Point(22, 26);
+            this.movieControlBtn_panel.Location = new System.Drawing.Point(29, 32);
+            this.movieControlBtn_panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.movieControlBtn_panel.Name = "movieControlBtn_panel";
-            this.movieControlBtn_panel.Size = new System.Drawing.Size(180, 302);
+            this.movieControlBtn_panel.Size = new System.Drawing.Size(240, 372);
             this.movieControlBtn_panel.TabIndex = 91;
             // 
             // movieEditor_lbl
@@ -953,28 +992,31 @@ namespace OOP_Project
             this.movieEditor_lbl.BackColor = System.Drawing.Color.Transparent;
             this.movieEditor_lbl.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold);
             this.movieEditor_lbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.movieEditor_lbl.Location = new System.Drawing.Point(17, 24);
+            this.movieEditor_lbl.Location = new System.Drawing.Point(23, 30);
+            this.movieEditor_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.movieEditor_lbl.Name = "movieEditor_lbl";
-            this.movieEditor_lbl.Size = new System.Drawing.Size(149, 26);
+            this.movieEditor_lbl.Size = new System.Drawing.Size(183, 35);
             this.movieEditor_lbl.TabIndex = 88;
             this.movieEditor_lbl.Text = "Movie Editor";
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.movies_dgv);
-            this.panel1.Location = new System.Drawing.Point(22, 374);
+            this.panel1.Location = new System.Drawing.Point(29, 460);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(977, 275);
+            this.panel1.Size = new System.Drawing.Size(1303, 338);
             this.panel1.TabIndex = 89;
             // 
             // AdminControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.Admin_panel);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "AdminControl";
-            this.Size = new System.Drawing.Size(1214, 701);
+            this.Size = new System.Drawing.Size(1619, 863);
             this.Load += new System.EventHandler(this.AdminMovieControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.movies_dgv)).EndInit();
             this.Admin_panel.ResumeLayout(false);
